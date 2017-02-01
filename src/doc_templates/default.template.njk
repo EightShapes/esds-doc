@@ -1,0 +1,19 @@
+{% block imports %} {# This allows the imports section to be completely overridden by a child template #}
+    {% import "library/components/mds_library_macros.njk" as mds with context %}
+    {% block project_macro_imports %}{% endblock %} {# This block allows project specific macros to be injected, these macros can have access to core library macros and will be made available to doc macros #}
+    {% import "doc_library/components/mds_doc_library_macros.njk" as mds_doc with context %}
+{% endblock %}
+
+<html>
+<head>
+    <title>{% block page_title %}MDS{% endblock %}</title>
+    <link rel="stylesheet" href="/assets/styles/mds_library.css">
+    <link rel="stylesheet" href="/assets/styles/mds_library_print.css">
+    {% block head_assets %}
+    {% endblock %}
+</head>
+<body>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

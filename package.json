@@ -1,0 +1,49 @@
+{
+  "name": "mds",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "//": {
+    "NOTE": "This is brief documentation on the usage for each devDependency and dependency in the Comet system",
+    "devDependencies": {
+      "browser-sync": "Runs a local development server",
+      "gulp": "The task runner for the project",
+      "gulp-eslint": "Validates and catches errors in JS files",
+      "gulp-nunjucks-render": "Converts source .njk -> .html",
+      "gulp-sass": "Precompiler for scss -> CSS conversion",
+      "gulp-sass-lint": "Lint scss source files to conform to design system coding standards",
+      "js-beautify": "Used in index.js to correctly indent and format code examples (both HTML and CSS)",
+      "marked": "Used to process markdown -> HTML via a custom nunjucks filter defined in index.js",
+      "semver": "Used to analyze the current Semantic Version of the repository and generate corresponding 'x' releases (see Gruntfile.js for more)",
+      "strip-indent": "Removes indentation from multiline screens. Used to format code snippets correctly",
+      "yamljs": "Aids in converting tokens.yaml to JSON"
+    },
+    "dependencies": {
+      "clipboard": "Enables 'copy to clipboard' behavior for Code Snippet Documentation",
+      "prismjs": "Browser-side syntax-highlighting for code snippets",
+      "svg4everybody": "Polyfills browser support for the SVG <use> technique, used with Comet's icon sprite"
+    }
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.6",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-concat-util": "^0.5.5",
+    "gulp-eslint": "^3.0.1",
+    "gulp-nunjucks-render": "git+https://github.com/kevinmpowell/gulp-nunjucks-render.git",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-lint": "^1.3.2",
+    "gulp-svg-sprite": "^1.3.6",
+    "gulp-svgmin": "^1.2.3",
+    "gulp-util": "^3.0.8",
+    "js-beautify": "^1.6.8",
+    "marked": "^0.3.6",
+    "semver": "^5.3.0",
+    "strip-indent": "^2.0.0",
+    "yamljs": "^0.2.8"
+  },
+  "dependencies": {
+    "clipboard": "^1.5.16",
+    "prismjs": "^1.6.0",
+    "svg4everybody": "^2.1.4"
+  }
+}
