@@ -6,7 +6,7 @@
 
 <html>
 <head>
-    <title>{% block page_title %}MDS{% endblock %}</title>
+    <title>{% block page_title %}{{ project.name | capitalize }} v{{ project.version }}{% endblock %}</title>
     <link rel="stylesheet" href="/assets/styles/mds_library.css">
     <link rel="stylesheet" href="/assets/styles/mds_library_print.css">
     {% block head_assets %}
