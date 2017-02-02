@@ -6,7 +6,7 @@
             "neutral": {
                 "15": "#151515",
                 "20": "#282828",
-                "25": "#3b3b3b",
+                "25": "#3B3B3B",
                 "32": "#303030",
                 "38": "#444444",
                 "42": "#484848",
@@ -32,6 +32,11 @@
             "red": "#FF0000",
             "yellow": "#DCAA00",
             "orange": "#EF7622"
+        },
+        "font": {
+            "family": {
+                "sans-serif": "UniversLight, HelveticaNeue, Helvetica Neue, Helvetica, Arial, sans-serif"
+            }
         }
     }
 }

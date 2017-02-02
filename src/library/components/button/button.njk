@@ -1,3 +1,7 @@
-{% macro button() %}
-    <h1>Button</h1>
+{% macro button(
+            class=false, 
+            text="Click Me") %}
+    <button class="{{ project.name }}-button {{ ' ' + class if class}}">
+        {{ text }}
+    </button>
 {% endmacro %}

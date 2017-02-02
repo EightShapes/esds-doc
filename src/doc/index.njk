@@ -1,6 +1,14 @@
 {% extends 'doc_templates/default.doc.template.njk' %}
 {% block doc_body %}
-<h1>{{ project.name | capitalize }} v{{ project.version }}</h1>
-<a href="visual-style/color.html">Color</a><br>
-<a href="visual-style/icons.html">Icons</a>
+    <h1>{{ project.name | upper }} v{{ project.version }}</h1>
+    <a href="visual-style/color.html">Color</a><br>
+    <a href="visual-style/icons.html">Icons</a>
+    
+    <h2>Components</h2>
+    <a href="components/buttons.html">Buttons</a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 {% endblock %}

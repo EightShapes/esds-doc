@@ -355,10 +355,13 @@ gulp.task('clean:markup:concatenated-macros', function(){
 gulp.task('clean:data', function(){
     return(del('src/doc/data/auto-generated/**/*'));
 });
+gulp.task('clean:library-token-files', function(){
+    return(del([`src/library/styles/_${projectName}_tokens.scss`, `src/library/data/${projectName}_tokens.json`]));
+});
 gulp.task('clean:dist', function(){
     return(del('dist/**/*'));
 });
-gulp.task('clean:project', gulp.parallel('clean:markup:concatenated-macros', 'clean:data', 'clean:dist'));
+gulp.task('clean:project', gulp.parallel('clean:markup:concatenated-macros', 'clean:data', 'clean:library-token-files', 'clean:dist'));
 
 
 

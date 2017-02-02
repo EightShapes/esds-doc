@@ -5,7 +5,7 @@ color :
   neutral :
     15 : &color-neutral-15 "#151515"
     20 : &color-neutral-20 "#282828"
-    25 : &color-neutral-25 "#3b3b3b"
+    25 : &color-neutral-25 "#3B3B3B"
     32 : &color-neutral-32 "#303030"
     38 : &color-neutral-38 "#444444"
     42 : &color-neutral-42 "#484848"
@@ -30,3 +30,6 @@ color :
   red : &color-red "#FF0000"
   yellow : &color-yellow "#DCAA00"
   orange : &color-orange "#EF7622"
+font:
+  family:
+    sans-serif: UniversLight, HelveticaNeue, Helvetica Neue, Helvetica, Arial, sans-serif

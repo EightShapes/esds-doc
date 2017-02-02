@@ -1,4 +1,6 @@
 @import 'mds_tokens';
+// $project-name variable is temporary until we name the project
+$project-name: 'mds';
 
 // Cross-component utilities
 @import 'shared/utils'; // box-sizing and font-size settings
