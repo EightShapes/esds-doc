@@ -1,3 +1,6 @@
 *.DS_Store
 node_modules
 dist
+src/library/components/mds_library_macros.njk
+src/doc_library/components/mds_doc_library_macros.njk
+src/doc/data/auto-generated
