@@ -1,6 +1,6 @@
 .npmsrc
 dist
-.sass-lint.yaml
+.sass-lint.yml
 .eslintrc
 .gitignore
 gulpfile.js
