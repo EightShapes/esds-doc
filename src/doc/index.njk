@@ -2,4 +2,10 @@
 {% block body %}
 <h1>Homepage</h1>
     {{ mds.icon(name="android") }}
+
+<h2>Colors</h2>
+{% for colorName, hex in token.color %}
+    <h3>{{ colorName }}</h3>
+    <div style="height:20px; width:100px; background-color:{{ hex }};"></div>
+{% endfor %}
 {% endblock %}

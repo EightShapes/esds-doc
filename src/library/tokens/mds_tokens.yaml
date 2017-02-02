@@ -1,0 +1,6 @@
+##--------------------------------------------------
+color :
+  white : &color-white "#FFFFFF"
+  black : &color-black "#000000"
+  red : &color-red "#FF0000"
+  orange: &color-orange "#FF7700"

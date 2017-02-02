@@ -1,0 +1,10 @@
+{
+    "token": {
+        "color": {
+            "white": "#FFFFFF",
+            "black": "#000000",
+            "red": "#FF0000",
+            "orange": "#FF7700"
+        }
+    }
+}
