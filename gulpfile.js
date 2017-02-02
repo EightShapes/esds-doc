@@ -181,6 +181,9 @@ gulp.task('tokens:convert-to-scss-and-json', function(done){
     jsonTokens = JSON.stringify(jsonTokens);
     // Write out JSON version of tokens
     fs.writeFileSync(`src/library/data/${projectName}_tokens.json`, jsBeautify(jsonTokens));
+    if (!fs.existsSync('src/doc/data/auto-generated')) {
+        fs.mkdirSync('src/doc/data/auto-generated');
+    }
     fs.writeFileSync(`src/doc/data/auto-generated/${projectName}_tokens.json`, jsBeautify(jsonTokens));
     //nunjucksData = JSON.parse(jsonTokens);
 
