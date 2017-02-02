@@ -1,11 +1,6 @@
-{% extends 'doc_templates/default.template.njk' %}
-{% block body %}
+{% extends 'doc_templates/default.doc.template.njk' %}
+{% block doc_body %}
 <h1>{{ project.name | capitalize }} v{{ project.version }}</h1>
-    {{ mds.icon(name="android") }}
-
-<h2>Colors</h2>
-{% for colorName, hex in mdsTokens.color %}
-    <h3>{{ colorName }}</h3>
-    <div style="height:20px; width:100px; background-color:{{ hex }};"></div>
-{% endfor %}
+<a href="visual-style/color.html">Color</a><br>
+<a href="visual-style/icons.html">Icons</a>
 {% endblock %}

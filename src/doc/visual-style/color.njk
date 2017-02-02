@@ -1,0 +1,23 @@
+{% extends 'doc_templates/default.doc.template.njk' %}
+
+{% block doc_body %}
+    <h1>{{ project.name | capitalize }} Colors</h1>
+    <p>
+        This is a proof of concept for the dev environment. Color names are placeholders.
+    </p>
+    {% for colorName, hex in mdsTokens.color %}
+        {% if colorName == 'neutral' %}
+            {% for colorValue, hex in mdsTokens.color.neutral %}
+                <div style="display:inline-block; width: 100px; height: 100px; text-align:center; margin: 10px;">
+                    <h3>neutral-{{ colorValue }}</h3>
+                    <div style="height:40px; width:100%; background-color:{{ hex }};"></div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div style="display:inline-block; width: 100px; height: 100px; text-align:center; margin: 10px;">
+                <h3>{{ colorName }}</h3>
+                <div style="height:40px; width:100%; background-color:{{ hex }};"></div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

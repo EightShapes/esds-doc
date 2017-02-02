@@ -142,7 +142,7 @@ gulp.task('svgs:sprite', function() {
             mode: {
                 symbol: {
                     dest: '.',
-                    sprite: '${projectName}_icons.svg',
+                    sprite: `${projectName}_icons.svg`,
                     example: false
                 }
             }

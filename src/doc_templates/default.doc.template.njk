@@ -1,0 +1,15 @@
+{% extends 'doc_templates/default.template.njk' %}
+
+{% block body %}
+    <header>
+        <h2><a href="/">{{ project.name }}</a></h2>
+    </header>
+
+    {% block doc_body %}
+
+    {% endblock %}
+    
+    <footer>
+        {{ content.copyright | safe }}
+    </footer>
+{% endblock %}
