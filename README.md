@@ -1,4 +1,5 @@
-# Getting Started
+#Getting Started
+
 1. Clone the repo
 2. `cd` to your local copy
 3. Run `npm install`
