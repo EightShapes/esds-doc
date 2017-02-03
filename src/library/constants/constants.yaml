@@ -3,6 +3,7 @@ color :
   white : &color-white "#FFFFFF"
   black : &color-black "#262626"
   neutral :
+    10 : &color-neutral-10 "#010101"
     15 : &color-neutral-15 "#151515"
     20 : &color-neutral-20 "#282828"
     25 : &color-neutral-25 "#3B3B3B"

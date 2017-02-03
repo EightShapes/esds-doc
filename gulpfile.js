@@ -168,27 +168,27 @@ gulp.task('images:copy-doc', function() {
 });
 
 
-//Generate tokens.scss and tokens.json from tokens.yaml
-gulp.task('tokens:convert-to-scss-and-json', function(done){
-    // First the tokens.yaml file is parsed into JSON
-    var tokens = yaml.load(`src/library/tokens/tokens.yaml`),
+//Generate constants.scss and constants.json from constants.yaml
+gulp.task('constants:convert-to-scss-and-json', function(done){
+    // First the constants.yaml file is parsed into JSON
+    var constants = yaml.load(`src/library/constants/constants.yaml`),
         jsonTokens = {},
-        flattenedTokens = flatten(tokens, {delimiter: '-'}),
+        flattenedTokens = flatten(constants, {delimiter: '-'}),
         scss = '',
         prevVarNameParent = false;
 
-    jsonTokens[`${projectName}Tokens`] = tokens;
+    jsonTokens[`${projectName}Tokens`] = constants;
     jsonTokens = JSON.stringify(jsonTokens);
-    // Write out JSON version of tokens
-    fs.writeFileSync(`src/library/data/${projectName}_tokens.json`, jsBeautify(jsonTokens));
+    // Write out JSON version of constants
+    fs.writeFileSync(`src/library/data/${projectName}_constants.json`, jsBeautify(jsonTokens));
     if (!fs.existsSync('src/doc/data/auto-generated')) {
         fs.mkdirSync('src/doc/data/auto-generated');
     }
-    fs.writeFileSync(`src/doc/data/auto-generated/${projectName}_tokens.json`, jsBeautify(jsonTokens));
+    fs.writeFileSync(`src/doc/data/auto-generated/${projectName}_constants.json`, jsBeautify(jsonTokens));
     //nunjucksData = JSON.parse(jsonTokens);
 
 
-    // JSON tokens are iterated over and scss variable names are manually constructed
+    // JSON constants are iterated over and scss variable names are manually constructed
     for (var varName in flattenedTokens) {
         var value = flattenedTokens[varName];
         var varNameParent = varName.substr(0, varName.indexOf('-'));
@@ -200,8 +200,8 @@ gulp.task('tokens:convert-to-scss-and-json', function(done){
         scss += `$${projectName}-` + varName + ': ' + value + ';\n';
     }
 
-    // Write out the concatenated variable string to _${projectName}_tokens.scss
-    fs.writeFileSync(`src/library/styles/_${projectName}_tokens.scss`, scss);
+    // Write out the concatenated variable string to _${projectName}_constants.scss
+    fs.writeFileSync(`src/library/styles/_${projectName}_constants.scss`, scss);
     done();
 });
 
@@ -316,8 +316,8 @@ gulp.task('watch:images:doc', function(){
     return gulp.watch('src/doc/assets/images/**/*', gulp.series('images:copy-doc'));
 });
 
-gulp.task('watch:tokens:library', function(){
-    return gulp.watch(`src/library/tokens/tokens.yaml`, gulp.series('tokens:convert-to-scss-and-json', 'data:build:allData', 'build:styles:all', 'build:markup:all'));
+gulp.task('watch:constants:library', function(){
+    return gulp.watch(`src/library/constants/constants.yaml`, gulp.series('constants:convert-to-scss-and-json', 'data:build:allData', 'build:styles:all', 'build:markup:all'));
 });
 
 gulp.task('watch:data:content', function(){
@@ -342,13 +342,13 @@ gulp.task('watch', gulp.parallel(
                             'watch:styles:library',
                             'watch:styles:lint-config', 
                             'watch:svgs',
-                            'watch:tokens:library'));
+                            'watch:constants:library'));
 
 gulp.task('build:markup:all', gulp.series(gulp.parallel('markup:concatenate-library-macros', 'markup:concatenate-doc-library-macros'), 'markup:compile-docs'));
 gulp.task('build:scripts:all', gulp.series('scripts:lint', gulp.parallel('scripts:concat-library', 'scripts:concat-doc-library')));
 gulp.task('build:styles:all', gulp.series('styles:lint', 'styles:compile-library', 'styles:compile-doc-library', 'styles:compile-doc'));
 gulp.task('build:svgs:all', gulp.series('svgs:optimize', 'svgs:sprite'));
-gulp.task('build:data:all', gulp.series(gulp.parallel('tokens:convert-to-scss-and-json', 'data:build:icons', 'data:build:project'), 'data:build:allData'));
+gulp.task('build:data:all', gulp.series(gulp.parallel('constants:convert-to-scss-and-json', 'data:build:icons', 'data:build:project'), 'data:build:allData'));
 gulp.task('build:project', gulp.parallel('build:data:all', 'build:styles:all', 'build:scripts:all', 'build:markup:all', 'build:svgs:all', 'images:copy-doc'));
 
 
@@ -359,7 +359,7 @@ gulp.task('clean:data', function(){
     return(del('src/doc/data/auto-generated/**/*'));
 });
 gulp.task('clean:library-token-files', function(){
-    return(del([`src/library/styles/_${projectName}_tokens.scss`, `src/library/data/${projectName}_tokens.json`]));
+    return(del([`src/library/styles/_${projectName}_constants.scss`, `src/library/data/${projectName}_constants.json`]));
 });
 gulp.task('clean:dist', function(){
     return(del('dist/**/*'));
