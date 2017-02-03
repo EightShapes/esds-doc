@@ -1,0 +1,8 @@
+$color-background-code-snippet-actions: #CCCCCC;
+
+.#{$mds-project-name}-code-snippet__actions {
+    align-items: center;
+    background: $color-background-code-snippet-actions;
+    display: flex;
+    justify-content: flex-end;
+}

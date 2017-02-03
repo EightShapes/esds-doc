@@ -1,0 +1,20 @@
+{% macro example_code_pair(
+            examples=[], 
+            html_example_context_class = "",
+            show_examples=true) %}
+    {% set code_examples = [] %}
+    {% set context = "" | getcontext %}
+    <div class="{{ project.name }}-example-code-pair">
+        {% for example in examples %}
+            {% set rendered_component = example.source | nunjucksrenderstring(context) %}
+            {% set example = example | updateobj('source', rendered_component) %}
+        {% endfor %}
+
+        {% if show_examples %}
+            {{ html_example_list(examples=examples, class=html_example_context_class) }}
+        {% endif %}
+
+        {# Regardless of how many examples are passed in, only the first example's code will be shown in the snippet #}
+        {{ code_snippet(source=examples[0].source)}}
+    </div>
+{% endmacro %}

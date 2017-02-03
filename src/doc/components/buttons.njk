@@ -7,6 +7,18 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum reprehenderit, id perspiciatis commodi deserunt eius quia maiores quidem sunt, laboriosam quis modi error unde iste nam numquam illo. Nesciunt, voluptatem?
     </p>
 
-    {{ mds.button(text="Nathan hates the default text") }}
-    {{ mds.button(text="I'm another button") }}
+    {{ library.button(text="Nathan hates the default text") }}
+    {{ library.button(text="I'm another button") }}
+
+    {% set buttonMarkup %}
+        {{ library.button() }}
+        <br>
+        {{ library.button() }}
+    {% endset %}
+
+    {{ doc_library.example_code_pair(examples=[{
+        source: '{{ library.button() }}'
+    }])}}
+
+    {{ doc_library.code_snippet(source=buttonMarkup) }}
 {% endblock %}

@@ -1,3 +1,45 @@
-{% macro code_snippet() %}
-    <h1>Code Snippet</h1>
+{% macro code_snippet(
+        source='', 
+        language='markup', 
+        show_copy_button=true, 
+        class=false, 
+        beautify=false, 
+        preformatted=false,
+        reference_link_text="Reference Link", 
+        reference_link_href=false,
+        icon_path=false) %}
+    {% set id = range(0, 100000) | random %}
+
+    <div class="{{ project.name }}-code-snippet{{ ' ' + class if class }}">
+        {% if show_copy_button %}
+            <div class="{{ project.name }}-code-snippet__actions">
+                <a href="#" class="{{ project.name }}-code-snippet__copy" data-clipboard-target="#{{ project.name }}-code-snippet--{{ id }}">
+                    {{ library.icon(name='copy', class='{{ project.name }}-code-snippet__copy-icon', path=icon_path) }}
+                    <span class="{{ project.name }}-code-snippet__copy-text">Copy to Clipboard</span>
+                    <span class="{{ project.name }}-code-snippet__copied-response">Press Ctrl + C to copy</span>
+                </a>
+            </div>
+        {% endif %}
+        <div id="{{ project.name }}-code-snippet--{{ id }}" class="{{ project.name }}-code-snippet__source">
+            <pre><code class="language-{{ language }}">
+                {{- source | stripindent | htmlbeautify -}}
+            </code></pre>
+        </div>
+    </div>
+                {# {{ source | trim | escape | replace('<', '&lt;') | replace('>', '&gt;')}} #}
+{#                 {%- if beautify -%}
+                    {%- if language == 'css' or language == 'stylus' -%}
+                        {{ source | trim | cssbeautify }}
+                    {%- else -%}
+                        {{ source | trim | htmlbeautify | escape | replace('<', '&lt;') | replace('>', '&gt;')}}
+                    {%- endif -%}
+                {%- elif language == 'twig' -%}
+                    {{ source | trim }}
+                {%- elif preformatted -%}
+                    {{ source | trim | safe }}
+                {%- else -%}
+                {% endif %}
+                {% if reference_link_href %}
+<a class="{{ project.name }}-code-snippet__link" href="{{ reference_link_href }}">{{ reference_link_text }}</a>
+                {%- endif -%} #}
 {% endmacro %}

@@ -11,14 +11,15 @@ const   gulp = require('gulp'),
         jsBeautify = require('js-beautify'),
         nunjucksRender = require('gulp-nunjucks-render'),
         project = require('./package.json'),
+        projectDataFilepath = 'src/doc/data/auto-generated/all_data.json',
+        projectName = project.name,
+        projectNodePackage = require('./index.js'),
         sass = require('gulp-sass'),
         sassLint = require('gulp-sass-lint'),
         semver = require('semver'),                         // Used to automatically generate "x" releases in the /dist folder, 1.1.x, 1.x, etc. 
         svgmin = require('gulp-svgmin'),
         svgSprite = require('gulp-svg-sprite'),
-        yaml = require('yamljs'),
-        projectName = project.name,
-        projectDataFilepath = 'src/doc/data/auto-generated/all_data.json';
+        yaml = require('yamljs');
 
 // Lint scss files
 gulp.task('styles:lint', function () {
@@ -77,11 +78,14 @@ gulp.task('markup:compile-docs', function() {
     return gulp.src('src/doc/**/*.njk')
         .pipe(
             nunjucksRender({
-                path: ['src'],
+                data: fs.existsSync(projectDataFilepath) ? JSON.parse(fs.readFileSync(projectDataFilepath, {encoding: 'UTF-8'})) : {},
                 envOptions: {
                     watch: false
                 },
-                data: fs.existsSync(projectDataFilepath) ? JSON.parse(fs.readFileSync(projectDataFilepath, {encoding: 'UTF-8'})) : {},
+                manageEnv: function(env) {
+                    projectNodePackage.addDocLibraryNunjucksFilters(env);
+                },
+                path: ['src']
             }).on('error', function(e){
                 gutil.log(e);
                 gutil.beep();
@@ -96,7 +100,7 @@ gulp.task('markup:compile-docs', function() {
 gulp.task('scripts:lint', function () {
   return gulp.src('src/**/*.js', {since: gulp.lastRun('scripts:lint')})
     .pipe(eslint({
-        configFile: '.eslintrc'
+        configFile: './.eslintrc'
     }))
     .pipe(eslint.formatEach('compact', process.stderr))
     .pipe(eslint.failAfterError());
@@ -170,6 +174,7 @@ gulp.task('images:copy-doc', function() {
 gulp.task('doc-dependencies:copy', function() {
     return gulp.src([
             'node_modules/clipboard/dist/clipboard.min.js',
+            'node_modules/jquery/dist/jquery.min.js',
             'node_modules/prismjs/prism.js',
             'node_modules/prismjs/themes/prism.css'
         ])

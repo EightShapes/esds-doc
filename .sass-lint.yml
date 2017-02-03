@@ -15,7 +15,7 @@ rules:
     - allow-single-line: true
   class-name-format:
     - 1
-    - convention: hyphenatedlowercase
+    - convention: hyphenatedbem
   clean-import-paths:
     - 1
     - filename-extension: false
@@ -43,7 +43,7 @@ rules:
     - style: uppercase
   id-name-format:
     - 1
-    - convention: hyphenatedlowercase
+    - convention: hyphenatedbem
   indentation:
     - 1
     - size: 4
@@ -87,7 +87,7 @@ rules:
   placeholder-in-extend: 1
   placeholder-name-format:
     - 1
-    - convention: hyphenatedlowercase
+    - convention: hyphenatedbem
   property-sort-order:
     - 1
     - ignore-custom-properties: false
