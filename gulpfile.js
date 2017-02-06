@@ -569,5 +569,33 @@ gulp.task('build:relativize-root', function(done){
     done();
 });
 
-gulp.task('build:current-release', gulp.parallel('release:compiled-assets', 'release:docs', 'release:source-styles', 'release:source-scripts', 'release:source-icons', 'release:constants:json', 'release:constants:yaml'));
+// BUILD NODE PACKAGE
+gulp.task('build:current-release-node-package', function(done){
+    // Exclude the current release from the npmignore file
+    const regex = /\!releases\/\d*\.\d*\.\d*/g;
+    let npmIgnoreContents = fs.readFileSync('.npmignore', 'UTF-8'),
+        match = regex.exec(npmIgnoreContents);
+        
+    if (match !== null) {
+        // regex replace the matched line with the current version
+        // The result can be accessed through the `m`-variable.
+        npmIgnoreContents.replace(regex, `!releases/${project.version}`);
+    } else {
+        // append the exclusion of this version to the npmignore file
+        npmIgnoreContents += `!releases/${project.version}`;
+    }
+
+    fs.writeFileSync('.npmignore', npmIgnoreContents);
+
+    done();
+});
+
+// TODO: BUILD BOWER PACKAGE
+gulp.task('build:current-release-bower-package', function(done){
+
+    done();
+});
+
+
+gulp.task('build:current-release', gulp.parallel('release:compiled-assets', 'release:docs', 'release:source-styles', 'release:source-scripts', 'release:source-icons', 'release:constants:json', 'release:constants:yaml', 'build:current-release-node-package'));
 gulp.task('build:release', gulp.series('release:existing-check', 'build:dist', 'build:relativize-root', 'release:clean', 'build:current-release'));
