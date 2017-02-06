@@ -3,5 +3,6 @@ dist
 .eslintrc
 .gitignore
 gulpfile.js
+src
 releases/*
 !releases/1.0.0

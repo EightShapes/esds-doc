@@ -592,10 +592,22 @@ gulp.task('build:current-release-node-package', function(done){
 
 // TODO: BUILD BOWER PACKAGE
 gulp.task('build:current-release-bower-package', function(done){
+    let packageJson = require('./package.json'),
+        bowerJson = {
+            name: packageJson.name,
+            description: packageJson.description,
+            main: packageJson.main,
+            dependencies: packageJson.dependencies,
+            private: packageJson.private
+        },
+        npmIgnoreFiles = fs.readFileSync('.npmignore', 'UTF-8').split('\n');
+        npmIgnoreFiles.pop();
+    bowerJson.ignore = npmIgnoreFiles;
 
+    fs.writeFileSync('bower.json', jsBeautify(JSON.stringify(bowerJson)));
     done();
 });
 
 
-gulp.task('build:current-release', gulp.parallel('release:compiled-assets', 'release:docs', 'release:source-styles', 'release:source-scripts', 'release:source-icons', 'release:constants:json', 'release:constants:yaml', 'build:current-release-node-package'));
+gulp.task('build:current-release', gulp.parallel('release:compiled-assets', 'release:docs', 'release:source-styles', 'release:source-scripts', 'release:source-icons', 'release:constants:json', 'release:constants:yaml', 'build:current-release-node-package', 'build:current-release-bower-package'));
 gulp.task('build:release', gulp.series('release:existing-check', 'build:dist', 'build:relativize-root', 'release:clean', 'build:current-release'));
