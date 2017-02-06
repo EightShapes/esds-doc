@@ -1,6 +1,8 @@
-// This file is used when leveraging Comet as a node module 
+/*global require*/
+/*global module*/
+// This file is used when leveraging the system as a node module
 // It generates various filepaths that you can use in your build tool (Grunt, Gulp, etc)
-var package_data = require('./package.json'),
+var packageData = require('./package.json'),
     cssBeautify = require('js-beautify').css,
     cssBeautifyOptions = {
         "newline_between_rules": true,
@@ -27,19 +29,20 @@ var package_data = require('./package.json'),
 
 
 marked.setOptions({
-    renderer: new marked.Renderer(),
-    gfm: false,
-    highlight: false,
-    pedantic: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false
+    "renderer": new marked.Renderer(),
+    "gfm": false,
+    "highlight": false,
+    "pedantic": false,
+    "sanitize": false,
+    "smartLists": true,
+    "smartypants": false
 });
 
 module.exports = {
-    addDocLibraryNunjucksFilters: function(env) {
+    "addDocLibraryNunjucksFilters": function(env) {
+        'use strict';
         env.addFilter('updateobj', function(obj, key, value){
-          if (obj === undefined) {
+          if (typeof obj === 'undefined') {
             obj = {};
           }
           obj[key] = value;
@@ -47,7 +50,7 @@ module.exports = {
         });
 
         env.addFilter('isstring', function(obj) {
-          return typeof obj == 'string';
+          return typeof obj === 'string';
         });
 
         env.addFilter('isarray', function(obj) {
@@ -55,7 +58,7 @@ module.exports = {
         });
 
         env.addFilter('isobject', function(obj) {
-            return typeof obj == 'object';
+            return typeof obj === 'object';
         });
 
         env.addFilter('split', function(text, delimiter) {
@@ -74,11 +77,11 @@ module.exports = {
         });
 
         env.addFilter('htmlbeautify', function(string) {
-            return htmlBeautify(string, htmlBeautifyOptions)
+            return htmlBeautify(string, htmlBeautifyOptions);
         });
 
         env.addFilter('cssbeautify', function(string) {
-            return cssBeautify(string, cssBeautifyOptions)
+            return cssBeautify(string, cssBeautifyOptions);
         });
 
         env.addFilter('stripindent', function(string){
@@ -100,9 +103,9 @@ module.exports = {
         env.addFilter('nunjucksrenderstring', function(string, context){
             return env.renderString(string, context);
         });
-        
+
         env.addFilter('getcontext', function(){
           return this.ctx;
         });
     }
-}
+};

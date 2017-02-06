@@ -8,12 +8,14 @@ const   gulp = require('gulp'),
         flatten = require('flat'), 
         fs = require('fs'),
         gutil = require('gulp-util'),
+        inquirer = require('inquirer'),
         jsBeautify = require('js-beautify'),
         nunjucksRender = require('gulp-nunjucks-render'),
         project = require('./package.json'),
         projectDataFilepath = 'src/doc/data/auto-generated/all_data.json',
         projectName = project.name,
         projectNodePackage = require('./index.js'),
+        rename = require('gulp-rename'),
         sass = require('gulp-sass'),
         sassLint = require('gulp-sass-lint'),
         semver = require('semver'),                         // Used to automatically generate "x" releases in the /dist folder, 1.1.x, 1.x, etc. 
@@ -365,7 +367,6 @@ gulp.task('build:svgs:all', gulp.series('svgs:optimize', 'svgs:sprite'));
 gulp.task('build:data:all', gulp.series(gulp.parallel('constants:convert-to-scss-and-json', 'data:build:icons', 'data:build:project'), 'data:build:allData'));
 gulp.task('build:project', gulp.parallel('build:data:all', 'build:styles:all', 'build:scripts:all', 'build:markup:all', 'build:svgs:all', 'images:copy-doc', 'doc-dependencies:copy'));
 
-
 gulp.task('clean:markup:concatenated-macros', function(){
     return(del([`src/library/components/${projectName}_library_macros.njk`, `src/doc_library/components/${projectName}_doc_library_macros.njk`]));
 });
@@ -389,3 +390,45 @@ gulp.task('build:dist', gulp.series('clean:project', 'build:project'));
 gulp.task('default', gulp.series('build:dist', gulp.parallel('watch', 'browser-sync')));
 
 // Build releases
+gulp.task('release:compiled-assets', function(){
+    return(gulp.src(['dist/assets/styles/*.css', 'dist/assets/scripts/*.js', 'dist/assets/icons/*.svg', `!dist/assets/styles/${projectName}_doc*`, `!dist/assets/scripts/${projectName}_doc*`]))
+        .pipe(rename({
+            suffix: `_${project.version}`    
+        }))
+        .pipe(gulp.dest(`releases/${project.version}`));
+});
+
+gulp.task('release:existing-check', function(done){
+        var questions = [{
+                    name: 'versionCheck',
+                    type: 'input',
+                    message: `Release ${project.version} already exists at /releases/${project.version}\n You can update the version number in package.json or to overwrite the existing release, type: '${project.version}'\n`,
+                    when: function(answers) {
+                        return fs.existsSync(`releases/${project.version}`);
+                    }
+                }];
+
+        return inquirer.prompt(questions).then(function(answers) {
+            // To overwrite you must type the current version number into the command line prompt
+            if (typeof answers.versionCheck != 'undefined') {
+                if (answers.versionCheck === project.version) {
+                    // If you type the current version number into the command line prompt, the release WILL be overwritten
+                    console.log(`releases/${project.version} WILL be overwritten.`);
+                    done();
+                }
+                else {
+                    // If you don't type the current version number into the command line prompt, the release will not be overwritten
+                    console.log(`${project.version} will not be overwritten.`);
+                    done(new Error('Release task aborted'));
+                }
+            }
+            // If /releases/${project.version} does not already exist, no question is asked and the release is created
+            else {
+                console.log(`Creating release: ${project.version}`);
+                done();
+            }
+        });
+});
+
+gulp.task('build:current-release', gulp.parallel('release:compiled-assets'));
+gulp.task('build:release', gulp.series('release:existing-check', 'build:dist', 'build:current-release'));
