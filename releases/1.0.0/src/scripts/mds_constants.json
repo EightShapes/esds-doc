@@ -1,5 +1,6 @@
 {
-    "mdsTokens": {
+    "mdsConstants": {
+        "project-name": "mds",
         "color": {
             "white": "#FFFFFF",
             "black": "#262626",

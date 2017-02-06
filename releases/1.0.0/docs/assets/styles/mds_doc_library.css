@@ -1,0 +1,6 @@
+/* mds v1.0.0 */
+.mds-code-snippet__actions {
+  align-items: center;
+  background: #CCCCCC;
+  display: flex;
+  justify-content: flex-end; }

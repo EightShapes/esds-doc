@@ -1,0 +1,14 @@
+/* mds v1.0.0 */
+.mds-button {
+  background-color: transparent;
+  border: solid 1px #666666;
+  border-radius: 15px;
+  color: #666666;
+  cursor: pointer;
+  font-family: UniversLight, HelveticaNeue, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  padding: 4px 16px; }
+
+.mds-icon {
+  height: 32px;
+  width: 32px; }
