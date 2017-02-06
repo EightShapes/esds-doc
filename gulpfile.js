@@ -10,7 +10,9 @@ const   gulp = require('gulp'),
         gutil = require('gulp-util'),
         inquirer = require('inquirer'),
         jsBeautify = require('js-beautify'),
+        merge = require('merge-stream'),
         nunjucksRender = require('gulp-nunjucks-render'),
+        path = require('path'),
         project = require('./package.json'),
         projectDataFilepath = 'src/doc/data/auto-generated/all_data.json',
         projectName = project.name,
@@ -27,7 +29,8 @@ const   gulp = require('gulp'),
         versionStampScss = `// ${versionStamp} \n`,
         versionStampXml = `<!-- ${versionStamp} -->`,
         versionStampYaml = `## ${versionStamp}\n`,
-        yaml = require('yamljs');
+        yaml = require('yamljs'),
+        zip = require('gulp-zip');
 
 // Lint scss files
 gulp.task('styles:lint', function () {
@@ -406,14 +409,40 @@ gulp.task('build:dist', gulp.series('clean:project', 'build:project'));
 gulp.task('default', gulp.series('build:dist', gulp.parallel('watch', 'browser-sync')));
 
 
-/******* VERSIONED RELEASE DOCS *********************/
+/******* VERSIONED DOCS AND DOWNLOADABLE ZIPS *********************/
 gulp.task('clean:versioned-docs', function(){
     return(del('dist/version/**/*'))
 });
-gulp.task('build:versioned-docs', gulp.series('clean:versioned-docs', function(){
+
+function getFolders(dir) {
+    return fs.readdirSync(dir)
+      .filter(function(file) {
+        return fs.statSync(path.join(dir, file)).isDirectory();
+      });
+}
+
+gulp.task('build:versioned-zips', function(done){
+    if (fs.existsSync('releases')) {
+        var releaseFolders = getFolders('releases');
+        var tasks = releaseFolders.map(function(folder){
+            return gulp.src(path.join('releases', folder, '/**/*'))
+                .pipe(zip(`${folder}.zip`))
+                .pipe(gulp.dest(`dist/version/${folder}`));
+        });
+
+        return merge(tasks);
+    } else {
+        done();
+    }
+});
+
+
+gulp.task('build:versioned-docs', gulp.series('clean:versioned-docs', 'build:versioned-zips', function(){
     return gulp.src('releases/**/docs/**/*')
     .pipe(gulp.dest('dist/version'));
 }));
+
+gulp.task('build:dist-all-versions', gulp.series('build:dist', 'build:versioned-docs'));
 
 /******* RELEASE TASKS ******************************/
 gulp.task('release:clean', function(){
