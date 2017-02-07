@@ -34,4 +34,4 @@ color :
   orange : &color-orange "#EF7622"
 font:
   family:
-    sans-serif: UniversLight, HelveticaNeue, Helvetica Neue, Helvetica, Arial, sans-serif
+    sans-serif: "'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif"

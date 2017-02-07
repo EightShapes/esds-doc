@@ -2,6 +2,7 @@
 // $project-name variable is temporary until we name the project
 
 // Cross-component utilities
+@import 'shared/fonts';
 @import 'shared/utils'; // box-sizing and font-size settings
 @import 'shared/accessibility'; // utilities for screenreader text, etc.
 @import 'shared/animation'; // transitions and keyframe animations

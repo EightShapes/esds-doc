@@ -192,6 +192,11 @@ gulp.task('images:copy-doc', function() {
         .pipe(gulp.dest('dist/assets/images'));    
 });
 
+gulp.task('fonts:copy', function() {
+    return gulp.src('src/library/fonts/**/*', {since: gulp.lastRun('fonts:copy')})
+        .pipe(gulp.dest('dist/assets/fonts'));    
+});
+
 gulp.task('doc-dependencies:copy', function() {
     return gulp.src([
             'node_modules/clipboard/dist/clipboard.min.js',
@@ -384,7 +389,7 @@ gulp.task('build:scripts:all', gulp.series('scripts:lint', gulp.parallel('script
 gulp.task('build:styles:all', gulp.series('styles:lint', 'styles:compile-library', 'styles:compile-doc-library', 'styles:compile-doc'));
 gulp.task('build:svgs:all', gulp.series('svgs:optimize', 'svgs:sprite'));
 gulp.task('build:data:all', gulp.series(gulp.parallel('constants:convert-to-scss-and-json', 'data:build:icons', 'data:build:project'), 'data:build:allData'));
-gulp.task('build:project', gulp.parallel('build:data:all', 'build:svgs:all', 'images:copy-doc', 'doc-dependencies:copy', 'build:styles:all', 'build:scripts:all', 'build:markup:all'));
+gulp.task('build:project', gulp.parallel('build:data:all', 'build:svgs:all', 'images:copy-doc', 'doc-dependencies:copy', 'fonts:copy', 'build:styles:all', 'build:scripts:all', 'build:markup:all'));
 
 gulp.task('clean:markup:concatenated-macros', function(){
     return(del([`src/library/components/${projectName}_library_macros.njk`, `src/doc_library/components/${projectName}_doc_library_macros.njk`]));
@@ -470,6 +475,11 @@ gulp.task('release:source-icons', function(){
     return(gulp.src('src/library/icons/**/*.svg'))
         .pipe(concat.footer(versionStampXml))
         .pipe(gulp.dest(`releases/${project.version}/src/icons`));
+});
+
+gulp.task('release:fonts', function(){
+    return(gulp.src('src/library/fonts/**/*'))
+        .pipe(gulp.dest(`releases/${project.version}/fonts`));
 });
 
 gulp.task('release:docs', function(){
@@ -609,5 +619,5 @@ gulp.task('build:current-release-bower-package', function(done){
 });
 
 
-gulp.task('build:current-release', gulp.parallel('release:compiled-assets', 'release:docs', 'release:source-styles', 'release:source-scripts', 'release:source-icons', 'release:constants:json', 'release:constants:yaml', 'build:current-release-node-package', 'build:current-release-bower-package'));
+gulp.task('build:current-release', gulp.parallel('release:fonts', 'release:compiled-assets', 'release:docs', 'release:source-styles', 'release:source-scripts', 'release:source-icons', 'release:constants:json', 'release:constants:yaml', 'build:current-release-node-package', 'build:current-release-bower-package'));
 gulp.task('build:release', gulp.series('release:existing-check', 'build:dist', 'build:relativize-root', 'release:clean', 'build:current-release'));

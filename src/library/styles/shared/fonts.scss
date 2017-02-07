@@ -1,0 +1,56 @@
+// sass-lint:disable no-duplicate-properties
+// Need to allow duplicate src definitions for better browser support
+
+// Ultra Light
+@font-face {
+    font-family: 'Univers';
+    font-style: normal;
+    font-weight: 100;
+    src: url('../fonts/3ff7b647-ed35-4a34-a497-0b8e0455ef09.eot');
+    src: url('../fonts/3ff7b647-ed35-4a34-a497-0b8e0455ef09.eot?#iefix') format('embedded-opentype'), url('../fonts/f9c3797f-895f-42e2-9e83-9340081311d6.woff') format('woff');
+}
+
+// Thin
+@font-face {
+    font-family: 'Univers';
+    font-style: normal;
+    font-weight: 200;
+    src: url('../fonts/4236b369-2f95-4452-9326-0e51d1087bdc.eot');
+    src: url('../fonts/4236b369-2f95-4452-9326-0e51d1087bdc.eot?#iefix') format('embedded-opentype'), url('../fonts/5a67b0ed-239e-4f3e-adeb-8b1e517a5bd3.woff') format('woff');
+}
+
+// Light
+@font-face {
+    font-family: 'Univers';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/fd397187-4d65-4b13-99ac-e43b94abebcc.eot');
+    src: url('../fonts/fd397187-4d65-4b13-99ac-e43b94abebcc.eot?#iefix') format('embedded-opentype'), url('../fonts/600bda4e-11fe-4903-9a39-bb6b77389170.woff') format('woff');
+}
+
+// Regular
+@font-face {
+    font-family: 'Univers';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/f1bc8267-a817-408b-a089-4310761881f7.eot');
+    src: url('../fonts/f1bc8267-a817-408b-a089-4310761881f7.eot?#iefix') format('embedded-opentype'), url('../fonts/3b5a7b6a-e026-4ee8-b80f-6aa5e44b2977.woff') format('woff');
+}
+
+// Medium
+@font-face {
+    font-family: 'Univers';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/a0041c8f-87d5-4762-9433-d1bd14041dd1.eot');
+    src: url('../fonts/a0041c8f-87d5-4762-9433-d1bd14041dd1.eot?#iefix') format('embedded-opentype'), url('../fonts/656bb203-0436-41f9-8266-de61f5c29096.woff') format('woff');
+}
+
+// Bold
+@font-face {
+    font-family: 'Univers';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../fonts/8ce6a630-11cb-4fba-be7f-e9f01c898ea2.eot');
+    src: url('../fonts/8ce6a630-11cb-4fba-be7f-e9f01c898ea2.eot?#iefix') format('embedded-opentype'), url('../fonts/a55d5255-e095-4e87-ac0d-fe0968b0a9c6.woff') format('woff');
+}
