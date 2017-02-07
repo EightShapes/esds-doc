@@ -582,14 +582,13 @@ gulp.task('build:relativize-root', function(done){
 // BUILD NODE PACKAGE
 gulp.task('build:current-release-node-package', function(done){
     // Exclude the current release from the npmignore file
-    const regex = /\!releases\/\d*\.\d*\.\d*/g;
+    const regex = /\!releases\/\d*\.\d*\.\d*/gm;
     let npmIgnoreContents = fs.readFileSync('.npmignore', 'UTF-8'),
         match = regex.exec(npmIgnoreContents);
-        
     if (match !== null) {
         // regex replace the matched line with the current version
         // The result can be accessed through the `m`-variable.
-        npmIgnoreContents.replace(regex, `!releases/${project.version}`);
+        npmIgnoreContents = npmIgnoreContents.replace(regex, `!releases/${project.version}`);
     } else {
         // append the exclusion of this version to the npmignore file
         npmIgnoreContents += `!releases/${project.version}`;

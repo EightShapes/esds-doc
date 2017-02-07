@@ -9,5 +9,5 @@
         "svg4everybody": "^2.1.4"
     },
     "private": true,
-    "ignore": ["dist", ".sass-lint.yml", ".eslintrc", ".gitignore", "gulpfile.js", "src", "releases/*", "!releases/1.0.0"]
+    "ignore": ["dist", ".sass-lint.yml", ".eslintrc", ".gitignore", "gulpfile.js", "src", "releases/*", "!releases/0.0.1"]
 }
