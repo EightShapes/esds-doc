@@ -1,5 +1,6 @@
 {
-    "mdsTokens": {
+    "mdsConstants": {
+        "project-name": "mds",
         "color": {
             "white": "#FFFFFF",
             "black": "#262626",
@@ -36,7 +37,7 @@
         },
         "font": {
             "family": {
-                "sans-serif": "UniversLight, HelveticaNeue, Helvetica Neue, Helvetica, Arial, sans-serif"
+                "sans-serif": "'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif"
             }
         }
     }

@@ -1,0 +1,12 @@
+// mds v0.0.1 
+// $project-name variable is temporary until we name the project
+.#{$mds-project-name}-button {
+    background-color: transparent;
+    border: solid 1px $mds-color-neutral-50;
+    border-radius: 15px;
+    color: $mds-color-neutral-50;
+    cursor: pointer;
+    font-family: $mds-font-family-sans-serif;
+    font-size: 16px;
+    padding: 4px 16px;
+}

@@ -1,12 +1,12 @@
 // Use the library's constants
-@import '../../../library/styles/mds_constants';
+@import 'mds_constants';
 
 // Use the library's Cross-component utilities
-@import '../../../library/styles/shared/utils'; // box-sizing and font-size settings
-@import '../../../library/styles/shared/accessibility'; // utilities for screenreader text, etc.
-@import '../../../library/styles/shared/animation'; // transitions and keyframe animations
-@import '../../../library/styles/shared/space'; // mixin to control font whitespace
-@import '../../../library/styles/shared/typography'; // mixins for supported font families and weights
+@import 'shared/utils'; // box-sizing and font-size settings
+@import 'shared/accessibility'; // utilities for screenreader text, etc.
+@import 'shared/animation'; // transitions and keyframe animations
+@import 'shared/space'; // mixin to control font whitespace
+@import 'shared/typography'; // mixins for supported font families and weights
 
 @import 'pages/doc_color';
 @import 'pages/doc_homepage';

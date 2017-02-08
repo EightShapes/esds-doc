@@ -6,9 +6,9 @@
     <p>
         This is a proof of concept for the dev environment. Color names are placeholders.
     </p>
-    {% for colorName, hex in mdsTokens.color %}
+    {% for colorName, hex in mdsConstants.color %}
         {% if colorName == 'neutral' %}
-            {% for colorValue, hex in mdsTokens.color.neutral %}
+            {% for colorValue, hex in mdsConstants.color.neutral %}
                 <div style="display:inline-block; width: 100px; height: 100px; text-align:center; margin: 10px;">
                     <h3>neutral-{{ colorValue }}</h3>
                     <div style="height:40px; width:100%; background-color:{{ hex }};"></div>
