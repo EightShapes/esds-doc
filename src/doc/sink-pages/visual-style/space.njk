@@ -1,0 +1,104 @@
+{% extends 'doc_templates/default.template.njk' %}
+{% set title = 'Space Sink' %}
+
+{% block body %}
+    <style>
+        .padded-box {
+            box-shadow: inset 10px 10px 0 red, inset -10px -10px red;
+            border: solid 1px black;
+            display: inline-block;
+            font-family: 'Univers';
+            padding: 10px;
+        }
+
+        .image-text-pair {
+            align-items: flex-start;
+            display: inline-flex;
+            width: 400px;
+        }
+
+        .image-text-pair--bottom-aligned {
+            align-items: flex-end;
+        }
+
+        .image-text-pair--center-aligned {
+            align-items: center;
+        }
+
+        .image-text-pair__text {
+            font-family: 'Univers';
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .image-text-pair__image {
+            margin-right: 16px;
+        }
+
+        .button-wrap {
+            align-items: center;
+            background: darkblue;
+            color: white;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: 'Univers';
+            padding: 16px;
+        }
+
+        .button-wrap__text {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .button-wrap__image {
+            margin-right: 8px;
+        }
+    </style>
+    <h1>Space Sink</h1>
+    <h2><code>.mds-text-crop--default</code> utility class</h2>
+    <p>
+        Adding this class (or using the <code>mds-text-crop()</code> mixin in scss) will remove the "extra" space from the top and bottom of a text element. 
+    </p>
+    <h3>Before mds-text-crop</h3>
+    <div class="padded-box">
+        Some SAMPLE Text
+    </div>
+
+    <h3>After mds-text-crop</h3>
+    <div class="padded-box mds-text-crop--default">
+        Some SAMPLE Text
+    </div>
+
+    <p>Useful for ensuring only system padding & margins are creating space between and within elements. Also useful for vertically aligning elements&rsquo; top or bottom edges.</p>
+
+    <h3>Top Alignment Before &amp; After</h3>
+    <div class="image-text-pair">
+        <img class="image-text-pair__image" src="http://placehold.it/100x100" alt="">
+        <p class="image-text-pair__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi placeat vero amet distinctio ea commodi laboriosam, animi?</p>
+    </div>
+    <div class="image-text-pair">
+        <img class="image-text-pair__image" src="http://placehold.it/100x100" alt="">
+        <p class="image-text-pair__text mds-text-crop--default">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi placeat vero amet distinctio ea commodi laboriosam, animi?</p>
+    </div>
+
+    <h3>Bottom Alignment Before &amp; After</h3>
+    <div class="image-text-pair image-text-pair--bottom-aligned">
+        <img class="image-text-pair__image" src="http://placehold.it/100x100" alt="">
+        <p class="image-text-pair__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi placeat vero amet distinctio ea commodi laboriosam, animi?</p>
+    </div>
+    <div class="image-text-pair image-text-pair--bottom-aligned">
+        <img class="image-text-pair__image" src="http://placehold.it/100x100" alt="">
+        <p class="image-text-pair__text mds-text-crop--default">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi placeat vero amet distinctio ea commodi laboriosam, animi?</p>
+    </div>
+
+    <h3>Pseudo Button Before &amp; After (16px padding)</h3>
+    <div class="button-wrap">
+        <img class="button-wrap__image" src="http://placehold.it/15x15" alt="">
+        <p class="button-wrap__text">Call To Action with just text and icon</p>
+    </div>
+    <div class="button-wrap">
+        <img class="button-wrap__image" src="http://placehold.it/15x15" alt="">
+        <p class="button-wrap__text mds-text-crop--default">Call To Action with just text and icon</p>
+    </div>
+    
+{% endblock %}

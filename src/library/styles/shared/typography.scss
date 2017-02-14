@@ -1,0 +1,34 @@
+// mds-text-crop mixin
+// Use to eliminate "extra" white space added by text nodes in the DOM. This will crop the top of the text to the Cap height and the bottom of the text to the baseline
+// Use to align text with non text elements (images, icons, etc.) or to eliminate "non-system" space within an element
+
+@mixin mds-text-crop($line-height: 1.25) {
+    $offset-top: max((14 + ($line-height - 1.2) * (64 / 2)), 0) / 64;
+    $offset-bottom: max((16 + ($line-height - 1.2) * (64 / 2)), 0) / 64;
+
+    line-height: $line-height;
+
+    &::before,
+    &::after {
+        content: '';
+        display: block;
+        height: 0;
+        width: 0;
+    }
+
+    &::before {
+        margin-bottom: -#{$offset-top}em;
+    }
+
+    &::after {
+        margin-top: -#{$offset-bottom}em;
+    }
+}
+
+.mds-text-crop--default {
+    @include mds-text-crop();
+}
+
+.mds-text-crop--1-1 {
+    @include mds-text-crop(1.1);
+}
