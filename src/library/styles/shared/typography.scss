@@ -4,7 +4,7 @@
 
 @mixin mds-text-crop($line-height: 1.25) {
     $offset-top: max((14 + ($line-height - 1.2) * (64 / 2)), 0) / 64;
-    $offset-bottom: max((16 + ($line-height - 1.2) * (64 / 2)), 0) / 64;
+    $offset-bottom: max((15.5 + ($line-height - 1.2) * (64 / 2)), 0) / 64;
 
     line-height: $line-height;
 
