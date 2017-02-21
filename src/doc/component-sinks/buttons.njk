@@ -1,7 +1,346 @@
+{% set els = [
+        { el: 'input-button'}, 
+        { el: 'submit'},
+        { el: 'a'},
+        { el: 'button'},
+        { el: 'div'},
+        { el: 'span'},
+        { el: 'checkbox'},
+        { el: 'radio'}
+    ]
+%} 
+{% macro buttonElements(
+		el_class=false,
+		el_icon_left=false,
+		el_icon_right=false,
+		el_text=false,
+		el_ex_dark=false) %}
+	{% for item in els %}
+		<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
+			<label class="button-example__label">Element= "{{ item.el }}"</label>
+			<br>
+			{{ library.button(text=el_text, class=el_class, icon_left=el_icon_left, icon_right=el_icon_right, el=item.el) }}
+		</div>
+	{% endfor %}
+{% endmacro %}
+
+{% macro buttonVertAlign(
+		el_class=false,
+		el_ex_dark=false) %}
+	{% for item in els %}
+		<div>
+			<label class="button-example__label">Element= "{{ item.el }}"</label>
+		</div>
+		<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
+			{{ library.button(text="Sign Up", class=el_class, el=item.el) }}
+		</div>
+		<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
+			{{ library.button(text="Copy Document", class=el_class, icon_left="copy", el=item.el) }}
+		</div>
+		<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
+			{{ library.button(text="Continue", class=el_class, icon_right="arrow-right", el=item.el) }}
+		</div>
+		<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
+			{{ library.button(text="Account Settings", class=el_class, icon_left="utilities", icon_right="arrow-down", el=item.el) }}
+		</div>
+		<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
+			{{ library.button(class=el_class, icon_left="search", el=item.el) }}
+		</div>
+	{% endfor %}
+{% endmacro %}
+
+{% macro buttonStates(
+		el_class=false,
+		el_ex_dark=false) %}
+	{% set states = ['default', 'hover', 'focus', 'active', 'disabled'] %} 
+	{% for item in els %}
+		<h3>Element= "{{ item.el }}"</h3>
+		{% for state in states %}
+			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
+				<label class="button-example__label">{{ state }}</label>
+				<br>
+				{{ library.button(text="Sign Up", class=el_class + " mds-button--" + state, el=item.el) }}
+			</div>
+		{% endfor %}
+		<br>
+		{% for state in states %}
+			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
+				<label class="button-example__label">{{ state }}</label>
+				<br>
+				{{ library.button(text="Copy Document", class=el_class + " mds-button--" + state, icon_left="copy", el=item.el) }}
+			</div>
+		{% endfor %}
+		<br>
+		{% for state in states %}
+			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
+				<label class="button-example__label">{{ state }}</label>
+				<br>
+				{{ library.button(text="Continue", class=el_class + " mds-button--" + state, icon_right="arrow-right", el=item.el) }}
+			</div>
+		{% endfor %}
+		<br>
+		{% for state in states %}
+			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
+				<label class="button-example__label">{{ state }}</label>
+				<br>
+				{{ library.button(text="Account Settings", class=el_class + " mds-button--" + state, icon_left="utilities", icon_right="arrow-down", el=item.el) }}
+			</div>
+		{% endfor %}
+		<br>
+		{% for state in states %}
+			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
+				<label class="button-example__label">{{ state }}</label>
+				<br>
+				{{ library.button(class=el_class + " mds-button--" + state, icon_left="search", el=item.el) }}
+			</div>
+		{% endfor %}
+		<br>
+	{% endfor %}
+{% endmacro %}
+
 {% extends 'doc_templates/default.template.njk' %}
 {% set title = 'Buttons Sink' %}
 
 {% block body %}
-    <h1>Buttons Sink</h1>
-    {{ library.button() }}
+<style>
+	.button-example {
+	    display: inline-block;
+	    margin-right: 5px;
+	    margin-bottom: 5px;
+	    min-width: 160px;
+	    vertical-align: top;
+	    padding: 10px;
+	}
+
+	.button-example__label {
+		display: inline-block;
+		margin-bottom: 7px;
+	}
+
+	.button-example--dark-background {
+		background-color: #151515;
+    	color: #eaeaea;
+	}
+</style>
+<h1>Buttons Sink</h1>
+
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum reprehenderit, id perspiciatis commodi deserunt eius quia maiores quidem sunt, laboriosam quis modi error unde iste nam numquam illo. Nesciunt, voluptatem?
+</p>
+
+{# Primary Buttons -------------------------------- #}
+<h3>Primary</h3>
+	{{ buttonElements(el_class="mds-button--primary", el_text="Sign Up") }}
+
+<h3>Primary, Left Icon</h3>
+	{{ buttonElements(el_class="mds-button--primary", el_icon_left="copy", el_text="Copy Document") }}
+
+<h3>Primary, Right Icon</h3>
+	{{ buttonElements(el_class="mds-button--primary", el_icon_right="arrow-right", el_text="Continue") }}
+
+<h3>Primary, Two Icons</h3>
+	{{ buttonElements(el_class="mds-button--primary", el_icon_left="utilities", el_icon_right="arrow-down", el_text="Account Settings") }}
+
+<h3>Primary, Icon Only</h3>
+	{{ buttonElements(el_class="mds-button--primary", el_icon_left="search") }}
+
+{# Primary Buttons Small -------------------------------- #}
+<h3>Primary, Small</h3>
+	{{ buttonElements(el_class="mds-button--primary mds-button--small", el_text="Sign Up") }}
+
+<h3>Primary, Small, Left Icon</h3>
+	{{ buttonElements(el_class="mds-button--primary mds-button--small", el_icon_left="copy", el_text="Copy Document") }}
+
+<h3>Primary, Small, Right Icon</h3>
+	{{ buttonElements(el_class="mds-button--primary mds-button--small", el_icon_right="arrow-right", el_text="Continue") }}
+
+<h3>Primary, Small, Two Icons</h3>
+	{{ buttonElements(el_class="mds-button--primary mds-button--small", el_icon_right="arrow-down", el_icon_left="utilities", el_text="Account Settings") }}
+
+<h3>Primary, Small, Icon Only</h3>
+	{{ buttonElements(el_class="mds-button--primary mds-button--small", el_icon_left="search") }}
+
+{# Secondary Buttons -------------------------------- #}
+<h3>Secondary</h3>
+	{{ buttonElements(el_class="mds-button--secondary", el_text="Sign Up") }}
+
+<h3>Secondary, Left Icon</h3>
+	{{ buttonElements(el_class="mds-button--secondary", el_icon_left="copy", el_text="Copy Document") }}
+
+<h3>Secondary, Right Icon</h3>
+	{{ buttonElements(el_class="mds-button--secondary", el_icon_right="arrow-right", el_text="Continue") }}
+
+<h3>Secondary, Two Icons</h3>
+	{{ buttonElements(el_class="mds-button--secondary", el_icon_left="utilities", el_icon_right="arrow-down", el_text="Account Settings") }}
+
+<h3>Secondary, Icon Only</h3>
+	{{ buttonElements(el_class="mds-button--secondary", el_icon_left="search") }}
+
+{# Secondary Buttons Small -------------------------------- #}
+<h3>Secondary, Small</h3>
+	{{ buttonElements(el_class="mds-button--secondary mds-button--small", el_text="Sign Up") }}
+
+<h3>Secondary, Small, Left Icon</h3>
+	{{ buttonElements(el_class="mds-button--secondary mds-button--small", el_icon_left="copy", el_text="Copy Document") }}
+
+<h3>Secondary, Small, Right Icon</h3>
+	{{ buttonElements(el_class="mds-button--secondary mds-button--small", el_icon_right="arrow-right", el_text="Continue") }}
+
+<h3>Secondary, Small, Two Icons</h3>
+	{{ buttonElements(el_class="mds-button--secondary mds-button--small", el_icon_left="utilities", el_icon_right="arrow-down", el_text="Account Settings") }}
+
+<h3>Secondary, Small, Icon Only</h3>
+	{{ buttonElements(el_class="mds-button--secondary mds-button--small", el_icon_left="search") }}
+
+{# Primary Buttons on Dark Background -------------------------------- #}
+<h3>Primary</h3>
+	{{ buttonElements(el_class="mds-button--primary", el_text="Sign Up", el_ex_dark=true) }}
+
+<h3>Primary, Left Icon</h3>
+	{{ buttonElements(el_class="mds-button--primary", el_icon_left="copy", el_text="Copy Document", el_ex_dark=true) }}
+
+<h3>Primary, Right Icon</h3>
+	{{ buttonElements(el_class="mds-button--primary", el_icon_right="angle-right", el_icon_right="arrow-right", el_text="Continue", el_ex_dark=true) }}
+
+<h3>Primary, Two Icons</h3>
+	{{ buttonElements(el_class="mds-button--primary", el_icon_left="utilities", el_icon_right="arrow-down", el_text="Account Settings", el_ex_dark=true) }}
+
+<h3>Primary, Icon Only</h3>
+	{{ buttonElements(el_class="mds-button--primary", el_icon_left="search", el_ex_dark=true) }}
+
+{# Primary Buttons Small on Dark Background -------------------------------- #}
+<h3>Primary, Small</h3>
+	{{ buttonElements(el_class="mds-button--primary mds-button--small", el_text="Sign Up", el_ex_dark=true) }}
+
+<h3>Primary, Small, Left Icon</h3>
+	{{ buttonElements(el_class="mds-button--primary mds-button--small", left="copy", el_text="Copy Document", el_ex_dark=true) }}
+
+<h3>Primary, Small, Right Icon</h3>
+	{{ buttonElements(el_class="mds-button--primary mds-button--small", el_icon_right="arrow-right", el_text="Continue", el_ex_dark=true) }}
+
+<h3>Primary, Small, Two Icons</h3>
+	{{ buttonElements(el_class="mds-button--primary mds-button--small", el_icon_right="arrow-down", el_icon_left="utilities", el_text="Account Settings", el_ex_dark=true) }}
+
+<h3>Primary, Small, Icon Only</h3>
+	{{ buttonElements(el_class="mds-button--primary mds-button--small", el_icon_left="search", el_ex_dark=true) }}
+
+{# Secondary Buttons on Dark Background -------------------------------- #}
+<h3>Secondary</h3>
+	{{ buttonElements(el_class="mds-button--secondary", el_text="Sign Up", el_ex_dark=true) }}
+
+<h3>Secondary, Left Icon</h3>
+	{{ buttonElements(el_class="mds-button--secondary", el_icon_left="copy", el_text="Copy Document", el_ex_dark=true) }}
+
+<h3>Secondary, Right Icon</h3>
+	{{ buttonElements(el_class="mds-button--secondary", el_icon_right="arrow-right", el_text="Continue", el_ex_dark=true) }}
+
+<h3>Secondary, Two Icons</h3>
+	{{ buttonElements(el_class="mds-button--secondary", el_icon_left="utilities", el_icon_right="arrow-down", el_text="Account Settings", el_ex_dark=true) }}
+
+<h3>Secondary, Icon Only</h3>
+	{{ buttonElements(el_class="mds-button--secondary", el_icon_left="search", el_ex_dark=true) }}
+
+{# Secondary Buttons Small on Dark Background -------------------------------- #}
+<h3>Secondary, Small</h3>
+	{{ buttonElements(el_class="mds-button--secondary mds-button--small", el_text="Sign Up", el_ex_dark=true) }}
+
+<h3>Secondary, Small, Left Icon</h3>
+	{{ buttonElements(el_class="mds-button--secondary mds-button--small", el_icon_left="copy", el_text="Copy Document", el_ex_dark=true) }}
+
+<h3>Secondary, Small, Right Icon</h3>
+	{{ buttonElements(el_class="mds-button--secondary mds-button--small", el_icon_right="arrow-right", el_text="Continue", el_ex_dark=true) }}
+
+<h3>Secondary, Small, Two Icons</h3>
+	{{ buttonElements(el_class="mds-button--secondary mds-button--small", el_icon_left="utilities", el_icon_right="arrow-down", el_text="Account Settings", el_ex_dark=true) }}
+
+<h3>Secondary, Small, Icon Only</h3>
+	{{ buttonElements(el_class="mds-button--secondary mds-button--small", el_icon_left="search", el_ex_dark=true) }}
+
+{# -------------------------------------------------------------------------------- #}
+{# Vertical Alignment of Content Assessments -------------------------------------- #}
+{# -------------------------------------------------------------------------------- #}
+<h2>Vertical Alignment of Content</h2>
+
+{# Primary Buttons Vertical Alignment ------------------------------ #}
+<h3>Primary</h3>
+	{{ buttonVertAlign(el_class="mds-button--primary") }}
+
+{# Primary Buttons Vertical Alignment ------------------------------ #}
+<h3>Primary Small</h3>
+	{{ buttonVertAlign(el_class="mds-button--primary mds-button--small") }}
+
+{# Secondary Buttons Vertical Alignment ------------------------------ #}
+<h3>Secondary</h3>
+	{{ buttonVertAlign(el_class="mds-button--Secondary") }}
+
+{# Secondary Buttons Vertical Alignment ------------------------------ #}
+<h3>Secondary Small</h3>
+	{{ buttonVertAlign(el_class="mds-button--Secondary mds-button--small") }}
+
+{# Primary Buttons Vertical Alignment ------------------------------ #}
+<h3>Primary on Dark Background</h3>
+	{{ buttonVertAlign(el_class="mds-button--primary", el_ex_dark=true) }}
+
+{# Primary Buttons Vertical Alignment ------------------------------ #}
+<h3>Primary Small on Dark Background</h3>
+	{{ buttonVertAlign(el_class="mds-button--primary mds-button--small", el_ex_dark=true) }}
+
+{# Secondary Buttons Vertical Alignment ------------------------------ #}
+<h3>Secondary on Dark Background</h3>
+	{{ buttonVertAlign(el_class="mds-button--Secondary", el_ex_dark=true) }}
+
+{# Secondary Buttons Vertical Alignment ------------------------------ #}
+<h3>Secondary Small on Dark Background</h3>
+	{{ buttonVertAlign(el_class="mds-button--Secondary mds-button--small", el_ex_dark=true) }}
+
+{# ---------------------------------------------------------------- #}
+{# Button States Assessments -------------------------------------- #}
+{# ---------------------------------------------------------------- #}
+<h2>Button States</h2>
+
+{# Primary States ------------------------------ #}
+<h3>Primary</h3>
+	{{ buttonStates(el_class="mds-button--primary") }}
+
+{# Primary Small States ------------------------------ #}
+<h3>Primary Small</h3>
+	{{ buttonStates(el_class="mds-button--primary mds-button--small") }}
+
+{# Secondary States ------------------------------ #}
+<h3>Secondary</h3>
+	{{ buttonStates(el_class="mds-button--secondary") }}
+
+{# Secondary Small States ------------------------------ #}
+<h3>Secondary Small</h3>
+	{{ buttonStates(el_class="mds-button--secondary mds-button--small") }}
+
+{# Primary on Dark States ------------------------------ #}
+<h3>Primary on Dark Background</h3>
+	{{ buttonStates(el_class="mds-button--primary", el_ex_dark=true) }}
+
+{# Primary Small on Dark States ------------------------------ #}
+<h3>Primary Small on Dark Background</h3>
+	{{ buttonStates(el_class="mds-button--primary mds-button--small", el_ex_dark=true) }}
+
+{# Secondary on Dark States ------------------------------ #}
+<h3>Secondary on Dark Background</h3>
+	{{ buttonStates(el_class="mds-button--secondary", el_ex_dark=true) }}
+
+{# Secondary Small on Dark States ------------------------------ #}
+<h3>Secondary Small on Dark Background</h3>
+	{{ buttonStates(el_class="mds-button--secondary mds-button--small", el_ex_dark=true) }}
+
+{# ---------------------------------------------------------------- #}
+{# Content Lengths ------------------------------------------------ #}
+{# ---------------------------------------------------------------- #}
+<h2>Content Lengths</h2>
+
+{# Too Much Content ------------------------------ #}
+<h3>Primary Too Much Content</h3>
+	{{ library.button(class="mds-button--primary", text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio.") }}
+
+{# Too Little Content ------------------------------ #}
+<h3>Primary Too Little Content</h3>
+	{{ library.button(class="mds-button--primary", text=".") }}
+
 {% endblock %}

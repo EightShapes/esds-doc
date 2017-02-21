@@ -1,11 +1,267 @@
+$mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 300ms;
+$mds-hover-shadow: 0 0 4px 2px rgba(0, 168, 225, .8);
+$mds-focus-ring-offset: -3px;
+
 // $project-name variable is temporary until we name the project
-.#{$mds-project-name}-button {
+.mds-button,
+.mds-button--secondary {
     background-color: transparent;
     border: solid 1px $mds-color-neutral-50;
     border-radius: 15px;
     color: $mds-color-neutral-50;
     cursor: pointer;
+    display: inline-block;
     font-family: $mds-font-family-sans-serif;
     font-size: 16px;
+    font-weight: 300;
+    margin: 0;
     padding: 4px 16px;
+    position: relative;
+    text-align: center;
+    transition: $mds-transition-hover;
+
+    &::-moz-focus-inner { 
+        border: 0;
+        padding: 0;  
+    }
+
+    &:hover,
+    &.mds-button--hover {
+        background-color: $mds-color-neutral-55;
+        border-color: $mds-color-neutral-55;
+        color: $mds-color-white;
+        text-decoration: none;
+
+        .mds-button__icon {
+            fill: $mds-color-white;
+        }
+    }
+
+    &:focus,
+    &.mds-button--focus {
+        &:after {
+            background: $mds-color-white;
+            border-radius: 16px;
+            bottom: $mds-focus-ring-offset;
+            box-shadow: $mds-hover-shadow;
+            content: '';
+            left: $mds-focus-ring-offset;
+            position: absolute;
+            right: $mds-focus-ring-offset;
+            top: $mds-focus-ring-offset;
+            z-index: -1;
+        }
+        outline: 0;
+    }
+
+    &:active,
+    &.mds-button--active {
+        background-color: $mds-color-neutral-50;
+        border-color: $mds-color-neutral-50;
+        color: $mds-color-white;
+
+        .mds-button__icon {
+            fill: $mds-color-white;
+        }
+
+        &:after {
+            box-shadow: none;
+        }
+    }
+
+    &:disabled,
+    &[disabled],
+    &.mds-button--disabled {
+        background: transparent;
+        border-color: $mds-color-neutral-55;
+        box-shadow: none;
+        color: $mds-color-neutral-55;
+        cursor: not-allowed;
+        opacity: .4;
+
+        .mds-button__icon {
+            fill: $mds-color-neutral-55;
+        }
+
+        &:hover,
+        &.mds-button--hover {
+            .mds-button__icon {
+                fill: $mds-color-neutral-55;
+            }
+        }
+
+        &:focus,
+        &.mds-button--focus {
+            &:after {
+                display: none;
+            }
+        }
+    }
+}
+
+a {
+    &.mds-button {
+        text-decoration: none;
+    }
+}
+
+.mds-button--small {
+    font-size: 14px;
+    padding: 2px 16px;
+
+    .mds-button__icon {
+        height: 16px;
+        margin-top: -2px;
+        width: 16px;
+    }
+
+    .mds-button__text {
+        margin-top: -2px;
+    }
+}
+
+.mds-button__icon {
+    fill: $mds-color-neutral-50;
+    height: 18px;
+    margin-top: -4px;
+    transition: $mds-transition-hover;
+    vertical-align: middle;
+    width: 18px;
+}
+
+.mds-button__icon--left + .mds-button__text {
+    margin-left: 4px;
+}
+
+.mds-button__text + .mds-button__icon--right  {
+    margin-left: 4px;
+}
+
+.mds-button__text {
+    display: inline-block;
+    margin-top: -4px;
+    vertical-align: middle;
+}
+
+.mds-button--primary {
+    background-color: $mds-color-cyan;
+    border-color: $mds-color-cyan;
+    color: $mds-color-white;
+
+    &:hover,
+    &.mds-button--hover {
+        background-color: $mds-color-dark-cyan;
+        border-color: $mds-color-dark-cyan;
+    }
+
+    &:active,
+    &.mds-button--active {
+        background-color: $mds-color-darker-cyan;
+        border-color: $mds-color-darker-cyan;
+    }
+
+    &:disabled,
+    &[disabled],
+    &.mds-button--disabled {
+        background-color: transparent;
+        border-color: $mds-color-cyan;
+        color: $mds-color-cyan;
+
+        .mds-button__icon {
+            fill: $mds-color-cyan;
+        }
+
+        &:hover,
+        &.mds-button--hover {
+            .mds-button__icon {
+                fill: $mds-color-cyan;
+            }
+        }
+    }
+
+    .mds-button__icon {
+        fill: $mds-color-white;
+    }
+}
+
+.mds--dark {
+    .mds-button--secondary {
+        border-color: $mds-color-neutral-55;
+        color: $mds-color-neutral-55;
+
+        .mds-button__icon {
+            fill: $mds-color-neutral-55;
+        }
+
+        &:hover,
+        &.mds-button--hover,
+        &:focus,
+        &.mds-button--focus {
+            background-color: $mds-color-neutral-55;
+            color: $mds-color-white;
+
+            .mds-button__icon {
+                fill: $mds-color-white;
+            }
+
+            &:after {
+                background: transparent;
+                z-index: 0;
+            }
+        }
+
+        &:active,
+        &.mds-button--active {
+            background-color: $mds-color-neutral-90;
+            color: $mds-color-neutral-25;
+
+            .mds-button__icon {
+                fill: $mds-color-neutral-25;
+            }
+        }
+
+        &:disabled,
+        &[disabled],
+        &.mds-button--disabled {
+            &:hover,
+            &.mds-button--hover {
+                background: transparent;
+                color: $mds-color-neutral-55;
+
+                .mds-button__icon {
+                    fill: $mds-color-neutral-55;
+                }
+            }
+        }
+    }
+
+    .mds-button--primary {
+        &:after {
+            background: transparent;
+            z-index: 0;
+        }
+    }
+}
+
+.mds-button__input,
+[class*='mds-button__input'],
+[class^='mds-button__input'] {
+    background: none;
+    border: 0;
+    border-radius: 15px;
+    bottom: 0;
+    cursor: pointer;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+
+    &[type=radio],
+    &[type=checkbox] {
+        opacity: 0;
+    }
 }

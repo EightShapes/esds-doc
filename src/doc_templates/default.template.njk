@@ -6,8 +6,10 @@
 <html>
 <head>
     <title>{{ project.name | upper }} v{{ project.version}}{{ ' - ' + title if title }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/assets/styles/mds_library.css">
     <link rel="stylesheet" href="/assets/styles/mds_library_print.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
     {% block head_assets %}
     {% endblock %}
 </head>
