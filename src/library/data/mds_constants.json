@@ -35,9 +35,65 @@
             "yellow": "#DCAA00",
             "orange": "#EF7622"
         },
+        "text-color": {
+            "primary": {
+                "default": "#151515",
+                "on-light": "#151515",
+                "on-dark": "#FFFFFF"
+            },
+            "secondary": {
+                "default": "#666666",
+                "on-light": "#666666",
+                "on-dark": "#999999"
+            },
+            "disabled": "#999999"
+        },
+        "interactive-color": {
+            "primary": {
+                "default": "#00A8E1",
+                "hover": "#0A9EC9",
+                "active": "#087796"
+            },
+            "secondary": {
+                "primary": "transparent",
+                "hover": "#999999",
+                "active": "#666666"
+            }
+        },
         "font": {
             "family": {
                 "sans-serif": "'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+            },
+            "weight": {
+                "thin": 200,
+                "light": 300,
+                "regular": 400,
+                "bold": 600
+            },
+            "size": {
+                "s": "14px",
+                "m": "16px"
+            }
+        },
+        "border": {
+            "hairline": "solid 1px",
+            "disabled": "solid 1px"
+        },
+        "size": {
+            "icon": {
+                "s": "16px",
+                "m": "18px"
+            }
+        },
+        "space": {
+            "inset": {
+                "squish": {
+                    "m": "4px 16px 4px 16px",
+                    "s": "2px 16px 2px 16px"
+                }
+            },
+            "inline": {
+                "xs": "4px"
             }
         }
     }

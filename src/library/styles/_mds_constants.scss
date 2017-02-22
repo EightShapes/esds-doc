@@ -31,4 +31,35 @@ $mds-color-red: #FF0000;
 $mds-color-yellow: #DCAA00;
 $mds-color-orange: #EF7622;
 
+$mds-text-color-primary-default: #151515;
+$mds-text-color-primary-on-light: #151515;
+$mds-text-color-primary-on-dark: #FFFFFF;
+$mds-text-color-secondary-default: #666666;
+$mds-text-color-secondary-on-light: #666666;
+$mds-text-color-secondary-on-dark: #999999;
+$mds-text-color-disabled: #999999;
+
+$mds-interactive-color-primary-default: #00A8E1;
+$mds-interactive-color-primary-hover: #0A9EC9;
+$mds-interactive-color-primary-active: #087796;
+$mds-interactive-color-secondary-primary: transparent;
+$mds-interactive-color-secondary-hover: #999999;
+$mds-interactive-color-secondary-active: #666666;
+
 $mds-font-family-sans-serif: 'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$mds-font-weight-thin: 200;
+$mds-font-weight-light: 300;
+$mds-font-weight-regular: 400;
+$mds-font-weight-bold: 600;
+$mds-font-size-s: 14px;
+$mds-font-size-m: 16px;
+
+$mds-border-hairline: solid 1px;
+$mds-border-disabled: solid 1px;
+
+$mds-size-icon-s: 16px;
+$mds-size-icon-m: 18px;
+
+$mds-space-inset-squish-m: 4px 16px 4px 16px;
+$mds-space-inset-squish-s: 2px 16px 2px 16px;
+$mds-space-inline-xs: 4px;

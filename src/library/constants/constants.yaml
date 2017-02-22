@@ -32,6 +32,47 @@ color :
   red : &color-red "#FF0000"
   yellow : &color-yellow "#DCAA00"
   orange : &color-orange "#EF7622"
-font:
-  family:
+text-color :
+  primary :
+    default : *color-neutral-15
+    on-light : *color-neutral-15
+    on-dark : *color-white
+  secondary :
+    default : *color-neutral-50
+    on-light : *color-neutral-50
+    on-dark : *color-neutral-55
+  disabled : *color-neutral-55
+interactive-color :
+  primary :
+    default : *color-cyan
+    hover : *color-dark-cyan
+    active : *color-darker-cyan
+  secondary :
+    primary : transparent
+    hover : *color-neutral-55
+    active : *color-neutral-50
+font :
+  family :
     sans-serif: "'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+  weight :
+    thin : 200
+    light : 300
+    regular : 400
+    bold : 600
+  size :
+    s : 14px
+    m : 16px
+border :
+  hairline : solid 1px #999999
+  disabled : solid 1px #999999
+size :
+  icon :
+    s : 16px
+    m : 18px
+space :
+  inset :
+    squish :
+      m : 4px 16px 4px 16px
+      s : 2px 16px 2px 16px
+  inline :
+    xs : 4px
