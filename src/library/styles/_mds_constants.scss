@@ -51,15 +51,20 @@ $mds-font-weight-thin: 200;
 $mds-font-weight-light: 300;
 $mds-font-weight-regular: 400;
 $mds-font-weight-bold: 600;
-$mds-font-size-s: 14px;
-$mds-font-size-m: 16px;
+$mds-font-size-base: 16px;
+$mds-font-size-default: 1em;
+$mds-font-size-s: .875em;
+$mds-font-size-m: 1em;
 
-$mds-border-hairline: solid 1px;
-$mds-border-disabled: solid 1px;
+$mds-border-hairline: solid 1px #999999;
+$mds-border-disabled: solid 1px #999999;
 
 $mds-size-icon-s: 16px;
 $mds-size-icon-m: 18px;
+$mds-size-icon-l: 32px;
 
 $mds-space-inset-squish-m: 4px 16px 4px 16px;
 $mds-space-inset-squish-s: 2px 16px 2px 16px;
 $mds-space-inline-xs: 4px;
+
+$mds-opacity-disabled: .4;

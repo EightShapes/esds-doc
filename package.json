@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "//": {
-    "NOTE": "This is brief documentation on the usage for each devDependency and dependency in the Comet system",
+    "NOTE": "This is brief documentation on the usage for each devDependency and dependency in the system",
     "devDependencies": {
       "browser-sync": "Runs a local development server",
       "gulp": "The task runner for the project",
@@ -22,10 +22,11 @@
     "dependencies": {
       "clipboard": "Enables 'copy to clipboard' behavior for Code Snippet Documentation",
       "prismjs": "Browser-side syntax-highlighting for code snippets",
-      "svg4everybody": "Polyfills browser support for the SVG <use> technique, used with Comet's icon sprite"
+      "svg4everybody": "Polyfills browser support for the SVG <use> technique, used with the system's icon sprite"
     }
   },
   "devDependencies": {
+    "autoprefixer": "^6.7.2",
     "browser-sync": "^2.18.6",
     "del": "^2.2.2",
     "flat": "^2.0.1",
@@ -35,6 +36,7 @@
     "gulp-concat-util": "^0.5.5",
     "gulp-eslint": "^3.0.1",
     "gulp-nunjucks-render": "git+https://github.com/kevinmpowell/gulp-nunjucks-render.git",
+    "gulp-postcss": "^6.3.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-sass-lint": "^1.3.2",

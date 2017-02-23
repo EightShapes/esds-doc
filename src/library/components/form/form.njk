@@ -1,0 +1,346 @@
+{% macro form(
+            action='form/processor', 
+            class=false,
+            method='post') %}
+    <form class="mds-form{{ ' ' + class  if class }}" method="{{ method }}" action="{{ action }}">
+        {% if caller %}
+            {{ caller() }}
+        {% endif %}
+    </form>
+{% endmacro %}
+
+{% macro form_fieldset(
+            class=false) %}
+    <fieldset class="mds-form__fieldset{{ ' ' + class  if class }}">
+        {% if caller %}
+            {{ caller() }}
+        {% endif %}
+    </fieldset>
+{% endmacro %}
+
+
+{% macro form_legend(
+            class=false, 
+            text="A grouping of form fields") %}
+    <legend class="mds-form__legend{{ ' ' + class  if class }}">{{ text }}</legend>
+{% endmacro %}
+
+
+{% macro form_field_group(
+            class=false, 
+            error=false,
+            horizontal=false) %}
+    <div class="mds-form__field-group{{ ' mds-form__field-group--horizontal' if horizontal }}{{ ' mds-form--error' if error }}{{ ' ' + class  if class }}">
+        {% if caller %}
+            {{ caller() }}
+        {% endif %}
+    </div>
+{% endmacro %}
+
+
+{% macro form_input(
+            class=false,
+            describedby=false, 
+            disabled=false, 
+            id=false, 
+            name=false, 
+            placeholder=false, 
+            type='text', 
+            value=false) %}
+    <input 
+    class="mds-form__input{{ ' ' + class if class }}" 
+    type="{{ type }}"
+    {% if id %} id="{{ id }}" {% endif %} 
+    {% if name %} name="{{ name }}" {% endif %} 
+    {% if value %} value="{{ value }}" {% endif %} 
+    {{ 'disabled' if disabled }} 
+    {% if placeholder %} placeholder="{{ placeholder }}" {% endif %}
+    {% if describedby %} aria-describedby="{{describedby}}" {% endif %}>
+{% endmacro %}
+
+{% macro form_label(
+            class=false, 
+            for=false, 
+            optional=false, 
+            required=false, 
+            required_tooltip_text="This field is required.",
+            text="First Name") %}
+    
+    <label 
+            class="mds-form__label{{ ' ' + class if class }}"
+        {% if for %}
+            for="{{ for }}"
+        {% endif %}>
+            {{ text | safe }}
+        {%- if optional -%}
+            <span class="mds-form__label-optional">
+                (Optional)
+            </span>
+        {%- endif -%}
+        {%- if required -%}
+            <abbr class="mds-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
+            <span class="mds-screenreader-only">Required Field.</span>
+        {% endif %}
+    </label>
+{% endmacro %}
+
+
+{% macro form_checkbox(
+            class=false,
+            checked=false, 
+            describedby=false, 
+            disabled=false, 
+            id=false, 
+            label='I accept the terms and conditions',
+            name=false,
+            optional=false,
+            required=false,
+            required_tooltip_text="Please check the box.",
+            value=false,
+            icon_path=false,
+            indeterminate=false) %}
+    {% if id == false %}
+        {% set random_number = range(0, 100000) | random %}
+        {% set id = label | replace(' ', '-') | lower + '--' + random_number %}
+    {% endif %}
+    <label class="mds-form__checkbox{{ ' ' + class if class }}{{ ' mds-form__checkbox--disabled' if disabled }}" for="{{ id }}">
+        <input id="{{ id }}" type="checkbox" class="mds-form__checkbox-input" 
+            {{ 'checked' if checked }} 
+            {{ 'disabled' if disabled }}
+            {% if name %} name="{{ name }}" {% endif %}
+            {% if describedby %} aria-describedby="{{ describedby }}" {% endif %}
+            {% if value %} value="{{ value }}" {% endif %}/>
+        <span class="mds-form__checkbox-visible-wrap">
+            <span class="mds-form__checkbox-visual">
+                {{ icon(name='checkmark', class='mds-form__checkbox-checked-icon', path=icon_path)}}
+                {{ icon(name='minus', class='mds-form__checkbox-indeterminate-icon', path=icon_path)}}
+            </span>
+            <span class="mds-form__checkbox-text">
+                {{ label | safe }}
+                {%- if optional -%}
+                    <span class="mds-form__label-optional">
+                        (Optional)
+                    </span>
+                {%- endif -%}
+                {%- if required -%}
+                    <abbr class="mds-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
+                    <span class="mds-screenreader-only">Required Field.</span>
+                {% endif %}
+            </span>
+        </span>
+    </label>
+    {# Indeterminate state can only be set via Javascript: https://css-tricks.com/almanac/selectors/i/indeterminate/ #}
+    {% if indeterminate %}
+        <!-- Something like the following Javascript would be required to set an indeterminate state on a checkbox -->
+        <script>
+            document.getElementById("{{ id }}").indeterminate = true;
+        </script>
+    {% endif %}
+{% endmacro %}
+
+
+{% macro form_radio_button(
+            checked=false, 
+            class=false, 
+            describedby=false, 
+            disabled=false, 
+            id=false, 
+            label='Choose this one', 
+            name='group-name',
+            optional=false,
+            required=false, 
+            required_tooltip_text="Please check the box",
+            value='blue') %}
+    {% if id == false %}
+        {% set random_number = range(0, 100000) | random %}
+        {% set id = label | replace(' ', '-') | lower + '--' + random_number %}
+    {% endif %}
+    <label class="mds-form__radio-button{{ ' ' + class if class }}{{ ' mds-form__radio-button--disabled' if disabled }}" for="{{ id }}">
+        <input id="{{ id }}" name="{{ name }}" value="{{ value }}" type="radio" class="mds-form__radio-button-input" 
+            {{ 'checked' if checked }} {{ 'disabled' if disabled }} {% if describedby %} aria-describedby="{{ describedby }}" {% endif %}/>
+        <span class="mds-form__radio-button-visible-wrap">
+            <span class="mds-form__radio-button-visual"></span>
+            <span class="mds-form__radio-button-text {{'mds-form__label--required' if required}}">
+                {{ label | safe }}
+                {%- if optional -%}
+                    <span class="mds-form__label-optional">
+                        (Optional)
+                    </span>
+                {%- endif -%}
+                {%- if required -%}
+                    <abbr class="mds-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
+                    <span class="mds-screenreader-only">Required Field.</span>
+                {% endif %}
+            </span>
+        </span>
+    </label>
+{% endmacro %}
+
+
+{% macro form_select(
+            class="",
+            describedby=false,
+            disabled=false,
+            id=false,
+            name=false,
+            icon_path=false,
+            options=[
+                {
+                    text: "Select an option",
+                    value: ""
+                },
+                {
+                    text: "Option 1",
+                    value: "option_1"
+                },
+                {
+                    text: "Option 2",
+                    value: "option_2"
+                }
+            ]) %}
+    <div class="mds-form__select{{ ' ' + class if class }}{{ ' mds-form__select-input--disabled' if disabled }}">
+        <select class="mds-form__select-input" 
+                {% if id %}
+                    id="{{ id }}"
+                {% endif %} 
+                {% if name %}
+                    name="{{ name }}"
+                {% endif %}                
+                {{ 'disabled' if disabled }} 
+                {% if describedby %} aria-describedby="{{ describedby }}" {% endif %}>
+            {% for option in options %}
+                {{ form_select_option_builder(option) }}
+            {% endfor %}
+        </select>
+        <div class="mds-form__select-visual-wrap"></div>
+        <span class="mds-form__select-open-indicator">
+            {{ icon(name='caret-down', class='mds-form__select-open-icon', path=icon_path) }}
+        </span>
+    </div>
+{% endmacro %}
+
+{% macro form_select_option_builder(option) %}
+    {% if option.children %}
+        <optgroup label="{{ option.text }}">
+            {% for child_option in option.children %}
+                {{ form_select_option_builder(child_option) }}
+            {% endfor %}
+        </optgroup>
+    {% else %}
+        {{ form_select_option(option) }}
+    {% endif %}
+
+{% endmacro %}
+
+{% macro form_select_option(option) %}
+    <option class="mds-form__select-option" value="{{ option.value }}" {{ 'selected' if option.selected }}>{{ option.text }}</option>
+{% endmacro %}
+
+
+{% macro form_textarea(
+            class=false, 
+            describedby=false, 
+            disabled=false, 
+            id=false, 
+            name=false,
+            placeholder=false, 
+            value=false) %}
+    <textarea class="mds-form__textarea{{ ' ' + class  if class }}" 
+        {% if id %}
+            id="{{ id }}"
+        {% endif %} 
+        {% if name %}
+            name="{{ name }}"
+        {% endif %}
+        {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+        {{ 'disabled' if disabled }}  
+        {% if describedby %} aria-describedby="{{describedby}}" {% endif %}>{{ value if value }}</textarea>
+{% endmacro %}
+
+
+{% macro form_field_error(
+            class=false,  
+            id=false,
+            text='This field is required',
+            icon_path=false) %}
+    <span class="mds-form__field-error{{ ' ' + class  if class }}" {% if id %} id="{{ id }}" {% endif %} role="alert">
+        {# {{ icon(name='message-error', class='mds-form__field-error-icon', path=icon_path) }} #}
+        <span class="mds-form__field-error-text">
+            {{ text }}
+        </span>
+    </span>
+{% endmacro %}
+
+
+{% macro form_microcopy(
+            class=false, 
+            id=false,
+            text="Passwords must contain a letter, a number, and your favorite 80's band name") %}
+    <span class="mds-form__microcopy{{ ' ' + class  if class }}" {% if id %} id="{{ id }}" {% endif %}>
+        {% if text == false %}
+            {{ caller() }}
+        {% else %}
+            {{ text }}
+        {% endif %}
+    </span>
+{% endmacro %}
+
+{% macro form_required_fields_key(
+            class=false,
+            text="Required fields") %}
+    <span class="mds-form__required-fields-key{{ ' ' + class  if class }}">{{ text }}</span>
+{% endmacro %}
+
+{% macro form_checkbox_group(
+            class=false, 
+            label=false,
+            optional=false,
+            required=false,
+            required_tooltip_text="Please select at least one option.") %}
+    <fieldset class="mds-form__checkbox-group{{ ' ' + class  if class }}" role="group">
+        {% if label %}
+            <legend class="mds-form__checkbox-group-label">
+                {{ label | safe }}
+                {%- if optional -%}
+                    <span class="mds-form__label-optional">
+                        (Optional)
+                    </span>
+                {%- endif -%}
+                {%- if required -%}
+                    <abbr class="mds-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
+                    <span class="mds-screenreader-only">Required Field.</span>
+                {% endif %}
+            </legend>
+        {% endif %}
+        {%- if caller -%}
+            {{ caller() }}
+        {%- endif -%}
+    </fieldset>
+{% endmacro %}
+
+{% macro form_radio_button_group(
+            class=false, 
+            label=false,
+            optional=false,
+            required=false,
+            required_tooltip_text="Please select an option.") %}
+    <fieldset class="mds-form__radio-button-group{{ ' ' + class  if class }}" role="radiogroup">
+        {% if label %}
+            <legend class="mds-form__radio-button-group-label">
+                {{ label | safe }}
+                {%- if optional -%}
+                    <span class="mds-form__label-optional">
+                        (Optional)
+                    </span>
+                {%- endif -%}
+                {%- if required -%}
+                    <abbr class="mds-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
+                    <span class="mds-screenreader-only">Required Field.</span>
+                {% endif %}
+            </legend>
+        {% endif %}
+        {%- if caller -%}
+            {{ caller() }}
+        {%- endif -%}
+    </fieldset>
+{% endmacro %}

@@ -71,18 +71,21 @@
                 "bold": 600
             },
             "size": {
-                "s": "14px",
-                "m": "16px"
+                "base": "16px",
+                "default": "1em",
+                "s": ".875em",
+                "m": "1em"
             }
         },
         "border": {
-            "hairline": "solid 1px",
-            "disabled": "solid 1px"
+            "hairline": "solid 1px #999999",
+            "disabled": "solid 1px #999999"
         },
         "size": {
             "icon": {
                 "s": "16px",
-                "m": "18px"
+                "m": "18px",
+                "l": "32px"
             }
         },
         "space": {
@@ -95,6 +98,9 @@
             "inline": {
                 "xs": "4px"
             }
+        },
+        "opacity": {
+            "disabled": ".4"
         }
     }
 }

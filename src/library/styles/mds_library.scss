@@ -16,7 +16,21 @@
 
 //Composite Components
 @import 'button_group/button_group'; // Has a dependency on button
+@import 'form/form'; // Has a dependency on icon
 
+
+// Global styles used across the library, keep minimal, err on the side of redefining things like font families, font sizes, etc.
+html {
+    box-sizing: border-box;
+    font-size: $mds-font-size-base;
+}
+
+*, 
+*:before, 
+*:after {
+    box-sizing: inherit;
+}
 
 // Print Styles for all components
 @import 'mds_library_print';
+

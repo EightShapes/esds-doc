@@ -1,6 +1,7 @@
 'use strict';
 
 const   gulp = require('gulp'),
+        autoprefixer = require('autoprefixer'),
         browserSync = require('browser-sync').create(),
         concat = require('gulp-concat-util'),
         del = require('del'),
@@ -13,6 +14,7 @@ const   gulp = require('gulp'),
         merge = require('merge-stream'),
         nunjucksRender = require('gulp-nunjucks-render'),
         path = require('path'),
+        postcss = require('gulp-postcss'),
         project = require('./package.json'),
         projectDataFilepath = 'src/doc/data/auto-generated/all_data.json',
         projectName = project.name,
@@ -75,6 +77,16 @@ gulp.task('styles:compile-doc', function() {
         }).on('error', sass.logError))
         .pipe(concat.header(versionStampCssJs))
         .pipe(gulp.dest('dist/assets/styles/'));
+});
+
+// Auto prefixer for CSS
+gulp.task('styles:postcss', function() {
+    var plugins = [
+        autoprefixer({browsers: ['last 2 versions']})
+    ];
+    return gulp.src('./dist/assets/styles/**/*.css')
+        .pipe(postcss(plugins))
+        .pipe(gulp.dest('dist/assets/styles'));
 });
 
 // Concatenate library nunjucks macros
@@ -207,6 +219,13 @@ gulp.task('doc-dependencies:copy', function() {
         .pipe(gulp.dest('dist/assets/doc-dependencies'));    
 });
 
+gulp.task('dependencies:copy', function() {
+    return gulp.src([
+            'node_modules/svg4everybody/dist/svg4everybody.min.js'
+        ])
+        .pipe(gulp.dest('dist/assets/dependencies'));    
+});
+
 
 //Generate constants.scss and constants.json from constants.yaml
 gulp.task('constants:convert-to-scss-and-json', function(done){
@@ -313,19 +332,19 @@ gulp.task('data:build:allData', function(done){
 
 // Watch for file changes and rebuild/reload as needed
 gulp.task('watch:styles:lint-config', function(){
-    return gulp.watch('.sass-lint.yml', gulp.series('styles:lint-all', 'build:styles:all'));
+    return gulp.watch('.sass-lint.yml', gulp.series('styles:lint-all', 'build:styles:all', 'styles:postcss'));
 });
 
 gulp.task('watch:styles:library', function(){
-    return gulp.watch('src/library/**/*.scss', gulp.series('build:styles:all'));
+    return gulp.watch('src/library/**/*.scss', gulp.series('build:styles:all', 'styles:postcss'));
 });
 
 gulp.task('watch:styles:doc-library', function(){
-    return gulp.watch('src/doc_library/**/*.scss', gulp.series('styles:lint', 'styles:compile-library', 'styles:compile-doc-library'));
+    return gulp.watch('src/doc_library/**/*.scss', gulp.series('styles:lint', 'styles:compile-library', 'styles:compile-doc-library', 'styles:postcss'));
 });
 
 gulp.task('watch:styles:doc', function(){
-    return gulp.watch('src/doc/**/*.scss', gulp.series('styles:lint', 'styles:compile-library', 'styles:compile-doc'));
+    return gulp.watch('src/doc/**/*.scss', gulp.series('styles:lint', 'styles:compile-library', 'styles:compile-doc', 'styles:postcss'));
 });
 
 gulp.task('watch:markup:library-macros', function(){
@@ -386,10 +405,10 @@ gulp.task('watch', gulp.parallel(
 
 gulp.task('build:markup:all', gulp.series(gulp.parallel('markup:concatenate-library-macros', 'markup:concatenate-doc-library-macros'), 'markup:compile-docs'));
 gulp.task('build:scripts:all', gulp.series('scripts:lint', gulp.parallel('scripts:concat-library', 'scripts:concat-doc-library')));
-gulp.task('build:styles:all', gulp.series('styles:lint', 'styles:compile-library', 'styles:compile-doc-library', 'styles:compile-doc'));
+gulp.task('build:styles:all', gulp.series('styles:lint', 'styles:compile-library', 'styles:compile-doc-library', 'styles:compile-doc', 'styles:postcss'));
 gulp.task('build:svgs:all', gulp.series('svgs:optimize', 'svgs:sprite'));
 gulp.task('build:data:all', gulp.series(gulp.parallel('constants:convert-to-scss-and-json', 'data:build:icons', 'data:build:project'), 'data:build:allData'));
-gulp.task('build:project', gulp.parallel('build:data:all', 'build:svgs:all', 'images:copy-doc', 'doc-dependencies:copy', 'fonts:copy', 'build:styles:all', 'build:scripts:all', 'build:markup:all'));
+gulp.task('build:project', gulp.parallel('build:data:all', 'build:svgs:all', 'images:copy-doc', 'dependencies:copy', 'doc-dependencies:copy', 'fonts:copy', 'build:styles:all', 'build:scripts:all', 'build:markup:all'));
 
 gulp.task('clean:markup:concatenated-macros', function(){
     return(del([`src/library/components/${projectName}_library_macros.njk`, `src/doc_library/components/${projectName}_doc_library_macros.njk`]));

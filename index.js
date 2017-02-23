@@ -91,7 +91,7 @@ module.exports = {
         env.addFilter('markdown', function(string, wrap, wrapper_class) {
             var rendered_markup = marked(stripIndent(string));
             wrap = typeof wrap === 'undefined' ? true : wrap;
-            wrapper_class = typeof wrapper_class === 'undefined' ? 'comet-long-form-text' : wrapper_class;
+            wrapper_class = typeof wrapper_class === 'undefined' ? 'mds-long-form-text' : wrapper_class;
 
             if (wrap) {
                 rendered_markup = '<div class="' + wrapper_class + '">' + rendered_markup + "</div>";
