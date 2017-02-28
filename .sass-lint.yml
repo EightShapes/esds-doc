@@ -28,7 +28,7 @@ rules:
   final-newline:
     - 1
     - include: true
-  force-attribute-nesting: 1
+  force-attribute-nesting: 0
   force-element-nesting: 0
   force-pseudo-nesting: 0
   function-name-format:
@@ -40,7 +40,7 @@ rules:
     - style: long
   hex-notation:
     - 1
-    - style: uppercase
+    - style: lowercase
   id-name-format:
     - 1
     - convention: hyphenatedbem
@@ -160,5 +160,7 @@ rules:
     - 1
     - allow-leading-underscore: true
       convention: hyphenatedlowercase
-  zero-unit: 1
+  zero-unit: 
+    - 1
+    - include: false
 

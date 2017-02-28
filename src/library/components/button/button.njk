@@ -6,24 +6,26 @@
             el="button",
             text=false) %}
 	{% if el == 'checkbox' or el == 'radio' or el == 'submit' or el == 'input-button' %}
-		<div class="mds-button {{class if class}}{% if disabled %} mds-button--disabled{% endif %}" {% if disabled %}disabled{% endif %}>			
-			<input class="mds-button__input" type="{% if el == 'input-button' %}button{% elif el == 'checkbox' or el == 'radio' or el == 'submit' %}{{ el }}{% endif %}" {% if disabled %}disabled{% endif %} onclick="myFunction()" {% if el == 'submit' %} value="" {% endif %}>
-			{% if icon_left %}
-	        	{{ icon(name=icon_left, class="mds-button__icon mds-button__icon--left") }}
-	        {% endif %}
-			{% if (icon_left or icon_right) and text %}
-		        <span class="mds-button__text">
-		        	{{ text }}
-		        </span>
-			{% elif text %}
-				{{ text }}
-			{% endif %}
-	        {% if icon_right %}
-	        	{{ icon(name=icon_right, class="mds-button__icon mds-button__icon--right") }}
-	        {% endif %}
+		<div class="mds-button__input-outer-wrapper">
+			<input class="mds-button__input" type="{% if el == 'input-button' %}button{% elif el == 'checkbox' or el == 'radio' or el == 'submit' %}{{ el }}{% endif %}" {% if disabled == 'disabled' %}{{ disabled }}{% endif %} {% if el == 'submit' %} value="" {% endif %}>
+			<div class="mds-button {{class if class}}">			
+				{% if icon_left %}
+		        	{{ icon(name=icon_left, class="mds-button__icon mds-button__icon--left") }}
+		        {% endif %}
+				{% if (icon_left or icon_right) and text %}
+			        <span class="mds-button__text">
+			        	{{ text }}
+			        </span>
+				{% elif text %}
+					{{ text }}
+				{% endif %}
+		        {% if icon_right %}
+		        	{{ icon(name=icon_right, class="mds-button__icon mds-button__icon--right") }}
+		        {% endif %}
+			</div>
 		</div>
 	{% else %}
-	    <{{el}} class="mds-button {{class if class}}{% if disabled %} mds-button--disabled{% endif %}" {% if disabled %}disabled{% endif %} {% if el == 'button' %}type="button"{% endif %} {% if el == 'a' %}href="#"{% endif %} onclick="myFunction()" >
+	    <{{el}} class="mds-button {{class if class}}" {% if el == 'button' %}type="button"{% endif %} {% if el == 'a' %}href="#"{% endif %}>
 	        {% if icon_left %}
 	        	{{ icon(name=icon_left, class="mds-button__icon mds-button__icon--left") }}
 	        {% endif %}

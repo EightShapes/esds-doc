@@ -51,7 +51,8 @@
 
 {% macro buttonStates(
 		el_class=false,
-		el_ex_dark=false) %}
+		el_ex_dark=false,
+		el_disabled=false) %}
 	{% set states = ['default', 'hover', 'focus', 'active', 'disabled'] %} 
 	{% for item in els %}
 		<h3>Element= "{{ item.el }}"</h3>
@@ -59,7 +60,7 @@
 			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
-				{{ library.button(text="Sign Up", class=el_class + " mds-button--" + state, el=item.el) }}
+				{{ library.button(text="Sign Up", class=el_class + " mds-button--" + state, el=item.el, disabled=state) }}
 			</div>
 		{% endfor %}
 		<br>
@@ -67,7 +68,7 @@
 			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
-				{{ library.button(text="Copy Document", class=el_class + " mds-button--" + state, icon_left="copy", el=item.el) }}
+				{{ library.button(text="Copy Document", class=el_class + " mds-button--" + state, icon_left="copy", el=item.el, disabled=state) }}
 			</div>
 		{% endfor %}
 		<br>
@@ -75,7 +76,7 @@
 			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
-				{{ library.button(text="Continue", class=el_class + " mds-button--" + state, icon_right="arrow-right", el=item.el) }}
+				{{ library.button(text="Continue", class=el_class + " mds-button--" + state, icon_right="arrow-right", el=item.el, disabled=state) }}
 			</div>
 		{% endfor %}
 		<br>
@@ -83,7 +84,7 @@
 			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
-				{{ library.button(text="Account Settings", class=el_class + " mds-button--" + state, icon_left="utilities", icon_right="arrow-down", el=item.el) }}
+				{{ library.button(text="Account Settings", class=el_class + " mds-button--" + state, icon_left="utilities", icon_right="arrow-down", el=item.el, disabled=state) }}
 			</div>
 		{% endfor %}
 		<br>
@@ -91,7 +92,7 @@
 			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
-				{{ library.button(class=el_class + " mds-button--" + state, icon_left="search", el=item.el) }}
+				{{ library.button(class=el_class + " mds-button--" + state, icon_left="search", el=item.el, disabled=item.state ) }}
 			</div>
 		{% endfor %}
 		<br>
@@ -271,11 +272,11 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum reprehenderit, id 
 
 {# Secondary Buttons Vertical Alignment ------------------------------ #}
 <h3>Secondary</h3>
-	{{ buttonVertAlign(el_class="mds-button--Secondary") }}
+	{{ buttonVertAlign(el_class="mds-button--secondary") }}
 
 {# Secondary Buttons Vertical Alignment ------------------------------ #}
 <h3>Secondary Small</h3>
-	{{ buttonVertAlign(el_class="mds-button--Secondary mds-button--small") }}
+	{{ buttonVertAlign(el_class="mds-button--secondary mds-button--small") }}
 
 {# Primary Buttons Vertical Alignment ------------------------------ #}
 <h3>Primary on Dark Background</h3>
@@ -287,11 +288,11 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum reprehenderit, id 
 
 {# Secondary Buttons Vertical Alignment ------------------------------ #}
 <h3>Secondary on Dark Background</h3>
-	{{ buttonVertAlign(el_class="mds-button--Secondary", el_ex_dark=true) }}
+	{{ buttonVertAlign(el_class="mds-button--secondary", el_ex_dark=true) }}
 
 {# Secondary Buttons Vertical Alignment ------------------------------ #}
 <h3>Secondary Small on Dark Background</h3>
-	{{ buttonVertAlign(el_class="mds-button--Secondary mds-button--small", el_ex_dark=true) }}
+	{{ buttonVertAlign(el_class="mds-button--secondary mds-button--small", el_ex_dark=true) }}
 
 {# ---------------------------------------------------------------- #}
 {# Button States Assessments -------------------------------------- #}

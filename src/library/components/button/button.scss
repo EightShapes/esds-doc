@@ -21,9 +21,8 @@ $mds-border-radius-button: 15px;
     text-align: center;
     transition: $mds-transition-hover;
 
-    &::-moz-focus-inner { 
+    &::-moz-focus-inner { // sass-lint:disable-line no-vendor-prefixes - FF is adding a 1px border around <button> elements
         border: 0;
-        padding: 0;  
     }
 
     &:hover,
@@ -38,10 +37,12 @@ $mds-border-radius-button: 15px;
         }
     }
 
+    
+
     &:focus,
     &.mds-button--focus {
         &:after {
-            background: $mds-color-white;
+            background-color: transparent;
             border-radius: 16px;
             bottom: $mds-focus-ring-offset;
             box-shadow: $mds-hover-shadow;
@@ -73,12 +74,16 @@ $mds-border-radius-button: 15px;
     &:disabled,
     &[disabled],
     &.mds-button--disabled {
-        background: transparent;
+        background-color: transparent;
         border: $mds-border-disabled;
         box-shadow: none;
         color: $mds-text-color-disabled;
         cursor: not-allowed;
-        opacity: .4;
+        opacity: $mds-opacity-disabled;
+
+        .mds-button__input {
+            cursor: not-allowed;
+        }
 
         .mds-button__icon {
             fill: $mds-text-color-disabled;
@@ -168,6 +173,10 @@ a {
         border-color: $mds-interactive-color-primary-default;
         color: $mds-interactive-color-primary-default;
 
+        .mds-button__input {
+            cursor: not-allowed;
+        }
+
         .mds-button__icon {
             fill: $mds-interactive-color-primary-default;
         }
@@ -178,6 +187,7 @@ a {
                 fill: $mds-interactive-color-primary-default;
             }
         }
+
     }
 
     .mds-button__icon {
@@ -195,19 +205,13 @@ a {
         }
 
         &:hover,
-        &.mds-button--hover,
-        &:focus,
-        &.mds-button--focus {
+        &.mds-button--hover {
             background-color: $mds-interactive-color-secondary-hover;
             color: $mds-text-color-primary-on-dark;
 
             .mds-button__icon {
                 fill: $mds-text-color-primary-on-dark;
-            }
 
-            &:after {
-                background: transparent;
-                z-index: 0;
             }
         }
 
@@ -225,7 +229,11 @@ a {
         &[disabled],
         &.mds-button--disabled {
             &:hover,
-            &.mds-button--hover {
+            &.mds-button--hover,
+            &:active,
+            &.mds-button--active,
+            &:focus,
+            &.mds-button--focus {
                 background: transparent;
                 color: $mds-text-color-disabled;
 
@@ -236,17 +244,20 @@ a {
         }
     }
 
-    .mds-button--primary {
-        &:after {
-            background: transparent;
-            z-index: 0;
+    .mds-button {
+        &:hover,
+        &.mds-button--hover,
+        &:focus,
+        &.mds-button--focus {
+            &:after {
+                background-color: transparent;
+                z-index: 0;
+            }
         }
     }
 }
 
-.mds-button__input,
-[class*='mds-button__input'],
-[class^='mds-button__input'] {
+.mds-button__input {
     background: none;
     border: 0;
     border-radius: $mds-border-radius-button;
@@ -260,9 +271,129 @@ a {
     right: 0;
     top: 0;
     width: 100%;
+    z-index: 1;
 
     &[type=radio],
     &[type=checkbox] {
         opacity: 0;
     }
+
+    &:disabled,
+    &[disabled] {
+        cursor: not-allowed;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+// Input buttons need to be retargeted due to the sibling vs. parent/child structure required to accommodate all of the different states
+.mds-button__input-outer-wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.mds-button__input:focus + .mds-button {
+    &:after {
+        background-color: transparent;
+        border-radius: 16px;
+        bottom: $mds-focus-ring-offset;
+        box-shadow: $mds-hover-shadow;
+        content: '';
+        left: $mds-focus-ring-offset;
+        position: absolute;
+        right: $mds-focus-ring-offset;
+        top: $mds-focus-ring-offset;
+        z-index: -1;
+    }
+    outline: 0;
+}
+
+// Input Buttons Default and Secondary :hover
+.mds-button__input:hover + .mds-button,
+.mds-button__input.mds-button--hover + .mds-button,
+.mds-button__input:hover + .mds-button--secondary,
+.mds-button__input.mds-button--hover + .mds-button--secondary {
+    background-color: $mds-interactive-color-secondary-hover;
+    border-color: $mds-interactive-color-secondary-hover;
+    color: $mds-color-white;
+    text-decoration: none;
+
+    .mds-button__icon {
+        fill: $mds-color-white;
+    }
+}
+
+
+
+// Input Buttons Default and Secondary :disabled
+.mds-button__input:focus:disabled + .mds-button,
+.mds-button__input:focus[disabled] + .mds-button,
+.mds-button__input--disabled:focus {
+    &:after {
+        display: none;
+    }
+}
+
+.mds-button__input:disabled,
+.mds-button__input[disabled],
+.mds-button__input.mds-button--disabled {
+    + .mds-button {
+        opacity: $mds-opacity-disabled;
+    }
+
+    &:hover + .mds-button {
+        background-color: transparent;
+        border-color: $mds-border-disabled;
+        color: $mds-text-color-disabled;
+        cursor: not-allowed;
+
+        .mds-button__icon {
+            fill: $mds-text-color-disabled;
+        }
+    }
+
+    &:hover + .mds-button--primary, 
+    + .mds-button--primary {
+        background-color: transparent;
+        border-color: $mds-interactive-color-primary-default;
+        color: $mds-interactive-color-primary-default;
+
+        .mds-button__icon {
+            fill: $mds-interactive-color-primary-default;
+        }
+    }
+}
+
+// Input Buttons Default and Secondary :active
+.mds-button__input:active + .mds-button,
+.mds-button__input.mds-button--active + .mds-button,
+.mds-button__input:active + .mds-button--secondary,
+.mds-button__input.mds-button--active + .mds-button--secondary {
+    background-color: $mds-interactive-color-secondary-active;
+    border-color: $mds-interactive-color-secondary-active;
+    color: $mds-color-white;
+
+    .mds-button__icon {
+        fill: $mds-color-white;
+    }
+
+    &:after {
+        box-shadow: none;
+    }
+}
+
+// Input Buttons Primary :hover
+.mds-button__input:hover + .mds-button--primary,
+.mds-button__input.mds-button--hover + .mds-button--primary {
+    background-color: $mds-interactive-color-primary-hover;
+    border-color: $mds-interactive-color-primary-hover;
+}
+
+// Input Buttons Primary :active
+.mds-button__input:active + .mds-button--primary,
+.mds-button__input.mds-button--active + .mds-button--primary {
+    background-color: $mds-interactive-color-primary-active;
+    border-color: $mds-interactive-color-primary-active;
 }
