@@ -51,6 +51,7 @@ interactive-color :
     primary : transparent
     hover : *color-neutral-55
     active : *color-neutral-50
+  disabled : *color-neutral-55
 font :
   family :
     sans-serif: "'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif"
@@ -61,14 +62,15 @@ font :
     bold : 600
   size :
     base: 16px
-    default: 1em
-    s : .875em
+    default: 16px
+    s : 14px
     m : 1em
 border :
   hairline : "solid 1px #999999"
   disabled : "solid 1px #999999"
 size :
   icon :
+    xs : 14px
     s : 16px
     m : 18px
     l : 32px
@@ -79,5 +81,7 @@ space :
       s : 2px 16px 2px 16px
   inline :
     xs : 4px
+  stack :
+    m: 0 0 16px 0;
 opacity :
     disabled : ".4"

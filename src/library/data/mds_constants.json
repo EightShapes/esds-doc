@@ -58,7 +58,8 @@
                 "primary": "transparent",
                 "hover": "#999999",
                 "active": "#666666"
-            }
+            },
+            "disabled": "#999999"
         },
         "font": {
             "family": {
@@ -72,8 +73,8 @@
             },
             "size": {
                 "base": "16px",
-                "default": "1em",
-                "s": ".875em",
+                "default": "16px",
+                "s": "14px",
                 "m": "1em"
             }
         },
@@ -83,6 +84,7 @@
         },
         "size": {
             "icon": {
+                "xs": "14px",
                 "s": "16px",
                 "m": "18px",
                 "l": "32px"
@@ -97,6 +99,9 @@
             },
             "inline": {
                 "xs": "4px"
+            },
+            "stack": {
+                "m": "0 0 16px 0;"
             }
         },
         "opacity": {

@@ -1,0 +1,94 @@
+.mds-pagination {
+    font-size: 0;
+    list-style: none;
+    margin: $mds-space-stack-m;
+    padding: 0;
+    height: 25px;
+}
+
+.mds-pagination__item {
+    border: $mds-border-hairline;
+    border-left: 0;
+    border-right: 0;
+    color: $mds-text-color-primary-default;
+    display: inline-block;
+    font-family: $mds-font-family-sans-serif;
+    font-size: $mds-font-size-s;
+    margin: 0;
+    padding: 0;
+
+    &:first-child {
+        border: $mds-border-hairline;
+        border-radius: 12px 0 0 12px;
+        padding-left: 14px;
+        a {
+            padding-left: 0;
+        }
+    }
+
+    &:last-child {
+        border: $mds-border-hairline;
+        border-radius: 0 12px 12px 0;
+        padding-right: 14px;
+        a {
+            padding-right: 0;
+        }
+    }
+}
+
+.mds-pagination__link {
+    background: transparent;
+    color: $mds-text-color-secondary-default;
+    display: inline-block;
+    margin: 0;
+    padding: 2px 5px;
+    position: relative;
+    text-decoration: none;
+
+    &:hover {
+        color: $mds-interactive-color-primary-hover;
+
+        .mds-pagination__icon {
+            fill: $mds-interactive-color-primary-hover;
+        }
+    }
+}
+
+.mds-pagination__item--active {
+    font-weight: $mds-font-weight-bold;
+    padding: 2px 5px;
+}
+
+.mds-pagination__item--disabled {
+    color: $mds-interactive-color-disabled;
+    cursor: not-allowed;
+    padding: 2px 5px;
+
+    .mds-pagination__icon {
+        fill: $mds-interactive-color-disabled;
+    }
+}
+
+.mds-pagination__icon {
+    fill: $mds-text-color-primary-default;
+    height: $mds-size-icon-xs;
+    vertical-align: middle;
+    width: $mds-size-icon-xs;
+}
+
+.mds--dark {
+    .mds-pagination__link {
+        color: $mds-text-color-secondary-on-dark;
+        &:hover {
+            color: $mds-interactive-color-primary-hover;
+        }
+    }
+
+    .mds-pagination__item--active {
+        color: $mds-text-color-primary-on-dark;
+    }
+
+    .mds-pagination__icon {
+        fill: $mds-text-color-secondary-on-dark;
+    }
+}

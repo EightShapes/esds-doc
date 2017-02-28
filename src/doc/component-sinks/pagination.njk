@@ -1,0 +1,60 @@
+{% extends "doc_templates/default.template.njk" %}
+
+{% set title = 'Pagination Sink' %}
+
+{% block body %}
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 20px;
+        }
+
+        .pagination-sink__header {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .pagination-sink-wrap {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .pagination-sink {
+            padding: 32px;
+        }
+
+        .pagination-sink--dark {
+            background: {{ mdsConstants.color.black }};
+        }
+
+        .pagination-sink--dark .pagination-sink__header,
+        .pagination-sink--dark .pagination-sink__subheader {
+            color: {{ mdsConstants.color.white }};
+        }
+    </style>
+
+    <h1>Pagination Sink</h1>
+
+    {% macro pagination_sink(sinkBackgroundColor=false) %}
+
+        {{ library.pagination() }}
+        {{ library.pagination(include_labels=true) }}
+        {{ library.pagination(pages=6,include_arrows=false) }}
+
+
+    {% endmacro %}
+
+    <div class="pagination-sink-wrap">
+        <div class="pagination-sink">
+            {{ pagination_sink() }}
+        </div>
+        <div class="pagination-sink pagination-sink--dark mds--dark">
+            {{ pagination_sink(sinkBackgroundColor="dark") }}
+        </div>
+    </div>
+{% endblock %}

@@ -45,6 +45,7 @@ $mds-interactive-color-primary-active: #087796;
 $mds-interactive-color-secondary-primary: transparent;
 $mds-interactive-color-secondary-hover: #999999;
 $mds-interactive-color-secondary-active: #666666;
+$mds-interactive-color-disabled: #999999;
 
 $mds-font-family-sans-serif: 'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $mds-font-weight-thin: 200;
@@ -52,13 +53,14 @@ $mds-font-weight-light: 300;
 $mds-font-weight-regular: 400;
 $mds-font-weight-bold: 600;
 $mds-font-size-base: 16px;
-$mds-font-size-default: 1em;
-$mds-font-size-s: .875em;
+$mds-font-size-default: 16px;
+$mds-font-size-s: 14px;
 $mds-font-size-m: 1em;
 
 $mds-border-hairline: solid 1px #999999;
 $mds-border-disabled: solid 1px #999999;
 
+$mds-size-icon-xs: 14px;
 $mds-size-icon-s: 16px;
 $mds-size-icon-m: 18px;
 $mds-size-icon-l: 32px;
@@ -66,5 +68,6 @@ $mds-size-icon-l: 32px;
 $mds-space-inset-squish-m: 4px 16px 4px 16px;
 $mds-space-inset-squish-s: 2px 16px 2px 16px;
 $mds-space-inline-xs: 4px;
+$mds-space-stack-m: 0 0 16px 0;;
 
 $mds-opacity-disabled: .4;
