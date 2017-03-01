@@ -1,0 +1,20 @@
+{% macro list_group(
+    class=false,
+    active_item=4
+) %}
+
+<ul class="mds-list-group{{ " " + class if class }}">
+
+    {% for i in range(1,8) %}
+
+    <li class="mds-list-group__item{{ " mds-list-group__item--active" if (i == active_item)}}">
+    	{% if (i == active_item) %}
+	    {{ icon(name='arrow-next-sm', class='mds-list-group__active-icon', path=icon_path) }}
+    	{% endif %}
+    	{{ i }} Item
+	</li>
+    {% endfor %}
+
+</ul>
+
+{% endmacro %}

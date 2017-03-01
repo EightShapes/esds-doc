@@ -1,29 +1,29 @@
-$mds-background-color-form-input: $mds-color-neutral-95;
-$mds-background-color-form-input-on-dark: $mds-color-neutral-25;
+$mds-background-color-form-input: $mds-color-neutral-96;
+$mds-background-color-form-input-on-dark: $mds-color-neutral-21;
 
-$mds-border-color-form-input: $mds-color-neutral-55;
+$mds-border-color-form-input: $mds-border-color-hairline;
 $mds-border-color-form-input-error: $mds-color-red;
-$mds-border-color-form-input-hover: $mds-color-cyan;
+$mds-border-color-form-input-hover: $mds-interactive-color-primary-hover;
 $mds-border-width-form-input: 1px;
 $mds-border-width-form-input-error: 2px;
 
-$mds-box-shadow-form-element-focus: 0 0 4px 2px rgba($mds-color-cyan, .8);
+$mds-box-shadow-form-element-focus: 0 0 4px 2px rgba($mds-interactive-color-primary-default, .8);
 $mds-box-shadow-form-input-border: inset 0 (-$mds-border-width-form-input) 0 0 $mds-border-color-form-input;
 $mds-box-shadow-form-input-border-hover: inset 0 (-$mds-border-width-form-input) 0 0 $mds-border-color-form-input-hover;
 $mds-box-shadow-form-input-border-error: inset 0 (-$mds-border-width-form-input-error) 0 0 $mds-border-color-form-input-error;
 $mds-box-shadow-form-element-focus-input-border-error: $mds-box-shadow-form-input-border-error, $mds-box-shadow-form-element-focus;
 
-$mds-color-form-label: $mds-color-neutral-15;
-$mds-color-form-label-on-dark: $mds-color-neutral-95;
-$mds-color-form-input: $mds-color-neutral-15;
+$mds-color-form-label: $mds-text-color-primary-on-light;
+$mds-color-form-label-on-dark: $mds-color-neutral-96;
+$mds-color-form-input: $mds-text-color-primary-on-light;
 $mds-color-form-input-on-dark: $mds-text-color-primary-on-dark;
-$mds-color-form-microcopy: $mds-color-neutral-15;
-$mds-color-form-microcopy-on-dark: $mds-color-neutral-95;
+$mds-color-form-microcopy: $mds-text-color-primary-on-light;
+$mds-color-form-microcopy-on-dark: $mds-color-neutral-96;
 $mds-color-form-radio-label: $mds-color-neutral-50;
-$mds-color-form-radio-label-on-dark: $mds-color-neutral-55;
-$mds-color-form-radio-label-hover: $mds-color-neutral-15;
+$mds-color-form-radio-label-on-dark: $mds-text-color-secondary-on-dark;
+$mds-color-form-radio-label-hover: $mds-text-color-primary-on-light;
 $mds-color-form-radio-label-hover-on-dark: $mds-color-neutral-90;
-$mds-color-form-select-on-dark: $mds-color-neutral-97;
+$mds-color-form-select-on-dark: $mds-color-neutral-96;
 
 $mds-size-form-checkbox: 16px;
 $mds-size-form-checkbox-icon: 16px;
@@ -253,7 +253,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     width: $mds-size-form-radio-button;
 
     &:before {
-        background: $mds-color-cyan;
+        background: $mds-interactive-color-primary-default;
         border-radius: 50%;
         content: '';
         display: block;
@@ -268,7 +268,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
 
     .mds-form__radio-button-input:checked + .mds-form__radio-button-visible-wrap & {
         background: $mds-color-white;
-        border-color: $mds-color-cyan;
+        border-color: $mds-interactive-color-primary-default;
 
         &:before {
             height: $mds-size-form-radio-button-fill;
@@ -282,10 +282,10 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     }
 
     .mds-form__radio-button:hover .mds-form__radio-button-input:checked + .mds-form__radio-button-visible-wrap & {
-        border-color: $mds-color-darker-cyan;
+        border-color: $mds-interactive-color-primary-hover-darker;
 
         &:before {
-            background: $mds-color-darker-cyan;
+            background: $mds-interactive-color-primary-hover-darker;
         }
     }
 
@@ -311,20 +311,20 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
 
     .mds-form__checkbox-input:indeterminate + .mds-form__checkbox-visible-wrap &,
     .mds-form__checkbox-input:checked + .mds-form__checkbox-visible-wrap & {
-        background: $mds-color-cyan;
-        border-color: $mds-color-cyan;
+        background: $mds-interactive-color-primary-default;
+        border-color: $mds-interactive-color-primary-default;
     }
 
     .mds-form__checkbox:hover &,
     .mds-form__checkbox--hover & {
-        border-color: $mds-color-cyan;
+        border-color: $mds-interactive-color-primary-hover;
     }
 
     .mds-form__checkbox:hover,
     .mds-form__checkbox--hover {
         .mds-form__checkbox-input:indeterminate + .mds-form__checkbox-visible-wrap &,
         .mds-form__checkbox-input:checked + .mds-form__checkbox-visible-wrap & {
-            background: $mds-color-darker-cyan;
+            background: $mds-interactive-color-primary-hover-darker;
         }
     }
 
