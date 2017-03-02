@@ -3,11 +3,11 @@
         "project-name": "mds",
         "color": {
             "white": "#ffffff",
-            "black": "#262626",
+            "black": "#000000",
             "neutral": {
-                "13": "#212121",
-                "21": "#363636",
-                "31": "#505050",
+                "11": "#1E1E1E",
+                "21": "#333333",
+                "39": "#5e5e5e",
                 "50": "#808080",
                 "67": "#ababab",
                 "80": "#cccccc",
@@ -21,7 +21,7 @@
             "teal": "#006c67",
             "violet": "#3b5cad",
             "cyan": {
-                "31": "#087796",
+                "39": "#087796",
                 "41": "#0a9ec9",
                 "44": "#00a8e1"
             },
@@ -30,10 +30,16 @@
             "yellow": "#dcaa00",
             "orange": "#ef7622"
         },
+        "background-color": {
+            "default": "#ffffff",
+            "light": "#f2f2f2",
+            "dark": "#1E1E1E",
+            "black": "#000000"
+        },
         "text-color": {
             "primary": {
-                "default": "#212121",
-                "on-light": "#212121",
+                "default": "#1E1E1E",
+                "on-light": "#1E1E1E",
                 "on-dark": "#ffffff"
             },
             "secondary": {
@@ -95,6 +101,8 @@
         },
         "space": {
             "inset": {
+                "m": "16px 16px 16px 16px",
+                "l": "32px 32px 32px 32px",
                 "squish": {
                     "m": "4px 16px 4px 16px",
                     "s": "2px 16px 2px 16px"

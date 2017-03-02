@@ -1,10 +1,10 @@
 $mds-project-name: mds;
 
 $mds-color-white: #ffffff;
-$mds-color-black: #262626;
-$mds-color-neutral-13: #212121;
-$mds-color-neutral-21: #363636;
-$mds-color-neutral-31: #505050;
+$mds-color-black: #000000;
+$mds-color-neutral-11: #1E1E1E;
+$mds-color-neutral-21: #333333;
+$mds-color-neutral-39: #5e5e5e;
 $mds-color-neutral-50: #808080;
 $mds-color-neutral-67: #ababab;
 $mds-color-neutral-80: #cccccc;
@@ -16,7 +16,7 @@ $mds-color-green: #00af41;
 $mds-color-dark-green: #00af41;
 $mds-color-teal: #006c67;
 $mds-color-violet: #3b5cad;
-$mds-color-cyan-31: #087796;
+$mds-color-cyan-39: #087796;
 $mds-color-cyan-41: #0a9ec9;
 $mds-color-cyan-44: #00a8e1;
 $mds-color-maroon: #ac0033;
@@ -24,8 +24,13 @@ $mds-color-red: #ff0000;
 $mds-color-yellow: #dcaa00;
 $mds-color-orange: #ef7622;
 
-$mds-text-color-primary-default: #212121;
-$mds-text-color-primary-on-light: #212121;
+$mds-background-color-default: #ffffff;
+$mds-background-color-light: #f2f2f2;
+$mds-background-color-dark: #1E1E1E;
+$mds-background-color-black: #000000;
+
+$mds-text-color-primary-default: #1E1E1E;
+$mds-text-color-primary-on-light: #1E1E1E;
 $mds-text-color-primary-on-dark: #ffffff;
 $mds-text-color-secondary-default: #808080;
 $mds-text-color-secondary-on-light: #808080;
@@ -64,6 +69,8 @@ $mds-size-icon-s: 16px;
 $mds-size-icon-m: 18px;
 $mds-size-icon-l: 32px;
 
+$mds-space-inset-m: 16px 16px 16px 16px;
+$mds-space-inset-l: 32px 32px 32px 32px;
 $mds-space-inset-squish-m: 4px 16px 4px 16px;
 $mds-space-inset-squish-s: 2px 16px 2px 16px;
 $mds-space-inline-xs: 4px;

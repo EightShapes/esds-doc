@@ -1,0 +1,36 @@
+// The Sink page styles are solely for use on sink pages, comingling very simple and predictable classes with components in an otherwise conflict-free QA/testing environment.
+// Do not use these classes on other pages or apps.
+
+// Use the library's constants
+@import 'mds_constants';
+
+.mds-doc-sink {
+    margin: 0;
+    padding: 0;
+}
+
+.mds-doc-sink__body {
+    margin: 0;
+    padding: $mds-space-inset-m;
+}
+
+.mds-doc-sink__header {
+    font-family: $mds-font-family-sans-serif;
+    font-size: 24px;
+    font-weight: $mds-font-weight-light;
+    margin-bottom: $mds-space-stack-m;
+
+    .mds-container--dark &, 
+    .mds-container--black & {
+        color: $mds-text-color-primary-on-dark;
+    }
+}
+
+.mds-doc-sink__wrapping-columns {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.mds-doc-sink__column {
+    padding: $mds-space-inset-l;
+}

@@ -1,63 +1,16 @@
-{% extends "doc_templates/default.template.njk" %}
+{% extends "doc_templates/default.sink.template.njk" %}
 
 {% set title = 'List Group Sink' %}
 
-{% block body %}
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-        }
+{% macro component_sink() %}
 
-        body {
-            margin: 20px;
-        }
+    <h2 class="mds-doc-sink__header">Small</h2>
+    {{ library.list_group(class="mds-list-group--small") }}
 
-        .list-group-sink__header {
-            font-size: 24px;
-            margin-bottom: 16px;
-        }
+    <h2 class="mds-doc-sink__header">Default</h2>
+    {{ library.list_group(active_item=2) }}
 
-        .list-group-sink-wrap {
-            display: flex;
-            justify-content: flex-start;
-        }
+    <h2 class="mds-doc-sink__header">Large</h2>
+    {{ library.list_group(class="mds-list-group--large",active_item=7) }}
 
-        .list-group-sink {
-            padding: 32px;
-        }
-
-        .list-group-sink--dark {
-            background: {{ mdsConstants.color.black }};
-        }
-
-        .list-group-sink--dark .list-group-sink__header,
-        .list-group-sink--dark .list-group-sink__subheader {
-            color: {{ mdsConstants.color.white }};
-        }
-
-        .mds-list-group {
-            min-width: 200px;
-        }
-    </style>
-
-    <h1>List Group Sink</h1>
-
-    {% macro list_group_sink(sinkBackgroundColor=false) %}
-
-        {{ library.list_group(class="mds-list-group--small") }}
-        {{ library.list_group(active_item=2) }}
-        {{ library.list_group(class="mds-list-group--large",active_item=7) }}
-
-    {% endmacro %}
-
-    <div class="list-group-sink-wrap">
-        <div class="list-group-sink">
-            {{ list_group_sink() }}
-        </div>
-        <div class="list-group-sink list-group-sink--dark mds--dark">
-            {{ list_group_sink(sinkBackgroundColor="dark") }}
-        </div>
-    </div>
-{% endblock %}
+{% endmacro %}

@@ -1,60 +1,17 @@
-{% extends "doc_templates/default.template.njk" %}
+{% extends "doc_templates/default.sink.template.njk" %}
 
 {% set title = 'Pagination Sink' %}
 
-{% block body %}
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-        }
+{% macro component_sink() %}
 
-        body {
-            margin: 20px;
-        }
+    <h2 class="mds-doc-sink__header">With Navigation</h2>
+    {{ library.pagination() }}
 
-        .pagination-sink__header {
-            font-size: 24px;
-            margin-bottom: 16px;
-        }
+    <h2 class="mds-doc-sink__header">With Labels</h2>
+    {{ library.pagination(include_labels=true) }}
 
-        .pagination-sink-wrap {
-            display: flex;
-            justify-content: flex-start;
-        }
+    <h2 class="mds-doc-sink__header">No Navigation</h2>
+    {{ library.pagination(pages=6,include_arrows=false) }}
 
-        .pagination-sink {
-            padding: 32px;
-        }
+{% endmacro %}
 
-        .pagination-sink--dark {
-            background: {{ mdsConstants.color.black }};
-        }
-
-        .pagination-sink--dark .pagination-sink__header,
-        .pagination-sink--dark .pagination-sink__subheader {
-            color: {{ mdsConstants.color.white }};
-        }
-    </style>
-
-    <h1>Pagination Sink</h1>
-
-    {% macro pagination_sink(sinkBackgroundColor=false) %}
-
-        {{ library.pagination() }}
-        {{ library.pagination(include_labels=true) }}
-        {{ library.pagination(pages=6,include_arrows=false) }}
-
-
-    {% endmacro %}
-
-    <div class="pagination-sink-wrap">
-        <div class="pagination-sink">
-            {{ pagination_sink() }}
-        </div>
-        <div class="pagination-sink pagination-sink--dark mds--dark">
-            {{ pagination_sink(sinkBackgroundColor="dark") }}
-        </div>
-    </div>
-{% endblock %}

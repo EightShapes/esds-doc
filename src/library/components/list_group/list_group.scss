@@ -6,6 +6,12 @@
     font-weight: $mds-font-weight-light;
     list-style: none;
     margin: $mds-space-stack-m;
+    padding: 0;
+
+    .mds-container--dark &,
+    .mds-container--black & {
+        color: $mds-text-color-primary-on-dark;
+    }
 }
 
 .mds-list-group__item {
@@ -31,11 +37,11 @@
 }
 
 .mds-list-group__active-icon {
+    bottom: 7px;
     fill: $mds-interactive-color-primary-default;
     height: $mds-size-icon-xs;
     margin-top: 3px;
     position: absolute;
-    bottom: 7px;
     right: -3px;
     width: $mds-size-icon-xs;
 }
@@ -53,11 +59,5 @@
 
     .mds-list-group__active-icon {
         bottom: 9px;
-    }
-}
-
-.mds--dark {
-    .mds-list-group {
-        color: $mds-text-color-primary-on-dark;
     }
 }

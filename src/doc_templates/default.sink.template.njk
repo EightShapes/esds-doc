@@ -1,0 +1,27 @@
+{% extends 'doc_templates/default.template.njk' %}
+
+{% set html_class = 'mds-doc-sink' %}
+{% set body_class = 'mds-doc-sink__body' %}
+
+{% block head_assets %}
+    <link rel="stylesheet" href="/assets/styles/mds_sink.css">
+{% endblock %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+
+    <div class="mds-doc-sink__wrapping-columns">
+        <div class="mds-doc-sink__column">
+            {{ component_sink() }}
+        </div>
+        <div class="mds-doc-sink__column mds-container--light">
+            {{ component_sink() }}
+        </div>
+        <div class="mds-doc-sink__column mds-container--dark">
+            {{ component_sink() }}
+        </div>
+        <div class="mds-doc-sink__column mds-container--dark mds-container--black">
+            {{ component_sink() }}
+        </div>
+    </div>
+{% endblock %}

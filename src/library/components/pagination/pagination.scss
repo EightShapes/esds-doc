@@ -1,9 +1,9 @@
 .mds-pagination {
     font-size: 0;
+    height: 25px;
     list-style: none;
     margin: $mds-space-stack-m;
     padding: 0;
-    height: 25px;
 }
 
 .mds-pagination__item {
@@ -19,8 +19,10 @@
 
     &:first-child {
         border: $mds-border-hairline;
+        border-right: 0;
         border-radius: 12px 0 0 12px;
         padding-left: 14px;
+
         a {
             padding-left: 0;
         }
@@ -28,8 +30,10 @@
 
     &:last-child {
         border: $mds-border-hairline;
+        border-left: 0;
         border-radius: 0 12px 12px 0;
         padding-right: 14px;
+
         a {
             padding-right: 0;
         }
@@ -39,6 +43,7 @@
 .mds-pagination__link {
     background: transparent;
     color: $mds-text-color-secondary-default;
+    cursor: pointer;
     display: inline-block;
     margin: 0;
     padding: 2px 5px;
@@ -52,11 +57,25 @@
             fill: $mds-interactive-color-primary-hover;
         }
     }
+
+    .mds-container--dark &,
+    .mds-container--black & {
+        color: $mds-text-color-secondary-on-dark;
+
+        &:hover {
+            color: $mds-interactive-color-primary-hover;
+        }
+    }
 }
 
 .mds-pagination__item--active {
     font-weight: $mds-font-weight-bold;
     padding: 2px 5px;
+
+    .mds-container--dark &,
+    .mds-container--black & {
+        color: $mds-text-color-primary-on-dark;
+    }
 }
 
 .mds-pagination__item--disabled {
@@ -66,29 +85,22 @@
 
     .mds-pagination__icon {
         fill: $mds-interactive-color-disabled;
+
+        .mds-container--dark &,
+        .mds-container--black & {
+            fill: $mds-text-color-secondary-on-dark;
+        }
     }
 }
 
 .mds-pagination__icon {
-    fill: $mds-text-color-primary-default;
+    fill: $mds-text-color-secondary-default;
     height: $mds-size-icon-xs;
     vertical-align: middle;
     width: $mds-size-icon-xs;
-}
 
-.mds--dark {
-    .mds-pagination__link {
-        color: $mds-text-color-secondary-on-dark;
-        &:hover {
-            color: $mds-interactive-color-primary-hover;
-        }
-    }
-
-    .mds-pagination__item--active {
-        color: $mds-text-color-primary-on-dark;
-    }
-
-    .mds-pagination__icon {
+    .mds-container--black &,
+    .mds-container--dark & {
         fill: $mds-text-color-secondary-on-dark;
     }
 }

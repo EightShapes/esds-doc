@@ -1,4 +1,4 @@
-$mds-background-color-form-input: $mds-color-neutral-96;
+$mds-background-color-form-input: $mds-color-neutral-90;
 $mds-background-color-form-input-on-dark: $mds-color-neutral-21;
 
 $mds-border-color-form-input: $mds-border-color-hairline;
@@ -118,7 +118,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
         @include error-styles();
     }
 
-    .mds--dark-background & {
+    .mds-container--dark &, .mds-container--black & {
         background-color: $mds-background-color-form-input-on-dark;
         color: $mds-color-form-input-on-dark;
     }
@@ -175,7 +175,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     max-width: $mds-size-form-input-max-width;
     padding: 0;
 
-    .mds--dark-background & {
+    .mds-container--dark &, .mds-container--black & {
         color: $mds-color-form-label-on-dark;
     }
 }
@@ -371,7 +371,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     color: $mds-color-form-radio-label;
     cursor: pointer;
 
-    .mds--dark-background & {
+    .mds-container--dark &, .mds-container--black & {
         color: $mds-color-form-radio-label-on-dark;
     }
 
@@ -379,7 +379,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     .mds-form__radio-button:hover & {
         color: $mds-color-form-radio-label-hover;
 
-        .mds--dark-background & {
+        .mds-container--dark &, .mds-container--black & {
             color: $mds-color-form-radio-label-hover-on-dark;
         }
     }
@@ -387,7 +387,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     .mds-form__radio-button-input:checked + .mds-form__radio-button-visible-wrap & {
         color: $mds-color-form-radio-label-hover;
 
-        .mds--dark-background & {
+        .mds-container--dark &, .mds-container--black & {
             color: $mds-color-form-radio-label-hover-on-dark;
         }
     }
@@ -396,7 +396,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     .mds-form__radio-button-input:focus + .mds-form__radio-button-visible-wrap & {
         color: $mds-color-form-radio-label-hover;
 
-        .mds--dark-background & {
+        .mds-container--dark &, .mds-container--black & {
             color: $mds-color-form-radio-label-hover-on-dark;
         }
     }
@@ -406,7 +406,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
         cursor: not-allowed;
         opacity: $mds-opacity-disabled;
 
-        .mds--dark-background & {
+        .mds-container--dark &, .mds-container--black & {
             color: $mds-color-form-radio-label-hover-on-dark;
         }
     }
@@ -416,7 +416,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     color: $mds-color-form-radio-label;
     cursor: pointer;
 
-    .mds--dark-background & {
+    .mds-container--dark &, .mds-container--black & {
         color: $mds-color-form-radio-label-on-dark;
     }
 
@@ -424,7 +424,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     .mds-form__checkbox:hover & {
         color: $mds-color-form-radio-label-hover;
 
-        .mds--dark-background & {
+        .mds-container--dark &, .mds-container--black & {
             color: $mds-color-form-radio-label-hover-on-dark;
         }
     }
@@ -432,7 +432,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     .mds-form__checkbox-input:checked + .mds-form__checkbox-visible-wrap & {
         color: $mds-color-form-radio-label-hover;
 
-        .mds--dark-background & {
+        .mds-container--dark &, .mds-container--black & {
             color: $mds-color-form-radio-label-hover-on-dark;
         }
     }
@@ -441,7 +441,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     .mds-form__checkbox-input:focus + .mds-form__checkbox-visible-wrap & {
         color: $mds-color-form-radio-label-hover;
 
-        .mds--dark-background & {
+        .mds-container--dark &, .mds-container--black & {
             color: $mds-color-form-radio-label-hover-on-dark;
         }
     }
@@ -451,7 +451,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
         cursor: not-allowed;
         opacity: $mds-opacity-disabled;
 
-        .mds--dark-background & {
+        .mds-container--dark &, .mds-container--black & {
             color: $mds-color-form-radio-label-hover-on-dark;
         }
     }
@@ -494,7 +494,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     width: 100%;
     z-index: 10;
 
-    .mds--dark-background & {
+    .mds-container--dark &, .mds-container--black & {
         color: $mds-color-form-select-on-dark;
     }
 
@@ -530,7 +530,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     top: 0;
     z-index: 0;
 
-    .mds--dark-background & {
+    .mds-container--dark &, .mds-container--black & {
         background-color: $mds-background-color-form-input-on-dark;
     }
 
@@ -594,7 +594,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     top: 50%;
     width: $mds-size-form-icon-select;
 
-    .mds--dark-background & {
+    .mds-container--dark &, .mds-container--black & {
         fill: $mds-color-form-select-on-dark;
     }
 }
@@ -613,7 +613,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
         margin-top: -($mds-space-form-s);
     }
 
-    .mds--dark-background & {
+    .mds-container--dark &, .mds-container--black & {
         color: $mds-color-form-microcopy-on-dark;
     }
 }
@@ -629,7 +629,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
         content: '*\A0';
     }
 
-    .mds--dark-background & {
+    .mds-container--dark &, .mds-container--black & {
         color: $mds-color-form-label-on-dark;
     }
 }

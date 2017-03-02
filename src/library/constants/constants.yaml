@@ -2,11 +2,11 @@
 project-name: 'mds'
 color :
   white : &color-white "#ffffff"
-  black : &color-black "#262626"
+  black : &color-black "#000000"
   neutral :
-    13 : &color-neutral-13 "#212121"
-    21 : &color-neutral-21 "#363636"
-    31 : &color-neutral-31 "#505050"
+    11 : &color-neutral-11 "#1E1E1E"
+    21 : &color-neutral-21 "#333333"
+    39 : &color-neutral-39 "#5e5e5e"
     50 : &color-neutral-50 "#808080"
     67 : &color-neutral-67 "#ababab"
     80 : &color-neutral-80 "#cccccc"
@@ -19,17 +19,22 @@ color :
   teal : &color-teal "#006c67"
   violet : &color-violet "#3b5cad"
   cyan :
-    31 : &color-cyan-31 "#087796"
+    39 : &color-cyan-39 "#087796"
     41 : &color-cyan-41 "#0a9ec9"
     44 : &color-cyan-44 "#00a8e1"
   maroon : &color-maroon "#ac0033"
   red : &color-red "#ff0000"
   yellow : &color-yellow "#dcaa00"
   orange : &color-orange "#ef7622"
+background-color :
+  default : *color-white
+  light : *color-neutral-96
+  dark : *color-neutral-11
+  black : *color-black
 text-color :
   primary :
-    default : *color-neutral-13
-    on-light : *color-neutral-13
+    default : *color-neutral-11
+    on-light : *color-neutral-11
     on-dark : *color-white
   secondary :
     default : *color-neutral-50
@@ -37,15 +42,15 @@ text-color :
     on-dark : *color-neutral-50
   disabled : *color-neutral-50
   link :
-    default : *color-cyan-31
-    on-light : *color-cyan-31
+    default : *color-cyan-39
+    on-light : *color-cyan-39
     on-dark : *color-cyan-44
 interactive-color :
   primary :
     default : *color-cyan-44
     hover : *color-cyan-41
-    hover-darker : *color-cyan-31
-    active : *color-cyan-31
+    hover-darker : *color-cyan-39
+    active : *color-cyan-39
   secondary :
     primary : transparent
     hover : *color-neutral-50
@@ -77,6 +82,8 @@ size :
     l : 32px
 space :
   inset :
+    m : 16px 16px 16px 16px
+    l : 32px 32px 32px 32px
     squish :
       m : 4px 16px 4px 16px
       s : 2px 16px 2px 16px

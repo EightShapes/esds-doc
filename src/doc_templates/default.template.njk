@@ -3,7 +3,7 @@
     {% block project_macro_imports %}{% endblock %} {# This block allows project specific macros to be injected, these macros can have access to core library macros and will be made available to doc macros #}
 {% endblock %}
 <!DOCTYPE html>
-<html>
+<html {{ 'class = ' + html_class if html_class}}>
 <head>
     <title>{{ project.name | upper }} v{{ project.version}}{{ ' - ' + title if title }}</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -12,7 +12,7 @@
     {% block head_assets %}
     {% endblock %}
 </head>
-<body>
+<body {{ 'class = ' + body_class if body_class}}>
     {% block body %}
     {% endblock %}
 
