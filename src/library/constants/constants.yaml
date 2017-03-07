@@ -64,7 +64,7 @@ interactive-color :
   disabled : *color-neutral-50
 background-color :
   default : *color-white
-  light : *color-neutral-96
+  light : *color-neutral-95
 font :
   family :
     sans-serif: "'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif"

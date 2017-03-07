@@ -18,7 +18,7 @@ body {
 
 .mds-doc__title-link {
     align-items: center;
-    color: $mds-color-red;
+    color: $mds-color-red-50;
     display: flex;
     font-family: $mds-font-family-sans-serif;
     font-weight: $mds-font-weight-thin;
@@ -32,7 +32,7 @@ body {
 
 .mds-doc__title-logo {
     display: block;
-    fill: $mds-color-red;
+    fill: $mds-color-red-50;
     flex: 0 0 96px;
     margin-right: $mds-space-inline-xs;
     width: 96px;
