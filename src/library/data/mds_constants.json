@@ -5,41 +5,55 @@
             "white": "#ffffff",
             "black": "#000000",
             "neutral": {
-                "11": "#1E1E1E",
-                "21": "#333333",
-                "39": "#5e5e5e",
+                "12": "#1e1e1e",
+                "20": "#333333",
+                "37": "#5e5e5e",
                 "50": "#808080",
                 "67": "#ababab",
                 "80": "#cccccc",
                 "90": "#e5e5e5",
-                "96": "#f2f2f2"
+                "95": "#f2f2f2"
             },
-            "blue": "#006098",
-            "beige": "#eddf98",
-            "green": "#00af41",
-            "dark-green": "#00af41",
-            "teal": "#006c67",
-            "violet": "#3b5cad",
+            "blue": {
+                "38": "#1f55a5"
+            },
+            "green": {
+                "34": "#00af41"
+            },
+            "teal": {
+                "19": "#005f5f"
+            },
+            "violet": {
+                "46": "#6a4c9e"
+            },
             "cyan": {
                 "39": "#087796",
                 "41": "#0a9ec9",
                 "44": "#00a8e1"
             },
-            "maroon": "#ac0033",
-            "red": "#ff0000",
-            "yellow": "#dcaa00",
-            "orange": "#ef7622"
+            "maroon": {
+                "32": "#a50032"
+            },
+            "red": {
+                "50": "#ff0000"
+            },
+            "yellow": {
+                "48": "#f5c400"
+            },
+            "orange": {
+                "54": "#ef7622"
+            }
         },
         "background-color": {
             "default": "#ffffff",
             "light": "#f2f2f2",
-            "dark": "#1E1E1E",
+            "dark": "#1e1e1e",
             "black": "#000000"
         },
         "text-color": {
             "primary": {
-                "default": "#1E1E1E",
-                "on-light": "#1E1E1E",
+                "default": "#1e1e1e",
+                "on-light": "#1e1e1e",
                 "on-dark": "#ffffff"
             },
             "secondary": {
