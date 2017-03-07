@@ -4,13 +4,49 @@
 
 {% macro component_sink() %}
 
+    <h2 class="mds-doc-sink__header">Default</h2>
+    {{ library.list_group() }}
+
     <h2 class="mds-doc-sink__header">Small</h2>
     {{ library.list_group(class="mds-list-group--small") }}
 
-    <h2 class="mds-doc-sink__header">Default</h2>
-    {{ library.list_group(active_item=2) }}
-
     <h2 class="mds-doc-sink__header">Large</h2>
-    {{ library.list_group(class="mds-list-group--large",active_item=7) }}
+    {{ library.list_group(class="mds-list-group--large") }}
+
+    <h2 class="mds-doc-sink__header">No Items</h2>
+    {{ library.list_group(items = []) }}
+
+    <h2 class="mds-doc-sink__header">One Item</h2>
+    {{ library.list_group(items = [
+        {
+            active: false,
+            label: "Single Item",
+            href: "#"
+        }
+    ]) }}
+
+    <h2 class="mds-doc-sink__header">Items with Long Labels, Last Label Empty</h2>
+    {{ library.list_group(items = [
+        {
+            active: true,
+            label: "A really long first label that gets way too long, making me wonder how long these labels really should be",
+            href: "#"
+        },
+        {
+            active: false,
+            label: "Second item",
+            href: "#"
+        },
+        {
+            active: false,
+            label: "3",
+            href: "#"
+        },
+        {
+            active: false,
+            label: "",
+            href: "#"
+        }
+    ]) }}
 
 {% endmacro %}

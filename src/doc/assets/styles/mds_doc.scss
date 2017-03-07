@@ -8,5 +8,6 @@
 @import 'shared/space'; // mixin to control font whitespace
 @import 'shared/typography'; // mixins for supported font families and weights
 
+@import 'templates/doc_default_template';
 @import 'pages/doc_color';
 @import 'pages/doc_homepage';

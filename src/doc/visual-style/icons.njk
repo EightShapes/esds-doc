@@ -2,10 +2,11 @@
 {% set title = 'Icons' %}
 
 {% block doc_body %}
-    <h1>Icons</h1>
-    <p>
-        This is a proof of concept for the dev environment. Actual icons are placeholders.
-    </p>
+    {% filter markdown %}
+    # Icons
+    This is a proof of concept for the dev environment. Actual icons are placeholders.
+    {% endfilter %}
+    
     {% for icon in icons %}
         <div style="display:inline-block; text-align:center; margin: 10px; width: 100px; height: 100px;">
             {{ library.icon(name=icon) }}<br/>

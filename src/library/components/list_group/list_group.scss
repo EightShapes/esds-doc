@@ -1,5 +1,4 @@
 .mds-list-group {
-    color: $mds-text-color-primary-default;
     display: block;
     font-family: $mds-font-family-sans-serif;
     font-size: $mds-font-size-m;
@@ -8,9 +7,12 @@
     margin: $mds-space-stack-m;
     padding: 0;
 
-    .mds-container--dark &,
-    .mds-container--black & {
-        color: $mds-text-color-primary-on-dark;
+    &.mds-list-group--small {
+        font-size: $mds-font-size-s;
+    }
+
+    &.mds-list-group--large {
+        font-size: $mds-font-size-l;
     }
 }
 
@@ -23,41 +25,69 @@
     margin: 0;
     padding: $mds-space-inset-squish-m;
     padding-left: 2px;
-    padding-right: 15px;
     position: relative;
 
     &:last-child {
         border-bottom: $mds-border-hairline;
     }
+
+    &.mds-list-group__item--active {
+        padding-left: 0;
+    }
 }
 
-.mds-list-group__item--active {
-    color: $mds-interactive-color-primary-default;
-    padding-right: 0;
+.mds-list-group__link {
+    color: $mds-text-color-primary-default;
+    display: block;
+    text-decoration: none;
+    transition: $mds-transition-color-link;
+
+    &:hover {
+        color: $mds-interactive-color-primary-hover;
+    }
+
+    &:active {
+        color: $mds-interactive-color-primary-active;
+    }
+
+    .mds-container--dark &,
+    .mds-container--black & {
+        color: $mds-text-color-primary-on-dark;
+
+        &:hover {
+            color: $mds-interactive-color-primary-hover;
+        }
+
+        &:active {
+            color: $mds-interactive-color-primary-active;
+        }
+    }
+
+    .mds-list-group__item--active & {
+        color: $mds-interactive-color-primary-default;
+    }
 }
+
 
 .mds-list-group__active-icon {
-    bottom: 7px;
+    bottom: 8px;
     fill: $mds-interactive-color-primary-default;
     height: $mds-size-icon-xs;
-    margin-top: 3px;
     position: absolute;
-    right: -3px;
+    right: -4px;
+    vertical-align:middle;
     width: $mds-size-icon-xs;
-}
 
-.mds-list-group--small {
-    font-size: $mds-font-size-s;
-
-    .mds-list-group__active-icon {
+    .mds-list-group--small & {
         bottom: 6px;
     }
+
+    .mds-list-group--large & {
+        height: $mds-size-icon-s;
+        width: $mds-size-icon-s;
+    }
 }
 
-.mds-list-group--large {
-    font-size: $mds-font-size-l;
-
-    .mds-list-group__active-icon {
-        bottom: 9px;
-    }
+.mds-list-group__item-label {
+    vertical-align: middle;
 }

@@ -1,0 +1,70 @@
+// Bit of resetting here
+
+$mds-doc-off-canvas-nav-width: 200px;
+$mds-doc-background-color-overlay: rgba(0, 0, 0, .6);
+$mds-doc-transition-timing-navigation-enter: .4s;
+$mds-doc-transition-timing-navigation-exit: .2s;
+$mds-doc-transition-easing-navigation-enter: cubic-bezier(0, 0, .58, 1);
+$mds-doc-transition-easing-navigation-exit: linear;
+
+$mds-doc-z-index-modal-overlay: 700;
+$mds-doc-z-index-modal-content: 710;
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.mds-doc__title-link {
+    align-items: center;
+    color: $mds-color-red;
+    display: flex;
+    font-family: $mds-font-family-sans-serif;
+    font-weight: $mds-font-weight-thin;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.mds-doc__title {
+    margin: 0 auto;
+}
+
+.mds-doc__title-logo {
+    display: block;
+    fill: $mds-color-red;
+    flex: 0 0 96px;
+    margin-right: $mds-space-inline-xs;
+    width: 96px;
+}
+
+.mds-doc__header {
+    align-items: center;
+    box-shadow: $mds-drop-shadow-default;
+    display: flex;
+    height: 55px;
+    justify-content: flex-start;
+    padding: 16px;
+}
+
+.mds-doc__content-nav-wrap {
+    margin: 0 auto;
+    max-width: 1024px;
+
+    @media screen and (min-width: 1024px) {
+        display: flex;
+    }
+}
+
+.mds-doc__body {
+    padding: 8px;
+
+    @media screen and (min-width: 1024px) {
+        box-shadow: $mds-drop-shadow-default;
+        flex: 1;
+        order: 2;
+        padding: 16px;
+        position: relative;
+        z-index: 1; // Just needs to be bumped up over the nav menu
+    }
+}

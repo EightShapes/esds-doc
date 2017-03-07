@@ -12,17 +12,31 @@
 {% endblock %}
 
 {% block body %}
-    <header>
-        <h2><a href="/">{{ project.name | upper }}</a></h2>
+    <input class="mds-doc__off-canvas-toggle-input" id="mds-doc__off-canvas-toggle" type="checkbox">
+    <header class="mds-doc__header">
+        <label for="mds-doc__off-canvas-toggle" class="mds-doc__off-canvas-toggle-label">
+            <span class="mds-screenreader-only">Menu</span>
+            {{ library.icon(class="mds-doc__off-canvas-toggle-icon", name="menu")}}
+        </label>
+        <h2 class="mds-doc__title">
+            <a class="mds-doc__title-link" href="/">
+                {{ library.icon(class="mds-doc__title-logo", name="morningstar-logo") }} 
+                <span class="mds-doc__title-text"><span class="mds-screenreader-only">Morningstar</span> Design System</span>
+            </a>
+        </h2>
     </header>
+    <div class="mds-doc__content-nav-wrap">
+        <div class="mds-doc__body">
+            {% block doc_body %}
 
-    {% block doc_body %}
-
-    {% endblock %}
-    
+            {% endblock %}
+        </div>
+        {{ doc_library.site_nav() }}
+    </div>
     <footer>
         {{ content.copyright | safe }}
     </footer>
+    <label for="mds-doc__off-canvas-toggle" class="mds-doc__off-canvas-overlay"></label>
 {% endblock %}
 
 {% block closing_body_assets %}

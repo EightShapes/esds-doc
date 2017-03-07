@@ -1,17 +1,42 @@
 {% macro list_group(
     class=false,
-    active_item=4
+    items=[
+        {
+            active: false,
+            label: "Item 1",
+            href: "#"
+        },
+        {
+            active: true,
+            label: "Item 2 (Active)",
+            href: "#"
+        },
+        {
+            active: false,
+            label: "Item 3",
+            href: "#"
+        },
+        {
+            active: false,
+            label: "Item 4",
+            href: "#"
+        }
+    ]
 ) %}
 
 <ul class="mds-list-group{{ " " + class if class }}">
 
-    {% for i in range(1,8) %}
+    {% for item in items %}
 
-    <li class="mds-list-group__item{{ " mds-list-group__item--active" if (i == active_item)}}">
-    	{% if (i == active_item) %}
-	    {{ icon(name='arrow-next-sm', class='mds-list-group__active-icon', path=icon_path) }}
-    	{% endif %}
-    	{{ i }} Item
+    <li class="mds-list-group__item{{ " mds-list-group__item--active" if item.active}}">
+        <a href="{{ item.label }}" class="mds-list-group__link">
+            {% if item.active %}
+            {{ icon(name='arrow-next-sm', class='mds-list-group__active-icon', path=icon_path) }}
+            {% endif %}
+            <span class="mds-list-group__item-label">
+                {{ item.label }}
+            </span>
+        </a>
 	</li>
     {% endfor %}
 

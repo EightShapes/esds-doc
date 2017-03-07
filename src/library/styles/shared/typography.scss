@@ -32,3 +32,27 @@
 .mds-text-crop--1-1 {
     @include mds-text-crop(1.1);
 }
+
+@mixin level-1-heading() {
+    @include mds-text-crop();
+    font-size: $mds-font-size-default * 3.5;
+    font-weight: $mds-font-weight-thin;
+}
+
+@mixin level-2-heading() {
+    @include mds-text-crop();
+    font-size: $mds-font-size-default * 2.5;
+    font-weight: $mds-font-weight-thin;
+}
+
+@mixin level-3-heading() {
+    @include mds-text-crop();
+    font-size: $mds-font-size-default * 1.5;
+    font-weight: $mds-font-weight-thin;
+}
+
+@mixin level-4-heading() {
+    @include mds-text-crop();
+    font-size: $mds-font-size-default * 1.125;
+    font-weight: $mds-font-weight-thin;
+}

@@ -2,14 +2,13 @@
 {% set title = 'Buttons' %}
 
 {% block doc_body %}
-    <h1>Buttons</h1>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum reprehenderit, id perspiciatis commodi deserunt eius quia maiores quidem sunt, laboriosam quis modi error unde iste nam numquam illo. Nesciunt, voluptatem?
-    </p>
+    {% filter markdown %}
+        # Buttons
 
-    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum reprehenderit, id perspiciatis commodi deserunt eius quia maiores quidem sunt, laboriosam quis modi error unde iste nam numquam illo. Nesciunt, voluptatem?
+
         To be fleshed out for [PUBLISH] task.
-    </p>
+    {% endfilter %}
 
     {{ doc_library.example_code_pair(examples=[{
         source: '{{ library.button(text="Default Button") }}'

@@ -1,0 +1,218 @@
+$mds-doc-inner-shadow-navigation: inset 0 2px 8px 0 rgba(0, 0, 0, .05);
+$mds-doc-off-canvas-nav-width: 200px;
+
+$mds-doc-background-color-overlay: rgba(0, 0, 0, .6);
+$mds-doc-transition-timing-navigation-enter: .4s;
+$mds-doc-transition-timing-navigation-exit: .2s;
+$mds-doc-transition-easing-navigation-enter: cubic-bezier(0, 0, .58, 1);
+$mds-doc-transition-easing-navigation-exit: linear;
+
+$mds-doc-z-index-modal-overlay: 700;
+$mds-doc-z-index-modal-content: 710;
+
+.mds-doc__navigation {
+    background-color: $mds-background-color-light;
+    box-shadow: $mds-doc-inner-shadow-navigation;
+    font-family: $mds-font-family-sans-serif;
+    height: 100vh;
+    left: -($mds-doc-off-canvas-nav-width);
+    padding: 8px;
+    position: fixed;
+    text-align: right;
+    top: 0;
+    transition-duration: $mds-doc-transition-timing-navigation-exit;
+    transition-property: left;
+    transition-timing-function: $mds-doc-transition-easing-navigation-exit;
+    width: $mds-doc-off-canvas-nav-width;
+    z-index: $mds-doc-z-index-modal-content;
+
+    .mds-doc__off-canvas-toggle-input:checked ~ .mds-doc__content-nav-wrap & {
+        left: 0;
+        transition-duration: $mds-doc-transition-timing-navigation-enter;
+        transition-timing-function: $mds-doc-transition-easing-navigation-enter;
+    }
+
+    @media screen and (min-width: 1024px) {
+        flex: 0 0 200px;
+        order: 1;
+        position: static;
+        z-index: 0;
+    }
+}
+
+.mds-doc__navigation-sublist-toggle-input,
+.mds-doc__off-canvas-toggle-input {
+    @include mds-accessibly-hidden();
+}
+
+.mds-doc__off-canvas-toggle-label {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+
+    @media screen and (min-width: 1024px) {
+        display: none;
+    }
+}
+
+.mds-doc__off-canvas-toggle-icon {
+    fill: $mds-text-color-secondary-default;
+    height: $mds-size-icon-m;
+    width: $mds-size-icon-m;
+}
+
+.mds-doc__navigation-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.mds-doc__off-canvas-close {
+    align-items: center;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+
+    &:hover {
+        color: $mds-interactive-color-primary-hover;
+    }
+
+    @media screen and (min-width: 1024px) {
+        display: none;
+    }
+}
+
+.mds-doc__off-canvas-close-icon {
+    fill: $mds-text-color-secondary-default;
+    height: $mds-size-icon-s;
+    margin-right: $mds-space-inline-xs;
+    width: $mds-size-icon-s;
+
+    .mds-doc__off-canvas-close:hover & {
+        fill: $mds-interactive-color-primary-hover;
+    }
+}
+
+.mds-doc__navigation-link {
+    border-bottom: $mds-border-hairline;
+    border-color: $mds-color-neutral-80;
+    display: block;
+    font-size: $mds-font-size-s;
+    padding: 4px 0;
+    text-decoration: none;
+
+    &,
+    &:visited {
+        color: $mds-text-color-primary-default;
+    }
+
+    &:hover {
+        color: $mds-interactive-color-primary-hover;
+    }
+}
+
+.mds-doc__navigation-link--active {
+    &,
+    &:visited {
+        color: $mds-interactive-color-primary-active;
+    }
+}
+
+.mds-doc__off-canvas-overlay {
+    background: $mds-doc-background-color-overlay;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: visibility $mds-doc-transition-timing-navigation-exit $mds-doc-transition-timing-navigation-exit, opacity $mds-doc-transition-timing-navigation-exit;
+    transition-timing-function: $mds-doc-transition-easing-navigation-exit;
+    visibility: hidden;
+    z-index: $mds-doc-z-index-modal-overlay;
+
+    .mds-doc__off-canvas-toggle-input:checked ~ & {
+        opacity: 1;
+        transition: visibility 0s 0s, opacity $mds-doc-transition-timing-navigation-enter;
+        transition-timing-function: $mds-doc-transition-easing-navigation-enter;
+        visibility: visible;
+    }
+
+    @media screen and (min-width: 1024px) {
+        display: none;
+    }
+}
+
+.mds-doc__navigation-sublist {
+    border-bottom: $mds-border-hairline;
+    border-color: $mds-color-neutral-80;
+    height: 0;
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    visibility: hidden;
+
+    .mds-doc__navigation-link {
+        border: 0;
+        opacity: 0;
+        padding: 2px 0 2px 16px;
+        position: relative;
+        top: -8px;
+        transition-duration: $mds-doc-transition-timing-navigation-exit;
+        transition-property: top, opacity;
+        transition-timing-function: $mds-doc-transition-easing-navigation-exit;
+    }
+
+    .mds-doc__navigation-sublist-toggle-input:checked ~ & {
+        height: auto;
+        padding: 0 0 8px;
+        visibility: visible;
+
+        .mds-doc__navigation-link {
+            opacity: 1;
+            top: 0;
+            transition-duration: $mds-doc-transition-timing-navigation-enter;
+            transition-timing-function: $mds-doc-transition-easing-navigation-enter;
+        }
+    }
+}
+
+.mds-doc__navigation-sublist-toggle-icon {
+    fill: $mds-text-color-secondary-default;
+    height: $mds-size-icon-xs;
+    margin-right: $mds-space-inline-xs / 2;
+    transition-duration: $mds-doc-transition-timing-navigation-exit;
+    transition-property: transform;
+    transition-timing-function: $mds-doc-transition-easing-navigation-exit;
+    width: $mds-size-icon-xs;
+
+    .mds-doc__navigation-sublist-toggle-input:checked + .mds-doc__navigation-sublist-toggle & {
+        transform: rotate(90deg);
+        transition-duration: $mds-doc-transition-timing-navigation-enter;
+        transition-timing-function: $mds-doc-transition-easing-navigation-enter;
+    }   
+
+    .mds-doc__navigation-sublist-toggle:hover & {
+        fill: $mds-interactive-color-primary-hover;
+    }
+}
+
+.mds-doc__navigation-sublist-toggle {
+    align-items: center;
+    border-bottom: $mds-border-hairline;
+    border-color: $mds-color-neutral-80;
+    cursor: pointer;
+    display: flex;
+    font-size: $mds-font-size-s;
+    padding: 4px 0;
+
+    &:hover {
+        color: $mds-interactive-color-primary-hover;
+    }
+
+    .mds-doc__navigation-sublist-toggle-input:checked + & {
+        border-bottom: 0;
+    }
+}

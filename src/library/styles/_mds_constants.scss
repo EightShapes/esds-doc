@@ -67,11 +67,17 @@ $mds-size-icon-s: 16px;
 $mds-size-icon-m: 18px;
 $mds-size-icon-l: 32px;
 
+$mds-space-default: 16px;
 $mds-space-inset-m: 16px 16px 16px 16px;
 $mds-space-inset-l: 32px 32px 32px 32px;
 $mds-space-inset-squish-m: 4px 16px 4px 16px;
 $mds-space-inset-squish-s: 2px 16px 2px 16px;
 $mds-space-inline-xs: 4px;
+$mds-space-stack-s: 0 0 8px 0;;
 $mds-space-stack-m: 0 0 16px 0;;
 
+$mds-transition-color-link: color, 300ms;
+
 $mds-opacity-disabled: .4;
+
+$mds-drop-shadow-default: 0 2px 4px 0 rgba(0, 0, 0, .08);

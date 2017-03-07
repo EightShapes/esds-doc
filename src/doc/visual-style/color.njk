@@ -2,10 +2,10 @@
 {% extends 'doc_templates/default.doc.template.njk' %}
 
 {% block doc_body %}
-    <h1>Color</h1>
-    <p>
+    {% filter markdown %}
+        # Color
         This is a proof of concept for the dev environment. Color names are placeholders.
-    </p>
+    {% endfilter %}
     {% for colorName, hex in mdsConstants.color %}
         {% if colorName == 'neutral' %}
             {% for colorValue, hex in mdsConstants.color.neutral %}

@@ -114,6 +114,7 @@
             }
         },
         "space": {
+            "default": "16px",
             "inset": {
                 "m": "16px 16px 16px 16px",
                 "l": "32px 32px 32px 32px",
@@ -126,11 +127,20 @@
                 "xs": "4px"
             },
             "stack": {
+                "s": "0 0 8px 0;",
                 "m": "0 0 16px 0;"
+            }
+        },
+        "transition": {
+            "color": {
+                "link": "color, 300ms"
             }
         },
         "opacity": {
             "disabled": ".4"
+        },
+        "drop-shadow": {
+            "default": "0 2px 4px 0 rgba(0, 0, 0, .08)"
         }
     }
 }

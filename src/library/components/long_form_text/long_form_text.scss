@@ -1,0 +1,55 @@
+.mds-long-form-text {
+    font-family: $mds-font-family-sans-serif;
+
+    h1 {
+        @include level-1-heading();
+        margin: $mds-space-stack-m;
+    }
+
+    h2 {
+        @include level-2-heading();
+        margin: $mds-space-stack-m;
+    }
+
+    h3 {
+        @include level-3-heading();
+        margin: $mds-space-stack-m;
+    }
+
+    h4 {
+        @include level-4-heading();
+        margin: $mds-space-stack-m;
+    }
+
+    ul, 
+    ol {
+        margin: $mds-space-stack-m;
+        padding: 0;
+    }
+
+    li {
+        @include mds-text-crop();
+        margin: $mds-space-stack-s;
+        margin-left: $mds-space-default;
+    }
+
+    p {
+        @include mds-text-crop();
+        margin: $mds-space-stack-m;
+    }
+
+    .mds-long-form-text__lead {
+        font-size: $mds-font-size-default * 1.125;
+        margin: $mds-space-stack-m;
+    }
+
+    a {
+        color: $mds-text-color-link-default;
+        text-decoration: underline;
+
+        &:hover {
+            color: $mds-interactive-color-primary-hover;
+        }
+    }
+
+}

@@ -1,20 +1,14 @@
 {% extends 'doc_templates/default.doc.template.njk' %}
 {% block doc_body %}
-    <h1>{{ project.name | upper }} v{{ project.version }}</h1>
-    <a href="visual-style/color.html">Color</a><br>
-    <a href="visual-style/icons.html">Icons</a>
+    {% filter markdown %}
+        #Morningstar Design System 
+        ###v{{ project.version }}
+        
+        ## Component Sinks
+        * [Buttons Sink](component-sinks/buttons.html)
+        * [Forms Sink](component-sinks/forms.html)
+        * [List Groups Sink](component-sinks/list-groups.html)
+        * [Pagination Sink](component-sinks/pagination.html)
+    {% endfilter %}
     
-    <h2>Components</h2>
-    <a href="component-sinks/index.html">Catalog Sink</a>
-    <br>
-    <a href="components/buttons.html">Buttons</a> (<a href="component-sinks/buttons.html">Sink</a>)
-    <br>
-    <a href="components/forms.html">Forms</a> (<a href="component-sinks/forms.html">Sink</a>)
-    <br>
-    <a href="components/list-group.html">List Group</a> (<a href="component-sinks/list-group.html">Sink</a>)
-    <br>
-    <a href="components/pagination.html">Pagination</a> (<a href="component-sinks/pagination.html">Sink</a>)
-    <br>
-    <br>
-    <br>
 {% endblock %}

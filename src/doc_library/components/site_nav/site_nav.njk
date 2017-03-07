@@ -1,0 +1,116 @@
+{% macro site_nav() %}
+    {% set site_nav_data = [
+        {
+            active: true,
+            label: "Home",
+            href: "/"
+        },
+        {
+            label: "Getting Started",
+            href: "#"
+        },
+        {
+            label: "Visual Language",
+            children: [
+                {
+                    label: "Color",
+                    href: "/visual-style/color.html"
+                },
+                {
+                    label: "Icons",
+                    href: "/visual-style/icons.html"
+                },
+                {
+                    label: "Space",
+                    href: "/visual-style/space.html"
+                },
+                {
+                    label: "Type",
+                    href: "/visual-style/type.html"
+                }
+            ]
+        },
+        {
+            label: "Components",
+            children: [
+                {
+                    label: "Buttons",
+                    href: "/components/buttons.html"
+                },
+                {
+                    label: "Forms",
+                    href: "/components/forms.html"
+                }
+            ]
+        }
+    ] %}
+    <nav class="mds-doc__navigation">
+        <label for="mds-doc__off-canvas-toggle" class="mds-doc__off-canvas-close">
+            {{ library.icon(class="mds-doc__off-canvas-close-icon", name="remove") }}
+            <span class="mds-doc__off-canvas-close-text">Close</span>
+        </label>
+        <ul class="mds-doc__navigation-list">
+            <li><a class="mds-doc__navigation-link" href="/">Home</a></li>
+            <li>
+                <a class="mds-doc__navigation-link" href="#">Getting Started</a>
+            </li>
+            <li>
+                {{ site_nav_sublist() }}
+            </li>
+            <li>
+                {{ site_nav_sublist(header="Components", links=[
+                    {
+                        label: "Buttons",
+                        href: "/components/buttons.html"
+                    },
+                    {
+                        label: "Forms",
+                        href: "/components/forms.html"
+                    }
+                ]) }}
+            </li>
+            <li>
+                {{ site_nav_sublist(header="UX Patterns", links=[]) }}
+            </li>
+            <li>
+                {{ site_nav_sublist(header="Editorial", links=[]) }}
+            </li>
+            <li>
+                {{ site_nav_sublist(header="About The System", links=[]) }}
+            </li>
+        </ul>
+    </nav>
+{% endmacro %}
+
+{% macro site_nav_sublist(header="Visual Language", links=[
+    {
+        label: "Color",
+        href: "/visual-style/color.html"
+    },
+    {
+        label: "Icons",
+        href: "/visual-style/icons.html"
+    },
+    {
+        label: "Space",
+        href: "/visual-style/space.html"
+    },
+    {
+        label: "Type",
+        href: "/visual-style/type.html"
+    }
+]) %}
+    {% set input_id = "mds-doc__navigation-sublist--" + header | lower | replace(' ', '-') %}
+
+    <input type="checkbox" class="mds-doc__navigation-sublist-toggle-input" id="{{ input_id }}">
+    <label for="{{ input_id }}" class="mds-doc__navigation-sublist-toggle">
+        {{ library.icon(class="mds-doc__navigation-sublist-toggle-icon", name="triangle-right") }}
+        <span class="mds-doc__navigation-sublist-toggle-text">{{ header }}</span>
+    </label>
+    <ul class="mds-doc__navigation-sublist">
+        {% for link in links %}
+            <li><a href="{{ link.href }}" class="mds-doc__navigation-link">{{ link.label }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endmacro %}

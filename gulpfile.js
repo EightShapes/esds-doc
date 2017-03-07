@@ -134,8 +134,7 @@ gulp.task('scripts:lint', function () {
     .pipe(eslint({
         configFile: './.eslintrc'
     }))
-    .pipe(eslint.formatEach('compact', process.stderr))
-    .pipe(eslint.failAfterError());
+    .pipe(eslint.formatEach('compact', process.stderr));
 });
 
 // Concatenate Library JS files
