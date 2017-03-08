@@ -62,11 +62,10 @@
                 "on-dark": "#ffffff"
             },
             "secondary": {
-                "default": "#808080",
-                "on-light": "#808080",
-                "on-dark": "#808080"
+                "default": "#5e5e5e",
+                "on-light": "#5e5e5e",
+                "on-dark": "#ababab"
             },
-            "disabled": "#808080",
             "link": {
                 "default": "#087796",
                 "on-light": "#087796",

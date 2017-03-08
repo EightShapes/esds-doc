@@ -77,7 +77,7 @@ $mds-border-radius-button: 15px;
         background-color: transparent;
         border: $mds-border-disabled;
         box-shadow: none;
-        color: $mds-text-color-disabled;
+        color: $mds-interactive-color-disabled;
         cursor: not-allowed;
         opacity: $mds-opacity-disabled;
 
@@ -86,13 +86,13 @@ $mds-border-radius-button: 15px;
         }
 
         .mds-button__icon {
-            fill: $mds-text-color-disabled;
+            fill: $mds-interactive-color-disabled;
         }
 
         &:hover,
         &.mds-button--hover {
             .mds-button__icon {
-                fill: $mds-text-color-disabled;
+                fill: $mds-interactive-color-disabled;
             }
         }
 
@@ -235,10 +235,10 @@ a {
             &:focus,
             &.mds-button--focus {
                 background: transparent;
-                color: $mds-text-color-disabled;
+                color: $mds-interactive-color-disabled;
 
                 .mds-button__icon {
-                    fill: $mds-text-color-disabled;
+                    fill: $mds-interactive-color-disabled;
                 }
             }
         }
@@ -346,11 +346,11 @@ a {
     &:hover + .mds-button {
         background-color: transparent;
         border-color: $mds-border-disabled;
-        color: $mds-text-color-disabled;
+        color: $mds-interactive-color-disabled;
         cursor: not-allowed;
 
         .mds-button__icon {
-            fill: $mds-text-color-disabled;
+            fill: $mds-interactive-color-disabled;
         }
     }
 

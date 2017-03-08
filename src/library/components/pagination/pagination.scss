@@ -1,9 +1,11 @@
 .mds-pagination {
     font-size: 0;
+    font-weight: $mds-font-weight-regular;
     height: 25px;
     list-style: none;
     margin: $mds-space-stack-m;
     padding: 0;
+    white-space: nowrap;
 }
 
 .mds-pagination__item {
@@ -16,6 +18,7 @@
     font-size: $mds-font-size-s;
     margin: 0;
     padding: 0;
+    position: relative;
 
     &:first-child {
         border: $mds-border-control;
@@ -38,6 +41,22 @@
             padding-right: 0;
         }
     }
+
+    &.mds-pagination__item--active {
+        font-weight: $mds-font-weight-bold;
+        padding: 2px 5px;
+
+        .mds-container--dark &,
+        .mds-container--black & {
+            color: $mds-text-color-primary-on-dark;
+        }
+    }
+
+    &.mds-pagination__item--disabled {
+        color: $mds-interactive-color-disabled;
+        cursor: not-allowed;
+        padding: 2px 5px;
+    }
 }
 
 .mds-pagination__link {
@@ -58,6 +77,11 @@
         }
     }
 
+    &:focus {
+        box-shadow: $mds-interactive-color-focus;
+        outline: 0;
+    }
+
     .mds-container--dark &,
     .mds-container--black & {
         color: $mds-text-color-secondary-on-dark;
@@ -68,39 +92,19 @@
     }
 }
 
-.mds-pagination__item--active {
-    font-weight: $mds-font-weight-bold;
-    padding: 2px 5px;
-
-    .mds-container--dark &,
-    .mds-container--black & {
-        color: $mds-text-color-primary-on-dark;
-    }
-}
-
-.mds-pagination__item--disabled {
-    color: $mds-interactive-color-disabled;
-    cursor: not-allowed;
-    padding: 2px 5px;
-
-    .mds-pagination__icon {
-        fill: $mds-interactive-color-disabled;
-
-        .mds-container--dark &,
-        .mds-container--black & {
-            fill: $mds-text-color-secondary-on-dark;
-        }
-    }
-}
-
 .mds-pagination__icon {
     fill: $mds-text-color-secondary-default;
     height: $mds-size-icon-xs;
-    vertical-align: middle;
+    position: relative;
+    top: 2px;
     width: $mds-size-icon-xs;
 
     .mds-container--black &,
     .mds-container--dark & {
         fill: $mds-text-color-secondary-on-dark;
+    }
+
+    .mds-pagination__item--disabled & {
+        fill: $mds-interactive-color-disabled;
     }
 }

@@ -47,10 +47,9 @@ text-color :
     on-light : *color-neutral-12
     on-dark : *color-white
   secondary :
-    default : *color-neutral-50
-    on-light : *color-neutral-50
-    on-dark : *color-neutral-50
-  disabled : *color-neutral-50
+    default : *color-neutral-37
+    on-light : *color-neutral-37
+    on-dark : *color-neutral-67
   link :
     default : *color-cyan-39
     on-light : *color-cyan-39

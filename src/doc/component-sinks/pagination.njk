@@ -4,14 +4,14 @@
 
 {% macro component_sink() %}
 
-    <h2 class="mds-doc-sink__header">With Navigation</h2>
+    <h2 class="mds-doc-sink__header">With Arrows, First Page</h2>
     {{ library.pagination() }}
 
-    <h2 class="mds-doc-sink__header">With Labels</h2>
-    {{ library.pagination(include_labels=true) }}
+    <h2 class="mds-doc-sink__header">With Arrows and Labels, Last Page</h2>
+    {{ library.pagination(pages=4, active_page=4, include_labels=true) }}
 
-    <h2 class="mds-doc-sink__header">No Navigation</h2>
-    {{ library.pagination(pages=6,include_arrows=false) }}
+    <h2 class="mds-doc-sink__header">No Arrows, Middle Page</h2>
+    {{ library.pagination(pages=6, active_page=3, include_arrows=false) }}
 
 {% endmacro %}
 

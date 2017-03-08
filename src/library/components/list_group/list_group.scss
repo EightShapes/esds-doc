@@ -59,6 +59,7 @@
     &:focus {
         background-color: transparent;
         box-shadow: $mds-interactive-color-focus;
+        outline: 0;
     }
 
     .mds-container--dark &,
