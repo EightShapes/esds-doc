@@ -48,7 +48,12 @@
             "default": "#ffffff",
             "light": "#f2f2f2",
             "dark": "#1e1e1e",
-            "black": "#000000"
+            "black": "#000000",
+            "alternative-row": {
+                "default": "#e5e5e5",
+                "on-light": "#e5e5e5",
+                "on-dark": "#333333"
+            }
         },
         "text-color": {
             "primary": {
@@ -81,7 +86,7 @@
                 "active": "#808080"
             },
             "disabled": "#808080",
-            "focus": "0 0 4px 2px rgba(#00a8e1, 0.8)"
+            "focus": "0 0 4px 2px rgba(#00a8e1, .8)"
         },
         "font": {
             "family": {

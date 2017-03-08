@@ -1,6 +1,7 @@
 // mds-text-crop mixin
 // Use to eliminate "extra" white space added by text nodes in the DOM. This will crop the top of the text to the Cap height and the bottom of the text to the baseline
 // Use to align text with non text elements (images, icons, etc.) or to eliminate "non-system" space within an element
+$mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 300ms; // Need to make this a constant, it's a reapeat form button.scss
 
 @mixin mds-text-crop($line-height: 1.25) {
     $offset-top: max((14 + ($line-height - 1.2) * (64 / 2)), 0) / 64;
@@ -33,6 +34,15 @@
     @include mds-text-crop(1.1);
 }
 
+@mixin mds-link() {
+    color: $mds-interactive-color-primary-default;
+    transition: $mds-transition-hover;
+
+    &:hover {
+        color: $mds-interactive-color-primary-hover;
+    }
+}
+
 @mixin level-1-heading() {
     @include mds-text-crop();
     font-size: $mds-font-size-default * 3.5;
@@ -56,3 +66,4 @@
     font-size: $mds-font-size-default * 1.125;
     font-weight: $mds-font-weight-thin;
 }
+

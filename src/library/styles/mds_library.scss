@@ -17,6 +17,7 @@
 @import 'long_form_text/long_form_text';
 @import 'pagination/pagination';
 @import 'range_slider/range_slider';
+@import 'data_table/data_table';
 
 //Composite Components
 @import 'segmented_control/segmented_control'; // Has a dependency on button
@@ -37,4 +38,3 @@ html {
 
 // Print Styles for all components
 @import 'mds_library_print';
-

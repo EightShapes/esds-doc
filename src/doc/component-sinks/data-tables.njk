@@ -1,0 +1,25 @@
+{% extends "doc_templates/default.sink.template.njk" %}
+
+{% set title = 'Data Tables Sink' %}
+
+{% macro component_sink() %}
+
+    <h2 class="mds-doc-sink__header">Default Data Table</h2>
+    {{ library.table() }}
+
+     <h2 class="mds-doc-sink__header">Striped Data Table</h2>
+    {{ library.table(class="mds-data-table--striped") }}
+
+    <h2 class="mds-doc-sink__header">Condensed Data Table</h2>
+    {{ library.table(class="mds-data-table--condensed") }}
+
+    <h2 class="mds-doc-sink__header">Condensed Striped Data Table</h2>
+    {{ library.table(class="mds-data-table--striped mds-data-table--condensed") }}
+
+    <h2 class="mds-doc-sink__header">Expanded Data Table</h2>
+    {{ library.table(class="mds-data-table--expanded") }}
+
+    <h2 class="mds-doc-sink__header">Expanded Striped Data Table</h2>
+    {{ library.table(class="mds-data-table--striped mds-data-table--expanded") }}
+
+{% endmacro %}

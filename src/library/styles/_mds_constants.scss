@@ -26,6 +26,9 @@ $mds-background-color-default: #ffffff;
 $mds-background-color-light: #f2f2f2;
 $mds-background-color-dark: #1e1e1e;
 $mds-background-color-black: #000000;
+$mds-background-color-alternative-row-default: #e5e5e5;
+$mds-background-color-alternative-row-on-light: #e5e5e5;
+$mds-background-color-alternative-row-on-dark: #333333;
 
 $mds-text-color-primary-default: #1e1e1e;
 $mds-text-color-primary-on-light: #1e1e1e;
@@ -46,7 +49,7 @@ $mds-interactive-color-secondary-primary: transparent;
 $mds-interactive-color-secondary-hover: #808080;
 $mds-interactive-color-secondary-active: #808080;
 $mds-interactive-color-disabled: #808080;
-$mds-interactive-color-focus: 0 0 4px 2px rgba(#00a8e1, 0.8);
+$mds-interactive-color-focus: 0 0 4px 2px rgba(#00a8e1, .8);
 
 $mds-font-family-sans-serif: 'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $mds-font-weight-thin: 200;

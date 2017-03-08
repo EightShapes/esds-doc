@@ -1,0 +1,23 @@
+{% extends 'doc_templates/default.doc.template.njk' %}
+{% set title = 'Tables' %}
+
+{% block doc_body %}
+    <h1>Tables</h1>
+    <p>
+        Tables should only ever be used for tabular data. 
+    </p>
+
+    <p>
+        To be fleshed out for [PUBLISH] task.
+    </p>
+
+    {{ doc_library.example_code_pair(examples=[{
+        source: '{{ library.table() }}'
+    }])}}
+    {% set tableMarkup %}
+        {{ library.table() }}
+        <br>
+        {{ library.table() }}
+    {% endset %}
+    {{ doc_library.code_snippet(source=tableMarkup) }}
+{% endblock %}
