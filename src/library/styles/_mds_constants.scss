@@ -2,33 +2,35 @@ $mds-project-name: mds;
 
 $mds-color-white: #ffffff;
 $mds-color-black: #000000;
-$mds-color-neutral-12: #1e1e1e;
-$mds-color-neutral-20: #333333;
-$mds-color-neutral-37: #5e5e5e;
+$mds-color-neutral-11: #1E1E1E;
+$mds-color-neutral-21: #333333;
+$mds-color-neutral-39: #5e5e5e;
 $mds-color-neutral-50: #808080;
 $mds-color-neutral-67: #ababab;
 $mds-color-neutral-80: #cccccc;
 $mds-color-neutral-90: #e5e5e5;
-$mds-color-neutral-95: #f2f2f2;
-$mds-color-blue-38: #1f55a5;
-$mds-color-green-34: #00af41;
-$mds-color-teal-19: #005f5f;
-$mds-color-violet-46: #6a4c9e;
+$mds-color-neutral-96: #f2f2f2;
+$mds-color-blue: #006098;
+$mds-color-beige: #eddf98;
+$mds-color-green: #00af41;
+$mds-color-dark-green: #00af41;
+$mds-color-teal: #006c67;
+$mds-color-violet: #3b5cad;
 $mds-color-cyan-39: #087796;
 $mds-color-cyan-41: #0a9ec9;
 $mds-color-cyan-44: #00a8e1;
-$mds-color-maroon-32: #a50032;
-$mds-color-red-50: #ff0000;
-$mds-color-yellow-48: #f5c400;
-$mds-color-orange-54: #ef7622;
+$mds-color-maroon: #ac0033;
+$mds-color-red: #ff0000;
+$mds-color-yellow: #dcaa00;
+$mds-color-orange: #ef7622;
 
 $mds-background-color-default: #ffffff;
 $mds-background-color-light: #f2f2f2;
-$mds-background-color-dark: #1e1e1e;
+$mds-background-color-dark: #1E1E1E;
 $mds-background-color-black: #000000;
 
-$mds-text-color-primary-default: #1e1e1e;
-$mds-text-color-primary-on-light: #1e1e1e;
+$mds-text-color-primary-default: #1E1E1E;
+$mds-text-color-primary-on-light: #1E1E1E;
 $mds-text-color-primary-on-dark: #ffffff;
 $mds-text-color-secondary-default: #808080;
 $mds-text-color-secondary-on-light: #808080;
@@ -46,6 +48,7 @@ $mds-interactive-color-secondary-primary: transparent;
 $mds-interactive-color-secondary-hover: #808080;
 $mds-interactive-color-secondary-active: #808080;
 $mds-interactive-color-disabled: #808080;
+$mds-interactive-color-focus: 0 0 4px 2px rgba(#00a8e1, 0.8);
 
 $mds-font-family-sans-serif: 'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $mds-font-weight-thin: 200;
@@ -58,8 +61,10 @@ $mds-font-size-s: 14px;
 $mds-font-size-m: 16px;
 $mds-font-size-l: 20px;
 
-$mds-border-hairline: solid 1px #808080;
-$mds-border-color-hairline: #808080;
+$mds-border-separator-default: solid 1px #cccccc;
+$mds-border-separator-on-light: solid 1px #cccccc;
+$mds-border-separator-on-dark: solid 1px #333333;
+$mds-border-control: solid 1px #808080;
 $mds-border-disabled: solid 1px #808080;
 
 $mds-size-icon-xs: 14px;
@@ -67,17 +72,15 @@ $mds-size-icon-s: 16px;
 $mds-size-icon-m: 18px;
 $mds-size-icon-l: 32px;
 
-$mds-space-default: 16px;
+$mds-space-m: 16px;;
 $mds-space-inset-m: 16px 16px 16px 16px;
 $mds-space-inset-l: 32px 32px 32px 32px;
 $mds-space-inset-squish-m: 4px 16px 4px 16px;
 $mds-space-inset-squish-s: 2px 16px 2px 16px;
 $mds-space-inline-xs: 4px;
-$mds-space-stack-s: 0 0 8px 0;;
+$mds-space-inline-s: 8px;
 $mds-space-stack-m: 0 0 16px 0;;
 
 $mds-transition-color-link: color, 300ms;
 
 $mds-opacity-disabled: .4;
-
-$mds-drop-shadow-default: 0 2px 4px 0 rgba(0, 0, 0, .08);

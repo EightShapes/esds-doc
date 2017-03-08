@@ -2,7 +2,7 @@
     display: block;
     font-family: $mds-font-family-sans-serif;
     font-size: $mds-font-size-m;
-    font-weight: $mds-font-weight-light;
+    font-weight: $mds-font-weight-regular;
     list-style: none;
     margin: $mds-space-stack-m;
     padding: 0;
@@ -17,28 +17,34 @@
 }
 
 .mds-list-group__item {
-    border: $mds-border-hairline;
-    border-bottom: 0;
-    border-left: 0;
-    border-right: 0;
+    border-top: $mds-border-separator-default;
     display: block;
     margin: 0;
     padding: $mds-space-inset-squish-m;
-    padding-left: 2px;
+    padding-left: 0;
+    padding-right: 0;
     position: relative;
 
     &:last-child {
-        border-bottom: $mds-border-hairline;
+        border-bottom: $mds-border-separator-default;
     }
 
-    &.mds-list-group__item--active {
-        padding-left: 0;
+    .mds-container--dark &,
+    .mds-container--black & {
+        border-top: $mds-border-separator-on-dark;
+
+        &:last-child {
+            border-bottom: $mds-border-separator-on-dark;
+        }
     }
 }
 
 .mds-list-group__link {
+    align-items: center;
     color: $mds-text-color-primary-default;
     display: block;
+    padding-right: $mds-space-m;
+    position: relative;
     text-decoration: none;
     transition: $mds-transition-color-link;
 
@@ -48,6 +54,11 @@
 
     &:active {
         color: $mds-interactive-color-primary-active;
+    }
+
+    &:focus {
+        background-color: transparent;
+        box-shadow: $mds-interactive-color-focus;
     }
 
     .mds-container--dark &,
@@ -68,14 +79,28 @@
     }
 }
 
+.mds-list-group__item-label {
+    vertical-align: middle;
+}
+
+.mds-list-group__item-metadata {
+    color: $mds-text-color-secondary-on-light;
+    padding-left: $mds-space-inline-s;
+    vertical-align: middle;
+
+    .mds-container--dark &,
+    .mds-container--black & {
+        color: $mds-text-color-secondary-on-dark;
+    }
+}
 
 .mds-list-group__active-icon {
-    bottom: 8px;
     fill: $mds-interactive-color-primary-default;
     height: $mds-size-icon-xs;
+    margin-top: -$mds-size-icon-xs/2;
     position: absolute;
     right: -4px;
-    vertical-align:middle;
+    top: 50%;
     width: $mds-size-icon-xs;
 
     .mds-list-group--small & {
@@ -88,6 +113,3 @@
     }
 }
 
-.mds-list-group__item-label {
-    vertical-align: middle;
-}

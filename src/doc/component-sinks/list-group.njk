@@ -13,6 +13,16 @@
     <h2 class="mds-doc-sink__header">Large</h2>
     {{ library.list_group(class="mds-list-group--large") }}
 
+    <h2 class="mds-doc-sink__header">With Metadata</h2>
+    {{ library.list_group(items = [
+        {
+            active: false,
+            label: "Single Item",
+            metadata: "32",
+            href: "#"
+        }
+    ]) }}
+
     <h2 class="mds-doc-sink__header">No Items</h2>
     {{ library.list_group(items = []) }}
 
@@ -39,7 +49,8 @@
         },
         {
             active: false,
-            label: "3",
+            label: "A really long first label that gets way too long, making me wonder how long these labels really should be",
+            metadata: "Really long metadata",
             href: "#"
         },
         {

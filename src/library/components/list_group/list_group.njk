@@ -2,23 +2,22 @@
     class=false,
     items=[
         {
-            active: false,
             label: "Item 1",
             href: "#"
         },
         {
             active: true,
             label: "Item 2 (Active)",
+            metadata: "21",
             href: "#"
         },
         {
-            active: false,
             label: "Item 3",
             href: "#"
         },
         {
-            active: false,
             label: "Item 4",
+            metadata: "175",
             href: "#"
         }
     ]
@@ -28,14 +27,19 @@
 
     {% for item in items %}
 
-    <li class="mds-list-group__item{{ " mds-list-group__item--active" if item.active}}">
+    <li class="mds-list-group__item{{ " mds-list-group__item--active" if item.active }}">
         <a href="{{ item.label }}" class="mds-list-group__link">
-            {% if item.active %}
-            {{ icon(name='arrow-next-sm', class='mds-list-group__active-icon', path=icon_path) }}
-            {% endif %}
             <span class="mds-list-group__item-label">
                 {{ item.label }}
             </span>
+            {% if item.metadata %}
+            <span class="mds-list-group__item-metadata">
+                {{ item.metadata }}
+            </span>
+            {% endif %}
+            {% if item.active %}
+            {{ icon(name='arrow-next-sm', class='mds-list-group__active-icon') }}
+            {% endif %}
         </a>
 	</li>
     {% endfor %}

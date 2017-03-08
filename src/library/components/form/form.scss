@@ -1,7 +1,7 @@
 $mds-background-color-form-input: $mds-color-neutral-90;
 $mds-background-color-form-input-on-dark: $mds-color-neutral-20;
 
-$mds-border-color-form-input: $mds-border-color-hairline;
+$mds-border-color-form-input: $mds-border-control;
 $mds-border-color-form-input-error: $mds-color-red-50;
 $mds-border-color-form-input-hover: $mds-interactive-color-primary-hover;
 $mds-border-width-form-input: 1px;
@@ -241,7 +241,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
 .mds-form__radio-button-visual {
     align-items: center;
     background: $mds-color-white;
-    border: $mds-border-hairline;
+    border: $mds-border-control;
     border-radius: 50%;
     color: $mds-color-form-radio-label;
     cursor: pointer;
@@ -300,7 +300,7 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
 
 .mds-form__checkbox-visual {
     align-items: center;
-    border: $mds-border-hairline;
+    border: $mds-border-control;
     border-radius: 2px;
     display: block;
     flex: 0 0 auto;

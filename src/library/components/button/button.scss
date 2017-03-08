@@ -7,7 +7,7 @@ $mds-border-radius-button: 15px;
 .mds-button,
 .mds-button--secondary {
     background-color: transparent;
-    border: $mds-border-hairline;
+    border: $mds-border-control;
     border-radius: $mds-border-radius-button;
     color: $mds-text-color-secondary-default;
     cursor: pointer;
@@ -197,7 +197,7 @@ a {
 
 .mds--dark {
     .mds-button--secondary {
-        border: $mds-border-hairline;
+        border: $mds-border-control;
         color: $mds-text-color-secondary-on-dark;
 
         .mds-button__icon {

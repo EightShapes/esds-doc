@@ -7,7 +7,7 @@
 }
 
 .mds-pagination__item {
-    border: $mds-border-hairline;
+    border: $mds-border-control;
     border-left: 0;
     border-right: 0;
     color: $mds-text-color-primary-default;
@@ -18,7 +18,7 @@
     padding: 0;
 
     &:first-child {
-        border: $mds-border-hairline;
+        border: $mds-border-control;
         border-radius: 12px 0 0 12px;
         border-right: 0;
         padding-left: 14px;
@@ -29,7 +29,7 @@
     }
 
     &:last-child {
-        border: $mds-border-hairline;
+        border: $mds-border-control;
         border-left: 0;
         border-radius: 0 12px 12px 0;
         padding-right: 14px;

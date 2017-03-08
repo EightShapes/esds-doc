@@ -96,7 +96,7 @@ $mds-doc-z-index-modal-content: 710;
 }
 
 .mds-doc__navigation-link {
-    border-bottom: $mds-border-hairline;
+    border-bottom: $mds-border-separator-default;
     border-color: $mds-color-neutral-80;
     display: block;
     font-size: $mds-font-size-s;
@@ -146,7 +146,7 @@ $mds-doc-z-index-modal-content: 710;
 }
 
 .mds-doc__navigation-sublist {
-    border-bottom: $mds-border-hairline;
+    border-bottom: $mds-border-separator-default;
     border-color: $mds-color-neutral-80;
     height: 0;
     list-style: none;
@@ -201,7 +201,7 @@ $mds-doc-z-index-modal-content: 710;
 
 .mds-doc__navigation-sublist-toggle {
     align-items: center;
-    border-bottom: $mds-border-hairline;
+    border-bottom: $mds-border-separator-default;
     border-color: $mds-color-neutral-80;
     cursor: pointer;
     display: flex;
