@@ -1,5 +1,6 @@
 // Use the library's constants
 @import 'mds_constants';
+@import '../../doc/assets/styles/shared/shell_variables';
 
 // Use the library's Cross-component utilities
 @import 'shared/utils'; // box-sizing and font-size settings
@@ -10,6 +11,8 @@
 
 // Components
 @import 'code_snippet/code_snippet';
+@import 'html_example_list/html_example_list';
 @import 'site_nav/site_nav';
 
 //Composite Components
+@import 'example_code_pair/example_code_pair';

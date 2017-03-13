@@ -7,9 +7,9 @@ var projectNamespace = projectNamespace || 'mds';
 Mds.CodeSnippet = function() {
     'use strict';
     var set_event_listeners = function() {
-        var clipboard = new Clipboard(`.${projectNamespace}-code-snippet__copy`),
-            clickedClass = `${projectNamespace}-code-snippet__copy--clicked`,
-            copiedResponseSelector = `.${projectNamespace}-code-snippet__copied-response`,
+        var clipboard = new Clipboard('.' + projectNamespace + '-doc-code-snippet__copy'),
+            clickedClass = projectNamespace + '-doc-code-snippet__copy--clicked',
+            copiedResponseSelector = '.' + projectNamespace + '-doc-code-snippet__copied-response',
             copySuccessText = 'Copied!',
             copyErrorText = 'Press Ctrl + C to copy';
 
@@ -26,7 +26,7 @@ Mds.CodeSnippet = function() {
             $(e.trigger).addClass(clickedClass).find(copiedResponseSelector).text(copyErrorText);
         });
 
-        $("body").on("click", `.${projectNamespace}-code-snippet__copy`, function(e){
+        $("body").on("click", '.' + projectNamespace + '-doc-code-snippet__copy', function(e){
             e.preventDefault();
         });
     };

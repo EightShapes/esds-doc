@@ -57,42 +57,47 @@
 	{% for item in els %}
 		<h3>Element= "{{ item.el }}"</h3>
 		{% for state in states %}
+			{% set disabled = true if state == 'disabled' else false %}
 			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
-				{{ library.button(text="Sign Up", class=el_class + " mds-button--" + state, el=item.el, disabled=state) }}
+				{{ library.button(text="Sign Up", class=el_class + " mds-button--" + state, el=item.el, disabled=disabled) }}
 			</div>
 		{% endfor %}
 		<br>
 		{% for state in states %}
+			{% set disabled = true if state == 'disabled' else false %}
 			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
-				{{ library.button(text="Copy Document", class=el_class + " mds-button--" + state, icon_left="copy", el=item.el, disabled=state) }}
+				{{ library.button(text="Copy Document", class=el_class + " mds-button--" + state, icon_left="copy", el=item.el, disabled=disabled) }}
 			</div>
 		{% endfor %}
 		<br>
 		{% for state in states %}
+			{% set disabled = true if state == 'disabled' else false %}
 			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
-				{{ library.button(text="Continue", class=el_class + " mds-button--" + state, icon_right="arrow-right", el=item.el, disabled=state) }}
+				{{ library.button(text="Continue", class=el_class + " mds-button--" + state, icon_right="arrow-right", el=item.el, disabled=disabled) }}
 			</div>
 		{% endfor %}
 		<br>
 		{% for state in states %}
+			{% set disabled = true if state == 'disabled' else false %}
 			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
-				{{ library.button(text="Account Settings", class=el_class + " mds-button--" + state, icon_left="utilities", icon_right="arrow-down", el=item.el, disabled=state) }}
+				{{ library.button(text="Account Settings", class=el_class + " mds-button--" + state, icon_left="utilities", icon_right="arrow-down", el=item.el, disabled=disabled) }}
 			</div>
 		{% endfor %}
 		<br>
 		{% for state in states %}
+			{% set disabled = true if state == 'disabled' else false %}
 			<div class="button-example{% if el_ex_dark%} button-example--dark-background mds--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
-				{{ library.button(class=el_class + " mds-button--" + state, icon_left="search", el=item.el, disabled=item.state ) }}
+				{{ library.button(class=el_class + " mds-button--" + state, icon_left="search", el=item.el, disabled=disabled ) }}
 			</div>
 		{% endfor %}
 		<br>

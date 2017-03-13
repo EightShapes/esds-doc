@@ -8,15 +8,63 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum reprehenderit, id perspiciatis commodi deserunt eius quia maiores quidem sunt, laboriosam quis modi error unde iste nam numquam illo. Nesciunt, voluptatem?
 
         To be fleshed out for [PUBLISH] task.
+
+        ## Primary
     {% endfilter %}
 
-    {{ doc_library.example_code_pair(examples=[{
-        source: '{{ library.button(text="Default Button") }}'
-    }])}}
-    {% set buttonMarkup %}
-        {{ library.button() }}
-        <br>
-        {{ library.button() }}
-    {% endset %}
-    {{ doc_library.code_snippet(source=buttonMarkup) }}
+    {{ doc_library.example_code_pair(examples=[
+        {
+            label: 'Default',
+            source: '{{ library.button(text="Button Text", class="mds-button--primary") }}'
+        },
+        {
+            label: 'Hover',
+            source: '{{ library.button(text="Button Text", class="mds-button--primary mds-button--hover") }}'
+        },
+        {
+            label: 'Active',
+            source: '{{ library.button(text="Button Text", class="mds-button--primary mds-button--active") }}'
+        },
+        {
+            label: 'Focus',
+            source: '{{ library.button(text="Button Text", class="mds-button--primary mds-button--focus") }}'
+        }
+    ])}}
+
+    {{ doc_library.example_code_pair(examples=[
+        {
+            label: 'Disabled',
+            source: '{{ library.button(text="Button Text", disabled=true, class="mds-button--primary") }}'
+        }
+    ])}}
+
+    {% filter markdown %}
+        ## Secondary
+    {% endfilter %}
+
+    {{ doc_library.example_code_pair(examples=[
+        {
+            label: 'Default',
+            source: '{{ library.button(text="Button Text") }}'
+        },
+        {
+            label: 'Hover',
+            source: '{{ library.button(text="Button Text", class="mds-button--hover") }}'
+        },
+        {
+            label: 'Active',
+            source: '{{ library.button(text="Button Text", class="mds-button--active") }}'
+        },
+        {
+            label: 'Focus',
+            source: '{{ library.button(text="Button Text", class="mds-button--focus") }}'
+        }
+    ])}}
+
+    {{ doc_library.example_code_pair(examples=[
+        {
+            label: 'Disabled',
+            source: '{{ library.button(text="Button Text", disabled=true) }}'
+        }
+    ])}}
 {% endblock %}

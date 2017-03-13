@@ -1,0 +1,121 @@
+{% extends 'doc_templates/doc-component.sink.template.njk' %}
+
+{% block body %}
+    <style>
+        .mds-doc-sink__body {
+            padding: 20px;
+        }
+    </style>
+    <h1>HTML Example List Doc Component</h1>
+
+    <h2>Default Example</h2>
+    {{ doc_library.html_example_list(examples=[
+        {
+            source: '<h1>Hello World</h1>'
+        }
+    ]) }}
+
+    <h2>With Label</h2>
+    {{ doc_library.html_example_list(examples=[
+        {
+            label: 'An <h1> heading',
+            source: '<h1>Hello World</h1>'
+        }
+    ]) }}
+
+    <h2>With Overflow Content</h2>
+    {{ doc_library.html_example_list(examples=[
+        {
+            label: 'Something like a dropdown menu',
+            source: '<div style="position:relative;">
+                            This is a parent container
+                        <div style="position:absolute; top: 100%; height: 40px; background: red; width: 200px;">
+                            This is absolutely positioned content.
+                        </div>
+                    </div>'
+        }
+    ]) }}
+
+    <h2>Space Below Modifier Class</h2>
+    {{ doc_library.html_example_list(examples=[
+        {
+            label: 'Space above the component',
+            container_class: 'mds-doc-html-example-list__item--xxl-inset-bottom',
+            source: '<div style="position:relative;">
+                            This is a parent container
+                        <div style="position:absolute; top: 100%; height: 40px; background: red; width: 200px;">
+                            This is absolutely positioned content.
+                        </div>
+                    </div>'
+        }
+    ]) }}
+
+    <h2>Space Above Modifier Class</h2>
+    {{ doc_library.html_example_list(examples=[
+        {
+            label: 'Space below the component',
+            container_class: 'mds-doc-html-example-list__item--xxl-inset-top',
+            source: '<div style="position:relative;">
+                            This is a parent container
+                        <div style="position:absolute; bottom: 100%; height: 40px; background: red; width: 200px;">
+                            This is absolutely positioned content.
+                        </div>
+                    </div>'
+        }
+    ]) }}
+
+    <h2>Too Much Content</h2>
+    {{ doc_library.html_example_list(examples=[
+        {
+            label: 'A <p> filled with lots of text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quo maiores distinctio perspiciatis assumenda molestias, rerum corporis repellat magnam facere, aspernatur est debitis? Quos dolorum culpa vero, tempore vel, nobis. filled with lots of text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quo maiores distinctio perspiciatis assumenda molestias, rerum corporis repellat magnam facere, aspernatur est debitis? Quos dolorum culpa vero, tempore vel, nobis.',
+            source: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia dolore maiores ab voluptates corporis odio dignissimos minus hic consectetur, inventore, illo nam accusamus voluptatibus? Alias sapiente dicta reprehenderit! Autem, pariatur? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia dolore maiores ab voluptates corporis odio dignissimos minus hic consectetur, inventore, illo nam accusamus voluptatibus? Alias sapiente dicta reprehenderit! Autem, pariatur?</p>'
+        }
+    ]) }}
+
+    <h2>Too Little Content</h2>
+    {{ doc_library.html_example_list(examples=[
+        {
+            label: 'A',
+            source: 'A'
+        }
+    ]) }}
+
+    <h2>With Nested Component Calls</h2>
+    {{ doc_library.html_example_list(examples=[
+        {
+            label: 'MDS Button',
+            source: library.button(text="Default Text")
+        }
+    ]) }}
+
+    <h2>Multiple Examples</h2>
+    {{ doc_library.html_example_list(examples=[
+        {
+            label: 'MDS Button',
+            source: library.button(text="Default Text")
+        },
+        {
+            container_class: 'mds-container--light',
+            label: 'MDS Button On Light Background',
+            source: library.button(text="Default Text")
+        },
+        {
+            label: 'Form Select',
+            source: library.form_select()
+        },
+        {
+            container_class: 'mds-container--black',
+            label: 'Form Select On Black',
+            source: library.form_select()
+        },
+        {
+            label: 'List Group',
+            source: library.list_group()
+        },
+        {
+            container_class: 'mds-container--dark',
+            label: 'List Group On Dark',
+            source: library.list_group()
+        }
+    ]) }}
+{% endblock %}

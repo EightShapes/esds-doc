@@ -1,15 +1,6 @@
+$mds-size-masthead-log-width: 96px;
+
 // Bit of resetting here
-
-$mds-doc-off-canvas-nav-width: 200px;
-$mds-doc-background-color-overlay: rgba(0, 0, 0, .6);
-$mds-doc-transition-timing-navigation-enter: .4s;
-$mds-doc-transition-timing-navigation-exit: .2s;
-$mds-doc-transition-easing-navigation-enter: cubic-bezier(0, 0, .58, 1);
-$mds-doc-transition-easing-navigation-exit: linear;
-
-$mds-doc-z-index-modal-overlay: 700;
-$mds-doc-z-index-modal-content: 710;
-
 html,
 body {
     margin: 0;
@@ -33,38 +24,44 @@ body {
 .mds-doc__title-logo {
     display: block;
     fill: $mds-color-red-50;
-    flex: 0 0 96px;
+    flex: 0 0 $mds-size-masthead-log-width;
     margin-right: $mds-space-inline-xs;
-    width: 96px;
+    width: $mds-size-masthead-log-width;
 }
 
 .mds-doc__header {
     align-items: center;
+    background: $mds-background-color-default;
     box-shadow: $mds-drop-shadow-default;
     display: flex;
-    height: 55px;
+    height: $mds-doc-header-height;
     justify-content: flex-start;
-    padding: 16px;
+    padding: $mds-space-inset-m;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: $mds-z-index-sticky;
 }
 
 .mds-doc__content-nav-wrap {
-    margin: 0 auto;
-    max-width: 1024px;
+    padding-top: $mds-doc-header-height;
+}
+
+.mds-doc__content {
+    font-family: $mds-font-family-sans-serif;
 
     @media screen and (min-width: 1024px) {
-        display: flex;
+        margin-left: $mds-doc-nav-width;
+        width: calc(100% - $mds-doc-nav-width);
     }
 }
 
-.mds-doc__body {
-    padding: 8px;
+.mds-doc__content-inner {
+    margin: 0 auto;
+    max-width: 1024px;
+    padding: $mds-space-inset-s; 
 
-    @media screen and (min-width: 1024px) {
-        box-shadow: $mds-drop-shadow-default;
-        flex: 1;
-        order: 2;
-        padding: 16px;
-        position: relative;
-        z-index: 1; // Just needs to be bumped up over the nav menu
-    }
+    @media screen and (min-width: 768px) {
+        padding: $mds-space-inset-m;
+    }   
 }

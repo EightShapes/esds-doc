@@ -1,0 +1,20 @@
+{% block project_macro_imports %}
+    {% import "doc_library/components/mds_doc_library_macros.njk" as doc_library with context %}
+{% endblock %}
+
+{% block head_assets %}
+    {# Include doc_library.css and doc.css here - will be loaded after library styles #}
+    <link rel="stylesheet" href="/assets/doc-dependencies/prism.css">
+    <link rel="stylesheet" href="/assets/styles/mds_doc_library.css">
+    <link rel="stylesheet" href="/assets/styles/mds_doc.css">
+{% endblock %}
+
+{% extends 'doc_templates/default.sink.template.njk' %}
+
+{% block closing_body_assets %}
+    {# include doc_library.js here - will be loaded after library scripts #}
+    <script src="/assets/doc-dependencies/jquery.min.js"></script>
+    <script src="/assets/doc-dependencies/clipboard.min.js"></script>
+    <script src="/assets/doc-dependencies/prism.js"></script>
+    <script src="/assets/scripts/mds_doc_library.js"></script>
+{% endblock %}

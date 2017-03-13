@@ -1,30 +1,28 @@
 $mds-doc-inner-shadow-navigation: inset 0 2px 8px 0 rgba(0, 0, 0, .05);
-$mds-doc-off-canvas-nav-width: 200px;
 
 $mds-doc-background-color-overlay: rgba(0, 0, 0, .6);
+
 $mds-doc-transition-timing-navigation-enter: .4s;
 $mds-doc-transition-timing-navigation-exit: .2s;
 $mds-doc-transition-easing-navigation-enter: cubic-bezier(0, 0, .58, 1);
 $mds-doc-transition-easing-navigation-exit: linear;
-
-$mds-doc-z-index-modal-overlay: 700;
-$mds-doc-z-index-modal-content: 710;
 
 .mds-doc__navigation {
     background-color: $mds-background-color-light;
     box-shadow: $mds-doc-inner-shadow-navigation;
     font-family: $mds-font-family-sans-serif;
     height: 100vh;
-    left: -($mds-doc-off-canvas-nav-width);
-    padding: 8px;
+    left: -($mds-doc-nav-width);
+    overflow-y: auto;
+    padding: $mds-space-inset-s;
     position: fixed;
     text-align: right;
     top: 0;
     transition-duration: $mds-doc-transition-timing-navigation-exit;
     transition-property: left;
     transition-timing-function: $mds-doc-transition-easing-navigation-exit;
-    width: $mds-doc-off-canvas-nav-width;
-    z-index: $mds-doc-z-index-modal-content;
+    width: $mds-doc-nav-width;
+    z-index: $mds-z-index-top-of-the-world;
 
     .mds-doc__off-canvas-toggle-input:checked ~ .mds-doc__content-nav-wrap & {
         left: 0;
@@ -33,10 +31,10 @@ $mds-doc-z-index-modal-content: 710;
     }
 
     @media screen and (min-width: 1024px) {
-        flex: 0 0 200px;
-        order: 1;
-        position: static;
-        z-index: 0;
+        height: calc(100vh - $mds-doc-header-height);
+        left: 0;
+        top: $mds-doc-header-height;
+        z-index: $mds-z-index-modal-content;
     }
 }
 
@@ -100,7 +98,7 @@ $mds-doc-z-index-modal-content: 710;
     border-color: $mds-color-neutral-80;
     display: block;
     font-size: $mds-font-size-s;
-    padding: 4px 0;
+    padding: $mds-space-xs 0;
     text-decoration: none;
 
     &,
@@ -131,7 +129,7 @@ $mds-doc-z-index-modal-content: 710;
     transition: visibility $mds-doc-transition-timing-navigation-exit $mds-doc-transition-timing-navigation-exit, opacity $mds-doc-transition-timing-navigation-exit;
     transition-timing-function: $mds-doc-transition-easing-navigation-exit;
     visibility: hidden;
-    z-index: $mds-doc-z-index-modal-overlay;
+    z-index: $mds-z-index-modal-overlay;
 
     .mds-doc__off-canvas-toggle-input:checked ~ & {
         opacity: 1;
@@ -159,7 +157,7 @@ $mds-doc-z-index-modal-content: 710;
         opacity: 0;
         padding: 2px 0 2px 16px;
         position: relative;
-        top: -8px;
+        top: -($mds-space-s);
         transition-duration: $mds-doc-transition-timing-navigation-exit;
         transition-property: top, opacity;
         transition-timing-function: $mds-doc-transition-easing-navigation-exit;
@@ -167,7 +165,7 @@ $mds-doc-z-index-modal-content: 710;
 
     .mds-doc__navigation-sublist-toggle-input:checked ~ & {
         height: auto;
-        padding: 0 0 8px;
+        padding: 0 0 $mds-space-s;
         visibility: visible;
 
         .mds-doc__navigation-link {
@@ -206,7 +204,7 @@ $mds-doc-z-index-modal-content: 710;
     cursor: pointer;
     display: flex;
     font-size: $mds-font-size-s;
-    padding: 4px 0;
+    padding: $mds-space-xs 0;
 
     &:hover {
         color: $mds-interactive-color-primary-hover;

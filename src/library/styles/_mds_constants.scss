@@ -57,6 +57,8 @@ $mds-font-weight-regular: 400;
 $mds-font-weight-bold: 600;
 $mds-font-size-base: 16px;
 $mds-font-size-default: 16px;
+$mds-font-size-xxs: 10px;
+$mds-font-size-xs: 12px;
 $mds-font-size-s: 14px;
 $mds-font-size-m: 16px;
 $mds-font-size-l: 20px;
@@ -66,6 +68,7 @@ $mds-border-separator-on-light: solid 1px #cccccc;
 $mds-border-separator-on-dark: solid 1px #333333;
 $mds-border-control: solid 1px #808080;
 $mds-border-disabled: solid 1px #808080;
+$mds-border-radius-default: 2px;
 
 $mds-size-icon-xs: 14px;
 $mds-size-icon-s: 16px;
@@ -73,7 +76,12 @@ $mds-size-icon-m: 18px;
 $mds-size-icon-l: 32px;
 
 $mds-space-default: 16px;
+$mds-space-xs: 4px;
+$mds-space-s: 8px;
 $mds-space-m: 16px;
+$mds-space-l: 32px;
+$mds-space-inset-xs: 4px;
+$mds-space-inset-s: 8px;
 $mds-space-inset-m: 16px 16px 16px 16px;
 $mds-space-inset-l: 32px 32px 32px 32px;
 $mds-space-inset-squish-m: 4px 16px 4px 16px;
@@ -88,3 +96,9 @@ $mds-transition-color-link: color, 300ms;
 $mds-opacity-disabled: .4;
 
 $mds-drop-shadow-default: 0 2px 4px 0 rgba(0, 0, 0, .08);
+
+$mds-z-index-low: 1;
+$mds-z-index-sticky: 100;
+$mds-z-index-modal-overlay: 800;
+$mds-z-index-modal-content: 810;
+$mds-z-index-top-of-the-world: 900;

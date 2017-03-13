@@ -1,8 +1,88 @@
-$color-background-code-snippet-actions: #cccccc;
+$mds-doc-size-caret-width: 4px;
+$mds-color-transparent-caret-border: rgba($mds-background-color-dark, 0);
 
-.#{$mds-project-name}-code-snippet__actions {
+.#{$mds-project-name}-doc-code-snippet {
+    border: $mds-border-separator-default;
+    border-radius: $mds-border-radius-default;
+    margin: $mds-space-stack-m;
+}
+
+.#{$mds-project-name}-doc-code-snippet__actions {
     align-items: center;
-    background: $color-background-code-snippet-actions;
+    background: $mds-color-neutral-90;
     display: flex;
     justify-content: flex-end;
+    padding: $mds-space-inset-m;
+}
+
+// Prism overrides
+pre.#{$mds-project-name}-doc-code-snippet__pre {
+    background: $mds-background-color-light;
+    margin: 0;
+    padding: $mds-space-inset-m;
+    padding-bottom: $mds-space-l;
+    padding-top: $mds-space-l;
+}
+
+.mds-doc-code-snippet__copied-response {
+    background: $mds-background-color-dark;
+    border-radius: $mds-border-radius-default;
+    bottom: calc(100% + $mds-space-s);
+    color: $mds-text-color-primary-on-dark;
+    font-size: $mds-font-size-s;
+    left: 0;
+    opacity: 0;
+    padding: $mds-space-inset-xs;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+
+    &:after {
+        background: transparent;
+        border-color: $mds-background-color-dark $mds-color-transparent-caret-border $mds-color-transparent-caret-border;
+        border-style: solid;
+        border-width: $mds-doc-size-caret-width;
+        content: '';
+        left: 50%;
+        margin-left: -($mds-doc-size-caret-width / 2);
+        position: absolute;
+        top: 99%;
+    }
+
+    .mds-doc-code-snippet__copy--clicked & {
+        animation: fade-in-out 3s;
+    }
+}
+
+.mds-doc-code-snippet__copy {
+    position: relative;
+}
+
+.mds-doc-code-snippet__source {
+    border-radius: 0 0 $mds-border-radius-default $mds-border-radius-default;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+
+@keyframes fade-in-out {
+    0% {
+        bottom: 90%;
+        opacity: 0;
+    }
+
+    10% {
+        bottom: calc(100% + #{$mds-space-s});
+        opacity: 1;
+    }
+
+    90% {
+        bottom: calc(100% + #{$mds-space-s});
+        opacity: 1;
+    }
+
+    100% {
+        bottom: 90%;
+        opacity: 0;
+    }
 }

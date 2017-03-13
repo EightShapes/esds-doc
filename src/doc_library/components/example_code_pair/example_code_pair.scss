@@ -1,0 +1,10 @@
+.mds-doc-example-code-pair {
+    .mds-doc-code-snippet {
+        border-radius: 0 0 $mds-border-radius-default $mds-border-radius-default;
+        border-top: 0;
+    }
+
+    .mds-doc-html-example-list {
+        border-radius: $mds-border-radius-default $mds-border-radius-default 0 0;
+    }
+}

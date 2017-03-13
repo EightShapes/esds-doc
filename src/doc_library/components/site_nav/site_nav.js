@@ -9,7 +9,7 @@ Mds.SiteNav = function() {
         var currentPath = window.location.pathname;
             currentPath = currentPath === '/index.html' ? '/' : currentPath;
 
-        var $activeLink = $(`.mds-doc__navigation-link[href~='${currentPath}']`),
+        var $activeLink = $('.mds-doc__navigation-link[href~="' + currentPath + '"]'),
             $parentAccordionTrigger = $activeLink.closest(".mds-doc__navigation-sublist").siblings(".mds-doc__navigation-sublist-toggle-input");
 
         $activeLink.addClass("mds-doc__navigation-link--active");

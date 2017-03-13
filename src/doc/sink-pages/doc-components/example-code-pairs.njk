@@ -1,0 +1,160 @@
+{% extends 'doc_templates/doc-component.sink.template.njk' %}
+
+{% block body %}
+    <style>
+        .mds-doc-sink__body {
+            padding: 20px;
+        }
+    </style>
+    <h1>Example Code Pair Doc Component</h1>
+    <h2>Javascript Functionality Testing</h2>
+    <p>
+        Please test the following:
+        <ul>
+            <li>
+                Clicking the "Copy to Clipboard" button should copy the code in the snippet to your clipboard, test by clicking the button, then pasting text into another document. Make sure the text pasted matches what appears in the code snippet
+            </li>
+            <li>
+                In some older browsers, copying directly to the clipboard is not possible, in those cases you will see a "Press Ctrl + C to copy" message and the code in the snippet will be highlighted for you.
+            </li>
+        </ul>
+    </p>
+
+    <h2>Default Example</h2>
+    {{ doc_library.example_code_pair(examples=[
+        {
+            source: '<h1>Hello World</h1>'
+        }
+    ]) }}
+
+    <h2>With Component Macro</h2>
+    {{ doc_library.example_code_pair(examples=[
+        {
+            source: '{{ library.form_select() }}'
+        }
+    ]) }}
+
+    <h2>With Multiple Examples</h2>
+    {{ doc_library.example_code_pair(examples=[
+        {
+            source: '{{ library.form_checkbox() }}'
+        },
+        {
+            label: 'Hover',
+            source: '{{ library.form_checkbox(class="mds-form__checkbox--hover") }}'
+        },
+        {
+            label: 'Active',
+            source: '{{ library.form_checkbox(class="mds-form__checkbox--active") }}'
+        },
+        {
+            label: 'Focus',
+            source: '{{ library.form_checkbox(class="mds-form__checkbox--focus") }}'
+        },
+        {
+            label: 'Checked',
+            source: '{{ library.form_checkbox(checked=true) }}'
+        },
+        {
+            label: 'Indeterminate',
+            source: '{{ library.form_checkbox(indeterminate=true) }}'
+        },
+        {
+            container_class: 'mds-container--dark',
+            label: 'On Dark',
+            source: '{{ library.form_checkbox() }}'
+        },
+        {
+            container_class: 'mds-container--black',
+            label: 'On Black, Checked',
+            source: '{{ library.form_checkbox(checked=true) }}'
+        }
+    ]) }}
+
+    <h2>Too Little Content</h2>
+    {{ doc_library.example_code_pair(examples=[
+        {
+            label: 'A',
+            source: 'A'
+        }
+    ]) }}
+
+    <h2>Too Much Content</h2>
+    {{ doc_library.example_code_pair(examples=[
+        {
+            label: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, expedita nesciunt mollitia aliquam unde dolor suscipit error doloribus numquam quas veritatis inventore nisi ex voluptate fuga iste, temporibus, consequatur rem.',
+            source: '<table>
+            <thead>
+                <tr>
+                    <th>Table Header</th>
+                    <th>Table Header</th>
+                    <th>Table Header</th>
+                    <th>Table Header</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                </tr>
+                <tr>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                </tr>
+                <tr>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                </tr>
+                <tr>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                </tr>
+                <tr>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                </tr>
+                <tr>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                </tr>
+                <tr>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                </tr>
+                <tr>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                </tr>
+                <tr>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                </tr>
+                <tr>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                    <td>Table Cell</td>
+                </tr>
+            </tbody>
+        </table>'
+        }
+    ]) }}
+{% endblock %}

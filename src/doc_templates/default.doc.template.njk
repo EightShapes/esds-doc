@@ -26,16 +26,18 @@
         </h2>
     </header>
     <div class="mds-doc__content-nav-wrap">
-        <div class="mds-doc__body">
-            {% block doc_body %}
+        <div class="mds-doc__content">
+            <div class="mds-doc__content-inner">
+                {% block doc_body %}
 
-            {% endblock %}
+                {% endblock %}
+                <footer>
+                    {{ content.copyright | safe }}
+                </footer>
+            </div>
         </div>
         {{ doc_library.site_nav() }}
     </div>
-    <footer>
-        {{ content.copyright | safe }}
-    </footer>
     <label for="mds-doc__off-canvas-toggle" class="mds-doc__off-canvas-overlay"></label>
 {% endblock %}
 

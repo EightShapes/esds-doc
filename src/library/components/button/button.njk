@@ -7,7 +7,7 @@
             text=false) %}
 	{% if el == 'checkbox' or el == 'radio' or el == 'submit' or el == 'input-button' %}
 		<div class="mds-button__input-outer-wrapper">
-			<input class="mds-button__input" type="{% if el == 'input-button' %}button{% elif el == 'checkbox' or el == 'radio' or el == 'submit' %}{{ el }}{% endif %}" {% if disabled == 'disabled' %}{{ disabled }}{% endif %} {% if el == 'submit' %} value="" {% endif %}>
+			<input class="mds-button__input" type="{% if el == 'input-button' %}button{% elif el == 'checkbox' or el == 'radio' or el == 'submit' %}{{ el }}{% endif %}" {{ 'disabled' if disabled }} {% if el == 'submit' %} value="" {% endif %}>
 			<div class="mds-button {{class if class}}">			
 				{% if icon_left %}
 		        	{{ icon(name=icon_left, class="mds-button__icon mds-button__icon--left") }}
@@ -25,7 +25,7 @@
 			</div>
 		</div>
 	{% else %}
-	    <{{el}} class="mds-button {{class if class}}" {% if el == 'button' %}type="button"{% endif %} {% if el == 'a' %}href="#"{% endif %}>
+	    <{{el}} class="mds-button {{class if class}}" {% if el == 'button' %}type="button"{% endif %} {% if el == 'a' %}href="#"{% endif %} {{ 'disabled' if disabled }}>
 	        {% if icon_left %}
 	        	{{ icon(name=icon_left, class="mds-button__icon mds-button__icon--left") }}
 	        {% endif %}
