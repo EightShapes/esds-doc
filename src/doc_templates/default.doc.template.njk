@@ -28,10 +28,12 @@
     <div class="mds-doc__content-nav-wrap">
         <div class="mds-doc__content">
             <div class="mds-doc__content-inner">
-                {% block doc_body %}
+                {% block doc_body_container %}
+                    {% block doc_body %}
 
+                    {% endblock %}
                 {% endblock %}
-                <footer>
+                <footer class="mds-doc-footer">
                     {{ content.copyright | safe }}
                 </footer>
             </div>

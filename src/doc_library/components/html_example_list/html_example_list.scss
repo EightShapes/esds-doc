@@ -22,18 +22,13 @@
 }
 
 .mds-doc-html-example-list__label {
-    color: $mds-text-color-secondary-default;
-    font-family: $mds-font-family-sans-serif;
-    font-size: $mds-font-size-xxs;
-    font-weight: $mds-font-weight-bold;
-    letter-spacing: 1.67px;
+    @include eyebrow-heading();
     max-width: 280px;
     overflow: hidden;
     position: absolute;
     right: $mds-space-s;
     text-align: right;
     text-overflow: ellipsis;
-    text-transform: uppercase;
     top: $mds-space-s;
     white-space: nowrap;
     width: calc(100% - ($mds-space-s * 3));

@@ -1,0 +1,17 @@
+{% extends 'doc_templates/default.doc.template.njk' %}
+
+{% block doc_body_container %}
+    <div class="mds-doc-toc-template__container">
+        <div class="mds-doc-toc-template__intro">
+            {% block doc_intro %}
+
+            {% endblock %}
+        </div>
+        {{ doc_library.page_nav(class="mds-doc-toc-template__page-nav", target=".mds-doc-toc-template__content, .mds-doc-toc-template__content > .mds-long-form-text") }}
+        <div class="mds-doc-toc-template__content">
+            {% block doc_body %}
+
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

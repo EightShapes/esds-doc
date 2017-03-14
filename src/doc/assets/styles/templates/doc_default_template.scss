@@ -50,7 +50,7 @@ body {
 .mds-doc__content {
     font-family: $mds-font-family-sans-serif;
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 768px) {
         margin-left: $mds-doc-nav-width;
         width: calc(100% - $mds-doc-nav-width);
     }
@@ -58,10 +58,14 @@ body {
 
 .mds-doc__content-inner {
     margin: 0 auto;
-    max-width: 1024px;
-    padding: $mds-space-inset-s; 
+    max-width: $mds-doc-content-max-width;
+    padding: $mds-space-inset-m; 
 
     @media screen and (min-width: 768px) {
         padding: $mds-space-inset-m;
+    }   
+
+    @media screen and (min-width: 1024px) {
+        padding-top: $mds-space-l;
     }   
 }

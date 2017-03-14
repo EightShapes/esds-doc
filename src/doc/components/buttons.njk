@@ -1,15 +1,20 @@
-{% extends 'doc_templates/default.doc.template.njk' %}
+{% extends 'doc_templates/toc.doc.template.njk' %}
 {% set title = 'Buttons' %}
 
-{% block doc_body %}
+{% block doc_intro %}
     {% filter markdown %}
         # Buttons
 
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum reprehenderit, id perspiciatis commodi deserunt eius quia maiores quidem sunt, laboriosam quis modi error unde iste nam numquam illo. Nesciunt, voluptatem?
 
         To be fleshed out for [PUBLISH] task.
+    {% endfilter %}
+{% endblock %}
 
-        ## Primary
+{% block doc_body %}
+    {% filter markdown %}
+        <h2 class="mds-screenreader-only">Variations</h2>
+        ### Primary
     {% endfilter %}
 
     {{ doc_library.example_code_pair(examples=[
@@ -39,7 +44,7 @@
     ])}}
 
     {% filter markdown %}
-        ## Secondary
+        ### Secondary
     {% endfilter %}
 
     {{ doc_library.example_code_pair(examples=[
@@ -67,4 +72,31 @@
             source: '{{ library.button(text="Button Text", disabled=true) }}'
         }
     ])}}
+
+    {% filter markdown %}
+        ## Guidelines
+
+        ### Use When
+        * Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit magni repudiandae, adipisci dolorum nihil voluptatibus, atque temporibus consectetur assumenda consequuntur ipsa eveniet, neque qui inventore minima. Enim impedit esse commodi.
+        * Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, a, officiis. Magnam excepturi velit nobis deleniti voluptate aperiam, eligendi reprehenderit laboriosam optio, aliquam explicabo aspernatur porro accusamus nostrum, ipsam minus.
+    
+        ### Don't Use When
+        * Instance 1
+        * Instance 2
+
+        ### Visual Style
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita amet soluta ipsa, earum velit voluptatibus consequatur, molestiae necessitatibus quae. Eligendi earum dolores pariatur distinctio tenetur magni architecto, ipsam numquam. Asperiores.
+
+        ### Behaviors
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis accusamus, soluta nemo, voluptate repudiandae laborum mollitia architecto, provident expedita saepe illum in nisi quibusdam! Fugit obcaecati aspernatur eius expedita officia!
+
+        ### Editorial
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt modi voluptate blanditiis expedita fugiat, sint ullam exercitationem esse doloremque ducimus. Fugit maxime omnis dolor assumenda aut ratione consectetur iure, dolore!
+    
+        ### Accessibility
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque voluptates hic earum soluta dolor, optio, magnam voluptate accusantium minima tempore reprehenderit officiis repellat quo, vitae, dolores impedit cum adipisci. Dignissimos!
+
+        ## Code Reference
+        ### CSS Class References
+    {% endfilter %}
 {% endblock %}

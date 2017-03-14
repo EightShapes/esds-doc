@@ -1,0 +1,215 @@
+{% extends "doc_templates/default.sink.template.njk" %}
+
+{% set title = 'List Group Sink' %}
+
+{% macro component_sink() %}
+
+    <h2 class="mds-doc-sink__header">Default</h2>
+    {{ library.list_group() }}
+
+    <h2 class="mds-doc-sink__header">Small</h2>
+    {{ library.list_group(class="mds-list-group--small") }}
+
+    <h2 class="mds-doc-sink__header">Large</h2>
+    {{ library.list_group(class="mds-list-group--large") }}
+
+    <h2 class="mds-doc-sink__header">With Metadata</h2>
+    {{ library.list_group(items = [
+        {
+            active: false,
+            label: "Single Item",
+            metadata: "32",
+            href: "#"
+        }
+    ]) }}
+
+    <h2 class="mds-doc-sink__header">With Header</h2>
+    {{ library.list_group(items=[
+        {
+            label: 'Variations'
+        },
+        {
+            href: '#',
+            label: 'Default'
+        },
+        {
+            href: '#',
+            label: 'Small'
+        },
+        {
+            href: '#',
+            label: 'Text'
+        },
+        {
+            href: '#',
+            label: 'Icon'
+        },
+        {
+            href: '#',
+            label: 'Button'
+        }
+    ]) }}
+
+    <h2 class="mds-doc-sink__header">With Sublists</h2>
+    {{ library.list_group(items=[
+        {
+            href: '#',
+            label: 'Home'
+        },
+        {
+            href: '#',
+            label: 'Getting Started'
+        },
+        {
+            label: 'Visual Language',
+            children: [
+                {
+                    href: '#',
+                    label: 'Color'
+                },
+                {
+                    href: '#',
+                    label: 'Icons'
+                }
+            ]
+        },
+        {
+            label: 'Components',
+            checked: true,
+            children: [
+                {
+                    href: '#',
+                    label: 'Buttons',
+                    active: true
+                },
+                {
+                    href: '#',
+                    label: 'Forms'
+                },
+                {
+                    href: '#',
+                    label: 'Modals'
+                },
+                {
+                    href: '#',
+                    label: 'Popovers'
+                },
+                {
+                    href: '#',
+                    label: 'Table'
+                },
+                {
+                    href: '#',
+                    label: 'Tooltips'
+                }
+            ]
+        }
+    ]) }}
+
+
+    <h2 class="mds-doc-sink__header">No Items</h2>
+    {{ library.list_group(items = []) }}
+
+    <h2 class="mds-doc-sink__header">One Item</h2>
+    {{ library.list_group(items = [
+        {
+            active: false,
+            label: "Single Item",
+            href: "#"
+        }
+    ]) }}
+
+    <h2 class="mds-doc-sink__header">Items with Long Labels, Last Label Empty</h2>
+    {{ library.list_group(items = [
+        {
+            active: true,
+            label: "A really long first label that gets way too long, making me wonder how long these labels really should be",
+            href: "#"
+        },
+        {
+            active: false,
+            label: "Second item",
+            href: "#"
+        },
+        {
+            active: false,
+            label: "A really long first label that gets way too long, making me wonder how long these labels really should be",
+            metadata: "Really long metadata",
+            href: "#"
+        },
+        {
+            active: false,
+            label: "",
+            href: "#"
+        }
+    ]) }}
+
+    <h2 class="mds-doc-sink__header">Multiple Combinations</h2>
+    {{ library.list_group(items=[
+        {
+            label: "Variations"
+        },
+        {
+            label: "Item 1",
+            href: "#"
+        },
+        {
+            active: true,
+            label: "Item 2 (Active)",
+            metadata: "21",
+            href: "#"
+        },
+        {
+            label: "Item 3, href and children, two targets",
+            href: "#",
+            children: [
+                {
+                    label: "Sub Item, child of Item 3",
+                    href: "#"
+                }
+            ]
+        },
+        {
+            label: "Item 4",
+            metadata: "175",
+            href: "#"
+        },
+        {
+            label: "Item 5, no href",
+            children: [
+                {
+                    label: "Sub Item, child of Item 5",
+                    href: "#"
+                },
+                {
+                    label: "Sub Item 2, child of Item 5",
+                    href: "#"
+                }
+            ]
+        },
+        {
+            label: "Item 6, sublist open by default",
+            checked: true,
+            children: [
+                {
+                    label: "Sub Item, child of Item 6",
+                    href: "#"
+                },
+                {
+                    label: "Sub Item 2, child of Item 6",
+                    href: "#"
+                },
+                {
+                    label: "Sub Item 3, child of Item 6",
+                    href: "#"
+                },
+                {
+                    label: "Sub Item 4, child of Item 6",
+                    href: "#"
+                }
+            ]
+        }
+    ]) }}
+
+
+{% endmacro %}

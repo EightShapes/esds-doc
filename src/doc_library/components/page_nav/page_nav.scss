@@ -1,0 +1,12 @@
+.mds-doc-page-nav__appended-items {
+    .mds-list-group__item {
+        border: 0;
+    }
+
+    .mds-list-group__link {
+        @include mds-text-crop();
+        color: $mds-text-color-secondary-default;
+        padding: $mds-space-stack-s;
+        text-decoration: underline;
+    }
+}

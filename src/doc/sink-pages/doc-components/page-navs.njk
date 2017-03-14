@@ -1,0 +1,70 @@
+{% extends 'doc_templates/doc-component.sink.template.njk' %}
+
+{% block body %}
+    <style>
+        .mds-doc-sink__body {
+            padding: 20px;
+        }
+
+        .mds-doc-page-navs-sink-container {
+            display: flex;
+        }
+
+        .mds-doc-demo-page-nav-1 {
+            order: 2;
+            padding: {{ mdsConstants.space.inline.s }};
+        }
+
+        .mds-doc-demo-target-container,
+        .mds-doc-demo-target-container-2 {
+            border: {{ mdsConstants.border.separator.default }};
+            padding: {{ mdsConstants.space.inset.m }};
+            order: 1;
+        }
+    </style>
+    <h1>Page Nav Doc Component</h1>
+    <p>
+        Given a target element, this component will dynamically build on-page anchor navigation tied to all &lt;h2&gt;'s and &lt;h3&gt;'s within that target element. &lt;h2&gt;'s are converted to headers within the list. 
+    </p>
+
+    <h2>Default Example</h2>
+    <div class="mds-doc-page-navs-sink-container">
+        {{ doc_library.page_nav(class="mds-doc-demo-page-nav-1", target=".mds-doc-demo-target-container", appended_items=false) }}
+
+        <div class="mds-doc-demo-target-container">
+            <h2>Star Wars</h2>
+            <h3>Episode I</h3>
+            <h3>Episode II</h3>
+            <h3>Episode III</h3>
+            <h3>Rogue One</h3>
+            <h3>Episode IV</h3>
+            <h3>Episode V</h3>
+            <h3>Episode VI</h3>
+            <h3>Episode VII</h3>
+            <h2>The Lord of the Rings</h2>
+            <h3>The Fellowship of the Ring</h3>
+            <h3>The Two Towers</h3>
+            <h3>Return of the King</h3>
+            <h2>Your Favorite Movie</h2>
+            <h2>My Favorite Movie</h2>
+        </div>
+    </div>
+
+    <h2>With hidden h2 and additional, non-page links</h2>
+    <div class="mds-doc-page-navs-sink-container">
+        {{ doc_library.page_nav(class="mds-doc-demo-page-nav-1", target=".mds-doc-demo-target-container-2") }}
+
+        <div class="mds-doc-demo-target-container-2">
+            <h2 class="mds-screenreader-only">Accessibly Hidden Header</h2>
+            <h3>Default</h3>
+            <h3>Primary</h3>
+            <h3>Secondary</h3>
+            <h3>Small</h3>
+            <h2>Guidelines</h2>
+            <h3>Use When</h3>
+            <h3>Visual Style</h3>
+            <h3>Interaction</h3>
+            <h3>Editorial</h3>
+        </div>
+    </div>
+{% endblock %}

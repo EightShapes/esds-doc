@@ -7,7 +7,7 @@ $mds-doc-transition-timing-navigation-exit: .2s;
 $mds-doc-transition-easing-navigation-enter: cubic-bezier(0, 0, .58, 1);
 $mds-doc-transition-easing-navigation-exit: linear;
 
-.mds-doc__navigation {
+.mds-doc-site-nav {
     background-color: $mds-background-color-light;
     box-shadow: $mds-doc-inner-shadow-navigation;
     font-family: $mds-font-family-sans-serif;
@@ -30,12 +30,16 @@ $mds-doc-transition-easing-navigation-exit: linear;
         transition-timing-function: $mds-doc-transition-easing-navigation-enter;
     }
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 769px) {
         height: calc(100vh - $mds-doc-header-height);
         left: 0;
         top: $mds-doc-header-height;
         z-index: $mds-z-index-modal-content;
     }
+}
+
+.mds-doc-site-nav__list {
+    text-align: left;
 }
 
 .mds-doc__navigation-sublist-toggle-input,
@@ -49,7 +53,7 @@ $mds-doc-transition-easing-navigation-exit: linear;
     display: flex;
     justify-content: center;
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 769px) {
         display: none;
     }
 }
@@ -58,13 +62,6 @@ $mds-doc-transition-easing-navigation-exit: linear;
     fill: $mds-text-color-secondary-default;
     height: $mds-size-icon-m;
     width: $mds-size-icon-m;
-}
-
-.mds-doc__navigation-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: left;
 }
 
 .mds-doc__off-canvas-close {
@@ -77,7 +74,7 @@ $mds-doc-transition-easing-navigation-exit: linear;
         color: $mds-interactive-color-primary-hover;
     }
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 769px) {
         display: none;
     }
 }
@@ -100,22 +97,6 @@ $mds-doc-transition-easing-navigation-exit: linear;
     font-size: $mds-font-size-s;
     padding: $mds-space-xs 0;
     text-decoration: none;
-
-    &,
-    &:visited {
-        color: $mds-text-color-primary-default;
-    }
-
-    &:hover {
-        color: $mds-interactive-color-primary-hover;
-    }
-}
-
-.mds-doc__navigation-link--active {
-    &,
-    &:visited {
-        color: $mds-interactive-color-primary-active;
-    }
 }
 
 .mds-doc__off-canvas-overlay {
@@ -138,79 +119,7 @@ $mds-doc-transition-easing-navigation-exit: linear;
         visibility: visible;
     }
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 769px) {
         display: none;
-    }
-}
-
-.mds-doc__navigation-sublist {
-    border-bottom: $mds-border-separator-default;
-    border-color: $mds-color-neutral-80;
-    height: 0;
-    list-style: none;
-    margin: 0;
-    overflow: hidden;
-    visibility: hidden;
-
-    .mds-doc__navigation-link {
-        border: 0;
-        opacity: 0;
-        padding: 2px 0 2px 16px;
-        position: relative;
-        top: -($mds-space-s);
-        transition-duration: $mds-doc-transition-timing-navigation-exit;
-        transition-property: top, opacity;
-        transition-timing-function: $mds-doc-transition-easing-navigation-exit;
-    }
-
-    .mds-doc__navigation-sublist-toggle-input:checked ~ & {
-        height: auto;
-        padding: 0 0 $mds-space-s;
-        visibility: visible;
-
-        .mds-doc__navigation-link {
-            opacity: 1;
-            top: 0;
-            transition-duration: $mds-doc-transition-timing-navigation-enter;
-            transition-timing-function: $mds-doc-transition-easing-navigation-enter;
-        }
-    }
-}
-
-.mds-doc__navigation-sublist-toggle-icon {
-    fill: $mds-text-color-secondary-default;
-    height: $mds-size-icon-xs;
-    margin-right: $mds-space-inline-xs / 2;
-    transition-duration: $mds-doc-transition-timing-navigation-exit;
-    transition-property: transform;
-    transition-timing-function: $mds-doc-transition-easing-navigation-exit;
-    width: $mds-size-icon-xs;
-
-    .mds-doc__navigation-sublist-toggle-input:checked + .mds-doc__navigation-sublist-toggle & {
-        transform: rotate(90deg);
-        transition-duration: $mds-doc-transition-timing-navigation-enter;
-        transition-timing-function: $mds-doc-transition-easing-navigation-enter;
-    }   
-
-    .mds-doc__navigation-sublist-toggle:hover & {
-        fill: $mds-interactive-color-primary-hover;
-    }
-}
-
-.mds-doc__navigation-sublist-toggle {
-    align-items: center;
-    border-bottom: $mds-border-separator-default;
-    border-color: $mds-color-neutral-80;
-    cursor: pointer;
-    display: flex;
-    font-size: $mds-font-size-s;
-    padding: $mds-space-xs 0;
-
-    &:hover {
-        color: $mds-interactive-color-primary-hover;
-    }
-
-    .mds-doc__navigation-sublist-toggle-input:checked + & {
-        border-bottom: 0;
     }
 }
