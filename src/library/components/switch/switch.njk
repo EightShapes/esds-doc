@@ -1,0 +1,48 @@
+{% macro switch(
+	id=false,
+	class=false,
+	disabled=false,
+	checked=false,
+	text="Client facing view") %}
+
+	{% if id == false %}
+		{% set random_number = range(0, 100000) | random %}
+		{% set id = label | replace(' ', '-') | lower + '--' + random_number %}
+	{% endif %}
+
+	<div class="mds-switch{{' ' + class if class}}{{' mds-switch--disabled' if disabled}}">
+		<label class="mds-switch__label" for="{{ id }}">
+			<input id="{{ id }}" type="checkbox" role="switch" class="mds-switch__input" {{ 'disabled' if disabled }}  {{ 'checked' if checked }}>
+			<span class="mds-switch__text">
+				{{ text }}
+			</span>
+		</label>
+	</div>
+{% endmacro %}
+
+
+{% macro switch_field_group(
+            class=false, 
+            horizontal=false) %}
+    <div class="mds-switch__field-group{{ ' mds-switch__field-group--horizontal' if horizontal }}{{ ' ' + class  if class }}">
+        {% if caller %}
+            {{ caller() }}
+        {% endif %}
+    </div>
+{% endmacro %}
+
+
+{% macro switch_group(
+	class=false, 
+	label=false) %}
+    <fieldset class="mds-switch__group{{ ' ' + class  if class }}" role="group">
+        {% if label %}
+            <legend class="mds-switch__group-label">
+                {{ label | safe }}
+            </legend>
+        {% endif %}
+        {%- if caller -%}
+            {{ caller() }}
+        {%- endif -%}
+    </fieldset>
+{% endmacro %}
