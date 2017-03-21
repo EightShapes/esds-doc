@@ -55,7 +55,7 @@ $mds-space-grid-switch: 0 8px 8px 0;
 
     // Border
     &:before {
-        border: $mds-border-control;
+        border: $mds-border-control-default;
         border-radius: $mds-border-radius-switch;
         content: '';
         display: block;
@@ -78,7 +78,7 @@ $mds-space-grid-switch: 0 8px 8px 0;
 
     // Dot
     &:after {
-        border: $mds-border-control;
+        border: $mds-border-control-default;
         border-radius: 50%;
         content: '';
         display: block;
