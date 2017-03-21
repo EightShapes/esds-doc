@@ -1,8 +1,22 @@
-{#Now this file is placeholder only#}
 {% macro notification(
-            class=false
+            class=false,
+            container_id="mds-demo-notification-container",
+            message="message",
+            with_close_button=false,
+            close_button_element="button",
+            wrap_with_container_element=false,
+            container_position_class="mds-notification-container--bottom-right"
             ) %}
-            <div class="mds-notification--not-in-use {{class if class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            {% if wrap_with_container_element %}<div id="{{container_id}}" class="mds-notification-container {{container_position_class}}">{% endif %}
+                {% if with_close_button %}
+                <div class="mds-notification mds-notification--with-close-button {{class if class}}">
+                    <span class="mds-notification__message">{{message}}</span>
+                    <{{close_button_element}} {% if close_button_element=="button" %}type="button"{% else %}role="button"{% endif %} class="mds-notification__close-button">{{ icon(name="remove", class="mds-notification__close-button-icon") }}</{{close_button_element}}>
+                </div>
+                {% else %}
+                <div class="mds-notification {{class if class}}">
+                    <span class="mds-notification__message">{{message}}</span>
+                </div>
+                {% endif %}
+            {% if wrap_with_container_element %}</div>{% endif %}
 {% endmacro %}
-
-<div>Placeholder</div>

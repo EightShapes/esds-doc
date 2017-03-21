@@ -1,0 +1,16 @@
+{% extends "doc_templates/default.sink.template.njk" %}
+{% set title = 'Notifications Sink' %}
+
+{% macro component_sink() %}
+    <h2 class="mds-doc-sink__header">Notification, without close button.</h2>
+    {{ library.notification(message="Lorem ipsum dolor sit amet, consectetur adipiscing 3,608 elit.") }}
+
+    <h2 class="mds-doc-sink__header">Notification, with close button.</h2>
+    {{ library.notification(with_close_button=true, message="Lorem ipsum, this is a notification with a close button") }}
+
+    <h2 class="mds-doc-sink__header">Notification, without close button, large amount of text</h2>
+    {{ library.notification(message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed turpis consequat, accumsan tellus et, ultrices sapien. Vestibulum efficitur diam eget mi semper pretium. Sed quis sem nec mi lacinia luctus vel in metus. Phasellus leo nulla, mollis vel enim fermentum, pharetra pharetra orci. Aenean id ultrices lectus. Aliquam vitae sem quis nunc blandit finibus eu quis felis. Donec ac scelerisque purus, sed aliquam purus. Sed et odio dolor. Phasellus finibus nec quam eget tempor. Cras sit amet iaculis nisi.") }}
+
+    <h2 class="mds-doc-sink__header">Notification, with close button, large amount of text</h2>
+    {{ library.notification(with_close_button=true, message="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed turpis consequat, accumsan tellus et, ultrices sapien. Vestibulum efficitur diam eget mi semper pretium. Sed quis sem nec mi lacinia luctus vel in metus. Phasellus leo nulla, mollis vel enim fermentum, pharetra pharetra orci. Aenean id ultrices lectus. Aliquam vitae sem quis nunc blandit finibus eu quis felis. Donec ac scelerisque purus, sed aliquam purus. Sed et odio dolor. Phasellus finibus nec quam eget tempor. Cras sit amet iaculis nisi.") }}
+{% endmacro %}

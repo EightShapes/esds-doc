@@ -1,6 +1,105 @@
 {% extends 'doc_templates/default.doc.template.njk' %}
 {% set title = 'Notifications' %}
+{% set pop_up_notification_introduction = '
+* Please note that the implementations of popup notifications are done by JavaScript. 
+* It\'s the product team\'s decision / choices of using 3rd party or in-house code to implement the popups. 
+* Please use a wrapper class mds-notification-container with modifier such as mds-notification-container--bottom-left as the container node of the mds-notification.' %}
 
 {% block doc_body %}
-    <div>Lorem ipsum dolor sit amet, notification adipiscing elit.</div>
+    {% filter markdown %}
+        ## Notification, without close button.
+    {% endfilter %}
+    {{ doc_library.example_code_pair(examples=[
+        {
+            source: '{{ library.notification(message="Lorem ipsum dolor sit amet, consectetur adipiscing 3,608 elit.") }}'
+        }
+    ])}}
+
+    {% filter markdown %}
+        ## Notification, with close button.
+    {% endfilter %}
+    {{ doc_library.example_code_pair(examples=[
+        {
+            source: '{{ library.notification(with_close_button=true, message="Lorem ipsum, this is a notification with a close button") }}'
+        }
+    ])}}
+
+    {% filter markdown %}
+        ## Notification, with close button, inside a popup wrapper.
+        Please note it's NOT displaying within the below example block, as the notification popup container is a floating object above the page sections that usually displaying at the corners, in this case, it appears at bottom right.
+    {% endfilter %}
+    {{ doc_library.example_code_pair(examples=[
+        {
+            source: '{{ library.notification(wrap_with_container_element=true, with_close_button=true, message="Lorem ipsum, this is a notification inside a popup container") }}'
+        }
+    ])}}
+
+    {% filter markdown %}
+        ## Notification playground.
+    {% endfilter %}
+    <label class="mds-form__label" for="notification-popup-playground-message">Message</label>
+    {{ library.form_textarea(id="notification-popup-playground-message", placeholder="Please enter text message") }}
+    <label class="mds-form__label" for="notification-popup-show-close-button-switch">Show close button?</label>
+    {{ library.switch(id="notification-popup-show-close-button-switch", text="Show close button", checked=true) }}
+    <label class="mds-form__label" for="notification-popup-playground-duration">How long does it last?</label>
+    {{ library.form_input(id="notification-popup-playground-duration", placeholder="3000") }}
+    <label class="mds-form__label">Where would you like the popup to appear?</label>
+    {{ library.form_select(
+        id="notification-popup-position-select",
+        default_text="Select a popup position",
+        default_value="mds-notification-container--bottom-right",
+        options=[
+            {
+                text: "Select a popup position",
+                value: "mds-notification-container--bottom-left"
+            },
+            {
+                text: "bottom-left",
+                value: "mds-notification-container--bottom-left"
+            },
+            {
+                text: "bottom-right",
+                value: "mds-notification-container--bottom-right",
+                selected: "selected"
+            },
+            {
+                text: "top-left",
+                value: "mds-notification-container--top-left"
+            },
+            {
+                text: "top-right",
+                value: "mds-notification-container--top-right"
+            }
+        ]) }}
+    <br />
+    {{ library.button(text="Call notification", id="mds-button-for-popup-demo-playground") }}
+    <br />
+    <br />
+    <br />
+    {% filter markdown %}
+        {{ pop_up_notification_introduction }}
+    {% endfilter %}
+    <br />
+{% endblock %}
+
+{% block closing_body_assets %}
+    {{ super() }}
+    <script>
+        // Popup Notification playground code
+        var popupExampleButton = document.getElementById('mds-button-for-popup-demo-playground');
+        popupExampleButton.addEventListener('click', function () {
+            var message = document.getElementById('notification-popup-playground-message').value? document.getElementById('notification-popup-playground-message').value: 'Who dare to summon me?';
+            var showCloseButton = document.getElementById('notification-popup-show-close-button-switch').checked;
+            var duration = document.getElementById('notification-popup-playground-duration').value?parseInt(document.getElementById('notification-popup-playground-duration').value):3000;
+            var direction = document.getElementById('notification-popup-position-select').value;
+            Mds.showNotificationPopup(message, showCloseButton, duration, direction);
+        });
+
+        // Demo example container wrapper remover
+        var demoExampleContainer = document.getElementById('mds-demo-notification-container');
+        demoExampleContainer.addEventListener('click', function () {
+            var demoExampleContainerHolder = demoExampleContainer.parentNode;
+            demoExampleContainerHolder.removeChild(demoExampleContainer);
+        });
+    </script>
 {% endblock %}

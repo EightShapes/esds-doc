@@ -2,6 +2,7 @@
             class=false, 
             icon_left=false,
             icon_right=false,
+			id=false,
             disabled=false,
             el="button",
             text=false) %}
@@ -25,7 +26,7 @@
 			</div>
 		</div>
 	{% else %}
-	    <{{el}} class="mds-button {{class if class}}" {% if el == 'button' %}type="button"{% endif %} {% if el == 'a' %}href="#"{% endif %} {{ 'disabled' if disabled }} role="button">
+	    <{{el}}{% if id %} id="{{id}}"{% endif %} class="mds-button {{class if class}}" {% if el == 'button' %}type="button"{% endif %} {% if el == 'a' %}href="#"{% endif %} {{ 'disabled' if disabled }} role="button">
 	        {% if icon_left %}
 	        	{{ icon(name=icon_left, class="mds-button__icon mds-button__icon--left") }}
 	        {% endif %}

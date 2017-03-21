@@ -1,5 +1,6 @@
 files:
   include: 'src/**/*.scss'
+  ignore: 'src/library/styles/_mds_constants.scss'
 options:
   formatter: stylish
   merge-default-rules: false
