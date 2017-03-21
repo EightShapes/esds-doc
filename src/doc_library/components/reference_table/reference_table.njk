@@ -1,0 +1,43 @@
+{% macro reference_table(
+    data=[{
+            class: ".mds-component-name--modifier",
+            applies_to: ".mds-component-name",
+            outcome: "Modifies `mds-component-name` to change its background color."
+        },
+        {
+            class: ".mds-component-name--different-modifier",
+            applies_to: ".mds-component-name",
+            outcome: "Modifies `mds-component-name` to change its background color to a different color."
+        }],
+    headers=["class", "applies_to", "outcome"]) %}
+
+    <div class="mds-doc-reference-table">
+        <table class="mds-data-table">
+            <thead class="mds-data-table__header">
+                <tr class="mds-data-table__row">
+                    {% for header in headers %}
+                    <th class="mds-data-table__header-cell">{{ header | replace("_", " ") | capitalize }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody class="mds-data-table__body">
+                {% for data_row in data %}
+                    <tr class="mds-data-table__row">
+                        {% for data_key in headers %}
+                            {% if data_key == 'class' %}
+                                {# Convenience method to wrap class names in code tags #}
+                                {% set cell_content = "`" + data_row[data_key] + "`" %}
+                            {% else %}
+                                {% set cell_content = data_row[data_key] %}
+                            {% endif %}
+                            <td class="mds-data-table__cell">
+                                {{ cell_content | markdown(false) }}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% endmacro %}

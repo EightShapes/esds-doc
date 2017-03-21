@@ -7,7 +7,7 @@ $mds-border-radius-button: 15px;
 .mds-button,
 .mds-button--secondary {
     background-color: transparent;
-    border: $mds-border-control;
+    border: $mds-border-control-default;
     border-radius: $mds-border-radius-button;
     color: $mds-text-color-secondary-default;
     cursor: pointer;
@@ -135,11 +135,11 @@ a {
 }
 
 .mds-button__icon--left + .mds-button__text {
-    margin-left: $mds-space-inline-xs;
+    margin: $mds-space-inline-left-xs;
 }
 
 .mds-button__text + .mds-button__icon--right  {
-    margin-left: $mds-space-inline-xs;
+    margin: $mds-space-inline-left-xs;
 }
 
 .mds-button__text {
@@ -196,7 +196,7 @@ a {
 
 .mds--dark {
     .mds-button--secondary {
-        border: $mds-border-control;
+        border: $mds-border-control-default;
         color: $mds-text-color-secondary-on-dark;
 
         .mds-button__icon {

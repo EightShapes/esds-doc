@@ -1,0 +1,23 @@
+{% macro do_dont(images=[
+    {
+        src: '/assets/images/components/button/buttons-1-do@2x.png',
+        type: 'do',
+        caption: 'use the same button size for adjacent buttons.'
+    },
+    {
+        src: '/assets/images/components/button/buttons-1-dont@2x.png',
+        type: 'dont',
+        caption: 'display normal and small buttons together in the same row.'
+    }
+]) %}
+    <div class="mds-doc-do-dont">
+        {% for image in images %}
+            <figure class="mds-doc-do-dont__image-wrap mds-doc-do-dont__image-wrap--{{ image.type }}">
+                <img src="{{ image.src }}" alt="{{ image.type }} {{ image.caption }}" class="mds-doc-do-dont__image">
+                <figcaption class="mds-doc-do-dont__caption">
+                    <span class="mds-doc-do-dont__type">{{ "Don't" if image.type == 'dont' else "Do" }}</span> {{ image.caption }}
+                </figcaption>
+            </figure>
+        {% endfor %}
+    </div>
+{% endmacro %}

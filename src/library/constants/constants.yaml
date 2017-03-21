@@ -69,6 +69,7 @@ interactive-color :
 font :
   family :
     sans-serif: "'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    monospace: "'Consolas', 'Courier New', Courier, monospace"
   weight :
     thin : 200
     light : 300
@@ -87,7 +88,11 @@ border :
     default : "solid 1px #cccccc"
     on-light : "solid 1px #cccccc"
     on-dark : "solid 1px #333333"
-  control : "solid 1px #808080"
+    color-on-light : *color-neutral-80
+    color-on-dark : *color-neutral-20
+  control :
+    default : "solid 1px #808080"
+    color : *color-neutral-50
   disabled : "solid 1px #808080"
   radius : 
     default : 2px
@@ -103,24 +108,27 @@ space :
   s: 8px
   m: 16px
   l: 32px
-  xl: 64px
+  xl: 48px
   inset :
     xs : 4px
     s : 8px
     m : 16px 16px 16px 16px
     l : 32px 32px 32px 32px
+    xl : 48px 48px 48px 48px
     squish :
       m : 4px 16px 4px 16px
       s : 2px 16px 2px 16px
-  inline :
+  inline-left :
     xs : 0 0 0 4px
     s : 0 0 0 8px
     m : 0 0 0 16px
     l : 0 0 0 32px
+    xl : 0 0 0 48px
   stack :
     s: 0 0 8px 0
     m: 0 0 16px 0
     l: 0 0 32px 0
+    xl: 0 0 48px 0
 transition :
   color :
     link : "color, 300ms"

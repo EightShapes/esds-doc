@@ -11,9 +11,10 @@
 
 // Components
 @import 'code_snippet/code_snippet';
+@import 'do_dont/do_dont';
 @import 'html_example_list/html_example_list';
 @import 'page_nav/page_nav';
+@import 'reference_table/reference_table';
 @import 'site_nav/site_nav';
 
-//Composite Components
-@import 'example_code_pair/example_code_pair';
+@import 'example_code_pair/example_code_pair'; // Has dependencies on html_example_list and code_snippet

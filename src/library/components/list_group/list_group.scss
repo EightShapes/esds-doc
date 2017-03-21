@@ -150,7 +150,7 @@ $mds-list-group-transition-easing-navigation-exit: linear;
 
 .mds-list-group__item-metadata {
     color: $mds-text-color-secondary-on-light;
-    padding-left: $mds-space-inline-s;
+    padding: $mds-space-inline-left-s;
     vertical-align: middle;
 
     .mds-container--dark &,

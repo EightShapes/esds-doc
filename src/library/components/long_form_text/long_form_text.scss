@@ -1,19 +1,23 @@
 .mds-long-form-text {
+    color: $mds-text-color-primary-default;
     font-family: $mds-font-family-sans-serif;
 
     h1 {
         @include level-1-heading();
-        margin: $mds-space-stack-m;
+        margin: $mds-space-stack-l;
     }
 
     h2 {
         @include level-2-heading();
-        margin: $mds-space-stack-m;
+        border-top: solid 4px $mds-border-separator-color-on-light;
+        margin: $mds-space-stack-xl;
+        margin-top: $mds-space-xl;
+        padding-top: $mds-space-m;
     }
 
     h3 {
         @include level-3-heading();
-        margin: $mds-space-stack-m;
+        margin: $mds-space-stack-l;
     }
 
     h4 {
@@ -23,23 +27,28 @@
 
     ul, 
     ol {
-        margin: $mds-space-stack-m;
-        padding: 0;
+        font-weight: $mds-font-weight-light;
+        margin: $mds-space-stack-xl;
+        padding: 0 0 0 $mds-space-l;
     }
 
     li {
-        @include mds-text-crop();
-        margin: $mds-space-stack-s;
-        margin-left: $mds-space-default;
+        // @include mds-text-crop();
+        margin: $mds-space-stack-m;
+
+        > ul {
+            margin-top: $mds-space-m;
+        }
     }
 
     p {
         @include mds-text-crop();
-        margin: $mds-space-stack-m;
+        font-weight: $mds-font-weight-light;
+        margin: $mds-space-stack-xl;
     }
 
     .mds-long-form-text__lead {
-        font-size: $mds-font-size-default * 1.125;
+        font-size: $mds-font-size-l;
         margin: $mds-space-stack-m;
     }
 
@@ -52,4 +61,9 @@
         }
     }
 
+    code {
+        font-family: $mds-font-family-monospace;
+        font-size: $mds-font-size-s;
+        word-break: break-word; 
+    }
 }

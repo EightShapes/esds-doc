@@ -1,4 +1,5 @@
-$mds-size-masthead-log-width: 96px;
+$mds-size-masthead-logo-width-narrow: 230px;
+$mds-size-masthead-logo-width: 275px;
 
 // Bit of resetting here
 html,
@@ -21,12 +22,14 @@ body {
     margin: 0 auto;
 }
 
-.mds-doc__title-logo {
-    display: block;
-    fill: $mds-color-red-50;
-    flex: 0 0 $mds-size-masthead-log-width;
-    margin-right: $mds-space-inline-xs;
-    width: $mds-size-masthead-log-width;
+.mds-doc__logo {
+    flex: 0 0 $mds-size-masthead-logo-width-narrow;
+    width: $mds-size-masthead-logo-width-narrow;
+
+    @media screen and (min-width: 480px) {
+        flex: 0 0 $mds-size-masthead-logo-width;
+        width: $mds-size-masthead-logo-width;        
+    }
 }
 
 .mds-doc__header {
@@ -36,6 +39,7 @@ body {
     display: flex;
     height: $mds-doc-header-height;
     justify-content: flex-start;
+    // margin: $mds-space-inline-left-xs;
     padding: $mds-space-inset-m;
     position: fixed;
     top: 0;

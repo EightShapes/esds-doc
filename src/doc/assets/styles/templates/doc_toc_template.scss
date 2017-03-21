@@ -3,7 +3,7 @@ $mds-doc-toc-space-nav-content-separation: 24px;
 $mds-doc-toc-max-width-breakpoint: $mds-doc-content-max-width + $mds-doc-nav-width + $mds-doc-page-nav-wide-screen-width + ($mds-space-default * 2) + $mds-doc-toc-space-nav-content-separation;
 
 .mds-doc-toc-template__intro {
-    margin: $mds-space-stack-l;
+    margin: 0 0 $mds-space-xl;
     width: 100%;
 }
 
@@ -20,7 +20,7 @@ $mds-doc-toc-max-width-breakpoint: $mds-doc-content-max-width + $mds-doc-nav-wid
         }
 
         .mds-doc-page-nav__appended-items {
-            margin: $mds-space-inline-l;
+            margin: $mds-space-inline-left-l;
             padding-top: $mds-space-m;
         }
     }

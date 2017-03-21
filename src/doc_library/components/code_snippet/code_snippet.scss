@@ -1,10 +1,12 @@
+$mds-doc-space-stack-code-snippet: 0 0 24px;
+$mds-doc-font-size-code-snippet: 13px;
 $mds-doc-size-caret-width: 4px;
 $mds-color-transparent-caret-border: rgba($mds-background-color-dark, 0);
 
 .#{$mds-project-name}-doc-code-snippet {
     border: $mds-border-separator-default;
     border-radius: $mds-border-radius-default;
-    margin: $mds-space-stack-l;
+    margin: $mds-doc-space-stack-code-snippet;
 }
 
 .#{$mds-project-name}-doc-code-snippet__actions {
@@ -18,16 +20,15 @@ $mds-color-transparent-caret-border: rgba($mds-background-color-dark, 0);
 // Prism overrides
 pre.#{$mds-project-name}-doc-code-snippet__pre {
     background: $mds-background-color-light;
+    font-size: $mds-doc-font-size-code-snippet;
     margin: 0;
     padding: $mds-space-inset-m;
-    padding-bottom: $mds-space-l;
-    padding-top: $mds-space-l;
 }
 
 .mds-doc-code-snippet__copied-response {
     background: $mds-background-color-dark;
     border-radius: $mds-border-radius-default;
-    bottom: calc(100% + $mds-space-s);
+    bottom: calc(100% + #{$mds-space-s});
     color: $mds-text-color-primary-on-dark;
     font-size: $mds-font-size-s;
     left: 0;

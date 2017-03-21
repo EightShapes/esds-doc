@@ -9,7 +9,7 @@
 }
 
 .mds-pagination__item {
-    border: $mds-border-control;
+    border: $mds-border-control-default;
     border-left: 0;
     border-right: 0;
     color: $mds-text-color-primary-default;
@@ -21,7 +21,7 @@
     position: relative;
 
     &:first-child {
-        border: $mds-border-control;
+        border: $mds-border-control-default;
         border-radius: 12px 0 0 12px;
         border-right: 0;
         padding-left: 14px;
@@ -32,7 +32,7 @@
     }
 
     &:last-child {
-        border: $mds-border-control;
+        border: $mds-border-control-default;
         border-left: 0;
         border-radius: 0 12px 12px 0;
         padding-right: 14px;

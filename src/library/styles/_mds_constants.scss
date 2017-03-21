@@ -51,6 +51,7 @@ $mds-interactive-color-disabled: #808080;
 $mds-interactive-color-focus: 0 0 4px 2px rgba(#00a8e1, .8);
 
 $mds-font-family-sans-serif: 'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$mds-font-family-monospace: 'Consolas', 'Courier New', Courier, monospace;
 $mds-font-weight-thin: 200;
 $mds-font-weight-light: 300;
 $mds-font-weight-regular: 400;
@@ -66,7 +67,10 @@ $mds-font-size-l: 20px;
 $mds-border-separator-default: solid 1px #cccccc;
 $mds-border-separator-on-light: solid 1px #cccccc;
 $mds-border-separator-on-dark: solid 1px #333333;
-$mds-border-control: solid 1px #808080;
+$mds-border-separator-color-on-light: #cccccc;
+$mds-border-separator-color-on-dark: #333333;
+$mds-border-control-default: solid 1px #808080;
+$mds-border-control-color: #808080;
 $mds-border-disabled: solid 1px #808080;
 $mds-border-radius-default: 2px;
 
@@ -80,20 +84,23 @@ $mds-space-xs: 4px;
 $mds-space-s: 8px;
 $mds-space-m: 16px;
 $mds-space-l: 32px;
-$mds-space-xl: 64px;
+$mds-space-xl: 48px;
 $mds-space-inset-xs: 4px;
 $mds-space-inset-s: 8px;
 $mds-space-inset-m: 16px 16px 16px 16px;
 $mds-space-inset-l: 32px 32px 32px 32px;
+$mds-space-inset-xl: 48px 48px 48px 48px;
 $mds-space-inset-squish-m: 4px 16px 4px 16px;
 $mds-space-inset-squish-s: 2px 16px 2px 16px;
-$mds-space-inline-xs: 0 0 0 4px;
-$mds-space-inline-s: 0 0 0 8px;
-$mds-space-inline-m: 0 0 0 16px;
-$mds-space-inline-l: 0 0 0 32px;
+$mds-space-inline-left-xs: 0 0 0 4px;
+$mds-space-inline-left-s: 0 0 0 8px;
+$mds-space-inline-left-m: 0 0 0 16px;
+$mds-space-inline-left-l: 0 0 0 32px;
+$mds-space-inline-left-xl: 0 0 0 48px;
 $mds-space-stack-s: 0 0 8px 0;
 $mds-space-stack-m: 0 0 16px 0;
 $mds-space-stack-l: 0 0 32px 0;
+$mds-space-stack-xl: 0 0 48px 0;
 
 $mds-transition-color-link: color, 300ms;
 

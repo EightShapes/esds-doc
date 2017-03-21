@@ -4,10 +4,9 @@
 {% block doc_intro %}
     {% filter markdown %}
         # Buttons
-
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum reprehenderit, id perspiciatis commodi deserunt eius quia maiores quidem sunt, laboriosam quis modi error unde iste nam numquam illo. Nesciunt, voluptatem?
-
-        To be fleshed out for [PUBLISH] task.
+        <p class="mds-long-form-text__lead">
+            Use buttons to represent interactions throughout the experience.
+        </p>
     {% endfilter %}
 {% endblock %}
 
@@ -44,6 +43,9 @@
     ])}}
 
     {% filter markdown %}
+        * Use a primary button only for highest-priority actions that are required to complete the user’s task. 
+        * Use a primary button only once per page, though an additional primary button can appear within modals, popovers, or alerts when needed to signal critical actions.
+
         ### Secondary
     {% endfilter %}
 
@@ -74,29 +76,167 @@
     ])}}
 
     {% filter markdown %}
+        Use a secondary button for most buttons throughout an interface, including back, cancel, reset, adding or creating an object, or other non-critical actions.
+
+        ### With Icon
+    {% endfilter %}
+
+    {{ doc_library.example_code_pair(examples=[
+        {
+            label: 'Icon on Left',
+            source: '{{ library.button(icon_left="copy", text="Copy Document") }}'
+        }
+    ])}}
+
+    {{ doc_library.example_code_pair(examples=[
+        {
+            label: 'Icon on Right',
+            source: '{{ library.button(icon_right="arrow-right", text="Continue") }}'
+        }
+    ])}}
+
+    {{ doc_library.example_code_pair(examples=[
+        {
+            label: 'Icon on Both',
+            source: '{{ library.button(icon_left="utilities", icon_right="arrow-down", text="Account Settings") }}'
+        }
+    ])}}
+
+    {{ doc_library.example_code_pair(examples=[
+        {
+            label: 'Icon Only',
+            source: '{{ library.button(icon_left="search") }}'
+        }
+    ])}}
+
+    {% filter markdown %}
+        * Use a left icon within a button to convey an action’s meaning. 
+        * Use a right icon within a button when triggering a popover menu or implying directionality. 
+        * Use an icon-only button when space is limited and the icon’s meaning is unambiguous. When space permits, pair an icon with a label.
+    
+        ### Small
+    {% endfilter %}
+
+    {{ doc_library.example_code_pair(examples=[
+        {
+            label: 'Primary',
+            source: '{{ library.button(text="Sign Up", class="mds-button--small mds-button--primary") }}{{ library.button(icon_left="copy", text="Copy Document", class="mds-button--small mds-button--primary") }}{{ library.button(icon_right="arrow-right", text="Continue", class="mds-button--small mds-button--primary") }}{{ library.button(icon_left="utilities", icon_right="arrow-down", text="Account Settings", class="mds-button--small mds-button--primary") }}{{ library.button(icon_left="search", class="mds-button--small mds-button--primary") }}'
+        },
+        {
+            label: 'Secondary',
+            source: '{{ library.button(text="Sign Up", class="mds-button--small") }}{{ library.button(icon_left="copy", text="Copy Document", class="mds-button--small") }}{{ library.button(icon_right="arrow-right", text="Continue", class="mds-button--small") }}{{ library.button(icon_left="utilities", icon_right="arrow-down", text="Account Settings", class="mds-button--small") }}{{ library.button(icon_left="search", class="mds-button--small") }}'
+        }
+    ])}}
+
+    {% filter markdown %}
+        Use small buttons in settings with limited space, like toolbars and popover headers, and to perform secondary actions on a page. 
+    {% endfilter %}
+
+    {{ doc_library.do_dont(images=[
+        {
+            src: '/assets/images/components/button/small-button-secondary-action-1@2x.png',
+            type: 'do',
+            caption: 'use a small button for secondary actions, like creating a rule.'
+        },
+        {
+            src: '/assets/images/components/button/small-button-secondary-action-2@2x.png',
+            type: 'do',
+            caption: 'use a small button to apply an action to a dataset.'
+        }
+    ]) }}
+
+    {% filter markdown %}
         ## Guidelines
 
         ### Use When
-        * Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit magni repudiandae, adipisci dolorum nihil voluptatibus, atque temporibus consectetur assumenda consequuntur ipsa eveniet, neque qui inventore minima. Enim impedit esse commodi.
-        * Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, a, officiis. Magnam excepturi velit nobis deleniti voluptate aperiam, eligendi reprehenderit laboriosam optio, aliquam explicabo aspernatur porro accusamus nostrum, ipsam minus.
+        * Affording interaction to key behaviors and features.
+        * Confirming or submitting information entered into a form.
+        * Cancelling an action.
+        * Resetting a form or dataset.
+        * Closing a container or section.
+        * Opening a popover menu.
+        * Moving forward or backward through a wizard-type workflow.
+        * Creating an object within a group.
+        * Applying a non-critical action to a dataset.
+
     
         ### Don't Use When
-        * Instance 1
-        * Instance 2
+        * Displaying a collection of links to sections. Use link instead.
+        * Linking to an external site. Use link instead.
 
         ### Visual Style
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita amet soluta ipsa, earum velit voluptatibus consequatur, molestiae necessitatibus quae. Eligendi earum dolores pariatur distinctio tenetur magni architecto, ipsam numquam. Asperiores.
+        * Use an icon-only button when space is limited and the icon’s meaning is unambiguous. 
+        * Pair a tooltip with an icon-only button to reveal a label of the action.
+        * Use only one primary button per page. The exception is when a modal header contains a primary button and the modal content also includes a required action from the user.
+    {% endfilter %}
 
-        ### Behaviors
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis accusamus, soluta nemo, voluptate repudiandae laborum mollitia architecto, provident expedita saepe illum in nisi quibusdam! Fugit obcaecati aspernatur eius expedita officia!
+    {{ doc_library.do_dont(images=[
+        {
+            src: '/assets/images/components/button/buttons-1-do@2x.png',
+            type: 'do',
+            caption: 'use the same button size for adjacent buttons.'
+        },
+        {
+            src: '/assets/images/components/button/buttons-1-dont@2x.png',
+            type: 'dont',
+            caption: 'display normal and small buttons together in the same row.'
+        }
+    ]) }}
 
+    {{ doc_library.do_dont(images=[
+        {
+            src: '/assets/images/components/button/buttons-2-do@2x.png',
+            type: 'do',
+            caption: 'place primary buttons to the right within a group of buttons.'
+        },
+        {
+            src: '/assets/images/components/button/buttons-2-dont@2x.png',
+            type: 'dont',
+            caption: 'place primary buttons to the left within a group of buttons.'
+        }
+    ]) }}
+
+    {% filter markdown %}
         ### Editorial
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt modi voluptate blanditiis expedita fugiat, sint ullam exercitationem esse doloremque ducimus. Fugit maxime omnis dolor assumenda aut ratione consectetur iure, dolore!
+        * Label a button with a verb (&ldquo;Copy&rdquo;) or verb-phrase (&ldquo;Copy Document&rdquo;).
+        * Strive for short, succinct button labels that clearly describe an action. 
+        * Avoid lengthy button labels that risk wrapping, particularly in responsive settings.
+
     
         ### Accessibility
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque voluptates hic earum soluta dolor, optio, magnam voluptate accusantium minima tempore reprehenderit officiis repellat quo, vitae, dolores impedit cum adipisci. Dignissimos!
+        * Use a `<button>` element type when displaying buttons.
+        * Include a `role="button"` attribute, although `<button>` and `<input type="button"/>` elements do not require this attribute. This declaration can make any HTML element appear as a button to a screen reader.
+          * A `<div role="button">` or `<span role="button">` without a `tabindex` attribute will not receive a tabbed focus state.
+          * A `<div role="button">` or `<span role="button">` cannot be triggered from a keyboard without javascript.
+        * An `<a>` element cannot be triggered from a [spacebar] press, only from an [enter]/[return] press
+        * It is expected that a button can be triggered from a [spacebar] or an [enter]/[return] press
+        * Always include an `aria-label` attribute on an icon button or a button with nested text that does not explicitly describe the button’s intent.
+          * `<button aria-label="Close" onclick="myDialog.close()">X</button>`
+
 
         ## Code Reference
         ### CSS Class References
     {% endfilter %}
+    {{ doc_library.reference_table(data=[
+        {
+            class: '.mds-button',
+            applies_to: '`<button>`, `<a>`, `<input type="submit"/>`, `<input type="button"/>`, `<input type="checkbox"/>`, `<input type="checkbox"/>`,  `<input type="radio"/>`, `<div>`, or `<span>`',
+            outcome: 'Applies base button styles to an element. Always couple with a variant for semantics, though a stand-alone `.mds-button` will apply the same visual treatments as `.mds-button` paired with `.mds-button--secondary`.'
+        },
+        {
+            class: '.mds-button--primary',
+            applies_to: '`.mds-button`',
+            outcome: 'Shows primary-styled button, to be coupled with `.mds-button`.'
+        },
+        {
+            class: '.mds-button--secondary',
+            applies_to: '`.mds-button`',
+            outcome: 'Shows default-styled button, to be coupled with `.mds-button`.'
+        },
+        {
+            class: '.mds-button--small',
+            applies_to: '`.mds-button`',
+            outcome: 'Tightens padding to render a smaller button.'
+        }
+    ]) }}
 {% endblock %}

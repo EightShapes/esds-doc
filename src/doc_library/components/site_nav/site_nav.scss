@@ -79,10 +79,14 @@ $mds-doc-transition-easing-navigation-exit: linear;
     }
 }
 
+.mds-doc__off-canvas-close-text {
+    margin: $mds-space-inline-left-xs;
+}
+
 .mds-doc__off-canvas-close-icon {
     fill: $mds-text-color-secondary-default;
     height: $mds-size-icon-s;
-    margin-right: $mds-space-inline-xs;
+    margin-right: $mds-space-inline-left-xs;
     width: $mds-size-icon-s;
 
     .mds-doc__off-canvas-close:hover & {
