@@ -1,0 +1,17 @@
+{% set title = 'Broswer Support' %}
+{% extends 'doc_templates/default.doc.template.njk' %}
+
+{% block doc_body %}
+    {% filter markdown %}
+        #Browser Support
+        
+        The Morningstar Design System is tested and currently supported on the following browsers:
+
+        * Chrome (latest)
+        * Firefox (latest)
+        * Safari (latest)
+        * Edge (latest)
+        * IE (11 only)
+        * Mobile Safari (latest)
+    {% endfilter %}
+{% endblock %}
