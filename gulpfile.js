@@ -221,7 +221,7 @@ gulp.task('doc-dependencies:copy', function() {
             'node_modules/jquery/dist/jquery.min.js',
             'node_modules/prismjs/prism.js',
             'node_modules/prismjs/themes/prism.css',
-            'node_modules/wnumb/wnumb.js'
+            'node_modules/wnumb/wNumb.js'
         ])
         .pipe(gulp.dest('dist/assets/doc-dependencies'));    
 });
