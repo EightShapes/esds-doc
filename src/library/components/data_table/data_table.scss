@@ -48,10 +48,6 @@ $mds-text-color-data-table-header-cell-inner-on-dark: $mds-color-neutral-67;
     margin-bottom: $mds-space-data-table-bottom;
     max-width: 100%;
     width: 100%;
-
-    a {
-        @include mds-link();
-    }
 }
 
 .mds-data-table__cell {

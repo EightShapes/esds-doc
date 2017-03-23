@@ -19,11 +19,6 @@
     font-size: 24px;
     font-weight: $mds-font-weight-light;
     margin-bottom: $mds-space-stack-m;
-
-    .mds-container--dark &, 
-    .mds-container--black & {
-        color: $mds-text-color-primary-on-dark;
-    }
 }
 
 .mds-doc-sink__wrapping-columns {

@@ -34,12 +34,33 @@ $mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 3
     @include mds-text-crop(1.1);
 }
 
-@mixin mds-link() {
+.mds-text__anchor {
     color: $mds-interactive-color-primary-default;
+    fill: $mds-interactive-color-primary-default;
     transition: $mds-transition-hover;
 
     &:hover {
         color: $mds-interactive-color-primary-hover;
+        fill: $mds-interactive-color-primary-hover;
+
+        .mds-icon {
+            fill: $mds-interactive-color-primary-hover;
+        }
+    }
+}
+
+.mds-text__anchor--with-icon {
+    text-decoration: none;
+
+    .mds-text__anchor-text {
+        text-decoration: underline;
+        vertical-align: middle;
+    }
+
+    .mds-text__anchor-icon {
+        fill: $mds-interactive-color-primary-default;
+        transition: $mds-transition-hover;
+        vertical-align: middle;
     }
 }
 
@@ -78,5 +99,18 @@ $mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 3
     .mds-container--black &,
     .mds-container--dark & {
         color: $mds-text-color-primary-on-dark;
+    }
+}
+
+.mds-container--dark, 
+.mds-container--black {
+    color: $mds-text-color-primary-on-dark;
+
+    .mds-icon {
+        fill: $mds-text-color-primary-on-dark;
+    }
+
+    .mds-text__anchor-icon {
+        fill: $mds-interactive-color-primary-default;
     }
 }

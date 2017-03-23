@@ -1,0 +1,26 @@
+{% macro tooltip(
+    class=false,
+    tip_text=false,
+    tip_id=false,
+    close_button_id=false,
+    close_prompt=false,
+    style=false
+) %}
+	<div class="mds-tooltip__wrapper">
+		{% if caller %}
+            {{ caller() }}
+        {% else %}
+			Hover Over Me
+        {% endif %}
+	    <div {% if tip_id %}id="{{ tip_id }}" {% endif %} class="mds-tooltip {{class if class }}" {% if style %}style="{{ style }}" {% endif %} role="tooltip">
+	    	{% if tip_text %}
+				{{ tip_text }}
+			{% else %}
+				Object Name<br>AAA<small> ★★★★<span class="mds-screenreader-only">4 star rating</span></small>
+	    	{% endif %}
+	    	{% if close_prompt %}
+				<a class="mds-tooltip__close-button" {% if close_button_id %}data-mds-tooltip-close-button-id="{{ close_button_id }}" {% endif %}>{{ icon(name="remove", class="mds-icon--m") }}</a>
+	    	{% endif %}
+	    </div>
+	</div>
+{% endmacro %}

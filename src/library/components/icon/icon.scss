@@ -1,4 +1,20 @@
-.mds-icon {
+.mds-icon,
+.mds-icon--l {
     height: $mds-size-icon-l;
     width: $mds-size-icon-l;
+}
+
+.mds-icon--m {
+    height: $mds-size-icon-m;
+    width: $mds-size-icon-m;
+}
+
+.mds-icon--s {
+    height: $mds-size-icon-s;
+    width: $mds-size-icon-s;
+}
+
+.mds-icon--xs {
+    height: $mds-size-icon-xs;
+    width: $mds-size-icon-xs;
 }
