@@ -12,16 +12,16 @@
 
     <div class="mds-doc-sink__wrapping-columns">
         <div class="mds-doc-sink__column">
-            {{ component_sink() }}
+            {{ component_sink(idAppend="White") }}
         </div>
         <div class="mds-doc-sink__column mds-container--light">
-            {{ component_sink() }}
+            {{ component_sink(idAppend="Light") }}
         </div>
         <div class="mds-doc-sink__column mds-container--dark">
-            {{ component_sink() }}
+            {{ component_sink(idAppend="Dark") }}
         </div>
         <div class="mds-doc-sink__column mds-container--dark mds-container--black">
-            {{ component_sink() }}
+            {{ component_sink(idAppend="Black") }}
         </div>
     </div>
 {% endblock %}

@@ -220,18 +220,19 @@ gulp.task('doc-dependencies:copy', function() {
             'node_modules/clipboard/dist/clipboard.min.js',
             'node_modules/jquery/dist/jquery.min.js',
             'node_modules/prismjs/prism.js',
-            'node_modules/prismjs/themes/prism.css'
+            'node_modules/prismjs/themes/prism.css',
+            'node_modules/wnumb/wnumb.js'
         ])
         .pipe(gulp.dest('dist/assets/doc-dependencies'));    
 });
 
 gulp.task('dependencies:copy', function() {
     return gulp.src([
-            'node_modules/svg4everybody/dist/svg4everybody.min.js'
+            'node_modules/svg4everybody/dist/svg4everybody.min.js',
+            'node_modules/nouislider/distribute/nouislider.min.js',
         ])
         .pipe(gulp.dest('dist/assets/dependencies'));    
 });
-
 
 //Generate constants.scss and constants.json from constants.yaml
 gulp.task('constants:convert-to-scss-and-json', function(done){

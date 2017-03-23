@@ -1,3 +1,7 @@
-{% macro range_slider() %}
-    <h1>Range Slider</h1>
+{% macro range_slider(
+		slider_id=null,
+		class=false,
+		disabled=false
+	) %}
+	<div id="{{ slider_id }}" {{ 'disabled' if disabled }} class="{{class if class}}"></div>
 {% endmacro %}

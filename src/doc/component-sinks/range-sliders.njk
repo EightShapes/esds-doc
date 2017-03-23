@@ -1,0 +1,448 @@
+{% extends "doc_templates/default.sink.template.njk" %}
+
+{% set title = 'Range Sliders Sink' %}
+
+{% block head_assets %}
+    <link rel="stylesheet" href="/assets/styles/mds_sink.css">
+    <style>
+        .mds-doc-sink__range-slider__input {
+            width: 60px;
+        }
+        .mds-doc-sink__range-slider__wrapper {
+            width: 250px;
+            padding:18px 7px 0 0;
+        }
+        .mds-doc-sink__range-slider__input--left {
+            float:left;
+        }
+        .mds-doc-sink__column {
+            width: 450px;
+        }
+        .mds-doc-sink__wrapping-columns {
+            width: 1800px;
+        }
+    </style>
+{% endblock %}
+
+{% macro component_sink(idAppend=false) %}
+	<h2 class="mds-doc-sink__header">Range Slider</h2>
+	{{ library.range_slider(slider_id="slider" + idAppend) }}
+	<br>
+    <br>
+    <br>
+    <br>
+	<h2 class="mds-doc-sink__header">Range Slider Two Handles</h2>
+	{{ library.range_slider(slider_id="sliderTwo" + idAppend) }}
+	<br>
+    <br>
+    <br>
+    <br>
+    <h2 class="mds-doc-sink__header">Range Slider Two Handles with Tooltips</h2>
+    <br>
+    <br>
+    <br>
+    <br>
+    {{ library.range_slider(slider_id="sliderTwoTooltips" + idAppend) }}
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="mds-doc-sink__header">Range Slider with Input</h2>
+    <div class="mds-doc-sink__range-slider__input mds-doc-sink__range-slider__input--left">
+        {{ library.form_input(id="sliderNumberField" + idAppend, type="number") }}
+    </div>
+    <div class="mds-doc-sink__range-slider__wrapper mds-doc-sink__range-slider__input--left">
+        {{ library.range_slider(slider_id="sliderInput" + idAppend) }}
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="mds-doc-sink__header">Range Slider Two Handles with Inputs</h2>
+    <div class="mds-doc-sink__range-slider__input mds-doc-sink__range-slider__input--left">
+        {{ library.form_input(id="sliderTwoNumberFieldMin" + idAppend, type="number") }}
+    </div>
+    <div class="mds-doc-sink__range-slider__wrapper mds-doc-sink__range-slider__input--left">
+        {{ library.range_slider(slider_id="sliderTwoWithInput" + idAppend) }}
+    </div>
+    <div class="mds-doc-sink__range-slider__input mds-doc-sink__range-slider__input--left">
+        {{ library.form_input(id="sliderTwoNumberFieldMax" + idAppend, type="number") }}
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="mds-doc-sink__header">Range Slider Two Handles Disabled</h2>
+    {{ library.range_slider(slider_id="sliderDisabled" + idAppend, disabled=true) }}
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="mds-doc-sink__header">Range Slider Hidden Two Handles with Inputs</h2>
+    <div class="mds-doc-sink__range-slider__input mds-doc-sink__range-slider__input--left">
+        {{ library.form_input(id="sliderHiddenTwoNumberFieldMin" + idAppend, type="number") }}
+    </div>
+    <div class="mds-doc-sink__range-slider__wrapper mds-doc-sink__range-slider__input--left">
+        {{ library.range_slider(slider_id="sliderHiddenTwoWithInput" + idAppend, class="mds-range-slider--hidden") }}
+    </div>
+    <div class="mds-doc-sink__range-slider__input mds-doc-sink__range-slider__input--left">
+        {{ library.form_input(id="sliderHiddenTwoNumberFieldMax" + idAppend, type="number") }}
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endmacro %}
+
+{% block closing_body_assets %}
+    <script src="/assets/dependencies/nouislider.min.js"></script>
+    <script src="/assets/doc-dependencies/wnumb.js"></script>
+    <script>
+
+        var bgs = ["White", "Light", "Dark", "Black"];
+        var  i;
+        for (i = 0; i < bgs.length; i++) {
+            var oneSliderBg = document.getElementById('slider' + bgs[i]),
+                twoSliderBg = document.getElementById('sliderTwo' + bgs[i]),
+                twoSliderTooltipsBg = document.getElementById('sliderTwoTooltips' + bgs[i]),
+                twoSliderDisabled = document.getElementById('sliderDisabled' + bgs[i]);
+
+
+            noUiSlider.create(oneSliderBg, {
+                start: 40,
+                connect: [true, false],
+                cssPrefix: 'mds-range-slider-',
+                range: {
+                  'min': 0,
+                  'max': 100
+                }
+            });
+
+            noUiSlider.create(twoSliderBg, {
+            start: [20, 80],
+                connect: true,
+                cssPrefix: 'mds-range-slider-',
+                range: {
+                    'min': 0,
+                    'max': 100
+                }
+            });
+
+            noUiSlider.create(twoSliderTooltipsBg, {
+                start: [20, 80],
+                connect: true,
+                cssPrefix: 'mds-range-slider-',
+                tooltips: [ true, true ],
+                step: 1,
+                range: {
+                    'min': 0,
+                    'max': 100
+                },
+                format: wNumb({
+                    decimals: 3,
+                    thousand: '.'
+                })
+            });
+
+            noUiSlider.create(twoSliderDisabled, {
+            start: [20, 80],
+                connect: true,
+                cssPrefix: 'mds-range-slider-',
+                range: {
+                    'min': 0,
+                    'max': 100
+                }
+            });
+        }
+
+        function sliderWInput() {
+            for (i = 0; i < bgs.length; i++) {
+                var sliderWithInput = document.getElementById('sliderInput' + bgs[i]);
+
+                noUiSlider.create(sliderWithInput, {
+                    start: [ 20 ],
+                    connect: [true, false],
+                    cssPrefix: 'mds-range-slider-',
+                    step: 1,
+                    range: {
+                        'min': [ 0 ],
+                        'max': [ 100 ]
+                    },
+                    format: {
+                      to: function ( value ) {
+                        return value + '';
+                      },
+                      from: function ( value ) {
+                        return value.replace('', '');
+                      }
+                    }
+                });
+            }
+        }
+        sliderWInput();
+
+        var sliderWithInputWhite = document.getElementById('sliderInputWhite');
+        var sliderNumberInputWhite = document.getElementById('sliderNumberFieldWhite');
+
+        sliderWithInputWhite.noUiSlider.on('update', function( values, handle ) {
+            sliderNumberInputWhite.value = values[handle];
+        });
+
+        sliderNumberInputWhite.addEventListener('change', function(){
+            sliderWithInputWhite.noUiSlider.set(this.value);
+        });
+
+        var sliderWithInputLight = document.getElementById('sliderInputLight');
+        var sliderNumberInputLight = document.getElementById('sliderNumberFieldLight');
+
+        sliderWithInputLight.noUiSlider.on('update', function( values, handle ) {
+            sliderNumberInputLight.value = values[handle];
+        });
+
+        sliderNumberInputLight.addEventListener('change', function(){
+            sliderWithInputLight.noUiSlider.set(this.value);
+        });
+
+        var sliderWithInputDark = document.getElementById('sliderInputDark');
+        var sliderNumberInputDark = document.getElementById('sliderNumberFieldDark');
+
+        sliderWithInputDark.noUiSlider.on('update', function( values, handle ) {
+            sliderNumberInputDark.value = values[handle];
+        });
+
+        sliderNumberInputDark.addEventListener('change', function(){
+            sliderWithInputDark.noUiSlider.set(this.value);
+        });
+
+        var sliderWithInputBlack = document.getElementById('sliderInputBlack');
+        var sliderNumberInputBlack = document.getElementById('sliderNumberFieldBlack');
+
+        sliderWithInputBlack.noUiSlider.on('update', function( values, handle ) {
+            sliderNumberInputBlack.value = values[handle];
+        });
+
+        sliderNumberInputBlack.addEventListener('change', function(){
+            sliderWithInputBlack.noUiSlider.set(this.value);
+        });
+        
+        // -----------------
+        // Two slider inputs
+        // -----------------
+
+        function sliderWTwoInputs() {
+            for (i = 0; i < bgs.length; i++) {
+                var sliderTwoFieldsInput = document.getElementById('sliderTwoWithInput' + bgs[i]);
+
+                noUiSlider.create(sliderTwoFieldsInput, {
+                    start: [ 20, 80 ],
+                    connect: true,
+                    cssPrefix: 'mds-range-slider-',
+                    step: 1,
+                    range: {
+                        'min': [ 0 ],
+                        'max': [ 100 ]
+                    },
+                    format: {
+                      to: function ( value ) {
+                        return value + '';
+                      },
+                      from: function ( value ) {
+                        return value.replace('', '');
+                      }
+                    }
+                });
+            }
+        }
+        sliderWTwoInputs();
+
+        var sliderTwoInputsWhite = document.getElementById('sliderTwoWithInputWhite'),
+            inputTwoFormatWhiteMin = document.getElementById('sliderTwoNumberFieldMinWhite'),
+            inputTwoFormatWhiteMax = document.getElementById('sliderTwoNumberFieldMaxWhite');
+
+        sliderTwoInputsWhite.noUiSlider.on('update', function( values, handle ) {
+            if ( handle ) {
+                inputTwoFormatWhiteMax.value = values[handle];
+            } else {
+                inputTwoFormatWhiteMin.value = values[handle];
+            }
+        });
+
+        inputTwoFormatWhiteMin.addEventListener('change', function(){
+            sliderTwoInputsWhite.noUiSlider.set([this.value, null]);
+        });
+
+        inputTwoFormatWhiteMax.addEventListener('change', function(){
+            sliderTwoInputsWhite.noUiSlider.set([null, this.value]);
+        });
+
+        var sliderTwoInputsLight = document.getElementById('sliderTwoWithInputLight'),
+            inputTwoFormatLightMin = document.getElementById('sliderTwoNumberFieldMinLight'),
+            inputTwoFormatLightMax = document.getElementById('sliderTwoNumberFieldMaxLight');
+
+        sliderTwoInputsLight.noUiSlider.on('update', function( values, handle ) {
+            if ( handle ) {
+                inputTwoFormatLightMax.value = values[handle];
+            } else {
+                inputTwoFormatLightMin.value = values[handle];
+            }
+        });
+
+        inputTwoFormatLightMin.addEventListener('change', function(){
+            sliderTwoInputsLight.noUiSlider.set([this.value, null]);
+        });
+
+        inputTwoFormatLightMax.addEventListener('change', function(){
+            sliderTwoInputsLight.noUiSlider.set([null, this.value]);
+        });
+
+        var sliderTwoInputsDark = document.getElementById('sliderTwoWithInputDark'),
+            inputTwoFormatDarkMin = document.getElementById('sliderTwoNumberFieldMinDark'),
+            inputTwoFormatDarkMax = document.getElementById('sliderTwoNumberFieldMaxDark');
+
+        sliderTwoInputsDark.noUiSlider.on('update', function( values, handle ) {
+            if ( handle ) {
+                inputTwoFormatDarkMax.value = values[handle];
+            } else {
+                inputTwoFormatDarkMin.value = values[handle];
+            }
+        });
+
+        inputTwoFormatDarkMin.addEventListener('change', function(){
+            sliderTwoInputsDark.noUiSlider.set([this.value, null]);
+        });
+
+        inputTwoFormatDarkMax.addEventListener('change', function(){
+            sliderTwoInputsDark.noUiSlider.set([null, this.value]);
+        });
+
+        var sliderTwoInputsBlack = document.getElementById('sliderTwoWithInputBlack'),
+            inputTwoFormatBlackMin = document.getElementById('sliderTwoNumberFieldMinBlack'),
+            inputTwoFormatBlackMax = document.getElementById('sliderTwoNumberFieldMaxBlack');
+
+        sliderTwoInputsBlack.noUiSlider.on('update', function( values, handle ) {
+            if ( handle ) {
+                inputTwoFormatBlackMax.value = values[handle];
+            } else {
+                inputTwoFormatBlackMin.value = values[handle];
+            }
+        });
+
+        inputTwoFormatBlackMin.addEventListener('change', function(){
+            sliderTwoInputsBlack.noUiSlider.set([this.value, null]);
+        });
+
+        inputTwoFormatBlackMax.addEventListener('change', function(){
+            sliderTwoInputsBlack.noUiSlider.set([null, this.value]);
+        });
+
+        // Two with Input Hidden
+
+        function sliderHiddenWTwoInputs() {
+            for (i = 0; i < bgs.length; i++) {
+                var sliderHiddenTwoFieldsInput = document.getElementById('sliderHiddenTwoWithInput' + bgs[i]);
+
+                noUiSlider.create(sliderHiddenTwoFieldsInput, {
+                    start: [ 20, 80 ],
+                    connect: true,
+                    cssPrefix: 'mds-range-slider-',
+                    step: 1,
+                    range: {
+                        'min': [ 0 ],
+                        'max': [ 100 ]
+                    },
+                    format: {
+                      to: function ( value ) {
+                        return value + '';
+                      },
+                      from: function ( value ) {
+                        return value.replace('', '');
+                      }
+                    }
+                });
+            }
+        }
+        sliderHiddenWTwoInputs();
+
+        var sliderHiddenTwoInputsWhite = document.getElementById('sliderHiddenTwoWithInputWhite'),
+            inputTwoFormatWhiteMinHidden = document.getElementById('sliderHiddenTwoNumberFieldMinWhite'),
+            inputTwoFormatWhiteMaxHidden = document.getElementById('sliderHiddenTwoNumberFieldMaxWhite');
+
+        sliderHiddenTwoInputsWhite.noUiSlider.on('update', function( values, handle ) {
+            if ( handle ) {
+                inputTwoFormatWhiteMaxHidden.value = values[handle];
+            } else {
+                inputTwoFormatWhiteMinHidden.value = values[handle];
+            }
+        });
+
+        inputTwoFormatWhiteMinHidden.addEventListener('change', function(){
+            sliderHiddenTwoInputsWhite.noUiSlider.set([this.value, null]);
+        });
+
+        inputTwoFormatWhiteMaxHidden.addEventListener('change', function(){
+            sliderHiddenTwoInputsWhite.noUiSlider.set([null, this.value]);
+        });
+
+        var sliderHiddenTwoInputsLight = document.getElementById('sliderHiddenTwoWithInputLight'),
+            inputTwoFormatLightMinHidden = document.getElementById('sliderHiddenTwoNumberFieldMinLight'),
+            inputTwoFormatLightMaxHidden = document.getElementById('sliderHiddenTwoNumberFieldMaxLight');
+
+        sliderHiddenTwoInputsLight.noUiSlider.on('update', function( values, handle ) {
+            if ( handle ) {
+                inputTwoFormatLightMaxHidden.value = values[handle];
+            } else {
+                inputTwoFormatLightMinHidden.value = values[handle];
+            }
+        });
+
+        inputTwoFormatLightMinHidden.addEventListener('change', function(){
+            sliderHiddenTwoInputsLight.noUiSlider.set([this.value, null]);
+        });
+
+        inputTwoFormatLightMaxHidden.addEventListener('change', function(){
+            sliderHiddenTwoInputsLight.noUiSlider.set([null, this.value]);
+        });
+
+        var sliderHiddenTwoInputsDark = document.getElementById('sliderHiddenTwoWithInputDark'),
+            inputTwoFormatDarkMinHidden = document.getElementById('sliderHiddenTwoNumberFieldMinDark'),
+            inputTwoFormatDarkMaxHidden = document.getElementById('sliderHiddenTwoNumberFieldMaxDark');
+
+        sliderHiddenTwoInputsDark.noUiSlider.on('update', function( values, handle ) {
+            if ( handle ) {
+                inputTwoFormatDarkMaxHidden.value = values[handle];
+            } else {
+                inputTwoFormatDarkMinHidden.value = values[handle];
+            }
+        });
+
+        inputTwoFormatDarkMinHidden.addEventListener('change', function(){
+            sliderHiddenTwoInputsDark.noUiSlider.set([this.value, null]);
+        });
+
+        inputTwoFormatDarkMaxHidden.addEventListener('change', function(){
+            sliderHiddenTwoInputsDark.noUiSlider.set([null, this.value]);
+        });
+
+        var sliderHiddenTwoInputsBlack = document.getElementById('sliderHiddenTwoWithInputBlack'),
+            inputTwoFormatBlackMinHidden = document.getElementById('sliderHiddenTwoNumberFieldMinBlack'),
+            inputTwoFormatBlackMaxHidden = document.getElementById('sliderHiddenTwoNumberFieldMaxBlack');
+
+        sliderHiddenTwoInputsBlack.noUiSlider.on('update', function( values, handle ) {
+            if ( handle ) {
+                inputTwoFormatBlackMaxHidden.value = values[handle];
+            } else {
+                inputTwoFormatBlackMinHidden.value = values[handle];
+            }
+        });
+
+        inputTwoFormatBlackMinHidden.addEventListener('change', function(){
+            sliderHiddenTwoInputsBlack.noUiSlider.set([this.value, null]);
+        });
+
+        inputTwoFormatBlackMaxHidden.addEventListener('change', function(){
+            sliderHiddenTwoInputsBlack.noUiSlider.set([null, this.value]);
+        });
+
+
+    </script>
+{% endblock %}
