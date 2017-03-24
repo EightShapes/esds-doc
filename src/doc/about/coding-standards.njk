@@ -1,0 +1,158 @@
+{% set title = 'Coding Standards' %}
+{% extends 'doc_templates/default.doc.template.njk' %}
+
+{% block doc_body %}
+    {% filter markdown %}
+# Coding Standards
+
+The MDS team adheres to standard coding practices and tools to build components and other features. These standards do not serve as coding style standards to which other product teams must adhere. Instead, they express conventions used by MDS to create a maintainable, scalable library that other teams are welcome to emulate. 
+
+## HTML
+
+### Semantics
+
+The stand-alone HTML should have value and meaning.
+
+* If you are wrapping paragraph text with an element, use a `<p>` tag.
+* If it's tabular data, use a `<table>` tag.
+* If you have an unordered list, use a `<ul>` with nested `<li>`s wrapping each item.
+* If we write HTML using meaningful tags, we won’t have to rewrite the markup when the UI changes.
+
+### Header Tags
+
+* `<!DOCTYPE html>`: Use a doctype to force browsers to render in standards mode and prevent quirks-mode problems in Internet Explorer.
+* `<html lang="en-us">`: Set a lang attribute to assist browsers and search engines.
+* `<meta charset="UTF-8">`: Use UTF-8 encoding.
+* `<meta http-equiv="X-UA-Compatible" content="IE=Edge">`: Use the latest supported Microsoft browser mode.
+
+### Best Practices
+
+* Lowercase tag names.
+* Lowercase attribute names.
+* Use four spaces (not tabs) for indentation.
+* Use double (not single) quotation marks for attribute values.
+* Use as few `<span>`s and `<div>`s as possible.
+* Account for responsiveness. If a component requires responsive grid classes to render properly on smaller devices, apply those classes properly in demonstrations on a sink page and in documentation.
+* Minimize `class=””` properties according to BEM methodology – https://en.bem.info/methodology/quick-start/.
+* Use `id=””` names very sparingly and only if:
+	* Using a label with a `for=””` attribute
+	* Using a third-party library that relies on `id=””`s to target specific elements
+* Use HTML 5 tags according to the spec for semantic purposes.
+* Please note regarding IE11 – https://html5test.com/compare/browser/ie-11.html
+* Never use inline styles unless leveraging a third-party framework that relies on inline styling (e.g. a tooltip/popover lib that positions the element using inline top, right, bottom, or left properties).
+* Don't include a trailing slash in self-closing elements – the HTML5 spec says they're optional.
+* Don’t omit optional closing tags (e.g. `</li>` or `</body>`).
+* Attribute order:
+	* Put `class` attribute first (engineers read/write this most often).
+	* For all other attributes, add them in the order that makes most sense to you, but keep in mind that the more consistent the attribute order, the easier the code will be to inherit.
+	* Exception to `class` attribute first rule: When an attribute is critical to defining an element, put it first to improve readability – `<input type="text" class="" id="" disabled name="" placeholder="" readonly value="">`
+
+### Tools
+
+* [HTML preprocessor](https://github.com/carlosl/gulp-nunjucks-render)
+* [Templating engine](https://mozilla.github.io/nunjucks/)
+
+### Inspiration
+
+These principles were inspired by:
+
+* http://www.yellowshoe.com.au/standards/html
+* http://codeguide.co/html
+* http://manuals.gravitydept.com/code/html
+
+## CSS
+
+The MDS component library is written using [BEM CSS Methodology](https://en.bem.info/methodology/quick-start/). 
+
+### Principles
+
+* Use longhand syntax wherever appropriate for properties. This will avoid accidental CSS resetting – https://css-tricks.com/accidental-css-resets/.
+* Use class name hyphenations and underscores according to BEM methodology – https://en.bem.info/methodology/quick-start/.
+* Code to a standards-compliant browser first, and then fix issues in IE.
+* Keep selectors as flat as possible with regard to chaining or nesting.
+* Never style raw HTML elements. Instead, use a class.
+
+### CSS Style
+
+* Spacing around rules
+	* Use sass-lint to assist in code style maintenance.
+	* Our full list of rules – https://msstash.morningstar.com/projects/TECHSTD/repos/mds/browse/.sass-lint.yml
+* Sass-lint docs – https://www.npmjs.com/package/sass-lint
+* Use spaces (not tabs) for indentation.
+* Include one space after a colon for each declaration.
+* Include one space after selector.
+* Put each declaration its own line for more accurate error reporting.
+	* Opening curly-brace followed by new line
+	* Closing curly-brace on new line
+* Use a blank line between rules.
+
+### Readability
+
+* Alphabetize properties.
+* End all declarations with a semicolon. 
+* Comma-separated property values should include a space after each comma (e.g., `box-shadow`).
+* Include spaces after commas within `rgb()`, `rgba()`, `hsl()`, `hsla()`, or `rect()` values. 
+* Don't prefix property values or color parameters with a leading zero (e.g., `.5` instead of `0.5` and `-.5px` instead of `-0.5px`).
+* Lowercase all hex values, e.g., `#ffffff`. Lowercase letters are much easier to discern when scanning a document as they tend to have more unique shapes.
+* Don’t use shorthand hex values; instead spell out all 6 characters `#ffffff`.
+* Quote attribute values in selectors, e.g., `input[type="text"]`. They’re only optional in some cases and it’s a good practice for consistency.
+* Avoid specifying units for zero values, e.g., `margin: 0;` instead of `margin: 0px;`.
+
+### CSS Tools
+
+* [Preprocessor](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
+* [Linting](https://www.npmjs.com/package/gulp-sass-lint)
+* [Minifier](http://cssnano.co/)
+
+## JavaScript
+
+### Inspiration
+
+What are some general principles your team should follow when writing JavaScript?
+
+* https://github.com/airbnb/javascript
+* https://github.com/rwaldron/idiomatic.js
+* https://github.com/styleguide/javascript
+
+### Tools
+
+* Are you using a JavaScript framework, such as https://jquery.com/?
+* Where is the documentation for those frameworks?
+* Are you using any polyfills or shims?
+* What third-party scripts are dependencies for your project? 
+	* https://select2.github.io/
+	* http://jbeurel.github.io/bootstrap-annotated-source/docs/popover.html
+	* https://refreshless.com/nouislider/
+* Do you test your JavaScript?
+
+### Style 
+
+* What does JS commenting look like? 
+* What patterns are you following?
+	* https://addyosmani.com/resources/essentialjsdesignpatterns/book/
+	* https://shichuan.github.io/javascript-patterns/
+
+## Fonts
+
+MDS does not use an icon font, but rather an svg with this external reference technique – https://css-tricks.com/svg-use-with-external-reference-take-2/. We reference custom fonts using @font-face and referencing a .eot and a fallback .woff.
+
+Example: 
+```
+@font-face {
+    font-family: 'Univers';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/webfont-name.eot');
+    src: url('../fonts/webfont-name.eot?#iefix') format('embedded-opentype'), url('../fonts/webfont-name.woff') format('woff');
+}
+```
+
+## Tooling
+
+* [Task manager](http://gulpjs.com/)
+* [Packages](https://nodejs.org/en/)
+* [Our package file](https://msstash.morningstar.com/projects/TECHSTD/repos/mds/browse/package.json)
+
+
+    {% endfilter %}
+{% endblock %}

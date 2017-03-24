@@ -1,0 +1,182 @@
+{% set title = 'Development Process' %}
+{% extends 'doc_templates/default.doc.template.njk' %}
+
+{% block doc_body %}
+    {% filter markdown %}
+
+# Development Process
+
+The Morningstar Design System team follows a well-defined process for designing, building, and documenting visual style, components, and other patterns. 
+
+## Build Steps
+
+The process to build components, visual style, and other concerns follows some or all of four steps. Typically, a system feature – a new card component, for example, or an additional button variation – involves pairing a designer and an engineer. While a designer completes DESIGN and an engineer completes BUILD, either may complete the DOC and PUBLISH steps. 
+
+<table class="mds-data-table">
+    <thead class="mds-data-table__head">
+        <tr class="mds-data-table__row">
+            <th class="mds-data-table__header-cell">Step</th>
+            <th class="mds-data-table__header-cell">Complete When</th>
+            <th class="mds-data-table__header-cell">Owner</th>
+            <th class="mds-data-table__header-cell">Reviewers</th>
+        </tr>
+    </thead>
+    <tbody class="mds-data-table__body">
+        <tr class="mds-data-table__row">
+            <td class="mds-data-table__cell">DESIGN</td>
+            <td class="mds-data-table__cell">Design has completed and sufficiently documented a range of variations, states, and other design properties.</td>
+            <td class="mds-data-table__cell">Designer</td>
+            <td class="mds-data-table__cell">
+                MD Design \* <br/>
+                Director Design \* <br/>
+                Paired Engineer \* <br/>
+                System Lead <br/>
+                Other Designer
+            </td>
+        </tr>
+        <tr class="mds-data-table__row">
+            <td class="mds-data-table__cell">BUILD</td>
+            <td class="mds-data-table__cell">Front-end assets – HTML, CSS, and JS – are complete for all variations, states, and variables, and sink page(s) have passed Build QA.</td>
+            <td class="mds-data-table__cell">Engineer</td>
+            <td class="mds-data-table__cell">
+                Paired Designer \*  <br/>
+                Other Engineer \*  <br/>
+                System Lead
+            </td>
+        </tr>
+        <tr class="mds-data-table__row">
+            <td class="mds-data-table__cell">DOC</td>
+            <td class="mds-data-table__cell">Documentation copy, images, and code samples are complete and have passed Doc QA.</td>
+            <td class="mds-data-table__cell">Designer OR Engineer</td>
+            <td class="mds-data-table__cell">
+                Paired Designer OR Engineer \*  <br/>
+                Other Designer OR Engineer \*  <br/>
+                System Editor \*  <br/>
+                System Lead
+            </td>
+        </tr>
+        <tr class="mds-data-table__row">
+            <td class="mds-data-table__cell">PUBLISH</td>
+            <td class="mds-data-table__cell">Documentation has been migrated into publishable pages, verified, and merged with built features from the feature branch into the release branch.</td>
+            <td class="mds-data-table__cell">Engineer OR Designer</td>
+            <td class="mds-data-table__cell">The other person</td>
+        </tr>
+    </tbody>
+</table>
+
+\* indicates required reviewer
+
+### Design 
+
+The DESIGN task includes finalizing all design decisions of a UI element or other design consideration. This includes not just directional validation from the design community, but meticulously solving for variations, states, and other relevant design details. 
+
+#### Process 
+
+* Signify a DESIGN task in JIRA by appending [Design] to the end of the task title. 
+* Create design concepts in Sketch (preferred), Adobe Photoshop, or Adobe Illustrator. 
+* Emerging designs must be shared via critique with design communities for both Institutional and Consumer products, as well as at least one MDS team critique. 
+* The DESIGN task is complete when all reviews are concluded and dev-ready design artifacts have been delivered to an assigned engineer. 
+
+#### Reviews 
+
+To complete a DESIGN task, the designer must obtain approval from: 
+
+* Managing Director (required) 
+* Design Director (at least one required) 
+* Engineer assigned to build the design when relevant (required) 
+* System Lead (recommended) 
+* Additional designer on the MDS team (recommended) 
+
+### Build 
+
+The BUILD task includes the development and QA of MDS code, including library items, visual style, and other tooling. 
+
+#### Process 
+
+* Signify a BUILD task in JIRA by appending [Build] to the end of the task title. 
+* Create a new feature branch from the develop branch. 
+* Label feature branches as feature/MDS-###-[label], such as feature/MDS-219-Split Button. 
+* Build the solution on a sink page in the repo/component-sinks/ directory, with a filename corresponding to the component, such as buttons.njk. 
+* The assigned engineer conducts Component QA independently prior to creating a pull request for review. 
+* To trigger review, create a pull request of the feature/MDS-###-[label] branch against the develop branch and assign reviewers to the pull request.  
+* The BUILD process concludes when a feature branch is merged into the develop branch. 
+
+#### Reviews 
+
+To complete a BUILD task, the engineer must: 
+
+* Request review from the assigned designer and at least one MDS engineer in both the pull request and individual sub-tasks on the JIRA task per reviewer. 
+* Mark the task as complete when all reviews are complete and the pull request has been merged. 
+
+### Doc 
+
+The DOC task corresponds to authoring any content that communicates what the system provides and how it operates. This includes copy, imagery, and coded examples illustrating the system via component documentation, processes, and any other content useful within or beyond the MDS core team. 
+The DOC task is typically completed by either the assigned designer or engineer for that item. 
+
+#### Process 
+
+* Signify a DOC task in JIRA by appending [Doc] to the end of the task title. 
+* Write guidelines, reference tables, and other copy to be published on the system site within a Google Docs document in the team’s /Components/ shared drive location, where MDS-#### corresponds to the DOC JIRA task number. 
+* Create supplemental content imagery (such as a Do or Don’t PNG) in the /Components/MDS-###/Images/ Google Docs shared drive location. 
+* For code samples to be revealed in example/code pairs, begin work on the documentation page at repo/component/[component-name].njk that’s finalized in the PUBLISH step. 
+* The DOC task is complete when all reviews are complete and examples and artwork are placed in the proper locations. 
+
+#### Reviews 
+
+To complete a DOC task, the author must obtain approval from: 
+
+* The partnering designer or engineer, depending on who designed and built the part. 
+* Another designer or engineer on the MDS core team. 
+* The assigned system editor, who provides both a technical (content accuracy and relevance) and editorial (tone and style) review. 
+
+### Publish 
+
+The PUBLISH step migrates content – copy, imagery, code examples, etc. – authored during the DOC step to the system site. 
+
+#### Process 
+
+* Integrate copy, images, and code samples into the documentation page at repo/component/[component-name].njk. 
+* To trigger review, create a pull request of the feature/MDS-###-[label] branch into the current develop branch as well as JIRA subtasks for each assigned reviewer. 
+* The PUBLISH process concludes when a feature branch is merged into the develop branch. 
+
+#### Reviews 
+
+To complete a PUBLISH task, the publisher must obtain approval from: 
+
+* A designer or engineer on the MDS core team. 
+
+## Releases
+
+The Morningstar Design System will publish two main artifacts: the documentation site and the consumable library for application engineers.
+
+### Library Release
+
+* The latest library release uses a Jenkins job (MDS-Release) to deploy to npm as a publicly available package as well as synced to our documentation site.
+* All releases will be downloadable from the documentation site as zip files.
+* Releases can also be built from source code and will be present locally in the “dist” directory. This directory is not committed to the source code repository.
+
+### Documentation Release
+
+* The documentation site lives on Amazon S3 as a static web hosting bucket with two environments: production (PROD) and non-production (NONPROD). 
+* Code commits to the develop branch are built and deployed to the non-production S3 environment from an automated build job (MDS-Develop). 
+* Approved release candidates will be merged in the release branch and built and deployed to the production S3 environment from a build job (MDS-Release) that will be started manually.
+* The production S3 environment will be accessible from designsystem.morningstar.com.
+
+### Workflow for Continuous Integration and Automation
+
+#### Jenkins
+
+* There is a custom EC2 instance for the techstd team account in AWS that is performing build tasks: http://10.255.40.51:8080/
+* There are two jobs in Jenkins for the documentation site: MDS-Develop and MDS-Release. Both jobs perform roughly the same actions, but they pull for different branches and deploy to different environments. The develop branch is deployed to the non-production environment and the release branch is deployed to the production environment. 
+* MDS-Develop is automated by commits to the develop branch. MDS-Release will be started manually and pull from the release branch.
+* Both of the jobs publish results to Slack channel #mds-engineering.
+
+#### S3
+
+* There are two environments for serving the static website: mstar-techstd-mds-non-prod and mstar-techstd-mds-prod. 
+* The prod environment will have a Route53 domain name (designsystem.morningstar.com) and will use a cloudfront distribution for caching.
+* These environments exist in the techstd team account in AWS.
+
+
+    {% endfilter %}
+{% endblock %}

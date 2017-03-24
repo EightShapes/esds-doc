@@ -47,6 +47,10 @@ body {
     z-index: $mds-z-index-sticky;
 }
 
+.mds-doc-footer {
+    font-weight: $mds-font-weight-light;
+}
+
 .mds-doc__content-nav-wrap {
     padding-top: $mds-doc-header-height;
 }

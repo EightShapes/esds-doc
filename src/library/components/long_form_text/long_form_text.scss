@@ -10,14 +10,14 @@
     h2 {
         @include level-2-heading();
         border-top: solid 4px $mds-border-separator-color-on-light;
-        margin: $mds-space-stack-xl;
+        margin: $mds-space-stack-l;
         margin-top: $mds-space-xl;
         padding-top: $mds-space-m;
     }
 
     h3 {
         @include level-3-heading();
-        margin: $mds-space-stack-l;
+        margin: $mds-space-stack-m;
     }
 
     h4 {
@@ -28,7 +28,7 @@
     ul, 
     ol {
         font-weight: $mds-font-weight-light;
-        margin: $mds-space-stack-xl;
+        margin: $mds-space-stack-l;
         padding: 0 0 0 $mds-space-l;
     }
 
@@ -44,7 +44,7 @@
     p {
         @include mds-text-crop();
         font-weight: $mds-font-weight-light;
-        margin: $mds-space-stack-xl;
+        margin: $mds-space-stack-l;
     }
 
     .mds-long-form-text__lead {

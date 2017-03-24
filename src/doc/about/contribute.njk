@@ -1,0 +1,114 @@
+{% set title = 'Contributing' %}
+{% extends 'doc_templates/default.doc.template.njk' %}
+
+{% block doc_body %}
+    {% filter markdown %}
+        # Contributing
+
+        MDS welcomes contributions from the Morningstar design and engineering community. While we expect many small changes, some may be more considerable and require deeper consideration. For these larger changes, the system follows a Request-for-Comment model.
+
+        ## Small Changes
+        
+        Small changes that do not require a request for comment:
+        
+        * Fixing a defect based on established quality criteria, such as functional, visual, or accessibility defects.
+        * Additions that strictly improve objective quality criteria or completeness, such as performance, improved browser support, or a missing design state (such as a hover display).
+        * Additions only likely to be noticed by other implementers-of-[name], invisible to users-of-[name].
+        
+        If a small change is really a large change, the system team may decline the change with a polite request to submit a Request-for-Comment first.
+        
+        ### Change Type: Code vs Design
+        
+        Many changes can occur through a pull request to the current release’s feature branch. This includes bug fixes and smaller documentation improvements that can be implemented and reviewed via the team’s normal pull request workflow. To learn about the system’s repository and how to use it, contact James Colvard at [james.colvard@morningstar.com](mailto:james.colvard@morningstar.com). 
+        
+        For design changes, coordinate the request with Matt Jankowski at [matt.jankowski@morningstar.com](mailto:matt.jankowski@morningstar.com).
+        
+        ## Large Changes
+        
+        Changes that "substantially" impact the design, build, or tooling of the system require consensus among the system core team, segment owner, and contributor. Begin by proposing such changes via a Request-for-Comment. After receiving approval, submit a pull request as a next step.
+        
+        Large changes can include:
+
+        * Alterations to the system’s visual languages built into constants, visual style properties, or style changes to published components.
+        * Proposing a new component.
+        * Component enhancements that require changes to markup and/or scripting.
+        * Proposing a new documentation page or category for a concern not already covered.
+
+        ## Request for Comment
+
+        A Request-for-Comment (RFC) is a predictable workflow to submit ideas for enhancements and extensions to the design system so that all stakeholders can be confident of how the system is evolving for design, engineering, and other concerns.
+        
+        The Request-for-Comment also protects the aspiring contributor from investing significant time to design, develop, and document a new feature that may not align with the system’s direction or vision.
+        
+        ### 1. Proposing a Request
+        
+        To propose a feature via an RFC, send an email to designsystem@morningstar.com, including:
+        * Request title
+        * Requester name
+        * Requester email address
+        * Type, one of:
+            * New
+            * Enhancement
+            * Defect / Fix
+            * Performance
+        * Segment, one of:
+            * Visual Style
+            * Component
+            * UX Pattern
+            * Editorial Style
+            * Coding Style
+            * Accessibility
+        * Description
+        * Rationale
+        * Related Active Projects / Products
+
+        #### Attach Relevant Documentation
+        
+        You may attach documents to your request, including diagrams, illustrations, designs, code snippets, or other relevant documentation.
+
+        ### 2. Review & Clarify
+        
+        Once an RFC is received, a system team member or the segment owner will review it. The system team and/or the segment owner will confirm that the contributor has sufficiently detailed the proposal and provide initial feedback. The triaging member may also solicit initial feedback from community members likely to have a strong opinion on the topic.
+        
+        If further clarification or details are required, the contributor must submit a revised proposal after completing those changes.
+        
+        ### 3. Discussion
+        
+        After the initial review and revision process, the proposal will be open for discussion for a short period of time.
+        
+        Within one to two weeks, the system team, segment owner, and contributor will collaborate to determine whether to approve the request. Collaboration can include email (for clarifications and more details), Slack discussion, and, if necessary, face-to-face meetings.
+        
+        Usually, the group can reach a decision after a short period, based on discussion and threaded comments. On occasion, discussion may stall and relevant participants will need to make a decision.
+        
+        ### 4. Activation
+        
+        Once approved to move forward, an RFC is considered “active” for implementation.
+        
+        Activation is not a rubber stamp and does not mean the feature will ultimately be merged. It does mean that in principle all the major stakeholders have agreed to the feature and are amenable to incorporating it into the system.
+        
+        ### 5. Implementation
+        
+        Contributors may implement an active RFC, conforming to considerations of quality, consistency, and reuse relative to similar system concerns. Materials may include:
+        
+        * Design assets (such as a Photoshop, Sketch, or Illustrator) reviewed within established critique and approved, and/or
+        * Code (such as HTML, CSS, and JS) built and submitted as a pull request to the system repository, and/or
+        * Documentation (such as guidelines, reference tables, images, and code examples) in the form of a OneNote document and related assets.
+        
+        ### Assigned Contributor
+        
+        An RFC author need not be obligated to implement it, and may volunteer themselves or another contributor to complete the work.
+        
+        ### Priority
+        
+        Some RFCs represent vital features that need to be implemented right away. Other RFCs represent features that can wait until any arbitrary designer or engineer is available and interested in doing the work. 
+        
+        ### Tracking
+        
+        The system will track every active RFC via a JIRA issue in the [MDS project](https://msjira.morningstar.com/secure/RapidBoard.jspa?projectKey=MDS). This can include assignment to a specific contributor, including those outside the core team.
+        
+        ## Reference
+
+        The RFC process was inspired by the [Rust RFC documentation](https://github.com/rust-lang/rfcs).
+
+    {% endfilter %}
+{% endblock %}

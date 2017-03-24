@@ -30,7 +30,7 @@ var packageData = require('./package.json'),
 
 marked.setOptions({
     "renderer": new marked.Renderer(),
-    "gfm": false,
+    "gfm": true,
     "highlight": false,
     "pedantic": false,
     "sanitize": false,

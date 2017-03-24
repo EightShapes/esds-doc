@@ -85,7 +85,7 @@ $mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 3
 @mixin level-4-heading() {
     @include mds-text-crop();
     font-size: $mds-font-size-default * 1.125;
-    font-weight: $mds-font-weight-thin;
+    font-weight: $mds-font-weight-bold;
 }
 
 @mixin eyebrow-heading() {

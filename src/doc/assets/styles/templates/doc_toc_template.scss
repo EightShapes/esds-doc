@@ -45,7 +45,6 @@ $mds-doc-toc-max-width-breakpoint: $mds-doc-content-max-width + $mds-doc-nav-wid
 
 .mds-doc__content-inner {
     margin: 0;
-    max-width: none;
 
     @media screen and (min-width: 1196px) {
         margin: 0 auto;
@@ -54,8 +53,8 @@ $mds-doc-toc-max-width-breakpoint: $mds-doc-content-max-width + $mds-doc-nav-wid
     }
 }
 
-.mds-long-form-text .mds-doc-page-nav__page-header,
-.mds-doc-page-nav__page-header {
-    margin-top: -($mds-doc-header-height + $mds-space-m);
-    padding-top: $mds-doc-header-height + $mds-space-m;
-}
+// .mds-long-form-text .mds-doc-page-nav__page-header,
+// .mds-doc-page-nav__page-header {
+//     margin-top: -($mds-doc-header-height + $mds-space-m);
+//     padding-top: $mds-doc-header-height + $mds-space-m;
+// }

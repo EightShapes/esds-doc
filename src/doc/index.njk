@@ -1,18 +1,28 @@
 {% extends 'doc_templates/default.doc.template.njk' %}
 {% block doc_body %}
     {% filter markdown %}
-        #Morningstar Design System 
-        ###v{{ project.version }}
+### v{{ project.version }}
         
-        ## Component Sinks
-        * [Buttons Sink](component-sinks/buttons.html)
-        * [Data Tables Sink](component-sinks/data-tables.html)
-        * [Forms Sink](component-sinks/forms.html)
-        * [List Groups Sink](component-sinks/list-group.html)
-        * [Notification Sink](component-sinks/notification.html)
-        * [Pagination Sink](component-sinks/pagination.html)
-        * [Range Sliders Sink](component-sinks/range-sliders.html)
-        * [Switches Sink](component-sinks/switches.html)
-        * [Tooltips Sink](component-sinks/tooltips.html)
+The Morningstar Design System Team is excited to announce an important milestone: our version 0.1 release! You’ll find our most important components – Buttons, Forms, Data Tables, and more – built with an enhanced Morningstar visual language, all within an alpha preview of our documentation site at http://designsystem.morningstar.com/.
+
+While MDS has begun 0.x releases, current releases are not yet stable. As we progress through 2017Q2, MDS anticipates a 1.0 release mid-year for use in production settings. Nevertheless, the team encourages feedback from the design and engineering communities to tailor assets for integration into specific products.
+
+### About MDS
+
+The Morningstar Design System is a collection of brand, visual, UX, and technical standards built into an HTML & CSS framework so that products can quickly build accessible, high-quality, consistent experiences.
+
+MDS is supported by a system team to build features and collaborate with the Morningstar design and engineering communities. Connect with us on SlackHQ in #mds-engineering and #mds-design channels and via email at designsystem@morningstar.com.
+
+### Emerging Components
+
+* [Buttons Sink](component-sinks/buttons.html)
+* [Data Tables Sink](component-sinks/data-tables.html)
+* [Forms Sink](component-sinks/forms.html)
+* [List Groups Sink](component-sinks/list-groups.html)
+* [Notification Sink](component-sinks/notification.html)
+* [Pagination Sink](component-sinks/pagination.html)
+* [Range Sliders Sink](component-sinks/range-sliders.html)
+* [Switches Sink](component-sinks/switches.html)
+* [Tooltips Sink](component-sinks/tooltips.html)
     {% endfilter %}
 {% endblock %}
