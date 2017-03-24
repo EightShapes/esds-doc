@@ -1,4 +1,5 @@
 {% set title = 'Color' %}
+
 {% extends 'doc_templates/default.doc.template.njk' %}
 
 {% block doc_body %}
@@ -6,19 +7,20 @@
         # Color
         This is a proof of concept for the dev environment. Color names are placeholders.
     {% endfilter %}
-    {% for colorName, hex in mdsConstants.color %}
-        {% if colorName == 'neutral' %}
-            {% for colorValue, hex in mdsConstants.color.neutral %}
+    {% set constantColors = mdsConstants.color %}
+    {% for colorName, stop in constantColors %}
+        {% if colorName == 'white' or colorName == 'black' %}
+            <div style="display:inline-block; width: 100px; height: 100px; text-align:center; margin: 10px;">
+                <h3>{{ colorName }}</h3>
+                <div style="height:40px; width:100%; background-color:{{ stop }};"></div>
+            </div>
+        {% else %}
+            {% for colorValue, hex in stop %}
                 <div style="display:inline-block; width: 100px; height: 100px; text-align:center; margin: 10px;">
-                    <h3>neutral-{{ colorValue }}</h3>
+                    <h3>{{ colorName }}-{{ colorValue }}</h3>
                     <div style="height:40px; width:100%; background-color:{{ hex }};"></div>
                 </div>
             {% endfor %}
-        {% else %}
-            <div style="display:inline-block; width: 100px; height: 100px; text-align:center; margin: 10px;">
-                <h3>{{ colorName }}</h3>
-                <div style="height:40px; width:100%; background-color:{{ hex }};"></div>
-            </div>
         {% endif %}
     {% endfor %}
 {% endblock %}
