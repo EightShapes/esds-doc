@@ -53,7 +53,7 @@
     "semver": "^5.3.0",
     "slash": "^1.0.0",
     "strip-indent": "^2.0.0",
-    "wNumb": "^1.1.0",
+    "wnumb": "^1.1.0",
     "yamljs": "^0.2.8"
   },
   "dependencies": {
