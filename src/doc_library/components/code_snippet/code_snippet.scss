@@ -1,66 +1,66 @@
-$mds-doc-space-stack-code-snippet: 0 0 24px;
-$mds-doc-font-size-code-snippet: 13px;
-$mds-doc-size-caret-width: 4px;
-$mds-color-transparent-caret-border: rgba($mds-background-color-dark, 0);
+$theme-doc-space-stack-code-snippet: 0 0 24px;
+$theme-doc-font-size-code-snippet: 13px;
+$theme-doc-size-caret-width: 4px;
+$theme-color-transparent-caret-border: rgba($theme-background-color-dark, 0);
 
-.#{$mds-project-name}-doc-code-snippet {
-    border: $mds-border-separator-default;
-    border-radius: $mds-border-radius-default;
-    margin: $mds-doc-space-stack-code-snippet;
+.#{$theme}-doc-code-snippet {
+    border: $theme-border-separator-default;
+    border-radius: $theme-border-radius-default;
+    margin: $theme-doc-space-stack-code-snippet;
 }
 
-.#{$mds-project-name}-doc-code-snippet__actions {
+.#{$theme}-doc-code-snippet__actions {
     align-items: center;
-    background: $mds-color-neutral-90;
+    background: $theme-color-neutral-90;
     display: flex;
     justify-content: flex-end;
-    padding: $mds-space-inset-m;
+    padding: $theme-space-inset-m;
 }
 
 // Prism overrides
-pre.#{$mds-project-name}-doc-code-snippet__pre {
-    background: $mds-background-color-light;
-    font-size: $mds-doc-font-size-code-snippet;
+pre.#{$theme}-doc-code-snippet__pre {
+    background: $theme-background-color-light;
+    font-size: $theme-doc-font-size-code-snippet;
     margin: 0;
-    padding: $mds-space-inset-m;
+    padding: $theme-space-inset-m;
 }
 
-.mds-doc-code-snippet__copied-response {
-    background: $mds-background-color-dark;
-    border-radius: $mds-border-radius-default;
-    bottom: calc(100% + #{$mds-space-s});
-    color: $mds-text-color-primary-on-dark;
-    font-size: $mds-font-size-s;
+.#{$theme}-doc-code-snippet__copied-response {
+    background: $theme-background-color-dark;
+    border-radius: $theme-border-radius-default;
+    bottom: calc(100% + #{$theme-space-s});
+    color: $theme-text-color-primary-on-dark;
+    font-size: $theme-font-size-s;
     left: 0;
     opacity: 0;
-    padding: $mds-space-inset-xs;
+    padding: $theme-space-inset-xs;
     position: absolute;
     text-align: center;
     width: 100%;
 
     &:after {
         background: transparent;
-        border-color: $mds-background-color-dark $mds-color-transparent-caret-border $mds-color-transparent-caret-border;
+        border-color: $theme-background-color-dark $theme-color-transparent-caret-border $theme-color-transparent-caret-border;
         border-style: solid;
-        border-width: $mds-doc-size-caret-width;
+        border-width: $theme-doc-size-caret-width;
         content: '';
         left: 50%;
-        margin-left: -($mds-doc-size-caret-width / 2);
+        margin-left: -($theme-doc-size-caret-width / 2);
         position: absolute;
         top: 99%;
     }
 
-    .mds-doc-code-snippet__copy--clicked & {
+    .#{$theme}-doc-code-snippet__copy--clicked & {
         animation: fade-in-out 3s;
     }
 }
 
-.mds-doc-code-snippet__copy {
+.#{$theme}-doc-code-snippet__copy {
     position: relative;
 }
 
-.mds-doc-code-snippet__source {
-    border-radius: 0 0 $mds-border-radius-default $mds-border-radius-default;
+.#{$theme}-doc-code-snippet__source {
+    border-radius: 0 0 $theme-border-radius-default $theme-border-radius-default;
     max-height: 400px;
     overflow-y: auto;
 }
@@ -73,12 +73,12 @@ pre.#{$mds-project-name}-doc-code-snippet__pre {
     }
 
     10% {
-        bottom: calc(100% + #{$mds-space-s});
+        bottom: calc(100% + #{$theme-space-s});
         opacity: 1;
     }
 
     90% {
-        bottom: calc(100% + #{$mds-space-s});
+        bottom: calc(100% + #{$theme-space-s});
         opacity: 1;
     }
 

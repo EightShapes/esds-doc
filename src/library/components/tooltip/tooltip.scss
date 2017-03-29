@@ -1,30 +1,30 @@
-$mds-tooltip-border-radius: 2px;
+$theme-tooltip-border-radius: 2px;
 $tail-size: 8px;
 
-$mds-tooltip-width-s: 80px;
-$mds-tooltip-width-m: 106px;
-$mds-tooltip-width-l: 200px;
-$mds-tooltip-width-xl: 360px;
+$theme-tooltip-width-s: 80px;
+$theme-tooltip-width-m: 106px;
+$theme-tooltip-width-l: 200px;
+$theme-tooltip-width-xl: 360px;
 
-$mds-tooltip-height-s: 30px;
-$mds-tooltip-height-m: 45px;
-$mds-tooltip-height-l: 50px;
-$mds-tooltip-height-xl: 76px;
+$theme-tooltip-height-s: 30px;
+$theme-tooltip-height-m: 45px;
+$theme-tooltip-height-l: 50px;
+$theme-tooltip-height-xl: 76px;
 
-$mds-tooltip-drop-shadow: $mds-drop-shadow-default;
-$mds-tooltip-padding: 4px 8px;
-$mds-tooltip-transition: opacity .2s ease-in-out, visibility .2s ease-in-out;
-$mds-tooltip-z-index: $mds-z-index-top-of-the-world;
+$theme-tooltip-drop-shadow: $theme-drop-shadow-default;
+$theme-tooltip-padding: 4px 8px;
+$theme-tooltip-transition: opacity .2s ease-in-out, visibility .2s ease-in-out;
+$theme-tooltip-z-index: $theme-z-index-top-of-the-world;
 
-$mds-prompt-closable-padding-right: 45px;
-$mds-prompt-close-button-border-left: $mds-border-separator-default;
-$mds-prompt-close-button-padding: 8px 3px 5px 6px;
-$mds-prompt-close-button-right: 5px;
-$mds-prompt-close-button-top: 5px;
-$mds-prompt-close-button-anchor-fill: $mds-color-white;
-$mds-prompt-close-button-anchor-hover-opacity: .6;
-$mds-prompt-font-size: $mds-font-size-s;
-$mds-prompt-font-weight: $mds-font-weight-thin;
+$theme-prompt-closable-padding-right: 45px;
+$theme-prompt-close-button-border-left: $theme-border-separator-default;
+$theme-prompt-close-button-padding: 8px 3px 5px 6px;
+$theme-prompt-close-button-right: 5px;
+$theme-prompt-close-button-top: 5px;
+$theme-prompt-close-button-anchor-fill: $theme-color-white;
+$theme-prompt-close-button-anchor-hover-opacity: .6;
+$theme-prompt-font-size: $theme-font-size-s;
+$theme-prompt-font-weight: $theme-font-weight-thin;
 
 // Function to help with flip flopping directions for tail generation --------
 @function opposite-direction($directions) {
@@ -129,15 +129,15 @@ $mds-prompt-font-weight: $mds-font-weight-thin;
 }
 
 // Generates complete bubble, uses tail mixin for arrow and optional border --------
-@mixin bubble($direction, $corner: null, $has-border: false, $top-tail-color: tooltip, $border-tail-color: $mds-color-neutral-80, $border-width: 1px) {
+@mixin bubble($direction, $corner: null, $has-border: false, $top-tail-color: tooltip, $border-tail-color: $theme-color-neutral-80, $border-width: 1px) {
     @if $top-tail-color == tooltip--default {
-        $top-tail-color: $mds-color-neutral-90;
+        $top-tail-color: $theme-color-neutral-90;
     } @else if $top-tail-color == tooltip--flag {
-        $top-tail-color: $mds-color-green-34;
+        $top-tail-color: $theme-color-green-34;
     } @else if $top-tail-color == tooltip--prompt {
-        $top-tail-color: $mds-color-neutral-37;
+        $top-tail-color: $theme-color-neutral-37;
     } @else if $top-tail-color == tooltip--error {
-        $top-tail-color: $mds-color-red-50;
+        $top-tail-color: $theme-color-red-50;
     }
 
     &:after {
@@ -200,90 +200,90 @@ $with-border: false;
     @if $current-type == tooltip--default {
         $with-border: true;
 
-        .mds-#{$current-type} {
-            background-color: $mds-color-neutral-90;
-            color: $mds-color-neutral-20;
+        .#{$theme}-#{$current-type} {
+            background-color: $theme-color-neutral-90;
+            color: $theme-color-neutral-20;
         }
     } @else if $current-type == tooltip--flag {
         $with-border: false;
 
-        .mds-#{$current-type} {
-            background-color: $mds-color-green-34;
-            color: $mds-color-white;
+        .#{$theme}-#{$current-type} {
+            background-color: $theme-color-green-34;
+            color: $theme-color-white;
         }
     } @else if $current-type == tooltip--prompt {
         $with-border: false;
 
-        .mds-#{$current-type} {
-            background-color: $mds-color-neutral-37;
-            color: $mds-color-white;
+        .#{$theme}-#{$current-type} {
+            background-color: $theme-color-neutral-37;
+            color: $theme-color-white;
         }
     } @else if $current-type == tooltip--error {
         $with-border: false;
 
-        .mds-#{$current-type} {
-            background-color: $mds-color-red-50;
-            color: $mds-color-white;
+        .#{$theme}-#{$current-type} {
+            background-color: $theme-color-red-50;
+            color: $theme-color-white;
         }
     }
 
-    .mds-#{$current-type}.mds-tooltip--top-center {
+    .#{$theme}-#{$current-type}.#{$theme}-tooltip--top-center {
         @include bubble(bottom, null, $with-border, #{$current-type});
         @include bubble-positioner(top, center);
     }
 
-    .mds-#{$current-type}.mds-tooltip--right-center {
+    .#{$theme}-#{$current-type}.#{$theme}-tooltip--right-center {
         @include bubble(left, null, $with-border, #{$current-type});
         @include bubble-positioner(right, center);
     }
 
-    .mds-#{$current-type}.mds-tooltip--bottom-center {
+    .#{$theme}-#{$current-type}.#{$theme}-tooltip--bottom-center {
         @include bubble(top, null, $with-border, #{$current-type});
         @include bubble-positioner(bottom, center);
 
     }
 
-    .mds-#{$current-type}.mds-tooltip--left-center {
+    .#{$theme}-#{$current-type}.#{$theme}-tooltip--left-center {
         @include bubble(right, null, $with-border, #{$current-type});
         @include bubble-positioner(left, center);
     }
 
-    .mds-#{$current-type}.mds-tooltip--top-right {
+    .#{$theme}-#{$current-type}.#{$theme}-tooltip--top-right {
         @include bubble(bottom, corner-left, $with-border, #{$current-type});
         @include bubble-positioner(top, right);
     }
 
-    .mds-#{$current-type}.mds-tooltip--bottom-right {
+    .#{$theme}-#{$current-type}.#{$theme}-tooltip--bottom-right {
         @include bubble(top, corner-left, $with-border, #{$current-type});
         @include bubble-positioner(bottom, right);
     }
 
-    .mds-#{$current-type}.mds-tooltip--top-left {
+    .#{$theme}-#{$current-type}.#{$theme}-tooltip--top-left {
         @include bubble(bottom, corner-right, $with-border, #{$current-type});
         @include bubble-positioner(top, left);
     }
 
-    .mds-#{$current-type}.mds-tooltip--bottom-left {
+    .#{$theme}-#{$current-type}.#{$theme}-tooltip--bottom-left {
         @include bubble(top, corner-right, $with-border, #{$current-type});
         @include bubble-positioner(bottom, left);
     }
 
-    .mds-#{$current-type}.mds-tooltip--right-bottom {
+    .#{$theme}-#{$current-type}.#{$theme}-tooltip--right-bottom {
         @include bubble(left, corner-top, $with-border, #{$current-type});
         @include bubble-positioner(right, bottom);
     }
 
-    .mds-#{$current-type}.mds-tooltip--left-bottom {
+    .#{$theme}-#{$current-type}.#{$theme}-tooltip--left-bottom {
         @include bubble(right, corner-top, $with-border, #{$current-type});
         @include bubble-positioner(left, bottom);
     }
 
-    .mds-#{$current-type}.mds-tooltip--right-top {
+    .#{$theme}-#{$current-type}.#{$theme}-tooltip--right-top {
         @include bubble(left, corner-bottom, $with-border, #{$current-type});
         @include bubble-positioner(right, top);
     }
 
-    .mds-#{$current-type}.mds-tooltip--left-top {
+    .#{$theme}-#{$current-type}.#{$theme}-tooltip--left-top {
         @include bubble(right, corner-bottom, $with-border, #{$current-type});
         @include bubble-positioner(left, top);
     }
@@ -291,131 +291,131 @@ $with-border: false;
 }
 
 // Basic classes for styling and layout --------
-.mds-tooltip {
-    border-radius: $mds-tooltip-border-radius;
-    box-shadow: $mds-tooltip-drop-shadow;
+.#{$theme}-tooltip {
+    border-radius: $theme-tooltip-border-radius;
+    box-shadow: $theme-tooltip-drop-shadow;
     display: block;
-    font-family: $mds-font-family-sans-serif;
-    font-size: $mds-font-size-m;
+    font-family: $theme-font-family-sans-serif;
+    font-size: $theme-font-size-m;
     opacity: 0;
-    padding: $mds-tooltip-padding;
+    padding: $theme-tooltip-padding;
     position: absolute;
     text-align: left;
     text-decoration: none;
-    transition: $mds-tooltip-transition;
+    transition: $theme-tooltip-transition;
     visibility: hidden;
-    z-index: $mds-tooltip-z-index;
+    z-index: $theme-tooltip-z-index;
 }
 
-.mds-tooltip--sticky,
-.mds-tooltip__wrapper:hover .mds-tooltip {
+.#{$theme}-tooltip--sticky,
+.#{$theme}-tooltip__wrapper:hover .#{$theme}-tooltip {
     opacity: 1;
     visibility: visible;
 }
 
-.mds-tooltip--width-s {
-    width: $mds-tooltip-width-s;
+.#{$theme}-tooltip--width-s {
+    width: $theme-tooltip-width-s;
 }
 
-.mds-tooltip--width-m {
-    width: $mds-tooltip-width-m;
+.#{$theme}-tooltip--width-m {
+    width: $theme-tooltip-width-m;
 }
 
-.mds-tooltip--width-l {
-    width: $mds-tooltip-width-l;
+.#{$theme}-tooltip--width-l {
+    width: $theme-tooltip-width-l;
 }
 
-.mds-tooltip--width-xl {
-    width: $mds-tooltip-width-xl;
+.#{$theme}-tooltip--width-xl {
+    width: $theme-tooltip-width-xl;
 }
 
-.mds-tooltip--height-s {
-    height: $mds-tooltip-height-s;
+.#{$theme}-tooltip--height-s {
+    height: $theme-tooltip-height-s;
 }
 
-.mds-tooltip--height-m {
-    height: $mds-tooltip-height-m;
+.#{$theme}-tooltip--height-m {
+    height: $theme-tooltip-height-m;
 }
 
-.mds-tooltip--height-l {
-    height: $mds-tooltip-height-l;
+.#{$theme}-tooltip--height-l {
+    height: $theme-tooltip-height-l;
 }
 
-.mds-tooltip__wrapper {
+.#{$theme}-tooltip__wrapper {
     display: inline-block;
     position: relative;
 }
 
-.mds-tooltip--closable {
-    padding-right: $mds-prompt-closable-padding-right;
+.#{$theme}-tooltip--closable {
+    padding-right: $theme-prompt-closable-padding-right;
 }
 
-.mds-tooltip__close-button {
-    border-left: $mds-prompt-close-button-border-left;
+.#{$theme}-tooltip__close-button {
+    border-left: $theme-prompt-close-button-border-left;
     cursor: pointer;
     display: inline-block;
-    fill: $mds-prompt-close-button-anchor-fill;
-    padding: $mds-prompt-close-button-padding;
+    fill: $theme-prompt-close-button-anchor-fill;
+    padding: $theme-prompt-close-button-padding;
     position: absolute;
-    right: $mds-prompt-close-button-right;
-    top: $mds-prompt-close-button-top;
+    right: $theme-prompt-close-button-right;
+    top: $theme-prompt-close-button-top;
 
     &:hover {
-        .mds-icon {
-            opacity: $mds-prompt-close-button-anchor-hover-opacity;
+        .#{$theme}-icon {
+            opacity: $theme-prompt-close-button-anchor-hover-opacity;
         }
     }
 
 }
 
-.mds-tooltip__target--help {
+.#{$theme}-tooltip__target--help {
     cursor: help;
 }
 
-.mds-tooltip--prompt,
-.mds-tooltip--error {
-    font-size: $mds-prompt-font-size;
-    font-weight: $mds-prompt-font-weight;
+.#{$theme}-tooltip--prompt,
+.#{$theme}-tooltip--error {
+    font-size: $theme-prompt-font-size;
+    font-weight: $theme-prompt-font-weight;
 }
 
 // Handle offsets for centering a tooltip horizontally or vertically
 // on it's target. 
-.mds-tooltip--top-center.mds-tooltip--width-s,
-.mds-tooltip--bottom-center.mds-tooltip--width-s {
-    margin-left: -($mds-tooltip-width-s / 2);
+.#{$theme}-tooltip--top-center.#{$theme}-tooltip--width-s,
+.#{$theme}-tooltip--bottom-center.#{$theme}-tooltip--width-s {
+    margin-left: -($theme-tooltip-width-s / 2);
 }
 
-.mds-tooltip--top-center.mds-tooltip--width-m,
-.mds-tooltip--bottom-center.mds-tooltip--width-m {
-    margin-left: -($mds-tooltip-width-m / 2);
+.#{$theme}-tooltip--top-center.#{$theme}-tooltip--width-m,
+.#{$theme}-tooltip--bottom-center.#{$theme}-tooltip--width-m {
+    margin-left: -($theme-tooltip-width-m / 2);
 }
 
-.mds-tooltip--top-center.mds-tooltip--width-l,
-.mds-tooltip--bottom-center.mds-tooltip--width-l {
-    margin-left: -($mds-tooltip-width-l / 2);
+.#{$theme}-tooltip--top-center.#{$theme}-tooltip--width-l,
+.#{$theme}-tooltip--bottom-center.#{$theme}-tooltip--width-l {
+    margin-left: -($theme-tooltip-width-l / 2);
 }
 
-.mds-tooltip--bottom-center.mds-tooltip--width-xl,
-.mds-tooltip--top-center.mds-tooltip--width-xl {
-    margin-left: -($mds-tooltip-width-xl / 2);
+.#{$theme}-tooltip--bottom-center.#{$theme}-tooltip--width-xl,
+.#{$theme}-tooltip--top-center.#{$theme}-tooltip--width-xl {
+    margin-left: -($theme-tooltip-width-xl / 2);
 }
 
-.mds-tooltip--left-center.mds-tooltip--height-s,
-.mds-tooltip--right-center.mds-tooltip--height-s {
-    margin-top: -($mds-tooltip-height-s / 2);
+.#{$theme}-tooltip--left-center.#{$theme}-tooltip--height-s,
+.#{$theme}-tooltip--right-center.#{$theme}-tooltip--height-s {
+    margin-top: -($theme-tooltip-height-s / 2);
 }
 
-.mds-tooltip--left-center.mds-tooltip--height-m,
-.mds-tooltip--right-center.mds-tooltip--height-m {
-    margin-top: -($mds-tooltip-height-m / 2);
+.#{$theme}-tooltip--left-center.#{$theme}-tooltip--height-m,
+.#{$theme}-tooltip--right-center.#{$theme}-tooltip--height-m {
+    margin-top: -($theme-tooltip-height-m / 2);
 }
 
-.mds-tooltip--left-center.mds-tooltip--height-l,
-.mds-tooltip--right-center.mds-tooltip--height-l {
-    margin-top: -($mds-tooltip-height-l / 2);
+.#{$theme}-tooltip--left-center.#{$theme}-tooltip--height-l,
+.#{$theme}-tooltip--right-center.#{$theme}-tooltip--height-l {
+    margin-top: -($theme-tooltip-height-l / 2);
 }
 
-.mds-tooltip--left-center.mds-tooltip--height-xl,
-.mds-tooltip--right-center.mds-tooltip--height-xl {
-    margin-top: -($mds-tooltip-height-xl / 2);
+.#{$theme}-tooltip--left-center.#{$theme}-tooltip--height-xl,
+.#{$theme}-tooltip--right-center.#{$theme}-tooltip--height-xl {
+    margin-top: -($theme-tooltip-height-xl / 2);
 }

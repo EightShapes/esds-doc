@@ -1,6 +1,5 @@
 {
-    "mdsConstants": {
-        "project-name": "mds",
+    "constants": {
         "color": {
             "white": "#ffffff",
             "black": "#000000",

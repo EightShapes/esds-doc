@@ -1,9 +1,9 @@
-// mds-text-crop mixin
+// theme-text-crop mixin
 // Use to eliminate "extra" white space added by text nodes in the DOM. This will crop the top of the text to the Cap height and the bottom of the text to the baseline
 // Use to align text with non text elements (images, icons, etc.) or to eliminate "non-system" space within an element
-$mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 300ms; // Need to make this a constant, it's a reapeat form button.scss
+$theme-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 300ms; // Need to make this a constant, it's a reapeat form button.scss
 
-@mixin mds-text-crop($line-height: 1.25) {
+@mixin theme-text-crop($line-height: 1.25) {
     $offset-top: max((14 + ($line-height - 1.2) * (64 / 2)), 0) / 64;
     $offset-bottom: max((15.5 + ($line-height - 1.2) * (64 / 2)), 0) / 64;
 
@@ -26,91 +26,91 @@ $mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 3
     }
 }
 
-.mds-text-crop--default {
-    @include mds-text-crop();
+.#{$theme}-text-crop--default {
+    @include theme-text-crop();
 }
 
-.mds-text-crop--1-1 {
-    @include mds-text-crop(1.1);
+.#{$theme}-text-crop--1-1 {
+    @include theme-text-crop(1.1);
 }
 
-.mds-text__anchor {
-    color: $mds-interactive-color-primary-default;
-    fill: $mds-interactive-color-primary-default;
-    transition: $mds-transition-hover;
+.#{$theme}-text__anchor {
+    color: $theme-interactive-color-primary-default;
+    fill: $theme-interactive-color-primary-default;
+    transition: $theme-transition-hover;
 
     &:hover {
-        color: $mds-interactive-color-primary-hover;
-        fill: $mds-interactive-color-primary-hover;
+        color: $theme-interactive-color-primary-hover;
+        fill: $theme-interactive-color-primary-hover;
 
-        .mds-icon {
-            fill: $mds-interactive-color-primary-hover;
+        .#{$theme}-icon {
+            fill: $theme-interactive-color-primary-hover;
         }
     }
 }
 
-.mds-text__anchor--with-icon {
+.#{$theme}-text__anchor--with-icon {
     text-decoration: none;
 
-    .mds-text__anchor-text {
+    .#{$theme}-text__anchor-text {
         text-decoration: underline;
         vertical-align: middle;
     }
 
-    .mds-text__anchor-icon {
-        fill: $mds-interactive-color-primary-default;
-        transition: $mds-transition-hover;
+    .#{$theme}-text__anchor-icon {
+        fill: $theme-interactive-color-primary-default;
+        transition: $theme-transition-hover;
         vertical-align: middle;
     }
 }
 
 @mixin level-1-heading() {
-    @include mds-text-crop();
+    @include theme-text-crop();
     font-size: 45px;
-    font-weight: $mds-font-weight-thin;
+    font-weight: $theme-font-weight-thin;
 }
 
 @mixin level-2-heading() {
-    @include mds-text-crop();
+    @include theme-text-crop();
     font-size: 32px;
-    font-weight: $mds-font-weight-bold;
+    font-weight: $theme-font-weight-bold;
 }
 
 @mixin level-3-heading() {
-    @include mds-text-crop();
+    @include theme-text-crop();
     font-size: 28px;
-    font-weight: $mds-font-weight-thin;
+    font-weight: $theme-font-weight-thin;
 }
 
 @mixin level-4-heading() {
-    @include mds-text-crop();
-    font-size: $mds-font-size-default * 1.125;
-    font-weight: $mds-font-weight-bold;
+    @include theme-text-crop();
+    font-size: $theme-font-size-default * 1.125;
+    font-weight: $theme-font-weight-bold;
 }
 
 @mixin eyebrow-heading() {
-    color: $mds-text-color-primary-default;
-    font-family: $mds-font-family-sans-serif;
-    font-size: $mds-font-size-xxs;
-    font-weight: $mds-font-weight-bold;
+    color: $theme-text-color-primary-default;
+    font-family: $theme-font-family-sans-serif;
+    font-size: $theme-font-size-xxs;
+    font-weight: $theme-font-weight-bold;
     letter-spacing: 1.67px;
     text-transform: uppercase;
 
-    .mds-container--black &,
-    .mds-container--dark & {
-        color: $mds-text-color-primary-on-dark;
+    .#{$theme}-container--black &,
+    .#{$theme}-container--dark & {
+        color: $theme-text-color-primary-on-dark;
     }
 }
 
-.mds-container--dark, 
-.mds-container--black {
-    color: $mds-text-color-primary-on-dark;
+.#{$theme}-container--dark, 
+.#{$theme}-container--black {
+    color: $theme-text-color-primary-on-dark;
 
-    .mds-icon {
-        fill: $mds-text-color-primary-on-dark;
+    .#{$theme}-icon {
+        fill: $theme-text-color-primary-on-dark;
     }
 
-    .mds-text__anchor-icon {
-        fill: $mds-interactive-color-primary-default;
+    .#{$theme}-text__anchor-icon {
+        fill: $theme-interactive-color-primary-default;
     }
 }

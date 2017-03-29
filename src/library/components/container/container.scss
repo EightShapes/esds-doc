@@ -1,15 +1,15 @@
-.mds-container--default {
-    background: $mds-background-color-default;
+.#{$theme}-container--default {
+    background: $theme-background-color-default;
 }
 
-.mds-container--light {
-    background: $mds-background-color-light; 
+.#{$theme}-container--light {
+    background: $theme-background-color-light; 
 }
 
-.mds-container--dark {
-    background: $mds-background-color-dark; 
+.#{$theme}-container--dark {
+    background: $theme-background-color-dark; 
 }
 
-.mds-container--black {
-    background: $mds-background-color-black; 
+.#{$theme}-container--black {
+    background: $theme-background-color-black; 
 }

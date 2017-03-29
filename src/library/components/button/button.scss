@@ -1,68 +1,68 @@
-$mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 300ms;
-$mds-hover-shadow: 0 0 4px 2px rgba(0, 168, 225, .8);
-$mds-focus-ring-offset: -3px;
-$mds-border-radius-button: 15px;
+$theme-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 300ms;
+$theme-hover-shadow: 0 0 4px 2px rgba(0, 168, 225, .8);
+$theme-focus-ring-offset: -3px;
+$theme-border-radius-button: 15px;
 
 // $project-name variable is temporary until we name the project
-.mds-button,
-.mds-button--secondary {
+.#{$theme}-button,
+.#{$theme}-button--secondary {
     background-color: transparent;
-    border: $mds-border-control-default;
-    border-radius: $mds-border-radius-button;
-    color: $mds-text-color-secondary-default;
+    border: $theme-border-control-default;
+    border-radius: $theme-border-radius-button;
+    color: $theme-text-color-secondary-default;
     cursor: pointer;
     display: inline-block;
-    font-family: $mds-font-family-sans-serif;
-    font-size: $mds-font-size-m;
-    font-weight: $mds-font-weight-light;
+    font-family: $theme-font-family-sans-serif;
+    font-size: $theme-font-size-m;
+    font-weight: $theme-font-weight-light;
     margin: 0;
-    padding: $mds-space-inset-squish-m;
+    padding: $theme-space-inset-squish-m;
     position: relative;
     text-align: center;
-    transition: $mds-transition-hover;
+    transition: $theme-transition-hover;
 
     &::-moz-focus-inner { // sass-lint:disable-line no-vendor-prefixes - FF is adding a 1px border around <button> elements
         border: 0;
     }
 
     &:hover,
-    &.mds-button--hover {
-        background-color: $mds-interactive-color-secondary-hover;
-        border-color: $mds-interactive-color-secondary-hover;
-        color: $mds-color-white;
+    &.#{$theme}-button--hover {
+        background-color: $theme-interactive-color-secondary-hover;
+        border-color: $theme-interactive-color-secondary-hover;
+        color: $theme-color-white;
         text-decoration: none;
 
-        .mds-button__icon {
-            fill: $mds-color-white;
+        .#{$theme}-button__icon {
+            fill: $theme-color-white;
         }
     }
 
     
 
     &:focus,
-    &.mds-button--focus {
+    &.#{$theme}-button--focus {
         &:after {
             background-color: transparent;
             border-radius: 16px;
-            bottom: $mds-focus-ring-offset;
-            box-shadow: $mds-hover-shadow;
+            bottom: $theme-focus-ring-offset;
+            box-shadow: $theme-hover-shadow;
             content: '';
-            left: $mds-focus-ring-offset;
+            left: $theme-focus-ring-offset;
             position: absolute;
-            right: $mds-focus-ring-offset;
-            top: $mds-focus-ring-offset;
+            right: $theme-focus-ring-offset;
+            top: $theme-focus-ring-offset;
         }
         outline: 0;
     }
 
     &:active,
-    &.mds-button--active {
-        background-color: $mds-interactive-color-secondary-active;
-        border-color: $mds-interactive-color-secondary-active;
-        color: $mds-color-white;
+    &.#{$theme}-button--active {
+        background-color: $theme-interactive-color-secondary-active;
+        border-color: $theme-interactive-color-secondary-active;
+        color: $theme-color-white;
 
-        .mds-button__icon {
-            fill: $mds-color-white;
+        .#{$theme}-button__icon {
+            fill: $theme-color-white;
         }
 
         &:after {
@@ -72,31 +72,31 @@ $mds-border-radius-button: 15px;
 
     &:disabled,
     &[disabled],
-    &.mds-button--disabled {
+    &.#{$theme}-button--disabled {
         background-color: transparent;
-        border: $mds-border-disabled;
+        border: $theme-border-disabled;
         box-shadow: none;
-        color: $mds-interactive-color-disabled;
+        color: $theme-interactive-color-disabled;
         cursor: not-allowed;
-        opacity: $mds-opacity-disabled;
+        opacity: $theme-opacity-disabled;
 
-        .mds-button__input {
+        .#{$theme}-button__input {
             cursor: not-allowed;
         }
 
-        .mds-button__icon {
-            fill: $mds-interactive-color-disabled;
+        .#{$theme}-button__icon {
+            fill: $theme-interactive-color-disabled;
         }
 
         &:hover,
-        &.mds-button--hover {
-            .mds-button__icon {
-                fill: $mds-interactive-color-disabled;
+        &.#{$theme}-button--hover {
+            .#{$theme}-button__icon {
+                fill: $theme-interactive-color-disabled;
             }
         }
 
         &:focus,
-        &.mds-button--focus {
+        &.#{$theme}-button--focus {
             &:after {
                 display: none;
             }
@@ -105,149 +105,149 @@ $mds-border-radius-button: 15px;
 }
 
 a {
-    &.mds-button {
+    &.#{$theme}-button {
         text-decoration: none;
     }
 }
 
-.mds-button--small {
-    font-size: $mds-font-size-s;
-    padding: $mds-space-inset-squish-s;
+.#{$theme}-button--small {
+    font-size: $theme-font-size-s;
+    padding: $theme-space-inset-squish-s;
 
-    .mds-button__icon {
-        height: $mds-size-icon-s;
+    .#{$theme}-button__icon {
+        height: $theme-size-icon-s;
         margin-top: -2px;
-        width: $mds-size-icon-s;
+        width: $theme-size-icon-s;
     }
 
-    .mds-button__text {
+    .#{$theme}-button__text {
         margin-top: -2px;
     }
 }
 
-.mds-button__icon {
-    fill: $mds-text-color-secondary-default;
-    height: $mds-size-icon-m;
+.#{$theme}-button__icon {
+    fill: $theme-text-color-secondary-default;
+    height: $theme-size-icon-m;
     margin-top: -4px;
-    transition: $mds-transition-hover;
+    transition: $theme-transition-hover;
     vertical-align: middle;
-    width: $mds-size-icon-m;
+    width: $theme-size-icon-m;
 }
 
-.mds-button__icon--left + .mds-button__text {
-    margin: $mds-space-inline-left-xs;
+.#{$theme}-button__icon--left + .#{$theme}-button__text {
+    margin: $theme-space-inline-left-xs;
 }
 
-.mds-button__text + .mds-button__icon--right  {
-    margin: $mds-space-inline-left-xs;
+.#{$theme}-button__text + .#{$theme}-button__icon--right  {
+    margin: $theme-space-inline-left-xs;
 }
 
-.mds-button__text {
+.#{$theme}-button__text {
     display: inline-block;
     margin-top: -4px;
     vertical-align: middle;
 }
 
-.mds-button--primary {
-    background-color: $mds-interactive-color-primary-default;
-    border-color: $mds-interactive-color-primary-default;
-    color: $mds-color-white;
+.#{$theme}-button--primary {
+    background-color: $theme-interactive-color-primary-default;
+    border-color: $theme-interactive-color-primary-default;
+    color: $theme-color-white;
 
     &:hover,
-    &.mds-button--hover {
-        background-color: $mds-interactive-color-primary-hover;
-        border-color: $mds-interactive-color-primary-hover;
+    &.#{$theme}-button--hover {
+        background-color: $theme-interactive-color-primary-hover;
+        border-color: $theme-interactive-color-primary-hover;
     }
 
     &:active,
-    &.mds-button--active {
-        background-color: $mds-interactive-color-primary-active;
-        border-color: $mds-interactive-color-primary-active;
+    &.#{$theme}-button--active {
+        background-color: $theme-interactive-color-primary-active;
+        border-color: $theme-interactive-color-primary-active;
     }
 
     &:disabled,
     &[disabled],
-    &.mds-button--disabled {
+    &.#{$theme}-button--disabled {
         background-color: transparent;
-        border-color: $mds-interactive-color-primary-default;
-        color: $mds-interactive-color-primary-default;
+        border-color: $theme-interactive-color-primary-default;
+        color: $theme-interactive-color-primary-default;
 
-        .mds-button__input {
+        .#{$theme}-button__input {
             cursor: not-allowed;
         }
 
-        .mds-button__icon {
-            fill: $mds-interactive-color-primary-default;
+        .#{$theme}-button__icon {
+            fill: $theme-interactive-color-primary-default;
         }
 
         &:hover,
-        &.mds-button--hover {
-            .mds-button__icon {
-                fill: $mds-interactive-color-primary-default;
+        &.#{$theme}-button--hover {
+            .#{$theme}-button__icon {
+                fill: $theme-interactive-color-primary-default;
             }
         }
 
     }
 
-    .mds-button__icon {
-        fill: $mds-color-white;
+    .#{$theme}-button__icon {
+        fill: $theme-color-white;
     }
 }
 
-.mds--dark {
-    .mds-button--secondary {
-        border: $mds-border-control-default;
-        color: $mds-text-color-secondary-on-dark;
+.#{$theme}--dark {
+    .#{$theme}-button--secondary {
+        border: $theme-border-control-default;
+        color: $theme-text-color-secondary-on-dark;
 
-        .mds-button__icon {
-            fill: $mds-text-color-secondary-on-dark;
+        .#{$theme}-button__icon {
+            fill: $theme-text-color-secondary-on-dark;
         }
 
         &:hover,
-        &.mds-button--hover {
-            background-color: $mds-interactive-color-secondary-hover;
-            color: $mds-text-color-primary-on-dark;
+        &.#{$theme}-button--hover {
+            background-color: $theme-interactive-color-secondary-hover;
+            color: $theme-text-color-primary-on-dark;
 
-            .mds-button__icon {
-                fill: $mds-text-color-primary-on-dark;
+            .#{$theme}-button__icon {
+                fill: $theme-text-color-primary-on-dark;
 
             }
         }
 
         &:active,
-        &.mds-button--active {
-            background-color: $mds-color-neutral-90;
-            color: $mds-color-neutral-37;
+        &.#{$theme}-button--active {
+            background-color: $theme-color-neutral-90;
+            color: $theme-color-neutral-37;
 
-            .mds-button__icon {
-                fill: $mds-color-neutral-37;
+            .#{$theme}-button__icon {
+                fill: $theme-color-neutral-37;
             }
         }
 
         &:disabled,
         &[disabled],
-        &.mds-button--disabled {
+        &.#{$theme}-button--disabled {
             &:hover,
-            &.mds-button--hover,
+            &.#{$theme}-button--hover,
             &:active,
-            &.mds-button--active,
+            &.#{$theme}-button--active,
             &:focus,
-            &.mds-button--focus {
+            &.#{$theme}-button--focus {
                 background: transparent;
-                color: $mds-interactive-color-disabled;
+                color: $theme-interactive-color-disabled;
 
-                .mds-button__icon {
-                    fill: $mds-interactive-color-disabled;
+                .#{$theme}-button__icon {
+                    fill: $theme-interactive-color-disabled;
                 }
             }
         }
     }
 
-    .mds-button {
+    .#{$theme}-button {
         &:hover,
-        &.mds-button--hover,
+        &.#{$theme}-button--hover,
         &:focus,
-        &.mds-button--focus {
+        &.#{$theme}-button--focus {
             &:after {
                 background-color: transparent;
             }
@@ -255,10 +255,10 @@ a {
     }
 }
 
-.mds-button__input {
+.#{$theme}-button__input {
     background: none;
     border: 0;
-    border-radius: $mds-border-radius-button;
+    border-radius: $theme-border-radius-button;
     bottom: 0;
     cursor: pointer;
     height: 100%;
@@ -287,93 +287,93 @@ a {
 }
 
 // Input buttons need to be retargeted due to the sibling vs. parent/child structure required to accommodate all of the different states
-.mds-button__input-outer-wrapper {
+.#{$theme}-button__input-outer-wrapper {
     display: inline-block;
     position: relative;
 }
 
-.mds-button__input:focus + .mds-button {
+.#{$theme}-button__input:focus + .#{$theme}-button {
     &:after {
         background-color: transparent;
         border-radius: 16px;
-        bottom: $mds-focus-ring-offset;
-        box-shadow: $mds-hover-shadow;
+        bottom: $theme-focus-ring-offset;
+        box-shadow: $theme-hover-shadow;
         content: '';
-        left: $mds-focus-ring-offset;
+        left: $theme-focus-ring-offset;
         position: absolute;
-        right: $mds-focus-ring-offset;
-        top: $mds-focus-ring-offset;
+        right: $theme-focus-ring-offset;
+        top: $theme-focus-ring-offset;
     }
     outline: 0;
 }
 
 // Input Buttons Default and Secondary :hover
-.mds-button__input:hover + .mds-button,
-.mds-button__input.mds-button--hover + .mds-button,
-.mds-button__input:hover + .mds-button--secondary,
-.mds-button__input.mds-button--hover + .mds-button--secondary {
-    background-color: $mds-interactive-color-secondary-hover;
-    border-color: $mds-interactive-color-secondary-hover;
-    color: $mds-color-white;
+.#{$theme}-button__input:hover + .#{$theme}-button,
+.#{$theme}-button__input.#{$theme}-button--hover + .#{$theme}-button,
+.#{$theme}-button__input:hover + .#{$theme}-button--secondary,
+.#{$theme}-button__input.#{$theme}-button--hover + .#{$theme}-button--secondary {
+    background-color: $theme-interactive-color-secondary-hover;
+    border-color: $theme-interactive-color-secondary-hover;
+    color: $theme-color-white;
     text-decoration: none;
 
-    .mds-button__icon {
-        fill: $mds-color-white;
+    .#{$theme}-button__icon {
+        fill: $theme-color-white;
     }
 }
 
 
 
 // Input Buttons Default and Secondary :disabled
-.mds-button__input:focus:disabled + .mds-button,
-.mds-button__input:focus[disabled] + .mds-button,
-.mds-button__input--disabled:focus {
+.#{$theme}-button__input:focus:disabled + .#{$theme}-button,
+.#{$theme}-button__input:focus[disabled] + .#{$theme}-button,
+.#{$theme}-button__input--disabled:focus {
     &:after {
         display: none;
     }
 }
 
-.mds-button__input:disabled,
-.mds-button__input[disabled],
-.mds-button__input.mds-button--disabled {
-    + .mds-button {
-        opacity: $mds-opacity-disabled;
+.#{$theme}-button__input:disabled,
+.#{$theme}-button__input[disabled],
+.#{$theme}-button__input.#{$theme}-button--disabled {
+    + .#{$theme}-button {
+        opacity: $theme-opacity-disabled;
     }
 
-    &:hover + .mds-button {
+    &:hover + .#{$theme}-button {
         background-color: transparent;
-        border-color: $mds-border-disabled;
-        color: $mds-interactive-color-disabled;
+        border-color: $theme-border-disabled;
+        color: $theme-interactive-color-disabled;
         cursor: not-allowed;
 
-        .mds-button__icon {
-            fill: $mds-interactive-color-disabled;
+        .#{$theme}-button__icon {
+            fill: $theme-interactive-color-disabled;
         }
     }
 
-    &:hover + .mds-button--primary, 
-    + .mds-button--primary {
+    &:hover + .#{$theme}-button--primary, 
+    + .#{$theme}-button--primary {
         background-color: transparent;
-        border-color: $mds-interactive-color-primary-default;
-        color: $mds-interactive-color-primary-default;
+        border-color: $theme-interactive-color-primary-default;
+        color: $theme-interactive-color-primary-default;
 
-        .mds-button__icon {
-            fill: $mds-interactive-color-primary-default;
+        .#{$theme}-button__icon {
+            fill: $theme-interactive-color-primary-default;
         }
     }
 }
 
 // Input Buttons Default and Secondary :active
-.mds-button__input:active + .mds-button,
-.mds-button__input.mds-button--active + .mds-button,
-.mds-button__input:active + .mds-button--secondary,
-.mds-button__input.mds-button--active + .mds-button--secondary {
-    background-color: $mds-interactive-color-secondary-active;
-    border-color: $mds-interactive-color-secondary-active;
-    color: $mds-color-white;
+.#{$theme}-button__input:active + .#{$theme}-button,
+.#{$theme}-button__input.#{$theme}-button--active + .#{$theme}-button,
+.#{$theme}-button__input:active + .#{$theme}-button--secondary,
+.#{$theme}-button__input.#{$theme}-button--active + .#{$theme}-button--secondary {
+    background-color: $theme-interactive-color-secondary-active;
+    border-color: $theme-interactive-color-secondary-active;
+    color: $theme-color-white;
 
-    .mds-button__icon {
-        fill: $mds-color-white;
+    .#{$theme}-button__icon {
+        fill: $theme-color-white;
     }
 
     &:after {
@@ -382,15 +382,15 @@ a {
 }
 
 // Input Buttons Primary :hover
-.mds-button__input:hover + .mds-button--primary,
-.mds-button__input.mds-button--hover + .mds-button--primary {
-    background-color: $mds-interactive-color-primary-hover;
-    border-color: $mds-interactive-color-primary-hover;
+.#{$theme}-button__input:hover + .#{$theme}-button--primary,
+.#{$theme}-button__input.#{$theme}-button--hover + .#{$theme}-button--primary {
+    background-color: $theme-interactive-color-primary-hover;
+    border-color: $theme-interactive-color-primary-hover;
 }
 
 // Input Buttons Primary :active
-.mds-button__input:active + .mds-button--primary,
-.mds-button__input.mds-button--active + .mds-button--primary {
-    background-color: $mds-interactive-color-primary-active;
-    border-color: $mds-interactive-color-primary-active;
+.#{$theme}-button__input:active + .#{$theme}-button--primary,
+.#{$theme}-button__input.#{$theme}-button--active + .#{$theme}-button--primary {
+    background-color: $theme-interactive-color-primary-active;
+    border-color: $theme-interactive-color-primary-active;
 }

@@ -1,11 +1,11 @@
-.mds-doc-html-example-list {
-    border: $mds-border-separator-default;
-    border-radius: $mds-border-radius-default;
+.#{$theme}-doc-html-example-list {
+    border: $theme-border-separator-default;
+    border-radius: $theme-border-radius-default;
 }
 
-.mds-doc-html-example-list__item {
-    border-bottom: $mds-border-separator-default;
-    padding: $mds-space-inset-m;
+.#{$theme}-doc-html-example-list__item {
+    border-bottom: $theme-border-separator-default;
+    padding: $theme-space-inset-m;
     position: relative;
 
     &:last-child {
@@ -13,29 +13,29 @@
     }
 }
 
-.mds-doc-html-example-list__item--xxl-inset-bottom {
+.#{$theme}-doc-html-example-list__item--xxl-inset-bottom {
     padding-bottom: 100px;
 }
 
-.mds-doc-html-example-list__item--xxl-inset-top {
+.#{$theme}-doc-html-example-list__item--xxl-inset-top {
     padding-top: 100px;
 }
 
-.mds-doc-html-example-list__label {
+.#{$theme}-doc-html-example-list__label {
     @include eyebrow-heading();
     max-width: 280px;
     overflow: hidden;
     position: absolute;
-    right: $mds-space-s;
+    right: $theme-space-s;
     text-align: right;
     text-overflow: ellipsis;
-    top: $mds-space-s;
+    top: $theme-space-s;
     white-space: nowrap;
-    width: calc(100% - ($mds-space-s * 3));
-    z-index: $mds-z-index-low;
+    width: calc(100% - ($theme-space-s * 3));
+    z-index: $theme-z-index-low;
 
-    .mds-container--black &,
-    .mds-container--dark & {
-        color: $mds-text-color-secondary-on-dark;
+    .#{$theme}-container--black &,
+    .#{$theme}-container--dark & {
+        color: $theme-text-color-secondary-on-dark;
     }
 }

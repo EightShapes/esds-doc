@@ -1,5 +1,4 @@
 ##--------------------------------------------------
-project-name: 'mds'
 color :
   white : &color-white "#ffffff"
   black : &color-black "#000000"

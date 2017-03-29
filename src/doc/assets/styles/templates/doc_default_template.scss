@@ -1,5 +1,5 @@
-$mds-size-masthead-logo-width-narrow: 230px;
-$mds-size-masthead-logo-width: 275px;
+$theme-size-masthead-logo-width-narrow: 230px;
+$theme-size-masthead-logo-width: 275px;
 
 // Bit of resetting here
 html,
@@ -8,72 +8,72 @@ body {
     padding: 0;
 }
 
-.mds-doc__title-link {
+.#{$theme}-doc__title-link {
     align-items: center;
-    color: $mds-color-red-50;
+    color: $theme-color-red-50;
     display: flex;
-    font-family: $mds-font-family-sans-serif;
-    font-weight: $mds-font-weight-thin;
+    font-family: $theme-font-family-sans-serif;
+    font-weight: $theme-font-weight-thin;
     justify-content: center;
     text-decoration: none;
 }
 
-.mds-doc__title {
+.#{$theme}-doc__title {
     margin: 0 auto;
 }
 
-.mds-doc__logo {
-    flex: 0 0 $mds-size-masthead-logo-width-narrow;
-    width: $mds-size-masthead-logo-width-narrow;
+.#{$theme}-doc__logo {
+    flex: 0 0 $theme-size-masthead-logo-width-narrow;
+    width: $theme-size-masthead-logo-width-narrow;
 
     @media screen and (min-width: 480px) {
-        flex: 0 0 $mds-size-masthead-logo-width;
-        width: $mds-size-masthead-logo-width;        
+        flex: 0 0 $theme-size-masthead-logo-width;
+        width: $theme-size-masthead-logo-width;        
     }
 }
 
-.mds-doc__header {
+.#{$theme}-doc__header {
     align-items: center;
-    background: $mds-background-color-default;
-    box-shadow: $mds-drop-shadow-default;
+    background: $theme-background-color-default;
+    box-shadow: $theme-drop-shadow-default;
     display: flex;
-    height: $mds-doc-header-height;
+    height: $theme-doc-header-height;
     justify-content: flex-start;
-    // margin: $mds-space-inline-left-xs;
-    padding: $mds-space-inset-m;
+    // margin: $theme-space-inline-left-xs;
+    padding: $theme-space-inset-m;
     position: fixed;
     top: 0;
     width: 100vw;
-    z-index: $mds-z-index-sticky;
+    z-index: $theme-z-index-sticky;
 }
 
-.mds-doc-footer {
-    font-weight: $mds-font-weight-light;
+.#{$theme}-doc-footer {
+    font-weight: $theme-font-weight-light;
 }
 
-.mds-doc__content-nav-wrap {
-    padding-top: $mds-doc-header-height;
+.#{$theme}-doc__content-nav-wrap {
+    padding-top: $theme-doc-header-height;
 }
 
-.mds-doc__content {
-    font-family: $mds-font-family-sans-serif;
+.#{$theme}-doc__content {
+    font-family: $theme-font-family-sans-serif;
 
     @media screen and (min-width: 768px) {
-        margin-left: $mds-doc-nav-width;
-        width: calc(100% - $mds-doc-nav-width);
+        margin-left: $theme-doc-nav-width;
+        width: calc(100% - $theme-doc-nav-width);
     }
 }
 
-.mds-doc__content-inner {
+.#{$theme}-doc__content-inner {
     margin: 0 auto;
-    max-width: $mds-doc-content-max-width;
-    padding: $mds-space-inset-m; 
+    max-width: $theme-doc-content-max-width;
+    padding: $theme-space-inset-m; 
 
     @media screen and (min-width: 768px) {
-        padding: $mds-space-inset-m;
+        padding: $theme-space-inset-m;
     }   
 
     @media screen and (min-width: 1024px) {
-        padding-top: $mds-space-l;
+        padding-top: $theme-space-l;
     }   
 }

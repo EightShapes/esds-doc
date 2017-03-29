@@ -10,19 +10,19 @@
         icon_path=false) %}
     {% set id = range(0, 100000) | random %}
 
-    <div class="{{ project.name }}-doc-code-snippet{{ ' ' + class if class }}">
+    <div class="mds-doc-code-snippet{{ ' ' + class if class }}">
         {% if show_copy_button %}
-            <div class="{{ project.name }}-doc-code-snippet__actions">
-                <a href="#" class="{{ project.name }}-button {{ project.name }}-doc-code-snippet__copy" data-clipboard-target="#{{ project.name }}-doc-code-snippet--{{ id }}">
-                    {% set button_icon_class = project.name + '-doc-code-snippet__copy-icon ' + project.name + '-button__icon ' + project.name + '-button__icon--left' %}
+            <div class="mds-doc-code-snippet__actions">
+                <a href="#" class="mds-button mds-doc-code-snippet__copy" data-clipboard-target="#mds-doc-code-snippet--{{ id }}">
+                    {% set button_icon_class = 'mds-doc-code-snippet__copy-icon ' + 'mds-button__icon ' + 'mds-button__icon--left' %}
                     {{ library.icon(name='pop-out', class=button_icon_class, path=icon_path) }}
-                    <span class="{{ project.name }}-doc-code-snippet__copy-text">Copy to Clipboard</span>
-                    <span class="{{ project.name }}-doc-code-snippet__copied-response">Press Ctrl + C to copy</span>
+                    <span class="mds-doc-code-snippet__copy-text">Copy to Clipboard</span>
+                    <span class="mds-doc-code-snippet__copied-response">Press Ctrl + C to copy</span>
                 </a>
             </div>
         {% endif %}
-        <div id="{{ project.name }}-doc-code-snippet--{{ id }}" class="{{ project.name }}-doc-code-snippet__source">
-            <pre class="{{ project.name }}-doc-code-snippet__pre"><code class="language-{{ language }}">
+        <div id="mds-doc-code-snippet--{{ id }}" class="mds-doc-code-snippet__source">
+            <pre class="mds-doc-code-snippet__pre"><code class="language-{{ language }}">
                 {%- if language == 'css' or language == 'scss' -%}
                     {{- source | trim | cssbeautify -}}
                 {%- else -%}
@@ -45,6 +45,6 @@
                 {%- else -%}
                 {% endif %}
                 {% if reference_link_href %}
-<a class="{{ project.name }}-doc-code-snippet__link" href="{{ reference_link_href }}">{{ reference_link_text }}</a>
+<a class="mds-doc-code-snippet__link" href="{{ reference_link_href }}">{{ reference_link_text }}</a>
                 {%- endif -%} #}
 {% endmacro %}

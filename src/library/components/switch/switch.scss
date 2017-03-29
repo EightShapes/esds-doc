@@ -1,177 +1,177 @@
-$mds-color-switch-group-label: $mds-text-color-primary-on-light;
-$mds-color-switch-group-label-on-dark: $mds-color-neutral-95;
+$theme-color-switch-group-label: $theme-text-color-primary-on-light;
+$theme-color-switch-group-label-on-dark: $theme-color-neutral-95;
 
-$mds-color-switch-label: $mds-color-neutral-50;
-$mds-color-switch-label-on-dark: $mds-text-color-secondary-on-dark;
-$mds-color-switch-label-hover: $mds-text-color-primary-on-light;
-$mds-color-switch-label-hover-on-dark: $mds-color-neutral-90;
+$theme-color-switch-label: $theme-color-neutral-50;
+$theme-color-switch-label-on-dark: $theme-text-color-secondary-on-dark;
+$theme-color-switch-label-hover: $theme-text-color-primary-on-light;
+$theme-color-switch-label-hover-on-dark: $theme-color-neutral-90;
 
-$mds-transition-hover: color 300ms, border-color 300ms;
-$mds-transition-click: border-color 300ms, margin-left 300ms, background 300ms;
-$mds-border-radius-switch: 15px;
+$theme-transition-hover: color 300ms, border-color 300ms;
+$theme-transition-click: border-color 300ms, margin-left 300ms, background 300ms;
+$theme-border-radius-switch: 15px;
 
-$mds-switch-width: 26px;
-$mds-switch-height: 16px;
-$mds-switch-toggle-width: 12px;
-$mds-switch-toggle-height: 12px;
+$theme-switch-width: 26px;
+$theme-switch-height: 16px;
+$theme-switch-toggle-width: 12px;
+$theme-switch-toggle-height: 12px;
 
-$mds-box-shadow-switch-element-focus: 0 0 4px 2px rgba($mds-interactive-color-primary-default, .8);
-$mds-size-switch-focus-gap: 3px;
+$theme-box-shadow-switch-element-focus: 0 0 4px 2px rgba($theme-interactive-color-primary-default, .8);
+$theme-size-switch-focus-gap: 3px;
 
-$mds-space-stack-switch-field-group: 0 0 16px 0;
-$mds-space-stack-switch-label: 0 0 8px 0;
-$mds-space-stack-switch-input: 0 0 8px 0;
-$mds-space-grid-switch: 0 8px 8px 0;
+$theme-space-stack-switch-field-group: 0 0 16px 0;
+$theme-space-stack-switch-label: 0 0 8px 0;
+$theme-space-stack-switch-input: 0 0 8px 0;
+$theme-space-grid-switch: 0 8px 8px 0;
 
-.mds-switch {
+.#{$theme}-switch {
 
-    .mds-switch__field-group--horizontal & {
+    .#{$theme}-switch__field-group--horizontal & {
         display: inline-flex;
-        margin: $mds-space-grid-switch;
+        margin: $theme-space-grid-switch;
     }
 }
 
-.mds-switch__label {
-    color: $mds-color-switch-label;
+.#{$theme}-switch__label {
+    color: $theme-color-switch-label;
     cursor: pointer;
-    font-family: $mds-font-family-sans-serif;
-    font-size: $mds-font-size-default;
-    font-weight: $mds-font-weight-light;
+    font-family: $theme-font-family-sans-serif;
+    font-size: $theme-font-size-default;
+    font-weight: $theme-font-weight-light;
 
-    .mds-container--dark &, 
-    .mds-container--black & {
-        color: $mds-color-switch-label-on-dark;
+    .#{$theme}-container--dark &, 
+    .#{$theme}-container--black & {
+        color: $theme-color-switch-label-on-dark;
     }
 
 }
 
-.mds-switch__text {
-    border: solid $mds-size-switch-focus-gap transparent;
+.#{$theme}-switch__text {
+    border: solid $theme-size-switch-focus-gap transparent;
     cursor: pointer;
     display: inline-block;
     padding-left: 35px;
     position: relative;
-    transition: $mds-transition-hover;
+    transition: $theme-transition-hover;
 
     // Border
     &:before {
-        border: $mds-border-control-default;
-        border-radius: $mds-border-radius-switch;
+        border: $theme-border-control-default;
+        border-radius: $theme-border-radius-switch;
         content: '';
         display: block;
-        height: $mds-switch-height;
+        height: $theme-switch-height;
         left: 0;
         position: absolute;
         top: 2px;
-        transition: $mds-transition-click;
-        width: $mds-switch-width;
+        transition: $theme-transition-click;
+        width: $theme-switch-width;
 
-        .mds-switch__label:hover & {
-            border-color: $mds-interactive-color-primary-hover;
+        .#{$theme}-switch__label:hover & {
+            border-color: $theme-interactive-color-primary-hover;
         }
 
-        .mds-switch__label:active & {
-            border-color: $mds-interactive-color-primary-active;
+        .#{$theme}-switch__label:active & {
+            border-color: $theme-interactive-color-primary-active;
         }
 
     }
 
     // Dot
     &:after {
-        border: $mds-border-control-default;
+        border: $theme-border-control-default;
         border-radius: 50%;
         content: '';
         display: block;
-        height: $mds-switch-toggle-height;
+        height: $theme-switch-toggle-height;
         left: 0;
         margin-left: 2px;
         position: absolute;
         top: 4px;
-        transition: $mds-transition-click;
-        width: $mds-switch-toggle-width;
+        transition: $theme-transition-click;
+        width: $theme-switch-toggle-width;
 
-        .mds-switch__label:hover & {
-            border-color: $mds-interactive-color-primary-hover;
+        .#{$theme}-switch__label:hover & {
+            border-color: $theme-interactive-color-primary-hover;
         }
 
-        .mds-switch__label:active & {
-            border-color: $mds-interactive-color-primary-active;
+        .#{$theme}-switch__label:active & {
+            border-color: $theme-interactive-color-primary-active;
         }
 
     }
 
-    .mds-switch__label:hover & {
-        color: $mds-color-switch-label-hover;
+    .#{$theme}-switch__label:hover & {
+        color: $theme-color-switch-label-hover;
 
-        .mds-container--dark &, 
-        .mds-container--black & {
-            color: $mds-color-switch-label-hover-on-dark;
+        .#{$theme}-container--dark &, 
+        .#{$theme}-container--black & {
+            color: $theme-color-switch-label-hover-on-dark;
         }
     }
     
 
 }
 
-.mds-switch__input {
+.#{$theme}-switch__input {
     // hide checkbox
-    @include mds-accessibly-hidden();
+    @include theme-accessibly-hidden();
 
     // Focus/active state
-    &:focus ~ .mds-switch__text,
-    .mds-switch--focus & ~ .mds-switch__text {
-        box-shadow: $mds-box-shadow-switch-element-focus;
+    &:focus ~ .#{$theme}-switch__text,
+    .#{$theme}-switch--focus & ~ .#{$theme}-switch__text {
+        box-shadow: $theme-box-shadow-switch-element-focus;
         outline: none;
     }
 
     // Checked state
-    &:checked ~ .mds-switch__text {
-        color: $mds-color-switch-label-hover;
+    &:checked ~ .#{$theme}-switch__text {
+        color: $theme-color-switch-label-hover;
 
-        .mds-container--dark &, 
-        .mds-container--black & {
-            color: $mds-color-switch-label-hover-on-dark;
+        .#{$theme}-container--dark &, 
+        .#{$theme}-container--black & {
+            color: $theme-color-switch-label-hover-on-dark;
         }
 
         &:before,
         &:after {
-            border-color: $mds-interactive-color-primary-default;
+            border-color: $theme-interactive-color-primary-default;
 
-            .mds-switch__label:hover & {
-                border-color: $mds-interactive-color-primary-hover;
+            .#{$theme}-switch__label:hover & {
+                border-color: $theme-interactive-color-primary-hover;
             }
 
-            .mds-switch__label:active & {
-                border-color: $mds-interactive-color-primary-active;
+            .#{$theme}-switch__label:active & {
+                border-color: $theme-interactive-color-primary-active;
             }
 
         }
 
         &:after {
-            background: $mds-interactive-color-primary-default;
+            background: $theme-interactive-color-primary-default;
             margin-left: 12px;
 
-            .mds-switch__label:hover & {
-                background: $mds-interactive-color-primary-hover;
+            .#{$theme}-switch__label:hover & {
+                background: $theme-interactive-color-primary-hover;
             }
 
-            .mds-switch__label:active & {
-                background: $mds-interactive-color-primary-active;
+            .#{$theme}-switch__label:active & {
+                background: $theme-interactive-color-primary-active;
             }
 
         }
     }
 
     // Disabled
-    &:disabled ~ .mds-switch__text,
-    &[disabled] ~ .mds-switch__text,
-    .mds-switch--disabled & ~ .mds-switch__text  {
-        color: $mds-interactive-color-disabled;
+    &:disabled ~ .#{$theme}-switch__text,
+    &[disabled] ~ .#{$theme}-switch__text,
+    .#{$theme}-switch--disabled & ~ .#{$theme}-switch__text  {
+        color: $theme-interactive-color-disabled;
         cursor: not-allowed;
-        opacity: $mds-opacity-disabled;
+        opacity: $theme-opacity-disabled;
 
         &:before,
         &:after {
-            border: $mds-border-disabled;
+            border: $theme-border-disabled;
         }
         
     }
@@ -181,34 +181,34 @@ $mds-space-grid-switch: 0 8px 8px 0;
 
 
 // Stacked Switches
-.mds-switch__group {
+.#{$theme}-switch__group {
     border: 0;
     margin: 0;
     padding: 0;
 
-    .mds-switch {
-        margin: $mds-space-stack-switch-input;
+    .#{$theme}-switch {
+        margin: $theme-space-stack-switch-input;
     }
 }
 
-.mds-switch__group-label {
-    @include mds-text-crop();
-    color: $mds-color-switch-group-label;
+.#{$theme}-switch__group-label {
+    @include theme-text-crop();
+    color: $theme-color-switch-group-label;
     display: block;
-    font-family: $mds-font-family-sans-serif;
-    font-size: $mds-font-size-default;
-    font-weight: $mds-font-weight-light;
-    margin: $mds-space-stack-switch-label;
+    font-family: $theme-font-family-sans-serif;
+    font-size: $theme-font-size-default;
+    font-weight: $theme-font-weight-light;
+    margin: $theme-space-stack-switch-label;
     padding: 0;
 
-    .mds-container--dark &, 
-    .mds-container--black & {
-        color: $mds-color-switch-group-label-on-dark;
+    .#{$theme}-container--dark &, 
+    .#{$theme}-container--black & {
+        color: $theme-color-switch-group-label-on-dark;
     }
 }
 
 // Horizontal Switches
-.mds-switch__field-group--horizontal {
+.#{$theme}-switch__field-group--horizontal {
     align-items: flex-start;
     display: flex;
 }

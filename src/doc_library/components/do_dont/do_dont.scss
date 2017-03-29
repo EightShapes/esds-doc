@@ -1,9 +1,9 @@
-$mds-doc-color-success: $mds-color-green-34;
-$mds-doc-color-error: $mds-color-red-50;
-$mds-doc-border-image: solid 1px #e5e5e5;
+$theme-doc-color-success: $theme-color-green-34;
+$theme-doc-color-error: $theme-color-red-50;
+$theme-doc-border-image: solid 1px #e5e5e5;
 
-.mds-doc-do-dont {
-    margin: $mds-space-stack-xl;
+.#{$theme}-doc-do-dont {
+    margin: $theme-space-stack-xl;
     
     @media screen and (min-width: 480px) {
         display: flex;
@@ -12,13 +12,13 @@ $mds-doc-border-image: solid 1px #e5e5e5;
     }
 }
 
-.mds-doc-do-dont__image-wrap {
-    margin: $mds-space-stack-m;
+.#{$theme}-doc-do-dont__image-wrap {
+    margin: $theme-space-stack-m;
     padding: 0;
 
     @media screen and (min-width: 480px) {
         flex: 1 1 40%;
-        margin-right: $mds-space-l;
+        margin-right: $theme-space-l;
         max-width: 50%;
 
         &:nth-child(even) {
@@ -27,36 +27,36 @@ $mds-doc-border-image: solid 1px #e5e5e5;
     }
 }
 
-.mds-doc-do-dont__image {
-    border: $mds-doc-border-image;
+.#{$theme}-doc-do-dont__image {
+    border: $theme-doc-border-image;
     display: block;
     max-width: 100%;
 }
 
-.mds-doc-do-dont__caption {
-    @include mds-text-crop();
-    border-top: solid 4px $mds-border-separator-color-on-light;
-    font-family: $mds-font-family-sans-serif;
-    font-size: $mds-font-size-s;
-    padding: $mds-space-inset-s;
+.#{$theme}-doc-do-dont__caption {
+    @include theme-text-crop();
+    border-top: solid 4px $theme-border-separator-color-on-light;
+    font-family: $theme-font-family-sans-serif;
+    font-size: $theme-font-size-s;
+    padding: $theme-space-inset-s;
     padding-left: 0;
     padding-right: 0;
 
-    .mds-doc-do-dont__image-wrap--dont & {
-        border-color: $mds-doc-color-error;
+    .#{$theme}-doc-do-dont__image-wrap--dont & {
+        border-color: $theme-doc-color-error;
     }
 
-    .mds-doc-do-dont__image-wrap--do & {
-        border-color: $mds-doc-color-success;
+    .#{$theme}-doc-do-dont__image-wrap--do & {
+        border-color: $theme-doc-color-success;
     }
 }
 
-.mds-doc-do-dont__type {
-    .mds-doc-do-dont__image-wrap--dont & {
-        color: $mds-doc-color-error;
+.#{$theme}-doc-do-dont__type {
+    .#{$theme}-doc-do-dont__image-wrap--dont & {
+        color: $theme-doc-color-error;
     }
 
-    .mds-doc-do-dont__image-wrap--do & {
-        color: $mds-doc-color-success;
+    .#{$theme}-doc-do-dont__image-wrap--do & {
+        color: $theme-doc-color-success;
     }
 }

@@ -1,4 +1,4 @@
-@import 'mds_constants';
+@import 'constants';
 // $project-name variable is temporary until we name the project
 
 // Cross-component utilities
@@ -31,7 +31,7 @@
 // Global styles used across the library, keep minimal, err on the side of redefining things like font families, font sizes, etc.
 html {
     box-sizing: border-box;
-    font-size: $mds-font-size-base;
+    font-size: $theme-font-size-base;
 }
 
 *, 
