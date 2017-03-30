@@ -28,3 +28,18 @@
 
 // Print Styles for all components
 @import 'mds_library_print';
+
+// Global docs site styles used across the library, keep minimal, err on the side of redefining things like font families, font sizes, etc.
+.mds-doc__header,
+.mds-doc__off-canvas-toggle-input,
+.mds-doc__content-nav-wrap {
+    box-sizing: border-box;
+    font-size: $theme-font-size-base;
+}
+
+*, 
+*:before, 
+*:after {
+    box-sizing: inherit;
+}
+
