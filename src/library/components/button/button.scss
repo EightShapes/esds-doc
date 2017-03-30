@@ -134,12 +134,9 @@ a {
     width: $theme-size-icon-m;
 }
 
-.#{$theme}-button__icon--left + .#{$theme}-button__text {
-    margin: $theme-space-inline-left-xs;
-}
-
+.#{$theme}-button__icon--left + .#{$theme}-button__text,
 .#{$theme}-button__text + .#{$theme}-button__icon--right  {
-    margin: $theme-space-inline-left-xs;
+    margin-left: $theme-space-xs;
 }
 
 .#{$theme}-button__text {
