@@ -27,14 +27,17 @@ $theme-transition-hover: background 300ms, color 300ms, border-color 300ms, fill
 }
 
 .#{$theme}-text-crop--default {
+    @include border-box();
     @include theme-text-crop();
 }
 
 .#{$theme}-text-crop--1-1 {
+    @include border-box();
     @include theme-text-crop(1.1);
 }
 
 .#{$theme}-text__anchor {
+    @include border-box();
     color: $theme-interactive-color-primary-default;
     fill: $theme-interactive-color-primary-default;
     transition: $theme-transition-hover;
@@ -50,6 +53,7 @@ $theme-transition-hover: background 300ms, color 300ms, border-color 300ms, fill
 }
 
 .#{$theme}-text__anchor--with-icon {
+    @include border-box();
     text-decoration: none;
 
     .#{$theme}-text__anchor-text {
@@ -104,6 +108,7 @@ $theme-transition-hover: background 300ms, color 300ms, border-color 300ms, fill
 
 .#{$theme}-container--dark, 
 .#{$theme}-container--black {
+    @include border-box();
     color: $theme-text-color-primary-on-dark;
 
     .#{$theme}-icon {

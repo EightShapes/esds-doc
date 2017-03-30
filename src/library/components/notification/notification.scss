@@ -3,6 +3,7 @@ $theme-notification-close-button-size: 16px;
 $mde-notification-box-shadow-color: rgba(0, 0, 0, .2);
 
 .#{$theme}-notification {
+    @include border-box();
     align-items: center;
     background-color: $theme-background-color-default;
     border-radius: 11px;

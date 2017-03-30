@@ -3,7 +3,12 @@ $theme-hover-shadow: 0 0 4px 2px rgba(0, 168, 225, .8);
 $theme-focus-ring-offset: -3px;
 $theme-border-radius-button: 15px;
 
-// $project-name variable is temporary until we name the project
+.#{$theme}-button,
+.#{$theme}-button--secondary,
+.#{$theme}-button__input-outer-wrapper {
+    @include border-box();
+}
+
 .#{$theme}-button,
 .#{$theme}-button--secondary {
     background-color: transparent;

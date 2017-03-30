@@ -292,6 +292,7 @@ $with-border: false;
 
 // Basic classes for styling and layout --------
 .#{$theme}-tooltip {
+    @include border-box();
     border-radius: $theme-tooltip-border-radius;
     box-shadow: $theme-tooltip-drop-shadow;
     display: block;

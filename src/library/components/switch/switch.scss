@@ -23,6 +23,12 @@ $theme-space-stack-switch-label: 0 0 8px 0;
 $theme-space-stack-switch-input: 0 0 8px 0;
 $theme-space-grid-switch: 0 8px 8px 0;
 
+.#{$theme}-switch,
+.#{$theme}-switch__group,
+.#{$theme}-switch__field-group {
+    @include border-box();
+}
+
 .#{$theme}-switch {
 
     .#{$theme}-switch__field-group--horizontal & {

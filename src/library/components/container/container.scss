@@ -1,15 +1,19 @@
 .#{$theme}-container--default {
+    @include border-box();
     background: $theme-background-color-default;
 }
 
 .#{$theme}-container--light {
+    @include border-box();
     background: $theme-background-color-light; 
 }
 
 .#{$theme}-container--dark {
+    @include border-box();
     background: $theme-background-color-dark; 
 }
 
 .#{$theme}-container--black {
+    @include border-box();
     background: $theme-background-color-black; 
 }

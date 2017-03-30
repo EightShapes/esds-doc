@@ -33,6 +33,12 @@ $theme-range-slider-target-background: $theme-color-neutral-50;
     user-select: none;
 }
 
+.#{$theme}-range-slider,
+.#{$theme}-range-slider-group,
+.#{$theme}-range-slider-group--min-max {
+    @include border-box();
+}
+
 .#{$theme}-range-slider-target {
     background: $theme-range-slider-target-background;
     border: 0;

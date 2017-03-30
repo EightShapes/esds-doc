@@ -67,6 +67,20 @@ $theme-space-stack-form-radio-checkbox: 0 0 8px 0;
     outline: none;
 }
 
+.#{$theme}-form,
+.#{$theme}-form__checkbox,
+.#{$theme}-form__checkbox-group,
+.#{$theme}-form__field-group,
+.#{$theme}-form__fieldset,
+.#{$theme}-form__input,
+.#{$theme}-form__label,
+.#{$theme}-form__radio-button,
+.#{$theme}-form__radio-button-group,
+.#{$theme}-form__select,
+.#{$theme}-form__textarea {
+    @include border-box();
+}
+
 .#{$theme}-form__field-group {
     margin: $theme-space-stack-form-field-group;
 }

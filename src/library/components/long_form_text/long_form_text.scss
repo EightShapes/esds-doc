@@ -1,4 +1,5 @@
 .#{$theme}-long-form-text {
+    @include border-box();
     color: $theme-text-color-primary-default;
     font-family: $theme-font-family-sans-serif;
 

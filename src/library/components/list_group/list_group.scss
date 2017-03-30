@@ -10,6 +10,7 @@ $theme-list-group-transition-easing-navigation-exit: linear;
 }
 
 .#{$theme}-list-group {
+    @include border-box();
     display: block;
     font-family: $theme-font-family-sans-serif;
     font-size: $theme-font-size-m;

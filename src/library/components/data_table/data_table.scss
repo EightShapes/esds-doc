@@ -38,6 +38,7 @@ $theme-text-color-data-table-header-cell-inner-on-dark: $theme-color-neutral-67;
 }
 
 .#{$theme}-data-table {
+    @include border-box();
     background-color: transparent;
     border-collapse: collapse;
     border-spacing: 0;

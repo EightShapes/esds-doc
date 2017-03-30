@@ -1,4 +1,5 @@
 .#{$theme}-pagination {
+    @include border-box();
     font-size: 0;
     font-weight: $theme-font-weight-regular;
     height: 25px;

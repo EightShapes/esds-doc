@@ -1,3 +1,7 @@
+.#{$theme}-icon {
+    @include border-box();
+}
+
 .#{$theme}-icon,
 .#{$theme}-icon--l {
     height: $theme-size-icon-l;
