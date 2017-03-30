@@ -15,6 +15,7 @@ const   gulp = require('gulp'),
         mkdirp = require('mkdirp'),
         nunjucksRender = require('gulp-nunjucks-render'),
         path = require('path'),
+        pluralize = require('pluralize'),
         postcss = require('gulp-postcss'),
         project = require('./package.json'),
         projectDataFilepath = 'src/doc/data/auto-generated/all_data.json',
@@ -635,3 +636,62 @@ gulp.task('build:current-release-node-package', function(done){
 
 gulp.task('build:current-release', gulp.parallel('release:fonts', 'release:compiled-assets', 'release:docs', 'release:source-styles', 'release:source-scripts', 'release:source-icons', 'release:constants:json', 'release:constants:yaml', 'build:current-release-node-package'));
 gulp.task('build:release', gulp.series('release:existing-check', 'build:dist', 'build:relativize-root', 'release:clean', 'build:current-release'));
+
+
+/******* GENERATORS *********************************/
+gulp.task('generate:new-component', function(done){
+    var questions = [{
+                name: 'componentName',
+                type: 'input',
+                message: "What is the name of the component you're creating? (use a singular name, i.e. button, not buttons)"
+            },
+            {
+                name: 'componentJavascript',
+                type: 'confirm',
+                default: false,
+                message: "Generate a javascript file for this component?"
+            }];
+
+    return inquirer.prompt(questions).then(function(answers) {
+        // To overwrite you must type the current version number into the command line prompt
+        const   componentName = answers.componentName.toLowerCase().replace(/\s/g, '_'),
+                pluralComponentName = pluralize.plural(componentName)
+
+        if (fs.existsSync(`src/library/components/${componentName}`)) {
+            // Does a component with the same name already exist?
+            console.log(`A component named: ${componentName} already exists. Component files NOT generated.`);
+            done();
+        } else {
+            // Create the component's directory
+            mkdirp.sync(`src/library/components/${componentName}`);
+
+            // Create the component's njk file
+            const macroContent = `{% macro ${componentName}(class=false) %}\n{% endmacro %}`;
+            
+            fs.writeFileSync(`src/library/components/${componentName}/${componentName}.njk`, macroContent);
+            console.log(`src/library/components/${componentName}/${componentName}.njk created`);
+            
+            // Create the component's scss file
+            fs.writeFileSync(`src/library/components/${componentName}/${componentName}.scss`, '');
+            console.log(`src/library/components/${componentName}/${componentName}.scss created`);
+                        
+            // Create the component's js file if requested
+            if (answers.componentJavascript) {
+                fs.writeFileSync(`src/library/components/${componentName}/${componentName}.js`, '');
+                console.log(`src/library/components/${componentName}/${componentName}.js created`);
+            }
+
+            // Create the component's sink page
+            const sinkPageContent = `{% extends "doc_templates/default.sink.template.njk" %}\n{% set title = '${pluralComponentName}' | title +  ' Sink' %}\n{% macro component_sink() %}\n{# Sink Code Goes Here #}\n{% endmacro %}`;
+
+            if (!fs.existsSync('src/doc/sink-pages/components/')) {
+                mkdirp.sync('src/doc/sink-pages/components/');
+            }
+            fs.writeFileSync(`src/doc/sink-pages/components/${pluralComponentName}.njk`, sinkPageContent);
+            console.log(`src/doc/sink-pages/components/${pluralComponentName}.njk created`);
+
+            console.log("All component files generated. Be sure to @import your component's .scss into the main library.scss file");
+            done();
+        }
+    });
+});
