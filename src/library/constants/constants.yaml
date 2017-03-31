@@ -61,9 +61,13 @@ interactive-color :
     active : *color-cyan-39
   secondary :
     primary : transparent
-    hover : *color-neutral-50
-    active : *color-neutral-50
-  disabled : *color-neutral-50
+    hover : *color-neutral-37
+    active : 
+      on-light : *color-neutral-20
+      on-dark : *color-neutral-90
+  disabled :
+    on-light : *color-neutral-50
+    on-dark : *color-neutral-67
   focus : "0 0 4px 2px rgba(#00a8e1, .8)"
 font :
   family :

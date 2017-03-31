@@ -54,7 +54,7 @@
     }
 
     &.#{$theme}-pagination__item--disabled {
-        color: $theme-interactive-color-disabled;
+        color: $theme-interactive-color-disabled-on-light;
         cursor: not-allowed;
         padding: 2px 5px;
     }
@@ -106,6 +106,6 @@
     }
 
     .#{$theme}-pagination__item--disabled & {
-        fill: $theme-interactive-color-disabled;
+        fill: $theme-interactive-color-disabled-on-light;
     }
 }

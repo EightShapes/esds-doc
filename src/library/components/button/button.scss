@@ -42,8 +42,6 @@ $theme-border-radius-button: 15px;
         }
     }
 
-    
-
     &:focus,
     &.#{$theme}-button--focus {
         &:after {
@@ -62,8 +60,8 @@ $theme-border-radius-button: 15px;
 
     &:active,
     &.#{$theme}-button--active {
-        background-color: $theme-interactive-color-secondary-active;
-        border-color: $theme-interactive-color-secondary-active;
+        background-color: $theme-interactive-color-secondary-active-on-light;
+        border-color: $theme-interactive-color-secondary-active-on-light;
         color: $theme-color-white;
 
         .#{$theme}-button__icon {
@@ -81,7 +79,7 @@ $theme-border-radius-button: 15px;
         background-color: transparent;
         border: $theme-border-disabled;
         box-shadow: none;
-        color: $theme-interactive-color-disabled;
+        color: $theme-interactive-color-disabled-on-light;
         cursor: not-allowed;
         opacity: $theme-opacity-disabled;
 
@@ -90,13 +88,13 @@ $theme-border-radius-button: 15px;
         }
 
         .#{$theme}-button__icon {
-            fill: $theme-interactive-color-disabled;
+            fill: $theme-interactive-color-disabled-on-light;
         }
 
         &:hover,
         &.#{$theme}-button--hover {
             .#{$theme}-button__icon {
-                fill: $theme-interactive-color-disabled;
+                fill: $theme-interactive-color-disabled-on-light;
             }
         }
 
@@ -208,6 +206,7 @@ a {
         &:hover,
         &.#{$theme}-button--hover {
             background-color: $theme-interactive-color-secondary-hover;
+            border-color: $theme-interactive-color-secondary-hover;
             color: $theme-text-color-primary-on-dark;
 
             .#{$theme}-button__icon {
@@ -218,11 +217,12 @@ a {
 
         &:active,
         &.#{$theme}-button--active {
-            background-color: $theme-color-neutral-90;
-            color: $theme-color-neutral-37;
+            background-color: $theme-interactive-color-secondary-active-on-dark;
+            border-color: $theme-interactive-color-secondary-active-on-dark;
+            color: $theme-text-color-secondary-default;
 
             .#{$theme}-button__icon {
-                fill: $theme-color-neutral-37;
+                fill: $theme-text-color-secondary-default;
             }
         }
 
@@ -236,10 +236,11 @@ a {
             &:focus,
             &.#{$theme}-button--focus {
                 background: transparent;
-                color: $theme-interactive-color-disabled;
+                border: $theme-border-control-default;
+                color: $theme-text-color-secondary-on-dark;
 
                 .#{$theme}-button__icon {
-                    fill: $theme-interactive-color-disabled;
+                    fill: $theme-text-color-secondary-on-dark;
                 }
             }
         }
@@ -339,17 +340,28 @@ a {
 .#{$theme}-button__input[disabled],
 .#{$theme}-button__input.#{$theme}-button--disabled {
     + .#{$theme}-button {
+        cursor: not-allowed;
         opacity: $theme-opacity-disabled;
+    }
+
+    .#{$theme}--dark & {
+        &:hover + .#{$theme}-button {
+            color: $theme-interactive-color-disabled-on-dark;
+
+            .#{$theme}-button__icon {
+                fill: $theme-interactive-color-disabled-on-dark;
+            }
+        }
     }
 
     &:hover + .#{$theme}-button {
         background-color: transparent;
-        border-color: $theme-border-disabled;
-        color: $theme-interactive-color-disabled;
+        border: $theme-border-disabled;
+        color: $theme-interactive-color-disabled-on-light;
         cursor: not-allowed;
 
         .#{$theme}-button__icon {
-            fill: $theme-interactive-color-disabled;
+            fill: $theme-interactive-color-disabled-on-light;
         }
     }
 
@@ -370,8 +382,8 @@ a {
 .#{$theme}-button__input.#{$theme}-button--active + .#{$theme}-button,
 .#{$theme}-button__input:active + .#{$theme}-button--secondary,
 .#{$theme}-button__input.#{$theme}-button--active + .#{$theme}-button--secondary {
-    background-color: $theme-interactive-color-secondary-active;
-    border-color: $theme-interactive-color-secondary-active;
+    background-color: $theme-interactive-color-secondary-active-on-light;
+    border-color: $theme-interactive-color-secondary-active-on-light;
     color: $theme-color-white;
 
     .#{$theme}-button__icon {
@@ -380,6 +392,16 @@ a {
 
     &:after {
         box-shadow: none;
+    }
+
+    .#{$theme}--dark & {
+        background-color: $theme-interactive-color-secondary-active-on-dark;
+        border-color: $theme-interactive-color-secondary-active-on-dark;
+        color: $theme-text-color-secondary-default;
+
+        .#{$theme}-button__icon {
+            fill: $theme-text-color-secondary-default;
+        }
     }
 }
 
@@ -395,4 +417,14 @@ a {
 .#{$theme}-button__input.#{$theme}-button--active + .#{$theme}-button--primary {
     background-color: $theme-interactive-color-primary-active;
     border-color: $theme-interactive-color-primary-active;
+
+    .#{$theme}--dark & {
+        background-color: $theme-interactive-color-primary-active;
+        border-color: $theme-interactive-color-primary-active;
+        color: $theme-color-white;
+
+        .#{$theme}-button__icon {
+            fill: $theme-color-white;
+        }
+    }
 }
