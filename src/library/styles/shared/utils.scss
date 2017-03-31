@@ -12,6 +12,17 @@
     }
 }
 
+@mixin clearfix() {
+    &:before, &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
 @mixin theme-accessibly-hidden() {
     @include border-box();
     clip: rect(0 0 0 0);

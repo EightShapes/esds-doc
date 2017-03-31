@@ -1,7 +1,38 @@
 {% macro range_slider(
 		slider_id=null,
+		slider_hidden,
+		input_id=null,
+		input_id_max=null,
 		class=false,
-		disabled=false
+		disabled=false,
+		with_input=false,
+		with_min_max=false,
+		auto_width=false,
+		set_slider_width=false,
+		set_input_width=false
 	) %}
-	<div id="{{ slider_id }}" {{ 'disabled' if disabled }} class="{{class if class}}"></div>
+	{% if with_input %}
+		<div class="mds-range-slider__group">
+			<div class="mds-range-slider__input-wrapper{% if auto_width %} mds-range-slider__input-wrapper--auto{% endif %}" {% if set_input_width %} style="width:{{ set_input_width }}"{% endif %}>
+	        	{{ form_input(id=input_id, class="mds-range-slider__input", type="number", disabled=disabled) }}
+	    	</div>
+		    <div class="mds-range-slider__wrapper{% if auto_width %} mds-range-slider__wrapper--auto{% endif %}" {% if set_slider_width %} style="width:{{ set_slider_width }}"{% endif %}>
+				<div id="{{ slider_id }}" {{ 'disabled' if disabled }} class="mds-range-slider mds-range-slider--with-input {{class if class}}"></div>
+			</div>
+		</div>
+	{% elif with_min_max %}
+		<div class="mds-range-slider__group--min-max">
+			<div class="mds-range-slider__input-wrapper{% if auto_width %} mds-range-slider__input-wrapper--auto{% endif %}" {% if set_input_width %} style="width:{{ set_input_width }}"{% endif %}>
+	        	{{ form_input(id=input_id, class="mds-range-slider__input mds-range-slider__input--min", type="number", disabled=disabled) }}
+	    	</div>
+		    <div class="mds-range-slider__wrapper{% if auto_width %} mds-range-slider__wrapper--auto{% endif %}" {% if set_slider_width %} style="width:{{ set_slider_width }}"{% endif %}>
+				<div id="{{ slider_id }}" {{ 'disabled' if disabled }} class="mds-range-slider mds-range-slider--with-input {{class if class}}"></div>
+			</div>
+			<div class="mds-range-slider__input-wrapper{% if auto_width %} mds-range-slider__input-wrapper--auto{% endif %}" {% if set_input_width %} style="width:{{ set_input_width }}"{% endif %}>
+	        	{{ form_input(id=input_id_max, class="mds-range-slider__input mds-range-slider__input--max", type="number", disabled=disabled) }}
+	    	</div>
+	    </div>
+	{% else %}
+		<div id="{{ slider_id }}" {{ 'disabled' if disabled }} class="mds-range-slider {{class if class}}"></div>
+	{% endif %}
 {% endmacro %}
