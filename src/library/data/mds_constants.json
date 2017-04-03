@@ -188,5 +188,6 @@
             "modal-content": 810,
             "top-of-the-world": 900
         }
-    }
+    },
+    "theme": "mds"
 }

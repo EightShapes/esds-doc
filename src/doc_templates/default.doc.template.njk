@@ -1,5 +1,5 @@
 {% block project_macro_imports %}
-    {% import "doc_library/components/mds_doc_library_macros.njk" as doc_library with context %}
+    {% import "doc_library/components/" + theme + "_doc_library_macros.njk" as doc_library with context %}
 {% endblock %}
 
 {% extends 'doc_templates/default.template.njk' %}
@@ -7,39 +7,39 @@
 {% block head_assets %}
     {# Include doc_library.css and doc.css here - will be loaded after library styles #}
     <link rel="stylesheet" href="/assets/doc-dependencies/prism.css">
-    <link rel="stylesheet" href="/assets/styles/mds_doc_library.css">
-    <link rel="stylesheet" href="/assets/styles/mds_doc.css">
+    <link rel="stylesheet" href="/assets/styles/{{ theme }}_doc_library.css">
+    <link rel="stylesheet" href="/assets/styles/{{ theme }}_doc.css">
 {% endblock %}
 
 {% block body %}
-    <input class="mds-doc__off-canvas-toggle-input" id="mds-doc__off-canvas-toggle" type="checkbox">
-    <header class="mds-doc__header">
-        <label for="mds-doc__off-canvas-toggle" class="mds-doc__off-canvas-toggle-label">
-            <span class="mds-screenreader-only">Menu</span>
-            {{ library.icon(class="mds-doc__off-canvas-toggle-icon", name="menu")}}
+    <input class="{{ theme }}-doc__off-canvas-toggle-input" id="{{ theme }}-doc__off-canvas-toggle" type="checkbox">
+    <header class="{{ theme }}-doc__header">
+        <label for="{{ theme }}-doc__off-canvas-toggle" class="{{ theme }}-doc__off-canvas-toggle-label">
+            <span class="{{ theme }}-screenreader-only">Menu</span>
+            {{ library.icon(class="{{ theme }}-doc__off-canvas-toggle-icon", name="menu")}}
         </label>
-        <h2 class="mds-doc__title">
-            <a class="mds-doc__title-link" href="/">
-                <img class="mds-doc__logo" src="/assets/images/MDS-logo-lockup.svg" alt="Morningstar Design System">
+        <h2 class="{{ theme }}-doc__title">
+            <a class="{{ theme }}-doc__title-link" href="/">
+                <img class="{{ theme }}-doc__logo" src="/assets/images/MDS-logo-lockup.svg" alt="Morningstar Design System">
             </a>
         </h2>
     </header>
-    <div class="mds-doc__content-nav-wrap">
-        <div class="mds-doc__content">
-            <div class="mds-doc__content-inner">
+    <div class="{{ theme }}-doc__content-nav-wrap">
+        <div class="{{ theme }}-doc__content">
+            <div class="{{ theme }}-doc__content-inner">
                 {% block doc_body_container %}
                     {% block doc_body %}
 
                     {% endblock %}
                 {% endblock %}
-                <footer class="mds-doc-footer">
+                <footer class="{{ theme }}-doc-footer">
                     {{ content.copyright | safe }}
                 </footer>
             </div>
         </div>
         {{ doc_library.site_nav() }}
     </div>
-    <label for="mds-doc__off-canvas-toggle" class="mds-doc__off-canvas-overlay"></label>
+    <label for="{{ theme }}-doc__off-canvas-toggle" class="{{ theme }}-doc__off-canvas-overlay"></label>
 {% endblock %}
 
 {% block closing_body_assets %}
@@ -47,5 +47,5 @@
     <script src="/assets/doc-dependencies/jquery.min.js"></script>
     <script src="/assets/doc-dependencies/clipboard.min.js"></script>
     <script src="/assets/doc-dependencies/prism.js"></script>
-    <script src="/assets/scripts/mds_doc_library.js"></script>
+    <script src="/assets/scripts/{{ theme }}_doc_library.js"></script>
 {% endblock %}

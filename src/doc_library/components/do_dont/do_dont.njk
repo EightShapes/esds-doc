@@ -10,12 +10,12 @@
         caption: 'display normal and small buttons together in the same row.'
     }
 ]) %}
-    <div class="mds-doc-do-dont">
+    <div class="{{ theme }}-doc-do-dont">
         {% for image in images %}
-            <figure class="mds-doc-do-dont__image-wrap mds-doc-do-dont__image-wrap--{{ image.type }}">
-                <img src="{{ image.src }}" alt="{{ image.type }} {{ image.caption }}" class="mds-doc-do-dont__image">
-                <figcaption class="mds-doc-do-dont__caption">
-                    <span class="mds-doc-do-dont__type">{{ "Don't" if image.type == 'dont' else "Do" }}</span> {{ image.caption }}
+            <figure class="{{ theme }}-doc-do-dont__image-wrap {{ theme }}-doc-do-dont__image-wrap--{{ image.type }}">
+                <img src="{{ image.src }}" alt="{{ image.type }} {{ image.caption }}" class="{{ theme }}-doc-do-dont__image">
+                <figcaption class="{{ theme }}-doc-do-dont__caption">
+                    <span class="{{ theme }}-doc-do-dont__type">{{ "Don't" if image.type == 'dont' else "Do" }}</span> {{ image.caption }}
                 </figcaption>
             </figure>
         {% endfor %}

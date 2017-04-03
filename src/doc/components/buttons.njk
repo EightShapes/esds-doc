@@ -4,7 +4,7 @@
 {% block doc_intro %}
     {% filter markdown %}
         # Buttons
-        <p class="mds-long-form-text__lead">
+        <p class="{{ theme }}-long-form-text__lead">
             Use buttons to represent interactions throughout the experience.
         </p>
     {% endfilter %}
@@ -12,33 +12,33 @@
 
 {% block doc_body %}
     {% filter markdown %}
-        <h2 class="mds-screenreader-only">Variations</h2>
+        <h2 class="{{ theme }}-screenreader-only">Variations</h2>
         ### Primary
     {% endfilter %}
 
     {{ doc_library.example_code_pair(examples=[
         {
             label: 'Default',
-            source: '{{ library.button(text="Button Text", class="mds-button--primary") }}'
+            source: '{{ library.button(text="Button Text", class=theme + "-button--primary") }}'
         },
         {
             label: 'Hover',
-            source: '{{ library.button(text="Button Text", class="mds-button--primary mds-button--hover") }}'
+            source: '{{ library.button(text="Button Text", class=theme + "-button--primary " + theme + "-button--hover") }}'
         },
         {
             label: 'Active',
-            source: '{{ library.button(text="Button Text", class="mds-button--primary mds-button--active") }}'
+            source: '{{ library.button(text="Button Text", class=theme + "-button--primary " + theme + "-button--active") }}'
         },
         {
             label: 'Focus',
-            source: '{{ library.button(text="Button Text", class="mds-button--primary mds-button--focus") }}'
+            source: '{{ library.button(text="Button Text", class=theme + "-button--primary " + theme + "-button--focus") }}'
         }
     ])}}
 
     {{ doc_library.example_code_pair(examples=[
         {
             label: 'Disabled',
-            source: '{{ library.button(text="Button Text", disabled=true, class="mds-button--primary") }}'
+            source: '{{ library.button(text="Button Text", disabled=true, class=theme + "-button--primary") }}'
         }
     ])}}
 
@@ -56,15 +56,15 @@
         },
         {
             label: 'Hover',
-            source: '{{ library.button(text="Button Text", class="mds-button--hover") }}'
+            source: '{{ library.button(text="Button Text", class=theme + "-button--hover") }}'
         },
         {
             label: 'Active',
-            source: '{{ library.button(text="Button Text", class="mds-button--active") }}'
+            source: '{{ library.button(text="Button Text", class=theme + "-button--active") }}'
         },
         {
             label: 'Focus',
-            source: '{{ library.button(text="Button Text", class="mds-button--focus") }}'
+            source: '{{ library.button(text="Button Text", class=theme + "-button--focus") }}'
         }
     ])}}
 
@@ -120,11 +120,11 @@
     {{ doc_library.example_code_pair(examples=[
         {
             label: 'Primary',
-            source: '{{ library.button(text="Sign Up", class="mds-button--small mds-button--primary") }}{{ library.button(icon_left="copy", text="Copy Document", class="mds-button--small mds-button--primary") }}{{ library.button(icon_right="arrow-right", text="Continue", class="mds-button--small mds-button--primary") }}{{ library.button(icon_left="utilities", icon_right="arrow-down", text="Account Settings", class="mds-button--small mds-button--primary") }}{{ library.button(icon_left="search", class="mds-button--small mds-button--primary") }}'
+            source: '{{ library.button(text="Sign Up", class=theme + "-button--small " + theme + "-button--primary") }}{{ library.button(icon_left="copy", text="Copy Document", class=theme + "-button--small " + theme + "-button--primary") }}{{ library.button(icon_right="arrow-right", text="Continue", class=theme + "-button--small " + theme + "-button--primary") }}{{ library.button(icon_left="utilities", icon_right="arrow-down", text="Account Settings", class=theme + "-button--small " + theme + "-button--primary") }}{{ library.button(icon_left="search", class=theme + "-button--small " + theme + "-button--primary") }}'
         },
         {
             label: 'Secondary',
-            source: '{{ library.button(text="Sign Up", class="mds-button--small") }}{{ library.button(icon_left="copy", text="Copy Document", class="mds-button--small") }}{{ library.button(icon_right="arrow-right", text="Continue", class="mds-button--small") }}{{ library.button(icon_left="utilities", icon_right="arrow-down", text="Account Settings", class="mds-button--small") }}{{ library.button(icon_left="search", class="mds-button--small") }}'
+            source: '{{ library.button(text="Sign Up", class=theme + "-button--small") }}{{ library.button(icon_left="copy", text="Copy Document", class=theme + "-button--small") }}{{ library.button(icon_right="arrow-right", text="Continue", class=theme + "-button--small") }}{{ library.button(icon_left="utilities", icon_right="arrow-down", text="Account Settings", class=theme + "-button--small") }}{{ library.button(icon_left="search", class=theme + "-button--small") }}'
         }
     ])}}
 
@@ -219,23 +219,23 @@
     {% endfilter %}
     {{ doc_library.reference_table(data=[
         {
-            class: '.mds-button',
+            class: '.' + theme + '-button',
             applies_to: '`<button>`, `<a>`, `<input type="submit"/>`, `<input type="button"/>`, `<input type="checkbox"/>`, `<input type="checkbox"/>`,  `<input type="radio"/>`, `<div>`, or `<span>`',
-            outcome: 'Applies base button styles to an element. Always couple with a variant for semantics, though a stand-alone `.mds-button` will apply the same visual treatments as `.mds-button` paired with `.mds-button--secondary`.'
+            outcome: 'Applies base button styles to an element. Always couple with a variant for semantics, though a stand-alone `.' + theme + '-button` will apply the same visual treatments as `.' + theme + '-button` paired with `.' + theme + '-button--secondary`.'
         },
         {
-            class: '.mds-button--primary',
-            applies_to: '`.mds-button`',
-            outcome: 'Shows primary-styled button, to be coupled with `.mds-button`.'
+            class: '.' + theme + '-button--primary',
+            applies_to: '`.' + theme + '-button`',
+            outcome: 'Shows primary-styled button, to be coupled with `.' + theme + '-button`.'
         },
         {
-            class: '.mds-button--secondary',
-            applies_to: '`.mds-button`',
-            outcome: 'Shows default-styled button, to be coupled with `.mds-button`.'
+            class: '.' + theme + '-button--secondary',
+            applies_to: '`.' + theme + '-button`',
+            outcome: 'Shows default-styled button, to be coupled with `.' + theme + '-button`.'
         },
         {
-            class: '.mds-button--small',
-            applies_to: '`.mds-button`',
+            class: '.' + theme + '-button--small',
+            applies_to: '`.' + theme + '-button`',
             outcome: 'Tightens padding to render a smaller button.'
         }
     ]) }}

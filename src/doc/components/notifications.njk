@@ -3,7 +3,7 @@
 {% set pop_up_notification_introduction = '
 * Please note that the implementations of popup notifications are done by JavaScript. 
 * It\'s the product team\'s decision / choices of using 3rd party or in-house code to implement the popups. 
-* Please use a wrapper class mds-notification-container with modifier such as mds-notification-container--bottom-left as the container node of the mds-notification.' %}
+* Please use a wrapper class ' + theme + '-notification-container with modifier such as ' + theme + '-notification-container--bottom-left as the container node of the ' + theme + '-notification.' %}
 
 {% block doc_body %}
     {% filter markdown %}
@@ -37,42 +37,42 @@
     {% filter markdown %}
         ## Notification playground.
     {% endfilter %}
-    <label class="mds-form__label" for="notification-popup-playground-message">Message</label>
+    <label class="{{ theme }}-form__label" for="notification-popup-playground-message">Message</label>
     {{ library.form_textarea(id="notification-popup-playground-message", placeholder="Please enter text message") }}
-    <label class="mds-form__label" for="notification-popup-show-close-button-switch">Show close button?</label>
+    <label class="{{ theme }}-form__label" for="notification-popup-show-close-button-switch">Show close button?</label>
     {{ library.switch(id="notification-popup-show-close-button-switch", text="Show close button", checked=true) }}
-    <label class="mds-form__label" for="notification-popup-playground-duration">How long does it last?</label>
+    <label class="{{ theme }}-form__label" for="notification-popup-playground-duration">How long does it last?</label>
     {{ library.form_input(id="notification-popup-playground-duration", placeholder="3000") }}
-    <label class="mds-form__label">Where would you like the popup to appear?</label>
+    <label class="{{ theme }}-form__label">Where would you like the popup to appear?</label>
     {{ library.form_select(
         id="notification-popup-position-select",
         default_text="Select a popup position",
-        default_value="mds-notification-container--bottom-right",
+        default_value=theme + "-notification-container--bottom-right",
         options=[
             {
                 text: "Select a popup position",
-                value: "mds-notification-container--bottom-left"
+                value: theme + "-notification-container--bottom-left"
             },
             {
                 text: "bottom-left",
-                value: "mds-notification-container--bottom-left"
+                value: theme + "-notification-container--bottom-left"
             },
             {
                 text: "bottom-right",
-                value: "mds-notification-container--bottom-right",
+                value: theme + "-notification-container--bottom-right",
                 selected: "selected"
             },
             {
                 text: "top-left",
-                value: "mds-notification-container--top-left"
+                value: theme + "-notification-container--top-left"
             },
             {
                 text: "top-right",
-                value: "mds-notification-container--top-right"
+                value: theme + "-notification-container--top-right"
             }
         ]) }}
     <br />
-    {{ library.button(text="Call notification", id="mds-button-for-popup-demo-playground") }}
+    {{ library.button(text="Call notification", id=theme + "-button-for-popup-demo-playground") }}
     <br />
     <br />
     <br />
@@ -86,7 +86,7 @@
     {{ super() }}
     <script>
         // Popup Notification playground code
-        var popupExampleButton = document.getElementById('mds-button-for-popup-demo-playground');
+        var popupExampleButton = document.getElementById('{{ theme }}-button-for-popup-demo-playground');
         popupExampleButton.addEventListener('click', function () {
             var message = document.getElementById('notification-popup-playground-message').value? document.getElementById('notification-popup-playground-message').value: 'Who dare to summon me?';
             var showCloseButton = document.getElementById('notification-popup-show-close-button-switch').checked;
@@ -96,7 +96,7 @@
         });
 
         // Demo example container wrapper remover
-        var demoExampleContainer = document.getElementById('mds-demo-notification-container');
+        var demoExampleContainer = document.getElementById('{{ theme }}-demo-notification-container');
         demoExampleContainer.addEventListener('click', function () {
             var demoExampleContainerHolder = demoExampleContainer.parentNode;
             demoExampleContainerHolder.removeChild(demoExampleContainer);

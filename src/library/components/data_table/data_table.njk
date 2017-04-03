@@ -2,199 +2,199 @@
             class=false,
             content_test="The fox jumps"
 ) %}
-  <table class="mds-data-table {{class if class}}">
-    <thead class="mds-data-table__header">
-      <tr class="mds-data-table__row">
-        <th class="mds-data-table__header-cell"><div class="mds-data-table__header-cell-inner">Ticker</div></th>
-        <th class="mds-data-table__header-cell mds-data-table__header-cell--right"><div class="mds-data-table__header-cell-inner">Price($)</div></th>
-        <th class="mds-data-table__header-cell mds-data-table__header-cell--right"><div class="mds-data-table__header-cell-inner mds-data-table__header-cell-inner--selected-descending">Selected Column</div></th>
-        <th class="mds-data-table__header-cell"><div class="mds-data-table__header-cell-inner">Content Test</div></th>
+  <table class="{{ theme }}-data-table {{class if class}}">
+    <thead class="{{ theme }}-data-table__header">
+      <tr class="{{ theme }}-data-table__row">
+        <th class="{{ theme }}-data-table__header-cell"><div class="{{ theme }}-data-table__header-cell-inner">Ticker</div></th>
+        <th class="{{ theme }}-data-table__header-cell {{ theme }}-data-table__header-cell--right"><div class="{{ theme }}-data-table__header-cell-inner">Price($)</div></th>
+        <th class="{{ theme }}-data-table__header-cell {{ theme }}-data-table__header-cell--right"><div class="{{ theme }}-data-table__header-cell-inner {{ theme }}-data-table__header-cell-inner--selected-descending">Selected Column</div></th>
+        <th class="{{ theme }}-data-table__header-cell"><div class="{{ theme }}-data-table__header-cell-inner">Content Test</div></th>
       </tr>
     </thead>
-    <tbody class="mds-data-table__body">
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=FSHBX&amp;region=USA">FSHBX</a>
+    <tbody class="{{ theme }}-data-table__body">
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=FSHBX&amp;region=USA">FSHBX</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">8.60</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">0</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">8.60</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">0</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=HAINX&amp;region=USA">HAINX</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=HAINX&amp;region=USA">HAINX</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">60.32</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">-0.59</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">60.32</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">-0.59</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=HABDX&amp;region=USA">HABDX</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=HABDX&amp;region=USA">HABDX</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">11.47</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">0.44</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">11.47</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">0.44</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=LSBDX&amp;region=USA">LSBDX</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=LSBDX&amp;region=USA">LSBDX</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">13.86</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">0</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">13.86</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">0</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VDIGX&amp;region=USA">VDIGX</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VDIGX&amp;region=USA">VDIGX</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">23.77</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">-0.17</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">23.77</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">-0.17</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VTSAX&amp;region=USA">VTSAX</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VTSAX&amp;region=USA">VTSAX</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">57.52</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">-0.26</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">57.52</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">-0.26</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VWIAX&amp;region=USA">VWIAX</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VWIAX&amp;region=USA">VWIAX</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">61.98</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">0.06</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">61.98</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">0.06</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=FFRHX&amp;region=USA">FFRHX</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=FFRHX&amp;region=USA">FFRHX</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">9.64</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">0</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">9.64</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">0</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VTI&amp;region=USA">VTI</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VTI&amp;region=USA">VTI</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">118.10</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">-0.03</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">118.10</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">-0.03</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=ELD&amp;region=USA">ELD</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=ELD&amp;region=USA">ELD</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">36.88</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">-0.45</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">36.88</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">-0.45</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=BKLN&amp;region=USA">BKLN</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=BKLN&amp;region=USA">BKLN</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">23.29</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">0</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">23.29</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">0</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=BOND&amp;region=USA">BOND</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=BOND&amp;region=USA">BOND</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">105.25</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">0.32</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">105.25</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">0.32</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VTAPX&amp;region=USA">VTAPX</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VTAPX&amp;region=USA">VTAPX</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">24.78</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">0.08</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">24.78</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">0.08</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VTIP&amp;region=USA">VTIP</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VTIP&amp;region=USA">VTIP</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">49.41</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">-0.08</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">49.41</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">-0.08</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VDADX&amp;region=USA">VDADX</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VDADX&amp;region=USA">VDADX</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">23.56</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">-0.17</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">23.56</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">-0.17</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=DBC&amp;region=USA">DBC</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=DBC&amp;region=USA">DBC</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">15.67</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">-0.87</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">15.67</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">-0.87</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VIG&amp;region=USA">VIG</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VIG&amp;region=USA">VIG</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">86.96</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">0.2</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">86.96</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">0.2</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VEU&amp;region=USA">VEU</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=VEU&amp;region=USA">VEU</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">46.03</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">-0.21</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">46.03</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">-0.21</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=BSV&amp;region=USA">BSV</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=BSV&amp;region=USA">BSV</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">79.77</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">0.06</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">79.77</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">0.06</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">—</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">—</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">—</td>
-        <td class="mds-data-table__cell">—</td>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">—</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">—</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">—</td>
+        <td class="{{ theme }}-data-table__cell">—</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=JNK&amp;region=USA">JNK</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=JNK&amp;region=USA">JNK</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">36.81</td>
-        <td class="mds-data-table__cell mds-data-table__cell--right">-0.08</td>
-        <td class="mds-data-table__cell">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">36.81</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--right">-0.08</td>
+        <td class="{{ theme }}-data-table__cell">{{ content_test }}</td>
       </tr>
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__cell mds-data-table__cell--child">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=HACMX&amp;region=USA">HACMX</a>
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--child">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=HACMX&amp;region=USA">HACMX</a>
         </td>
-        <td class="mds-data-table__cell mds-data-table__cell--child">Child</td>
-        <td class="mds-data-table__cell mds-data-table__cell--child">Indentation</td>
-        <td class="mds-data-table__cell mds-data-table__cell--child">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--child">Child</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--child">Indentation</td>
+        <td class="{{ theme }}-data-table__cell {{ theme }}-data-table__cell--child">{{ content_test }}</td>
       </tr>
     </tbody>
-    <tfoot class="mds-data-table__footer">
-      <tr class="mds-data-table__row">
-        <td class="mds-data-table__footer-cell mds-data-table__cell mds-data-table__cell--sub-child">
-          <a class="mds-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=HACMX&amp;region=USA">HACMX</a>
+    <tfoot class="{{ theme }}-data-table__footer">
+      <tr class="{{ theme }}-data-table__row">
+        <td class="{{ theme }}-data-table__footer-cell {{ theme }}-data-table__cell {{ theme }}-data-table__cell--sub-child">
+          <a class="{{ theme }}-text__anchor" target="_blank" href="http://quote.morningstar.com/Quote/Quote.aspx?ticker=HACMX&amp;region=USA">HACMX</a>
         </td>
-        <td class="mds-data-table__footer-cell mds-data-table__cell mds-data-table__cell--sub-child">Sub-Child</td>
-        <td class="mds-data-table__footer-cell mds-data-table__cell mds-data-table__cell--sub-child">Bigger Indentation</td>
-        <td class="mds-data-table__footer-cell mds-data-table__cell mds-data-table__cell--sub-child">{{ content_test }}</td>
+        <td class="{{ theme }}-data-table__footer-cell {{ theme }}-data-table__cell {{ theme }}-data-table__cell--sub-child">Sub-Child</td>
+        <td class="{{ theme }}-data-table__footer-cell {{ theme }}-data-table__cell {{ theme }}-data-table__cell--sub-child">Bigger Indentation</td>
+        <td class="{{ theme }}-data-table__footer-cell {{ theme }}-data-table__cell {{ theme }}-data-table__cell--sub-child">{{ content_test }}</td>
       </tr>
     </tfoot>
   </table>

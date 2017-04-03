@@ -2,24 +2,25 @@
 
 {% block body %}
     <style>
-        .mds-doc-sink__body {
+        .{{ theme }}-doc-sink__body {
             padding: 20px;
         }
 
-        .mds-doc-page-navs-sink-container {
+        .{{ theme }}-doc-page-navs-sink-container {
             display: flex;
         }
 
-        .mds-doc-demo-page-nav-1 {
+        .{{ theme }}-doc-demo-page-nav-1 {
             order: 2;
-            padding: {{ mdsConstants.space.inline.s }};
+            padding: {{ constants.space.inline.s }};
         }
 
-        .mds-doc-demo-target-container,
-        .mds-doc-demo-target-container-2 {
-            border: {{ mdsConstants.border.separator.default }};
-            padding: {{ mdsConstants.space.inset.m }};
+        .{{ theme }}-doc-demo-target-container,
+        .{{ theme }}-doc-demo-target-container-2 {
+            border: {{ constants.border.separator.default }};
+            margin-right: {{ constants.space.m }};
             order: 1;
+            padding: {{ constants.space.inset.m }};
         }
     </style>
     <h1>Page Nav Doc Component</h1>
@@ -28,10 +29,10 @@
     </p>
 
     <h2>Default Example</h2>
-    <div class="mds-doc-page-navs-sink-container">
-        {{ doc_library.page_nav(class="mds-doc-demo-page-nav-1", target=".mds-doc-demo-target-container", appended_items=false) }}
+    <div class="{{ theme }}-doc-page-navs-sink-container">
+        {{ doc_library.page_nav(class=theme + "-doc-demo-page-nav-1", target="." + theme + "-doc-demo-target-container", appended_items=false) }}
 
-        <div class="mds-doc-demo-target-container">
+        <div class="{{ theme }}-doc-demo-target-container">
             <h2>Star Wars</h2>
             <h3>Episode I</h3>
             <h3>Episode II</h3>
@@ -51,11 +52,11 @@
     </div>
 
     <h2>With hidden h2 and additional, non-page links</h2>
-    <div class="mds-doc-page-navs-sink-container">
-        {{ doc_library.page_nav(class="mds-doc-demo-page-nav-1", target=".mds-doc-demo-target-container-2") }}
+    <div class="{{ theme }}-doc-page-navs-sink-container">
+        {{ doc_library.page_nav(class=theme + "-doc-demo-page-nav-1", target="." + theme + "-doc-demo-target-container-2") }}
 
-        <div class="mds-doc-demo-target-container-2">
-            <h2 class="mds-screenreader-only">Accessibly Hidden Header</h2>
+        <div class="{{ theme }}-doc-demo-target-container-2">
+            <h2 class="{{ theme }}-screenreader-only">Accessibly Hidden Header</h2>
             <h3>Default</h3>
             <h3>Primary</h3>
             <h3>Secondary</h3>

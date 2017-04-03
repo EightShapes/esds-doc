@@ -53,8 +53,8 @@ $theme-doc-toc-max-width-breakpoint: $theme-doc-content-max-width + $theme-doc-n
     }
 }
 
-// .#{$theme}-long-form-text .#{$theme}-doc-page-nav__page-header,
-// .#{$theme}-doc-page-nav__page-header {
-//     margin-top: -($theme-doc-header-height + $theme-space-m);
-//     padding-top: $theme-doc-header-height + $theme-space-m;
-// }
+.#{$theme}-long-form-text .#{$theme}-doc-page-nav__page-header,
+.#{$theme}-doc-page-nav__page-header {
+    margin-top: -($theme-doc-header-height + $theme-space-m);
+    padding-top: $theme-doc-header-height + $theme-space-m;
+}

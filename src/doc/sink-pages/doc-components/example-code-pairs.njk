@@ -2,7 +2,7 @@
 
 {% block body %}
     <style>
-        .mds-doc-sink__body {
+        .{{ theme }}-doc-sink__body {
             padding: 20px;
         }
     </style>
@@ -41,15 +41,15 @@
         },
         {
             label: 'Hover',
-            source: '{{ library.form_checkbox(class="mds-form__checkbox--hover") }}'
+            source: '{{ library.form_checkbox(class=theme + "-form__checkbox--hover") }}'
         },
         {
             label: 'Active',
-            source: '{{ library.form_checkbox(class="mds-form__checkbox--active") }}'
+            source: '{{ library.form_checkbox(class=theme + "-form__checkbox--active") }}'
         },
         {
             label: 'Focus',
-            source: '{{ library.form_checkbox(class="mds-form__checkbox--focus") }}'
+            source: '{{ library.form_checkbox(class=theme + "-form__checkbox--focus") }}'
         },
         {
             label: 'Checked',
@@ -60,12 +60,12 @@
             source: '{{ library.form_checkbox(indeterminate=true) }}'
         },
         {
-            container_class: 'mds-container--dark',
+            container_class: theme + '-container--dark',
             label: 'On Dark',
             source: '{{ library.form_checkbox() }}'
         },
         {
-            container_class: 'mds-container--black',
+            container_class: theme + '-container--black',
             label: 'On Black, Checked',
             source: '{{ library.form_checkbox(checked=true) }}'
         }

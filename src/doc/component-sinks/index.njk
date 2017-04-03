@@ -7,19 +7,19 @@
 
     {% macro component_catalog_sink(sinkBackgroundColor=false) %}
 
-        <h2 class="mds-doc-sink__header">Buttons</h2>
-        {{ library.button(class="mds-button--primary", text="Sign Up") }}
+        <h2 class="{{ theme }}-doc-sink__header">Buttons</h2>
+        {{ library.button(class=theme + "-button--primary", text="Sign Up") }}
         {{ library.button(text="Copy", icon_left="copy") }}
         {{ library.button(text="Continue", icon_right="arrow-right") }}
         {{ library.button(icon_left="search") }}
 
-        <h2 class="mds-doc-sink__header">List Group</h2>
+        <h2 class="{{ theme }}-doc-sink__header">List Group</h2>
         {{ library.list_group() }}
 
-        <h2 class="mds-doc-sink__header">Pagination</h2>
+        <h2 class="{{ theme }}-doc-sink__header">Pagination</h2>
         {{ library.pagination(include_labels=falsetermin) }}
 
-        <h2 class="mds-doc-sink__header">Forms</h2>
+        <h2 class="{{ theme }}-doc-sink__header">Forms</h2>
         {% call library.form() %}
             {{ library.form_required_fields_key() }}
             {% call library.form_field_group() %}
@@ -112,17 +112,17 @@
 
     {% endmacro %}
 
-    <div class="mds-doc-sink__wrapping-columns">
-        <div class="mds-doc-sink__column">
+    <div class="{{ theme }}-doc-sink__wrapping-columns">
+        <div class="{{ theme }}-doc-sink__column">
             {{ component_catalog_sink() }}
         </div>
-        <div class="mds-doc-sink__column mds-container--light">
+        <div class="{{ theme }}-doc-sink__column {{ theme }}-container--light">
             {{ component_catalog_sink() }}
         </div>
-        <div class="mds-doc-sink__column mds-container--dark">
+        <div class="{{ theme }}-doc-sink__column {{ theme }}-container--dark">
             {{ component_catalog_sink() }}
         </div>
-        <div class="mds-doc-sink__column mds-container--dark mds-container--black">
+        <div class="{{ theme }}-doc-sink__column {{ theme }}-container--dark {{ theme }}-container--black">
             {{ component_catalog_sink() }}
         </div>
     </div>

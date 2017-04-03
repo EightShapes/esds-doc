@@ -10,19 +10,19 @@
         icon_path=false) %}
     {% set id = range(0, 100000) | random %}
 
-    <div class="mds-doc-code-snippet{{ ' ' + class if class }}">
+    <div class="{{ theme }}-doc-code-snippet{{ ' ' + class if class }}">
         {% if show_copy_button %}
-            <div class="mds-doc-code-snippet__actions">
-                <a href="#" class="mds-button mds-doc-code-snippet__copy" data-clipboard-target="#mds-doc-code-snippet--{{ id }}">
-                    {% set button_icon_class = 'mds-doc-code-snippet__copy-icon ' + 'mds-button__icon ' + 'mds-button__icon--left' %}
+            <div class="{{ theme }}-doc-code-snippet__actions">
+                <a href="#" class="{{ theme }}-button {{ theme }}-doc-code-snippet__copy" data-clipboard-target="#{{ theme }}-doc-code-snippet--{{ id }}">
+                    {% set button_icon_class = theme + '-doc-code-snippet__copy-icon ' + theme + '-button__icon ' + theme + '-button__icon--left' %}
                     {{ library.icon(name='pop-out', class=button_icon_class, path=icon_path) }}
-                    <span class="mds-doc-code-snippet__copy-text">Copy to Clipboard</span>
-                    <span class="mds-doc-code-snippet__copied-response">Press Ctrl + C to copy</span>
+                    <span class="{{ theme }}-doc-code-snippet__copy-text">Copy to Clipboard</span>
+                    <span class="{{ theme }}-doc-code-snippet__copied-response">Press Ctrl + C to copy</span>
                 </a>
             </div>
         {% endif %}
-        <div id="mds-doc-code-snippet--{{ id }}" class="mds-doc-code-snippet__source">
-            <pre class="mds-doc-code-snippet__pre"><code class="language-{{ language }}">
+        <div id="{{ theme }}-doc-code-snippet--{{ id }}" class="{{ theme }}-doc-code-snippet__source">
+            <pre class="{{ theme }}-doc-code-snippet__pre"><code class="language-{{ language }}">
                 {%- if language == 'css' or language == 'scss' -%}
                     {{- source | trim | cssbeautify -}}
                 {%- else -%}
@@ -31,20 +31,4 @@
             </code></pre>
         </div>
     </div>
-                {# {{ source | trim | escape | replace('<', '&lt;') | replace('>', '&gt;')}} #}
-{#                 {%- if beautify -%}
-                    {%- if language == 'css' or language == 'stylus' -%}
-                        {{ source | trim | cssbeautify }}
-                    {%- else -%}
-                        {{ source | trim | htmlbeautify | escape | replace('<', '&lt;') | replace('>', '&gt;')}}
-                    {%- endif -%}
-                {%- elif language == 'twig' -%}
-                    {{ source | trim }}
-                {%- elif preformatted -%}
-                    {{ source | trim | safe }}
-                {%- else -%}
-                {% endif %}
-                {% if reference_link_href %}
-<a class="mds-doc-code-snippet__link" href="{{ reference_link_href }}">{{ reference_link_text }}</a>
-                {%- endif -%} #}
 {% endmacro %}

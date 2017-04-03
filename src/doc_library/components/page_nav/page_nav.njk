@@ -1,4 +1,4 @@
-{% macro page_nav(class=false, target="body", page_header_class="mds-doc-page-nav__page-header", appended_items=[
+{% macro page_nav(class=false, target="body", page_header_class=theme + "-doc-page-nav__page-header", appended_items=[
     {
         href: '#',
         label: 'View on Bitbucket'
@@ -16,17 +16,17 @@
         label: 'Get Help'
     }
 ]) %}
-    <div class="mds-doc-page-nav{{ ' ' + class if class }}" data-target="{{ target }}" {% if page_header_class %} data-page-header-class="{{ page_header_class }}" {% endif %}>
-        <div class="mds-doc-page-nav__list-groups-wrap">
+    <div class="{{ theme }}-doc-page-nav{{ ' ' + class if class }}" data-target="{{ target }}" {% if page_header_class %} data-page-header-class="{{ page_header_class }}" {% endif %}>
+        <div class="{{ theme }}-doc-page-nav__list-groups-wrap">
             {{ library.list_group(
-                class="mds-doc-page-nav__list-group-template mds-list-group--small",
+                class=theme + "-doc-page-nav__list-group-template " + theme + "-list-group--small",
                 items=[
                     {
-                        class: 'mds-doc-page-nav__header-template',
+                        class: theme + '-doc-page-nav__header-template',
                         label: 'Header Template'
                     },
                     {
-                        class: 'mds-doc-page-nav__link-template',
+                        class: theme + '-doc-page-nav__link-template',
                         label: 'Link Template',
                         href: '#'
                     }
@@ -34,7 +34,7 @@
             ) }}
         </div>
         {% if appended_items %}
-            {{ library.list_group(class="mds-doc-page-nav__appended-items mds-list-group--small", items=appended_items) }}
+            {{ library.list_group(class=theme + "-doc-page-nav__appended-items " + theme + "-list-group--small", items=appended_items) }}
         {% endif %}
     </div>
 {% endmacro %}

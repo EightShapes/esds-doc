@@ -4,19 +4,19 @@
 
 {% macro component_sink() %}
 
-    <h2 class="mds-doc-sink__header">Default</h2>
+    <h2 class="{{ theme }}-doc-sink__header">Default</h2>
     {{ library.switch() }}
 
-    <h2 class="mds-doc-sink__header">Switch Focus</h2>
-    {{ library.switch(class="mds-switch--focus") }}
+    <h2 class="{{ theme }}-doc-sink__header">Switch Focus</h2>
+    {{ library.switch(class="{{ theme }}-switch--focus") }}
 
-    <h2 class="mds-doc-sink__header">Disabled</h2>
+    <h2 class="{{ theme }}-doc-sink__header">Disabled</h2>
     {{ library.switch(disabled="true") }}
 
-    <h2 class="mds-doc-sink__header">Switched on</h2>
+    <h2 class="{{ theme }}-doc-sink__header">Switched on</h2>
     {{ library.switch(checked=true) }}
 
-    <h2 class="mds-doc-sink__header">Switch Group Stacked</h2>
+    <h2 class="{{ theme }}-doc-sink__header">Switch Group Stacked</h2>
     {% call library.switch_group(label="Switch all days that apply") %}
         {{ library.switch(text="Mondays") }}
         {{ library.switch(text="Tuesdays") }}
@@ -25,7 +25,7 @@
         {{ library.switch(text="Fridays") }}
     {% endcall %}
 
-    <h2 class="mds-doc-sink__header">Switch Group Stacked Too Much Content</h2>
+    <h2 class="{{ theme }}-doc-sink__header">Switch Group Stacked Too Much Content</h2>
     {% call library.switch_group(label="Switch all days that apply") %}
         {{ library.switch(text="Mondays") }}
         {{ library.switch(text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam.") }}
@@ -34,7 +34,7 @@
         {{ library.switch(text="Fridays") }}
     {% endcall %}
 
-    <h2 class="mds-doc-sink__header">Switch Group Horizontal</h2>
+    <h2 class="{{ theme }}-doc-sink__header">Switch Group Horizontal</h2>
     {% call library.switch_field_group(horizontal="true") %}
         {% call library.switch_group(label="Switch all days that apply") %}
             {{ library.switch(text="Red") }}
@@ -43,7 +43,7 @@
         {% endcall %}
     {% endcall %}
 
-    <h2 class="mds-doc-sink__header">Switch Group Horizontal Too Much Content</h2>
+    <h2 class="{{ theme }}-doc-sink__header">Switch Group Horizontal Too Much Content</h2>
     {% call library.switch_field_group(horizontal="true") %}
         {% call library.switch_group(label="Switch all days that apply") %}
             {{ library.switch(text="Red") }}
@@ -53,10 +53,10 @@
         {% endcall %}
     {% endcall %}
 
-    <h2 class="mds-doc-sink__header">Switch Too Little Content</h2>
+    <h2 class="{{ theme }}-doc-sink__header">Switch Too Little Content</h2>
     {{ library.switch(text="a") }}
 
-    <h2 class="mds-doc-sink__header">Switch Too Much Content</h2>
+    <h2 class="{{ theme }}-doc-sink__header">Switch Too Much Content</h2>
     {{ library.switch(text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam.") }}
 
 

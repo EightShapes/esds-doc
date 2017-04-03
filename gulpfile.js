@@ -246,6 +246,7 @@ gulp.task('constants:convert-to-scss-and-json', function(done){
         prevVarNameParent = false;
 
     jsonConstants['constants'] = constants;
+    jsonConstants['theme'] = theme;
     jsonConstants = JSON.stringify(jsonConstants);
     // Write out JSON version of constants
     fs.writeFileSync(`src/library/data/${theme}_constants.json`, jsBeautify(jsonConstants));

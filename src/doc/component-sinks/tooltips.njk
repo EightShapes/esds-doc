@@ -4,140 +4,140 @@
 
 {% macro component_sink() %}
 	<style>
-		.mds-doc-sink__tooltips {
+		." + theme + "-doc-sink__tooltips {
 			font-family: "Univers", HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;
 			padding-left: 80px;
 		}
-		.mds-doc-sink__tooltips-div-example {
+		." + theme + "-doc-sink__tooltips-div-example {
 			width: 50px; 
 			height: 50px;
 			background-color: #6a4c9e;
 			border-radius: 3px;
 		}
 	</style>
-	<div class="mds-doc-sink__tooltips">
-    	<h2 class="mds-doc-sink__header">Tooltip Top Center</h2>
+	<div class="{{ theme }}-doc-sink__tooltips">
+    	<h2 class="{{ theme }}-doc-sink__header">Tooltip Top Center</h2>
     	<br />
     	<br />
     	<br />
-	    {% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-s mds-tooltip--top-center mds-tooltip--sticky", tip_text="Look here!") %}
+	    {% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-s " + theme + "-tooltip--top-center " + theme + "-tooltip--sticky", tip_text="Look here!") %}
 	        A static tooltip on top of me,
 	    {% endcall %}
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Bottom Center</h2>
-		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-m mds-tooltip--bottom-center mds-tooltip--sticky", tip_text="This one drops") %}
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Bottom Center</h2>
+		{% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-m " + theme + "-tooltip--bottom-center " + theme + "-tooltip--sticky", tip_text="This one drops") %}
 	        one below,
 	    {% endcall %}
 		<br />
 		<br />
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Right Center</h2>
-		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--height-s mds-tooltip--width-l mds-tooltip--right-center mds-tooltip--sticky", tip_text="Hello, I fly way out to the right") %}
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Right Center</h2>
+		{% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--height-s " + theme + "-tooltip--width-l " + theme + "-tooltip--right-center " + theme + "-tooltip--sticky", tip_text="Hello, I fly way out to the right") %}
 			over to the right,
 		{% endcall %}
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Left Center</h2>
-		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-m mds-tooltip--height-s mds-tooltip--left-center mds-tooltip--sticky", tip_text="I'm over here") %}
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Left Center</h2>
+		{% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-m " + theme + "-tooltip--height-s " + theme + "-tooltip--left-center " + theme + "-tooltip--sticky", tip_text="I'm over here") %}
 			and to the left.
 		{% endcall %}
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Top Left</h2>
-		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-m mds-tooltip--top-left", tip_text="Helpful tidbits") %}
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Top Left</h2>
+		{% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-m " + theme + "-tooltip--top-left", tip_text="Helpful tidbits") %}
 			Hover over me.
 		{% endcall %}
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Bottom Left</h2>
-		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-l mds-tooltip--bottom-left", tip_text="A bit longer of a tooltip bubble") %}
-			{{ library.button(text="Tip on a small Primary button", class="mds-button--small mds-button--primary") }}
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Bottom Left</h2>
+		{% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-l " + theme + "-tooltip--bottom-left", tip_text="A bit longer of a tooltip bubble") %}
+			{{ library.button(text="Tip on a small Primary button", class=theme + "-button--small " + theme + "-button--primary") }}
 		{% endcall %}
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Top Right</h2>
-		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-s mds-tooltip--top-right", tip_text="Hi Jim :-)") %}
-			{{ library.button(text="Tip on a small button", class="mds-button--small") }}
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Top Right</h2>
+		{% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-s " + theme + "-tooltip--top-right", tip_text="Hi Jim :-)") %}
+			{{ library.button(text="Tip on a small button", class=theme + "-button--small") }}
 		{% endcall %}
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Bottom Right</h2>
-		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-s mds-tooltip--bottom-right", tip_text="Bye Jo :-(") %}
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Bottom Right</h2>
+		{% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-s " + theme + "-tooltip--bottom-right", tip_text="Bye Jo :-(") %}
 			{{ library.button(text="Tip on a button") }}
 		{% endcall %}
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Right Bottom</h2>
-		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-l mds-tooltip--right-bottom", tip_text="Click this button to complete your task") %}
-			{{ library.button(text="Tip on a Primary button", class="mds-button--primary") }}
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Right Bottom</h2>
+		{% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-l " + theme + "-tooltip--right-bottom", tip_text="Click this button to complete your task") %}
+			{{ library.button(text="Tip on a Primary button", class=theme + "-button--primary") }}
 		{% endcall %}
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Left Bottom</h2>
-		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-m mds-tooltip--left-bottom", tip_text="And be taken elsewhere") %}
-			<a href="#" class="mds-text__anchor">Click here</a>
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Left Bottom</h2>
+		{% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-m " + theme + "-tooltip--left-bottom", tip_text="And be taken elsewhere") %}
+			<a href="#" class="{{ theme }}-text__anchor">Click here</a>
 		{% endcall %}
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Right Top</h2>
-		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-l mds-tooltip--right-top", tip_text="Change a configuration here") %}
-			<a href="#" class="mds-text__anchor mds-text__anchor--with-icon"><span class="mds-text__anchor-text">Settings</span>{{ library.icon(name="utilities", class="mds-icon--m mds-text__anchor-icon") }}</a>
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Right Top</h2>
+		{% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-l " + theme + "-tooltip--right-top", tip_text="Change a configuration here") %}
+			<a href="#" class="{{ theme }}-text__anchor " + theme + "-text__anchor--with-icon"><span class="{{ theme }}-text__anchor-text">Settings</span>{{ library.icon(name="utilities", class=theme + "-icon--m " + theme + "-text__anchor-icon") }}</a>
 		{% endcall %}
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Left Top Help</h2>
-		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-m mds-tooltip--left-top", tip_text="Some help") %}
-			<div class="mds-doc-sink__tooltips-div-example mds-tooltip__target--help"></div>
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Left Top Help</h2>
+		{% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-m " + theme + "-tooltip--left-top", tip_text="Some help") %}
+			<div class="{{ theme }}-doc-sink__tooltips-div-example " + theme + "-tooltip__target--help"></div>
 		{% endcall %}
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Flag Top</h2>
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Flag Top</h2>
 		<br />
 		<br />
 		<br />
-	    {% call library.tooltip(class="mds-tooltip--flag mds-tooltip--width-m mds-tooltip--top-center mds-tooltip--sticky") %}
+	    {% call library.tooltip(class=theme + "-tooltip--flag " + theme + "-tooltip--width-m " + theme + "-tooltip--top-center " + theme + "-tooltip--sticky") %}
 			A flag on top
 	    {% endcall %}
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Flag Bottom</h2>
-		{% call library.tooltip(class="mds-tooltip--flag mds-tooltip--width-m mds-tooltip--bottom-center mds-tooltip--sticky") %}
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Flag Bottom</h2>
+		{% call library.tooltip(class=theme + "-tooltip--flag " + theme + "-tooltip--width-m " + theme + "-tooltip--bottom-center " + theme + "-tooltip--sticky") %}
 			A flag on top
 		{% endcall %}
 		<br />
 		<br />
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Prompt Right Top</h2>
+		<h2 class="{{ theme }}-doc-sink__header">Prompt Right Top</h2>
 		<br />
 		<br />
-		{% call library.tooltip(class="mds-tooltip--prompt mds-tooltip--width-l mds-tooltip--sticky mds-tooltip--right-top mds-tooltip--closable", tip_text="These are settings where you can update your account", close_prompt=true) %}
+		{% call library.tooltip(class=theme + "-tooltip--prompt " + theme + "-tooltip--width-l " + theme + "-tooltip--sticky " + theme + "-tooltip--right-top " + theme + "-tooltip--closable", tip_text="These are settings where you can update your account", close_prompt=true) %}
 			{{ library.icon(name="utilities") }}
 		{% endcall %}
 		<br />
 		<br />
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Prompt Right Center</h2>
-		{% call library.tooltip(class="mds-tooltip--prompt mds-tooltip--width-l mds-tooltip--height-m mds-tooltip--sticky mds-tooltip--closable mds-tooltip--right-center", tip_text="These are settings where you can update your account", close_prompt=true) %}
+		<h2 class="{{ theme }}-doc-sink__header">Prompt Right Center</h2>
+		{% call library.tooltip(class=theme + "-tooltip--prompt " + theme + "-tooltip--width-l " + theme + "-tooltip--height-m " + theme + "-tooltip--sticky " + theme + "-tooltip--closable " + theme + "-tooltip--right-center", tip_text="These are settings where you can update your account", close_prompt=true) %}
 			{{ library.icon(name="utilities") }}
 		{% endcall %}
 		<br />
 		<br />
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Prompt Right Bottom</h2>
-		{% call library.tooltip(class="mds-tooltip--prompt mds-tooltip--width-l mds-tooltip--sticky mds-tooltip--right-bottom mds-tooltip--closable", tip_text="These are settings where you can update your account", close_prompt=true) %}
+		<h2 class="{{ theme }}-doc-sink__header">Prompt Right Bottom</h2>
+		{% call library.tooltip(class=theme + "-tooltip--prompt " + theme + "-tooltip--width-l " + theme + "-tooltip--sticky " + theme + "-tooltip--right-bottom " + theme + "-tooltip--closable", tip_text="These are settings where you can update your account", close_prompt=true) %}
 			{{ library.icon(name="utilities") }}
 		{% endcall %}
 		<br />
 		<br />
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Prompt Error Bottom Right</h2>
-		{% call library.tooltip(class="mds-tooltip--error mds-tooltip--width-m mds-tooltip--sticky mds-tooltip--bottom-right", tip_text="Something looks a bit off", style="margin-top:-19px;") %}
+		<h2 class="{{ theme }}-doc-sink__header">Prompt Error Bottom Right</h2>
+		{% call library.tooltip(class=theme + "-tooltip--error " + theme + "-tooltip--width-m " + theme + "-tooltip--sticky " + theme + "-tooltip--bottom-right", tip_text="Something looks a bit off", style="margin-top:-19px;") %}
 			{% call library.form_field_group(error="true") %}
 		        {{ library.form_input() }}
 		    {% endcall %}
@@ -146,8 +146,8 @@
 		<br />
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Prompt Error Bottom Center</h2>
-		{% call library.tooltip(class="mds-tooltip--error mds-tooltip--width-m mds-tooltip--sticky mds-tooltip--bottom-center", tip_text="Something looks a bit off", style="margin-top:-19px;") %}
+		<h2 class="{{ theme }}-doc-sink__header">Prompt Error Bottom Center</h2>
+		{% call library.tooltip(class=theme + "-tooltip--error " + theme + "-tooltip--width-m " + theme + "-tooltip--sticky " + theme + "-tooltip--bottom-center", tip_text="Something looks a bit off", style="margin-top:-19px;") %}
 			{% call library.form_field_group(error="true") %}
 		        {{ library.form_input() }}
 		    {% endcall %}
@@ -156,8 +156,8 @@
 		<br />
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Prompt Error Bottom Left</h2>
-		{% call library.tooltip(class="mds-tooltip--error mds-tooltip--width-m mds-tooltip--sticky mds-tooltip--bottom-left", tip_text="Something looks a bit off", style="margin-top:-19px;") %}
+		<h2 class="{{ theme }}-doc-sink__header">Prompt Error Bottom Left</h2>
+		{% call library.tooltip(class=theme + "-tooltip--error " + theme + "-tooltip--width-m " + theme + "-tooltip--sticky " + theme + "-tooltip--bottom-left", tip_text="Something looks a bit off", style="margin-top:-19px;") %}
 			{% call library.form_field_group(error="true") %}
 		        {{ library.form_input() }}
 		    {% endcall %}
@@ -166,9 +166,9 @@
 		<br />
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Left/Right Centering Overflow</h2>
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Left/Right Centering Overflow</h2>
     	<br />
-	    {% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-l mds-tooltip--height-l mds-tooltip--right-center mds-tooltip--sticky", tip_text="A height value is necessary for accurate positioning to center the tooltip verticaly on the right or left of the target, as a result, the bubble will not adjust to it's contents") %}
+	    {% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-l " + theme + "-tooltip--height-l " + theme + "-tooltip--right-center " + theme + "-tooltip--sticky", tip_text="A height value is necessary for accurate positioning to center the tooltip verticaly on the right or left of the target, as a result, the bubble will not adjust to it's contents") %}
 			Too much content, not good
 	    {% endcall %}
 		<br />
@@ -177,8 +177,8 @@
 		<br />
 		<br />
 		<br />
-		<h2 class="mds-doc-sink__header">Tooltip Expandable</h2>
-	    {% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-xl mds-tooltip--bottom-center mds-tooltip--sticky", tip_text="Because no height value is required for any other tooltip positioning all positions other than left-center and right-center will expand to accomodate it's contents. They'll just keep growing and growing and growing and growing and growing and growing and growing and growing and...") %}
+		<h2 class="{{ theme }}-doc-sink__header">Tooltip Expandable</h2>
+	    {% call library.tooltip(class=theme + "-tooltip--default " + theme + "-tooltip--width-xl " + theme + "-tooltip--bottom-center " + theme + "-tooltip--sticky", tip_text="Because no height value is required for any other tooltip positioning all positions other than left-center and right-center will expand to accomodate it's contents. They'll just keep growing and growing and growing and growing and growing and growing and growing and growing and...") %}
 			Too much content, ok :-)
 	    {% endcall %}
 		<br />
@@ -187,7 +187,7 @@
 {% endmacro %}
 {% block closing_body_assets %}
 	<script>
-		var theButtons = document.querySelectorAll('.mds-tooltip__close-button');
+		var theButtons = document.querySelectorAll('." + theme + "-tooltip__close-button');
 
 		for(var i = 0; i < theButtons.length; i++) {
 		   

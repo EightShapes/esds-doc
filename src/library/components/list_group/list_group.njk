@@ -23,7 +23,7 @@
     ]
 ) %}
 
-<ul class="mds-list-group{{ " " + class if class }}">
+<ul class="{{ theme }}-list-group{{ " " + class if class }}">
 
     {% for item in items %}
         {% set item_type = "link" %}
@@ -31,18 +31,18 @@
         {% if item.href == undefined and item.children == undefined %}
             {# In this case it's a header, non-clickable #}
             {% set item_type = "header" %}
-            {% set item_type_class = "mds-list-group__item--header" %}
+            {% set item_type_class = theme + "-list-group__item--header" %}
         {% elseif item.href == undefined and item.children %}
             {# In this case it's a drawer toggle #}
             {% set item_type = "drawer_toggle" %}
-            {% set item_type_class = "mds-list-group__item--drawer-toggle" %}
+            {% set item_type_class = theme + "-list-group__item--drawer-toggle" %}
         {% elseif item.href and item.children %}
             {# In this case it's a drawer toggle AND a link #}
             {% set item_type = "drawer_toggle_link" %}
-            {% set item_type_class = "mds-list-group__item--drawer-toggle-link" %}
+            {% set item_type_class = theme + "-list-group__item--drawer-toggle-link" %}
         {% endif %}
 
-        <li class="mds-list-group__item {{ item_type_class}}{{ " mds-list-group__item--active" if item.active }}{{ ' ' + item.class if item.class }}">
+        <li class="{{ theme }}-list-group__item {{ item_type_class}}{{ " " + theme + "-list-group__item--active" if item.active }}{{ ' ' + item.class if item.class }}">
             {% if item_type == 'header' %}
                 {{ item.label }}
             {% endif %}
@@ -50,17 +50,17 @@
             {% if item_type == 'drawer_toggle' or item_type == 'drawer_toggle_link' %}
                 {% if item.id == undefined %}
                     {% set random_number = range(0, 100000) | random %}
-                    {% set input_id = "mds-list-group__item-sublist--" + random_number %}
+                    {% set input_id = theme + "-list-group__item-sublist--" + random_number %}
                 {% else %}
                     {% set input_id = item.id %}
                 {% endif %}
-                <input type="checkbox" class="mds-list-group__sublist-toggle-input" id="{{ input_id }}" {{ 'checked' if item.checked }}>
-                <label for="{{ input_id }}" class="mds-list-group__sublist-toggle">
-                    {{ icon(class="mds-list-group__sublist-toggle-icon", name="triangle-right") }}
+                <input type="checkbox" class="{{ theme }}-list-group__sublist-toggle-input" id="{{ input_id }}" {{ 'checked' if item.checked }}>
+                <label for="{{ input_id }}" class="{{ theme }}-list-group__sublist-toggle">
+                    {{ icon(class=theme + "-list-group__sublist-toggle-icon", name="triangle-right") }}
                     {% if item_type == 'drawer_toggle_link' %}
                         {{ list_group_link(item) }}
                     {% else %}
-                        <span class="mds-list-group__sublist-toggle-text">{{ item.label }}</span>
+                        <span class="{{ theme }}-list-group__sublist-toggle-text">{{ item.label }}</span>
                     {% endif %}
                 </label>
             {% endif %}
@@ -70,9 +70,9 @@
             {% endif %}
 
             {% if item.children %}
-                <ul class="mds-list-group__sublist">
+                <ul class="{{ theme }}-list-group__sublist">
                     {% for child_item in item.children %}
-                        <li class="mds-list-group__item mds-list-group__item--sublist{{ " mds-list-group__item--active" if child_item.active }}{{ ' ' + child_item.class if child_item.class }}">
+                        <li class="{{ theme }}-list-group__item {{ theme }}-list-group__item--sublist{{ " " + theme + "-list-group__item--active" if child_item.active }}{{ ' ' + child_item.class if child_item.class }}">
                             {{ list_group_link(child_item) }}
                         </li>
                     {% endfor %}
@@ -86,17 +86,17 @@
 {% endmacro %}
 
 {% macro list_group_link(item) %}
-    <a href="{{ item.href }}" class="mds-list-group__link">
-        <span class="mds-list-group__item-label">
+    <a href="{{ item.href }}" class="{{ theme }}-list-group__link">
+        <span class="{{ theme }}-list-group__item-label">
             {{ item.label }}
         </span>
         {% if item.metadata %}
-            <span class="mds-list-group__item-metadata">
+            <span class="{{ theme }}-list-group__item-metadata">
                 {{ item.metadata }}
             </span>
         {% endif %}
         {% if item.active %}
-            {{ icon(name='arrow-next-sm', class='mds-list-group__active-icon') }}
+            {{ icon(name='arrow-next-sm', class=theme + '-list-group__active-icon') }}
         {% endif %}
     </a>
 {% endmacro %}

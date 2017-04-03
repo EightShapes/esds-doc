@@ -2,7 +2,7 @@
 
 {% block body %}
     <style>
-        .mds-doc-sink__body {
+        .{{ theme }}-doc-sink__body {
             padding: 20px;
         }
     </style>
@@ -40,7 +40,7 @@
     {{ doc_library.html_example_list(examples=[
         {
             label: 'Space above the component',
-            container_class: 'mds-doc-html-example-list__item--xxl-inset-bottom',
+            container_class: theme + '-doc-html-example-list__item--xxl-inset-bottom',
             source: '<div style="position:relative;">
                             This is a parent container
                         <div style="position:absolute; top: 100%; height: 40px; background: red; width: 200px;">
@@ -54,7 +54,7 @@
     {{ doc_library.html_example_list(examples=[
         {
             label: 'Space below the component',
-            container_class: 'mds-doc-html-example-list__item--xxl-inset-top',
+            container_class: theme + '-doc-html-example-list__item--xxl-inset-top',
             source: '<div style="position:relative;">
                             This is a parent container
                         <div style="position:absolute; bottom: 100%; height: 40px; background: red; width: 200px;">
@@ -95,7 +95,7 @@
             source: library.button(text="Default Text")
         },
         {
-            container_class: 'mds-container--light',
+            container_class: theme + '-container--light',
             label: 'MDS Button On Light Background',
             source: library.button(text="Default Text")
         },
@@ -104,7 +104,7 @@
             source: library.form_select()
         },
         {
-            container_class: 'mds-container--black',
+            container_class: theme + '-container--black',
             label: 'Form Select On Black',
             source: library.form_select()
         },
@@ -113,7 +113,7 @@
             source: library.list_group()
         },
         {
-            container_class: 'mds-container--dark',
+            container_class: theme + '-container--dark',
             label: 'List Group On Dark',
             source: library.list_group()
         }
