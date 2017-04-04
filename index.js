@@ -107,5 +107,81 @@ module.exports = {
         env.addFilter('getcontext', function(){
           return this.ctx;
         });
+    },
+    "sassLintConfigPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/.sass-lint.yml`;
+    },
+    "libraryComponentStylePath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/library/components`;
+    },
+    "libraryBaseStylePath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/library/styles`;
+    },
+    "docLibraryComponentStylePath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/doc_library/components`;
+    },
+    "docLibraryBaseStylePath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/doc_library/styles`;
+    },
+    "docStylePath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/doc/assets/styles`;
+    },
+    "constantsPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/library/constants/constants.yaml`;
+    },
+    "esLintConfigPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/.eslintrc`;
+    },
+    "componentMacrosPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/library/components`;
+    },
+    "docComponentMacrosPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/doc_library/components`;
+    },
+    "docTemplatePath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/doc/**/*.njk`;
+    },
+    "docContentJsonPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/doc/data/content.json`;
+    },
+    "templateRootPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src`;
+    },
+    "iconsPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/library/icons`;
+    },
+    "fontsPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/library/fonts`;
+    },
+    "docImagesPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/doc/assets/images`;
+    },
+    "libraryComponentScriptsPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/library/components`;
+    },
+    "libraryBaseScriptsPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/library/scripts`;
+    },
+    "docLibraryScriptsPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/doc_library/components`;
     }
 };
