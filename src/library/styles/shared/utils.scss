@@ -13,8 +13,9 @@
 }
 
 @mixin clearfix() {
-    &:before, &:after {
-        content: " ";
+    &:before,
+    &:after {
+        content: ' ';
         display: table;
     }
 
@@ -33,4 +34,13 @@
 
 .#{$theme}-screenreader-only {
     @include theme-accessibly-hidden();
+}
+
+@mixin disabled() {
+    cursor: not-allowed;
+    opacity: $theme-opacity-disabled;
+}
+
+@mixin disabled-text($text-color) {
+    color: rgba($text-color, $theme-opacity-disabled); // sass-lint:disable-line no-color-literals
 }

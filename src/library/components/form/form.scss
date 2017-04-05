@@ -57,11 +57,6 @@ $theme-space-stack-form-radio-checkbox: 0 0 8px 0;
     }
 }
 
-@mixin disabled-styles() {
-    cursor: not-allowed;
-    opacity: $theme-opacity-disabled;
-}
-
 @mixin focus-styles() {
     box-shadow: $theme-box-shadow-form-input-border, $theme-box-shadow-form-element-focus;
     outline: none;
@@ -120,12 +115,13 @@ $theme-space-stack-form-radio-checkbox: 0 0 8px 0;
         @include hover-styles();
     }
 
-    &:disabled {
-        @include disabled-styles();
-    }
-
     &:focus {
         @include focus-styles();
+    }
+
+    &:disabled {
+        @include disabled(); // This is a global mixin defined in utils.scss
+        box-shadow: inset 0 (-$theme-border-width-form-input) 0 0 $theme-border-color-form-input;
     }
 
     .#{$theme}-form--error & {
@@ -154,11 +150,11 @@ $theme-space-stack-form-radio-checkbox: 0 0 8px 0;
 }
 
 .#{$theme}-form__input--disabled {
-    @include disabled-styles();
+    @include disabled();
 }
 
 .#{$theme}-form__textarea--disabled {
-    @include disabled-styles();
+    @include disabled();
 }
 
 .#{$theme}-form__input--focus {
@@ -306,9 +302,8 @@ $theme-space-stack-form-radio-checkbox: 0 0 8px 0;
     }
 
     .#{$theme}-form__radio-button-input:disabled + .#{$theme}-form__radio-button-visible-wrap & {
+        @include disabled();
         border-color: $theme-border-color-form-input;
-        cursor: not-allowed;
-        opacity: $theme-opacity-disabled;
     }
 }
 
@@ -345,9 +340,8 @@ $theme-space-stack-form-radio-checkbox: 0 0 8px 0;
     }
 
     .#{$theme}-form__checkbox-input:disabled + .#{$theme}-form__checkbox-visible-wrap & {
+        @include disabled();
         border-color: $theme-border-color-form-input;
-        cursor: not-allowed;
-        opacity: $theme-opacity-disabled;
     }
 }
 
@@ -422,9 +416,8 @@ $theme-space-stack-form-radio-checkbox: 0 0 8px 0;
     }
 
     .#{$theme}-form__radio-button-input:disabled + .#{$theme}-form__radio-button-visible-wrap & {
+        @include disabled();
         color: $theme-color-form-radio-label;
-        cursor: not-allowed;
-        opacity: $theme-opacity-disabled;
 
         .#{$theme}-container--dark &, 
         .#{$theme}-container--black & {
@@ -472,9 +465,8 @@ $theme-space-stack-form-radio-checkbox: 0 0 8px 0;
     }
 
     .#{$theme}-form__checkbox-input:disabled + .#{$theme}-form__checkbox-visible-wrap & {
+        @include disabled();
         color: $theme-color-form-radio-label;
-        cursor: not-allowed;
-        opacity: $theme-opacity-disabled;
 
         .#{$theme}-container--dark &, 
         .#{$theme}-container--black & {
@@ -530,7 +522,7 @@ $theme-space-stack-form-radio-checkbox: 0 0 8px 0;
     }
 
     &:disabled {
-        @include disabled-styles();
+        @include disabled();
     }
 
     &:focus::-ms-value { // sass-lint:disable-line no-vendor-prefixes - have to target IE specifically here
@@ -578,7 +570,7 @@ $theme-space-stack-form-radio-checkbox: 0 0 8px 0;
     }
 
     .#{$theme}-form__select-input:disabled ~ & {
-        @include disabled-styles();
+        @include disabled();
         box-shadow: $theme-box-shadow-form-input-border;
     }
 
@@ -606,7 +598,7 @@ $theme-space-stack-form-radio-checkbox: 0 0 8px 0;
     z-index: 5;
 
     .#{$theme}-form__select-input:disabled ~ & {
-        @include disabled-styles();
+        @include disabled();
     }
 }
 

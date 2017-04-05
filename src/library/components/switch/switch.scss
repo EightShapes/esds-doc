@@ -171,9 +171,8 @@ $theme-space-grid-switch: 0 8px 8px 0;
     &:disabled ~ .#{$theme}-switch__text,
     &[disabled] ~ .#{$theme}-switch__text,
     .#{$theme}-switch--disabled & ~ .#{$theme}-switch__text  {
+        @include disabled();
         color: $theme-interactive-color-disabled-on-light;
-        cursor: not-allowed;
-        opacity: $theme-opacity-disabled;
 
         &:before,
         &:after {

@@ -113,18 +113,8 @@ $theme-range-slider-target-background: $theme-color-neutral-50;
     cursor: grabbing;
 }
 
-[disabled] .#{$theme}-range-slider__connect {
-    background: $theme-range-slider-base-background;
-
-    .#{$theme}-container--dark &,
-    .#{$theme}-container--black & {
-        background: $theme-range-slider-base-background-on-dark;
-    }
-}
-
 [disabled].#{$theme}-range-slider__target {
-    cursor: not-allowed;
-    opacity: $theme-opacity-disabled;
+    @include disabled();
 
     .#{$theme}-container--dark &,
     .#{$theme}-container--black & {
@@ -136,10 +126,17 @@ $theme-range-slider-target-background: $theme-color-neutral-50;
 [disabled].#{$theme}-range-slider__group--min-max,
 [disabled].#{$theme}-range-slider__handle,
 [disabled] .#{$theme}-range-slider__handle {
+    border: $theme-border-control-default;
     cursor: not-allowed;
 
-    &:hover {
-        border: $theme-border-control-default;
+}
+
+[disabled] .#{$theme}-range-slider__connect {
+    background: $theme-range-slider-base-background;
+
+    .#{$theme}-container--dark &,
+    .#{$theme}-container--black & {
+        background: $theme-range-slider-base-background-on-dark;
     }
 }
 

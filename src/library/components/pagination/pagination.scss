@@ -54,9 +54,14 @@
     }
 
     &.#{$theme}-pagination__item--disabled {
-        color: $theme-interactive-color-disabled-on-light;
+        @include disabled-text($theme-text-color-secondary-default);
         cursor: not-allowed;
         padding: 2px 5px;
+
+        .#{$theme}-container--dark &,
+        .#{$theme}-container--black & {
+            @include disabled-text($theme-text-color-secondary-on-dark);
+        }
     }
 }
 
@@ -106,6 +111,6 @@
     }
 
     .#{$theme}-pagination__item--disabled & {
-        fill: $theme-interactive-color-disabled-on-light;
+        fill-opacity: $theme-opacity-disabled;
     }
 }
