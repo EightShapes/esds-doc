@@ -151,31 +151,17 @@ The Morningstar Design System will publish two main artifacts: the documentation
 
 ### Library Release
 
-* The latest library release uses a Jenkins job (MDS-Release) to deploy to npm as a publicly available package as well as synced to our documentation site.
 * All releases will be downloadable from the documentation site as zip files.
-* Releases can also be built from source code and will be present locally in the “dist” directory. This directory is not committed to the source code repository.
+* Releases can also be built from source code and will be present locally in the “dist” directory. This directory will not be committed to the source code repository.
+* For more detailed release information, please see the [wiki article](https://mswiki.morningstar.com/display/SDG/Release+Process) (Internal Use Only).
 
 ### Documentation Release
 
-* The documentation site lives on Amazon S3 as a static web hosting bucket with two environments: production (PROD) and non-production (NONPROD). 
-* Code commits to the develop branch are built and deployed to the non-production S3 environment from an automated build job (MDS-Develop). 
-* Approved release candidates will be merged in the release branch and built and deployed to the production S3 environment from a build job (MDS-Release) that will be started manually.
-* The production S3 environment will be accessible from designsystem.morningstar.com.
+* The production S3 environment will be accessible from:
 
-### Workflow for Continuous Integration and Automation
+designsystem.morningstar.com
 
-#### Jenkins
-
-* There is a custom EC2 instance for the techstd team account in AWS that is performing build tasks: http://10.255.40.51:8080/
-* There are two jobs in Jenkins for the documentation site: MDS-Develop and MDS-Release. Both jobs perform roughly the same actions, but they pull for different branches and deploy to different environments. The develop branch is deployed to the non-production environment and the release branch is deployed to the production environment. 
-* MDS-Develop is automated by commits to the develop branch. MDS-Release will be started manually and pull from the release branch.
-* Both of the jobs publish results to Slack channel #mds-engineering.
-
-#### S3
-
-* There are two environments for serving the static website: mstar-techstd-mds-non-prod and mstar-techstd-mds-prod. 
-* The prod environment will have a Route53 domain name (designsystem.morningstar.com) and will use a cloudfront distribution for caching.
-* These environments exist in the techstd team account in AWS.
+* This URL is cached by a cloudfront distribution.
 
 
     {% endfilter %}
