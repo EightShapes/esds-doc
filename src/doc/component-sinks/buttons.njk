@@ -16,7 +16,7 @@
 		el_text=false,
 		el_ex_dark=false) %}
 	{% for item in els %}
-		<div class="button-example{% if el_ex_dark%} button-example--dark-background {{ theme }}--dark{% endif %}">
+		<div class="button-example{% if el_ex_dark%} {{ theme }}-container--dark{% endif %}">
 			<label class="button-example__label">Element= "{{ item.el }}"</label>
 			<br>
 			{{ library.button(text=el_text, class=el_class, icon_left=el_icon_left, icon_right=el_icon_right, el=item.el) }}
@@ -31,19 +31,19 @@
 		<div>
 			<label class="button-example__label">Element= "{{ item.el }}"</label>
 		</div>
-		<div class="button-example{% if el_ex_dark%} button-example--dark-background {{ theme }}--dark{% endif %}">
+		<div class="button-example{% if el_ex_dark%} {{ theme }}-container--dark{% endif %}">
 			{{ library.button(text="Sign Up", class=el_class, el=item.el) }}
 		</div>
-		<div class="button-example{% if el_ex_dark%} button-example--dark-background {{ theme }}--dark{% endif %}">
+		<div class="button-example{% if el_ex_dark%} {{ theme }}-container--dark{% endif %}">
 			{{ library.button(text="Copy Document", class=el_class, icon_left="copy", el=item.el) }}
 		</div>
-		<div class="button-example{% if el_ex_dark%} button-example--dark-background {{ theme }}--dark{% endif %}">
+		<div class="button-example{% if el_ex_dark%} {{ theme }}-container--dark{% endif %}">
 			{{ library.button(text="Continue", class=el_class, icon_right="arrow-right", el=item.el) }}
 		</div>
-		<div class="button-example{% if el_ex_dark%} button-example--dark-background {{ theme }}--dark{% endif %}">
+		<div class="button-example{% if el_ex_dark%} {{ theme }}-container--dark{% endif %}">
 			{{ library.button(text="Account Settings", class=el_class, icon_left="utilities", icon_right="arrow-down", el=item.el) }}
 		</div>
-		<div class="button-example{% if el_ex_dark%} button-example--dark-background {{ theme }}--dark{% endif %}">
+		<div class="button-example{% if el_ex_dark%} {{ theme }}-container--dark{% endif %}">
 			{{ library.button(class=el_class, icon_left="search", el=item.el) }}
 		</div>
 	{% endfor %}
@@ -58,7 +58,7 @@
 		<h3>Element= "{{ item.el }}"</h3>
 		{% for state in states %}
 			{% set disabled = true if state == 'disabled' else false %}
-			<div class="button-example{% if el_ex_dark%} button-example--dark-background {{ theme }}--dark{% endif %}">
+			<div class="button-example{% if el_ex_dark%} {{ theme }}-container--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
 				{{ library.button(text="Sign Up", class=el_class + " " + theme + "-button--" + state, el=item.el, disabled=disabled) }}
@@ -67,7 +67,7 @@
 		<br>
 		{% for state in states %}
 			{% set disabled = true if state == 'disabled' else false %}
-			<div class="button-example{% if el_ex_dark%} button-example--dark-background {{ theme }}--dark{% endif %}">
+			<div class="button-example{% if el_ex_dark%} {{ theme }}-container--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
 				{{ library.button(text="Copy Document", class=el_class + " " + theme + "-button--" + state, icon_left="copy", el=item.el, disabled=disabled) }}
@@ -76,7 +76,7 @@
 		<br>
 		{% for state in states %}
 			{% set disabled = true if state == 'disabled' else false %}
-			<div class="button-example{% if el_ex_dark%} button-example--dark-background {{ theme }}--dark{% endif %}">
+			<div class="button-example{% if el_ex_dark%} {{ theme }}-container--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
 				{{ library.button(text="Continue", class=el_class + " " + theme + "-button--" + state, icon_right="arrow-right", el=item.el, disabled=disabled) }}
@@ -85,7 +85,7 @@
 		<br>
 		{% for state in states %}
 			{% set disabled = true if state == 'disabled' else false %}
-			<div class="button-example{% if el_ex_dark%} button-example--dark-background {{ theme }}--dark{% endif %}">
+			<div class="button-example{% if el_ex_dark%} {{ theme }}-container--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
 				{{ library.button(text="Account Settings", class=el_class + " " + theme + "-button--" + state, icon_left="utilities", icon_right="arrow-down", el=item.el, disabled=disabled) }}
@@ -94,7 +94,7 @@
 		<br>
 		{% for state in states %}
 			{% set disabled = true if state == 'disabled' else false %}
-			<div class="button-example{% if el_ex_dark%} button-example--dark-background {{ theme }}--dark{% endif %}">
+			<div class="button-example{% if el_ex_dark%} {{ theme }}-container--dark{% endif %}">
 				<label class="button-example__label">{{ state }}</label>
 				<br>
 				{{ library.button(class=el_class + " " + theme + "-button--" + state, icon_left="search", el=item.el, disabled=disabled ) }}
@@ -123,10 +123,6 @@
 		margin-bottom: 7px;
 	}
 
-	.button-example--dark-background {
-		background-color: #151515;
-    	color: #eaeaea;
-	}
 </style>
 <h1>Buttons Sink</h1>
 

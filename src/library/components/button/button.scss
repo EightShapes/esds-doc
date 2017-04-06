@@ -193,8 +193,9 @@ a {
     }
 }
 
-.#{$theme}--dark {
-    .#{$theme}-button--secondary {
+.#{$theme}-button--secondary {
+    .#{$theme}-container--dark &,
+    .#{$theme}-container--black & {
         border: $theme-border-control-default;
         color: $theme-text-color-secondary-on-dark;
 
@@ -244,8 +245,11 @@ a {
             }
         }
     }
+}
 
-    .#{$theme}-button {
+.#{$theme}-button {
+    .#{$theme}-container--dark &,
+    .#{$theme}-container--black & {
         &:hover,
         &.#{$theme}-button--hover,
         &:focus,
@@ -256,6 +260,7 @@ a {
         }
     }
 }
+
 
 .#{$theme}-button__input {
     background: none;
@@ -342,7 +347,8 @@ a {
         @include disabled();
     }
 
-    .#{$theme}--dark & {
+    .#{$theme}-container--dark &,
+    .#{$theme}-container--black & {
         &:hover + .#{$theme}-button {
             color: $theme-interactive-color-disabled-on-dark;
 
@@ -387,6 +393,9 @@ a {
 }
 
 // Input Buttons Default and Secondary :active
+.#{$theme}-button.#{$theme}-button--selected,
+.#{$theme}-button--secondary.#{$theme}-button--selected,
+.#{$theme}-button__input:checked + .mds-button,
 .#{$theme}-button__input:active + .#{$theme}-button,
 .#{$theme}-button__input.#{$theme}-button--active + .#{$theme}-button,
 .#{$theme}-button__input:active + .#{$theme}-button--secondary,
@@ -399,11 +408,8 @@ a {
         fill: $theme-color-white;
     }
 
-    &:after {
-        box-shadow: none;
-    }
-
-    .#{$theme}--dark & {
+    .#{$theme}-container--dark &,
+    .#{$theme}-container--black & {
         background-color: $theme-interactive-color-secondary-active-on-dark;
         border-color: $theme-interactive-color-secondary-active-on-dark;
         color: $theme-text-color-secondary-default;
@@ -414,6 +420,16 @@ a {
     }
 }
 
+.#{$theme}-button__input:active + .#{$theme}-button,
+.#{$theme}-button__input.#{$theme}-button--active + .#{$theme}-button,
+.#{$theme}-button__input:active + .#{$theme}-button--secondary,
+.#{$theme}-button__input.#{$theme}-button--active + .#{$theme}-button--secondary {
+    &:after {
+        box-shadow: none;
+    }
+}
+
+
 // Input Buttons Primary :hover
 .#{$theme}-button__input:hover + .#{$theme}-button--primary,
 .#{$theme}-button__input.#{$theme}-button--hover + .#{$theme}-button--primary {
@@ -422,12 +438,20 @@ a {
 }
 
 // Input Buttons Primary :active
+.#{$theme}-button--primary.#{$theme}-button--selected,
+.#{$theme}-button__input:checked + .#{$theme}-button--primary,
 .#{$theme}-button__input:active + .#{$theme}-button--primary,
 .#{$theme}-button__input.#{$theme}-button--active + .#{$theme}-button--primary {
     background-color: $theme-interactive-color-primary-active;
     border-color: $theme-interactive-color-primary-active;
+    color: $theme-color-white;
 
-    .#{$theme}--dark & {
+    .#{$theme}-button__icon {
+        fill: $theme-color-white;
+    }
+
+    .#{$theme}-container--dark &,
+    .#{$theme}-container--black & {
         background-color: $theme-interactive-color-primary-active;
         border-color: $theme-interactive-color-primary-active;
         color: $theme-color-white;

@@ -23,7 +23,7 @@
 @import 'switch/switch';
 
 //Composite Components
-@import 'segmented_control/segmented_control'; // Has a dependency on button
+@import 'button_group/button_group'; // Has a dependency on button
 @import 'form/form'; // Has a dependency on icon
 
 // Print Styles for all components

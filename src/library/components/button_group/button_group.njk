@@ -1,0 +1,14 @@
+{% macro button_group(
+		class=false
+) %}
+	<div class="mds-button-group{{ ' ' + class if class }}">
+		{% if caller %}
+            {{ caller() }}
+        {% else %}
+		    {{ button(text="Red", el=group_type, class=group_class, name=group_name, checked=true) }}
+		    {{ button(text="Orange", el=group_type, class=group_class, name=group_name) }}
+		    {{ button(text="Yellow", el=group_type, class=group_class, name=group_name) }}
+		    {{ button(text="Green", el=group_type, class=group_class, name=group_name) }}
+		{% endif %}
+	</div>
+{% endmacro %}

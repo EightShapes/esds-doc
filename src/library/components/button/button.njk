@@ -3,12 +3,14 @@
             icon_left=false,
             icon_right=false,
 			id=false,
+			name=false,
             disabled=false,
             el="button",
-            text=false) %}
+            text=false,
+            checked=false) %}
 	{% if el == 'checkbox' or el == 'radio' or el == 'submit' or el == 'input-button' %}
 		<div class="{{ theme }}-button__input-outer-wrapper">
-			<input class="{{ theme }}-button__input" type="{% if el == 'input-button' %}button{% elif el == 'checkbox' or el == 'radio' or el == 'submit' %}{{ el }}{% endif %}" {{ 'disabled' if disabled }} {% if el == 'submit' %} value="" {% endif %}>
+			<input class="{{ theme }}-button__input" type="{% if el == 'input-button' %}button{% elif el == 'checkbox' or el == 'radio' or el == 'submit' %}{{ el }}{% endif %}" {{ 'disabled' if disabled }} {% if el == 'submit' %} value="" {% endif %} {% if name %} name="{{ name }}" {% endif %} {{ 'checked' if checked }} >
 			<div class="{{ theme }}-button {{class if class}}" role="button">			
 				{% if icon_left %}
 		        	{{ icon(name=icon_left, class=theme + "-button__icon " + theme + "-button__icon--left") }}

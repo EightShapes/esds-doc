@@ -1,0 +1,102 @@
+.mds-button-group {
+    align-items: stretch;
+    display: flex;
+
+    .mds-button--small .mds-button__icon,
+    .mds-button--small .mds-button__text,
+    .mds-button__icon,
+    .mds-button__text {
+        margin-top: 0;
+    }
+}
+
+.mds-button-group .mds-button {
+    align-items: center;
+    border-radius: 0;
+    display: flex;
+
+    &.mds-button--secondary:hover {
+        border: $theme-border-control-default;
+    }
+
+    &:focus:after {
+        border-radius: 0;
+    }
+
+    &:first-child,
+    &:first-child:focus:after {
+        border-radius: $theme-border-radius-button 0 0 $theme-border-radius-button;
+    }
+
+    &:last-child,
+    &:last-child:focus:after {
+        border-radius: 0 $theme-border-radius-button $theme-border-radius-button 0;
+    }   
+
+    &:not(:first-child) {
+        margin-left: -1px;
+    }
+
+    &.mds-button--primary {
+        &:not(:first-child) {
+            margin-left: 1px;
+        }
+    }
+}
+
+.mds-button-group .mds-button__input-outer-wrapper {
+    align-items: stretch;
+    display: flex;
+
+    .mds-button {
+        align-items: center;
+        border-radius: 0;
+        display: flex;
+        text-overflow: ellipsis;
+    }
+
+    .mds-button__input:hover + .mds-button.mds-button--secondary {
+        border: $theme-border-control-default;
+    }
+
+    .mds-button__input:focus + .mds-button {
+        &:after {
+            border-radius: 0;
+        }
+    }
+
+    &:first-child {
+        .mds-button {
+            border-radius: $theme-border-radius-button 0 0 $theme-border-radius-button;
+        }
+
+        .mds-button__input:focus + .mds-button:after {
+            border-radius: $theme-border-radius-button 0 0 $theme-border-radius-button;
+        }
+    }
+
+    &:last-child {
+        .mds-button {
+            border-radius: 0 $theme-border-radius-button $theme-border-radius-button 0;
+        }
+
+        .mds-button__input:focus + .mds-button:after {
+            border-radius: 0 $theme-border-radius-button $theme-border-radius-button 0;
+        }
+    }
+}
+
+
+.mds-button-group--justify {
+    border-collapse: separate;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+
+    .mds-button__input-outer-wrapper {
+        display: table-cell;
+        .mds-button {
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,576 @@
+{% extends "doc_templates/default.sink.template.njk" %}
+
+{% set title = 'Button Groups Sink' %}
+
+{% macro component_sink() %}
+
+	<h2 class="mds-doc-sink__header">Default/Secondary Buttons</h2>
+	{% call library.button_group() %}
+        {{ library.button(text="Red", class="mds-button--secondary") }}
+	    {{ library.button(text="Orange", class="mds-button--secondary") }}
+	    {{ library.button(text="Yellow", class="mds-button--secondary") }}
+	    {{ library.button(text="Green", class="mds-button--secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Primary Buttons</h2>
+	{% call library.button_group() %}
+        {{ library.button(text="Red", class="mds-button--primary") }}
+	    {{ library.button(text="Orange", class="mds-button--primary") }}
+	    {{ library.button(text="Yellow", class="mds-button--primary") }}
+	    {{ library.button(text="Green", class="mds-button--primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Default/Secondary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+        {{ library.button(text="Red", el="radio", class="mds-button--secondary", name=column_identifier + "radio-colors-secondary", checked=true) }}
+	    {{ library.button(text="Orange", el="radio", class="mds-button--secondary", name=column_identifier + "radio-colors-secondary") }}
+	    {{ library.button(text="Yellow", el="radio", class="mds-button--secondary", name=column_identifier + "radio-colors-secondary") }}
+	    {{ library.button(text="Green", el="radio", class="mds-button--secondary", name=column_identifier + "radio-colors-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Primary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+        {{ library.button(text="Red", el="radio", class="mds-button--primary", name=column_identifier + "radio-colors-primary", checked=true) }}
+	    {{ library.button(text="Orange", el="radio", class="mds-button--primary", name=column_identifier + "radio-colors-primary") }}
+	    {{ library.button(text="Yellow", el="radio", class="mds-button--primary", name=column_identifier + "radio-colors-primary") }}
+	    {{ library.button(text="Green", el="radio", class="mds-button--primary", name=column_identifier + "radio-colors-primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Default/Secondary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+        {{ library.button(text="Red", el="checkbox", class="mds-button--secondary", name="checkbox-colors-secondary") }}
+	    {{ library.button(text="Orange", el="checkbox", class="mds-button--secondary", name="checkbox-colors-secondary") }}
+	    {{ library.button(text="Yellow", el="checkbox", class="mds-button--secondary", name="checkbox-colors-secondary") }}
+	    {{ library.button(text="Green", el="checkbox", class="mds-button--secondary", name="checkbox-colors-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Primary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+        {{ library.button(text="Red", el="checkbox", class="mds-button--primary", name="checkbox-colors-primary") }}
+	    {{ library.button(text="Orange", el="checkbox", class="mds-button--primary", name="checkbox-colors-primary") }}
+	    {{ library.button(text="Yellow", el="checkbox", class="mds-button--primary", name="checkbox-colors-primary") }}
+	    {{ library.button(text="Green", el="checkbox", class="mds-button--primary", name="checkbox-colors-primary") }}
+    {% endcall %}
+
+
+    <h2 class="mds-doc-sink__header">Default/Secondary Radio Buttons Justified (Single Select with CSS)</h2>
+	{% call library.button_group(class="mds-button-group--justify") %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+        {{ library.button(text="Red", el="radio", class="mds-button--secondary", name=column_identifier + "radio-colors-secondary", checked=true) }}
+	    {{ library.button(text="Orange", el="radio", class="mds-button--secondary", name=column_identifier + "radio-colors-secondary") }}
+	    {{ library.button(text="Yellow", el="radio", class="mds-button--secondary", name=column_identifier + "radio-colors-secondary") }}
+	    {{ library.button(text="Green", el="radio", class="mds-button--secondary", name=column_identifier + "radio-colors-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Primary Radio Buttons Justified (Single Select with CSS)</h2>
+	{% call library.button_group(class="mds-button-group--justify") %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+        {{ library.button(text="Red", el="radio", class="mds-button--primary", name=column_identifier + "radio-colors-primary", checked=true) }}
+	    {{ library.button(text="Orange", el="radio", class="mds-button--primary", name=column_identifier + "radio-colors-primary") }}
+	    {{ library.button(text="Yellow", el="radio", class="mds-button--primary", name=column_identifier + "radio-colors-primary") }}
+	    {{ library.button(text="Green", el="radio", class="mds-button--primary", name=column_identifier + "radio-colors-primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Default/Secondary Checkboxes Justified (Multi Select with CSS)</h2>
+	{% call library.button_group(class="mds-button-group--justify") %}
+        {{ library.button(text="Red", el="checkbox", class="mds-button--secondary", name="checkbox-colors-secondary") }}
+	    {{ library.button(text="Orange", el="checkbox", class="mds-button--secondary", name="checkbox-colors-secondary") }}
+	    {{ library.button(text="Yellow", el="checkbox", class="mds-button--secondary", name="checkbox-colors-secondary") }}
+	    {{ library.button(text="Green", el="checkbox", class="mds-button--secondary", name="checkbox-colors-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Primary Checkboxes Justified (Multi Select with CSS)</h2>
+	{% call library.button_group(class="mds-button-group--justify") %}
+        {{ library.button(text="Red", el="checkbox", class="mds-button--primary", name="checkbox-colors-primary") }}
+	    {{ library.button(text="Orange", el="checkbox", class="mds-button--primary", name="checkbox-colors-primary") }}
+	    {{ library.button(text="Yellow", el="checkbox", class="mds-button--primary", name="checkbox-colors-primary") }}
+	    {{ library.button(text="Green", el="checkbox", class="mds-button--primary", name="checkbox-colors-primary") }}
+    {% endcall %}
+
+
+    <h2 class="mds-doc-sink__header">Small Default/Secondary Buttons</h2>
+	{% call library.button_group() %}
+        {{ library.button(text="Red", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(text="Orange", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(text="Yellow", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(text="Green", class="mds-button--secondary mds-button--small") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Primary Buttons</h2>
+	{% call library.button_group() %}
+        {{ library.button(text="Red", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(text="Orange", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(text="Yellow", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(text="Green", class="mds-button--primary mds-button--small") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Default/Secondary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+        {{ library.button(text="Red", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-colors-small-secondary", checked=true) }}
+	    {{ library.button(text="Orange", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-colors-small-secondary") }}
+	    {{ library.button(text="Yellow", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-colors-small-secondary") }}
+	    {{ library.button(text="Green", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-colors-small-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Primary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+        {{ library.button(text="Red", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-colors-small-primary", checked=true) }}
+	    {{ library.button(text="Orange", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-colors-small-primary") }}
+	    {{ library.button(text="Yellow", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-colors-small-primary") }}
+	    {{ library.button(text="Green", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-colors-small-primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Default/Secondary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+        {{ library.button(text="Red", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-colors-small-secondary") }}
+	    {{ library.button(text="Orange", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-colors-small-secondary") }}
+	    {{ library.button(text="Yellow", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-colors-small-secondary") }}
+	    {{ library.button(text="Green", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-colors-small-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Primary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+        {{ library.button(text="Red", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-colors-small-primary") }}
+	    {{ library.button(text="Orange", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-colors-small-primary") }}
+	    {{ library.button(text="Yellow", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-colors-small-primary") }}
+	    {{ library.button(text="Green", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-colors-small-primary") }}
+    {% endcall %}
+
+
+	<h2 class="mds-doc-sink__header">Icons Default/Secondary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_left="arrow-left", class="mds-button--secondary") }}
+	    {{ library.button(icon_left="copy", class="mds-button--secondary") }}
+	    {{ library.button(icon_left="utilities", class="mds-button--secondary") }}
+	    {{ library.button(icon_left="search", class="mds-button--secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Icons Primary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_left="arrow-left", class="mds-button--primary") }}
+	    {{ library.button(icon_left="copy", class="mds-button--primary") }}
+	    {{ library.button(icon_left="utilities", class="mds-button--primary") }}
+	    {{ library.button(icon_left="search", class="mds-button--primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Icons Default/Secondary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(icon_left="arrow-left", el="radio", class="mds-button--secondary", name=column_identifier + "radio-icons-secondary", checked=true) }}
+	    {{ library.button(icon_left="copy", el="radio", class="mds-button--secondary", name=column_identifier + "radio-icons-secondary") }}
+	    {{ library.button(icon_left="utilities", el="radio", class="mds-button--secondary", name=column_identifier + "radio-icons-secondary") }}
+	    {{ library.button(icon_left="search", el="radio", class="mds-button--secondary", name=column_identifier + "radio-icons-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Icons Primary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(icon_left="arrow-left", el="radio", class="mds-button--primary", name=column_identifier + "radio-icons-primary", checked=true) }}
+	    {{ library.button(icon_left="copy", el="radio", class="mds-button--primary", name=column_identifier + "radio-icons-primary") }}
+	    {{ library.button(icon_left="utilities", el="radio", class="mds-button--primary", name=column_identifier + "radio-icons-primary") }}
+	    {{ library.button(icon_left="search", el="radio", class="mds-button--primary", name=column_identifier + "radio-icons-primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Icons Default/Secondary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_left="arrow-left", el="checkbox", class="mds-button--secondary", name="checkbox-icons-secondary") }}
+	    {{ library.button(icon_left="copy", el="checkbox", class="mds-button--secondary", name="checkbox-icons-secondary") }}
+	    {{ library.button(icon_left="utilities", el="checkbox", class="mds-button--secondary", name="checkbox-icons-secondary") }}
+	    {{ library.button(icon_left="search", el="checkbox", class="mds-button--secondary", name="checkbox-icons-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Icons Primary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_left="arrow-left", el="checkbox", class="mds-button--primary", name="checkbox-icons-primary") }}
+	    {{ library.button(icon_left="copy", el="checkbox", class="mds-button--primary", name="checkbox-icons-primary") }}
+	    {{ library.button(icon_left="utilities", el="checkbox", class="mds-button--primary", name="checkbox-icons-primary") }}
+	    {{ library.button(icon_left="search", el="checkbox", class="mds-button--primary", name="checkbox-icons-primary") }}
+    {% endcall %}
+
+
+	<h2 class="mds-doc-sink__header">Small Icons Default/Secondary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_left="arrow-left", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(icon_left="copy", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(icon_left="utilities", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(icon_left="search", class="mds-button--secondary mds-button--small") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Icons Primary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_left="arrow-left", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(icon_left="copy", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(icon_left="utilities", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(icon_left="search", class="mds-button--primary mds-button--small") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Icons Default/Secondary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(icon_left="arrow-left", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-small-icons-secondary", checked=true) }}
+	    {{ library.button(icon_left="copy", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-small-icons-secondary") }}
+	    {{ library.button(icon_left="utilities", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-small-icons-secondary") }}
+	    {{ library.button(icon_left="search", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-small-icons-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Icons Primary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(icon_left="arrow-left", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-small-icons-primary", checked=true) }}
+	    {{ library.button(icon_left="copy", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-small-icons-primary") }}
+	    {{ library.button(icon_left="utilities", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-small-icons-primary") }}
+	    {{ library.button(icon_left="search", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-small-icons-primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Icons Default/Secondary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_left="arrow-left", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-small-icons-secondary") }}
+	    {{ library.button(icon_left="copy", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-small-icons-secondary") }}
+	    {{ library.button(icon_left="utilities", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-small-icons-secondary") }}
+	    {{ library.button(icon_left="search", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-small-icons-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Icons Primary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_left="arrow-left", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-small-icons-primary") }}
+	    {{ library.button(icon_left="copy", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-small-icons-primary") }}
+	    {{ library.button(icon_left="utilities", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-small-icons-primary") }}
+	    {{ library.button(icon_left="search", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-small-icons-primary") }}
+    {% endcall %}
+
+
+	<h2 class="mds-doc-sink__header">Text with Icons Default/Secondary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--secondary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--secondary") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Text with Icons Primary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--primary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--primary") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Text with Icons Default/Secondary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(icon_right="copy", text="Copy", el="radio", class="mds-button--secondary", name=column_identifier + "radio-mixed-secondary", checked=true) }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="radio", class="mds-button--secondary", name=column_identifier + "radio-mixed-secondary") }}
+	    {{ library.button(icon_right="search", text="Search", el="radio", class="mds-button--secondary", name=column_identifier + "radio-mixed-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Text with Icons Primary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(icon_right="copy", text="Copy", el="radio", class="mds-button--primary", name=column_identifier + "radio-mixed-primary", checked=true) }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="radio", class="mds-button--primary", name=column_identifier + "radio-mixed-primary") }}
+	    {{ library.button(icon_right="search", text="Search", el="radio", class="mds-button--primary", name=column_identifier + "radio-mixed-primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Text with Icons Default/Secondary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", el="checkbox", class="mds-button--secondary", name="checkbox-mixed-secondary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="checkbox", class="mds-button--secondary", name="checkbox-mixed-secondary") }}
+	    {{ library.button(icon_right="search", text="Search", el="checkbox", class="mds-button--secondary", name="checkbox-mixed-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Text with Icons Primary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", el="checkbox", class="mds-button--primary", name="checkbox-mixed-primary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="checkbox", class="mds-button--primary", name="checkbox-mixed-primary") }}
+	    {{ library.button(icon_right="search", text="Search", el="checkbox", class="mds-button--primary", name="checkbox-mixed-primary") }}
+    {% endcall %}
+
+
+	<h2 class="mds-doc-sink__header">Small Text with Icons Default/Secondary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--secondary mds-button--small") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Text with Icons Primary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--primary mds-button--small") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Text with Icons Default/Secondary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(icon_right="copy", text="Copy", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-small-mixed-secondary", checked=true) }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-small-mixed-secondary") }}
+	    {{ library.button(icon_right="search", text="Search", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-small-mixed-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Text with Icons Primary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(icon_right="copy", text="Copy", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-small-mixed-primary", checked=true) }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-small-mixed-primary") }}
+	    {{ library.button(icon_right="search", text="Search", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-small-mixed-primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Text with Icons Default/Secondary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-small-mixed-secondary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-small-mixed-secondary") }}
+	    {{ library.button(icon_right="search", text="Search", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-small-mixed-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Text with Icons Primary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-small-mixed-primary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-small-mixed-primary") }}
+	    {{ library.button(icon_right="search", text="Search", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-small-mixed-primary") }}
+    {% endcall %}
+
+
+
+	<h2 class="mds-doc-sink__header">Content Test Default/Secondary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(text=".", class="mds-button--secondary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--secondary") }}
+	    {{ library.button(text="This is a really very very incredibly ridiculously tremendously fantastically absurdly long label for a button in a button group", class="mds-button--secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Content Test Primary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(text=".", class="mds-button--primary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--primary") }}
+	    {{ library.button(text="This is a really very very incredibly ridiculously tremendously fantastically absurdly long label for a button in a button group", class="mds-button--primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Content Test Default/Secondary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(text=".", el="radio", class="mds-button--secondary", name=column_identifier + "radio-test-secondary", checked=true) }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="radio", class="mds-button--secondary", name=column_identifier + "radio-test-secondary") }}
+	    {{ library.button(text="This is a really very very incredibly ridiculously tremendously fantastically absurdly long label for a button in a button group", el="radio", class="mds-button--secondary", name=column_identifier + "radio-test-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Content Test Primary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(text=".", el="radio", class="mds-button--primary", name=column_identifier + "radio-test-primary", checked=true) }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="radio", class="mds-button--primary", name=column_identifier + "radio-test-primary") }}
+	    {{ library.button(text="This is a really very very incredibly ridiculously tremendously fantastically absurdly long label for a button in a button group", el="radio", class="mds-button--primary", name=column_identifier + "radio-test-primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Content Test Default/Secondary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(text=".", el="checkbox", class="mds-button--secondary", name="checkbox-test-secondary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="checkbox", class="mds-button--secondary", name="checkbox-test-secondary") }}
+	    {{ library.button(text="This is a really very very incredibly ridiculously tremendously fantastically absurdly long label for a button in a button group", el="checkbox", class="mds-button--secondary", name="checkbox-test-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Content Test Primary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(text=".", el="checkbox", class="mds-button--primary", name="checkbox-test-primary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="checkbox", class="mds-button--primary", name="checkbox-test-primary") }}
+	    {{ library.button(text="This is a really very very incredibly ridiculously tremendously fantastically absurdly long label for a button in a button group", el="checkbox", class="mds-button--primary", name="checkbox-test-primary") }}
+    {% endcall %}
+
+
+	<h2 class="mds-doc-sink__header">Small Content Test Default/Secondary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(text=".", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(text="This is a really very very incredibly ridiculously tremendously fantastically absurdly long label for a button in a button group", class="mds-button--secondary mds-button--small") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Content Test Primary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(text=".", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(text="This is a really very very incredibly ridiculously tremendously fantastically absurdly long label for a button in a button group", class="mds-button--primary mds-button--small") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Content Test Default/Secondary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(text=".", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-small-test-secondary", checked=true) }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-small-test-secondary") }}
+	    {{ library.button(text="This is a really very very incredibly ridiculously tremendously fantastically absurdly long label for a button in a button group", el="radio", class="mds-button--secondary mds-button--small", name=column_identifier + "radio-small-test-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Content Test Primary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(text=".", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-small-test-primary", checked=true) }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-small-test-primary") }}
+	    {{ library.button(text="This is a really very very incredibly ridiculously tremendously fantastically absurdly long label for a button in a button group", el="radio", class="mds-button--primary mds-button--small", name=column_identifier + "radio-small-test-primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Content Test Default/Secondary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(text=".", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-small-test-secondary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-small-test-secondary") }}
+	    {{ library.button(text="This is a really very very incredibly ridiculously tremendously fantastically absurdly long label for a button in a button group", el="checkbox", class="mds-button--secondary mds-button--small", name="checkbox-small-test-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Content Test Primary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(text=".", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-small-test-primary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-small-test-primary") }}
+	    {{ library.button(text="This is a really very very incredibly ridiculously tremendously fantastically absurdly long label for a button in a button group", el="checkbox", class="mds-button--primary mds-button--small", name="checkbox-small-test-primary") }}
+    {% endcall %}
+
+
+	<h2 class="mds-doc-sink__header">Content Many Default/Secondary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--secondary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--secondary") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--secondary") }}
+	    {{ library.button(text="Copy More", class="mds-button--secondary") }}
+	    {{ library.button(text="Additional Settings", class="mds-button--secondary") }}
+	    {{ library.button(text="Search Further", class="mds-button--secondary") }}
+	    {{ library.button(text="Green", class="mds-button--secondary") }}
+	    {{ library.button(text="Greener", class="mds-button--secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Content Many Primary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--primary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--primary") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--primary") }}
+	    {{ library.button(text="Copy More", class="mds-button--primary") }}
+	    {{ library.button(text="Additional Settings", class="mds-button--primary") }}
+	    {{ library.button(text="Search Further", class="mds-button--primary") }}
+	    {{ library.button(text="Green", class="mds-button--primary") }}
+	    {{ library.button(text="Greener", class="mds-button--primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Content Many Default/Secondary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--secondary", el="radio", name=column_identifier + "radio-many-secondary", checked=true) }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--secondary", el="radio", name=column_identifier + "radio-many-secondary") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--secondary", el="radio", name=column_identifier + "radio-many-secondary") }}
+	    {{ library.button(text="Copy More", class="mds-button--secondary", el="radio", name=column_identifier + "radio-many-secondary") }}
+	    {{ library.button(text="Additional Settings", class="mds-button--secondary", el="radio", name=column_identifier + "radio-many-secondary") }}
+	    {{ library.button(text="Search Further", class="mds-button--secondary", el="radio", name=column_identifier + "radio-many-secondary") }}
+	    {{ library.button(text="Green", class="mds-button--secondary", el="radio", name=column_identifier + "radio-many-secondary") }}
+	    {{ library.button(text="Greener", class="mds-button--secondary", el="radio", name=column_identifier + "radio-many-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Content Many Primary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--primary", el="radio", name=column_identifier + "radio-many-primary", checked=true) }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--primary", el="radio", name=column_identifier + "radio-many-primary") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--primary", el="radio", name=column_identifier + "radio-many-primary") }}
+	    {{ library.button(text="Copy More", class="mds-button--primary", el="radio", name=column_identifier + "radio-many-primary") }}
+	    {{ library.button(text="Additional Settings", class="mds-button--primary", el="radio", name=column_identifier + "radio-many-primary") }}
+	    {{ library.button(text="Search Further", class="mds-button--primary", el="radio", name=column_identifier + "radio-many-primary") }}
+	    {{ library.button(text="Green", class="mds-button--primary", el="radio", name=column_identifier + "radio-many-primary") }}
+	    {{ library.button(text="Greener", class="mds-button--primary", el="radio", name=column_identifier + "radio-many-primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Content Many Default/Secondary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--secondary", el="checkbox", name="checkbox-many-secondary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--secondary", el="checkbox", name="checkbox-many-secondary") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--secondary", el="checkbox", name="checkbox-many-secondary") }}
+	    {{ library.button(text="Copy More", class="mds-button--secondary", el="checkbox", name="checkbox-many-secondary") }}
+	    {{ library.button(text="Additional Settings", class="mds-button--secondary", el="checkbox", name="checkbox-many-secondary") }}
+	    {{ library.button(text="Search Further", class="mds-button--secondary", el="checkbox", name="checkbox-many-secondary") }}
+	    {{ library.button(text="Green", class="mds-button--secondary", el="checkbox", name="checkbox-many-secondary") }}
+	    {{ library.button(text="Greener", class="mds-button--secondary", el="checkbox", name="checkbox-many-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Content Many Primary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--primary", el="checkbox", name="checkbox-many-primary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--primary", el="checkbox", name="checkbox-many-primary") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--primary", el="checkbox", name="checkbox-many-primary") }}
+	    {{ library.button(text="Copy More", class="mds-button--primary", el="checkbox", name="checkbox-many-primary") }}
+	    {{ library.button(text="Additional Settings", class="mds-button--primary", el="checkbox", name="checkbox-many-primary") }}
+	    {{ library.button(text="Search Further", class="mds-button--primary", el="checkbox", name="checkbox-many-primary") }}
+	    {{ library.button(text="Green", class="mds-button--primary", el="checkbox", name="checkbox-many-primary") }}
+	    {{ library.button(text="Greener", class="mds-button--primary", el="checkbox", name="checkbox-many-primary") }}
+    {% endcall %}
+
+
+	<h2 class="mds-doc-sink__header">Small Content Many Default/Secondary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(text="Copy More", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(text="Additional Settings", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(text="Search Further", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(text="Green", class="mds-button--secondary mds-button--small") }}
+	    {{ library.button(text="Greener", class="mds-button--secondary mds-button--small") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Content Many Primary Buttons</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(text="Copy More", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(text="Additional Settings", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(text="Search Further", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(text="Green", class="mds-button--primary mds-button--small") }}
+	    {{ library.button(text="Greener", class="mds-button--primary mds-button--small") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Content Many Default/Secondary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--secondary mds-button--small", el="radio", name=column_identifier + "radio-small-many-secondary", checked=true) }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--secondary mds-button--small", el="radio", name=column_identifier + "radio-small-many-secondary") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--secondary mds-button--small", el="radio", name=column_identifier + "radio-small-many-secondary") }}
+	    {{ library.button(text="Copy More", class="mds-button--secondary mds-button--small", el="radio", name=column_identifier + "radio-small-many-secondary") }}
+	    {{ library.button(text="Additional Settings", class="mds-button--secondary mds-button--small", el="radio", name=column_identifier + "radio-small-many-secondary") }}
+	    {{ library.button(text="Search Further", class="mds-button--secondary mds-button--small", el="radio", name=column_identifier + "radio-small-many-secondary") }}
+	    {{ library.button(text="Green", class="mds-button--secondary mds-button--small", el="radio", name=column_identifier + "radio-small-many-secondary") }}
+	    {{ library.button(text="Greener", class="mds-button--secondary mds-button--small", el="radio", name=column_identifier + "radio-small-many-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Content Many Primary Radio Buttons (Single Select with CSS)</h2>
+	{% call library.button_group() %}
+		{% set column_identifier = "id-" + range(0, 100000) | random + "-" %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--primary mds-button--small", el="radio", name=column_identifier + "radio-small-many-primary", checked=true) }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--primary mds-button--small", el="radio", name=column_identifier + "radio-small-many-primary") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--primary mds-button--small", el="radio", name=column_identifier + "radio-small-many-primary") }}
+	    {{ library.button(text="Copy More", class="mds-button--primary mds-button--small", el="radio", name=column_identifier + "radio-small-many-primary") }}
+	    {{ library.button(text="Additional Settings", class="mds-button--primary mds-button--small", el="radio", name=column_identifier + "radio-small-many-primary") }}
+	    {{ library.button(text="Search Further", class="mds-button--primary mds-button--small", el="radio", name=column_identifier + "radio-small-many-primary") }}
+	    {{ library.button(text="Green", class="mds-button--primary mds-button--small", el="radio", name=column_identifier + "radio-small-many-primary") }}
+	    {{ library.button(text="Greener", class="mds-button--primary mds-button--small", el="radio", name=column_identifier + "radio-small-many-primary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Content Many Default/Secondary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--secondary mds-button--small", el="checkbox", name="checkbox-small-many-secondary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--secondary mds-button--small", el="checkbox", name="checkbox-small-many-secondary") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--secondary mds-button--small", el="checkbox", name="checkbox-small-many-secondary") }}
+	    {{ library.button(text="Copy More", class="mds-button--secondary mds-button--small", el="checkbox", name="checkbox-small-many-secondary") }}
+	    {{ library.button(text="Additional Settings", class="mds-button--secondary mds-button--small", el="checkbox", name="checkbox-small-many-secondary") }}
+	    {{ library.button(text="Search Further", class="mds-button--secondary mds-button--small", el="checkbox", name="checkbox-small-many-secondary") }}
+	    {{ library.button(text="Green", class="mds-button--secondary mds-button--small", el="checkbox", name="checkbox-small-many-secondary") }}
+	    {{ library.button(text="Greener", class="mds-button--secondary mds-button--small", el="checkbox", name="checkbox-small-many-secondary") }}
+    {% endcall %}
+
+	<h2 class="mds-doc-sink__header">Small Content Many Primary Checkboxes (Multi Select with CSS)</h2>
+	{% call library.button_group() %}
+		{{ library.button(icon_right="copy", text="Copy", class="mds-button--primary mds-button--small", el="checkbox", name="checkbox-small-many-primary") }}
+	    {{ library.button(icon_left="utilities", text="Settings", class="mds-button--primary mds-button--small", el="checkbox", name="checkbox-small-many-primary") }}
+	    {{ library.button(icon_right="search", text="Search", class="mds-button--primary mds-button--small", el="checkbox", name="checkbox-small-many-primary") }}
+	    {{ library.button(text="Copy More", class="mds-button--primary mds-button--small", el="checkbox", name="checkbox-small-many-primary") }}
+	    {{ library.button(text="Additional Settings", class="mds-button--primary mds-button--small", el="checkbox", name="checkbox-small-many-primary") }}
+	    {{ library.button(text="Search Further", class="mds-button--primary mds-button--small", el="checkbox", name="checkbox-small-many-primary") }}
+	    {{ library.button(text="Green", class="mds-button--primary mds-button--small", el="checkbox", name="checkbox-small-many-primary") }}
+	    {{ library.button(text="Greener", class="mds-button--primary mds-button--small", el="checkbox", name="checkbox-small-many-primary") }}
+    {% endcall %}
+
+{% endmacro %}
