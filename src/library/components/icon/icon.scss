@@ -1,24 +1,24 @@
-.#{$theme}-icon {
+.mds-icon {
     @include border-box();
 }
 
-.#{$theme}-icon,
-.#{$theme}-icon--l {
-    height: $theme-size-icon-l;
-    width: $theme-size-icon-l;
+.mds-icon,
+.mds-icon--l {
+    height: $mds-size-icon-l;
+    width: $mds-size-icon-l;
 }
 
-.#{$theme}-icon--m {
-    height: $theme-size-icon-m;
-    width: $theme-size-icon-m;
+.mds-icon--m {
+    height: $mds-size-icon-m;
+    width: $mds-size-icon-m;
 }
 
-.#{$theme}-icon--s {
-    height: $theme-size-icon-s;
-    width: $theme-size-icon-s;
+.mds-icon--s {
+    height: $mds-size-icon-s;
+    width: $mds-size-icon-s;
 }
 
-.#{$theme}-icon--xs {
-    height: $theme-size-icon-xs;
-    width: $theme-size-icon-xs;
+.mds-icon--xs {
+    height: $mds-size-icon-xs;
+    width: $mds-size-icon-xs;
 }

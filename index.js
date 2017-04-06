@@ -180,8 +180,12 @@ module.exports = {
         'use strict';
         return `node_modules/${packageData.name}/src/library/scripts`;
     },
-    "docLibraryScriptsPath": function(){
+    "docLibraryComponentScriptsPath": function(){
         'use strict';
         return `node_modules/${packageData.name}/src/doc_library/components`;
+    },
+    "docLibraryBaseScriptsPath": function(){
+        'use strict';
+        return `node_modules/${packageData.name}/src/doc_library/scripts`;
     }
 };

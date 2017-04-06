@@ -9,38 +9,38 @@
             text=false,
             checked=false) %}
 	{% if el == 'checkbox' or el == 'radio' or el == 'submit' or el == 'input-button' %}
-		<div class="{{ theme }}-button__input-outer-wrapper">
-			<input class="{{ theme }}-button__input" type="{% if el == 'input-button' %}button{% elif el == 'checkbox' or el == 'radio' or el == 'submit' %}{{ el }}{% endif %}" {{ 'disabled' if disabled }} {% if el == 'submit' %} value="" {% endif %} {% if name %} name="{{ name }}" {% endif %} {{ 'checked' if checked }} >
-			<div class="{{ theme }}-button {{class if class}}" role="button">			
+		<div class="mds-button__input-outer-wrapper">
+			<input class="mds-button__input" type="{% if el == 'input-button' %}button{% elif el == 'checkbox' or el == 'radio' or el == 'submit' %}{{ el }}{% endif %}" {{ 'disabled' if disabled }} {% if el == 'submit' %} value="" {% endif %} {% if name %} name="{{ name }}" {% endif %} {{ 'checked' if checked }} >
+			<div class="mds-button {{class if class}}" role="button">			
 				{% if icon_left %}
-		        	{{ icon(name=icon_left, class=theme + "-button__icon " + theme + "-button__icon--left") }}
+		        	{{ icon(name=icon_left, class="mds-button__icon mds-button__icon--left") }}
 		        {% endif %}
 				{% if (icon_left or icon_right) and text %}
-			        <span class="{{ theme }}-button__text">
+			        <span class="mds-button__text">
 			        	{{ text }}
 			        </span>
 				{% elif text %}
 					{{ text }}
 				{% endif %}
 		        {% if icon_right %}
-		        	{{ icon(name=icon_right, class=theme + "-button__icon " + theme + "-button__icon--right") }}
+		        	{{ icon(name=icon_right, class="mds-button__icon mds-button__icon--right") }}
 		        {% endif %}
 			</div>
 		</div>
 	{% else %}
-	    <{{el}}{% if id %} id="{{id}}"{% endif %} class="{{ theme }}-button {{class if class}}" {% if el == 'button' %}type="button"{% endif %} {% if el == 'a' %}href="#"{% endif %} {{ 'disabled' if disabled }} role="button">
+	    <{{el}}{% if id %} id="{{id}}"{% endif %} class="mds-button {{class if class}}" {% if el == 'button' %}type="button"{% endif %} {% if el == 'a' %}href="#"{% endif %} {{ 'disabled' if disabled }} role="button">
 	        {% if icon_left %}
-	        	{{ icon(name=icon_left, class=theme + "-button__icon " + theme + "-button__icon--left") }}
+	        	{{ icon(name=icon_left, class="mds-button__icon mds-button__icon--left") }}
 	        {% endif %}
 			{% if (icon_left or icon_right) and text %}
-		        <span class="{{ theme }}-button__text">
+		        <span class="mds-button__text">
 		        	{{ text }}
 		        </span>
 		    {% elif text %}
 				{{ text }}
 			{% endif %}
 	        {% if icon_right %}
-	        	{{ icon(name=icon_right, class=theme + "-button__icon " + theme + "-button__icon--right") }}
+	        	{{ icon(name=icon_right, class="mds-button__icon mds-button__icon--right") }}
 	        {% endif %}
 	    </{{el}}>
 	{% endif %}

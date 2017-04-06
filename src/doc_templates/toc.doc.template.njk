@@ -1,14 +1,14 @@
 {% extends 'doc_templates/default.doc.template.njk' %}
 
 {% block doc_body_container %}
-    <div class="{{ theme }}-doc-toc-template__container">
-        <div class="{{ theme }}-doc-toc-template__intro">
+    <div class="mds-doc-toc-template__container">
+        <div class="mds-doc-toc-template__intro">
             {% block doc_intro %}
 
             {% endblock %}
         </div>
-        {{ doc_library.page_nav(class=theme + "-doc-toc-template__page-nav", target="." + theme + "-doc-toc-template__content, ." + theme + "-doc-toc-template__content > ." + theme + "-long-form-text") }}
-        <div class="{{ theme }}-doc-toc-template__content">
+        {{ doc_library.page_nav(class="mds-doc-toc-template__page-nav", target=".mds-doc-toc-template__content, .mds-doc-toc-template__content > .mds-long-form-text") }}
+        <div class="mds-doc-toc-template__content">
             {% block doc_body %}
 
             {% endblock %}

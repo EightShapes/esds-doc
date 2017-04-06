@@ -6,20 +6,20 @@
     close_prompt=false,
     style=false
 ) %}
-	<div class="{{ theme }}-tooltip__wrapper">
+	<div class="mds-tooltip__wrapper">
 		{% if caller %}
             {{ caller() }}
         {% else %}
 			Hover Over Me
         {% endif %}
-	    <div {% if tip_id %}id="{{ tip_id }}" {% endif %} class="{{ theme }}-tooltip {{class if class }}" {% if style %}style="{{ style }}" {% endif %} role="tooltip">
+	    <div {% if tip_id %}id="{{ tip_id }}" {% endif %} class="mds-tooltip {{class if class }}" {% if style %}style="{{ style }}" {% endif %} role="tooltip">
 	    	{% if tip_text %}
 				{{ tip_text }}
 			{% else %}
-				Object Name<br>AAA<small> ★★★★<span class="{{ theme }}-screenreader-only">4 star rating</span></small>
+				Object Name<br>AAA<small> ★★★★<span class="mds-screenreader-only">4 star rating</span></small>
 	    	{% endif %}
 	    	{% if close_prompt %}
-				<a class="{{ theme }}-tooltip__close-button" {% if close_button_id %}data-{{ theme }}-tooltip-close-button-id="{{ close_button_id }}" {% endif %}>{{ icon(name="remove", class=theme + "-icon--m") }}</a>
+				<a class="mds-tooltip__close-button" {% if close_button_id %}data-mds-tooltip-close-button-id="{{ close_button_id }}" {% endif %}>{{ icon(name="remove", class="mds-icon--m") }}</a>
 	    	{% endif %}
 	    </div>
 	</div>

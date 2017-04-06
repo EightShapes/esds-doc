@@ -1,6 +1,6 @@
 // Use the library's constants
 @import 'constants';
-@import '../../doc/assets/styles/shared/shell_variables';
+@import 'doc/assets/styles/shared/shell_variables'; // Importing some template/shell related variables from doc so doc components can correctly calculate fixed positioning based on shell's fixed header height
 
 // Use the library's Cross-component utilities
 @import 'shared/utils'; // box-sizing and font-size settings

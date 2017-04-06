@@ -2,7 +2,7 @@
             action='form/processor', 
             class=false,
             method='post') %}
-    <form class="{{ theme }}-form{{ ' ' + class  if class }}" method="{{ method }}" action="{{ action }}">
+    <form class="mds-form{{ ' ' + class  if class }}" method="{{ method }}" action="{{ action }}">
         {% if caller %}
             {{ caller() }}
         {% endif %}
@@ -11,7 +11,7 @@
 
 {% macro form_fieldset(
             class=false) %}
-    <fieldset class="{{ theme }}-form__fieldset{{ ' ' + class  if class }}">
+    <fieldset class="mds-form__fieldset{{ ' ' + class  if class }}">
         {% if caller %}
             {{ caller() }}
         {% endif %}
@@ -22,7 +22,7 @@
 {% macro form_legend(
             class=false, 
             text="A grouping of form fields") %}
-    <legend class="{{ theme }}-form__legend{{ ' ' + class  if class }}">{{ text }}</legend>
+    <legend class="mds-form__legend{{ ' ' + class  if class }}">{{ text }}</legend>
 {% endmacro %}
 
 
@@ -30,7 +30,7 @@
             class=false, 
             error=false,
             horizontal=false) %}
-    <div class="{{ theme }}-form__field-group{{ ' ' + theme + '-form__field-group--horizontal' if horizontal }}{{ ' ' + theme + '-form--error' if error }}{{ ' ' + class  if class }}">
+    <div class="mds-form__field-group{{ ' mds-form__field-group--horizontal' if horizontal }}{{ ' mds-form--error' if error }}{{ ' ' + class  if class }}">
         {% if caller %}
             {{ caller() }}
         {% endif %}
@@ -48,7 +48,7 @@
             type='text', 
             value=false) %}
     <input 
-    class="{{ theme }}-form__input{{ ' ' + class if class }}" 
+    class="mds-form__input{{ ' ' + class if class }}" 
     type="{{ type }}"
     {% if id %} id="{{ id }}" {% endif %} 
     {% if name %} name="{{ name }}" {% endif %} 
@@ -67,19 +67,19 @@
             text="First Name") %}
     
     <label 
-            class="{{ theme }}-form__label{{ ' ' + class if class }}"
+            class="mds-form__label{{ ' ' + class if class }}"
         {% if for %}
             for="{{ for }}"
         {% endif %}>
             {{ text | safe }}
         {%- if optional -%}
-            <span class="{{ theme }}-form__label-optional">
+            <span class="mds-form__label-optional">
                 (Optional)
             </span>
         {%- endif -%}
         {%- if required -%}
-            <abbr class="{{ theme }}-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
-            <span class="{{ theme }}-screenreader-only">Required Field.</span>
+            <abbr class="mds-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
+            <span class="mds-screenreader-only">Required Field.</span>
         {% endif %}
     </label>
 {% endmacro %}
@@ -103,28 +103,28 @@
         {% set random_number = range(0, 100000) | random %}
         {% set id = label | replace(' ', '-') | lower + '--' + random_number %}
     {% endif %}
-    <label class="{{ theme }}-form__checkbox{{ ' ' + class if class }}{{ ' ' + theme + '-form__checkbox--disabled' if disabled }}" for="{{ id }}">
-        <input id="{{ id }}" type="checkbox" class="{{ theme }}-form__checkbox-input" 
+    <label class="mds-form__checkbox{{ ' ' + class if class }}{{ ' mds-form__checkbox--disabled' if disabled }}" for="{{ id }}">
+        <input id="{{ id }}" type="checkbox" class="mds-form__checkbox-input" 
             {{ 'checked' if checked }} 
             {{ 'disabled' if disabled }}
             {% if name %} name="{{ name }}" {% endif %}
             {% if describedby %} aria-describedby="{{ describedby }}" {% endif %}
             {% if value %} value="{{ value }}" {% endif %}/>
-        <span class="{{ theme }}-form__checkbox-visible-wrap">
-            <span class="{{ theme }}-form__checkbox-visual">
-                {{ icon(name='checkmark', class=theme + '-form__checkbox-checked-icon', path=icon_path)}}
-                {{ icon(name='minus', class=theme + '-form__checkbox-indeterminate-icon', path=icon_path)}}
+        <span class="mds-form__checkbox-visible-wrap">
+            <span class="mds-form__checkbox-visual">
+                {{ icon(name='checkmark', class='mds-form__checkbox-checked-icon', path=icon_path)}}
+                {{ icon(name='minus', class='mds-form__checkbox-indeterminate-icon', path=icon_path)}}
             </span>
-            <span class="{{ theme }}-form__checkbox-text">
+            <span class="mds-form__checkbox-text">
                 {{ label | safe }}
                 {%- if optional -%}
-                    <span class="{{ theme }}-form__label-optional">
+                    <span class="mds-form__label-optional">
                         (Optional)
                     </span>
                 {%- endif -%}
                 {%- if required -%}
-                    <abbr class="{{ theme }}-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
-                    <span class="{{ theme }}-screenreader-only">Required Field.</span>
+                    <abbr class="mds-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
+                    <span class="mds-screenreader-only">Required Field.</span>
                 {% endif %}
             </span>
         </span>
@@ -155,21 +155,21 @@
         {% set random_number = range(0, 100000) | random %}
         {% set id = label | replace(' ', '-') | lower + '--' + random_number %}
     {% endif %}
-    <label class="{{ theme }}-form__radio-button{{ ' ' + class if class }}{{ ' ' + theme + '-form__radio-button--disabled' if disabled }}" for="{{ id }}">
-        <input id="{{ id }}" name="{{ name }}" value="{{ value }}" type="radio" class="{{ theme }}-form__radio-button-input" 
+    <label class="mds-form__radio-button{{ ' ' + class if class }}{{ ' mds-form__radio-button--disabled' if disabled }}" for="{{ id }}">
+        <input id="{{ id }}" name="{{ name }}" value="{{ value }}" type="radio" class="mds-form__radio-button-input" 
             {{ 'checked' if checked }} {{ 'disabled' if disabled }} {% if describedby %} aria-describedby="{{ describedby }}" {% endif %}/>
-        <span class="{{ theme }}-form__radio-button-visible-wrap">
-            <span class="{{ theme }}-form__radio-button-visual"></span>
-            <span class="{{ theme }}-form__radio-button-text {{ theme + '-form__label--required' if required}}">
+        <span class="mds-form__radio-button-visible-wrap">
+            <span class="mds-form__radio-button-visual"></span>
+            <span class="mds-form__radio-button-text {{ 'mds-form__label--required' if required}}">
                 {{ label | safe }}
                 {%- if optional -%}
-                    <span class="{{ theme }}-form__label-optional">
+                    <span class="mds-form__label-optional">
                         (Optional)
                     </span>
                 {%- endif -%}
                 {%- if required -%}
-                    <abbr class="{{ theme }}-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
-                    <span class="{{ theme }}-screenreader-only">Required Field.</span>
+                    <abbr class="mds-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
+                    <span class="mds-screenreader-only">Required Field.</span>
                 {% endif %}
             </span>
         </span>
@@ -198,8 +198,8 @@
                     value: "option_2"
                 }
             ]) %}
-    <div class="{{ theme }}-form__select{{ ' ' + class if class }}{{ ' ' + theme + '-form__select-input--disabled' if disabled }}">
-        <select class="{{ theme }}-form__select-input" 
+    <div class="mds-form__select{{ ' ' + class if class }}{{ ' mds-form__select-input--disabled' if disabled }}">
+        <select class="mds-form__select-input" 
                 {% if id %}
                     id="{{ id }}"
                 {% endif %} 
@@ -212,9 +212,9 @@
                 {{ form_select_option_builder(option) }}
             {% endfor %}
         </select>
-        <div class="{{ theme }}-form__select-visual-wrap"></div>
-        <span class="{{ theme }}-form__select-open-indicator">
-            {{ icon(name='caret-down', class=theme + '-form__select-open-icon', path=icon_path) }}
+        <div class="mds-form__select-visual-wrap"></div>
+        <span class="mds-form__select-open-indicator">
+            {{ icon(name='caret-down', class='mds-form__select-open-icon', path=icon_path) }}
         </span>
     </div>
 {% endmacro %}
@@ -233,7 +233,7 @@
 {% endmacro %}
 
 {% macro form_select_option(option) %}
-    <option class="{{ theme }}-form__select-option" value="{{ option.value }}" {{ 'selected' if option.selected }}>{{ option.text }}</option>
+    <option class="mds-form__select-option" value="{{ option.value }}" {{ 'selected' if option.selected }}>{{ option.text }}</option>
 {% endmacro %}
 
 
@@ -245,7 +245,7 @@
             name=false,
             placeholder=false, 
             value=false) %}
-    <textarea class="{{ theme }}-form__textarea{{ ' ' + class  if class }}" 
+    <textarea class="mds-form__textarea{{ ' ' + class  if class }}" 
         {% if id %}
             id="{{ id }}"
         {% endif %} 
@@ -263,8 +263,8 @@
             id=false,
             text='This field is required',
             icon_path=false) %}
-    <span class="{{ theme }}-form__field-error{{ ' ' + class  if class }}" {% if id %} id="{{ id }}" {% endif %} role="alert">
-        <span class="{{ theme }}-form__field-error-text">
+    <span class="mds-form__field-error{{ ' ' + class  if class }}" {% if id %} id="{{ id }}" {% endif %} role="alert">
+        <span class="mds-form__field-error-text">
             {{ text }}
         </span>
     </span>
@@ -275,7 +275,7 @@
             class=false, 
             id=false,
             text="Passwords must contain a letter, a number, and your favorite 80's band name") %}
-    <span class="{{ theme }}-form__microcopy{{ ' ' + class  if class }}" {% if id %} id="{{ id }}" {% endif %}>
+    <span class="mds-form__microcopy{{ ' ' + class  if class }}" {% if id %} id="{{ id }}" {% endif %}>
         {% if text == false %}
             {{ caller() }}
         {% else %}
@@ -287,7 +287,7 @@
 {% macro form_required_fields_key(
             class=false,
             text="Required fields") %}
-    <span class="{{ theme }}-form__required-fields-key{{ ' ' + class  if class }}">{{ text }}</span>
+    <span class="mds-form__required-fields-key{{ ' ' + class  if class }}">{{ text }}</span>
 {% endmacro %}
 
 {% macro form_checkbox_group(
@@ -296,18 +296,18 @@
             optional=false,
             required=false,
             required_tooltip_text="Please select at least one option.") %}
-    <fieldset class="{{ theme }}-form__checkbox-group{{ ' ' + class  if class }}" role="group">
+    <fieldset class="mds-form__checkbox-group{{ ' ' + class  if class }}" role="group">
         {% if label %}
-            <legend class="{{ theme }}-form__checkbox-group-label">
+            <legend class="mds-form__checkbox-group-label">
                 {{ label | safe }}
                 {%- if optional -%}
-                    <span class="{{ theme }}-form__label-optional">
+                    <span class="mds-form__label-optional">
                         (Optional)
                     </span>
                 {%- endif -%}
                 {%- if required -%}
-                    <abbr class="{{ theme }}-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
-                    <span class="{{ theme }}-screenreader-only">Required Field.</span>
+                    <abbr class="mds-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
+                    <span class="mds-screenreader-only">Required Field.</span>
                 {% endif %}
             </legend>
         {% endif %}
@@ -323,18 +323,18 @@
             optional=false,
             required=false,
             required_tooltip_text="Please select an option.") %}
-    <fieldset class="{{ theme }}-form__radio-button-group{{ ' ' + class  if class }}" role="radiogroup">
+    <fieldset class="mds-form__radio-button-group{{ ' ' + class  if class }}" role="radiogroup">
         {% if label %}
-            <legend class="{{ theme }}-form__radio-button-group-label">
+            <legend class="mds-form__radio-button-group-label">
                 {{ label | safe }}
                 {%- if optional -%}
-                    <span class="{{ theme }}-form__label-optional">
+                    <span class="mds-form__label-optional">
                         (Optional)
                     </span>
                 {%- endif -%}
                 {%- if required -%}
-                    <abbr class="{{ theme }}-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
-                    <span class="{{ theme }}-screenreader-only">Required Field.</span>
+                    <abbr class="mds-form__label-required-indicator" title="{{ required_tooltip_text }}" aria-hidden="true">*</abbr>
+                    <span class="mds-screenreader-only">Required Field.</span>
                 {% endif %}
             </legend>
         {% endif %}

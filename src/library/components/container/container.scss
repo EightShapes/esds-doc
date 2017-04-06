@@ -1,19 +1,19 @@
-.#{$theme}-container--default {
+.mds-container--default {
     @include border-box();
-    background: $theme-background-color-default;
+    background: $mds-background-color-default;
 }
 
-.#{$theme}-container--light {
+.mds-container--light {
     @include border-box();
-    background: $theme-background-color-light; 
+    background: $mds-background-color-light; 
 }
 
-.#{$theme}-container--dark {
+.mds-container--dark {
     @include border-box();
-    background: $theme-background-color-dark; 
+    background: $mds-background-color-dark; 
 }
 
-.#{$theme}-container--black {
+.mds-container--black {
     @include border-box();
-    background: $theme-background-color-black; 
+    background: $mds-background-color-black; 
 }

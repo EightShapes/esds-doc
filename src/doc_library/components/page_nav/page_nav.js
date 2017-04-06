@@ -1,9 +1,7 @@
 /*global $*/
+/*global mdsDoc*/
 
-var Mds = Mds || {};
-var projectNamespace = projectNamespace || 'mds';
-
-Mds.PageNav = function() {
+mdsDoc.PageNav = function() {
     'use strict';
 
     var buildAnchorNav = function($nav) {
@@ -79,5 +77,5 @@ Mds.PageNav = function() {
 
 $(document).ready(function(){
     'use strict';
-    Mds.PageNav.initialize();
+    mdsDoc.PageNav.initialize();
 });

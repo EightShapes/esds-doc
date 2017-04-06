@@ -9,10 +9,10 @@
             {% set path = global_icon_svg_path %}
         {% else %}
             {# If no value for path is passed and no global variable is set, then this path is used by default #}
-            {% set path = '/assets/icons/' + theme + '_icons.svg' %}
+            {% set path = '/assets/icons/mds_icons.svg' %}
         {% endif %}
     {% endif %}
-    <svg class="{{ theme }}-icon{{ ' ' + class if class }}" aria-labelledby="title">
+    <svg class="mds-icon{{ ' ' + class if class }}" aria-labelledby="title">
         <title>{{name}}</title>
         <use xlink:href="{{ path }}#{{name}}"></use>
     </svg>

@@ -1,5 +1,4 @@
-var Mds = Mds || {};
-var projectNamespace = projectNamespace || 'mds';
+/*global mds*/
 
 /**
  * Please note the following code is for document / demo only
@@ -7,7 +6,7 @@ var projectNamespace = projectNamespace || 'mds';
  * Please use a wrapper class mds-notification-container with modifier such as mds-notification-container--bottom-left as the container node of the mds-notification.
  * Please DO NOT invoke / self-invoke following function by default as library code.
  * */
-Mds.showNotificationPopup = function (message, showCloseButton, duration, containerPositionClass, notificationModifier) {
+mds.showNotificationPopup = function (message, showCloseButton, duration, containerPositionClass, notificationModifier) {
     'use strict';
     // Notification Popup DOM
     if (!containerPositionClass) {

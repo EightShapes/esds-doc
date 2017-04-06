@@ -1,73 +1,73 @@
 //temporary variables to keep until MDS size specs and new notification specs confirmed
-$theme-notification-close-button-size: 16px;
+$mds-notification-close-button-size: 16px;
 $mde-notification-box-shadow-color: rgba(0, 0, 0, .2);
 
-.#{$theme}-notification {
+.mds-notification {
     @include border-box();
     align-items: center;
-    background-color: $theme-background-color-default;
+    background-color: $mds-background-color-default;
     border-radius: 11px;
     box-shadow: 0 0 6px $mde-notification-box-shadow-color;
     display: flex;
     max-width: 640px; // unknown spec
     min-width: 320px;
     //min-height: 55px; //this spec in the design document might have been out of date.
-    padding: $theme-space-inset-m;
+    padding: $mds-space-inset-m;
     position: relative; 
 }
 
-.#{$theme}-notification__message {
-    color: $theme-text-color-primary-default;
-    font-family: $theme-font-family-sans-serif;
-    font-size: $theme-font-size-base;
-    font-weight: $theme-font-weight-light;
-    padding-right: $theme-space-default;
+.mds-notification__message {
+    color: $mds-text-color-primary-default;
+    font-family: $mds-font-family-sans-serif;
+    font-size: $mds-font-size-base;
+    font-weight: $mds-font-weight-light;
+    padding-right: $mds-space-default;
     width: 100%;
 
-    .#{$theme}-notification--with-close-button & {
-        border-right: 1px solid $theme-color-neutral-80;
+    .mds-notification--with-close-button & {
+        border-right: 1px solid $mds-color-neutral-80;
     }
 }
 
-.#{$theme}-notification__close-button {
+.mds-notification__close-button {
     background: none;
     border: 0;
     cursor: pointer;
-    height: $theme-notification-close-button-size;
-    margin-left: $theme-space-default;
-    min-height: $theme-notification-close-button-size;
-    min-width: $theme-notification-close-button-size;
+    height: $mds-notification-close-button-size;
+    margin-left: $mds-space-default;
+    min-height: $mds-notification-close-button-size;
+    min-width: $mds-notification-close-button-size;
     padding: 0;
-    width: $theme-notification-close-button-size;
+    width: $mds-notification-close-button-size;
 }
 
-.#{$theme}-notification__close-button-icon {
-    height: $theme-notification-close-button-size;
-    width: $theme-notification-close-button-size;
+.mds-notification__close-button-icon {
+    height: $mds-notification-close-button-size;
+    width: $mds-notification-close-button-size;
 }
 
 //The following classes / definitions are for popup like notifications, they are optional
-.#{$theme}-notification-container {
+.mds-notification-container {
     position: fixed;
-    z-index: $theme-z-index-modal-content;
+    z-index: $mds-z-index-modal-content;
 }
 
-.#{$theme}-notification-container--bottom-left {
+.mds-notification-container--bottom-left {
     bottom: 12px;
     left: 12px;
 }
 
-.#{$theme}-notification-container--bottom-right {
+.mds-notification-container--bottom-right {
     bottom: 12px;
     right: 12px;
 }
 
-.#{$theme}-notification-container--top-left {
+.mds-notification-container--top-left {
     left: 12px;
     top: 12px;
 }
 
-.#{$theme}-notification-container--top-right {
+.mds-notification-container--top-right {
     right: 12px;
     top: 12px;
 }

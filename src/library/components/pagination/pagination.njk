@@ -6,27 +6,27 @@
     pages=8
 ) %}
 
-<ul class="{{ theme }}-pagination{{ ' ' + class if class }}">
+<ul class="mds-pagination{{ ' ' + class if class }}">
     {% if (include_arrows) %}
         {% if (active_page == 1) %}
-        <li class="{{ theme }}-pagination__item {{ theme }}-pagination__item--disabled">
-            {{ icon(name='arrow-first-sm', class=theme + '-pagination__icon') }}
+        <li class="mds-pagination__item mds-pagination__item--disabled">
+            {{ icon(name='arrow-first-sm', class='mds-pagination__icon') }}
             {{ "First" if include_labels }}
         </li>
-        <li class="{{ theme }}-pagination__item {{ theme }}-pagination__item--disabled">
-            {{ icon(name='arrow-prev-sm', class=theme + '-pagination__icon') }}
+        <li class="mds-pagination__item mds-pagination__item--disabled">
+            {{ icon(name='arrow-prev-sm', class='mds-pagination__icon') }}
             {{ "Previous" if include_labels }}
         </li>
         {% else %}
-        <li class="{{ theme }}-pagination__item">
-            <a href="#" class="{{ theme }}-pagination__link">
-                {{ icon(name='arrow-first-sm', class=theme + '-pagination__icon') }}
+        <li class="mds-pagination__item">
+            <a href="#" class="mds-pagination__link">
+                {{ icon(name='arrow-first-sm', class='mds-pagination__icon') }}
                 {{ "First" if include_labels }}
             </a>
         </li>
-        <li class="{{ theme }}-pagination__item">
-            <a href="#" class="{{ theme }}-pagination__link">
-                {{ icon(name='arrow-prev-sm', class=theme + '-pagination__icon') }}
+        <li class="mds-pagination__item">
+            <a href="#" class="mds-pagination__link">
+                {{ icon(name='arrow-prev-sm', class='mds-pagination__icon') }}
                 {{ "Previous" if include_labels }}
             </a>
         </li>
@@ -35,35 +35,35 @@
 
     {% for i in range(1,pages+1) %}
         {% if (i == active_page) %}
-            <li class="{{ theme }}-pagination__item {{ theme }}-pagination__item--active">{{ i }}</li>
+            <li class="mds-pagination__item mds-pagination__item--active">{{ i }}</li>
         {% else %}
-            <li class="{{ theme }}-pagination__item">
-                <a href="#" class="{{ theme }}-pagination__link">{{i}}</a>
+            <li class="mds-pagination__item">
+                <a href="#" class="mds-pagination__link">{{i}}</a>
             </li>
         {% endif %}
     {% endfor %}
 
     {% if (include_arrows) %}
         {% if (active_page == pages) %}
-        <li class="{{ theme }}-pagination__item {{ theme }}-pagination__item--disabled">
+        <li class="mds-pagination__item mds-pagination__item--disabled">
             {{ "Next" if include_labels }}
-            {{ icon(name='arrow-next-sm', class=theme + '-pagination__icon') }}
+            {{ icon(name='arrow-next-sm', class='mds-pagination__icon') }}
         </li>
-        <li class="{{ theme }}-pagination__item {{ theme }}-pagination__item--disabled">
+        <li class="mds-pagination__item mds-pagination__item--disabled">
             {{ "Last" if include_labels }}
-            {{ icon(name='arrow-last-sm', class=theme + '-pagination__icon') }}
+            {{ icon(name='arrow-last-sm', class='mds-pagination__icon') }}
         </li>
         {% else %}
-        <li class="{{ theme }}-pagination__item">
-            <a href="#" class="{{ theme }}-pagination__link">
+        <li class="mds-pagination__item">
+            <a href="#" class="mds-pagination__link">
                 {{ "Next" if include_labels }}
-                {{ icon(name='arrow-next-sm', class=theme + '-pagination__icon') }}
+                {{ icon(name='arrow-next-sm', class='mds-pagination__icon') }}
             </a>
         </li>
-        <li class="{{ theme }}-pagination__item">
-            <a href="#" class="{{ theme }}-pagination__link">
+        <li class="mds-pagination__item">
+            <a href="#" class="mds-pagination__link">
                 {{ "Last" if include_labels }}
-                {{ icon(name='arrow-last-sm', class=theme + '-pagination__icon') }}
+                {{ icon(name='arrow-last-sm', class='mds-pagination__icon') }}
             </a>
         </li>
         {% endif %}

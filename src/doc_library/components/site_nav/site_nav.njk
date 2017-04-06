@@ -49,11 +49,11 @@
             ]
         }
     ] %}
-    <nav class="{{ theme }}-doc-site-nav">
-        <label for="{{ theme }}-doc__off-canvas-toggle" class="{{ theme }}-doc__off-canvas-close">
-            {{ library.icon(class=theme + "-doc__off-canvas-close-icon", name="remove") }}
-            <span class="{{ theme }}-doc__off-canvas-close-text">Close</span>
+    <nav class="mds-doc-site-nav">
+        <label for="mds-doc__off-canvas-toggle" class="mds-doc__off-canvas-close">
+            {{ library.icon(class="mds-doc__off-canvas-close-icon", name="remove") }}
+            <span class="mds-doc__off-canvas-close-text">Close</span>
         </label>
-        {{ library.list_group(class=theme + "-list-group--small " + theme + "-doc-site-nav__list", items=site_nav_data) }}
+        {{ library.list_group(class="mds-list-group--small mds-doc-site-nav__list", items=site_nav_data) }}
     </nav>
 {% endmacro %}

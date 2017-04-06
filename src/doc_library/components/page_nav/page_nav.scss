@@ -1,12 +1,12 @@
-.#{$theme}-doc-page-nav__appended-items {
-    .#{$theme}-list-group__item {
+.mds-doc-page-nav__appended-items {
+    .mds-list-group__item {
         border: 0;
     }
 
-    .#{$theme}-list-group__link {
-        @include theme-text-crop();
-        color: $theme-text-color-secondary-default;
-        padding: $theme-space-stack-s;
+    .mds-list-group__link {
+        @include mds-text-crop();
+        color: $mds-text-color-secondary-default;
+        padding: $mds-space-stack-s;
         text-decoration: underline;
     }
 }

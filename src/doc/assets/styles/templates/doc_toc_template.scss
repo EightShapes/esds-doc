@@ -1,60 +1,60 @@
-$theme-doc-page-nav-wide-screen-width: 200px;
-$theme-doc-toc-space-nav-content-separation: 24px;
-$theme-doc-toc-max-width-breakpoint: $theme-doc-content-max-width + $theme-doc-nav-width + $theme-doc-page-nav-wide-screen-width + ($theme-space-default * 2) + $theme-doc-toc-space-nav-content-separation;
+$mds-doc-page-nav-wide-screen-width: 200px;
+$mds-doc-toc-space-nav-content-separation: 24px;
+$mds-doc-toc-max-width-breakpoint: $mds-doc-content-max-width + $mds-doc-nav-width + $mds-doc-page-nav-wide-screen-width + ($mds-space-default * 2) + $mds-doc-toc-space-nav-content-separation;
 
-.#{$theme}-doc-toc-template__intro {
-    margin: 0 0 $theme-space-xl;
+.mds-doc-toc-template__intro {
+    margin: 0 0 $mds-space-xl;
     width: 100%;
 }
 
-.#{$theme}-doc-toc-template__page-nav {
-    margin: $theme-space-stack-l;
+.mds-doc-toc-template__page-nav {
+    margin: $mds-space-stack-l;
     max-width: 670px;
 
     @media screen and (min-width: 640px) {
         display: flex;
         justify-content: space-between;
 
-        .#{$theme}-doc-page-nav__list-groups-wrap {
+        .mds-doc-page-nav__list-groups-wrap {
             flex: 1 1 auto;
         }
 
-        .#{$theme}-doc-page-nav__appended-items {
-            margin: $theme-space-inline-left-l;
-            padding-top: $theme-space-m;
+        .mds-doc-page-nav__appended-items {
+            margin: $mds-space-inline-left-l;
+            padding-top: $mds-space-m;
         }
     }
 
     @media screen and (min-width: 1196px) {
         display: block;
         position: fixed;
-        right: calc((100% - (#{$theme-doc-content-max-width} + #{$theme-doc-toc-space-nav-content-separation} + #{$theme-doc-page-nav-wide-screen-width} + #{$theme-doc-nav-width})) / 2);
-        top: ($theme-doc-header-height + $theme-space-l) - 5px; // 5px is to align with <h1> at the top of the documentation
-        width: $theme-doc-page-nav-wide-screen-width;
+        right: calc((100% - (#{$mds-doc-content-max-width} + #{$mds-doc-toc-space-nav-content-separation} + #{$mds-doc-page-nav-wide-screen-width} + #{$mds-doc-nav-width})) / 2);
+        top: ($mds-doc-header-height + $mds-space-l) - 5px; // 5px is to align with <h1> at the top of the documentation
+        width: $mds-doc-page-nav-wide-screen-width;
 
-        .#{$theme}-doc-page-nav__appended-items {
+        .mds-doc-page-nav__appended-items {
             margin: 0;
             padding: 0;
         }
     }
 }
 
-.#{$theme}-doc-toc-template__content {
+.mds-doc-toc-template__content {
     width: 100%;
 }
 
-.#{$theme}-doc__content-inner {
+.mds-doc__content-inner {
     margin: 0;
 
     @media screen and (min-width: 1196px) {
         margin: 0 auto;
-        max-width: $theme-doc-content-max-width + $theme-doc-toc-space-nav-content-separation + $theme-doc-page-nav-wide-screen-width;
-        padding-right: $theme-doc-toc-space-nav-content-separation + $theme-doc-page-nav-wide-screen-width;
+        max-width: $mds-doc-content-max-width + $mds-doc-toc-space-nav-content-separation + $mds-doc-page-nav-wide-screen-width;
+        padding-right: $mds-doc-toc-space-nav-content-separation + $mds-doc-page-nav-wide-screen-width;
     }
 }
 
-.#{$theme}-long-form-text .#{$theme}-doc-page-nav__page-header,
-.#{$theme}-doc-page-nav__page-header {
-    margin-top: -($theme-doc-header-height + $theme-space-m);
-    padding-top: $theme-doc-header-height + $theme-space-m;
+.mds-long-form-text .mds-doc-page-nav__page-header,
+.mds-doc-page-nav__page-header {
+    margin-top: -($mds-doc-header-height + $mds-space-m);
+    padding-top: $mds-doc-header-height + $mds-space-m;
 }

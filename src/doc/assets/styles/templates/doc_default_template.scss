@@ -1,5 +1,5 @@
-$theme-size-masthead-logo-width-narrow: 230px;
-$theme-size-masthead-logo-width: 275px;
+$mds-size-masthead-logo-width-narrow: 230px;
+$mds-size-masthead-logo-width: 275px;
 
 // Bit of resetting here
 html,
@@ -8,72 +8,72 @@ body {
     padding: 0;
 }
 
-.#{$theme}-doc__title-link {
+.mds-doc__title-link {
     align-items: center;
-    color: $theme-color-red-50;
+    color: $mds-color-red-50;
     display: flex;
-    font-family: $theme-font-family-sans-serif;
-    font-weight: $theme-font-weight-thin;
+    font-family: $mds-font-family-sans-serif;
+    font-weight: $mds-font-weight-thin;
     justify-content: center;
     text-decoration: none;
 }
 
-.#{$theme}-doc__title {
+.mds-doc__title {
     margin: 0 auto;
 }
 
-.#{$theme}-doc__logo {
-    flex: 0 0 $theme-size-masthead-logo-width-narrow;
-    width: $theme-size-masthead-logo-width-narrow;
+.mds-doc__logo {
+    flex: 0 0 $mds-size-masthead-logo-width-narrow;
+    width: $mds-size-masthead-logo-width-narrow;
 
     @media screen and (min-width: 480px) {
-        flex: 0 0 $theme-size-masthead-logo-width;
-        width: $theme-size-masthead-logo-width;        
+        flex: 0 0 $mds-size-masthead-logo-width;
+        width: $mds-size-masthead-logo-width;        
     }
 }
 
-.#{$theme}-doc__header {
+.mds-doc__header {
     align-items: center;
-    background: $theme-background-color-default;
-    box-shadow: $theme-drop-shadow-default;
+    background: $mds-background-color-default;
+    box-shadow: $mds-drop-shadow-default;
     display: flex;
-    height: $theme-doc-header-height;
+    height: $mds-doc-header-height;
     justify-content: flex-start;
-    // margin: $theme-space-inline-left-xs;
-    padding: $theme-space-inset-m;
+    // margin: $mds-space-inline-left-xs;
+    padding: $mds-space-inset-m;
     position: fixed;
     top: 0;
     width: 100vw;
-    z-index: $theme-z-index-sticky;
+    z-index: $mds-z-index-sticky;
 }
 
-.#{$theme}-doc-footer {
-    font-weight: $theme-font-weight-light;
+.mds-doc-footer {
+    font-weight: $mds-font-weight-light;
 }
 
-.#{$theme}-doc__content-nav-wrap {
-    padding-top: $theme-doc-header-height;
+.mds-doc__content-nav-wrap {
+    padding-top: $mds-doc-header-height;
 }
 
-.#{$theme}-doc__content {
-    font-family: $theme-font-family-sans-serif;
+.mds-doc__content {
+    font-family: $mds-font-family-sans-serif;
 
     @media screen and (min-width: 768px) {
-        margin-left: $theme-doc-nav-width;
-        width: calc(100% - $theme-doc-nav-width);
+        margin-left: $mds-doc-nav-width;
+        width: calc(100% - $mds-doc-nav-width);
     }
 }
 
-.#{$theme}-doc__content-inner {
+.mds-doc__content-inner {
     margin: 0 auto;
-    max-width: $theme-doc-content-max-width;
-    padding: $theme-space-inset-m; 
+    max-width: $mds-doc-content-max-width;
+    padding: $mds-space-inset-m; 
 
     @media screen and (min-width: 768px) {
-        padding: $theme-space-inset-m;
+        padding: $mds-space-inset-m;
     }   
 
     @media screen and (min-width: 1024px) {
-        padding-top: $theme-space-l;
+        padding-top: $mds-space-l;
     }   
 }

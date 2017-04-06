@@ -1,53 +1,53 @@
-$theme-doc-inner-shadow-navigation: inset 0 2px 8px 0 rgba(0, 0, 0, .05);
+$mds-doc-inner-shadow-navigation: inset 0 2px 8px 0 rgba(0, 0, 0, .05);
 
-$theme-doc-background-color-overlay: rgba(0, 0, 0, .6);
+$mds-doc-background-color-overlay: rgba(0, 0, 0, .6);
 
-$theme-doc-transition-timing-navigation-enter: .4s;
-$theme-doc-transition-timing-navigation-exit: .2s;
-$theme-doc-transition-easing-navigation-enter: cubic-bezier(0, 0, .58, 1);
-$theme-doc-transition-easing-navigation-exit: linear;
+$mds-doc-transition-timing-navigation-enter: .4s;
+$mds-doc-transition-timing-navigation-exit: .2s;
+$mds-doc-transition-easing-navigation-enter: cubic-bezier(0, 0, .58, 1);
+$mds-doc-transition-easing-navigation-exit: linear;
 
-.#{$theme}-doc-site-nav {
-    background-color: $theme-background-color-light;
-    box-shadow: $theme-doc-inner-shadow-navigation;
-    font-family: $theme-font-family-sans-serif;
+.mds-doc-site-nav {
+    background-color: $mds-background-color-light;
+    box-shadow: $mds-doc-inner-shadow-navigation;
+    font-family: $mds-font-family-sans-serif;
     height: 100vh;
-    left: -($theme-doc-nav-width);
+    left: -($mds-doc-nav-width);
     overflow-y: auto;
-    padding: $theme-space-inset-s;
+    padding: $mds-space-inset-s;
     position: fixed;
     text-align: right;
     top: 0;
-    transition-duration: $theme-doc-transition-timing-navigation-exit;
+    transition-duration: $mds-doc-transition-timing-navigation-exit;
     transition-property: left;
-    transition-timing-function: $theme-doc-transition-easing-navigation-exit;
-    width: $theme-doc-nav-width;
-    z-index: $theme-z-index-top-of-the-world;
+    transition-timing-function: $mds-doc-transition-easing-navigation-exit;
+    width: $mds-doc-nav-width;
+    z-index: $mds-z-index-top-of-the-world;
 
-    .#{$theme}-doc__off-canvas-toggle-input:checked ~ .#{$theme}-doc__content-nav-wrap & {
+    .mds-doc__off-canvas-toggle-input:checked ~ .mds-doc__content-nav-wrap & {
         left: 0;
-        transition-duration: $theme-doc-transition-timing-navigation-enter;
-        transition-timing-function: $theme-doc-transition-easing-navigation-enter;
+        transition-duration: $mds-doc-transition-timing-navigation-enter;
+        transition-timing-function: $mds-doc-transition-easing-navigation-enter;
     }
 
     @media screen and (min-width: 769px) {
-        height: calc(100vh - $theme-doc-header-height);
+        height: calc(100vh - $mds-doc-header-height);
         left: 0;
-        top: $theme-doc-header-height;
-        z-index: $theme-z-index-modal-content;
+        top: $mds-doc-header-height;
+        z-index: $mds-z-index-modal-content;
     }
 }
 
-.#{$theme}-doc-site-nav__list {
+.mds-doc-site-nav__list {
     text-align: left;
 }
 
-.#{$theme}-doc__navigation-sublist-toggle-input,
-.#{$theme}-doc__off-canvas-toggle-input {
-    @include theme-accessibly-hidden();
+.mds-doc__navigation-sublist-toggle-input,
+.mds-doc__off-canvas-toggle-input {
+    @include mds-accessibly-hidden();
 }
 
-.#{$theme}-doc__off-canvas-toggle-label {
+.mds-doc__off-canvas-toggle-label {
     align-items: center;
     cursor: pointer;
     display: flex;
@@ -58,20 +58,20 @@ $theme-doc-transition-easing-navigation-exit: linear;
     }
 }
 
-.#{$theme}-doc__off-canvas-toggle-icon {
-    fill: $theme-text-color-secondary-default;
-    height: $theme-size-icon-m;
-    width: $theme-size-icon-m;
+.mds-doc__off-canvas-toggle-icon {
+    fill: $mds-text-color-secondary-default;
+    height: $mds-size-icon-m;
+    width: $mds-size-icon-m;
 }
 
-.#{$theme}-doc__off-canvas-close {
+.mds-doc__off-canvas-close {
     align-items: center;
     cursor: pointer;
     display: inline-flex;
     justify-content: center;
 
     &:hover {
-        color: $theme-interactive-color-primary-hover;
+        color: $mds-interactive-color-primary-hover;
     }
 
     @media screen and (min-width: 769px) {
@@ -79,47 +79,47 @@ $theme-doc-transition-easing-navigation-exit: linear;
     }
 }
 
-.#{$theme}-doc__off-canvas-close-text {
-    margin: $theme-space-inline-left-xs;
+.mds-doc__off-canvas-close-text {
+    margin: $mds-space-inline-left-xs;
 }
 
-.#{$theme}-doc__off-canvas-close-icon {
-    fill: $theme-text-color-secondary-default;
-    height: $theme-size-icon-s;
-    margin-right: $theme-space-inline-left-xs;
-    width: $theme-size-icon-s;
+.mds-doc__off-canvas-close-icon {
+    fill: $mds-text-color-secondary-default;
+    height: $mds-size-icon-s;
+    margin-right: $mds-space-inline-left-xs;
+    width: $mds-size-icon-s;
 
-    .#{$theme}-doc__off-canvas-close:hover & {
-        fill: $theme-interactive-color-primary-hover;
+    .mds-doc__off-canvas-close:hover & {
+        fill: $mds-interactive-color-primary-hover;
     }
 }
 
-.#{$theme}-doc__navigation-link {
-    border-bottom: $theme-border-separator-default;
-    border-color: $theme-color-neutral-80;
+.mds-doc__navigation-link {
+    border-bottom: $mds-border-separator-default;
+    border-color: $mds-color-neutral-80;
     display: block;
-    font-size: $theme-font-size-s;
-    padding: $theme-space-xs 0;
+    font-size: $mds-font-size-s;
+    padding: $mds-space-xs 0;
     text-decoration: none;
 }
 
-.#{$theme}-doc__off-canvas-overlay {
-    background: $theme-doc-background-color-overlay;
+.mds-doc__off-canvas-overlay {
+    background: $mds-doc-background-color-overlay;
     bottom: 0;
     left: 0;
     opacity: 0;
     position: fixed;
     right: 0;
     top: 0;
-    transition: visibility $theme-doc-transition-timing-navigation-exit $theme-doc-transition-timing-navigation-exit, opacity $theme-doc-transition-timing-navigation-exit;
-    transition-timing-function: $theme-doc-transition-easing-navigation-exit;
+    transition: visibility $mds-doc-transition-timing-navigation-exit $mds-doc-transition-timing-navigation-exit, opacity $mds-doc-transition-timing-navigation-exit;
+    transition-timing-function: $mds-doc-transition-easing-navigation-exit;
     visibility: hidden;
-    z-index: $theme-z-index-modal-overlay;
+    z-index: $mds-z-index-modal-overlay;
 
-    .#{$theme}-doc__off-canvas-toggle-input:checked ~ & {
+    .mds-doc__off-canvas-toggle-input:checked ~ & {
         opacity: 1;
-        transition: visibility 0s 0s, opacity $theme-doc-transition-timing-navigation-enter;
-        transition-timing-function: $theme-doc-transition-easing-navigation-enter;
+        transition: visibility 0s 0s, opacity $mds-doc-transition-timing-navigation-enter;
+        transition-timing-function: $mds-doc-transition-easing-navigation-enter;
         visibility: visible;
     }
 

@@ -1,11 +1,11 @@
 {% macro html_example_list(examples=[], class = false) %}
-    <div class="{{ theme }}-doc-html-example-list{{ ' ' + class if class }}">
+    <div class="mds-doc-html-example-list{{ ' ' + class if class }}">
         {% for example in examples %}
-            <div class="{{ theme }}-doc-html-example-list__item{{ ' ' + example.container_class if example.container_class }}">
+            <div class="mds-doc-html-example-list__item{{ ' ' + example.container_class if example.container_class }}">
                 {% if example.label %}
-                    <label class="{{ theme }}-doc-html-example-list__label">{{ example.label }}</label>
+                    <label class="mds-doc-html-example-list__label">{{ example.label }}</label>
                 {% endif %}
-                <div class="{{ theme }}-doc-html-example-list__example">
+                <div class="mds-doc-html-example-list__example">
                     {{ example.source | safe }}
                 </div>
             </div>

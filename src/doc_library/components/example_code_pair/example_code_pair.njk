@@ -4,7 +4,7 @@
             show_examples=true) %}
     {% set code_examples = [] %}
     {% set context = "" | getcontext %}
-    <div class="{{ theme }}-doc-example-code-pair">
+    <div class="mds-doc-example-code-pair">
         {% for example in examples %}
             {% set rendered_component = example.source | nunjucksrenderstring(context) %}
             {% set example = example | updateobj('source', rendered_component) %}

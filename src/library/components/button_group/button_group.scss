@@ -16,7 +16,7 @@
     display: flex;
 
     &.mds-button--secondary:hover {
-        border: $theme-border-control-default;
+        border: $mds-border-control-default;
     }
 
     &:focus:after {
@@ -25,12 +25,12 @@
 
     &:first-child,
     &:first-child:focus:after {
-        border-radius: $theme-border-radius-button 0 0 $theme-border-radius-button;
+        border-radius: $mds-border-radius-button 0 0 $mds-border-radius-button;
     }
 
     &:last-child,
     &:last-child:focus:after {
-        border-radius: 0 $theme-border-radius-button $theme-border-radius-button 0;
+        border-radius: 0 $mds-border-radius-button $mds-border-radius-button 0;
     }   
 
     &:not(:first-child) {
@@ -56,7 +56,7 @@
     }
 
     .mds-button__input:hover + .mds-button.mds-button--secondary {
-        border: $theme-border-control-default;
+        border: $mds-border-control-default;
     }
 
     .mds-button__input:focus + .mds-button {
@@ -67,21 +67,21 @@
 
     &:first-child {
         .mds-button {
-            border-radius: $theme-border-radius-button 0 0 $theme-border-radius-button;
+            border-radius: $mds-border-radius-button 0 0 $mds-border-radius-button;
         }
 
         .mds-button__input:focus + .mds-button:after {
-            border-radius: $theme-border-radius-button 0 0 $theme-border-radius-button;
+            border-radius: $mds-border-radius-button 0 0 $mds-border-radius-button;
         }
     }
 
     &:last-child {
         .mds-button {
-            border-radius: 0 $theme-border-radius-button $theme-border-radius-button 0;
+            border-radius: 0 $mds-border-radius-button $mds-border-radius-button 0;
         }
 
         .mds-button__input:focus + .mds-button:after {
-            border-radius: 0 $theme-border-radius-button $theme-border-radius-button 0;
+            border-radius: 0 $mds-border-radius-button $mds-border-radius-button 0;
         }
     }
 }
@@ -95,6 +95,7 @@
 
     .mds-button__input-outer-wrapper {
         display: table-cell;
+
         .mds-button {
             display: block;
         }

@@ -1,9 +1,7 @@
 /*global $*/
+/*global mdsDoc*/
 
-var Mds = Mds || {};
-var projectNamespace = projectNamespace || 'mds';
-
-Mds.SiteNav = function() {
+mdsDoc.SiteNav = function() {
     'use strict';
     var highlightActiveLink = function() {
         const $activeIcon = $(".mds-doc-site-nav .mds-list-group__active-icon");
@@ -37,5 +35,5 @@ Mds.SiteNav = function() {
 
 $(document).ready(function(){
     'use strict';
-    Mds.SiteNav.initialize();
+    mdsDoc.SiteNav.initialize();
 });

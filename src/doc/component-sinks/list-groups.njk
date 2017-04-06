@@ -4,16 +4,16 @@
 
 {% macro component_sink() %}
 
-    <h2 class="{{ theme }}-doc-sink__header">Default</h2>
+    <h2 class="mds-doc-sink__header">Default</h2>
     {{ library.list_group() }}
 
-    <h2 class="{{ theme }}-doc-sink__header">Small</h2>
-    {{ library.list_group(class="{{ theme }}-list-group--small") }}
+    <h2 class="mds-doc-sink__header">Small</h2>
+    {{ library.list_group(class="mds-list-group--small") }}
 
-    <h2 class="{{ theme }}-doc-sink__header">Large</h2>
-    {{ library.list_group(class="{{ theme }}-list-group--large") }}
+    <h2 class="mds-doc-sink__header">Large</h2>
+    {{ library.list_group(class="mds-list-group--large") }}
 
-    <h2 class="{{ theme }}-doc-sink__header">With Metadata</h2>
+    <h2 class="mds-doc-sink__header">With Metadata</h2>
     {{ library.list_group(items = [
         {
             active: false,
@@ -23,7 +23,7 @@
         }
     ]) }}
 
-    <h2 class="{{ theme }}-doc-sink__header">With Header</h2>
+    <h2 class="mds-doc-sink__header">With Header</h2>
     {{ library.list_group(items=[
         {
             label: 'Variations'
@@ -50,7 +50,7 @@
         }
     ]) }}
 
-    <h2 class="{{ theme }}-doc-sink__header">With Sublists</h2>
+    <h2 class="mds-doc-sink__header">With Sublists</h2>
     {{ library.list_group(items=[
         {
             href: '#',
@@ -107,10 +107,10 @@
     ]) }}
 
 
-    <h2 class="{{ theme }}-doc-sink__header">No Items</h2>
+    <h2 class="mds-doc-sink__header">No Items</h2>
     {{ library.list_group(items = []) }}
 
-    <h2 class="{{ theme }}-doc-sink__header">One Item</h2>
+    <h2 class="mds-doc-sink__header">One Item</h2>
     {{ library.list_group(items = [
         {
             active: false,
@@ -119,7 +119,7 @@
         }
     ]) }}
 
-    <h2 class="{{ theme }}-doc-sink__header">Items with Long Labels, Last Label Empty</h2>
+    <h2 class="mds-doc-sink__header">Items with Long Labels, Last Label Empty</h2>
     {{ library.list_group(items = [
         {
             active: true,
@@ -144,7 +144,7 @@
         }
     ]) }}
 
-    <h2 class="{{ theme }}-doc-sink__header">Multiple Combinations</h2>
+    <h2 class="mds-doc-sink__header">Multiple Combinations</h2>
     {{ library.list_group(items=[
         {
             label: "Variations"

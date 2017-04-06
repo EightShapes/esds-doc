@@ -1,70 +1,70 @@
-.#{$theme}-long-form-text {
+.mds-long-form-text {
     @include border-box();
-    color: $theme-text-color-primary-default;
-    font-family: $theme-font-family-sans-serif;
+    color: $mds-text-color-primary-default;
+    font-family: $mds-font-family-sans-serif;
 
     h1 {
         @include level-1-heading();
-        margin: $theme-space-stack-l;
+        margin: $mds-space-stack-l;
     }
 
     h2 {
         @include level-2-heading();
-        border-top: solid 4px $theme-border-separator-color-on-light;
-        margin: $theme-space-stack-l;
-        margin-top: $theme-space-xl;
-        padding-top: $theme-space-m;
+        border-top: solid 4px $mds-border-separator-color-on-light;
+        margin: $mds-space-stack-l;
+        margin-top: $mds-space-xl;
+        padding-top: $mds-space-m;
     }
 
     h3 {
         @include level-3-heading();
-        margin: $theme-space-stack-m;
+        margin: $mds-space-stack-m;
     }
 
     h4 {
         @include level-4-heading();
-        margin: $theme-space-stack-m;
+        margin: $mds-space-stack-m;
     }
 
     ul, 
     ol {
-        font-weight: $theme-font-weight-light;
-        margin: $theme-space-stack-l;
-        padding: 0 0 0 $theme-space-l;
+        font-weight: $mds-font-weight-light;
+        margin: $mds-space-stack-l;
+        padding: 0 0 0 $mds-space-l;
     }
 
     li {
-        // @include theme-text-crop();
-        margin: $theme-space-stack-m;
+        // @include mds-text-crop();
+        margin: $mds-space-stack-m;
 
         > ul {
-            margin-top: $theme-space-m;
+            margin-top: $mds-space-m;
         }
     }
 
     p {
-        @include theme-text-crop();
-        font-weight: $theme-font-weight-light;
-        margin: $theme-space-stack-l;
+        @include mds-text-crop();
+        font-weight: $mds-font-weight-light;
+        margin: $mds-space-stack-l;
     }
 
-    .#{$theme}-long-form-text__lead {
-        font-size: $theme-font-size-l;
-        margin: $theme-space-stack-m;
+    .mds-long-form-text__lead {
+        font-size: $mds-font-size-l;
+        margin: $mds-space-stack-m;
     }
 
     a {
-        color: $theme-text-color-link-default;
+        color: $mds-text-color-link-default;
         text-decoration: underline;
 
         &:hover {
-            color: $theme-interactive-color-primary-hover;
+            color: $mds-interactive-color-primary-hover;
         }
     }
 
     code {
-        font-family: $theme-font-family-monospace;
-        font-size: $theme-font-size-s;
+        font-family: $mds-font-family-monospace;
+        font-size: $mds-font-size-s;
         word-break: break-word; 
     }
 }

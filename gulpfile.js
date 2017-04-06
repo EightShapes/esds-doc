@@ -67,7 +67,7 @@ gulp.task('styles:compile-library', function() {
 gulp.task('styles:compile-doc-library', function() {
     return gulp.src('src/doc_library/styles/*.scss')
         .pipe(sass({
-            includePaths: ['src/doc_library/components', 'src/library/styles', 'src/library/styles/auto_generated']
+            includePaths: ['src/doc_library/components', 'src/library/styles', 'src/library/styles/auto_generated', 'src']
         }).on('error', sass.logError))
         .pipe(concat.header(versionStampCssJs))
         .pipe(gulp.dest('dist/assets/styles/'));
@@ -142,7 +142,7 @@ gulp.task('scripts:lint', function () {
 
 // Concatenate Library JS files
 gulp.task('scripts:concat-library', function() {
-    return gulp.src(['src/library/components/**/*.js', 'src/library/scripts/**/*.js'])
+    return gulp.src([`src/library/scripts/global.js`, 'src/library/components/**/*.js', 'src/library/scripts/**/*.js'])
         .pipe(concat(`${theme}_library.js`))
         .pipe(concat.header(versionStampCssJs))
         .pipe(gulp.dest('dist/assets/scripts/'));
@@ -150,7 +150,7 @@ gulp.task('scripts:concat-library', function() {
 
 // Concatenate Doc Library JS files
 gulp.task('scripts:concat-doc-library', function() {
-    return gulp.src(['src/doc_library/components/**/*.js'])
+    return gulp.src([`src/doc_library/scripts/global.js`, 'src/doc_library/components/**/*.js', 'src/doc_library/scripts/**/*.js'])
         .pipe(concat(`${theme}_doc_library.js`))
         .pipe(concat.header(versionStampCssJs))
         .pipe(gulp.dest('dist/assets/scripts/'));
@@ -266,7 +266,7 @@ gulp.task('constants:convert-to-scss-and-json', function(done){
         }
         prevVarNameParent = varNameParent;
 
-        scss += `$theme-${varName}: ${value};\n`;
+        scss += `$${theme}-${varName}: ${value};\n`;
     }
 
     scss += `$theme: ${theme};`;

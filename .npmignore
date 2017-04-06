@@ -1,9 +1,3 @@
 dist
-.sass-lint.yml
-.eslintrc
 .gitignore
-bower.json
 gulpfile.js
-src
-releases/*
-!releases/0.0.1

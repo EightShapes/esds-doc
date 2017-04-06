@@ -1,5 +1,5 @@
 {% block imports %} {# This allows the imports section to be completely overridden by a child template #}
-    {% import "library/components/" + theme + "_library_macros.njk" as library with context %}
+    {% import "library/components/mds_library_macros.njk" as library with context %}
     {% block project_macro_imports %}{% endblock %} {# This block allows project specific macros to be injected, these macros can have access to core library macros and will be made available to doc macros #}
 {% endblock %}
 <!DOCTYPE html>
@@ -8,8 +8,8 @@
     <title>{{ project.name | upper }} v{{ project.version}}{{ ' - ' + title if title }}</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/assets/styles/{{ theme }}_library.css">
-    <link rel="stylesheet" href="/assets/styles/{{ theme }}_library_print.css">
+    <link rel="stylesheet" href="/assets/styles/mds_library.css">
+    <link rel="stylesheet" href="/assets/styles/mds_library_print.css">
     {% block head_assets %}
     {% endblock %}
 </head>
@@ -17,7 +17,7 @@
     {% block body %}
     {% endblock %}
 
-    <script src="/assets/scripts/{{ theme }}_library.js"></script>
+    <script src="/assets/scripts/mds_library.js"></script>
     <script src="/assets/dependencies/svg4everybody.min.js"></script>
     <script>svg4everybody();</script>
     {% block closing_body_assets %}

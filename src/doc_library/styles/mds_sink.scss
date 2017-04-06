@@ -4,28 +4,28 @@
 // Use the library's constants
 @import 'constants';
 
-.#{$theme}-doc-sink {
+.mds-doc-sink {
     margin: 0;
     padding: 0;
 }
 
-.#{$theme}-doc-sink__body {
+.mds-doc-sink__body {
     margin: 0;
-    padding: $theme-space-inset-m;
+    padding: $mds-space-inset-m;
 }
 
-.#{$theme}-doc-sink__header {
-    font-family: $theme-font-family-sans-serif;
+.mds-doc-sink__header {
+    font-family: $mds-font-family-sans-serif;
     font-size: 24px;
-    font-weight: $theme-font-weight-light;
-    margin-bottom: $theme-space-stack-m;
+    font-weight: $mds-font-weight-light;
+    margin-bottom: $mds-space-stack-m;
 }
 
-.#{$theme}-doc-sink__wrapping-columns {
+.mds-doc-sink__wrapping-columns {
     display: flex;
     justify-content: flex-start;
 }
 
-.#{$theme}-doc-sink__column {
-    padding: $theme-space-inset-l;
+.mds-doc-sink__column {
+    padding: $mds-space-inset-l;
 }

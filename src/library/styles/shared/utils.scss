@@ -24,7 +24,7 @@
     }
 }
 
-@mixin theme-accessibly-hidden() {
+@mixin mds-accessibly-hidden() {
     @include border-box();
     clip: rect(0 0 0 0);
     left: 0;
@@ -32,15 +32,15 @@
     z-index: -1;
 }
 
-.#{$theme}-screenreader-only {
-    @include theme-accessibly-hidden();
+.mds-screenreader-only {
+    @include mds-accessibly-hidden();
 }
 
 @mixin disabled() {
     cursor: not-allowed;
-    opacity: $theme-opacity-disabled;
+    opacity: $mds-opacity-disabled;
 }
 
 @mixin disabled-text($text-color) {
-    color: rgba($text-color, $theme-opacity-disabled); // sass-lint:disable-line no-color-literals
+    color: rgba($text-color, $mds-opacity-disabled); // sass-lint:disable-line no-color-literals
 }

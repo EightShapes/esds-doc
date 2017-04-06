@@ -10,10 +10,10 @@
 		{% set id = label | replace(' ', '-') | lower + '--' + random_number %}
 	{% endif %}
 
-	<div class="{{ theme }}-switch{{' ' + class if class}}{{' ' + theme + '-switch--disabled' if disabled}}">
-		<label class="{{ theme }}-switch__label" for="{{ id }}">
-			<input id="{{ id }}" type="checkbox" role="switch" class="{{ theme }}-switch__input" {{ 'disabled' if disabled }}  {{ 'checked' if checked }}>
-			<span class="{{ theme }}-switch__text">
+	<div class="mds-switch{{' ' + class if class}}{{' mds-switch--disabled' if disabled}}">
+		<label class="mds-switch__label" for="{{ id }}">
+			<input id="{{ id }}" type="checkbox" role="switch" class="mds-switch__input" {{ 'disabled' if disabled }}  {{ 'checked' if checked }}>
+			<span class="mds-switch__text">
 				{{ text }}
 			</span>
 		</label>
@@ -24,7 +24,7 @@
 {% macro switch_field_group(
             class=false, 
             horizontal=false) %}
-    <div class="{{ theme }}-switch__field-group{{ ' ' + theme + '-switch__field-group--horizontal' if horizontal }}{{ ' ' + class  if class }}">
+    <div class="mds-switch__field-group{{ ' mds-switch__field-group--horizontal' if horizontal }}{{ ' ' + class  if class }}">
         {% if caller %}
             {{ caller() }}
         {% endif %}
@@ -35,9 +35,9 @@
 {% macro switch_group(
 	class=false, 
 	label=false) %}
-    <fieldset class="{{ theme }}-switch__group{{ ' ' + class  if class }}" role="group">
+    <fieldset class="mds-switch__group{{ ' ' + class  if class }}" role="group">
         {% if label %}
-            <legend class="{{ theme }}-switch__group-label">
+            <legend class="mds-switch__group-label">
                 {{ label | safe }}
             </legend>
         {% endif %}

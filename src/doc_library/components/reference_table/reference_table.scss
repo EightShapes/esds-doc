@@ -1,10 +1,10 @@
-.#{$theme}-doc-reference-table {
-    margin: $theme-space-stack-xl;
+.mds-doc-reference-table {
+    margin: $mds-space-stack-xl;
     overflow-x: auto;
 
     code {
-        font-family: $theme-font-family-monospace;
-        font-size: $theme-font-size-s;
+        font-family: $mds-font-family-monospace;
+        font-size: $mds-font-size-s;
         white-space: nowrap;
     }
 
