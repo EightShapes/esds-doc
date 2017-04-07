@@ -1,0 +1,164 @@
+{% set title = 'Constants' %}
+
+{% extends 'doc_templates/default.doc.template.njk' %}
+
+{% block doc_body %}
+    {% filter markdown %}
+
+    # Constants
+
+    A constant is a reusable design decision expressed as a property-value pair. Constants are threaded throughout MDS components to maintain a consistent visual style and are available for use by product teams.
+
+    ## About Constants
+
+    Constants make it easy for the MDS team and its customers to quickly apply and maintain a consistent application of the Morningstar visual style. Constants include not just official MDS colors, but how color is predictably applied to backgrounds, text, and borders in specific settings. Similarly, engineers are not limited to generic spacer values, but can instead compose components more intentionally with space insets, stack values, and other choices.
+
+    ### Constants as Data & Variables
+
+    Constants are managed in `src/library/constants/constants.yaml`, using [YAML syntax](http://docs.ansible.com/ansible/YAMLSyntax.html) to encode property-value pairs with a hierarchy.
+
+    The MDS build process transforms `constants.yaml` into additional generated files for use within MDS and by MDS customers:
+
+    * `src/library/data/mds_constants.json`<br>to automate documentation produced by MDS documentation templates.
+    * `src/library/styles/_mds_constants.scss`<br>to apply when creating MDS components (in `src/library/components`) and for product teams when composing custom styles.
+
+    ### Constants in MDS Components
+    
+    Constants are used throughout the MDS library. For example, the pagination component style in `src/library/components/pagination/pagination.scss` includes constants for border color, text color, font family and font size:
+
+    {% endfilter %}
+    
+    {{ doc_library.code_snippet(language='css',show_copy_button=false,source='
+    border: $mds-border-control-default;
+    color: $mds-text-color-primary-default;
+    font-family: $mds-font-family-sans-serif;
+    font-size: $mds-font-size-s;
+    ') }}
+
+    {% filter markdown %}
+
+    All components are built with and reviewed for appropriate constant use.
+
+    ### Styling Custom Components with Constants
+
+    A product team may want to adopt the Morningstar visual style but has limited or no bandwidth to change HTML markup with their app. In this case, a product team can apply MDS constants using SASS variables by following these steps:
+
+    1. Integrate a dependency on ‘src/library/styles/_mds_constants.scss’ within their style compilation, enabling access to constants as variables within a product’s environment.
+    2. Apply constants to components and features developed within the product.
+
+    For example, consider a module repeated across a view. If a team wanted to update the module’s header (`div.layout__header`), but were unable to modify the markup, they could apply constants as SASS variables to update only CSS.
+
+    #### Existing Markup
+
+    {% endfilter %}
+    
+    {{ doc_library.code_snippet(show_copy_button=false,source='
+    <div class=”layout__component”>
+        <div class=”layout__header”>
+        </div>
+        <div class=”layout__component-wrapper”>
+        </div>
+    </div>
+    ') }}
+
+    {% filter markdown %}
+
+    #### Existing Style
+
+    {% endfilter %}
+    
+    {{ doc_library.code_snippet(language='css',show_copy_button=false,source='
+    .layout__header {
+        background-color: #ccc;
+        border-bottom: 1px solid rgba(0,0,0,0.02);
+    }
+    ') }}
+
+    {% filter markdown %}
+
+    #### Revised Style, with Constants
+
+    {% endfilter %}
+    
+    {{ doc_library.code_snippet(language='css',show_copy_button=false,source='
+    .layout__header {
+        background-color: $mds-background-color-light;
+        border-bottom: $mds-border-separator-default;
+    }
+    ') }}
+
+    {% filter markdown %}
+
+    ### Editing and Proposing Constants
+
+    MDS constants are managed by MDS designers in collaboration with the Morningstar design community. We add constants conservatively. Please be prepared to justify the addition of a constant by showing how it would be used across many MDS components. To request extensions or changes to the constants, email designsystem@morningstar.com.
+
+    ## Current Constants        
+
+    ### Background Color
+
+    {% endfilter %}
+    {{ doc_library.constants_table("background-color",include_subconstants=true) }}
+    {% filter markdown %}
+    
+    ### Text Color
+
+    {% endfilter %}
+    {{ doc_library.constants_table("text-color",include_subconstants=true) }}
+    {% filter markdown %}
+    
+    ### Interactive Color
+
+    {% endfilter %}
+    {{ doc_library.constants_table("interactive-color",include_subconstants=true) }}
+    {% filter markdown %}
+    
+    ### Colors
+
+    {% endfilter %}
+    {{ doc_library.constants_table("color",include_subconstants=true) }}
+    {% filter markdown %}
+    
+    ### Font
+
+    {% endfilter %}
+    {{ doc_library.constants_table("font",include_subconstants=true) }}
+    {% filter markdown %}
+    
+    ### Border
+
+    {% endfilter %}
+    {{ doc_library.constants_table("border",include_subconstants=true) }}
+    {% filter markdown %}
+    
+    ### Size
+
+    {% endfilter %}
+    {{ doc_library.constants_table("size",include_subconstants=true) }}
+    {% filter markdown %}
+    
+    ### Space
+
+    {% endfilter %}
+    {{ doc_library.constants_table("space",include_subconstants=true) }}
+    {% filter markdown %}
+    
+    ### Transition
+
+    {% endfilter %}
+    {{ doc_library.constants_table("transition",include_subconstants=true) }}
+    {% filter markdown %}
+    
+    ### Opacity
+
+    {% endfilter %}
+    {{ doc_library.constants_table("opacity",include_subconstants=true) }}
+    {% filter markdown %}
+    
+    ### Shadow
+
+    {% endfilter %}
+    {{ doc_library.constants_table("drop-shadow",include_subconstants=true) }}
+
+
+{% endblock %}

@@ -62,6 +62,18 @@ body {
         margin-left: $mds-doc-nav-width;
         width: calc(100% - $mds-doc-nav-width);
     }
+
+    p > code,
+    td > code,
+    li > code {
+        background-color: $mds-color-neutral-95;
+        border: solid 1px $mds-color-neutral-90;
+        border-radius: $mds-border-radius-default;
+        color: #7d256f;
+        font-size: $mds-font-size-xs;
+        line-height: 1.65;
+        padding: 2px;
+    }
 }
 
 .mds-doc__content-inner {

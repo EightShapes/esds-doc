@@ -95,7 +95,7 @@
         "font": {
             "family": {
                 "sans-serif": "'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif",
-                "monospace": "'Consolas', 'Courier New', Courier, monospace"
+                "monospace": "Monaco, monospace, 'Courier New', Courier"
             },
             "weight": {
                 "thin": 200,

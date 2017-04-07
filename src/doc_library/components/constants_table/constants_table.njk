@@ -1,0 +1,39 @@
+{% macro constants_table_value(name,value,prefix) %}
+			<tr class="mds-data-table__row">
+				<td class="mds-data-table__cell"><code class="mds-constants-table__code">{{ prefix }}{{name}}</code></td>
+				<td class="mds-data-table__cell mds-data-table__cell--value"><code class="mds-constants-table__code">{{value}}</code></td>
+			</tr>
+{% endmacro %}
+
+{% macro constants_table_rows(constants, prefix, include_subconstants) %}
+	{% for name, value in constants %}
+		{% if value | isstring %}
+			{{ constants_table_value(name, value, prefix) }}
+		{% elif include_subconstants %}
+			{{ constants_table_rows(value, prefix+name+"-", include_subconstants )}}
+		{% endif %}
+	{% endfor %}
+{% endmacro %}
+
+{% macro constants_table(constants_name, include_subconstants=false)%}
+	{% set constants_hierarchy = constants_name | split(".") %}
+
+	{% set table_constants = constants %}
+	{% set variable_prefix = '$mds-' %}
+	{% for constants_key in constants_hierarchy %}
+		{% set table_constants = table_constants[constants_key] %}
+		{% set variable_prefix = variable_prefix + constants_key + "-" %}
+	{% endfor %}
+
+	<table class="mds-data-table mds-constants-table">
+		<thead>
+			<tr class="mds-data-table__row">
+				<th class="mds-data-table__header-cell">Variable Name</th>
+				<th class="mds-data-table__header-cell">Value</th>
+			</tr>
+		</thead>
+		<tbody class="mds-data-table__body">
+			{{ constants_table_rows(table_constants, variable_prefix, include_subconstants) }}
+		</tbody>
+	</table>
+{% endmacro %}
