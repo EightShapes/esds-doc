@@ -1,0 +1,37 @@
+{% set title = 'Release History' %}
+{% extends 'doc_templates/default.doc.template.njk' %}
+
+{% block doc_body %}
+    {% filter markdown %}
+
+# Release History
+
+## v0.2 April 7, 2016
+
+### What’s New
+
+* New components released, with some related documentation to follow in a future release:
+    * [Notifications](/component-sinks/notifications.html)
+    * [Range Slider](/component-sinks/range-sliders.html)
+    * [Button Group](/component-sinks/button-groups.html)  (previously known as “Segmented Control”)
+* [Constants](/resources/constants.html) documentation with introductory material and complete catalog.
+* Added a gulp task for generating files required for a new component.
+
+### Enhancements
+
+* Refined [button](/components/buttons.html) colors for hover and disabled states.
+* Revised distinctions (via a mixin) for disabled states of entire block elements vs. text within an element. Affected items include forms, pagination, range slider, switch, and button.
+
+### Fixes
+
+* Removed Morningstar-specific content around the MDS release process.
+* Replaced global box-sizing with `border-box` mixin, encapsulated per component.
+* Added charset meta tag to documentation site.
+* Realigned pairing of button label and icon within [buttons](/component-sinks/buttons.html).
+
+### Other Announcements
+
+* Numerous adjustments to style, markup, and configuration-file conventions to accommodate theming, with changes completed in a future release.
+
+    {% endfilter %}
+{% endblock %}
