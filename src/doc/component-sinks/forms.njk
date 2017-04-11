@@ -2,7 +2,8 @@
 
 {% set title = 'Forms Sink' %}
 
-{% macro component_sink(sinkBackgroundColor=false) %}
+{% macro component_sink() %}
+    {% set column_identifier = "id-" + range(0, 100000) | random %}
     <h2 class="mds-doc-sink__header">Input</h2>
     {{ library.form_input() }}
 
@@ -82,8 +83,29 @@
     <h2 class="mds-doc-sink__header">Checkbox Focus</h2>
     {{ library.form_checkbox(class="mds-form__checkbox--focus") }}
     
+    <h2 class="mds-doc-sink__header">Checkbox Active</h2>
+    {{ library.form_checkbox(class="mds-form__checkbox--active") }}
+    
     <h2 class="mds-doc-sink__header">Checkbox Disabled</h2>
     {{ library.form_checkbox(disabled=true) }}
+
+    <h2 class="mds-doc-sink__header">Checked Checkbox</h2>
+    {{ library.form_checkbox(checked=true, label="Checked checkbox") }}
+
+    <h2 class="mds-doc-sink__header">Checked Checkbox, Hover</h2>
+    {{ library.form_checkbox(checked=true, label="Checked checkbox", class="mds-form__checkbox--hover") }}
+
+    <h2 class="mds-doc-sink__header">Checked Checkbox, Active</h2>
+    {{ library.form_checkbox(checked=true, label="Checked checkbox", class="mds-form__checkbox--active") }}
+
+    <h2 class="mds-doc-sink__header">Indeterminate Checkbox</h2>
+    {{ library.form_checkbox(indeterminate=true, label="Indeterminate checkbox") }}
+
+    <h2 class="mds-doc-sink__header">Indeterminate Checkbox, Hover</h2>
+    {{ library.form_checkbox(indeterminate=true, label="Indeterminate checkbox", class="mds-form__checkbox--hover") }}
+
+    <h2 class="mds-doc-sink__header">Indeterminate Checkbox, Active</h2>
+    {{ library.form_checkbox(indeterminate=true, label="Indeterminate checkbox", class="mds-form__checkbox--active") }}
 
     <h2 class="mds-doc-sink__header">Checkbox Error</h2>
     {% call library.form_field_group(error="true") %}
@@ -96,11 +118,6 @@
     <h2 class="mds-doc-sink__header">Checkbox Too Much Content</h2>
     {{ library.form_checkbox(label="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis dolorum qui, eius nisi sint fugiat dolorem eaque libero quasi numquam blanditiis consequatur vero ipsum maxime. Illo quasi quas, iste labore. Quasi ut voluptatum vitae voluptates, sunt distinctio ullam repellendus maxime. Aperiam fuga suscipit sed eveniet, eligendi. Commodi, adipisci alias cum velit molestiae rerum eos omnis. Molestiae culpa tempore eligendi doloribus.") }}
     
-    <h3 class="forms-sink__subheader">Indeterminate Checkbox</h3>
-    {{ library.form_checkbox(indeterminate=true, label="Indeterminate checkbox") }}
-    
-    <h3 class="forms-sink__subheader">Checked Checkbox</h3>
-    {{ library.form_checkbox(checked=true, label="Checked checkbox") }}
 
     <h2 class="mds-doc-sink__header">Checkbox Group Stacked</h2>
     {% call library.form_checkbox_group(label="Select all the days that apply") %}
@@ -140,62 +157,72 @@
     {% endcall %}
 
     <h2 class="mds-doc-sink__header">Radio Button</h2>
-    {{ library.form_radio_button(name=sinkBackgroundColor + "-basic-example") }}
+    {{ library.form_radio_button(name=column_identifier + "-basic-example") }}
 
     <h2 class="mds-doc-sink__header">Radio Button Hover</h2>
-    {{ library.form_radio_button(name=sinkBackgroundColor + "-basic-example-hover", class="mds-form__radio-button--hover") }}
+    {{ library.form_radio_button(name=column_identifier + "-basic-example-hover", class="mds-form__radio-button--hover") }}
 
     <h2 class="mds-doc-sink__header">Radio Button Focus</h2>
-    {{ library.form_radio_button(name=sinkBackgroundColor + "-basic-example-focus", class="mds-form__radio-button--focus") }}
+    {{ library.form_radio_button(name=column_identifier + "-basic-example-focus", class="mds-form__radio-button--focus") }}
 
     <h2 class="mds-doc-sink__header">Radio Button Disabled</h2>
-    {{ library.form_radio_button(name=sinkBackgroundColor + "-basic-example-disabled", disabled=true) }}
+    {{ library.form_radio_button(name=column_identifier + "-basic-example-disabled", disabled=true) }}
 
     <h2 class="mds-doc-sink__header">Radio Button Error</h2>
-    {{ library.form_radio_button(name=sinkBackgroundColor + "-basic-example-error", class="mds-form__radio-button--error") }}
+    {{ library.form_radio_button(name=column_identifier + "-basic-example-error", class="mds-form__radio-button--error") }}
 
     <h2 class="mds-doc-sink__header">Radio Button Checked</h2>
-    {{ library.form_radio_button(name=sinkBackgroundColor + "-basic-example-checked", checked=true) }}
+    {{ library.form_radio_button(name=column_identifier + "-basic-example-checked", checked=true) }}
+
+    <h2 class="mds-doc-sink__header">Radio Button Checked, Hover</h2>
+    {{ library.form_radio_button(class="mds-form__radio-button--hover", name=column_identifier + "-basic-example-checked-hover", checked=true) }}
+
+    <h2 class="mds-doc-sink__header">Radio Button Checked, Active</h2>
+    {{ library.form_radio_button(class="mds-form__radio-button--active", name=column_identifier + "-basic-example-checked-active", checked=true) }}
 
     <h2 class="mds-doc-sink__header">Radio Button, Too Little Content</h2>
-    {{ library.form_radio_button(name=sinkBackgroundColor + "-basic-example", label="A") }}
+    {{ library.form_radio_button(name=column_identifier + "-basic-example", label="A") }}
 
     <h2 class="mds-doc-sink__header">Radio Button, Too Much Content</h2>
-    {{ library.form_radio_button(name=sinkBackgroundColor + "-basic-example", label="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea quidem, odit eveniet distinctio aperiam blanditiis error sit at dicta quod laborum eum. Beatae consequuntur fugit culpa, architecto soluta, eum vitae.") }}
+    {{ library.form_radio_button(name=column_identifier + "-basic-example", label="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea quidem, odit eveniet distinctio aperiam blanditiis error sit at dicta quod laborum eum. Beatae consequuntur fugit culpa, architecto soluta, eum vitae.") }}
 
     <h2 class="mds-doc-sink__header">Radio Group Stacked</h2>
-    {% call library.form_radio_button_group(label="Select a the day that works best for you", name=sinkBackgroundColor + "-day-of-the-week") %}
-        {{ library.form_radio_button(label="Mondays", name=sinkBackgroundColor + "-day-of-the-week", checked=true) }}
-        {{ library.form_radio_button(label="Tuesdays", name=sinkBackgroundColor + "-day-of-the-week") }}
-        {{ library.form_radio_button(label="Wednesdays", name=sinkBackgroundColor + "-day-of-the-week") }}
-        {{ library.form_radio_button(label="Thursdays", name=sinkBackgroundColor + "-day-of-the-week") }}
-        {{ library.form_radio_button(label="Fridays", name=sinkBackgroundColor + "-day-of-the-week") }}
+    {% call library.form_radio_button_group(label="Select a the day that works best for you") %}
+        {% set column_identifier = "id-" + range(0, 100000) | random %}
+        {{ library.form_radio_button(label="Mondays", name=column_identifier + "-day-of-the-week", checked=true) }}
+        {{ library.form_radio_button(label="Tuesdays", name=column_identifier + "-day-of-the-week") }}
+        {{ library.form_radio_button(label="Wednesdays", name=column_identifier + "-day-of-the-week") }}
+        {{ library.form_radio_button(label="Thursdays", name=column_identifier + "-day-of-the-week") }}
+        {{ library.form_radio_button(label="Fridays", name=column_identifier + "-day-of-the-week") }}
     {% endcall %}
 
     <h2 class="mds-doc-sink__header">Radio Group Stacked Too Much Content</h2>
     {% call library.form_radio_button_group(label="Select a the day that works best for you") %}
-        {{ library.form_radio_button(label="Mondays", name=sinkBackgroundColor + "-day-of-the-week-too-much-content", checked=true) }}
-        {{ library.form_radio_button(label="Tuesdays", name=sinkBackgroundColor + "-day-of-the-week-too-much-content") }}
-        {{ library.form_radio_button(label="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam.", name=sinkBackgroundColor + "-day-of-the-week-too-much-content") }}
-        {{ library.form_radio_button(label="Thursdays", name=sinkBackgroundColor + "-day-of-the-week-too-much-content") }}
-        {{ library.form_radio_button(label="Fridays", name=sinkBackgroundColor + "-day-of-the-week-too-much-content") }}
+        {% set column_identifier = "id-" + range(0, 100000) | random %}
+        {{ library.form_radio_button(label="Mondays", name=column_identifier + "-day-of-the-week-too-much-content", checked=true) }}
+        {{ library.form_radio_button(label="Tuesdays", name=column_identifier + "-day-of-the-week-too-much-content") }}
+        {{ library.form_radio_button(label="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam.", name=column_identifier + "-day-of-the-week-too-much-content") }}
+        {{ library.form_radio_button(label="Thursdays", name=column_identifier + "-day-of-the-week-too-much-content") }}
+        {{ library.form_radio_button(label="Fridays", name=column_identifier + "-day-of-the-week-too-much-content") }}
     {% endcall %}
 
     <h2 class="mds-doc-sink__header">Radio Group Horizontal</h2>
     {% call library.form_field_group(horizontal="true") %}
         {% call library.form_radio_button_group(label="Choose your favorite color", required="true", required_tooltip_text="You must choose your favorite color") %}
-            {{ library.form_radio_button(label="Red", name=sinkBackgroundColor + "-favorite-color", checked=true) }}
-            {{ library.form_radio_button(label="Orange", name=sinkBackgroundColor + "-favorite-color") }}
-            {{ library.form_radio_button(label="Yellow", name=sinkBackgroundColor + "-favorite-color") }}
+            {% set column_identifier = "id-" + range(0, 100000) | random %}
+            {{ library.form_radio_button(label="Red", name=column_identifier + "-favorite-color", checked=true) }}
+            {{ library.form_radio_button(label="Orange", name=column_identifier + "-favorite-color") }}
+            {{ library.form_radio_button(label="Yellow", name=column_identifier + "-favorite-color") }}
         {% endcall %}
     {% endcall %}
 
     <h2 class="mds-doc-sink__header">Radio Group Horizontal Too Much Content</h2>
     {% call library.form_field_group(horizontal="true") %}
         {% call library.form_radio_button_group(label="Choose your favorite color", required="true", required_tooltip_text="You must choose your favorite color-too-much-content") %}
-            {{ library.form_radio_button(label="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam.", name=sinkBackgroundColor + "-favorite-color-too-much-content", checked=true) }}
-            {{ library.form_radio_button(label="Orange", name=sinkBackgroundColor + "-favorite-color-too-much-content") }}
-            {{ library.form_radio_button(label="Yellow", name=sinkBackgroundColor + "-favorite-color-too-much-content") }}
+            {% set column_identifier = "id-" + range(0, 100000) | random %}
+            {{ library.form_radio_button(label="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam.", name=column_identifier + "-favorite-color-too-much-content", checked=true) }}
+            {{ library.form_radio_button(label="Orange", name=column_identifier + "-favorite-color-too-much-content") }}
+            {{ library.form_radio_button(label="Yellow", name=column_identifier + "-favorite-color-too-much-content") }}
         {% endcall %}
     {% endcall %}
 
@@ -377,8 +404,8 @@
     <h2 class="mds-doc-sink__header">Field Error Radio</h2>
     {% call library.form_field_group(error=true) %}
         {% call library.form_radio_button_group(required="true", label="Select the greatest sci-fi franchise of all time") %}
-            {{ library.form_radio_button(label="Wars", name=sinkBackgroundColor + "-wars-or-trek", describedby="radio-button-error-message") }}
-            {{ library.form_radio_button(label="Trek", name=sinkBackgroundColor + "-wars-or-trek", describedby="radio-button-error-message") }}
+            {{ library.form_radio_button(label="Wars", name=column_identifier + "-wars-or-trek", describedby="radio-button-error-message") }}
+            {{ library.form_radio_button(label="Trek", name=column_identifier + "-wars-or-trek", describedby="radio-button-error-message") }}
             {{ library.form_field_error(text="You must answer the question", id="radio-button-error-message") }}
         {% endcall %}
     {% endcall %}
@@ -462,8 +489,8 @@
         {% endcall %}
         {% call library.form_field_group() %}
             {% call library.form_radio_button_group(label="Dessert or no?", required=true) %}
-                {{ library.form_radio_button(id="dessert-yes", value="yes", name=sinkBackgroundColor + "-radio-group-dessert", label="Yes, Please", checked=true) }}
-                {{ library.form_radio_button(id="dessert-no", value="no", name=sinkBackgroundColor + "-radio-group-dessert", label="No, Thank You") }}
+                {{ library.form_radio_button(id="dessert-yes", value="yes", name=column_identifier + "-radio-group-dessert", label="Yes, Please", checked=true) }}
+                {{ library.form_radio_button(id="dessert-no", value="no", name=column_identifier + "-radio-group-dessert", label="No, Thank You") }}
             {% endcall %}
         {% endcall %}
     {% endcall %}
@@ -486,8 +513,8 @@
         {% endcall %}
         {% call library.form_field_group(class='deds-form__field-group--horizontal') %}
             {% call library.form_radio_button_group(label="Best Time to Contact You?", optional=true) %}
-                {{ library.form_radio_button(name=sinkBackgroundColor + "-contact-time", id='AM', text='Morning', checked=true) }}
-                {{ library.form_radio_button(name=sinkBackgroundColor + "-contact-time", id='PM', text='Evening') }}
+                {{ library.form_radio_button(name=column_identifier + "-contact-time", id='AM', text='Morning', checked=true) }}
+                {{ library.form_radio_button(name=column_identifier + "-contact-time", id='PM', text='Evening') }}
             {% endcall %}
         {% endcall %}
         {% call library.form_fieldset() %}

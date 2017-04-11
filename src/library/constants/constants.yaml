@@ -57,7 +57,6 @@ interactive-color :
   primary :
     default : *color-cyan-44
     hover : *color-cyan-41
-    hover-darker : *color-cyan-39
     active : *color-cyan-39
   secondary :
     primary : transparent

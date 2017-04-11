@@ -75,7 +75,6 @@
             "primary": {
                 "default": "#00a8e1",
                 "hover": "#0a9ec9",
-                "hover-darker": "#087796",
                 "active": "#087796"
             },
             "secondary": {
