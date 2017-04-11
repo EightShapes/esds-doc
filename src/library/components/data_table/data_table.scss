@@ -51,6 +51,10 @@ $mds-text-color-data-table-header-cell-inner-on-dark: $mds-color-neutral-67;
     width: 100%;
 }
 
+.mds-data-table__caption {
+    @include mds-accessibly-hidden;
+}
+
 .mds-data-table__cell {
     border-top: $mds-border-data-table-cell-on-light;
     padding: $mds-space-data-table-cell-default;
