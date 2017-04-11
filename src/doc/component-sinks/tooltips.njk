@@ -53,43 +53,43 @@
 		<br />
 		<h2 class="mds-doc-sink__header">Tooltip Bottom Left</h2>
 		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-l mds-tooltip--bottom-left", tip_text="A bit longer of a tooltip bubble") %}
-			{{ library.button(text="Tip on a small Primary button", class="mds-button--small mds-button--primary") }}
+			{{ library.button(text="Tip on a small Primary button", class="mds-button--small mds-button--primary mds-tooltip__target") }}
 		{% endcall %}
 		<br />
 		<br />
 		<h2 class="mds-doc-sink__header">Tooltip Top Right</h2>
 		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-s mds-tooltip--top-right", tip_text="Hi Jim :-)") %}
-			{{ library.button(text="Tip on a small button", class="mds-button--small") }}
+			{{ library.button(text="Tip on a small button", class="mds-button--small mds-tooltip__target") }}
 		{% endcall %}
 		<br />
 		<br />
 		<h2 class="mds-doc-sink__header">Tooltip Bottom Right</h2>
 		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-s mds-tooltip--bottom-right", tip_text="Bye Jo :-(") %}
-			{{ library.button(text="Tip on a button") }}
+			{{ library.button(text="Tip on a button", class="mds-tooltip__target") }}
 		{% endcall %}
 		<br />
 		<br />
 		<h2 class="mds-doc-sink__header">Tooltip Right Bottom</h2>
 		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-l mds-tooltip--right-bottom", tip_text="Click this button to complete your task") %}
-			{{ library.button(text="Tip on a Primary button", class="mds-button--primary") }}
+			{{ library.button(text="Tip on a Primary button", class="mds-button--primary mds-tooltip__target") }}
 		{% endcall %}
 		<br />
 		<br />
 		<h2 class="mds-doc-sink__header">Tooltip Left Bottom</h2>
 		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-m mds-tooltip--left-bottom", tip_text="And be taken elsewhere") %}
-			<a href="#" class="mds-text__anchor">Click here</a>
+			<a href="#" class="mds-text__anchor mds-tooltip__target">Click here</a>
 		{% endcall %}
 		<br />
 		<br />
 		<h2 class="mds-doc-sink__header">Tooltip Right Top</h2>
 		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-l mds-tooltip--right-top", tip_text="Change a configuration here") %}
-			<a href="#" class="mds-text__anchor mds-text__anchor--with-icon"><span class="mds-text__anchor-text">Settings</span>{{ library.icon(name="utilities", class="mds-icon--m mds-text__anchor-icon") }}</a>
+			<a href="#" class="mds-text__anchor mds-text__anchor--with-icon mds-tooltip__target"><span class="mds-text__anchor-text">Settings</span>{{ library.icon(name="utilities", class="mds-icon--m mds-text__anchor-icon") }}</a>
 		{% endcall %}
 		<br />
 		<br />
 		<h2 class="mds-doc-sink__header">Tooltip Left Top Help</h2>
 		{% call library.tooltip(class="mds-tooltip--default mds-tooltip--width-m mds-tooltip--left-top", tip_text="Some help") %}
-			<div class="mds-doc-sink__tooltips-div-example mds-tooltip__target--help"></div>
+			<div class="mds-doc-sink__tooltips-div-example mds-tooltip__target mds-tooltip__target--help"></div>
 		{% endcall %}
 		<br />
 		<br />
@@ -122,7 +122,7 @@
 		<br />
 		<h2 class="mds-doc-sink__header">Prompt Right Center</h2>
 		{% call library.tooltip(class="mds-tooltip--prompt mds-tooltip--width-l mds-tooltip--height-m mds-tooltip--sticky mds-tooltip--closable mds-tooltip--right-center", tip_text="These are settings where you can update your account", close_prompt=true) %}
-			{{ library.icon(name="utilities") }}
+			{{ library.icon(name="utilities", class="mds-tooltip__target") }}
 		{% endcall %}
 		<br />
 		<br />
@@ -130,7 +130,7 @@
 		<br />
 		<h2 class="mds-doc-sink__header">Prompt Right Bottom</h2>
 		{% call library.tooltip(class="mds-tooltip--prompt mds-tooltip--width-l mds-tooltip--sticky mds-tooltip--right-bottom mds-tooltip--closable", tip_text="These are settings where you can update your account", close_prompt=true) %}
-			{{ library.icon(name="utilities") }}
+			{{ library.icon(name="utilities", class="mds-tooltip__target") }}
 		{% endcall %}
 		<br />
 		<br />
@@ -139,7 +139,7 @@
 		<h2 class="mds-doc-sink__header">Prompt Error Bottom Right</h2>
 		{% call library.tooltip(class="mds-tooltip--error mds-tooltip--width-m mds-tooltip--sticky mds-tooltip--bottom-right", tip_text="Something looks a bit off", style="margin-top:-19px;") %}
 			{% call library.form_field_group(error="true") %}
-		        {{ library.form_input() }}
+		        {{ library.form_input(class="mds-tooltip__target") }}
 		    {% endcall %}
 		{% endcall %}
 		<br />
@@ -149,7 +149,7 @@
 		<h2 class="mds-doc-sink__header">Prompt Error Bottom Center</h2>
 		{% call library.tooltip(class="mds-tooltip--error mds-tooltip--width-m mds-tooltip--sticky mds-tooltip--bottom-center", tip_text="Something looks a bit off", style="margin-top:-19px;") %}
 			{% call library.form_field_group(error="true") %}
-		        {{ library.form_input() }}
+		        {{ library.form_input(class="mds-tooltip__target") }}
 		    {% endcall %}
 		{% endcall %}
 		<br />
@@ -159,7 +159,7 @@
 		<h2 class="mds-doc-sink__header">Prompt Error Bottom Left</h2>
 		{% call library.tooltip(class="mds-tooltip--error mds-tooltip--width-m mds-tooltip--sticky mds-tooltip--bottom-left", tip_text="Something looks a bit off", style="margin-top:-19px;") %}
 			{% call library.form_field_group(error="true") %}
-		        {{ library.form_input() }}
+		        {{ library.form_input(class="mds-tooltip__target") }}
 		    {% endcall %}
 		{% endcall %}
 		<br />

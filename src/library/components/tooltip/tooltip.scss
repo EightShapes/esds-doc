@@ -309,7 +309,8 @@ $with-border: false;
 }
 
 .mds-tooltip--sticky,
-.mds-tooltip__wrapper:hover .mds-tooltip {
+.mds-tooltip__wrapper:hover .mds-tooltip,
+.mds-tooltip__target:focus + .mds-tooltip {
     opacity: 1;
     visibility: visible;
 }
