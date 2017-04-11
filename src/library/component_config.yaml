@@ -1,0 +1,32 @@
+# This is the component config file, it controls several aspects of the library & doc build process
+
+# shared
+# setting these options to false will prevent inclusion of non-component CSS helper classes & scss mixins
+# Some of the components have dependencies on these shared imports
+shared:
+  - utils:          true
+  - fonts:          true
+  - accessibility:  true
+  - animation:      true
+  - space:          true
+  - typography:     true
+
+# components
+# setting these options to false will: 
+#   prevent inclusion of components in the compiled library.css
+#   hide component examples from the component-sinks test page 
+components:
+  - icon:           true
+  - button:         true
+  - button_group:   true
+  - container:      true
+  - data_table:     true
+  - form:           true
+  - list_group:     true
+  - long_form_text: true
+  - notification:   true
+  - pagination:     true
+  - range_slider:   true
+  - switch:         true
+  - tooltip:        true
+

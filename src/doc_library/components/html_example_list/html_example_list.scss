@@ -1,4 +1,5 @@
 .mds-doc-html-example-list {
+    @include border-box();
     border: $mds-border-separator-default;
     border-radius: $mds-border-radius-default;
 }

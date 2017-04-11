@@ -189,5 +189,45 @@
             "top-of-the-world": 900
         }
     },
+    "shared": [{
+        "utils": true
+    }, {
+        "fonts": true
+    }, {
+        "accessibility": true
+    }, {
+        "animation": true
+    }, {
+        "space": true
+    }, {
+        "typography": true
+    }],
+    "components": [{
+        "icon": true
+    }, {
+        "button": true
+    }, {
+        "button_group": true
+    }, {
+        "container": true
+    }, {
+        "data_table": true
+    }, {
+        "form": true
+    }, {
+        "list_group": true
+    }, {
+        "long_form_text": true
+    }, {
+        "notification": true
+    }, {
+        "pagination": true
+    }, {
+        "range_slider": true
+    }, {
+        "switch": true
+    }, {
+        "tooltip": true
+    }],
     "theme": "mds"
 }

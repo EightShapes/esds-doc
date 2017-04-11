@@ -4,6 +4,7 @@ $mds-doc-size-caret-width: 4px;
 $mds-color-transparent-caret-border: rgba($mds-background-color-dark, 0);
 
 .mds-doc-code-snippet {
+    @include border-box();
     border: $mds-border-separator-default;
     border-radius: $mds-border-radius-default;
     margin: $mds-doc-space-stack-code-snippet;

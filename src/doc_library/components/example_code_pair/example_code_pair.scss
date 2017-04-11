@@ -1,4 +1,6 @@
 .mds-doc-example-code-pair {
+    @include border-box();
+
     .mds-doc-code-snippet {
         border-radius: 0 0 $mds-border-radius-default $mds-border-radius-default;
         border-top: 0;

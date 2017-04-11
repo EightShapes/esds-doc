@@ -44,6 +44,7 @@ $mds-doc-toc-max-width-breakpoint: $mds-doc-content-max-width + $mds-doc-nav-wid
 }
 
 .mds-doc__content-inner {
+    @include border-box();
     margin: 0;
 
     @media screen and (min-width: 1196px) {

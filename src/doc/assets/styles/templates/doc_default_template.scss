@@ -1,5 +1,6 @@
 $mds-size-masthead-logo-width-narrow: 230px;
 $mds-size-masthead-logo-width: 275px;
+$mds-doc-text-color-code: #7d256f;
 
 // Bit of resetting here
 html,
@@ -69,7 +70,7 @@ body {
         background-color: $mds-color-neutral-95;
         border: solid 1px $mds-color-neutral-90;
         border-radius: $mds-border-radius-default;
-        color: #7d256f;
+        color: $mds-doc-text-color-code;
         font-size: $mds-font-size-xs;
         line-height: 1.65;
         padding: 2px;

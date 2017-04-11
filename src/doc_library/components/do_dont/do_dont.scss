@@ -3,6 +3,7 @@ $mds-doc-color-error: $mds-color-red-50;
 $mds-doc-border-image: solid 1px #e5e5e5;
 
 .mds-doc-do-dont {
+    @include border-box();
     margin: $mds-space-stack-xl;
     
     @media screen and (min-width: 480px) {

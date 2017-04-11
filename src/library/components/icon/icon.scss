@@ -1,5 +1,10 @@
 .mds-icon {
     @include border-box();
+
+    .mds-container--dark &, 
+    .mds-container--black & {
+        fill: $mds-text-color-primary-on-dark;
+    }
 }
 
 .mds-icon,

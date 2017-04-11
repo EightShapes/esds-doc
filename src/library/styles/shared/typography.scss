@@ -26,48 +26,6 @@ $mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 3
     }
 }
 
-.mds-text-crop--default {
-    @include border-box();
-    @include mds-text-crop();
-}
-
-.mds-text-crop--1-1 {
-    @include border-box();
-    @include mds-text-crop(1.1);
-}
-
-.mds-text__anchor {
-    @include border-box();
-    color: $mds-interactive-color-primary-default;
-    fill: $mds-interactive-color-primary-default;
-    transition: $mds-transition-hover;
-
-    &:hover {
-        color: $mds-interactive-color-primary-hover;
-        fill: $mds-interactive-color-primary-hover;
-
-        .mds-icon {
-            fill: $mds-interactive-color-primary-hover;
-        }
-    }
-}
-
-.mds-text__anchor--with-icon {
-    @include border-box();
-    text-decoration: none;
-
-    .mds-text__anchor-text {
-        text-decoration: underline;
-        vertical-align: middle;
-    }
-
-    .mds-text__anchor-icon {
-        fill: $mds-interactive-color-primary-default;
-        transition: $mds-transition-hover;
-        vertical-align: middle;
-    }
-}
-
 @mixin level-1-heading() {
     @include mds-text-crop();
     font-size: 45px;
@@ -106,16 +64,45 @@ $mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 3
     }
 }
 
-.mds-container--dark, 
-.mds-container--black {
+// TODO: Refactor this to be part of sink page
+.mds-text-crop--default {
     @include border-box();
-    color: $mds-text-color-primary-on-dark;
+    @include mds-text-crop();
+}
 
-    .mds-icon {
-        fill: $mds-text-color-primary-on-dark;
+.mds-text-anchor {
+    @include border-box();
+    color: $mds-interactive-color-primary-default;
+    fill: $mds-interactive-color-primary-default;
+    transition: $mds-transition-hover;
+
+    &:hover {
+        color: $mds-interactive-color-primary-hover;
+        fill: $mds-interactive-color-primary-hover;
+
+        .mds-icon {
+            fill: $mds-interactive-color-primary-hover;
+        }
     }
+}
 
-    .mds-text__anchor-icon {
+.mds-text-anchor--with-icon {
+    @include border-box();
+    text-decoration: none;
+}
+
+.mds-text-anchor__text {
+    text-decoration: underline;
+    vertical-align: middle;
+}
+
+.mds-text-anchor__icon {
+    fill: $mds-interactive-color-primary-default;
+    transition: $mds-transition-hover;
+    vertical-align: middle;
+
+    .mds-container--dark &, 
+    .mds-container--black & {
         fill: $mds-interactive-color-primary-default;
     }
 }

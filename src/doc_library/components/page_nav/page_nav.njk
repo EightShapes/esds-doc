@@ -1,21 +1,4 @@
-{% macro page_nav(class=false, target="body", page_header_class="mds-doc-page-nav__page-header", appended_items=[
-    {
-        href: '#',
-        label: 'View on Bitbucket'
-    },
-    {
-        href: '#',
-        label: 'Report a Bug'
-    },
-    {
-        href: '#',
-        label: 'Request Enhancement'
-    },
-    {
-        href: '#',
-        label: 'Get Help'
-    }
-]) %}
+{% macro page_nav(class=false, target="body", page_header_class="mds-doc-page-nav__page-header", appended_items=content.page_nav_appended_items) %}
     <div class="mds-doc-page-nav{{ ' ' + class if class }}" data-target="{{ target }}" {% if page_header_class %} data-page-header-class="{{ page_header_class }}" {% endif %}>
         <div class="mds-doc-page-nav__list-groups-wrap">
             {{ library.list_group(

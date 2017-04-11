@@ -13,3 +13,11 @@
 @import 'templates/doc_toc_template';
 @import 'pages/doc_color';
 @import 'pages/doc_homepage';
+
+// Global docs site styles used across the library, keep minimal, err on the side of redefining things like font families, font sizes, etc.
+.mds-doc__header,
+.mds-doc__off-canvas-toggle-input,
+.mds-doc__content-nav-wrap {
+    box-sizing: border-box;
+    font-size: $mds-font-size-base;
+}

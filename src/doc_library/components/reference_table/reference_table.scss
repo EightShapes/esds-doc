@@ -1,4 +1,6 @@
 .mds-doc-reference-table {
+    @include border-box();
+    
     margin: $mds-space-stack-xl;
     overflow-x: auto;
 

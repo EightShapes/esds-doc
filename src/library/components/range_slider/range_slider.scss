@@ -113,6 +113,15 @@ $mds-range-slider-target-background: $mds-color-neutral-50;
     cursor: grabbing;
 }
 
+[disabled] .mds-range-slider__connect {
+    background: $mds-range-slider-base-background;
+
+    .mds-container--dark &,
+    .mds-container--black & {
+        background: $mds-range-slider-base-background-on-dark;
+    }
+}
+
 [disabled].mds-range-slider__target {
     @include disabled();
 
@@ -129,15 +138,6 @@ $mds-range-slider-target-background: $mds-color-neutral-50;
     border: $mds-border-control-default;
     cursor: not-allowed;
 
-}
-
-[disabled] .mds-range-slider__connect {
-    background: $mds-range-slider-base-background;
-
-    .mds-container--dark &,
-    .mds-container--black & {
-        background: $mds-range-slider-base-background-on-dark;
-    }
 }
 
 .mds-range-slider__value--horizontal {
@@ -190,4 +190,3 @@ $mds-range-slider-target-background: $mds-color-neutral-50;
 .mds-range-slider__input {
     min-width: 45px;
 }
-

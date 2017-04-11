@@ -8,6 +8,7 @@ $mds-doc-transition-easing-navigation-enter: cubic-bezier(0, 0, .58, 1);
 $mds-doc-transition-easing-navigation-exit: linear;
 
 .mds-doc-site-nav {
+    @include border-box();
     background-color: $mds-background-color-light;
     box-shadow: $mds-doc-inner-shadow-navigation;
     font-family: $mds-font-family-sans-serif;

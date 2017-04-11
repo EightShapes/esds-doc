@@ -57,6 +57,11 @@ $mds-space-stack-form-radio-checkbox: 0 0 8px 0;
     }
 }
 
+@mixin disabled-styles() {
+    cursor: not-allowed;
+    opacity: $mds-opacity-disabled;
+}
+
 @mixin focus-styles() {
     box-shadow: $mds-box-shadow-form-input-border, $mds-box-shadow-form-element-focus;
     outline: none;

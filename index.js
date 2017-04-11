@@ -148,9 +148,9 @@ module.exports = {
         'use strict';
         return `node_modules/${packageData.name}/src/doc_library/components`;
     },
-    "docTemplatePath": function(){
+    "docNunjucksPath": function(){
         'use strict';
-        return `node_modules/${packageData.name}/src/doc/**/*.njk`;
+        return `node_modules/${packageData.name}/src/doc`;
     },
     "docContentJsonPath": function(){
         'use strict';

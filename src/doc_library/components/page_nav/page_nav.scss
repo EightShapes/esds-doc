@@ -1,3 +1,7 @@
+.mds-doc-page-nav {
+    @include border-box();
+}
+
 .mds-doc-page-nav__appended-items {
     .mds-list-group__item {
         border: 0;

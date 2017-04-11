@@ -1,3 +1,84 @@
 {
-    "copyright": "&copy;2017 Morningstar, Inc. All rights reserved."
+    "copyright": "&copy;2017 Morningstar, Inc. All rights reserved.",
+    "page_nav_appended_items": [
+        {
+            "href": "#",
+            "label": "View on Bitbucket"
+        },
+        {
+            "href": "#",
+            "label": "Report a Bug"
+        },
+        {
+            "href": "#",
+            "label": "Request Enhancement"
+        },
+        {
+            "href": "#",
+            "label": "Get Help"
+        }
+    ],
+    "site_nav": [
+        {
+            "label": "Home",
+            "active": true,
+            "href": "/"
+        },
+        {
+            "label": "Visual Language",
+            "children": [
+                {
+                    "label": "Color",
+                    "href": "/visual-style/color.html"
+                }
+            ]
+        },
+        {
+            "label": "Components",
+            "children": [
+                {
+                    "label": "Buttons",
+                    "href": "/components/buttons.html"
+                }
+            ]
+        },
+        {
+            "label": "Resources",
+            "children": [
+                {
+                    "label": "Constants",
+                    "href": "/resources/constants.html"
+                }
+            ]
+        },
+        {
+            "label": "About The System",
+            "children": [
+                {
+                    "label": "Browser Support",
+                    "href": "/about/browser-support.html"
+                },
+                {
+                    "label": "Coding Standards",
+                    "href": "/about/coding-standards.html"
+                },
+                {
+                    "label": "Contributing",
+                    "href": "/about/contribute.html"
+                },
+                {
+                    "label": "Development Process",
+                    "href": "/about/development-process.html"
+                },
+                {
+                    "label": "Segments",
+                    "href": "/about/segments.html"
+                }
+            ]
+        },
+        {
+            "label": "Release History",
+            "href": "/release-history.html"
+        }
+    ]
 }
