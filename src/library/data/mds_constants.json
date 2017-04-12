@@ -139,6 +139,7 @@
         },
         "space": {
             "default": "16px",
+            "xxs": "2px",
             "xs": "4px",
             "s": "8px",
             "m": "16px",
@@ -147,12 +148,12 @@
             "inset": {
                 "xs": "4px",
                 "s": "8px",
-                "m": "16px 16px 16px 16px",
-                "l": "32px 32px 32px 32px",
-                "xl": "48px 48px 48px 48px",
+                "m": "16px",
+                "l": "32px",
+                "xl": "48px",
                 "squish": {
-                    "m": "4px 16px 4px 16px",
-                    "s": "2px 16px 2px 16px"
+                    "s": "2px 16px",
+                    "m": "4px 16px"
                 }
             },
             "inline-left": {
@@ -163,10 +164,11 @@
                 "xl": "0 0 0 48px"
             },
             "stack": {
-                "s": "0 0 8px 0",
-                "m": "0 0 16px 0",
-                "l": "0 0 32px 0",
-                "xl": "0 0 48px 0"
+                "xs": "0 0 4px",
+                "s": "0 0 8px",
+                "m": "0 0 16px",
+                "l": "0 0 32px",
+                "xl": "0 0 48px"
             }
         },
         "transition": {

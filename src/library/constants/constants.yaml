@@ -67,7 +67,7 @@ interactive-color :
   disabled :
     on-light : *color-neutral-50
     on-dark : *color-neutral-67
-  focus : "0 0 4px 2px rgba(#00a8e1, .8)"
+  focus : "0 0 4px 2px rgba(!{*color-cyan-44}, .8)"
 font :
   family :
     sans-serif: "'Univers', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif"
@@ -87,15 +87,15 @@ font :
     l : 20px
 border :
   separator :
-    default : "solid 1px #cccccc"
-    on-light : "solid 1px #cccccc"
-    on-dark : "solid 1px #333333"
+    default : "solid 1px !{*color-neutral-80}"
+    on-light : "solid 1px !{*color-neutral-80}"
+    on-dark : "solid 1px !{*color-neutral-20}"
     color-on-light : *color-neutral-80
     color-on-dark : *color-neutral-20
   control :
-    default : "solid 1px #808080"
+    default : "solid 1px !{*color-neutral-50}"
     color : *color-neutral-50
-  disabled : "solid 1px #808080"
+  disabled : "solid 1px !{*color-neutral-50}"
   radius : 
     default : 2px
 size :
@@ -106,31 +106,33 @@ size :
     l : 32px
 space :
   default: 16px
-  xs: 4px
-  s: 8px
-  m: 16px
-  l: 32px
-  xl: 48px
+  xxs:  &space-xxs  2px
+  xs:   &space-xs   4px
+  s:    &space-s    8px
+  m:    &space-m    16px
+  l:    &space-l    32px
+  xl:   &space-xl   48px
   inset :
-    xs : 4px
-    s : 8px
-    m : 16px 16px 16px 16px
-    l : 32px 32px 32px 32px
-    xl : 48px 48px 48px 48px
+    xs :  *space-xs
+    s :   *space-s
+    m :   *space-m
+    l :   *space-l
+    xl :  *space-xl
     squish :
-      m : 4px 16px 4px 16px
-      s : 2px 16px 2px 16px
+      s : "!{*space-xxs} !{*space-m}"
+      m : "!{*space-xs} !{*space-m}"
   inline-left :
-    xs : 0 0 0 4px
-    s : 0 0 0 8px
-    m : 0 0 0 16px
-    l : 0 0 0 32px
-    xl : 0 0 0 48px
+    xs :  "0 0 0 !{*space-xs}"
+    s :   "0 0 0 !{*space-s}"
+    m :   "0 0 0 !{*space-m}"
+    l :   "0 0 0 !{*space-l}"
+    xl :  "0 0 0 !{*space-xl}"
   stack :
-    s: 0 0 8px 0
-    m: 0 0 16px 0
-    l: 0 0 32px 0
-    xl: 0 0 48px 0
+    xs :  "0 0 !{*space-xs}"
+    s :   "0 0 !{*space-s}"
+    m :   "0 0 !{*space-m}"
+    l :   "0 0 !{*space-l}"
+    xl :  "0 0 !{*space-xl}"
 transition :
   color :
     link : "color, 300ms"
