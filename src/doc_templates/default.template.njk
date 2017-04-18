@@ -1,5 +1,5 @@
 {% block imports %} {# This allows the imports section to be completely overridden by a child template #}
-    {% import "library/components/mds_library_macros.njk" as library with context %}
+    {% import "library/components/library_macros.njk" as library with context %}
     {% block project_macro_imports %}{% endblock %} {# This block allows project specific macros to be injected, these macros can have access to core library macros and will be made available to doc macros #}
 {% endblock %}
 <!DOCTYPE html>
