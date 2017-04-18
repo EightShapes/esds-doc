@@ -107,6 +107,10 @@ module.exports = {
         env.addFilter('getcontext', function(){
           return this.ctx;
         });
+
+        env.addGlobal('getContext', function(name) {
+            return name ? this.ctx[name] : this.ctx;
+        });
     },
     "sassLintConfigPath": function(){
         'use strict';

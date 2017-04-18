@@ -2,136 +2,126 @@
 
 {% set title = 'Component Catalog Sink' %}
 
-{% block body %}
-    <h1>Component Catalog Sink</h1>
+{% macro button_catalog_demo() %}
+    <h2 class="mds-doc-sink__header">Buttons</h2>
+    {{ library.button(class="mds-button--primary", text="Sign Up") }}
+    {{ library.button(text="Copy", icon_left="copy") }}
+    {{ library.button(text="Continue", icon_right="arrow-right") }}
+    {{ library.button(icon_left="search") }}
+{% endmacro %}
 
-    {% macro component_catalog_sink(sinkBackgroundColor=false) %}
+{% macro list_group_catalog_demo() %}
+    <h2 class="mds-doc-sink__header">List Group</h2>
+    {{ library.list_group() }}
+{% endmacro %}
 
-        {% if components.button %}
-            <h2 class="mds-doc-sink__header">Buttons</h2>
-            {{ library.button(class="mds-button--primary", text="Sign Up") }}
-            {{ library.button(text="Copy", icon_left="copy") }}
-            {{ library.button(text="Continue", icon_right="arrow-right") }}
-            {{ library.button(icon_left="search") }}
-        {% endif %}
+{% macro pagination_catalog_demo() %}
+    <h2 class="mds-doc-sink__header">Pagination</h2>
+    {{ library.pagination(include_labels=false) }}
+{% endmacro %}
 
-        {% if components['list-group'] %}
-            <h2 class="mds-doc-sink__header">List Group</h2>
-            {{ library.list_group() }}
-        {% endif %}
+{% macro form_catalog_demo() %}
+    <h2 class="mds-doc-sink__header">Forms</h2>
+    {% call library.form() %}
+        {{ library.form_required_fields_key() }}
+        {% call library.form_field_group() %}
+            {{ library.form_label(text="First Name", required=true, for="full-form-first-name") }}
+            {{ library.form_input(id="full-form-first-name") }}
+        {% endcall %}
+        {% call library.form_field_group() %}
+            {{ library.form_label(text="Last Name", required=true, for="full-form-last-name") }}
+            {{ library.form_input(id="full-form-last-name") }}
+        {% endcall %}
+        {% call library.form_field_group() %}
+            {{ library.form_label(text="Email", optional=true, for="full-form-email") }}
+            {{ library.form_microcopy(text="If you provide your email address we'll send a receipt for your purchase", id="full-form-email-help-text")}}
+            {{ library.form_input(type="email", id="full-form-email", describedby="full-form-email-help-text") }}
+        {% endcall %}
+        {% call library.form_field_group(class='deds-form__field-group--horizontal') %}
+            {% call library.form_radio_button_group(label="Best Time to Contact You?", optional=true) %}
+                {{ library.form_radio_button(name=sinkBackgroundColor + "-contact-time", id='AM', text='Morning', checked=true) }}
+                {{ library.form_radio_button(name=sinkBackgroundColor + "-contact-time", id='PM', text='Evening') }}
+            {% endcall %}
+        {% endcall %}
+        {% call library.form_fieldset() %}
+            {{ library.form_legend(text="Billing Address") }}
+            {% call library.form_field_group() %}
+                {{ library.form_label(text="Street", for="full-form-billing-street") }}
+                {{ library.form_input(id="full-form-billing-street") }}
+            {% endcall %}
 
-        {% if components.pagination %}
-            <h2 class="mds-doc-sink__header">Pagination</h2>
-            {{ library.pagination(include_labels=falsetermin) }}
-        {% endif %}
-
-        {% if components.form %}
-            <h2 class="mds-doc-sink__header">Forms</h2>
-            {% call library.form() %}
-                {{ library.form_required_fields_key() }}
+            {% call library.form_field_group(horizontal=true) %}
                 {% call library.form_field_group() %}
-                    {{ library.form_label(text="First Name", required=true, for="full-form-first-name") }}
-                    {{ library.form_input(id="full-form-first-name") }}
+                    {{ library.form_label(text="City", for="full-form-billing-city") }}
+                    {{ library.form_input(id="full-form-billing-city") }}
                 {% endcall %}
-                {% call library.form_field_group() %}
-                    {{ library.form_label(text="Last Name", required=true, for="full-form-last-name") }}
-                    {{ library.form_input(id="full-form-last-name") }}
+                {% call library.form_field_group(class='deds-form__field-group--xs') %}
+                    {{ library.form_label(text="State", for="full-form-billing-state") }}
+                    {{ library.form_input(placeholder="CA", id="full-form-billing-state") }}
                 {% endcall %}
-                {% call library.form_field_group() %}
-                    {{ library.form_label(text="Email", optional=true, for="full-form-email") }}
-                    {{ library.form_microcopy(text="If you provide your email address we'll send a receipt for your purchase", id="full-form-email-help-text")}}
-                    {{ library.form_input(type="email", id="full-form-email", describedby="full-form-email-help-text") }}
-                {% endcall %}
-                {% call library.form_field_group(class='deds-form__field-group--horizontal') %}
-                    {% call library.form_radio_button_group(label="Best Time to Contact You?", optional=true) %}
-                        {{ library.form_radio_button(name=sinkBackgroundColor + "-contact-time", id='AM', text='Morning', checked=true) }}
-                        {{ library.form_radio_button(name=sinkBackgroundColor + "-contact-time", id='PM', text='Evening') }}
-                    {% endcall %}
-                {% endcall %}
-                {% call library.form_fieldset() %}
-                    {{ library.form_legend(text="Billing Address") }}
-                    {% call library.form_field_group() %}
-                        {{ library.form_label(text="Street", for="full-form-billing-street") }}
-                        {{ library.form_input(id="full-form-billing-street") }}
-                    {% endcall %}
-
-                    {% call library.form_field_group(horizontal=true) %}
-                        {% call library.form_field_group() %}
-                            {{ library.form_label(text="City", for="full-form-billing-city") }}
-                            {{ library.form_input(id="full-form-billing-city") }}
-                        {% endcall %}
-                        {% call library.form_field_group(class='deds-form__field-group--xs') %}
-                            {{ library.form_label(text="State", for="full-form-billing-state") }}
-                            {{ library.form_input(placeholder="CA", id="full-form-billing-state") }}
-                        {% endcall %}
-                        {% call library.form_field_group(class='deds-form__field-group--s') %}
-                            {{ library.form_label(text="ZIP", for="full-form-billing-zip") }}
-                            {{ library.form_input(id="full-form-billing-zip") }}
-                        {% endcall %}
-                    {% endcall %}
-                {% endcall %}
-                {% call library.form_fieldset() %}
-                    {{ library.form_legend(text="Shipping Address") }}
-                    
-                    {% call library.form_field_group() %}
-                        {{ library.form_checkbox(label="Same as billing address", id='checkout-example-checkbox', checked=true) }}
-                    {% endcall %}
-
-                    {% call library.form_field_group() %}
-                        {{ library.form_label(text="Street", for="full-form-shipping-street") }}
-                        {{ library.form_input(disabled=true, id="full-form-shipping-street") }}
-                    {% endcall %}
-                    
-                    {% call library.form_field_group(horizontal=true) %}
-                        {% call library.form_field_group() %}
-                            {{ library.form_label(text="City", for="full-form-shipping-city") }}
-                            {{ library.form_input(disabled=true, id="full-form-shipping-city") }}
-                        {% endcall %}
-                        {% call library.form_field_group(class='deds-form__field-group--xs') %}
-                            {{ library.form_label(text="State", for="full-form-shipping-state") }}
-                            {{ library.form_input(placeholder="CA", disabled=true, id="full-form-shipping-state") }}
-                        {% endcall %}
-                        {% call library.form_field_group(class='deds-form__field-group--s') %}
-                            {{ library.form_label(text="ZIP", for="full-form-shipping-zip") }}
-                            {{ library.form_input(disabled=true, for="full-form-shipping-zip") }}
-                        {% endcall %}
-                    {% endcall %}
-                {% endcall %}
-
-                {% call library.form_field_group() %}
-                    {{ library.form_label(text="Special Instructions for your order which you can provide right here this label is long to test wrapping behavior", optional=true, for="full-form-shipping-instructions") }}
-                    {{ library.form_textarea(id="full-form-shipping-instructions") }}
-                {% endcall %}
-
-                {% call library.form_field_group() %}
-                    {% call library.form_checkbox_group(label="Favorite color from the rainbow") %}
-                        {{ library.form_microcopy(text="Choose as many as you like", id="full-form-color-selection")}}
-                        {{ library.form_checkbox(label="Red", describedby="full-form-color-selection") }}
-                        {{ library.form_checkbox(label="Orange", describedby="full-form-color-selection") }}
-                        {{ library.form_checkbox(label="Yellow", checked=true, describedby="full-form-color-selection") }}
-                        {{ library.form_checkbox(label="Green", describedby="full-form-color-selection") }}
-                        {{ library.form_checkbox(label="Blue", describedby="full-form-color-selection") }}
-                        {{ library.form_checkbox(label="Indigo", checked=true, describedby="full-form-color-selection") }}
-                        {{ library.form_checkbox(label="Violet", describedby="full-form-color-selection") }}
-                    {% endcall %}
+                {% call library.form_field_group(class='deds-form__field-group--s') %}
+                    {{ library.form_label(text="ZIP", for="full-form-billing-zip") }}
+                    {{ library.form_input(id="full-form-billing-zip") }}
                 {% endcall %}
             {% endcall %}
-        {% endif %}
+        {% endcall %}
+        {% call library.form_fieldset() %}
+            {{ library.form_legend(text="Shipping Address") }}
+            
+            {% call library.form_field_group() %}
+                {{ library.form_checkbox(label="Same as billing address", id='checkout-example-checkbox', checked=true) }}
+            {% endcall %}
 
-    {% endmacro %}
+            {% call library.form_field_group() %}
+                {{ library.form_label(text="Street", for="full-form-shipping-street") }}
+                {{ library.form_input(disabled=true, id="full-form-shipping-street") }}
+            {% endcall %}
+            
+            {% call library.form_field_group(horizontal=true) %}
+                {% call library.form_field_group() %}
+                    {{ library.form_label(text="City", for="full-form-shipping-city") }}
+                    {{ library.form_input(disabled=true, id="full-form-shipping-city") }}
+                {% endcall %}
+                {% call library.form_field_group(class='deds-form__field-group--xs') %}
+                    {{ library.form_label(text="State", for="full-form-shipping-state") }}
+                    {{ library.form_input(placeholder="CA", disabled=true, id="full-form-shipping-state") }}
+                {% endcall %}
+                {% call library.form_field_group(class='deds-form__field-group--s') %}
+                    {{ library.form_label(text="ZIP", for="full-form-shipping-zip") }}
+                    {{ library.form_input(disabled=true, for="full-form-shipping-zip") }}
+                {% endcall %}
+            {% endcall %}
+        {% endcall %}
 
-    <div class="mds-doc-sink__wrapping-columns">
-        <div class="mds-doc-sink__column">
-            {{ component_catalog_sink() }}
-        </div>
-        <div class="mds-doc-sink__column mds-container--light">
-            {{ component_catalog_sink() }}
-        </div>
-        <div class="mds-doc-sink__column mds-container--dark">
-            {{ component_catalog_sink() }}
-        </div>
-        <div class="mds-doc-sink__column mds-container--dark mds-container--black">
-            {{ component_catalog_sink() }}
-        </div>
-    </div>
-{% endblock %}
+        {% call library.form_field_group() %}
+            {{ library.form_label(text="Special Instructions for your order which you can provide right here this label is long to test wrapping behavior", optional=true, for="full-form-shipping-instructions") }}
+            {{ library.form_textarea(id="full-form-shipping-instructions") }}
+        {% endcall %}
+
+        {% call library.form_field_group() %}
+            {% call library.form_checkbox_group(label="Favorite color from the rainbow") %}
+                {{ library.form_microcopy(text="Choose as many as you like", id="full-form-color-selection")}}
+                {{ library.form_checkbox(label="Red", describedby="full-form-color-selection") }}
+                {{ library.form_checkbox(label="Orange", describedby="full-form-color-selection") }}
+                {{ library.form_checkbox(label="Yellow", checked=true, describedby="full-form-color-selection") }}
+                {{ library.form_checkbox(label="Green", describedby="full-form-color-selection") }}
+                {{ library.form_checkbox(label="Blue", describedby="full-form-color-selection") }}
+                {{ library.form_checkbox(label="Indigo", checked=true, describedby="full-form-color-selection") }}
+                {{ library.form_checkbox(label="Violet", describedby="full-form-color-selection") }}
+            {% endcall %}
+        {% endcall %}
+    {% endcall %}
+{% endmacro %}
+
+{% macro component_sink(sinkBackgroundColor=false) %}
+    {% for component_setting in components %}
+        {% for component_name, include_component in component_setting %}
+            {% if include_component %}
+                {% set demo_macro_name = component_name + '_catalog_demo' %}
+                {% if getContext(demo_macro_name) %}
+                {{ getContext(demo_macro_name)() }}
+                {% endif %}
+            {% endif %}
+        {% endfor %}    
+    {% endfor %}
+{% endmacro %}
