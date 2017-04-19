@@ -1,11 +1,11 @@
+$mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 300ms; // Need to make this a constant, it's a reapeat form button.scss
+
 // mds-text-crop mixin
 // Use to eliminate "extra" white space added by text nodes in the DOM. This will crop the top of the text to the Cap height and the bottom of the text to the baseline
 // Use to align text with non text elements (images, icons, etc.) or to eliminate "non-system" space within an element
-$mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 300ms; // Need to make this a constant, it's a reapeat form button.scss
-
-@mixin mds-text-crop($line-height: 1.25) {
-    $offset-top: max((14 + ($line-height - 1.2) * (64 / 2)), 0) / 64;
-    $offset-bottom: max((15.5 + ($line-height - 1.2) * (64 / 2)), 0) / 64;
+@mixin mds-text-crop($line-height: 1.25, $top-adjustment: 0px, $bottom-adjustment: 0px) { // sass-lint:disable-line zero-unit - The px unit needs to be here so the calc() functions work correctly
+    $offset-top: max((12 + ($line-height - 1.2) * (64 / 2)), 0) / 64;
+    $offset-bottom: max((14.5 + ($line-height - 1.2) * (64 / 2)), 0) / 64;
 
     line-height: $line-height;
 
@@ -18,11 +18,11 @@ $mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 3
     }
 
     &::before {
-        margin-bottom: -#{$offset-top}em;
+        margin-bottom: calc(-#{$offset-top}em + #{$top-adjustment});
     }
 
     &::after {
-        margin-top: -#{$offset-bottom}em;
+        margin-top: calc(-#{$offset-bottom}em + #{$bottom-adjustment});
     }
 }
 
@@ -62,12 +62,6 @@ $mds-transition-hover: background 300ms, color 300ms, border-color 300ms, fill 3
     .mds-container--dark & {
         color: $mds-text-color-primary-on-dark;
     }
-}
-
-// TODO: Refactor this to be part of sink page
-.mds-text-crop--default {
-    @include border-box();
-    @include mds-text-crop();
 }
 
 .mds-text-anchor {

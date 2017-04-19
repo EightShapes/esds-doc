@@ -1,6 +1,11 @@
 {% extends 'doc_templates/default.template.njk' %}
 {% set title = 'Space Sink' %}
 
+{% block head_assets %}
+    {# Typically, don't create stylesheets for sink pages. It's a bad idea. In this case the sink page needs to exercise an scss mixin. A compiled stylesheet is the only way to do that. #}
+    <link rel="stylesheet" href="/assets/styles/mds_space_sink.css">
+{% endblock %}
+
 {% block body %}
     <style>
         .padded-box {
@@ -47,7 +52,6 @@
 
         .button-wrap__text {
             margin: 0;
-            font-size: 20px;
         }
 
         .button-wrap__image {
@@ -55,9 +59,15 @@
         }
     </style>
     <h1>Space Sink</h1>
-    <h2><code>.mds-text-crop--default</code> utility class</h2>
+    <h2><code>mds-text-crop()</code> mixin</h2>
     <p>
-        Adding this class (or using the <code>mds-text-crop()</code> mixin in scss) will remove the "extra" space from the top and bottom of a text element. 
+        Using the <code>mds-text-crop()</code> mixin in scss will remove the "extra" space from the top and bottom of a text element. 
+    </p>
+    <p>
+        The amount of space calculated for the "content box" varies from browser to browser and on different platforms. The mixin attempts to remove the correct amount of space, but it may not always render the desired result. You can manually "tune" the amount of space cropped using the <code>$top-adjustment</code> and <code>$bottom-adjustment</code> arguments.
+    </p>
+    <p>
+        The mixin also accepts a <code>$line-height</code> argument to override the default system line height.
     </p>
     <h3>Before mds-text-crop</h3>
     <div class="padded-box">
@@ -65,9 +75,48 @@
     </div>
 
     <h3>After mds-text-crop</h3>
-    <div class="padded-box mds-text-crop--default">
+    <div class="padded-box space-sink-example-text-crop">
         Some SAMPLE Text
     </div>
+
+    <div class="padded-box space-sink-example-text-crop space-sink-example--xxs">
+        Some SAMPLE Text - XXS
+    </div>
+
+    <div class="padded-box space-sink-example-text-crop space-sink-example--xs">
+        Some SAMPLE Text - XS
+    </div>
+
+    <div class="padded-box space-sink-example-text-crop space-sink-example--s">
+        Some SAMPLE Text - S
+    </div>
+
+    <div class="padded-box space-sink-example-text-crop space-sink-example--m">
+        Some SAMPLE Text - M
+    </div>
+
+    <div class="padded-box space-sink-example-text-crop space-sink-example--l">
+        Some SAMPLE Text - L
+    </div>
+
+    <h3>Works with any line height</h3>
+    <div class="padded-box space-sink-example-text-crop space-sink-example--m space-sink-example--line-height-1-25">
+        Wrapping lines of text to illustrate <br>
+        line height differences. Line height 1.25.
+    </div>
+    <div class="padded-box space-sink-example-text-crop space-sink-example--m space-sink-example--line-height-1-4">
+        Wrapping lines of text to illustrate <br>
+        line height differences. Line height 1.4.
+    </div>
+    <div class="padded-box space-sink-example-text-crop space-sink-example--m space-sink-example--line-height-1-6">
+        Wrapping lines of text to illustrate <br>
+        line height differences. Line height 1.6.
+    </div>
+    <div class="padded-box space-sink-example-text-crop space-sink-example--m space-sink-example--line-height-2">
+        Wrapping lines of text to illustrate <br>
+        line height differences. Line height 2.
+    </div>
+
 
     <p>Useful for ensuring only system padding & margins are creating space between and within elements. Also useful for vertically aligning elements&rsquo; top or bottom edges.</p>
 
@@ -78,7 +127,7 @@
     </div>
     <div class="image-text-pair">
         <img class="image-text-pair__image" src="http://placehold.it/100x100" alt="">
-        <p class="image-text-pair__text mds-text-crop--default">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi placeat vero amet distinctio ea commodi laboriosam, animi?</p>
+        <p class="image-text-pair__text space-sink-example-text-crop">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi placeat vero amet distinctio ea commodi laboriosam, animi?</p>
     </div>
 
     <h3>Bottom Alignment Before &amp; After</h3>
@@ -88,7 +137,7 @@
     </div>
     <div class="image-text-pair image-text-pair--bottom-aligned">
         <img class="image-text-pair__image" src="http://placehold.it/100x100" alt="">
-        <p class="image-text-pair__text mds-text-crop--default">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi placeat vero amet distinctio ea commodi laboriosam, animi?</p>
+        <p class="image-text-pair__text space-sink-example-text-crop">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi placeat vero amet distinctio ea commodi laboriosam, animi?</p>
     </div>
 
     <h3>Pseudo Button Before &amp; After (16px padding)</h3>
@@ -98,7 +147,7 @@
     </div>
     <div class="button-wrap">
         <img class="button-wrap__image" src="http://placehold.it/15x15" alt="">
-        <p class="button-wrap__text mds-text-crop--default">Call To Action with just text and icon</p>
+        <p class="button-wrap__text space-sink-example-text-crop">Call To Action with just text and icon</p>
     </div>
     
 {% endblock %}

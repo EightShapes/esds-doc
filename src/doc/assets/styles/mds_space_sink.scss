@@ -1,0 +1,45 @@
+@import 'constants';
+@import 'shared/utils';
+@import 'shared/typography';
+// Typically, don't create stylesheets for sink pages. It's a bad idea. In this case the sink page needs to exercise an scss mixin. A compiled
+// stylesheet is the only way to do that.
+
+.space-sink-example-text-crop {
+    @include mds-text-crop;
+}
+
+.space-sink-example--xxs {
+    font-size: $mds-font-size-xxs;
+}
+
+.space-sink-example--xs {
+    font-size: $mds-font-size-xs;
+}
+
+.space-sink-example--s {
+    font-size: $mds-font-size-s;
+}
+
+.space-sink-example--m {
+    font-size: $mds-font-size-m;
+}
+
+.space-sink-example--l {
+    font-size: $mds-font-size-l;
+}
+
+.button-wrap__text {
+    font-size: $mds-font-size-l;
+}
+
+.space-sink-example--line-height-1-4 {
+    @include mds-text-crop(1.4); 
+}
+
+.space-sink-example--line-height-1-6 {
+    @include mds-text-crop(1.6); 
+}
+
+.space-sink-example--line-height-2 {
+    @include mds-text-crop(2); 
+}
