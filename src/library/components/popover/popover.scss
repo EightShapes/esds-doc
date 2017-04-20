@@ -1,0 +1,262 @@
+$mds-popover-border-radius: 12px;
+
+$mds-popover-width-s: 80px;
+$mds-popover-width-m: 106px;
+$mds-popover-width-l: 200px;
+$mds-popover-width-xl: 360px;
+
+$mds-popover-height-s: 30px;
+$mds-popover-height-m: 45px;
+$mds-popover-height-l: 50px;
+$mds-popover-height-xl: 76px;
+
+$mds-popover-transition: opacity .2s ease-in-out, visibility .2s ease-in-out;
+$mds-popover-z-index: $mds-z-index-top-of-the-world;
+
+$mds-popover-title-border: 2px solid $mds-color-neutral-20;
+
+@mixin pseudo-pad() {
+    &::before,
+    &::after {
+        content: '';
+        display: block;
+        height: 0;
+        width: 0;
+    }
+}
+
+.mds-popover {
+    @include border-box();
+    background-color: $mds-color-white;
+    border-radius: $mds-popover-border-radius;
+    box-shadow: $mds-drop-shadow-default;
+    color: $mds-text-color-primary-default;
+    display: block;
+    font-family: $mds-font-family-sans-serif;
+    font-size: $mds-font-size-m;
+    font-weight: $mds-font-weight-light;
+    opacity: 0;
+    padding: $mds-space-m;
+    position: absolute;
+    text-align: left;
+    text-decoration: none;
+    transition: $mds-popover-transition;
+    visibility: hidden;
+    z-index: $mds-popover-z-index;
+}
+
+.mds-popover__overlay {
+    background: transparent;
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: $mds-popover-z-index - 1;
+}
+
+.mds-popover__title {
+    @include pseudo-pad();
+    border-bottom: $mds-popover-title-border;
+    font-size: $mds-font-size-s;
+    margin: $mds-space-stack-m;
+    padding: $mds-space-stack-m;
+
+    &::before {
+        margin-bottom: -3px;
+    }
+
+    &::after {
+        margin-top: -4px;
+    }
+}
+
+.mds-popover__paragraph {
+    @include pseudo-pad();
+    font-size: $mds-font-size-m;
+    margin: 0;
+    padding: 0;
+
+    &::before {
+        margin-bottom: -4px;
+    }
+
+    &::after {
+        margin-top: -1px;
+    }
+}
+
+.mds-popover__title-with-icon {
+    padding-right: 25px;
+}
+
+.mds-popover__title-with-buttons {
+    padding-right: 140px;
+}
+
+.mds-popover__title-buttons {
+    position: absolute;
+    right: $mds-space-m;
+    top: 9px;
+}
+
+.mds-popover__close-button {
+    display: inline-block;
+    fill: $mds-text-color-primary-default;
+    font-size: 0;
+    height: 18px;
+    position: absolute;
+    right: $mds-space-m;
+    top: 13px;
+    transition: $mds-popover-transition;
+
+    .mds-container--dark &,
+    .mds-container--black & {
+        fill: $mds-text-color-primary-default;
+    }
+
+    &:hover {
+        opacity: .6;
+    }
+}
+
+.mds-popover--sticky {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mds-popover--width-s {
+    width: $mds-popover-width-s;
+}
+
+.mds-popover--width-m {
+    width: $mds-popover-width-m;
+}
+
+.mds-popover--width-l {
+    width: $mds-popover-width-l;
+}
+
+.mds-popover--width-xl {
+    width: $mds-popover-width-xl;
+}
+
+.mds-popover--height-s {
+    height: $mds-popover-height-s;
+}
+
+.mds-popover--height-m {
+    height: $mds-popover-height-m;
+}
+
+.mds-popover--height-l {
+    height: $mds-popover-height-l;
+}
+
+.mds-popover__wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+// Handle offsets for centering a popover horizontally or vertically
+// on its target. 
+.mds-popover--top-center.mds-popover--width-s,
+.mds-popover--bottom-center.mds-popover--width-s {
+    margin-left: -($mds-popover-width-s / 2);
+}
+
+.mds-popover--top-center.mds-popover--width-m,
+.mds-popover--bottom-center.mds-popover--width-m {
+    margin-left: -($mds-popover-width-m / 2);
+}
+
+.mds-popover--top-center.mds-popover--width-l,
+.mds-popover--bottom-center.mds-popover--width-l {
+    margin-left: -($mds-popover-width-l / 2);
+}
+
+.mds-popover--bottom-center.mds-popover--width-xl,
+.mds-popover--top-center.mds-popover--width-xl {
+    margin-left: -($mds-popover-width-xl / 2);
+}
+
+.mds-popover--left-center.mds-popover--height-s,
+.mds-popover--right-center.mds-popover--height-s {
+    margin-top: -($mds-popover-height-s / 2);
+}
+
+.mds-popover--left-center.mds-popover--height-m,
+.mds-popover--right-center.mds-popover--height-m {
+    margin-top: -($mds-popover-height-m / 2);
+}
+
+.mds-popover--left-center.mds-popover--height-l,
+.mds-popover--right-center.mds-popover--height-l {
+    margin-top: -($mds-popover-height-l / 2);
+}
+
+.mds-popover--left-center.mds-popover--height-xl,
+.mds-popover--right-center.mds-popover--height-xl {
+    margin-top: -($mds-popover-height-xl / 2);
+}
+
+.mds-popover.mds-popover--top-center {
+    @extend %top-center;
+    @include bubble(bottom, null, true);
+}
+
+.mds-popover.mds-popover--top-right {
+    @extend %top-right;
+    @include bubble(bottom, corner-left, true);
+}
+
+.mds-popover.mds-popover--top-left {
+    @extend %top-left;
+    @include bubble(bottom, corner-right, true);
+}
+
+.mds-popover.mds-popover--bottom-center {
+    @extend %bottom-center;
+    @include bubble(top, null, true);
+}
+
+.mds-popover.mds-popover--bottom-right {
+    @extend %bottom-right;
+    @include bubble(top, corner-left, true);
+}
+
+.mds-popover.mds-popover--bottom-left {
+    @extend %bottom-left;
+    @include bubble(top, corner-right, true);
+}
+
+.mds-popover.mds-popover--right-center {
+    @extend %right-center;
+    @include bubble(left, null, true);
+}
+
+.mds-popover.mds-popover--right-top {
+    @extend %right-top;
+    @include bubble(left, corner-bottom, true);
+}
+
+.mds-popover.mds-popover--right-bottom {
+    @extend %right-bottom;
+    @include bubble(left, corner-top, true);
+}
+
+.mds-popover.mds-popover--left-center {
+    @extend %left-center;
+    @include bubble(right, null, true);
+}
+
+.mds-popover.mds-popover--left-top {
+    @extend %left-top;
+    @include bubble(right, corner-bottom, true);
+}
+
+.mds-popover.mds-popover--left-bottom {
+    @extend %left-bottom;
+    @include bubble(right, corner-top, true);
+}

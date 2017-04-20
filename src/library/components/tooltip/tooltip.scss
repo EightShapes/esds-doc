@@ -26,172 +26,6 @@ $mds-prompt-close-button-anchor-hover-opacity: .6;
 $mds-prompt-font-size: $mds-font-size-s;
 $mds-prompt-font-weight: $mds-font-weight-thin;
 
-// Function to help with flip flopping directions for tail generation --------
-@function opposite-direction($directions) {
-    $opposite-directions: ();
-    $direction-map: (
-        'top':    'bottom',
-        'right':  'left',
-        'bottom': 'top',
-        'left':   'right'
-    );
-
-    @each $direction in $directions {
-        $direction: to-lower-case($direction);
-
-        @if map-has-key($direction-map, $direction) { 
-            $opposite-directions: append($opposite-directions, unquote(map-get($direction-map, $direction)));
-        } 
-    }
-
-    @return $opposite-directions;
-}
-
-// Generates and positions the 12 tail options --------
-@mixin tail($direction, $tail-color, $tail-size, $corner, $is-border, $border-width) {
-    border-#{opposite-direction($direction)}: ($tail-size) solid $tail-color;
-    content: '';
-    height: 0;
-    position: absolute;
-    width: 0;
-
-    $perpendicular-borders: $tail-size solid transparent;
-    
-    @if $direction == top {
-        bottom: 100%;
-        @if not $is-border {
-            margin-bottom: -($border-width);
-        }
-    } @else if $direction == right {
-        left: 100%;
-        @if not $is-border {
-            margin-left: -($border-width);
-        }
-    } @else if $direction == bottom {
-        top: 100%;
-        @if not $is-border {
-            margin-top: -($border-width);
-        }
-    } @else if $direction == left {
-        right: 100%;
-        @if not $is-border {
-            margin-right: -($border-width);
-        }
-    }
-
-    @if $direction == top or $direction == bottom {
-        @if $corner == null {
-            border-left:   $perpendicular-borders;
-            border-right:  $perpendicular-borders;
-            left: 50%;
-            margin-left: -($tail-size);
-        } @else if $corner == corner-left {
-            border-left:   0;
-            border-right:  $perpendicular-borders;
-            @if $is-border {
-                left: -($border-width);
-            } @else {
-                left: 0;
-            }
-        } @else if $corner == corner-right {
-            border-left:   $perpendicular-borders;
-            border-right:  0;
-            @if $is-border {
-                right: -($border-width);
-            } @else {
-                right: 0;
-            }
-        }
-    } @else if $direction == right or $direction == left {
-        @if $corner == null {
-            border-bottom: $perpendicular-borders;
-            border-top:    $perpendicular-borders;
-            margin-top: -($tail-size);
-            top: 50%;
-        } @else if $corner == corner-top {
-            border-bottom: $perpendicular-borders;
-            border-top:    0;
-            @if $is-border {
-                top: -($border-width);
-            } @else {
-                top: 0;
-            }
-        }  @else if $corner == corner-bottom {
-            border-bottom: 0;
-            border-top:    $perpendicular-borders;
-            @if $is-border {
-                bottom: -($border-width);
-            } @else {
-                bottom: 0;
-            }
-        }
-    }
-}
-
-// Generates complete bubble, uses tail mixin for arrow and optional border --------
-@mixin bubble($direction, $corner: null, $has-border: false, $top-tail-color: tooltip, $border-tail-color: $mds-color-neutral-80, $border-width: 1px) {
-    @if $top-tail-color == tooltip--default {
-        $top-tail-color: $mds-color-neutral-90;
-    } @else if $top-tail-color == tooltip--flag {
-        $top-tail-color: $mds-color-green-34;
-    } @else if $top-tail-color == tooltip--prompt {
-        $top-tail-color: $mds-color-neutral-37;
-    } @else if $top-tail-color == tooltip--error {
-        $top-tail-color: $mds-color-red-50;
-    }
-
-    &:after {
-        @include tail($direction, $top-tail-color, $tail-size, $corner, false, $border-width); 
-    }
-
-    @if $has-border {
-        border: $border-width solid $border-tail-color;
-
-        &:before {
-            @include tail($direction, $border-tail-color, $tail-size + $border-width, $corner, true, $border-width);
-        }
-    }
-}
-
-// Positions the complete bubble at the correct spot on the target --------
-@mixin bubble-positioner($side, $corner) {
-    @if $side == top {
-        bottom: 100%;
-        margin-bottom: $tail-size;
-        @if $corner == center {
-            left: 50%;
-        }
-    } @else if $side == bottom {
-        margin-top: $tail-size;
-        top: 100%;
-        @if $corner == center {
-            left: 50%;
-        }
-    } @else if $side == right {
-        left: 100%;
-        margin-left: $tail-size;
-        @if $corner == center {
-            top: 50%;
-        }
-    } @else if $side == left {
-        margin-right: $tail-size;
-        right: 100%;
-        @if $corner == center {
-            top: 50%;
-        }
-    }
-
-    @if $corner == left {
-        right: 50%;
-    } @else if $corner == right {
-        left: 50%;
-    } @else if $corner == bottom {
-        top: 50%;
-    } @else if $corner == top {
-        bottom: 50%;
-    }
-}
-
 // Generate classes for bubble styles(prompt, flag, error) and positioning --------
 $tip-types: tooltip--default tooltip--flag tooltip--prompt tooltip--error;
 $with-border: false;
@@ -228,66 +62,64 @@ $with-border: false;
     }
 
     .mds-#{$current-type}.mds-tooltip--top-center {
+        @extend %top-center;
         @include bubble(bottom, null, $with-border, #{$current-type});
-        @include bubble-positioner(top, center);
-    }
-
-    .mds-#{$current-type}.mds-tooltip--right-center {
-        @include bubble(left, null, $with-border, #{$current-type});
-        @include bubble-positioner(right, center);
-    }
-
-    .mds-#{$current-type}.mds-tooltip--bottom-center {
-        @include bubble(top, null, $with-border, #{$current-type});
-        @include bubble-positioner(bottom, center);
-
-    }
-
-    .mds-#{$current-type}.mds-tooltip--left-center {
-        @include bubble(right, null, $with-border, #{$current-type});
-        @include bubble-positioner(left, center);
     }
 
     .mds-#{$current-type}.mds-tooltip--top-right {
+        @extend %top-right;
         @include bubble(bottom, corner-left, $with-border, #{$current-type});
-        @include bubble-positioner(top, right);
-    }
-
-    .mds-#{$current-type}.mds-tooltip--bottom-right {
-        @include bubble(top, corner-left, $with-border, #{$current-type});
-        @include bubble-positioner(bottom, right);
     }
 
     .mds-#{$current-type}.mds-tooltip--top-left {
+        @extend %top-left;
         @include bubble(bottom, corner-right, $with-border, #{$current-type});
-        @include bubble-positioner(top, left);
+    }
+
+    .mds-#{$current-type}.mds-tooltip--bottom-center {
+        @extend %bottom-center;
+        @include bubble(top, null, $with-border, #{$current-type});
+    }
+
+    .mds-#{$current-type}.mds-tooltip--bottom-right {
+        @extend %bottom-right;
+        @include bubble(top, corner-left, $with-border, #{$current-type});
     }
 
     .mds-#{$current-type}.mds-tooltip--bottom-left {
+        @extend %bottom-left;
         @include bubble(top, corner-right, $with-border, #{$current-type});
-        @include bubble-positioner(bottom, left);
     }
 
-    .mds-#{$current-type}.mds-tooltip--right-bottom {
-        @include bubble(left, corner-top, $with-border, #{$current-type});
-        @include bubble-positioner(right, bottom);
-    }
-
-    .mds-#{$current-type}.mds-tooltip--left-bottom {
-        @include bubble(right, corner-top, $with-border, #{$current-type});
-        @include bubble-positioner(left, bottom);
+    .mds-#{$current-type}.mds-tooltip--right-center {
+        @extend %right-center;
+        @include bubble(left, null, $with-border, #{$current-type});
     }
 
     .mds-#{$current-type}.mds-tooltip--right-top {
+        @extend %right-top;
         @include bubble(left, corner-bottom, $with-border, #{$current-type});
-        @include bubble-positioner(right, top);
+    }
+
+    .mds-#{$current-type}.mds-tooltip--right-bottom {
+        @extend %right-bottom;
+        @include bubble(left, corner-top, $with-border, #{$current-type});
+    }
+
+    .mds-#{$current-type}.mds-tooltip--left-center {
+        @extend %left-center;
+        @include bubble(right, null, $with-border, #{$current-type});
     }
 
     .mds-#{$current-type}.mds-tooltip--left-top {
+        @extend %left-top;
         @include bubble(right, corner-bottom, $with-border, #{$current-type});
-        @include bubble-positioner(left, top);
     }
 
+    .mds-#{$current-type}.mds-tooltip--left-bottom {
+        @extend %left-bottom;
+        @include bubble(right, corner-top, $with-border, #{$current-type});
+    }
 }
 
 // Basic classes for styling and layout --------

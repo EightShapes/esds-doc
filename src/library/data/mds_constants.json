@@ -204,6 +204,8 @@
     }, {
         "space": true
     }, {
+        "bubbles": true
+    }, {
         "typography": true
     }],
     "components": [{
@@ -228,6 +230,8 @@
         "notification": true
     }, {
         "pagination": true
+    }, {
+        "popover": true
     }, {
         "range_slider": true
     }, {

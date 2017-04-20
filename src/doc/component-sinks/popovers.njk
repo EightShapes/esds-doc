@@ -1,0 +1,57 @@
+{% extends "doc_templates/default.sink.template.njk" %}
+
+{% set title = 'Popovers Sink' %}
+
+{% macro component_sink() %}
+    <style>
+        .mds-doc-sink__column {
+            width: 25%;
+        }
+    </style>
+    <h2 class="mds-doc-sink__header">Default Popover</h2>    
+    {% call library.popover(class="mds-popover--bottom-center mds-popover--width-l", title="A Little Tidbit", trigger_text="Popover with a title") %}
+        <p class="mds-popover__paragraph">
+            Here's a bit of content for you.
+        </p>
+    {% endcall %}
+    <br />
+    <br />
+    <br />
+    <br />
+    {% call library.popover(class="mds-popover--bottom-right mds-popover--width-xl", title="Please Decide", buttons=true, trigger_text="With header buttons") %}
+        <p class="mds-popover__paragraph">
+            The user cannot close this popover by clicking "off" of the bubble. The user must select one of the button options above in order to dismiss this popover.
+        </p>
+    {% endcall %}
+    <br />
+    <br />
+    <br />
+    <br />
+    {% call library.popover(class="mds-popover--bottom-right mds-popover--width-xl", title="Close This Two Ways", close=true, trigger_text="Close X") %}
+        <p class="mds-popover__paragraph">
+            This popover can be closed by clicking the "X" icon in the top right corner of the bubble. It will also close if you click anywhere on the window outside of the popover bubble. You can select the text or click anywhere inside of the bubble and the popover will not go away.
+        </p>
+    {% endcall %}
+    <br />
+    <br />
+    <br />
+    <br />
+    {% call library.popover(class="mds-popover--right-top mds-popover--width-l", trigger_text="No title") %}
+        <p class="mds-popover__paragraph">
+            Here's a big long string of content. This discription would go deep into some detail and give the user some options as to whether they'd like to be done or cancel the process at hand.
+        </p>
+    {% endcall %}
+    <br />
+    <br />
+    <br />
+    <br />
+    {% call library.popover(class="mds-popover--bottom-center mds-popover--width-l mds-popover--sticky", trigger_text="This bubbe is  present on page load", title="A Present On Load Popover") %}
+        <p class="mds-popover__paragraph">
+            This is an example to view without having to interact with the page. Popovers can be shown or hidden manually within any given app.
+        </p>
+    {% endcall %}
+    <br />
+    <br />
+    <br />
+    <br />
+{% endmacro %}

@@ -9,6 +9,7 @@ shared:
   - accessibility:  true
   - animation:      true
   - space:          true
+  - bubbles:        true
   - typography:     true
 
 # components
@@ -27,7 +28,8 @@ components:
   - modal:          true
   - notification:   true
   - pagination:     true
+  - popover:        true # Depends on shared/bubbles
   - range_slider:   true
   - switch:         true
-  - tooltip:        true
+  - tooltip:        true # Depends on shared/bubbles
 
