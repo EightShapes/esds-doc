@@ -117,6 +117,7 @@
                 "default": "solid 1px #cccccc",
                 "on-light": "solid 1px #cccccc",
                 "on-dark": "solid 1px #333333",
+                "on-title": "solid 2px #333333",
                 "color-on-light": "#cccccc",
                 "color-on-dark": "#333333"
             },
@@ -126,7 +127,8 @@
             },
             "disabled": "solid 1px #808080",
             "radius": {
-                "default": "2px"
+                "default": "2px",
+                "panel": "15px"
             }
         },
         "size": {
@@ -177,7 +179,8 @@
             }
         },
         "opacity": {
-            "disabled": ".4"
+            "disabled": ".4",
+            "overlay": ".5"
         },
         "drop-shadow": {
             "default": "0 2px 4px 0 rgba(0, 0, 0, .08)"
@@ -219,6 +222,8 @@
         "list_group": true
     }, {
         "long_form_text": true
+    }, {
+        "modal": true
     }, {
         "notification": true
     }, {

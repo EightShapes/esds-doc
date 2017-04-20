@@ -90,6 +90,7 @@ border :
     default : "solid 1px !{*color-neutral-80}"
     on-light : "solid 1px !{*color-neutral-80}"
     on-dark : "solid 1px !{*color-neutral-20}"
+    on-title : "solid 2px !{*color-neutral-20}"
     color-on-light : *color-neutral-80
     color-on-dark : *color-neutral-20
   control :
@@ -98,6 +99,7 @@ border :
   disabled : "solid 1px !{*color-neutral-50}"
   radius : 
     default : 2px
+    panel: 15px
 size :
   icon :
     xs : 14px
@@ -138,6 +140,7 @@ transition :
     link : "color, 300ms"
 opacity :
   disabled : ".4"
+  overlay : ".5"
 drop-shadow :
   default : "0 2px 4px 0 rgba(0, 0, 0, .08)"
 z-index :

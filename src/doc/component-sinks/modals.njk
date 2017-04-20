@@ -1,0 +1,57 @@
+{% extends "doc_templates/default.sink.template.njk" %}
+
+{% set title = 'Modals Sink' %}
+
+{% macro component_sink() %}
+
+    <h2 class="mds-doc-sink__header">Default</h2>
+    {{ library.button(text="Launch modal", attributes='data-mds-modal-id="modal-1"') }}
+    {% call library.modal(id="modal-1", title="This is modal title") %}
+        <p>This is modal content</p>
+    {% endcall %}
+
+    <h2 class="mds-doc-sink__header">Default With Save Button</h2>
+    {{ library.button(text="Launch modal", attributes='data-mds-modal-id="modal-2"') }}
+    {% call library.modal(id="modal-2", title="This is modal title", confirm_button="Save", confirm_button_class="mds-button--primary") %}
+        <p>This is modal content</p>
+    {% endcall %}
+
+    <h2 class="mds-doc-sink__header">Too Little Content</h2>
+    {{ library.button(text="Launch modal", attributes='data-mds-modal-id="modal-3"') }}
+    {% call library.modal(id="modal-3", title="A") %}
+        <p>B</p>
+    {% endcall %}
+
+    <h2 class="mds-doc-sink__header">Too Much Content</h2>
+    {{ library.button(text="Launch modal", attributes='data-mds-modal-id="modal-4"') }}
+    {% call library.modal(id="modal-4", title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam") %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ut aliquid tenetur sequi pariatur rem expedita similique, rerum, corrupti assumenda alias adipisci distinctio. Harum neque autem a, quisquam in architecto aspernatur iure tenetur, asperiores voluptatibus obcaecati cum magni ipsum repudiandae hic reprehenderit pariatur, assumenda ex excepturi, velit consectetur. Labore, molestias error, cupiditate autem ea hic tenetur quisquam</p>
+    {% endcall %}
+
+{% endmacro %}
+
+
+
+{% block closing_body_assets %}
+    {{ super() }}
+    <script>
+
+        var modalTriggers = document.querySelectorAll('[data-mds-modal-id]');
+
+		for(var i = 0; i < modalTriggers.length; i++) {
+
+		   modalTriggers[i].onclick = function() {
+				var modalId = this.getAttribute('data-mds-modal-id');
+                MDS.modal(modalId);
+		   }
+		};
+
+    </script>
+{% endblock %}

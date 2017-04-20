@@ -67,12 +67,14 @@ $mds-font-size-l: 20px;
 $mds-border-separator-default: solid 1px #cccccc;
 $mds-border-separator-on-light: solid 1px #cccccc;
 $mds-border-separator-on-dark: solid 1px #333333;
+$mds-border-separator-on-title: solid 2px #333333;
 $mds-border-separator-color-on-light: #cccccc;
 $mds-border-separator-color-on-dark: #333333;
 $mds-border-control-default: solid 1px #808080;
 $mds-border-control-color: #808080;
 $mds-border-disabled: solid 1px #808080;
 $mds-border-radius-default: 2px;
+$mds-border-radius-panel: 15px;
 
 $mds-size-icon-xs: 14px;
 $mds-size-icon-s: 16px;
@@ -107,6 +109,7 @@ $mds-space-stack-xl: 0 0 48px;
 $mds-transition-color-link: color, 300ms;
 
 $mds-opacity-disabled: .4;
+$mds-opacity-overlay: .5;
 
 $mds-drop-shadow-default: 0 2px 4px 0 rgba(0, 0, 0, .08);
 

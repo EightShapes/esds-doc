@@ -12,9 +12,9 @@ shared:
   - typography:     true
 
 # components
-# setting these options to false will: 
+# setting these options to false will:
 #   prevent inclusion of components in the compiled library.css
-#   hide component examples from the component-sinks test page 
+#   hide component examples from the component-sinks test page
 components:
   - icon:           true
   - button:         true
@@ -24,6 +24,7 @@ components:
   - form:           true
   - list_group:     true
   - long_form_text: true
+  - modal:          true
   - notification:   true
   - pagination:     true
   - range_slider:   true

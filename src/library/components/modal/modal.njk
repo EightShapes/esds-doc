@@ -1,0 +1,40 @@
+{% macro modal(
+	id=false,
+	class=false,
+	cancel_button="Cancel",
+	cancel_button_class="",
+	confirm_button=false,
+	confirm_button_class="",
+	title="Modal Title") %}
+
+    {% if id == false %}
+        {% set random_number = range(0, 100000) | random %}
+        {% set id = label | replace(' ', '-') | lower + '--' + random_number %}
+    {% endif %}
+	{# NOTE: block element of 'mds-modal' is already defined by JS as popup #}
+	<section role="dialog" aria-labelledby="title-{{id}}" class="mds-modal__container" data-id="{{id}}" aria-hidden="true">
+		<div class="mds-modal__inner">
+			<header class="mds-modal__header">
+				{% if cancel_button or confirm_button %}
+					<div class="mds-modal__actions">
+						{% if cancel_button %}
+							{{ button(class=cancel_button_class, text=cancel_button, attributes='data-mds-modal-close') }}
+						{% endif %}
+						{% if confirm_button %}
+							{{ button(class=confirm_button_class, text=confirm_button, attributes='data-mds-modal-close') }}
+						{% endif %}
+					</div>
+				{% endif %}
+				<h1 class="mds-modal__title" id="title-{{id}}">
+					{{ title }}
+				</h1>
+			</header>
+
+			<div class="mds-modal__body">
+				{{ caller() }}
+			</div>
+		</div>
+	</section>
+{% endmacro %}
+
+
