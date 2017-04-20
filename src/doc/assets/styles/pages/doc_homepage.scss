@@ -29,12 +29,14 @@
 }
 
 .mds-doc__content-header-col-heading {
+    color: $mds-text-color-secondary-on-light;
     font-size: $mds-font-size-l;
     font-weight: $mds-font-weight-bold;
     margin-bottom: -1px;
 }
 
 .mds-doc__content-header-col-label {
+    color: $mds-text-color-secondary-on-light;
     display: inline-block;
     font-size: $mds-font-size-xxs;
     font-weight: $mds-font-weight-bold;
