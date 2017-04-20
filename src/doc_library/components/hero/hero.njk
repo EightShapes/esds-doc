@@ -1,0 +1,15 @@
+{% macro hero(
+	class=false) %}
+    <div class="mds-doc-hero{{ ' ' + class if class }}">
+		<div class="mds-doc-hero__content-inner">
+			<img class="mds-doc-hero__bsul" src="/assets/images/MDS-bsul.svg" alt="Building Software Users Love" />
+			<img class="mds-doc-hero__bsul-blinker" src="/assets/images/MDS-bsul-blinker.svg" alt="|" />
+	    	<h1 class="mds-doc-hero__heading">
+	    		Building financial software users love with a design philosophy delivered in code.
+	    	</h1>
+	    	<p class="mds-doc-hero__paragraph">
+	    		The Morningstar Design System allows designers, developers and stakeholders to speak the same language in order to quickly meet customer needs while raising the game of financial storytelling.
+	    	</p>
+	    </div>
+    </div>
+{% endmacro %}

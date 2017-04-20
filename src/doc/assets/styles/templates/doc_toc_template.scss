@@ -28,7 +28,7 @@ $mds-doc-toc-max-width-breakpoint: $mds-doc-content-max-width + $mds-doc-nav-wid
     @media screen and (min-width: 1196px) {
         display: block;
         position: fixed;
-        right: calc((100% - (#{$mds-doc-content-max-width} + #{$mds-doc-toc-space-nav-content-separation} + #{$mds-doc-page-nav-wide-screen-width} + #{$mds-doc-nav-width})) / 2);
+        right: calc((100% - (#{$mds-doc-content-max-width} + #{$mds-doc-toc-space-nav-content-separation} + #{$mds-doc-page-nav-wide-screen-width} + #{$mds-doc-nav-width})) / 2 - #{$mds-doc-toc-space-nav-content-separation});
         top: ($mds-doc-header-height + $mds-space-l) - 5px; // 5px is to align with <h1> at the top of the documentation
         width: $mds-doc-page-nav-wide-screen-width;
 
@@ -50,7 +50,7 @@ $mds-doc-toc-max-width-breakpoint: $mds-doc-content-max-width + $mds-doc-nav-wid
     @media screen and (min-width: 1196px) {
         margin: 0 auto;
         max-width: $mds-doc-content-max-width + $mds-doc-toc-space-nav-content-separation + $mds-doc-page-nav-wide-screen-width;
-        padding-right: $mds-doc-toc-space-nav-content-separation + $mds-doc-page-nav-wide-screen-width;
+        padding-right: $mds-doc-page-nav-wide-screen-width;
     }
 }
 

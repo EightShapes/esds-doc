@@ -1,5 +1,23 @@
 {% extends 'doc_templates/default.doc.template.njk' %}
+
+{% block doc_body_with_hero %}
+	{{ doc_library.hero() }}
+{% endblock %}
+
 {% block doc_body %}
+	<div class="mds-doc__content-header-cols">
+		<div class="mds-doc__content-header-col">
+			<div class="mds-doc__content-header-col-heading">Let’s Talk</div>
+		</div>
+		<div class="mds-doc__content-header-col">
+			<label class="mds-doc__content-header-col-label">Slack</label><br/>
+			#MDS-design and #MDS-engineering
+		</div>
+		<div class="mds-doc__content-header-col mds-long-form-text">
+			<label class="mds-doc__content-header-col-label">Email</label><br/>
+			<a href="mailto:designsystem@morningstar.com">designsystem@morningstar.com</a>
+		</div>
+	</div>
     {% filter markdown %}
 ### v{{ project.version }}
         

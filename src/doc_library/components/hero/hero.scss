@@ -1,0 +1,72 @@
+$mds-doc-hero-min-height: 350px;
+$mds-doc-hero-heading-font-size: 32px;
+$mds-doc-hero-bsul-width: 250px;
+$mds-doc-hero-bsul-blink-animation: 1s blink step-end infinite;
+$mds-doc-hero-content-padding-default: $mds-space-s;
+$mds-doc-hero-content-padding-tablet: 90px;
+$mds-doc-hero-content-padding-desktop: 105px;
+$mds-doc-hero-content-padding-desktop-l: 125px;
+
+.mds-doc-hero {
+    background-image: url('/assets/images/MDS-home-page-hero-background.svg');
+    background-size: cover;
+    color: $mds-text-color-primary-on-dark;
+    font-family: $mds-font-family-sans-serif;
+    min-height: $mds-doc-hero-min-height;
+    width: 100%;
+}
+
+.mds-doc-hero__heading {
+    font-size: $mds-doc-hero-heading-font-size;
+    font-weight: $mds-font-weight-bold;
+    margin: 0;
+    padding-top: $mds-space-m;
+}
+
+.mds-doc-hero__paragraph {
+    font-size: $mds-font-size-l;
+    font-weight: $mds-font-weight-thin;
+    margin: 0;
+    padding: $mds-space-m 0;
+}
+
+.mds-doc-hero__heading,
+.mds-doc-hero__paragraph {
+    padding-left: $mds-doc-hero-content-padding-default;
+    padding-right: $mds-doc-hero-content-padding-default;
+    
+    @media screen and (min-width: 768px) {
+        padding-left: $mds-doc-hero-content-padding-tablet;
+        padding-right: $mds-doc-hero-content-padding-tablet;
+    }
+    
+    @media screen and (min-width: 992px) {
+        padding-left: $mds-doc-hero-content-padding-desktop;
+        padding-right: $mds-doc-hero-content-padding-desktop;
+    }
+
+    @media screen and (min-width: 1196px) {
+        padding-left: $mds-doc-hero-content-padding-desktop-l;
+        padding-right: $mds-doc-hero-content-padding-desktop-l;
+    }
+}
+
+.mds-doc-hero__bsul {
+    display: inline;
+    width: $mds-doc-hero-bsul-width;
+}
+
+.mds-doc-hero__content-inner .mds-doc-hero__bsul-blinker {
+    animation: $mds-doc-hero-bsul-blink-animation;
+    box-sizing: initial;
+    display: inline;
+    padding-left: $mds-space-s;
+}
+
+@keyframes blink {
+    0% {opacity: 0;}
+    40% {opacity: 0;}
+    50% {opacity: 1;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
+}
