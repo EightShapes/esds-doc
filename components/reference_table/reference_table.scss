@@ -1,12 +1,18 @@
 $doc-reference-table-background: $uds-doc-tools-background-color-default;
 
-.uds-doc-reference-table__inner {
+.uds-doc-reference-table {
     @include udt-box-sizing;
+    background: $doc-reference-table-background;
+    width: 100%;
+}
+
+.uds-doc-reference-table__inner {
     background: $doc-reference-table-background;
     border-collapse: collapse;
     color: $uds-doc-tools-text-color-default;
     font-family: $uds-doc-tools-font-family-sans-serif;
     text-align: left;
+    width: 100%;
 }
 
 .uds-doc-reference-table__header-cell,

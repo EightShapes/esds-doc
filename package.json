@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/EightShapes/uds-doc-tools#readme",
   "devDependencies": {
-    "@eightshapes/uds-build-tools": "^0.3.0",
+    "@eightshapes/uds-build-tools": "^0.4.0",
     "gulp": "git+https://github.com/gulpjs/gulp.git#4.0",
     "gulp-cli": "^1.4.0",
     "install": "^0.10.1",
