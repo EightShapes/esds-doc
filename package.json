@@ -1,0 +1,26 @@
+{
+  "name": "uds-doc-tools",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EightShapes/uds-doc-tools.git"
+  },
+  "author": "Kevin Powell <kevinmpowell@gmail.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/EightShapes/uds-doc-tools/issues"
+  },
+  "homepage": "https://github.com/EightShapes/uds-doc-tools#readme",
+  "devDependencies": {
+    "@eightshapes/uds-build-tools": "^0.3.0",
+    "gulp": "git+https://github.com/gulpjs/gulp.git#4.0",
+    "gulp-cli": "^1.4.0",
+    "install": "^0.10.1",
+    "npm": "^5.3.0"
+  }
+}

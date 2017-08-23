@@ -1,0 +1,10 @@
+text-color:
+  default: "#000000"
+background-color:
+  default: "#FFFFFF"
+font:
+  family:
+    sans-serif: "'Helvetica', 'Arial', sans-serif"
+space:
+  inset:
+    s: 8px

@@ -1,0 +1,36 @@
+{% macro reference_table(class=false, data, headers) %}
+    {% from 'components/reference_table/reference_table_defaults.njk' import default_data, default_headers %}
+    {% set data = data | default(default_data) %}
+    {% set headers = headers | default(default_headers) %}
+    <div class="uds-doc-reference-table">
+        <table class="uds-doc-reference-table__inner">
+            <thead class="uds-doc-referenc-table__header">
+                <tr class="uds-doc-referenc-table__header-row">
+                    {% for header in headers %}
+                        <th class="uds-doc-reference-table__header-cell">{{ header | replace("_", " ") | capitalize }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody class="uds-doc-reference-table__body">
+                {% for data_row in data %}
+                    <tr class="uds-doc-reference-table__row">
+                        {% for data_key in headers %}
+                            {% if data_key == 'class' %}
+                                {# Convenience method to wrap class names in code tags #}
+                                {% set cell_content = "`" + data_row[data_key] + "`" %}
+                            {% else %}
+                                {% set cell_content = data_row[data_key] %}
+                            {% endif %}
+                            <td class="uds-doc-reference-table__cell">
+                                {{ cell_content }}
+                                {# {{ cell_content | markdown(false) }} #}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}                
+            </tbody>
+        </table>
+    </div>
+{% endmacro %}
+
+
