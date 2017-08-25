@@ -1,0 +1,8 @@
+{% macro code_snippet(class=false, button_text="Copy Code") %}
+    {% set button_component_import_path = button_component_import_path | default('./button/button.njk') %}
+    {% from button_component_import_path import button with context %}
+
+    <div class="uds-doc-code-snippet">
+        {{ button(text=button_text) }}
+    </div>
+{% endmacro %}

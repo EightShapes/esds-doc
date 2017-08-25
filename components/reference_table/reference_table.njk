@@ -22,8 +22,7 @@
                                 {% set cell_content = data_row[data_key] %}
                             {% endif %}
                             <td class="uds-doc-reference-table__cell">
-                                {{ cell_content }}
-                                {# {{ cell_content | markdown(false) }} #}
+                                {{ cell_content | safe | markdown(false) }}
                             </td>
                         {% endfor %}
                     </tr>

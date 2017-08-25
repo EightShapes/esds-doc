@@ -4,5 +4,7 @@
     {% filter markdown %}
         # UDS Doc Tools
         * [Reference Tables](/sink-pages/components/reference-tables.html)
+
     {% endfilter %}
+    {{ uds_doc.code_snippet() }}
 {% endblock %}
