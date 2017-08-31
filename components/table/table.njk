@@ -1,0 +1,25 @@
+{% macro table(class, headers, rows) %}
+    {% from 'components/table/table_defaults.njk' import default_rows, default_headers %}
+    {% set rows = rows | default(default_rows) %}
+    {% set headers = headers | default(default_headers) %}
+    <table class="esds-table{{ ' ' + class if class }}">
+        <thead class="esds-table__head">
+            <tr class="esds-table__row esds-table__row--head">
+                {% for header in headers %}
+                    <th class="esds-table__cell esds-table__cell--head">{{ header | safe }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody class="esds-table__body">
+            {% for row in rows %}
+                <tr class="esds-table__row">
+                    {% for cell in row %}
+                        <td class="esds-table__cell">
+                            {{ cell | safe | markdown(false) }}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+{% endmacro %}

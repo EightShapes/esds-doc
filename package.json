@@ -1,27 +1,29 @@
 {
-  "name": "uds-doc-tools",
+  "name": "eightshapes-doc-tools",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "gulpfile.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EightShapes/uds-doc-tools.git"
+    "url": "git+https://github.com/EightShapes/eightshapes-doc-tools.git"
   },
-  "author": "Kevin Powell <kevinmpowell@gmail.com>",
-  "license": "UNLICENSED",
+  "contributors": [
+    "Nathan Curtis <nathan@eightshapes.com>",
+    "Kevin Powell <kevinmpowell@gmail.com>"
+  ],
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EightShapes/uds-doc-tools/issues"
+    "url": "https://github.com/EightShapes/eightshapes-doc-tools/issues"
   },
-  "homepage": "https://github.com/EightShapes/uds-doc-tools#readme",
-  "devDependencies": {
-    "@eightshapes/eightshapes-build-tools": "^0.8.1",
-    "@eightshapes/uds-build-tools": "^0.5.0",
-    "gulp": "git+https://github.com/gulpjs/gulp.git#4.0",
-    "gulp-cli": "^1.4.0",
-    "install": "^0.10.1",
-    "npm": "^5.3.0"
+  "homepage": "https://github.com/EightShapes/eightshapes-doc-tools#readme",
+  "dependencies": {
+    "@eightshapes/eightshapes-build-tools": "^0.8.2"
   }
 }

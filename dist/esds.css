@@ -1,0 +1,23 @@
+.uds-doc-reference-table {
+  background: #FFFFFF;
+  width: 100%; }
+  .uds-doc-reference-table, .uds-doc-reference-table:before, .uds-doc-reference-table:after {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+  .uds-doc-reference-table *,
+  .uds-doc-reference-table *:before,
+  .uds-doc-reference-table *:after {
+    -webkit-box-sizing: inherit;
+            box-sizing: inherit; }
+
+.uds-doc-reference-table__inner {
+  background: #FFFFFF;
+  border-collapse: collapse;
+  color: #000000;
+  font-family: "Helvetica", "Arial", sans-serif;
+  text-align: left;
+  width: 100%; }
+
+.uds-doc-reference-table__header-cell,
+.uds-doc-reference-table__cell {
+  padding: 8px; }
