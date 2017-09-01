@@ -1,3 +1,25 @@
+.esds-button {
+  background: #e67e00;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  padding: 6px 12px;
+  font-family: sans-serif; }
+
+.esds-code-snippet {
+  background: white;
+  border: solid 1px darkgray;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal; }
+
+.esds-code-snippet__pre[class*="language-"] {
+  margin: 0; }
+
+.esds-code-snippet__actions {
+  text-align: right; }
+
 .uds-doc-reference-table {
   background: #FFFFFF;
   width: 100%; }

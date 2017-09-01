@@ -1,0 +1,15 @@
+.esds-code-snippet {
+    background: white;
+    border: solid 1px darkgray;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.esds-code-snippet__pre[class*="language-"] {
+    margin: 0;
+}
+
+.esds-code-snippet__actions {
+    text-align: right;
+}

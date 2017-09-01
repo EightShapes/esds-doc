@@ -189,16 +189,7 @@
             }] %}
 
 {% macro button(text) %}
-    <button>{{ text }} DEFAULT BUTTON</button>
-{% endmacro %}
-
-{% macro code_snippet(class=false, button_text="Copy Code") %}
-    {% set button_component_import_path = button_component_import_path | default('./button/button.njk') %}
-    {% from button_component_import_path import button with context %}
-
-    <div class="uds-doc-code-snippet">
-        {{ button(text=button_text) }}
-    </div>
+    <button class="esds-button">{{ text }}</button>
 {% endmacro %}
 
 {% macro reference_table(class=false, data, headers) %}
@@ -249,6 +240,49 @@
                 applies_to: ".uds-component-name",
                 outcome: "Modifies `uds-component-name` to change its background color to a different color."
             }] %}
+
+{% macro code_snippet(
+        source='', 
+        language='markup', 
+        show_copy_button=true, 
+        class=false, 
+        beautify=false, 
+        preformatted=false,
+        reference_link_text="Reference Link", 
+        reference_link_href=false,
+        copy_code_text="Copy Code",
+        icon_path=false) %}
+        {% set button_component_import_path = button_component_import_path | default('./button/button.njk') %}
+        {% from button_component_import_path import button with context %}
+
+    {% set id = range(0, 100000) | random %}
+    {% if language == 'njk' %}
+        {% set language = 'twig' %}
+    {% endif %}
+
+    {% if language != 'css' and language != 'scss' and language != 'markup' and language != 'html'  %}
+        {% set preformatted = true %}
+    {% endif %}
+
+    <div class="esds-code-snippet{{ ' ' + class if class }}">
+        {% if show_copy_button %}
+            <div class="esds-code-snippet__actions">
+                {{ button(text=copy_code_text) }}
+            </div>
+        {% endif %}
+        <div id="esds-code-snippet--{{ id }}" class="esds-code-snippet__source">
+            <pre class="esds-code-snippet__pre"><code class="language-{{ language }}">
+                {%- if preformatted -%}
+                    {{- source | stripindent | trim -}}
+                {%- elseif language == 'css' or language == 'scss' -%}
+                    {{- source | trim | cssbeautify -}}
+                {%- else -%}
+                    {{- source | stripindent | htmlbeautify -}}
+                {%- endif -%}
+            </code></pre>
+        </div>
+    </div>
+{% endmacro %}
 
 {% macro table(class, headers, rows) %}
     {% from 'components/table/table_defaults.njk' import default_rows, default_headers %}

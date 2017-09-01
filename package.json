@@ -1,5 +1,5 @@
 {
-  "name": "eightshapes-doc-tools",
+  "name": "@eightshapes/eightshapes-doc-tools",
   "version": "0.1.0",
   "description": "",
   "main": "gulpfile.js",
@@ -24,6 +24,10 @@
   },
   "homepage": "https://github.com/EightShapes/eightshapes-doc-tools#readme",
   "dependencies": {
-    "@eightshapes/eightshapes-build-tools": "^0.8.2"
+    "@eightshapes/eightshapes-build-tools": "^0.8.2",
+    "clipboard": "^1.7.1",
+    "js-beautify": "^1.6.14",
+    "prismjs": "^1.6.0",
+    "strip-indent": "^2.0.0"
   }
 }

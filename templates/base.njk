@@ -1,7 +1,13 @@
 {% import 'components/esds.njk' as esds with context %}
 <html>
     <head>
+        <link rel="stylesheet" href="/styles/dependencies/prism.css">
         <link rel="stylesheet" href="/styles/esds.css">
+        <script src="/scripts/dependencies/clipboard.min.js"></script>
+        <script src="/scripts/dependencies/prism.js"></script>
+        <script src="/scripts/dependencies/prism-json.min.js"></script>
+        <script src="/scripts/dependencies/prism-scss.min.js"></script>
+        <script src="/scripts/dependencies/prism-twig.min.js"></script>
         {% block head_assets %}{% endblock %}
     </head>
     <body>
