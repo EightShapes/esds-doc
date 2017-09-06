@@ -1,5 +1,28 @@
 {% extends "templates/sink.njk" %}
 
 {% block body %}
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+    <h1 class="esds-sink-page-header">Basic code snippet</h1>
     {{ esds.code_snippet(source="<h1>Hello World</h1>") }}
+
+    <h1 class="esds-sink-page-header">Complex source</h1>
+    {{ esds.code_snippet(source="<table><thead><tr><th>Header</th><th>Header</th><th>Header</th><th>Header</th></tr></thead><tbody><tr><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td></tr><tr><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td></tr><tr><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td></tr><tr><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td></tr><tr><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td></tr></tbody></table> ") }}
+
+    <h1 class="esds-sink-page-header">Include filename, use css highlighting</h1>
+    {{ esds.code_snippet(filename="myfile.css", language="css", source="body { background: hotpink; color: red; font-family: sans-serif; font-weight: bold; }") }}
+
+    <h1 class="esds-sink-page-header">Pass nunjucks macro as source</h1>
+    {{ esds.code_snippet(source=esds.button(text="Call To Action!")) }}
+
+    <h1 class="esds-sink-page-header">Hide copy button</h1>
+    {{ esds.code_snippet(show_copy_button=false, source="<h1>Hello World</h1>") }}
+
+    <script>
+        // Probably should have some kind of "on ready" function here
+        Esds.CodeSnippet.init();
+    </script>
 {% endblock %}

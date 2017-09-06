@@ -16,6 +16,18 @@
         body > * {
             background: yellow;
         }
+
+        .esds-sink-page-header {
+            background: transparent;
+            color: {{ esds_tokens['text-color'].default }};
+            font-family: {{ esds_tokens.font.family['sans-serif'] | safe }};
+            font-size: 20px;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1.2;
+            margin: 32px 0 16px 0;
+            padding: 0;
+        }
     </style>
 {% endblock %}
 {% block body %}
