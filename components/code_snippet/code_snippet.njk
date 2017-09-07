@@ -1,5 +1,5 @@
 {% macro code_snippet(
-        source='', 
+        source='Set source= to view source here', 
         language='markup', 
         show_copy_button=true, 
         class=false, 
@@ -8,7 +8,7 @@
         reference_link_text="Reference Link", 
         reference_link_href=false,
         copy_code_text="Copy Code",
-        icon_path=false) %}
+        filename=false) %}
         {% set button_component_import_path = button_component_import_path | default('./button/button.njk') %}
         {% from button_component_import_path import button with context %}
 
@@ -22,9 +22,17 @@
     {% endif %}
 
     <div class="esds-code-snippet{{ ' ' + class if class }}">
-        {% if show_copy_button %}
-            <div class="esds-code-snippet__actions">
-                {{ button(text=copy_code_text) }}
+        {% if show_copy_button or filename %}
+            <div class="esds-code-snippet__header">
+                {% if filename %}
+                    <span class="esds-code-snippet__filename">{{ filename }}</span>
+                {% endif %}
+                <div class="esds-code-snippet__copy-code-wrap">
+                    <div class="esds-code-snippet__copied-notification">
+                        Copied to clipboard
+                    </div>
+                    {{ button(text=copy_code_text) }}
+                </div>
             </div>
         {% endif %}
         <div id="esds-code-snippet--{{ id }}" class="esds-code-snippet__source">

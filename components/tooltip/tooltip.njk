@@ -1,0 +1,10 @@
+{% macro tooltip(class=false, text="I'm a tooltip") %}
+    <div class="esds-tooltip">
+        <div class="esds-tooltip__tip">
+            {{ text }}
+        </div>
+        <div class="esds-tooltip__trigger">
+            {{ caller() }}
+        </div>
+    </div>
+{% endmacro %}

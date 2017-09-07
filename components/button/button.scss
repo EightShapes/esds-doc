@@ -1,9 +1,11 @@
 .esds-button {
-    background: darken(darkorange, 5%);
+    background: $esds-color-orange;
     border: 0;
-    border-radius: 5px;
-    color: white;
-    font-size: 14px;
+    border-radius: $esds-border-radius-default;
+    color: $esds-color-white;
+    cursor: pointer;
+    font-family: $esds-font-family-sans-serif;
+    font-size: $esds-font-size-m;
     padding: 6px 12px;
-    font-family: sans-serif;
+    text-transform: uppercase;
 }
