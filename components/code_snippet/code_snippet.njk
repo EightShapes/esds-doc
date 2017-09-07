@@ -21,22 +21,22 @@
         {% set preformatted = true %}
     {% endif %}
 
-    <div class="esds-code-snippet{{ ' ' + class if class }}">
+    <div class="es-doc-code-snippet{{ ' ' + class if class }}">
         {% if show_copy_button or filename %}
-            <div class="esds-code-snippet__header">
+            <div class="es-doc-code-snippet__header">
                 {% if filename %}
-                    <span class="esds-code-snippet__filename">{{ filename }}</span>
+                    <span class="es-doc-code-snippet__filename">{{ filename }}</span>
                 {% endif %}
-                <div class="esds-code-snippet__copy-code-wrap">
-                    <div class="esds-code-snippet__copied-notification">
+                <div class="es-doc-code-snippet__copy-code-wrap">
+                    <div class="es-doc-code-snippet__copied-notification">
                         Copied to clipboard
                     </div>
                     {{ button(text=copy_code_text) }}
                 </div>
             </div>
         {% endif %}
-        <div id="esds-code-snippet--{{ id }}" class="esds-code-snippet__source">
-            <pre class="esds-code-snippet__pre"><code class="language-{{ language }}">
+        <div class="es-doc-code-snippet__source">
+            <pre class="es-doc-code-snippet__pre"><code class="language-{{ language }}">
                 {%- if preformatted -%}
                     {{- source | stripindent | trim -}}
                 {%- elseif language == 'css' or language == 'scss' -%}

@@ -1,4 +1,4 @@
-$doc-reference-table-background: $esds-background-color-default;
+$doc-reference-table-background: $es-doc-background-color-default;
 
 .uds-doc-reference-table {
     @include udt-box-sizing;
@@ -9,13 +9,13 @@ $doc-reference-table-background: $esds-background-color-default;
 .uds-doc-reference-table__inner {
     background: $doc-reference-table-background;
     border-collapse: collapse;
-    color: $esds-text-color-default;
-    font-family: $esds-font-family-sans-serif;
+    color: $es-doc-text-color-default;
+    font-family: $es-doc-font-family-sans-serif;
     text-align: left;
     width: 100%;
 }
 
 .uds-doc-reference-table__header-cell,
 .uds-doc-reference-table__cell {
-    padding: $esds-space-inset-s;
+    padding: $es-doc-space-inset-s;
 }

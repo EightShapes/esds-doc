@@ -22,7 +22,7 @@ const cssBeautify = require('js-beautify').css,
     stripIndent = require('strip-indent');
 
 module.exports = {
-    codeNamespace: 'esds',
+    codeNamespace: 'es-doc',
     copyTasks: [
         {
             name: 'script-dependencies',
