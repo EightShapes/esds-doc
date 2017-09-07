@@ -222,6 +222,9 @@
                     <span class="esds-code-snippet__filename">{{ filename }}</span>
                 {% endif %}
                 <div class="esds-code-snippet__copy-code-wrap">
+                    <div class="esds-code-snippet__copied-notification">
+                        Copied to clipboard
+                    </div>
                     {{ button(text=copy_code_text) }}
                 </div>
             </div>
@@ -320,3 +323,14 @@
             ['Elephant', 'Tree', 'Pizza'],
             ['Tiger', 'Cactus', 'Banana'],
             ['Platypus', 'Flower', 'Hamburger']] %}
+
+{% macro tooltip(class=false, text="I'm a tooltip") %}
+    <div class="esds-tooltip">
+        <div class="esds-tooltip__tip">
+            {{ text }}
+        </div>
+        <div class="esds-tooltip__trigger">
+            {{ caller() }}
+        </div>
+    </div>
+{% endmacro %}
