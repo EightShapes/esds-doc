@@ -1,6 +1,6 @@
 {
-  "name": "@eightshapes/eightshapes-doc-tools",
-  "version": "0.2.0",
+  "name": "@eightshapes/esds-doc",
+  "version": "0.3.0",
   "description": "",
   "main": "gulpfile.js",
   "directories": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EightShapes/eightshapes-doc-tools.git"
+    "url": "git+https://github.com/EightShapes/esds-doc.git"
   },
   "contributors": [
     "Nathan Curtis <nathan@eightshapes.com>",
@@ -20,11 +20,11 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EightShapes/eightshapes-doc-tools/issues"
+    "url": "https://github.com/EightShapes/esds-doc/issues"
   },
-  "homepage": "https://github.com/EightShapes/eightshapes-doc-tools#readme",
+  "homepage": "https://github.com/EightShapes/esds-doc#readme",
   "dependencies": {
-    "@eightshapes/eightshapes-build-tools": "*",
+    "@eightshapes/esds-build": "*",
     "clipboard": "^1.7.1",
     "js-beautify": "^1.6.14",
     "prismjs": "^1.6.0",

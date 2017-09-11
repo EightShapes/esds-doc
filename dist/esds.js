@@ -22,6 +22,8 @@ if (!Element.prototype.closest)
 var Esds = Esds || {};
 
 Esds.CodeSnippet = function() {
+    const copiedClass = 'esds-code-snippet--show-copied-notification';
+
     function triggerCopiedEvent(snippet) {
         let event;
 
@@ -43,10 +45,8 @@ Esds.CodeSnippet = function() {
 
     }
 
-    function copyCodeToClipboard(e) {
-        const trigger = e.target,
-                snippet = trigger.closest('.esds-code-snippet'),
-                source = snippet.querySelector('.esds-code-snippet__pre code');
+    function copyCodeToClipboard(snippet) {
+        const source = snippet.querySelector('.esds-code-snippet__pre code');
 
         let textarea = document.createElement('textarea');
         textarea.style.height = '0';
@@ -84,14 +84,24 @@ Esds.CodeSnippet = function() {
 
     function handleSuccessfulCopy(e) {
         const snippet = e.target;
-        snippet.style.backgroundColor = 'hotpink';
+        snippet.classList.add(copiedClass);
+    }
+
+    function resetCopiedState(snippet) {
+        snippet.classList.remove(copiedClass);
+    }
+
+    function handleCopyButtonClick(e) {
+        const trigger = e.target,
+                snippet = trigger.closest('.esds-code-snippet');
+        resetCopiedState(snippet);
+        copyCodeToClipboard(snippet);
     }
 
     function enableCopyFunctionality() {
         const triggers = getCopyTriggers();
         triggers.forEach(function(t){
-            console.log(t);
-            t.addEventListener('click', copyCodeToClipboard);
+            t.addEventListener('click', handleCopyButtonClick);
         });
     }
 
@@ -103,10 +113,8 @@ Esds.CodeSnippet = function() {
     }
 
     let init = function init() {
-        console.log("SOMETHING");
         enableCopyFunctionality();
         setCopiedListeners();
-        // Find all copy triggers on the page
     };
 
     return {
