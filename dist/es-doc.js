@@ -101,7 +101,6 @@ Esds.CodeSnippet = function() {
     function enableCopyFunctionality() {
         const triggers = getCopyTriggers();
         triggers.forEach(function(t){
-            console.log(t);
             t.addEventListener('click', handleCopyButtonClick);
         });
     }
@@ -114,10 +113,8 @@ Esds.CodeSnippet = function() {
     }
 
     let init = function init() {
-        console.log("SOMETHING");
         enableCopyFunctionality();
         setCopiedListeners();
-        // Find all copy triggers on the page
     };
 
     return {
