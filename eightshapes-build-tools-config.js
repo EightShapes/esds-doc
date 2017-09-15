@@ -1,4 +1,5 @@
-const cssBeautify = require('js-beautify').css,
+const jsBeautify = require('js-beautify'),
+    cssBeautify = require('js-beautify').css,
     cssBeautifyOptions = {
         "newline_between_rules": true,
         "selector_separator_newline": true,
@@ -46,6 +47,10 @@ module.exports = {
 
         env.addFilter('cssbeautify', function(string) {
             return cssBeautify(string, cssBeautifyOptions);
+        });
+
+        env.addFilter('jsbeautify', function(string) {
+            return jsBeautify(string);
         });
 
         env.addFilter('stripindent', function(string){

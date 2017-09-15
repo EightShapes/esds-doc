@@ -1,11 +1,20 @@
+$esds-button-background-color: $esds-color-blue !default;
+$esds-button-border: 0 !default;
+$esds-button-border-radius: $esds-border-radius-default !default;
+$esds-button-text-color: $esds-color-white !default;
+$esds-button-font-family: $esds-font-family-sans-serif !default;
+$esds-button-font-size: $esds-font-size-m !default;
+$esds-button-space-inset: 6px 12px !default;
+$esds-button-text-transform: uppercase !default;
+
 .esds-button {
-    background: $esds-color-blue;
-    border: 0;
-    border-radius: $esds-border-radius-default;
-    color: $esds-color-white;
-    cursor: pointer;
-    font-family: $esds-font-family-sans-serif;
-    font-size: $esds-font-size-m;
-    padding: 6px 12px;
-    text-transform: uppercase;
+    background:     $esds-button-background-color;
+    border:         $esds-button-border;
+    border-radius:  $esds-border-radius-default;
+    color:          $esds-button-text-color;
+    cursor:         pointer;
+    font-family:    $esds-button-font-family;
+    font-size:      $esds-button-font-size;
+    padding:        $esds-button-space-inset;
+    text-transform: $esds-button-text-transform;
 }

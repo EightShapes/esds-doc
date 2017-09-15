@@ -1,5 +1,5 @@
 .esds-button {
-  background: #e76822;
+  background: #068194;
   border: 0;
   border-radius: 4px;
   color: #FFFFFF;
@@ -21,18 +21,21 @@
   line-height: 1.2; }
   .esds-code-snippet .token.property,
   .esds-code-snippet .token .tag {
-    color: #e76822; }
+    color: #0A9DB3; }
   .esds-code-snippet .token.selector,
   .esds-code-snippet .token .attr-name {
-    color: #0795aa; }
+    color: #068194; }
   .esds-code-snippet .token .attr-value {
-    color: #F57026; }
+    color: #e76822; }
   .esds-code-snippet .token .punctuation {
     color: #323232; }
 
+.esds-code-snippet__sources-wrap {
+  position: relative; }
+
 .esds-code-snippet__source {
-  border-radius: 0 0 4px 4px;
-  overflow: hidden; }
+  background-color: #f3f1f1;
+  border-radius: 4px; }
 
 .esds-code-snippet__header {
   -webkit-box-align: center;
@@ -45,8 +48,10 @@
   padding: 8px; }
 
 .esds-code-snippet__copy-code-wrap {
-  margin-left: auto;
-  position: relative; }
+  padding: 8px;
+  position: absolute;
+  right: 0;
+  top: 0; }
 
 .esds-code-snippet__copied-notification {
   background: #FFFFFF;
@@ -77,11 +82,20 @@
             animation: fade-in-out 3s; }
 
 .esds-code-snippet__pre[class*='language-'] {
-  background-color: #f3f1f1;
+  background-color: transparent;
   border-radius: 4px;
   margin: 0;
-  max-height: 300px;
+  max-height: 200px;
   overflow: auto; }
+  .esds-code-snippet--tall .esds-code-snippet__pre[class*='language-'] {
+    max-height: 400px; }
+  .esds-code-snippet--no-max-height .esds-code-snippet__pre[class*='language-'] {
+    max-height: none; }
+
+.esds-code-snippet__filename {
+  display: block;
+  padding: 8px;
+  padding-bottom: 0; }
 
 @-webkit-keyframes fade-in-out {
   0% {
