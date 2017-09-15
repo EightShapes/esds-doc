@@ -1,6 +1,7 @@
+$esds-code-snippet-max-height-default: 200px !default;
+$esds-code-snippet-max-height-tall: 400px !default;
 $esds-code-snippet-border-radius: $esds-border-radius-default !default;
 $esds-code-snippet-font-size: $esds-font-size-m !default;
-$esds-code-snippet-max-height: 300px !default;
 $esds-code-snippet-notification-box-shadow-color: rgba(0, 0, 0, .8);
 
 .esds-code-snippet {
@@ -18,7 +19,7 @@ $esds-code-snippet-notification-box-shadow-color: rgba(0, 0, 0, .8);
     .token {
         &.property,
         .tag {
-            color: $esds-color-orange;
+            color: $esds-color-blue-light;
         }
 
         &.selector,
@@ -27,7 +28,7 @@ $esds-code-snippet-notification-box-shadow-color: rgba(0, 0, 0, .8);
         }
 
         .attr-value {
-            color: $esds-color-orange-light;
+            color: $esds-color-orange;
         }
 
         .punctuation {
@@ -36,9 +37,12 @@ $esds-code-snippet-notification-box-shadow-color: rgba(0, 0, 0, .8);
     }
 }
 
+
+
 .esds-code-snippet__source {
     border-radius: 0 0 $esds-code-snippet-border-radius $esds-code-snippet-border-radius;
     overflow: hidden;
+    position: relative;
 }
 
 .esds-code-snippet__header {
@@ -49,8 +53,10 @@ $esds-code-snippet-notification-box-shadow-color: rgba(0, 0, 0, .8);
 }
 
 .esds-code-snippet__copy-code-wrap {
-    margin-left: auto;
-    position: relative;
+    padding: $esds-space-inset-s;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .esds-code-snippet__copied-notification {
@@ -91,8 +97,16 @@ $esds-code-snippet-notification-box-shadow-color: rgba(0, 0, 0, .8);
     background-color: $esds-color-neutral-95;
     border-radius: $esds-code-snippet-border-radius;
     margin: 0;
-    max-height: $esds-code-snippet-max-height;
+    max-height: $esds-code-snippet-max-height-default;
     overflow: auto;
+
+    .esds-code-snippet--tall & {
+        max-height: $esds-code-snippet-max-height-tall; 
+    }
+
+    .esds-code-snippet--no-max-height & {
+        max-height: none; 
+    }
 }
 
 

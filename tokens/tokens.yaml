@@ -1,6 +1,7 @@
 color:
   black: &color-black "#000000"
-  blue: &color-blue "#0795aa"
+  blue: &color-blue "#068194"
+  blue-light: &color-blue-light "#0A9DB3"
   orange: &color-orange "#e76822"
   orange-light: &color-orange-light "#F57026"
   white: &color-white "#FFFFFF"

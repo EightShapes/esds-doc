@@ -164,20 +164,22 @@
     {% endif %}
 
     <div class="esds-code-snippet{{ ' ' + class if class }}">
-        {% if show_copy_button or filename %}
+        {% if filename %}
             <div class="esds-code-snippet__header">
                 {% if filename %}
                     <span class="esds-code-snippet__filename">{{ filename }}</span>
                 {% endif %}
+            </div>
+        {% endif %}
+        <div class="esds-code-snippet__source">
+            {% if show_copy_button %}
                 <div class="esds-code-snippet__copy-code-wrap">
                     <div class="esds-code-snippet__copied-notification">
                         Copied to clipboard
                     </div>
                     {{ button(text=copy_code_text) }}
                 </div>
-            </div>
-        {% endif %}
-        <div class="esds-code-snippet__source">
+            {% endif %}
             <pre class="esds-code-snippet__pre"><code class="language-{{ language }}">
                 {%- if preformatted -%}
                     {{- source | stripindent | trim -}}
