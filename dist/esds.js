@@ -120,9 +120,17 @@ Esds.CodeSnippet = function() {
         });
     }
 
+    function initializeTabs() {
+        const tabs = document.querySelectorAll('.esds-code-snippet__tabs');
+        tabs.forEach(function(t){
+            const snippet = t.closest('.esds-code-snippet');
+        });
+    }
+
     let init = function init() {
         enableCopyFunctionality();
         setCopiedListeners();
+        initializeTabs();
     };
 
     return {

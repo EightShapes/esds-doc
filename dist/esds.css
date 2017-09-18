@@ -37,16 +37,6 @@
   background-color: #f3f1f1;
   border-radius: 4px; }
 
-.esds-code-snippet__header {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-bottom: solid 1px #888888;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 8px; }
-
 .esds-code-snippet__copy-code-wrap {
   padding: 8px;
   position: absolute;
@@ -56,7 +46,7 @@
 .esds-code-snippet__copied-notification {
   background: #FFFFFF;
   border-radius: 4px;
-  bottom: calc(100% + 8px);
+  bottom: calc(100% + $esds-code-snippet-copied-tooltip-distance-from-button);
   -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.8);
           box-shadow: 0 2px 3px rgba(0, 0, 0, 0.8);
   opacity: 0;
@@ -94,6 +84,7 @@
 
 .esds-code-snippet__filename {
   display: block;
+  font-size: 14px;
   padding: 8px;
   padding-bottom: 0; }
 
