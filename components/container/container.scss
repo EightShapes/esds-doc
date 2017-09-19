@@ -1,0 +1,10 @@
+$esds-doc-container-background: $esds-doc-background-color-default !default; 
+$esds-doc-container-background-dark: $esds-doc-background-color-dark !default;
+
+.esds-doc-container {
+    background: $esds-doc-container-background;
+}
+
+.esds-doc-container--dark {
+    background: $esds-doc-container-background-dark;
+}

@@ -13,9 +13,11 @@ $esds-doc-color-neutral-53: #888888;
 $esds-doc-color-neutral-95: #f3f1f1;
 
 $esds-doc-text-color-default: #323232;
+$esds-doc-text-color-on-dark: #f3f1f1;
 $esds-doc-text-color-link: #068194;
 
 $esds-doc-background-color-default: #FFFFFF;
+$esds-doc-background-color-dark: #000000;
 
 $esds-doc-font-family-sans-serif: 'Lato', sans-serif;
 $esds-doc-font-line-height-normal: 1.2;
@@ -45,10 +47,12 @@ $esds-doc-tokens: (
     ),
     'text-color': (
         'default': $esds-doc-text-color-default,
+        'on-dark': $esds-doc-text-color-on-dark,
         'link': $esds-doc-text-color-link
     ),
     'background-color': (
-        'default': $esds-doc-background-color-default
+        'default': $esds-doc-background-color-default,
+        'dark': $esds-doc-background-color-dark
     ),
     'font': (
         'family': (

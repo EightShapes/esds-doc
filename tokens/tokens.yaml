@@ -14,10 +14,12 @@ color:
 
 text-color:
   default: *color-neutral-20
+  on-dark: *color-neutral-95
   link: *color-blue
 
 background-color:
   default: *color-white
+  dark: *color-black
 
 font:
   family:
