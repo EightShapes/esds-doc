@@ -1,99 +1,101 @@
 
-$esds-code-snippet-background-color: $esds-background-color-default !default; 
-$esds-code-snippet-border: $esds-border-default !default; 
-$esds-code-snippet-border-radius: $esds-border-radius-default !default;
-$esds-code-snippet-font-family: $esds-font-family-sans-serif !default;
-$esds-code-snippet-font-size: $esds-font-size-m !default;
-$esds-code-snippet-font-style: normal !default;
-$esds-code-snippet-font-weight: normal !default;
-$esds-code-snippet-line-height: $esds-font-line-height-normal !default;
-$esds-code-snippet-text-color: $esds-text-color-default !default;
+$esds-doc-code-snippet-background-color: $esds-doc-background-color-default !default; 
+$esds-doc-code-snippet-border: $esds-doc-border-default !default; 
+$esds-doc-code-snippet-border-radius: $esds-doc-border-radius-default !default;
+$esds-doc-code-snippet-font-family: $esds-doc-font-family-sans-serif !default;
+$esds-doc-code-snippet-font-size: $esds-doc-font-size-m !default;
+$esds-doc-code-snippet-font-style: normal !default;
+$esds-doc-code-snippet-font-weight: normal !default;
+$esds-doc-code-snippet-line-height: $esds-doc-font-line-height-normal !default;
+$esds-doc-code-snippet-text-color: $esds-doc-text-color-default !default;
 
-$esds-code-snippet-source-background-color: $esds-color-neutral-95 !default;
-$esds-code-snippet-source-tag-color: $esds-color-blue-light !default;
-$esds-code-snippet-source-selector-color: $esds-color-blue !default;
-$esds-code-snippet-source-attribute-value-color: $esds-color-orange !default;
-$esds-code-snippet-source-punctuation-color: $esds-color-neutral-20 !default;
-$esds-code-snippet-source-max-height-default: 200px !default;
-$esds-code-snippet-source-max-height-tall: 400px !default;
+$esds-doc-code-snippet-source-background-color: $esds-doc-color-neutral-95 !default;
+$esds-doc-code-snippet-source-tag-color: $esds-doc-color-blue-light !default;
+$esds-doc-code-snippet-source-selector-color: $esds-doc-color-blue !default;
+$esds-doc-code-snippet-source-attribute-value-color: $esds-doc-color-orange !default;
+$esds-doc-code-snippet-source-punctuation-color: $esds-doc-color-neutral-20 !default;
+$esds-doc-code-snippet-source-max-height-default: 200px !default;
+$esds-doc-code-snippet-source-max-height-tall: 400px !default;
 
-$esds-code-snippet-copy-code-button-offset: $esds-space-inset-s !default;
+$esds-doc-code-snippet-copy-code-button-offset: $esds-doc-space-inset-s !default;
 
-$esds-code-snippet-copied-tooltip-background-color: $esds-background-color-default !default;
-$esds-code-snippet-copied-tooltip-border-radius: $esds-border-radius-default !default;
-$esds-code-snippet-copied-tooltip-distance-from-button: 8px !default;
-$esds-code-snippet-copied-tooltip-box-shadow-color: rgba(0, 0, 0, .8) !default;
-$esds-code-snippet-copied-tooltip-font-size: $esds-code-snippet-font-size !default;
-$esds-code-snippet-copied-tooltip-shadow: 0 2px 3px $esds-code-snippet-copied-tooltip-box-shadow-color !default;
-$esds-code-snippet-copied-tooltip-inset-space: $esds-space-inset-s !default;
+$esds-doc-code-snippet-copied-tooltip-background-color: $esds-doc-background-color-default !default;
+$esds-doc-code-snippet-copied-tooltip-border-radius: $esds-doc-border-radius-default !default;
+$esds-doc-code-snippet-copied-tooltip-distance-from-button: 8px !default;
+$esds-doc-code-snippet-copied-tooltip-box-shadow-color: rgba(0, 0, 0, .8) !default;
+$esds-doc-code-snippet-copied-tooltip-font-size: $esds-doc-code-snippet-font-size !default;
+$esds-doc-code-snippet-copied-tooltip-shadow: 0 2px 3px $esds-doc-code-snippet-copied-tooltip-box-shadow-color !default;
+$esds-doc-code-snippet-copied-tooltip-inset-space: $esds-doc-space-inset-s !default;
 
-$esds-code-snippet-filename-font-size: $esds-code-snippet-font-size !default;
-$esds-code-snippet-filename-offset: $esds-space-inset-s !default;
+$esds-doc-code-snippet-filename-font-size: $esds-doc-code-snippet-font-size !default;
+$esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-s !default;
 
 
-.esds-code-snippet {
-    background:     $esds-code-snippet-background-color;
-    border:         $esds-code-snippet-border;
-    border-radius:  $esds-code-snippet-border-radius;
-    color:          $esds-code-snippet-text-color;
-    font-family:    $esds-code-snippet-font-family;
-    font-size:      $esds-code-snippet-font-size;
-    font-style:     $esds-code-snippet-font-style;
-    font-weight:    $esds-code-snippet-font-weight;
-    line-height:    $esds-code-snippet-line-height;
+.esds-doc-code-snippet {
+    background:     $esds-doc-code-snippet-background-color;
+    border:         $esds-doc-code-snippet-border;
+    border-radius:  $esds-doc-code-snippet-border-radius;
+    color:          $esds-doc-code-snippet-text-color;
+    font-family:    $esds-doc-code-snippet-font-family;
+    font-size:      $esds-doc-code-snippet-font-size;
+    font-style:     $esds-doc-code-snippet-font-style;
+    font-weight:    $esds-doc-code-snippet-font-weight;
+    line-height:    $esds-doc-code-snippet-line-height;
 
     // Prism overrides
     .token {
         &.property,
         .tag {
-            color: $esds-code-snippet-source-tag-color;
+            color: $esds-doc-code-snippet-source-tag-color;
         }
 
         &.selector,
         .attr-name {
-            color: $esds-code-snippet-source-selector-color;
+            color: $esds-doc-code-snippet-source-selector-color;
         }
 
         .attr-value {
-            color: $esds-code-snippet-source-attribute-value-color;
+            color: $esds-doc-code-snippet-source-attribute-value-color;
         }
 
         .punctuation {
-            color: $esds-code-snippet-source-punctuation-color;
+            color: $esds-doc-code-snippet-source-punctuation-color;
         }
     }
 }
 
-.esds-code-snippet__sources-wrap {
+.esds-doc-code-snippet__sources-wrap {
     position: relative;
 }
 
-.esds-code-snippet__source {
-    background-color:   $esds-code-snippet-source-background-color;
-    border-radius:      $esds-code-snippet-border-radius;
+.esds-doc-code-snippet__source {
+    background-color:   $esds-doc-code-snippet-source-background-color;
+    border-radius:      $esds-doc-code-snippet-border-radius;
 }
 
-.esds-code-snippet__copy-code-wrap {
-    padding: $esds-code-snippet-copy-code-button-offset;
+.esds-doc-code-snippet__copy-code-wrap {
+    padding: $esds-doc-code-snippet-copy-code-button-offset;
     position: absolute;
     right: 0;
     top: 0;
+    z-index: 10;
 }
 
-.esds-code-snippet__copied-notification {
-    background: $esds-code-snippet-copied-tooltip-background-color;
-    border-radius: $esds-code-snippet-copied-tooltip-border-radius;
-    bottom: calc(100% + $esds-code-snippet-copied-tooltip-distance-from-button);
-    box-shadow: $esds-code-snippet-copied-tooltip-shadow;
+.esds-doc-code-snippet__copied-notification {
+    background: $esds-doc-code-snippet-copied-tooltip-background-color;
+    border-radius: $esds-doc-code-snippet-copied-tooltip-border-radius;
+    bottom: calc(100% + $esds-doc-code-snippet-copied-tooltip-distance-from-button);
+    box-shadow: $esds-doc-code-snippet-copied-tooltip-shadow;
     opacity: 0;
-    padding: $esds-code-snippet-copied-tooltip-inset-space;
+    padding: $esds-doc-code-snippet-copied-tooltip-inset-space;
     position: absolute;
     right: 0;
+    visibility: hidden;
     white-space: nowrap;
 
     &:after {
-        background: $esds-background-color-default;
-        box-shadow: 2px 2px 2px $esds-code-snippet-copied-tooltip-box-shadow-color;
+        background: $esds-doc-background-color-default;
+        box-shadow: 2px 2px 2px $esds-doc-code-snippet-copied-tooltip-box-shadow-color;
         content: '';
         height: 10px;
         left: 50%;
@@ -104,31 +106,31 @@ $esds-code-snippet-filename-offset: $esds-space-inset-s !default;
         width: 10px;
     }
 
-    .esds-code-snippet--show-copied-notification & {
+    .esds-doc-code-snippet--show-copied-notification & {
         animation: fade-in-out 3s;
     }
 }
 
-.esds-code-snippet__pre[class*='language-'] {
+.esds-doc-code-snippet__pre[class*='language-'] {
     background-color: transparent;
-    border-radius: $esds-code-snippet-border-radius;
+    border-radius: $esds-doc-code-snippet-border-radius;
     margin: 0;
-    max-height: $esds-code-snippet-source-max-height-default;
+    max-height: $esds-doc-code-snippet-source-max-height-default;
     overflow: auto;
 
-    .esds-code-snippet--tall & {
-        max-height: $esds-code-snippet-source-max-height-tall; 
+    .esds-doc-code-snippet--tall & {
+        max-height: $esds-doc-code-snippet-source-max-height-tall; 
     }
 
-    .esds-code-snippet--no-max-height & {
+    .esds-doc-code-snippet--no-max-height & {
         max-height: none; 
     }
 }
 
-.esds-code-snippet__filename {
+.esds-doc-code-snippet__filename {
     display: block;
-    font-size: $esds-code-snippet-filename-font-size;
-    padding: $esds-code-snippet-filename-offset;
+    font-size: $esds-doc-code-snippet-filename-font-size;
+    padding: $esds-doc-code-snippet-filename-offset;
     padding-bottom: 0;
 }
 
@@ -137,6 +139,7 @@ $esds-code-snippet-filename-offset: $esds-space-inset-s !default;
     0% {
         bottom: calc(100% + 4px);
         opacity: 0;
+        visibility: visible;
     }
 
     10% {

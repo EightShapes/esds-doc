@@ -13,7 +13,7 @@
         {% set button_component_import_path = button_component_import_path | default('./button/button.njk') %}
         {% from button_component_import_path import button with context %}
 
-    {% set code_snippet_id = "esds-code-snippet--" + range(0, 100000) | random %}
+    {% set code_snippet_id = "esds-doc-code-snippet--" + range(0, 100000) | random %}
     {% if language == 'njk' %}
         {% set language = 'twig' %}
     {% endif %}
@@ -22,18 +22,18 @@
         {% set preformatted = true %}
     {% endif %}
 
-    <div class="esds-code-snippet{{ ' ' + class if class }}">
+    <div class="esds-doc-code-snippet{{ ' ' + class if class }}">
         
         {# Upcoming feature - support multiple tabs with different source examples #}
         {% if sources.length > 0 %}
-            <div class="esds-code-snippet__tabs">
+            <div class="esds-doc-code-snippet__tabs">
                 {% for source in sources %}
-                    <a href="#{{ code_snippet_id }}--{{ source.language }}" class="esds-code-snippet__tab">{{ source.language }}</a>
+                    <a href="#{{ code_snippet_id }}--{{ source.language }}" class="esds-doc-code-snippet__tab">{{ source.language }}</a>
                 {% endfor %}
             </div>
         {% endif %}
 
-        <div class="esds-code-snippet__sources-wrap">
+        <div class="esds-doc-code-snippet__sources-wrap">
             {# Upcoming feature - support multiple tabs with different source examples #}
             {% if sources.length > 0 %}
                 {% for source in sources %}
@@ -43,8 +43,8 @@
                 {{ render_code_snippet_source(source=source, language=language, filename=filename, code_snippet_id=code_snippet_id) }}
             {% endif %}
             {% if show_copy_button %}
-                <div class="esds-code-snippet__copy-code-wrap">
-                    <div class="esds-code-snippet__copied-notification">
+                <div class="esds-doc-code-snippet__copy-code-wrap">
+                    <div class="esds-doc-code-snippet__copied-notification">
                         Copied to clipboard
                     </div>
                     {{ button(text=copy_code_text) }}
@@ -55,11 +55,11 @@
 {% endmacro %}
 
 {% macro render_code_snippet_source(source, language='markup', filename, code_snippet_id) %}
-    <div class="esds-code-snippet__source" id="{{ code_snippet_id }}--{{ language }}">
+    <div class="esds-doc-code-snippet__source" id="{{ code_snippet_id }}--{{ language }}">
         {% if filename %}
-            <span class="esds-code-snippet__filename">{{ filename }}</span>
+            <span class="esds-doc-code-snippet__filename">{{ filename }}</span>
         {% endif %}
-        <pre class="esds-code-snippet__pre"><code class="language-{{ language }}">
+        <pre class="esds-doc-code-snippet__pre"><code class="language-{{ language }}">
             {%- if preformatted -%}
                 {{- source | stripindent | trim -}}
             {%- elseif language == 'js' -%}

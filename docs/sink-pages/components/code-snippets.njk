@@ -10,33 +10,33 @@
         <table><thead><tr><th>Header</th><th>Header</th><th>Header</th><th>Header</th></tr></thead><tbody><tr><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td></tr><tr><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td></tr><tr><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td></tr><tr><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td></tr><tr><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td><td>Cell Content</td></tr></tbody></table>
     {% endset %}
 
-    <h1 class="esds-sink-page-header">Basic code snippet</h1>
+    <h1 class="esds-doc-sink-page-header">Basic code snippet</h1>
     {{ library.code_snippet(source="<h1>Hello World</h1>") }}
 
-    <h1 class="esds-sink-page-header">Complex source</h1>
+    <h1 class="esds-doc-sink-page-header">Complex source</h1>
     {{ library.code_snippet(source=table_example_code) }}
 
-    <h1 class="esds-sink-page-header">Include filename, use css highlighting</h1>
+    <h1 class="esds-doc-sink-page-header">Include filename, use css highlighting</h1>
     {{ library.code_snippet(filename="myfile.css", 
                             language="css", 
                             source="body { background: hotpink; color: red; font-family: sans-serif; font-weight: bold; }") }}
 
-    <h1 class="esds-sink-page-header">Pass nunjucks macro as source</h1>
+    <h1 class="esds-doc-sink-page-header">Pass nunjucks macro as source</h1>
     {{ library.code_snippet(source=library.button(text="Call To Action!")) }}
 
-    <h1 class="esds-sink-page-header">Hide copy button</h1>
+    <h1 class="esds-doc-sink-page-header">Hide copy button</h1>
     {{ library.code_snippet(show_copy_button=false, 
                             source="<h1>Hello World</h1>") }}
 
-    <h1 class="esds-sink-page-header">Default Max Height</h1>
+    <h1 class="esds-doc-sink-page-header">Default Max Height</h1>
     {{ library.code_snippet(source=table_example_code) }}
 
-    <h1 class="esds-sink-page-header">Tall Max Height</h1>
-    {{ library.code_snippet(class="esds-code-snippet--tall", 
+    <h1 class="esds-doc-sink-page-header">Tall Max Height</h1>
+    {{ library.code_snippet(class="esds-doc-code-snippet--tall", 
                             source=table_example_code) }}
 
-    <h1 class="esds-sink-page-header">No Max Height</h1>
-    {{ library.code_snippet(class="esds-code-snippet--no-max-height", 
+    <h1 class="esds-doc-sink-page-header">No Max Height</h1>
+    {{ library.code_snippet(class="esds-doc-code-snippet--no-max-height", 
                             source=table_example_code) }}
 
     <script>

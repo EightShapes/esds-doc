@@ -2,16 +2,16 @@
 var Esds = Esds || {};
 
 Esds.CodeSnippet = function() {
-    const copiedClass = 'esds-code-snippet--show-copied-notification';
+    const copiedClass = 'esds-doc-code-snippet--show-copied-notification';
 
     function triggerCopiedEvent(snippet) {
         let event;
 
         if (window.CustomEvent) {
-          event = new CustomEvent('esds-code-snippet-copied', {detail: {snippet: snippet}});
+          event = new CustomEvent('esds-doc-code-snippet-copied', {detail: {snippet: snippet}});
         } else {
           event = document.createEvent('CustomEvent');
-          event.initCustomEvent('esds-code-snippet-copied', true, true, {snippet: snippet});
+          event.initCustomEvent('esds-doc-code-snippet-copied', true, true, {snippet: snippet});
         }
 
         snippet.dispatchEvent(event);
@@ -26,7 +26,7 @@ Esds.CodeSnippet = function() {
     }
 
     function copyCodeToClipboard(snippet) {
-        const source = snippet.querySelector('.esds-code-snippet__pre code');
+        const source = snippet.querySelector('.esds-doc-code-snippet__pre code');
 
         let textarea = document.createElement('textarea');
         textarea.style.height = '0';
@@ -55,11 +55,11 @@ Esds.CodeSnippet = function() {
     }
 
     function getCopyTriggers() {
-        return document.querySelectorAll('.esds-code-snippet__copy-code-wrap');
+        return document.querySelectorAll('.esds-doc-code-snippet__copy-code-wrap');
     }
 
     function getSnippets() {
-        return document.querySelectorAll('.esds-code-snippet');
+        return document.querySelectorAll('.esds-doc-code-snippet');
     }
 
     function handleSuccessfulCopy(e) {
@@ -73,7 +73,7 @@ Esds.CodeSnippet = function() {
 
     function handleCopyButtonClick(e) {
         const trigger = e.target,
-                snippet = trigger.closest('.esds-code-snippet');
+                snippet = trigger.closest('.esds-doc-code-snippet');
         resetCopiedState(snippet);
         copyCodeToClipboard(snippet);
     }
@@ -88,14 +88,14 @@ Esds.CodeSnippet = function() {
     function setCopiedListeners() {
         const snippets = getSnippets();
         snippets.forEach(function(s){
-            s.addEventListener('esds-code-snippet-copied', handleSuccessfulCopy);
+            s.addEventListener('esds-doc-code-snippet-copied', handleSuccessfulCopy);
         });
     }
 
     function initializeTabs() {
-        const tabs = document.querySelectorAll('.esds-code-snippet__tabs');
+        const tabs = document.querySelectorAll('.esds-doc-code-snippet__tabs');
         tabs.forEach(function(t){
-            const snippet = t.closest('.esds-code-snippet');
+            const snippet = t.closest('.esds-doc-code-snippet');
         });
     }
 
