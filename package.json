@@ -24,8 +24,8 @@
   },
   "homepage": "https://github.com/EightShapes/esds-doc#readme",
   "dependencies": {
-    "esds-build": "*",
     "clipboard": "^1.7.1",
+    "esds-build": "^0.18.1",
     "js-beautify": "^1.6.14",
     "prismjs": "^1.6.0",
     "strip-indent": "^2.0.0"
