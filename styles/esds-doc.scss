@@ -5,4 +5,6 @@
 @import 'button/button';
 @import 'code_snippet/code_snippet';
 @import 'reference_table/reference_table'; // /components is configured as an import path
+@import 'html_example_list/html_example_list'; // /components is configured as an import path
+
 $doc-reference-table-background: $esds-doc-background-color-default;

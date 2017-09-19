@@ -1,0 +1,26 @@
+{% macro html_example_list(
+                class=false,
+                example,
+                label,
+                examples) %}
+    <div class="esds-doc-html-example-list{{ ' ' + class if class }}">
+        {% if example %}
+            {{ render_html_example(example, label) }}
+        {% endif %}
+
+        {% if examples %}
+            {% for example in examples %}
+                {{ render_html_example(example.example, example.label) }}
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endmacro %}
+
+{% macro render_html_example(source, label) %}
+    <div class="esds-doc-html-example-list__item">
+        {{ source | safe }}
+        {% if label %}
+            <label class="esds-doc-html-example-list__label">{{ label }}</label>
+        {% endif %}
+    </div>
+{% endmacro %}

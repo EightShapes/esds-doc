@@ -1,0 +1,14 @@
+{% extends "templates/sink.njk" %}
+{% block body %}
+    <h1 class="esds-doc-sink-page-header">HTML Example Lists</h1>
+
+
+    <h1 class="esds-doc-sink-page-header">Basic Example</h1>
+    {{ library.html_example_list(example="<h1 style='font-size: 40px; font-style: normal; font-weight: bold; color: black; background: transparent; margin: 0;'>Hello World!</h1>") }}
+
+    <h1 class="esds-doc-sink-page-header">Passing a nunjucks macro call</h1>
+    {{ library.html_example_list(example=library.button(text="Button Text")) }}
+
+    <h1 class="esds-doc-sink-page-header">With a label</h1>
+    {{ library.html_example_list(example=library.button(text="Button Text"), label="A Basic Button") }}
+{% endblock %}
