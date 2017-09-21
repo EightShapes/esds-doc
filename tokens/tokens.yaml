@@ -35,3 +35,4 @@ border:
 space:
   inset:
     s: 8px
+    m: 16px
