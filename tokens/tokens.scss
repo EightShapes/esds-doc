@@ -28,6 +28,9 @@ $esds-doc-border-radius-default: 4px;
 
 $esds-doc-space-inset-s: 8px;
 
+$esds-doc-z-index-slight: 10;
+$esds-doc-z-index-top-of-the-world: 999;
+
 $esds-doc-namespace: "esds-doc";
 $esds-doc-tokens: (
     'color': (
@@ -75,6 +78,10 @@ $esds-doc-tokens: (
         'inset': (
             's': $esds-doc-space-inset-s
         )
+    ),
+    'z-index': (
+        'slight': $esds-doc-z-index-slight,
+        'top-of-the-world': $esds-doc-z-index-top-of-the-world
     ),
     'namespace': $esds-doc-namespace
 );

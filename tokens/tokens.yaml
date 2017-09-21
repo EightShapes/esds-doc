@@ -37,3 +37,7 @@ border:
 space:
   inset:
     s: 8px
+
+z-index:
+  slight: 10
+  top-of-the-world: 999

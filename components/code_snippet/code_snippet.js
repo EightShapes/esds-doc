@@ -92,17 +92,18 @@ Esds.CodeSnippet = function() {
         });
     }
 
-    function initializeTabs() {
-        const tabs = document.querySelectorAll('.esds-doc-code-snippet__tabs');
-        tabs.forEach(function(t){
-            const snippet = t.closest('.esds-doc-code-snippet');
-        });
-    }
+    // Saving tab functionality for a future release
+    // function initializeTabs() {
+    //     const tabs = document.querySelectorAll('.esds-doc-code-snippet__tabs');
+    //     tabs.forEach(function(t){
+    //         const snippet = t.closest('.esds-doc-code-snippet');
+    //     });
+    // }
 
     let init = function init() {
         enableCopyFunctionality();
         setCopiedListeners();
-        initializeTabs();
+        // initializeTabs();
     };
 
     return {

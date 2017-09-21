@@ -15,6 +15,7 @@ $esds-doc-button-text-transform: uppercase !default;
     cursor:         pointer;
     font-family:    $esds-doc-button-font-family;
     font-size:      $esds-doc-button-font-size;
+    margin:         0;
     padding:        $esds-doc-button-space-inset;
     text-transform: $esds-doc-button-text-transform;
 }

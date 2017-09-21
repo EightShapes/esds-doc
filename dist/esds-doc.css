@@ -1,3 +1,9 @@
+.esds-doc-container {
+  background: #FFFFFF; }
+
+.esds-doc-container--dark {
+  background: #000000; }
+
 .esds-doc-button {
   background: #068194;
   border: 0;
@@ -143,3 +149,31 @@
 .uds-doc-reference-table__header-cell,
 .uds-doc-reference-table__cell {
   padding: 8px; }
+
+.esds-doc-html-example-list {
+  background-color: #FFFFFF;
+  border: solid 1px #888888;
+  border-radius: 4px; }
+  .esds-doc-html-example-list.esds-doc-container--dark {
+    background: #000000; }
+
+.esds-doc-html-example-list__item {
+  border-bottom: solid 1px #888888;
+  padding: 8px;
+  position: relative; }
+  .esds-doc-html-example-list__item:last-child {
+    border: 0; }
+
+.esds-doc-html-example-list__label {
+  color: #323232;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  padding: 8px;
+  position: absolute;
+  right: 0;
+  top: 0; }
+  .esds-doc-container--dark .esds-doc-html-example-list__label {
+    color: #f3f1f1; }

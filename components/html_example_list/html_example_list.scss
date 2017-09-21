@@ -3,6 +3,7 @@ $esds-doc-html-example-list-background-dark: $esds-doc-background-color-dark !de
 $esds-doc-html-example-list-border: $esds-doc-border-default !default; 
 $esds-doc-html-example-list-border-radius: $esds-doc-border-radius-default !default; 
 $esds-doc-html-example-list-space-inset: $esds-doc-space-inset-s !default; 
+$esds-doc-html-example-list-space-inset-large: 100px !default; 
 $esds-doc-html-example-font-family: $esds-doc-font-family-sans-serif !default;
 $esds-doc-html-example-font-size: $esds-doc-font-size-m !default;
 $esds-doc-html-example-font-style: normal !default;
@@ -11,6 +12,9 @@ $esds-doc-html-example-text-color: $esds-doc-text-color-default !default;
 $esds-doc-html-example-text-color-on-dark: $esds-doc-text-color-on-dark !default;
 $esds-doc-html-example-label-offset: $esds-doc-space-inset-s !default;
 $esds-doc-html-example-label-line-height: 1 !default;
+$esds-doc-html-example-label-background-opacity: .8 !default;
+$esds-doc-html-example-label-background: rgba($esds-doc-html-example-list-background, $esds-doc-html-example-label-background-opacity) !default;
+$esds-doc-html-example-label-background-on-dark: rgba($esds-doc-html-example-list-background-dark, $esds-doc-html-example-label-background-opacity) !default;
 
 
 .esds-doc-html-example-list {
@@ -31,9 +35,16 @@ $esds-doc-html-example-label-line-height: 1 !default;
     &:last-child {
         border: 0;
     }
+
+    &.esds-doc-html-example-list__item--no-inset,
+    .esds-doc-html-example-list--no-inset & {
+        padding: 0;
+    }
 }
 
 .esds-doc-html-example-list__label {
+    background: $esds-doc-html-example-label-background;
+    border-radius: $esds-doc-border-radius-default;
     color: $esds-doc-html-example-text-color;
     font-family: $esds-doc-html-example-font-family;
     font-size: $esds-doc-html-example-font-size;
@@ -44,8 +55,10 @@ $esds-doc-html-example-label-line-height: 1 !default;
     position: absolute;
     right: 0;
     top: 0;
+    z-index: $esds-doc-z-index-slight;
 
     .esds-doc-container--dark & {
+        background: $esds-doc-html-example-label-background-on-dark;
         color: $esds-doc-html-example-text-color-on-dark;
     }
 }
