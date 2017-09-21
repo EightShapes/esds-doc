@@ -1,0 +1,5 @@
+{% macro container(class=false) %}
+    <div class="esds-doc-container{{ ' ' + class if class }}">
+        {{ caller() }}
+    </div>
+{% endmacro %}

@@ -14,10 +14,12 @@ color:
 
 text-color:
   default: *color-neutral-20
+  on-dark: *color-neutral-95
   link: *color-blue
 
 background-color:
   default: *color-white
+  dark: *color-black
 
 font:
   family:
@@ -36,3 +38,7 @@ space:
   inset:
     s: 8px
     m: 16px
+
+z-index:
+  slight: 10
+  top-of-the-world: 999
