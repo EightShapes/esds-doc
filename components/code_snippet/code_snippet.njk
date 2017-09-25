@@ -4,10 +4,7 @@
         language='markup', 
         show_copy_button=true, 
         class=false, 
-        beautify=false, 
         preformatted=false,
-        reference_link_text="Reference Link", 
-        reference_link_href=false,
         copy_code_text="Copy Code",
         filename=false) %}
         {% set button_component_import_path = button_component_import_path | default('./button/button.njk') %}
@@ -37,10 +34,10 @@
             {# Upcoming feature - support multiple tabs with different source examples #}
             {% if sources.length > 0 %}
                 {% for source in sources %}
-                    {{ render_code_snippet_source(source=source.source, language=source.language, filename=source.filename, code_snippet_id=code_snippet_id) }}
+                    {{ render_code_snippet_source(source=source.source, language=source.language, filename=source.filename, code_snippet_id=code_snippet_id, preformatted=preformatted) }}
                 {% endfor %}
             {% else %}
-                {{ render_code_snippet_source(source=source, language=language, filename=filename, code_snippet_id=code_snippet_id) }}
+                {{ render_code_snippet_source(source=source, language=language, filename=filename, code_snippet_id=code_snippet_id, preformatted=preformatted) }}
             {% endif %}
             {% if show_copy_button %}
                 <div class="esds-doc-code-snippet__copy-code-wrap">
@@ -54,7 +51,7 @@
     </div>
 {% endmacro %}
 
-{% macro render_code_snippet_source(source, language='markup', filename, code_snippet_id) %}
+{% macro render_code_snippet_source(source, language='markup', filename, code_snippet_id, preformatted) %}
     <div class="esds-doc-code-snippet__source" id="{{ code_snippet_id }}--{{ language }}">
         {% if filename %}
             <span class="esds-doc-code-snippet__filename">{{ filename }}</span>

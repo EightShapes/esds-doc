@@ -1,3 +1,3 @@
-{% macro button(text) %}
-    <button class="esds-doc-button">{{ text }}</button>
+{% macro button(class=false, text) %}
+    <button class="esds-doc-button{{ ' ' + class if class }}">{{ text }}</button>
 {% endmacro %}

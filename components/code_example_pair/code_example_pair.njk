@@ -1,0 +1,29 @@
+{% macro code_example_pair(class=false, 
+                            example,
+                            example_label,
+                            examples,
+                            language='markup',
+                            show_copy_button=true, 
+                            preformatted=false,
+                            copy_code_text="Copy Code",
+                            filename=false) %}
+    <div class="esds-doc-code-example-pair{{ ' ' + class if class }}">
+        {% if example %}
+            {{ html_example_list(class="esds-doc-code-example-pair__example-list", example=example, label=example_label) }}
+            {% set code_source = example %}
+        {% endif %}
+        {% if examples %}
+            {{ html_example_list(class="esds-doc-code-example-pair__example-list", examples=examples) }}
+            {# If more than one example is shown, only show the source code from the first example #}
+            {% set code_source = examples[0].example %}
+        {% endif %}
+
+        {{ code_snippet(class="esds-doc-code-example-pair__code-snippet", 
+                        source=code_source, 
+                        language=language, 
+                        show_copy_button=show_copy_button,
+                        preformatted=preformatted,
+                        copy_code_text=copy_code_text,
+                        filename=filename) }}
+    </div>
+{% endmacro %}

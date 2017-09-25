@@ -1,0 +1,37 @@
+{% extends "templates/sink.njk" %}
+{% block body %}
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+    <h1 class="esds-doc-sink-page-header">Code Example Pairs</h1>
+
+    <h2 class="esds-doc-sink-page-header">Basic Example</h2>
+    {{ library.code_example_pair(example="<h1 style='font-size: 40px; font-style: normal; font-weight: bold; color: black; background: transparent; margin: 0;'>Hello World!</h1>") }}
+
+    <h2 class="esds-doc-sink-page-header">Mixed Nunjucks macro with html</h2>
+    {{ library.code_example_pair(example='<div class="some-wrapper-class">' + library.button(text="Button wrapped with a div") + "</div>") }}
+
+    <h2 class="esds-doc-sink-page-header">Multiple Examples (source code only shown for the first)</h2>
+    {{ library.code_example_pair(examples=[
+            {
+                example: library.button(text="Button Text"),
+                label: "Default State"
+            },
+            {
+                example: library.button(class="esds-doc-button--hover", text="Button Text"),
+                label: "Hover"
+            },
+            {
+                example: library.button(class="esds-doc-button--focus   ", text="Button Text"),
+                label: "Focus"
+            }
+        ]) 
+    }}
+
+    <script>
+        // Probably should have some kind of "on ready" function here
+        Esds.CodeSnippet.init();
+    </script>
+{% endblock body %}
