@@ -1,4 +1,5 @@
 $esds-doc-button-background-color: $esds-doc-color-blue !default;
+$esds-doc-button-background-color-hover: darken($esds-doc-color-blue, 10%) !default;
 $esds-doc-button-border: 0 !default;
 $esds-doc-button-border-radius: $esds-doc-border-radius-default !default;
 $esds-doc-button-text-color: $esds-doc-color-white !default;
@@ -6,6 +7,7 @@ $esds-doc-button-font-family: $esds-doc-font-family-sans-serif !default;
 $esds-doc-button-font-size: $esds-doc-font-size-m !default;
 $esds-doc-button-space-inset: 6px 12px !default;
 $esds-doc-button-text-transform: uppercase !default;
+$esds-doc-button-focus-ring-shadow: 0 0 0 3px lighten($esds-doc-color-blue, 20%); 
 
 .esds-doc-button {
     background:     $esds-doc-button-background-color;
@@ -18,4 +20,15 @@ $esds-doc-button-text-transform: uppercase !default;
     margin:         0;
     padding:        $esds-doc-button-space-inset;
     text-transform: $esds-doc-button-text-transform;
+
+    &:hover,
+    &.esds-doc-button--hover {
+        background: $esds-doc-button-background-color-hover;
+    }
+
+    &:focus,
+    &.esds-doc-button--focus {
+        box-shadow: $esds-doc-button-focus-ring-shadow;
+        outline: none;
+    }
 }
