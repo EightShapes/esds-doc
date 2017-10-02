@@ -1,0 +1,13 @@
+.esds-doc-icon-swatch-grid {
+    @include esds-doc-box-sizing;
+    @include esds-doc-font-reset;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -16px;
+    padding: $esds-doc-space-inset-m;
+
+
+    .esds-doc-icon-swatch {
+        margin: $esds-doc-space-grid-m;
+    }
+}

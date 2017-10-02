@@ -34,10 +34,24 @@ border:
   radius:
     default: 4px
 
+icon:
+  size:
+    s: 16px
+    m: 24px
+    l: 32px
+
 space:
+  s: 8px
+  m: 16px
   inset:
     s: 8px
     m: 16px
+  stack:
+    s: 0 0 8px
+    m: 0 0 16px
+  grid:
+    s: 0 0 8px 8px
+    m: 0 0 16px 16px
 
 z-index:
   slight: 10

@@ -3,30 +3,36 @@
     <style>
         html,
         body {
-            color: hotpink;
+            color: darkorange;
             font-family: Georgia;
-            font-size: 48px;
+            font-size: 43px;
             font-style: italic;
             font-weight: bold;
-            line-height: 3;
+            letter-spacing: 0.5em;
+            line-height: 3.2;
             margin: 0;
             padding: 0;
-        }
-
-        body > * {
-            background: yellow;
+            text-align: center;
+            text-indent: 103px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 1px red;
         }
 
         .esds-doc-sink-page-header {
             background: transparent;
-            color: {{ esds_tokens['text-color'].default }};
-            font-family: {{ esds_tokens.font.family['sans-serif'] | safe }};
+            color: {{ esds_doc_tokens['text-color'].default }};
+            font-family: {{ esds_doc_tokens.font.family['sans-serif'] | safe }};
             font-size: 20px;
             font-style: normal;
             font-weight: normal;
+            letter-spacing: 0;
             line-height: 1.2;
+            text-align: left;
+            text-indent: 0;
+            text-transform: none;
             margin: 32px 0 16px 0;
             padding: 0;
+            text-shadow: none;
         }
     </style>
 {% endblock %}

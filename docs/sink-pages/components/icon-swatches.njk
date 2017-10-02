@@ -1,0 +1,72 @@
+{% extends "templates/sink.njk" %}
+{% block body %}
+    <h1 class="esds-doc-sink-page-header">Icon Swatches Sink</h1>
+    <h2 class="esds-doc-sink-page-header">Default</h2>
+    {{ library.icon_swatch(name="heart") }}
+    <h2 class="esds-doc-sink-page-header">Label different than icon name</h2>
+    {{ library.icon_swatch(name="envelope", label="This is the email icon") }}
+    <h2 class="esds-doc-sink-page-header">Stress Test Label</h2>
+    {{ library.icon_swatch(name="key", label="This is the key icon Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde debitis quia error, nihil quas quasi ad neque pariatur eius tempore! Iusto dolores praesentium modi, veniam voluptatum? Adipisci voluptatum omnis, quisquam!") }}
+    <h2 class="esds-doc-sink-page-header">Include Download Link</h2>
+    {{ library.icon_swatch(name="search", 
+                            download_link_href="/icons/search.svg") }}
+    <h2 class="esds-doc-sink-page-header">Large Swatch</h2>
+    {{ library.icon_swatch(name="calendar", 
+                            class="esds-doc-icon-swatch--large",
+                            label="Date picker",
+                            download_link_href="/icons/calendar.svg") }}
+                            
+    <h2 class="esds-doc-sink-page-header">Grid of Swatches</h2>
+    {# Ideally this array would already be built by esds-build #}
+    {% set icons = [
+                'angle-down',
+                'bars',
+                'calendar',
+                'download',
+                'envelope',
+                'file',
+                'group',
+                'info',
+                'key',
+                'list',
+                'map',
+                'play-circle',
+                'question',
+                'refresh',
+                'search',
+                'trash',
+                'unlock'
+            ]%}
+    {% call library.icon_swatch_grid() %}
+        {% for name in icons %}
+            {{ library.icon_swatch(name=name, download_link_href="/icons/" + name + ".svg") }}
+        {% endfor %}
+    {% endcall %}
+                            
+    <h2 class="esds-doc-sink-page-header">Grid of Large Swatches</h2>
+    {# Ideally this array would already be built by esds-build #}
+    {% set icons = [
+                'angle-down',
+                'bars',
+                'calendar',
+                'download',
+                'envelope',
+                'file',
+                'group',
+                'info',
+                'key',
+                'list',
+                'map',
+                'play-circle',
+                'question',
+                'refresh',
+                'search',
+                'trash',
+                'unlock'
+            ]%}
+    {% call library.icon_swatch_grid() %}
+        {% for name in icons %}
+            {{ library.icon_swatch(class="esds-doc-icon-swatch--large", name=name, download_link_href="/icons/" + name + ".svg") }}
+        {% endfor %}
+    {% endcall %}
+{% endblock body %}

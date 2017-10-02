@@ -38,6 +38,12 @@ module.exports = {
             name: 'style-dependencies',
             sources: ['node_modules/prismjs/themes/prism.css'],
             destination: `_site/latest/styles/dependencies`
+        },
+        {
+            name: 'individual-icons',
+            sources: ['icons/*'],
+            destination: `_site/latest/icons`,
+            watch: true
         }
     ],
     manageNunjucksEnv: function(env) {
