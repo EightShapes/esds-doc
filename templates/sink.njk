@@ -34,6 +34,23 @@
             padding: 0;
             text-shadow: none;
         }
+
+        .esds-doc-sink-page-copy {
+            background: transparent;
+            color: {{ esds_doc_tokens['text-color'].default }};
+            font-family: {{ esds_doc_tokens.font.family['sans-serif'] | safe }};
+            font-size: {{ esds_doc_tokens.font.size.m }};
+            font-style: normal;
+            font-weight: normal;
+            letter-spacing: 0;
+            line-height: 1.2;
+            text-align: left;
+            text-indent: 0;
+            text-transform: none;
+            margin: 32px 0 16px 0;
+            padding: 0;
+            text-shadow: none;
+        }
     </style>
 {% endblock %}
 {% block body %}

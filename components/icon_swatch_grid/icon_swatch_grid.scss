@@ -1,13 +1,15 @@
+$esds-doc-icon-swatch-grid-space-grid: $esds-doc-space-m !default;
+$esds-doc-icon-swatch-grid-space-inset: $esds-doc-space-inset-m !default;
+
 .esds-doc-icon-swatch-grid {
     @include esds-doc-box-sizing;
     @include esds-doc-font-reset;
     display: flex;
     flex-wrap: wrap;
-    margin-left: -16px;
-    padding: $esds-doc-space-inset-m;
-
+    margin-left: -$esds-doc-icon-swatch-grid-space-grid;
+    padding: $esds-doc-icon-swatch-grid-space-inset;
 
     .esds-doc-icon-swatch {
-        margin: $esds-doc-space-grid-m;
+        margin: 0 0 $esds-doc-icon-swatch-grid-space-grid $esds-doc-icon-swatch-grid-space-grid;
     }
 }

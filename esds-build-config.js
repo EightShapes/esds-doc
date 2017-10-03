@@ -31,7 +31,8 @@ module.exports = {
                         'node_modules/prismjs/prism.js',
                         'node_modules/prismjs/components/prism-json.min.js',
                         'node_modules/prismjs/components/prism-scss.min.js',
-                        'node_modules/prismjs/components/prism-twig.min.js'],
+                        'node_modules/prismjs/components/prism-twig.min.js',
+                        'node_modules/svg4everybody/dist/svg4everybody.min.js'],
             destination: `_site/latest/scripts/dependencies`
         },
         {

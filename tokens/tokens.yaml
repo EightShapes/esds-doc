@@ -49,9 +49,6 @@ space:
   stack:
     s: 0 0 8px
     m: 0 0 16px
-  grid:
-    s: 0 0 8px 8px
-    m: 0 0 16px 16px
 
 z-index:
   slight: 10

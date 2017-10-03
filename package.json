@@ -29,6 +29,7 @@
     "esds-build": "^0.22.0",
     "js-beautify": "^1.6.14",
     "prismjs": "^1.6.0",
-    "strip-indent": "^2.0.0"
+    "strip-indent": "^2.0.0",
+    "svg4everybody": "^2.1.9"
   }
 }

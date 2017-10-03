@@ -1,6 +1,10 @@
-$esds-doc-code-snippet-background-color: $esds-doc-background-color-default !default; 
-$esds-doc-code-snippet-width: 80px !default;
-$esds-doc-code-snippet-aspec-ratio: 100% !default;
+$esds-doc-icon-swatch-background-color: $esds-doc-background-color-default !default; 
+$esds-doc-icon-size: $esds-doc-icon-size-m !default;
+$esds-doc-icon-swatch-width: 80px !default;
+$esds-doc-icon-swatch-aspec-ratio: 100% !default;
+
+$esds-doc-icon-swatch-text-color-label: $esds-doc-text-color-default !default;
+$esds-doc-icon-swatch-text-color-link: $esds-doc-text-color-link !default;
 
 .esds-doc-icon-swatch {
     @include esds-doc-box-sizing;
@@ -11,13 +15,13 @@ $esds-doc-code-snippet-aspec-ratio: 100% !default;
     justify-content: center;
     position: relative;
     text-align: center;
-    width: $esds-doc-code-snippet-width;
+    width: $esds-doc-icon-swatch-width;
 
     // Preserve Aspect Ratio
     &:before {
         content: '';
         float: left;
-        padding-bottom: $esds-doc-code-snippet-aspec-ratio;
+        padding-bottom: $esds-doc-icon-swatch-aspec-ratio;
     }
 
     &:after {
@@ -28,7 +32,7 @@ $esds-doc-code-snippet-aspec-ratio: 100% !default;
 }
 
 .esds-doc-icon-swatch--large {
-    width: $esds-doc-code-snippet-width * 2;
+    width: $esds-doc-icon-swatch-width * 2;
 }
 
 .esds-doc-icon-swatch__inner {
@@ -42,16 +46,24 @@ $esds-doc-code-snippet-aspec-ratio: 100% !default;
 
 .esds-doc-icon-swatch__icon {
     display: block;
+    height: $esds-doc-icon-size;
     margin: $esds-doc-space-stack-s;
+    width: $esds-doc-icon-size;
 }
 
 .esds-doc-icon-swatch__label {
-    color: $esds-doc-text-color-default;
+    box-sizing: border-box;
+    color: $esds-doc-icon-swatch-text-color-label;
     display: block;
     margin: 0;
+    max-width: 100%;
     padding: 0;
 }
 
 .esds-doc-icon-swatch__text {
     display: block;
+}
+
+.esds-doc-icon-swatch__download-link {
+    color: $esds-doc-icon-swatch-text-color-link;
 }

@@ -1,6 +1,15 @@
 {% extends "templates/sink.njk" %}
 {% block body %}
+    <style>
+        /* Override alignment */
+        body {
+            text-align: left;
+        }
+    </style>
     <h1 class="esds-doc-sink-page-header">Icon Swatches Sink</h1>
+    <p class="esds-doc-sink-page-copy">
+        Icon swatches have a minimum width with a 1:1 aspect ratio by default. If a label wraps to multiple lines the icon swatch will stretch vertically to accomodate the additional content.
+    </p>
     <h2 class="esds-doc-sink-page-header">Default</h2>
     {{ library.icon_swatch(name="heart") }}
     <h2 class="esds-doc-sink-page-header">Label different than icon name</h2>
