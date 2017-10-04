@@ -7,8 +7,7 @@
         preformatted=false,
         copy_code_text="Copy Code",
         filename=false) %}
-        {% set button_component_import_path = button_component_import_path | default('./button/button.njk') %}
-        {% from button_component_import_path import button with context %}
+
 
     {% set code_snippet_id = "esds-doc-code-snippet--" + range(0, 100000) | random %}
     {% if language == 'njk' %}
@@ -20,7 +19,6 @@
     {% endif %}
 
     <div class="esds-doc-code-snippet{{ ' ' + class if class }}">
-        
         {# Upcoming feature - support multiple tabs with different source examples #}
         {% if sources.length > 0 %}
             <div class="esds-doc-code-snippet__tabs">
@@ -44,7 +42,11 @@
                     <div class="esds-doc-code-snippet__copied-notification">
                         Copied to clipboard
                     </div>
-                    {{ button(text=copy_code_text) }}
+                    {% if esds_doc_code_snippet_copy_button_markup %}
+                        {{ esds_doc_code_snippet_copy_button_markup | safe }}
+                    {% else %}
+                        {{ button(text=copy_code_text) }}
+                    {% endif %}
                 </div>
             {% endif %}
         </div>
