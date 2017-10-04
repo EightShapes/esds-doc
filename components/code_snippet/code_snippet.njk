@@ -6,7 +6,8 @@
         class=false, 
         preformatted=false,
         copy_code_text="Copy Code",
-        filename=false) %}
+        filename=false,
+        esds_doc_code_snippet_copy_button_markup = esds_doc_code_snippet_copy_button_markup | default(false)) %}
 
 
     {% set code_snippet_id = "esds-doc-code-snippet--" + range(0, 100000) | random %}
