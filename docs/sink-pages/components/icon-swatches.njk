@@ -4,6 +4,7 @@
         /* Override alignment */
         body {
             text-align: left;
+            text-indent: 0;
         }
     </style>
     <h1 class="esds-doc-sink-page-header">Icon Swatches Sink</h1>
@@ -16,6 +17,8 @@
     {{ library.icon_swatch(name="envelope", label="This is the email icon") }}
     <h2 class="esds-doc-sink-page-header">Stress Test Label</h2>
     {{ library.icon_swatch(name="key", label="This is the key icon Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde debitis quia error, nihil quas quasi ad neque pariatur eius tempore! Iusto dolores praesentium modi, veniam voluptatum? Adipisci voluptatum omnis, quisquam!") }}
+    <h2 class="esds-doc-sink-page-header">Short Label</h2>
+    {{ library.icon_swatch(name="key", label="a") }}
     <h2 class="esds-doc-sink-page-header">Include Download Link</h2>
     {{ library.icon_swatch(name="search", 
                             download_link_href="/icons/search.svg") }}

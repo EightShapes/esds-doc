@@ -9,10 +9,11 @@ $esds-doc-icon-swatch-text-color-link: $esds-doc-text-color-link !default;
 .esds-doc-icon-swatch {
     @include esds-doc-box-sizing;
     @include esds-doc-font-reset;
-    align-items: center;
+    // align-items: center;
     border: $esds-doc-border-default;
-    display: inline-flex;
-    justify-content: center;
+    display: inline-block;
+    // justify-content: center;
+    padding: $esds-doc-space-inset-s;
     position: relative;
     text-align: center;
     width: $esds-doc-icon-swatch-width;
@@ -36,16 +37,16 @@ $esds-doc-icon-swatch-text-color-link: $esds-doc-text-color-link !default;
 }
 
 .esds-doc-icon-swatch__inner {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: $esds-doc-space-inset-s;
-    width: 100%;
+//     align-items: center;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     padding: $esds-doc-space-inset-s;
+//     width: 100%;
 }
 
 .esds-doc-icon-swatch__icon {
-    display: block;
+    // display: block;
     height: $esds-doc-icon-size;
     margin: $esds-doc-space-stack-s;
     width: $esds-doc-icon-size;
