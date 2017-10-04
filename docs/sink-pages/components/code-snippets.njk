@@ -3,19 +3,10 @@
 {# Redeclaring import to NOT include context so I can test the context-based override of the copy button at the bottom of the page #}
 {% import 'components/esds-doc.njk' as no_context_library %}
 
+
 {# macros can only access global variables set outside of a {% block %}, a current bug in Nunjucks: https://github.com/mozilla/nunjucks/issues/912 #}
 {# this would be done in the base.template before importing the library #}
-{% set esds_doc_code_snippet_copy_button_markup %}
-    <style>
-        .my-custom-button-class {
-            background: limegreen;
-            border: solid 5px blue;
-            font-family: cursive;
-            font-size: 16px;
-        }
-    </style>
-    <button class="my-custom-button-class">Copy This Code Now!</button>
-{% endset %}
+{% import 'imports/esds-doc-markup-overrides.njk' as esds_doc_markup_overrides with context %}
 {% import 'components/esds-doc.njk' as library_with_context with context %} {# this version of the library will have access to global variables set outside of {% block %} statements #}
 
 {% block body %}
@@ -60,7 +51,7 @@
     <h1 class="esds-doc-sink-page-header">Override Button Markup with custom markup passed to the macro</h1>
     {{ no_context_library.code_snippet(class="esds-doc-code-snippet--no-max-height", 
                                         source="<h1>Hello World</h1>",
-                                        esds_doc_code_snippet_copy_button_markup="<button>Custom Button Passed To Macro</button>") }}
+                                        copy_button="<button>Custom Button Passed To Macro</button>") }}
 
     <h1 class="esds-doc-sink-page-header">Override Button Markup with custom code set globally (Alternate button markup is passed indirectly via the global variable context)</h1>
     {{ library_with_context.code_snippet(source="<h1>Hello World</h1>") }}

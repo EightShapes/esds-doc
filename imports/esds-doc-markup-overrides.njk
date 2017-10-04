@@ -1,0 +1,23 @@
+{# This file contains markup overrides for various esds-doc components #}
+{# Markup overrides are injected into container elements within esds-doc components #}
+{# This file must be imported before importing the esds-doc components, this is typically done in a base template file #}
+{# Example: 
+    {% import 'imports/esds-doc-markup-overrides.njk' as esds_markup_overrides with context %}
+    {% import 'esds-doc/components/esds-doc.njk' as esds_doc with context %}
+
+    The "as esds_markup_overrides" namespace is required for the markup overrides to work
+#}
+
+
+{# Code Snippet #}
+{% set esds_doc__code_snippet__copy_button %}
+    <style>
+        .my-custom-button-class {
+            background: limegreen;
+            border: solid 5px blue;
+            font-family: cursive;
+            font-size: 16px;
+        }
+    </style>
+    <button class="my-custom-button-class">Copy This Code Now!</button>
+{% endset %}

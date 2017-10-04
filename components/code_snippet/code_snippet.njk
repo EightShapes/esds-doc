@@ -7,8 +7,7 @@
         preformatted=false,
         copy_code_text="Copy Code",
         filename=false,
-        esds_doc_code_snippet_copy_button_markup = esds_doc_code_snippet_copy_button_markup | default(false)) %}
-
+        copy_button = esds_doc_markup_overrides.esds_doc__code_snippet__copy_button | default(false)) %}
 
     {% set code_snippet_id = "esds-doc-code-snippet--" + range(0, 100000) | random %}
     {% if language == 'njk' %}
@@ -43,8 +42,8 @@
                     <div class="esds-doc-code-snippet__copied-notification">
                         Copied to clipboard
                     </div>
-                    {% if esds_doc_code_snippet_copy_button_markup %}
-                        {{ esds_doc_code_snippet_copy_button_markup | safe }}
+                    {% if copy_button %}
+                        {{ copy_button | safe }}
                     {% else %}
                         {{ button(text=copy_code_text) }}
                     {% endif %}
