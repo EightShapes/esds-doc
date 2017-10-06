@@ -7,7 +7,12 @@
         preformatted=false,
         copy_code_text="Copy Code",
         filename=false,
-        copy_button = esds_doc_markup_overrides.esds_doc__code_snippet__copy_button | default(false)) %}
+        copy_button) %}
+
+    {% set overrides_path = esds_doc_markup_overrides_file | default('./markup_overrides/esds-doc-markup-overrides-default.njk') %}
+    {% from overrides_path import esds_doc_markup_overrides with context %}
+    
+    {% set copy_button = copy_button | default(esds_doc_markup_overrides.code_snippet.copy_button) | default(false) %}
 
     {% set code_snippet_id = "esds-doc-code-snippet--" + range(0, 100000) | random %}
     {% if language == 'njk' %}

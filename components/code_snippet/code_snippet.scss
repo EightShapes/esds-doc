@@ -7,6 +7,7 @@ $esds-doc-code-snippet-font-style: normal !default;
 $esds-doc-code-snippet-font-weight: normal !default;
 $esds-doc-code-snippet-line-height: $esds-doc-font-line-height-normal !default;
 $esds-doc-code-snippet-space-inset: $esds-doc-space-inset-m !default;
+$esds-doc-code-snippet-space-stack: $esds-doc-space-stack-m !default;
 $esds-doc-code-snippet-text-color: $esds-doc-text-color-default !default;
 
 $esds-doc-code-snippet-source-background-color: $esds-doc-color-neutral-95 !default;
@@ -41,6 +42,7 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-s !default;
     font-style:     $esds-doc-code-snippet-font-style;
     font-weight:    $esds-doc-code-snippet-font-weight;
     line-height:    $esds-doc-code-snippet-line-height;
+    margin-bottom:  $esds-doc-code-snippet-space-stack;
 
     // Prism overrides
     .token {
