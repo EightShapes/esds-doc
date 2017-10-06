@@ -1,0 +1,21 @@
+{% macro page_navigation(class=false, items=[], anchor_link_target_selector="h2, h3") %}
+    <nav class="esds-doc-page-navigation{{ ' ' + class if class }}" 
+        {% if items.length == 0 %}
+            data-esds-doc-anchor-link-target-selector="{{ anchor_link_target_selector }}"
+        {% endif %}
+        >
+        <ul class="esds-doc-page-navigation__inner">
+            {% if items.length > 0 %}
+                {% for item in items %}
+                    <li class="esds-doc-page-navigation__item">
+                        <a href="{{ item.href }}" class="esds-doc-page-navigation__link">{{ item.text }}</a>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="esds-doc-page-navigation__item esds-doc-page-navigation__item--template">
+                    <a href="#" class="esds-doc-page-navigation__link"></a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endmacro %}

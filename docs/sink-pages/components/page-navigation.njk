@@ -1,0 +1,61 @@
+{% extends "templates/sink.njk" %}
+{% block body %}
+    <style>
+        .testing * {
+            background: transparent;
+            color: {{ esds_doc_tokens['text-color'].default }};
+            font-family: {{ esds_doc_tokens.font.family['sans-serif'] | safe }};
+            /*font-size: 20px;*/
+            font-style: normal;
+            font-weight: normal;
+            letter-spacing: 0;
+            line-height: 1.2;
+            text-align: left;
+            text-indent: 0;
+            margin: 32px 0 16px 0;
+            max-width: 768px;
+            padding: 0;
+            text-shadow: none;
+            text-transform: none;
+        }
+    </style>
+    <h1 class="esds-doc-sink-page-header">Page Navigation</h1>
+    
+    {{ library.page_navigation() }}
+    <div class="testing">
+        <h2>Sample Header h2</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+        </p>
+
+        <h2>Another Sample Header h2</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+        </p>
+
+        <h3>Subsection h3</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+        </p>
+
+        <h3>Another Subsection h3</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+        </p>
+
+        <h3>Final Subsection h3</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+        </p>
+
+        <h2>New h2</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+        </p>
+        <h2>5: Starting with a number is tricky</h2>
+    </div>
+
+    <script>
+        Esds.PageNavigation.init();
+    </script>
+{% endblock body %}
