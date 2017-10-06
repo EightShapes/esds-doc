@@ -1,5 +1,4 @@
 {% extends "templates/sink.njk" %}
-
 {% block body %}
     <style>
         body {
@@ -38,6 +37,14 @@
     <h1 class="esds-doc-sink-page-header">No Max Height</h1>
     {{ library.code_snippet(class="esds-doc-code-snippet--no-max-height", 
                             source=table_example_code) }}
+
+    <h1 class="esds-doc-sink-page-header">Override Button Markup with custom markup passed to the macro</h1>
+    {{ library.code_snippet(class="esds-doc-code-snippet--no-max-height", 
+                                        source="<h1>Hello World</h1>",
+                                        copy_button="<button>Custom Button Passed To Macro</button>") }}
+
+    <h1 class="esds-doc-sink-page-header">Override Button Markup with custom code set globally (Alternate button markup is passed indirectly via the global variable context)</h1>
+    {{ library_with_markup_overrides.code_snippet(source="<h1>Hello World</h1>") }}
 
     <script>
         // Probably should have some kind of "on ready" function here

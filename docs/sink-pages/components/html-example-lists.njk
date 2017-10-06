@@ -89,4 +89,29 @@
             label: "Code Snippet"
         }
     ]) }}
+
+    <h1 class="esds-doc-sink-page-header">Override Label Markup (Instance Level)</h1>
+    {% set custom_markup %}
+        <style>
+            .my-custom-pill {
+                background: lemonchiffon;
+                border-radius: 30px;
+                border: solid 1px red;
+                color: goldenrod;
+                display: block;
+                font-size: 10px;
+                padding: 3px;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        </style>
+
+        <span class="my-custom-pill">Ugly Label</span>
+    {% endset %}
+    {{ library.html_example_list(example=library.button(text="Button Text"), example_label_markup=custom_markup) }}
+
+    <h1 class="esds-doc-sink-page-header">Override Label Markup (Globally)</h1>
+    {{ library_with_markup_overrides.html_example_list(example=library.button(text="Button Text"), label="This should look different") }}
+
 {% endblock %}
