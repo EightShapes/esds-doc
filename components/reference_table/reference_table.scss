@@ -1,7 +1,7 @@
 $doc-reference-table-background: $esds-doc-background-color-default;
 
 .uds-doc-reference-table {
-    @include udt-box-sizing;
+    @include esds-doc-box-sizing;
     background: $doc-reference-table-background;
     width: 100%;
 }

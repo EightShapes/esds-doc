@@ -1,10 +1,13 @@
 .esds-doc-page-navigation {
-    
+    @include esds-doc-font-reset;
 }
 
 .esds-doc-page-navigation__inner {
     list-style: none;
     margin: 0;
     padding: 0;
-    text-align: left;
+}
+
+.esds-doc-page-navigation__link {
+    color: $esds-doc-text-color-link;
 }

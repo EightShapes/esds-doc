@@ -1,0 +1,18 @@
+{% extends "templates/sink.njk" %}
+{% block body %}
+    <style>
+        .icon-example-reset {
+            font-size: 0;
+            letter-spacing: 0;
+            text-align: left;
+            text-indent: 0;
+        }
+    </style>
+    <h1 class="esds-doc-sink-page-header">Icons</h1>
+    <div class="icon-example-reset">
+        {{ library.icon() }}
+        {{ library.icon(name="envelope") }}
+        {{ library.icon(name="file") }}
+        {{ library.icon(name="key") }}
+    </div>
+{% endblock body %}

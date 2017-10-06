@@ -1,4 +1,4 @@
-@mixin udt-box-sizing() {
+@mixin esds-doc-box-sizing() {
     &,
     &:before,
     &:after {
@@ -10,4 +10,17 @@
     *:after {
         box-sizing: inherit;
     }
+}
+
+@mixin esds-doc-font-reset() {
+    font-family: $esds-doc-font-family-sans-serif;
+    font-size: $esds-doc-font-size-m;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: 0;
+    line-height: 1;
+    text-align: left;
+    text-indent: 0;
+    text-shadow: none;
+    text-transform: none;
 }

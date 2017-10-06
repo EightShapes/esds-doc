@@ -3,6 +3,7 @@ var Esds = Esds || {};
 
 Esds.PageNavigation = function() {
     const pageNavigationSelector = ".esds-doc-page-navigation",
+            pageNavigationListSelector = ".esds-doc-page-navigation__inner",
             listItemTemplateSelector = ".esds-doc-page-navigation__item--template",
             listItemLinkSelector = ".esds-doc-page-navigation__link",
             anchorLinkTargetDataAttribute = "data-esds-doc-anchor-link-target-selector";
@@ -47,14 +48,15 @@ Esds.PageNavigation = function() {
 
     function buildPageNavigationListItems(pageNavigation) {
         const anchorLinkTargetSelector = pageNavigation.getAttribute(anchorLinkTargetDataAttribute),
-            anchorLinkItems = anchorLinkTargetSelector === null ? false : document.querySelectorAll(anchorLinkTargetSelector);
+            anchorLinkItems = anchorLinkTargetSelector === null ? false : document.querySelectorAll(anchorLinkTargetSelector),
+            pageNavigationList = pageNavigation.querySelector(pageNavigationListSelector);
 
         if (anchorLinkItems) {
             listItemTemplate = getListItemTemplate(pageNavigation);
             anchorLinkItems.forEach(function(ali) {
                 let listItem = createListItemElement(listItemTemplate, ali);
                 console.log(listItem);
-                pageNavigation.appendChild(listItem);
+                pageNavigationList.appendChild(listItem);
             });
         }
     }

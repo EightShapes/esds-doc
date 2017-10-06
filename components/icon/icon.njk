@@ -1,0 +1,12 @@
+{% macro icon(class=false, name='play-circle', sprite_path="/icons/esds-doc.svg", title=false) %}
+    {% if title %}
+        {% set title_id = "esds-doc-icon__title--" + range(0, 100000) | random %}
+    {% endif %}
+
+    <svg class="esds-doc-icon{{ ' ' + class if class }}">
+        {% if title %}
+            <title id="{{ title_id }}">{{ title }}</title>
+        {% endif %}
+        <use xlink:href="{{ sprite_path }}#{{ name }}"></use>
+    </svg>
+{% endmacro %}

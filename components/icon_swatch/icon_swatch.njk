@@ -1,0 +1,23 @@
+{% macro icon_swatch(
+        name=false,
+        class=false,
+        label,
+        download_link_text="Download",
+        download_link_href=false) %}
+        {% set icon_component_import_path = icon_component_import_path | default('./icon/icon.njk') %}
+        {% from icon_component_import_path import icon with context %}
+    {% set label = label | default(name) %}
+    <div class="esds-doc-icon-swatch{{ ' ' + class if class }}">
+        <div class="esds-doc-icon-swatch__inner">
+            {{ icon(name=name, class="esds-doc-icon-swatch__icon") }}
+            <span class="esds-doc-icon-swatch__text">
+                <span class="esds-doc-icon-swatch__label">
+                    {{ label }}
+                </span>
+                {% if download_link_href %}
+                    <a class="esds-doc-icon-swatch__download-link" href="{{ download_link_href }}" download>{{ download_link_text | safe }}</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+{% endmacro %}
