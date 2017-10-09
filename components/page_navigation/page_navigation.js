@@ -96,6 +96,14 @@ Esds.PageNavigation = function() {
         return !pageNavigation.classList.contains(suppressScrollMonitoringClass);
     }
 
+    function disableScrollMonitoring(pageNavigation) {
+        pageNavigation.classList.add(suppressScrollMonitoringClass);
+    }
+
+    function enableScrollMonitoring(pageNavigation) {
+        pageNavigation.classList.remove(suppressScrollMonitoringClass);
+    }
+
     function setListItemActive(linkHref) {
         const activeLink = document.querySelector("a[href='" + linkHref + "']");
 
@@ -109,7 +117,7 @@ Esds.PageNavigation = function() {
         activeLink.classList.add(listItemLinkActiveClass);
     }
 
-    function monitorPageSectionsForActiveLinkHighlighting(pageNavigation) {
+    function monitorPageSectionsForActiveLinkHighlighting(pageNavigation, debug) {
         const pageAnchorLinks = pageNavigation.querySelectorAll(listItemLinkSelector);
         for (var i = 0; i < pageAnchorLinks.length; i++) {
             let anchorLink = pageAnchorLinks[i],
@@ -120,8 +128,6 @@ Esds.PageNavigation = function() {
                 nextTarget = nextTargetHref ? document.querySelector(nextTargetHref) : false,
                 sectionTop = target.offsetTop,
                 sectionBottom = nextTarget ? nextTarget.offsetTop - 1 : document.body.offsetHeight,
-                topMarker = document.createElement('div'),
-                bottomMarker = document.createElement('div'),
                 elementWatcher = scrollMonitor.create({top: sectionTop, bottom: sectionBottom});
 
             // When a section spans the entire viewport
@@ -159,40 +165,88 @@ Esds.PageNavigation = function() {
                 });
             }
 
-            topMarker.style.width = "100%";
-            topMarker.style.height = "1px";
-            topMarker.style.backgroundColor = "red";
-            topMarker.style.position = "absolute";
-            topMarker.style.left = 0;
-            topMarker.style.top = sectionTop;
-
-            bottomMarker.style.width = "100%";
-            bottomMarker.style.height = "1px";
-            bottomMarker.style.backgroundColor = "blue";
-            bottomMarker.style.position = "absolute";
-            bottomMarker.style.left = 0;
-            bottomMarker.style.top = sectionBottom;
-
-            
-
-
-            document.body.appendChild(topMarker);
-            document.body.appendChild(bottomMarker);
+            if (debug) {
+                // Adds horizontal lines to the top and bottom of each section for debugging
+                generatePageSectionMarkers(sectionTop, sectionBottom);
+            }
         }
     }
 
-    function initiateScrollMonitoring(pageNavigation) {
-        monitorPageNavigationFixedStatus(pageNavigation);
-        monitorPageSectionsForActiveLinkHighlighting(pageNavigation);
+    function generatePageSectionMarkers(topPosition, bottomPosition) {
+        let topMarker = document.createElement('div'),
+            bottomMarker = document.createElement('div');
+
+        topMarker.style.width = "100%";
+        topMarker.style.height = "1px";
+        topMarker.style.backgroundColor = "red";
+        topMarker.style.position = "absolute";
+        topMarker.style.left = 0;
+        topMarker.style.top = topPosition;
+
+        bottomMarker.style.width = "100%";
+        bottomMarker.style.height = "1px";
+        bottomMarker.style.backgroundColor = "blue";
+        bottomMarker.style.position = "absolute";
+        bottomMarker.style.left = 0;
+        bottomMarker.style.top = bottomPosition;
+
+
+        document.body.appendChild(topMarker);
+        document.body.appendChild(bottomMarker);
     }
 
-    let init = function init() {
+    function initiateScrollMonitoring(pageNavigation, debug) {
+        monitorPageNavigationFixedStatus(pageNavigation);
+        monitorPageSectionsForActiveLinkHighlighting(pageNavigation, debug);
+    }
+
+    function smoothScrollToSection(sectionSelector, pageNavigation) {
+        const pageSection = document.querySelector(sectionSelector);
+
+        disableScrollMonitoring(pageNavigation);
+        pageSection.scrollIntoView({
+            behavior: 'smooth'
+        });
+        // Brittle, but browser-native .scrollIntoView doesn't provide any callback mechanism
+        setTimeout(function(){
+            enableScrollMonitoring(pageNavigation);
+        }, 500);
+    }
+
+    function initiateSoftScrollOnClick(pn) {
+        const links = pn.querySelectorAll(listItemLinkSelector);
+
+        links.forEach(function(l){
+            l.addEventListener('click', function(e){
+                e.preventDefault();
+
+                const href = this.hash;
+
+                setListItemActive(href);
+                history.pushState(null, null, href);
+                smoothScrollToSection(href, pn);
+            });
+        });
+    }
+
+    function setDefaultActiveLink(pageNavigation) {
+        if (window.location.hash.length !== 0) {
+            const hash = window.location.hash;
+            setListItemActive(hash);
+            smoothScrollToSection(hash, pageNavigation);
+        }
+    }
+
+    let init = function init(debug) {
+        debug = typeof debug === 'undefined' ? false : debug;
         pageNavigationComponents = getPageNavigationComponents();
 
         pageNavigationComponents.forEach(function(pn){
             buildPageNavigationListItems(pn);
             setWrapperWidth(pn);
-            initiateScrollMonitoring(pn);
+            initiateScrollMonitoring(pn, debug);
+            initiateSoftScrollOnClick(pn);
+            setDefaultActiveLink(pn);
         });
     };
 

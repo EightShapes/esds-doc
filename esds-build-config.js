@@ -33,6 +33,7 @@ module.exports = {
                         'node_modules/prismjs/components/prism-scss.min.js',
                         'node_modules/prismjs/components/prism-twig.min.js',
                         'node_modules/svg4everybody/dist/svg4everybody.min.js',
+                        'node_modules/smoothscroll-polyfill/dist/smoothscroll.min.js',
                         'node_modules/scrollmonitor/scrollMonitor.js',
                         'node_modules/scrollmonitor/scrollMonitor.js.map'],
             destination: `_site/latest/scripts/dependencies`

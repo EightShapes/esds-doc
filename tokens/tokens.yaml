@@ -27,7 +27,7 @@ font:
   line-height:
     normal: 1.2
   size:
-    m: 14px
+    m: 16px
     l: 24px
 
 border:
@@ -45,6 +45,7 @@ space:
   s: 8px
   m: 16px
   inset:
+    xs: 4px
     s: 8px
     m: 16px
   stack:
