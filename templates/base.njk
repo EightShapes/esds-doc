@@ -8,19 +8,22 @@
     <head>
         <link rel="stylesheet" href="/styles/dependencies/prism.css">
         <link rel="stylesheet" href="/styles/esds-doc.css">
+        {% block head_assets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        
         <script src="/scripts/dependencies/clipboard.min.js"></script>
         <script src="/scripts/dependencies/prism.js"></script>
         <script src="/scripts/dependencies/prism-json.min.js"></script>
         <script src="/scripts/dependencies/prism-scss.min.js"></script>
         <script src="/scripts/dependencies/prism-twig.min.js"></script>
         <script src="/scripts/dependencies/svg4everybody.min.js"></script>
+        <script src="/scripts/dependencies/scrollmonitor.js"></script>
         <script>
             svg4everybody();
         </script>
         <script src="/scripts/esds-doc.js"></script>
-        {% block head_assets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
+        {% block closing_body_assets %}{% endblock %}
     </body>
 </html>

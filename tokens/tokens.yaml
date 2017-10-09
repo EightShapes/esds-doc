@@ -28,6 +28,7 @@ font:
     normal: 1.2
   size:
     m: 14px
+    l: 24px
 
 border:
   default: "solid 1px !{*color-neutral-53}"

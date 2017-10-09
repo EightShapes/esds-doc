@@ -1,5 +1,6 @@
 .esds-doc-page-navigation {
     @include esds-doc-font-reset;
+    font-size: $esds-doc-font-size-l;
 }
 
 .esds-doc-page-navigation__inner {
@@ -10,4 +11,13 @@
 
 .esds-doc-page-navigation__link {
     color: $esds-doc-text-color-link;
+}
+
+.esds-doc-page-navigation--fixed .esds-doc-page-navigation__inner {
+    position: fixed;
+    top: 0;
+}
+
+.esds-doc-page-navigation__link--active {
+    background: hotpink;
 }
