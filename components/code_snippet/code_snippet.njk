@@ -2,17 +2,23 @@
         source='Set source= to view source here', 
         sources=[],
         language='markup', 
-        show_copy_button=true, 
         class=false, 
         preformatted=false,
-        copy_code_text="Copy Code",
         filename=false,
+        show_copy_button=true, 
+        copy_button_text="Copy Code",
         copy_button) %}
 
-    {% set overrides_path = esds_doc_markup_overrides_file | default('./markup_overrides/esds-doc-markup-overrides-default.njk') %}
-    {% from overrides_path import esds_doc_markup_overrides with context %}
+    {% set esds_doc_overrides_path = esds_doc_overrides_path | default('./esds_doc_overrides/esds-doc-overrides-default.njk') %}
+    {% from esds_doc_overrides_path import esds_doc_overrides with context %}
     
-    {% set copy_button = copy_button | default(esds_doc_markup_overrides.code_snippet.copy_button) | default(false) %}
+    {# Set markup for the copy button in this order:
+        1. If a copy_button argument was passed into the macro, use that
+        2. Otherwise if a copy_button argument is set on the esds_doc_overrides object, use that
+        3. Otherwise default to false which will trigger usage of the default ESDS Doc button
+     #}
+    {% set copy_button = copy_button | default(esds_doc_overrides.code_snippet.copy_button) | default(false) %}
+    
 
     {% set code_snippet_id = "esds-doc-code-snippet--" + range(0, 100000) | random %}
     {% if language == 'njk' %}
@@ -50,7 +56,7 @@
                     {% if copy_button %}
                         {{ copy_button | safe }}
                     {% else %}
-                        {{ button(text=copy_code_text) }}
+                        {{ button(text=copy_button_text) }}
                     {% endif %}
                 </div>
             {% endif %}

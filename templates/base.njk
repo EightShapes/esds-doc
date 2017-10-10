@@ -2,7 +2,7 @@
 
 {# This separate "library_with_markup_overrides" namespace is a way to test the markup_overrides set in 'imports/esds-doc-markup-overrides-testing.njk' #}
 {# You could potentially do multiple markup overrides against the same library with multiple calls like this. Might be a good way to do markup-level theming #}
-{% set esds_doc_markup_overrides_file = 'test/esds-doc-markup-overrides-testing.njk' %}
+{% set esds_doc_overrides_path = 'test/esds-doc-overrides-testing.njk' %}
 {% import 'components/esds-doc.njk' as library_with_markup_overrides with context %}
 <html>
     <head>
