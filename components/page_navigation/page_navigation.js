@@ -111,10 +111,9 @@ Esds.PageNavigation = function() {
     }
 
     function setListItemActive(linkHref) {
-        const activeLink = document.querySelector("a[href='" + linkHref + "']");
-
-                const pageNavigation = activeLink.closest(pageNavigationSelector),
-                highlightedLinks = getArrayOfDomElements("." + listItemLinkActiveClass);
+        const activeLink = document.querySelector("a[href='" + linkHref + "']"),
+                pageNavigation = activeLink.closest(pageNavigationSelector),
+                highlightedLinks = getArrayOfDomElements("." + listItemLinkActiveClass, pageNavigation);
 
         highlightedLinks.forEach(function(link){
             link.classList.remove(listItemLinkActiveClass);
