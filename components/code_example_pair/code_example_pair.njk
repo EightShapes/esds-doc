@@ -10,18 +10,22 @@
                             filename=false) %}
     <div class="esds-doc-code-example-pair{{ ' ' + class if class }}">
         {% if example %}
+            {# If only one example is passed in, display that single HTML example #}
             {{ html_example_list(class="esds-doc-code-example-pair__example-list", example=example, label=example_label) }}
             {% set code_example = example %}
         {% endif %}
+
         {% if examples %}
+            {# If multiple examples are passed in, display each HTML example in a list #}
             {{ html_example_list(class="esds-doc-code-example-pair__example-list", examples=examples) }}
-            {# If more than one example is shown, only show the source code from the first example #}
-            {% set code_example = examples[0].example %}
+            {% set code_example = examples[0].example %} {# If more than one example is shown, only show the source code from the first example #}
         {% endif %}
 
         {% if code_snippet_source %}
+            {# If code_snippet_source has been passed in, display that code and NOT the code that matches the example #}
             {% set code_source = code_snippet_source %}
         {% else %}
+            {# By default display code from the first html example shown #}
             {% set code_source = code_example %}
         {% endif %}
 

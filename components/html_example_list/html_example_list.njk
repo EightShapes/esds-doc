@@ -5,10 +5,10 @@
                 examples,
                 example_label_markup) %}
 
-    {% set overrides_path = esds_doc_markup_overrides_file | default('./markup_overrides/esds-doc-markup-overrides-default.njk') %}
-    {% from overrides_path import esds_doc_markup_overrides with context %}
+    {% set esds_doc_overrides_path = esds_doc_overrides_path | default('./esds_doc_overrides/esds-doc-overrides-default.njk') %}
+    {% from esds_doc_overrides_path import esds_doc_overrides with context %}
     
-    {% set example_label_markup = example_label_markup | default(esds_doc_markup_overrides.html_example_list.example_label_markup) | default(false) %}
+    {% set example_label_markup = example_label_markup | default(esds_doc_overrides.html_example_list.example_label_markup) | default(false) %}
 
     <div class="esds-doc-html-example-list{{ ' ' + class if class }}">
         {% if example %}
