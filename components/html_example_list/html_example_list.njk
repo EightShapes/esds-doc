@@ -2,24 +2,33 @@
                 class=false,
                 example,
                 label,
-                examples) %}
+                examples,
+                example_label_markup) %}
+
+    {% set esds_doc_overrides_path = esds_doc_overrides_path | default('./esds_doc_overrides/esds-doc-overrides-default.njk') %}
+    {% from esds_doc_overrides_path import esds_doc_overrides with context %}
+    
+    {% set example_label_markup = example_label_markup | default(esds_doc_overrides.html_example_list.example_label_markup) | default(false) %}
+
     <div class="esds-doc-html-example-list{{ ' ' + class if class }}">
         {% if example %}
-            {{ render_html_example(example, label) }}
+            {{ render_html_example(example, label, false, example_label_markup) }}
         {% endif %}
 
         {% if examples %}
             {% for example in examples %}
-                {{ render_html_example(example.example, example.label, example.class) }}
+                {{ render_html_example(example.example, example.label, example.class, example_label_markup) }}
             {% endfor %}
         {% endif %}
     </div>
 {% endmacro %}
 
-{% macro render_html_example(source, label, class) %}
+{% macro render_html_example(source, label, class, example_label_markup) %}
     <div class="esds-doc-html-example-list__item{{ ' ' + class if class }}">
         {{ source | safe }}
-        {% if label %}
+        {% if example_label_markup %}
+            {{ example_label_markup | safe }}
+        {% elif label %}
             <span class="esds-doc-html-example-list__label">{{ label }}</span>
         {% endif %}
     </div>

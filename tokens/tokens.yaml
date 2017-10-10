@@ -38,6 +38,9 @@ space:
   inset:
     s: 8px
     m: 16px
+  stack:
+    s: 8px
+    m: 16px;
 
 z-index:
   slight: 10
