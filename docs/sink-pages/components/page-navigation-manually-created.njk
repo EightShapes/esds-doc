@@ -1,0 +1,134 @@
+{% extends "templates/sink.njk" %}
+{% block body %}
+    <style>
+        .testing * {
+            background: transparent;
+            color: {{ esds_doc_tokens['text-color'].default }};
+            font-family: {{ esds_doc_tokens.font.family['sans-serif'] | safe }};
+            /*font-size: 20px;*/
+            font-style: normal;
+            font-weight: normal;
+            letter-spacing: 0;
+            line-height: 1.2;
+            text-align: left;
+            text-indent: 0;
+            margin: 32px 0 16px 0;
+            max-width: 768px;
+            padding: 0;
+            text-shadow: none;
+            text-transform: none;
+        }
+
+        .sink-shell {
+            display: flex;
+        }
+
+/*        .esds-doc-page-navigation {
+            order: 2;
+        }*/
+
+
+        /* This will need to be set in the context that the component is used*/
+        .esds-doc-page-navigation--fixed .esds-doc-page-navigation__inner {
+            top: 32px;
+        }
+    </style>
+    <div style="height: 32px;">
+        <div style="width: 100%; height: 32px; background-color: darkorange; position: fixed; top: 0; left: 0;">
+            <h1 class="esds-doc-sink-page-header" style="margin: 0;">Example Fixed Header that the page navigation should sit below</h1>
+        </div>
+    </div>
+
+    <div class="testing">
+        <h1 style="max-width: none;">Manually built example</h1>
+        <p style="max-width: none;">This example shows how the page navigation component can be used with manually curated set of links instead of auto-generated based on content.</p>
+    </div>
+    
+    <div class="sink-shell">
+        {{ library.page_navigation(fixed_distance_from_top="32", items=[
+            {
+                href: "#first-header",
+                text: "Header One"
+            },
+            {
+                href: "#second-header",
+                text: "Header Two"
+            },
+            {
+                href: "#third-header",
+                text: "Header Three"
+            },
+            {
+                href: "#fourth-header",
+                text: "Header Four"
+            },
+            {
+                href: "#fifth-header",
+                text: "Header Five"
+            },
+            {
+                href: "#sixth-header",
+                text: "Header Six"
+            }
+        ]) }}
+        <div class="testing">
+            <h2 id="first-header">Header One</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <h2 id="second-header">Header Two</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <h2 id="third-header">Header Three</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <h2 id="fourth-header">Header Four</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <h2 id="fifth-header">Header Five</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <h2 id="sixth-header">Header Six</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+
+        </div>
+    </div>
+
+    <script>
+        function ready(fn) {
+          if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+            fn();
+          } else {
+            document.addEventListener('DOMContentLoaded', fn);
+          }
+        }
+
+        ready(function(){
+            Esds.PageNavigation.init();
+        });
+    </script>
+{% endblock body %}

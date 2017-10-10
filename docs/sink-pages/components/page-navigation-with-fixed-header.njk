@@ -27,37 +27,54 @@
             order: 2;
         }
 
+        .accessibly-hidden {
+            margin: 0;
+            padding: 0;
+            height: 0;
+            overflow: hidden;
+        }
+
+
         /* This will need to be set in the context that the component is used*/
         .esds-doc-page-navigation--fixed .esds-doc-page-navigation__inner {
-            top: 0;
+            top: 100px;
         }
     </style>
-    <h1 class="esds-doc-sink-page-header">Page Navigation</h1>
+    <div style="height: 100px;">
+        <div style="width: 100%; height: 100px; background-color: lightblue; position: fixed; top: 0; left: 0;">
+            <h1 class="esds-doc-sink-page-header" style="margin: 0;">Example Fixed Header that the page navigation should sit below</h1>
+        </div>
+    </div>
+
+    <div class="testing">
+        <h1 style="max-width: none;">Some full-width content that will scroll away</h1>
+        <p style="max-width: none;">Testing Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, deleniti voluptas itaque nemo, sit quas numquam consectetur iure in atque tempore, voluptates quis fugiat fugit, voluptatem pariatur quo quaerat rem?</p>
+    </div>
     
     <div class="sink-shell">
-        {{ library.page_navigation() }}
+        {{ library.page_navigation(fixed_distance_from_top="100", anchor_link_target_selector=".page-navigation--header") }}
         <div class="testing">
-            <h2>Sample Header h2</h2>
+            <h2 class="page-navigation--header">Include This Header</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
             </p>
 
-            <h2>Another Sample Header h2</h2>
+            <h2 id="use-this-id" class="page-navigation--header">Include this header with custom id</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
             </p>
 
-            <h3>Subsection h3</h2>
+            <h3>This header won't be included in the nav</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
             </p>
 
-            <h3>Another Subsection h3</h2>
+            <h3>Neither will this one</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
             </p>
 
-            <h3>Long section spanning viewport</h2>
+            <h3 class="page-navigation--header">Long section</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
             </p>
@@ -134,17 +151,30 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
             </p>
 
-            <h2>New h2</h2>
+            <h2 class="accessibly-hidden page-navigation--header">Variations (hidden header)</h2>
+            <h3>Subsection 1</h3>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
             </p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
             </p>
+
+            <h3>Subsection 2</h3>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
             </p>
-            <h2>5: Starting with a number is tricky</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+
+            <h3>Subsection 3</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
         </div>
     </div>
 

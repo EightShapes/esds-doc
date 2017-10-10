@@ -10,14 +10,20 @@ Esds.PageNavigation = function() {
             listItemLinkSelector = ".esds-doc-page-navigation__link",
             listItemLinkActiveClass = "esds-doc-page-navigation__link--active",
             anchorLinkTargetDataAttribute = "data-esds-doc-anchor-link-target-selector",
+            fixedDistanceFromTopDataAttribute = "data-esds-doc-fixed-distance-from-top",
             pageNavigationFixedClass = "esds-doc-page-navigation--fixed",
             suppressScrollMonitoringClass = "esds-doc-page-navigation--no-scroll-monitor";
 
     let pageNavigationComponents,
         listItemTemplate;
 
+    function getArrayOfDomElements(selector, parent) {
+        parent = typeof parent === 'undefined' ? document : parent;
+        return Array.prototype.slice.call(parent.querySelectorAll(selector), 0);
+    }
+
     function getPageNavigationComponents() {
-        return document.querySelectorAll(pageNavigationSelector);
+        return getArrayOfDomElements(pageNavigationSelector);
     }
 
     function getListItemId(anchorLinkItem) {
@@ -55,7 +61,7 @@ Esds.PageNavigation = function() {
 
     function buildPageNavigationListItems(pageNavigation) {
         const anchorLinkTargetSelector = pageNavigation.getAttribute(anchorLinkTargetDataAttribute),
-            anchorLinkItems = anchorLinkTargetSelector === null ? false : document.querySelectorAll(anchorLinkTargetSelector),
+            anchorLinkItems = anchorLinkTargetSelector === null ? false : getArrayOfDomElements(anchorLinkTargetSelector),
             pageNavigationList = pageNavigation.querySelector(pageNavigationListSelector);
 
         if (anchorLinkItems) {
@@ -83,7 +89,7 @@ Esds.PageNavigation = function() {
     }
 
     function monitorPageNavigationFixedStatus(pageNavigation) {
-        const distanceFromTop = pageNavigation.getAttribute('data-esds-doc-fixed-distance-from-top') === null ? 0 : pageNavigation.getAttribute('data-esds-doc-fixed-distance-from-top'),
+        const distanceFromTop = getTopOffset(pageNavigation),
             elementWatcher = scrollMonitor.create(pageNavigation, {top: distanceFromTop});
 
         setFixedPosition(pageNavigation, elementWatcher);
@@ -108,13 +114,18 @@ Esds.PageNavigation = function() {
         const activeLink = document.querySelector("a[href='" + linkHref + "']");
 
                 const pageNavigation = activeLink.closest(pageNavigationSelector),
-                highlightedLinks = pageNavigation.querySelectorAll("." + listItemLinkActiveClass);
+                highlightedLinks = getArrayOfDomElements("." + listItemLinkActiveClass);
 
         highlightedLinks.forEach(function(link){
             link.classList.remove(listItemLinkActiveClass);
         });
 
         activeLink.classList.add(listItemLinkActiveClass);
+    }
+
+    function getTopOffset(pageNavigation) {
+        const topOffset = pageNavigation.getAttribute(fixedDistanceFromTopDataAttribute);
+        return topOffset === null ? 0 : topOffset;
     }
 
     function monitorPageSectionsForActiveLinkHighlighting(pageNavigation, debug) {
@@ -201,10 +212,14 @@ Esds.PageNavigation = function() {
     }
 
     function smoothScrollToSection(sectionSelector, pageNavigation) {
-        const pageSection = document.querySelector(sectionSelector);
+        const pageSection = document.querySelector(sectionSelector),
+            topOffset = getTopOffset(pageNavigation),
+            scrollPosition = pageSection.offsetTop - topOffset;
 
         disableScrollMonitoring(pageNavigation);
-        pageSection.scrollIntoView({
+        window.scroll({
+            top: scrollPosition,
+            left: 0,
             behavior: 'smooth'
         });
         // Brittle, but browser-native .scrollIntoView doesn't provide any callback mechanism
@@ -214,7 +229,7 @@ Esds.PageNavigation = function() {
     }
 
     function initiateSoftScrollOnClick(pn) {
-        const links = pn.querySelectorAll(listItemLinkSelector);
+        const links = getArrayOfDomElements(listItemLinkSelector, pn);
 
         links.forEach(function(l){
             l.addEventListener('click', function(e){
