@@ -1,0 +1,56 @@
+{# This file contains markup overrides for various esds-doc components #}
+{# Markup overrides are injected into container elements within esds-doc components #}
+{# This file must be imported before importing the esds-doc components, this is typically done in a base template file #}
+{# Example: 
+    {% import 'imports/esds-doc-markup-overrides.njk' as esds_markup_overrides with context %}
+    {% import 'esds-doc/components/esds-doc.njk' as esds_doc with context %}
+
+    The "as esds_markup_overrides" namespace is required for the markup overrides to work
+#}
+
+{% import 'components/esds-doc.njk' as library %}
+{# Defining a macro here just for testing, in a real scenario this would be imported with the library on the line above #}
+{% macro my_pill(class=false, text="Foo") %}
+    <style>
+        .my-pill {
+            font-weight: normal;
+            font-size: 10px;
+            font-style: normal;
+            line-height: 1;
+            letter-spacing: 0;
+            background: lightgray;
+            color: black;
+            font-family: 'Georgia', serif;
+            border: solid 1px gray;
+            border-radius: 4px;
+            padding: 2px 4px;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+        }
+    </style>
+    <span class="my-pill">
+        {{ text }}
+    </span>
+{% endmacro %}
+
+{% set esds_doc_overrides = {
+    code_snippet: {
+        copy_button: '<style>
+                        .my-custom-button-class {
+                            background: limegreen;
+                            border: solid 5px blue;
+                            font-family: cursive;
+                            font-size: 16px;
+                        }
+                    </style>
+                    <button class="my-custom-button-class">' + copy_code_text + '</button>',
+        toggle_code_visibility_button: false
+    },
+    html_example_list: {
+        example_label_markup: my_pill(text=label)
+    }
+} %}
+
+
+
