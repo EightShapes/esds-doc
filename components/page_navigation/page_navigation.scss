@@ -3,7 +3,6 @@ $esds-doc-page-navigation-space-inset: $esds-doc-space-inset-m !default;
 $esds-doc-page-navigation-link-color: $esds-doc-text-color-link !default; 
 $esds-doc-page-navigation-link-color-active: $esds-doc-color-orange-light !default;
 $esds-doc-page-navigation-link-text-decoration: none !default; 
-$esds-doc-page-navigation-link-text-decoration-active: underline !default; 
 $esds-doc-page-navigation-link-font-size: $esds-doc-font-size-m !default;
 $esds-doc-page-navigation-link-space-inset: $esds-doc-space-inset-xs !default;
 
@@ -11,6 +10,7 @@ $esds-doc-page-navigation-link-space-inset: $esds-doc-space-inset-xs !default;
     @include esds-doc-font-reset;
     font-size: $esds-doc-page-navigation-link-font-size;
     max-width: $esds-doc-page-navigation-max-width;
+    width: 100%;
 }
 
 .esds-doc-page-navigation__inner {
@@ -32,5 +32,4 @@ $esds-doc-page-navigation-link-space-inset: $esds-doc-space-inset-xs !default;
 
 .esds-doc-page-navigation__link--active {
     color: $esds-doc-page-navigation-link-color-active;
-    text-decoration: $esds-doc-page-navigation-link-text-decoration-active;
 }

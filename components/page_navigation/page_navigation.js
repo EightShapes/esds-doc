@@ -128,7 +128,9 @@ Esds.PageNavigation = function() {
     }
 
     function monitorPageSectionsForActiveLinkHighlighting(pageNavigation, debug) {
-        const pageAnchorLinks = pageNavigation.querySelectorAll(listItemLinkSelector);
+        const pageAnchorLinks = pageNavigation.querySelectorAll(listItemLinkSelector),
+                topOffset = getTopOffset(pageNavigation);
+
         for (var i = 0; i < pageAnchorLinks.length; i++) {
             let anchorLink = pageAnchorLinks[i],
                 targetHref = anchorLink.getAttribute('href'),
@@ -136,8 +138,8 @@ Esds.PageNavigation = function() {
                 nextAnchorLink = pageAnchorLinks[i + 1],
                 nextTargetHref = typeof nextAnchorLink === 'undefined' ? false : nextAnchorLink.getAttribute('href'),
                 nextTarget = nextTargetHref ? document.querySelector(nextTargetHref) : false,
-                sectionTop = target.offsetTop,
-                sectionBottom = nextTarget ? nextTarget.offsetTop - 1 : document.body.offsetHeight,
+                sectionTop = target.offsetTop - topOffset,
+                sectionBottom = nextTarget ? nextTarget.offsetTop - 1 - topOffset : document.body.offsetHeight,
                 elementWatcher = scrollMonitor.create({top: sectionTop, bottom: sectionBottom});
 
             // When a section spans the entire viewport
@@ -251,8 +253,7 @@ Esds.PageNavigation = function() {
         }
     }
 
-    let init = function init(debug) {
-        debug = typeof debug === 'undefined' ? false : debug;
+    function initializePageNavigationComponents(debug) {
         pageNavigationComponents = getPageNavigationComponents();
 
         pageNavigationComponents.forEach(function(pn){
@@ -262,6 +263,13 @@ Esds.PageNavigation = function() {
             initiateSoftScrollOnClick(pn);
             setDefaultActiveLink(pn);
         });
+    }
+
+    let init = function init(debug) {
+        debug = typeof debug === 'undefined' ? false : debug;
+        setTimeout(function() {
+            initializePageNavigationComponents(debug);
+        }, 500); // set a small delay before initializing the page nav to ensure the layout has fully loaded and Page Section Scroll Markers are calculated accurately
     };
 
     return {
