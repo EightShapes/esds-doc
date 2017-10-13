@@ -34,6 +34,21 @@
     </span>
 {% endmacro %}
 
+{# Defining a macro here just for testing, in a real scenario this would be imported with the library on the line above #}
+{% macro super_cool_icon(icon_key, icon_path) %}
+    <style>
+        .super-cool-icon {
+            background: red;
+            fill: darkorange;
+            height: 49px;
+            width: 49px;
+        }
+    </style>
+    <svg class="super-cool-icon">
+        <use xlink:href="{{ icon_path }}#{{ icon_key }}"></use>
+    </svg>
+{% endmacro %}
+
 {% set esds_doc_overrides = {
     code_snippet: {
         copy_button: '<style>
@@ -49,6 +64,9 @@
     },
     html_example_list: {
         example_label_markup: my_pill(text=label)
+    },
+    icon_swatch: {
+        icon_markup: super_cool_icon(icon_key=name, icon_path='/icons/esds-doc.svg')
     }
 } %}
 
