@@ -1,5 +1,136 @@
 {% extends "templates/sink.njk" %}
 
 {% block body %}
+    <h1 class="esds-doc-sink-page-header">Reference Tables Sink</h1>
+    <h1 class="esds-doc-sink-page-header">Default</h1>
     {{ library.reference_table() }}
+
+    <h1 class="esds-doc-sink-page-header">Custom Headers</h1>
+    {{ library.reference_table(headers=[{"class": "Class Name"}, {"applies_to": "Applies to this HTML element"}, "outcome"]) }}
+
+    <h1 class="esds-doc-sink-page-header">Change Automatic Code Highlighting Columns</h1>
+    {{ library.reference_table(automatic_code_block_columns=['outcome'], data=[{
+            class: ".this-wont-be-a-code-block",
+            applies_to: "#this-wont-be-a-code-block-either",
+            outcome: "This will be a code block. Because the outcome column is set as an automatic_code_block_column."
+        },
+        {
+            class: ".not-a-code-block",
+            applies_to: ".not-a__code-block",
+            outcome: "This will also be a code block. Because the outcome column is set as an automatic_code_block_column."
+        },
+        {
+            class: "`.this-will-be-a-code-block-cause-of-backticks-in-source`",
+            applies_to: "#this-wont-be-a-code-block",
+            outcome: "Only parts of this will be a `code-block` because of backticks in source."
+        }
+    ]) }}
+
+    <h1 class="esds-doc-sink-page-header">Custom Data</h1>
+    {{ library.reference_table(data=[{
+            class: ".esds-component-name--modifier",
+            applies_to: ".esds-component-name",
+            outcome: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates pariatur repellat sunt, accusantium, blanditiis, repellendus explicabo libero, quo ad debitis praesentium magni veritatis ab eaque natus quae omnis recusandae. Rerum."
+        },
+        {
+            class: ".esds-component-name--different-modifier",
+            applies_to: ".esds-component-name__element-name",
+            outcome: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente libero quod non laborum odio, repudiandae velit qui, voluptatem earum soluta fuga. Molestiae ab dignissimos praesentium blanditiis ea, molestias ratione fuga."
+        },
+        {
+            class: ".esds-component-name--small",
+            applies_to: "`.esds-component-name__element-name`, or any other element within `.esds-component-name` that has an image",
+            outcome: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente libero quod non laborum odio, repudiandae velit qui, voluptatem earum soluta fuga. Molestiae ab dignissimos praesentium blanditiis ea, molestias ratione fuga."
+        },
+        {
+            class: ".esds-component-name--medium",
+            applies_to: ".esds-component-name",
+            outcome: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente libero quod non laborum odio, repudiandae velit qui, voluptatem earum soluta fuga. Molestiae ab dignissimos praesentium blanditiis ea, molestias ratione fuga."
+        },
+        {
+            class: ".esds-component-name--large",
+            applies_to: ".esds-component-name",
+            outcome: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente libero quod non laborum odio, repudiandae velit qui, voluptatem earum soluta fuga. Molestiae ab dignissimos praesentium blanditiis ea, molestias ratione fuga."
+        }]) }}
+
+    <h1 class="esds-doc-sink-page-header">Override Column Widths</h1>
+    {{ library.reference_table(
+        column_widths=[40, 30, 30],
+        data=[{
+            class: ".esds-component-name--modifier",
+            applies_to: ".esds-component-name",
+            outcome: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates pariatur repellat sunt, accusantium, blanditiis, repellendus explicabo libero, quo ad debitis praesentium magni veritatis ab eaque natus quae omnis recusandae. Rerum."
+        },
+        {
+            class: ".esds-component-name--different-modifier",
+            applies_to: ".esds-component-name__element-name",
+            outcome: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente libero quod non laborum odio, repudiandae velit qui, voluptatem earum soluta fuga. Molestiae ab dignissimos praesentium blanditiis ea, molestias ratione fuga."
+        },
+        {
+            class: ".esds-component-name--small",
+            applies_to: ".esds-component-name",
+            outcome: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente libero quod non laborum odio, repudiandae velit qui, voluptatem earum soluta fuga. Molestiae ab dignissimos praesentium blanditiis ea, molestias ratione fuga."
+        },
+        {
+            class: ".esds-component-name--medium",
+            applies_to: ".esds-component-name",
+            outcome: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente libero quod non laborum odio, repudiandae velit qui, voluptatem earum soluta fuga. Molestiae ab dignissimos praesentium blanditiis ea, molestias ratione fuga."
+        },
+        {
+            class: ".esds-component-name--large",
+            applies_to: ".esds-component-name",
+            outcome: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente libero quod non laborum odio, repudiandae velit qui, voluptatem earum soluta fuga. Molestiae ab dignissimos praesentium blanditiis ea, molestias ratione fuga."
+        }]) }}
+
+    <h1 class="esds-doc-sink-page-header">Override Everything</h1>
+    {{ library.reference_table(
+        headers=[
+            'browser',
+            'version',
+            {'supported': "Fully Supported?"},
+            'notes'
+        ],
+        column_widths=[20, 10, 10, 60],
+        data=[{
+                browser: "Internet Explorer",
+                version: "11",
+                supported: "Yes",
+                notes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quod repellendus quam eveniet dolorem in necessitatibus distinctio veniam delectus adipisci."
+            },
+            {
+                browser: "Edge",
+                version: "14",
+                supported: "No",
+                notes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quod repellendus quam eveniet dolorem in necessitatibus distinctio veniam delectus adipisci."
+            },
+            {
+                browser: "Edge",
+                version: "15",
+                supported: "&ldquo;Yes&rdquo;",
+                notes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quod repellendus quam eveniet dolorem in necessitatibus distinctio veniam delectus adipisci."
+            },
+            {
+                browser: "Chrome",
+                version: "61",
+                supported: "Absolutely",
+                notes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quod repellendus quam eveniet dolorem in necessitatibus distinctio veniam delectus adipisci."
+            },
+            {
+                browser: "Firefox",
+                version: "56",
+                supported: "Yep",
+                notes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quod repellendus quam eveniet dolorem in necessitatibus distinctio veniam delectus adipisci."
+            },
+            {
+                browser: "Firefox",
+                version: "57",
+                supported: "No",
+                notes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quod repellendus quam eveniet dolorem in necessitatibus distinctio veniam delectus adipisci."
+            },
+            {
+                browser: "Safari",
+                version: "11",
+                supported: "Yes",
+                notes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quod repellendus quam eveniet dolorem in necessitatibus distinctio veniam delectus adipisci."
+            }]) }}
 {% endblock %}

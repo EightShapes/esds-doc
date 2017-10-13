@@ -27,7 +27,9 @@ font:
   line-height:
     normal: 1.2
   size:
-    m: 14px
+    s: 14px
+    m: 16px
+    l: 20px
 
 border:
   default: "solid 1px !{*color-neutral-53}"
