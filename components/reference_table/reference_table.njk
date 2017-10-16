@@ -1,25 +1,53 @@
-{% macro reference_table(class=false, data, headers) %}
+{% macro reference_table(class=false, 
+                            data, 
+                            headers,
+                            column_widths,
+                            automatic_code_block_columns=['class', 'applies_to']) %}
     {% from 'components/reference_table/reference_table_defaults.njk' import default_data, default_headers %}
     {% set data = data | default(default_data) %}
     {% set headers = headers | default(default_headers) %}
+
     <div class="esds-doc-reference-table">
         <table class="esds-doc-reference-table__inner">
             <thead class="esds-doc-referenc-table__header">
                 <tr class="esds-doc-referenc-table__header-row">
                     {% for header in headers %}
-                        <th class="esds-doc-reference-table__header-cell">{{ header | replace("_", " ") | capitalize }}</th>
+                        <th class="esds-doc-reference-table__header-cell" 
+                            {% if column_widths %}
+                                style="width: {{ column_widths[loop.index0] }}%"
+                            {% endif %}>
+                            {% if header[0] %}
+                                {# This header value is a single string: headers=['header',... #}
+                                {{ header | replace("_", " ") | capitalize }}
+                            {% else %}
+                                {# This header value is an object: headers=[{'header':'My Header'},... #}
+                                {% for key, label in header %}
+                                    {{ label }}
+                                {% endfor %}
+                            {% endif %}
+                        </th>
                     {% endfor %}
                 </tr>
             </thead>
             <tbody class="esds-doc-reference-table__body">
                 {% for data_row in data %}
                     <tr class="esds-doc-reference-table__row">
-                        {% for data_key in headers %}
-                            {% if data_key == 'class' %}
-                                {# Convenience method to wrap class names in code tags #}
-                                {% set cell_content = "`" + data_row[data_key] + "`" %}
+                        {% for header_data in headers %}
+                            {% set data_key = false %}
+                            {% if header_data[0] %}
+                                {# This header value is a single string: headers=['header',... #}
+                                {% set data_key = header_data %}
                             {% else %}
-                                {% set cell_content = data_row[data_key] %}
+                                {# This header value is an object: headers=[{'header':'My Header'},... #}
+                                {% for key, label in header_data %}
+                                    {% set data_key = key %}
+                                {% endfor %}
+                            {% endif %}
+                            {% set cell_content = data_row[data_key] %}
+
+                            {# If the header is "class" or "applies_to" and the content doesn't contain any backticks then automatically render content as a markdown code block #}
+                            {% if data_key in automatic_code_block_columns and not '`' in cell_content %}
+                                {% set cell_content = "`" + cell_content + "`" %}
                             {% endif %}
                             <td class="esds-doc-reference-table__cell">
                                 {{ cell_content | safe | markdown(false) }}
@@ -31,5 +59,3 @@
         </table>
     </div>
 {% endmacro %}
-
-

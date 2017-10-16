@@ -13,27 +13,112 @@ color:
     95: &color-neutral-95 "#f3f1f1"
 
 text-color:
-  default: *color-neutral-20
-  on-dark: *color-neutral-95
-  link: *color-blue
+  brand : *color-black
+  primary : 
+    on-white : *color-black
+    on-light : *color-black
+    on-brand : *color-white
+    on-dark : *color-white
+    on-black : *color-neutral-95
+  secondary : 
+    on-white : *color-neutral-30
+    on-light : *color-neutral-30
+    on-brand : *color-neutral-95
+    on-dark : *color-neutral-95
+    on-black : *color-neutral-95
+  link : 
+    on-white : &text-color-link-on-white *color-blue
+    on-light : &text-color-link-on-light *color-blue
+    on-brand : &text-color-link-on-brand *color-white
+    on-dark : &text-color-link-on-dark *color-white
+    on-black : &text-color-link-on-black *color-white
 
 background-color:
-  default: *color-white
-  dark: *color-black
-
-font:
-  family:
-    sans-serif: "'Lato', sans-serif"
-  line-height:
-    normal: 1.2
-  size:
-    m: 16px
-    l: 24px
+  default: "transparent"
+  white : *color-white
+  light : *color-neutral-95
+  dark: *color-neutral-15
+  black : *color-black
+  brand : *color-black
 
 border:
   default: "solid 1px !{*color-neutral-53}"
+  separator:
+    default: "solid 1px !{*color-neutral-53}"
+    on-white: "solid 1px !{*color-neutral-53}"
+    on-light: "solid 1px !{*color-neutral-53}"
+    on-dark: "solid 1px !{*color-neutral-53}"
+    on-brand: "solid 1px !{*color-neutral-53}"
+  layered-container:
+    default: "solid 1px !{*color-neutral-53}"
+    on-white: "solid 1px !{*color-neutral-53}"
+    on-light: "solid 1px !{*color-neutral-53}"
+    on-dark: "solid 1px !{*color-neutral-53}"
+    on-brand: "solid 1px !{*color-neutral-53}"
+  control:
+    default: "solid 1px !{*color-neutral-53}"
+    on-white: "solid 1px !{*color-neutral-53}"
+    on-light: "solid 1px !{*color-neutral-53}"
+    on-dark: "solid 1px !{*color-neutral-53}"
+    on-brand: "solid 1px !{*color-neutral-53}"
   radius:
     default: 4px
+
+font:
+  family:
+    sans-serif: "Arial, Verdana, sans-serif"
+    serif: "Georgia, Times"
+    monospace: "Monaco, Courier"
+  size:
+    s: 14px
+    m: 16px
+    l: 20px
+    heading-level-1: 48px
+    heading-level-2: 32px
+    heading-level-3: 24px
+    heading-level-4: 20px
+    heading-level-5: 16px
+    headline: 48px
+    deck: 24px
+    code: 12px
+  weight:
+    light: "light"
+    normal: "normal"
+    bold: "bold"
+  line-height:
+    heading: 1.2
+    normal: 1.35
+
+space:
+  generic:
+    4-x: 64px
+    2-x: 32px
+    1-and-half-x: 24px
+    1-x: 16px
+    half-x: 8px
+    quarter-x: 4px
+    eighth-x: 2px
+  inset:
+    4-x: 64px
+    2-x: 32px
+    1-and-half-x: 24px
+    1-x: 16px
+    half-x: 8px
+    quarter-x: 4px
+    eighth-x: 2px
+  inset-stretch:
+    2-x: 8px 32px
+    1-and-half-x: 12px 24px
+    1-x: 8px 16px
+    half-x: 4px 8px
+    quarter-x: 2px 4px
+  stack:
+    4-x: 0 0 64px
+    2-x: 0 0 32px
+    1-and-half-x: 0 0  24px
+    1-x: 0 0 16px
+    half-x: 0 0 8px
+    quarter-x: 0 0 4px
 
 icon:
   size:
@@ -41,16 +126,9 @@ icon:
     m: 24px
     l: 32px
 
-space:
-  s: 8px
-  m: 16px
-  inset:
-    xs: 4px
-    s: 8px
-    m: 16px
-  stack:
-    s: 0 0 8px
-    m: 0 0 16px
+box-shadow :
+  drop : "0 2px 4px 0 rgba(0, 0, 0, .08)"
+  focus: "0 0 4px 2px rgba(!{*color-blue}, .8)"
 
 z-index:
   slight: 10

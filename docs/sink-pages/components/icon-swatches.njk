@@ -27,7 +27,28 @@
                             class="esds-doc-icon-swatch--large",
                             label="Date picker",
                             download_link_href="/icons/calendar.svg") }}
-                            
+    <h1 class="esds-doc-sink-page-header">Override Icon Markup with custom markup passed to the macro</h1>
+    {% set my_icon_markup %}
+        <style>
+            .my-special-icon {
+                background: purple;
+                border: solid 2px blue;
+                border-radius: 50%;
+                fill: hotpink;
+                height: 63px;
+                width: 63px;
+            }
+        </style>
+        <svg class="my-special-icon">
+            <use xlink:href="/icons/esds-doc.svg#smiley"></use>
+        </svg>
+    {% endset %}
+    {{ library.icon_swatch(label="Smiley Guy",
+                            icon_markup=my_icon_markup) }}
+
+    <h1 class="esds-doc-sink-page-header">Override Icon Markup with custom code set globally (Alternate icon markup is passed indirectly via the global variable context)</h1>
+    {{ library_with_markup_overrides.icon_swatch(label="Using another macro", name="calendar") }}
+
     <h2 class="esds-doc-sink-page-header">Grid of Swatches</h2>
     {# Ideally this array would already be built by esds-build #}
     {% set icons = [

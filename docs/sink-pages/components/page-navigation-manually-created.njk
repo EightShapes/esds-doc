@@ -3,7 +3,7 @@
     <style>
         .testing * {
             background: transparent;
-            color: {{ esds_doc_tokens['text-color'].default }};
+            color: {{ esds_doc_tokens['text-color'].primary['on-white'] }};
             font-family: {{ esds_doc_tokens.font.family['sans-serif'] | safe }};
             /*font-size: 20px;*/
             font-style: normal;
@@ -48,27 +48,27 @@
         {{ library.page_navigation(fixed_distance_from_top="32", items=[
             {
                 href: "#first-header",
-                text: "Header One"
+                text: "Alpha"
             },
             {
                 href: "#second-header",
-                text: "Header Two"
+                text: "Beta"
             },
             {
                 href: "#third-header",
-                text: "Header Three"
+                text: "Gamma"
             },
             {
                 href: "#fourth-header",
-                text: "Header Four"
+                text: "Delta"
             },
             {
                 href: "#fifth-header",
-                text: "Header Five"
+                text: "Epsilon"
             },
             {
                 href: "#sixth-header",
-                text: "Header Six"
+                text: "Zeta"
             }
         ]) }}
         <div class="testing">

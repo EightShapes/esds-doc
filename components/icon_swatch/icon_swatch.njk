@@ -3,12 +3,26 @@
         class=false,
         label,
         download_link_text="Download",
-        download_link_href=false) %}
-        {% set icon_component_import_path = icon_component_import_path | default('./icon/icon.njk') %}
-        {% from icon_component_import_path import icon with context %}
+        download_link_href=false,
+        icon_markup) %}
+    
+    {% set esds_doc_overrides_path = esds_doc_overrides_path | default('./esds_doc_overrides/esds-doc-overrides-default.njk') %}
+    {% from esds_doc_overrides_path import esds_doc_overrides with context %}
+
+    {# Set markup for the icon in this order:
+        1. If a icon_markup argument was passed into the macro, use that
+        2. Otherwise if a icon_markup argument is set on the esds_doc_overrides object, use that
+        3. Otherwise default to false which will trigger usage of the default ESDS Icon
+     #}
+    {% set icon_markup = icon_markup | default(esds_doc_overrides.icon_swatch.icon_markup) | default(false) %}
+
     {% set label = label | default(name) %}
     <div class="esds-doc-icon-swatch{{ ' ' + class if class }}">
-        {{ icon(name=name, class="esds-doc-icon-swatch__icon") }}
+        {% if icon_markup %}
+            {{ icon_markup | safe }}
+        {% else %}
+            {{ icon(name=name, class="esds-doc-icon-swatch__icon") }}
+        {% endif %}
         <span class="esds-doc-icon-swatch__label">
             {{ label }}
         </span>

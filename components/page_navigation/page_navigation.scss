@@ -1,10 +1,10 @@
 $esds-doc-page-navigation-max-width: 240px !default;
-$esds-doc-page-navigation-space-inset: $esds-doc-space-inset-m !default;
-$esds-doc-page-navigation-link-color: $esds-doc-text-color-link !default; 
+$esds-doc-page-navigation-space-inset: $esds-doc-space-inset-1-x !default;
+$esds-doc-page-navigation-link-color: $esds-doc-text-color-link-on-white !default; 
 $esds-doc-page-navigation-link-color-active: $esds-doc-color-orange-light !default;
 $esds-doc-page-navigation-link-text-decoration: none !default; 
 $esds-doc-page-navigation-link-font-size: $esds-doc-font-size-m !default;
-$esds-doc-page-navigation-link-space-inset: $esds-doc-space-inset-xs !default;
+$esds-doc-page-navigation-link-space-inset: $esds-doc-space-inset-quarter-x !default;
 
 .esds-doc-page-navigation {
     @include esds-doc-font-reset;
