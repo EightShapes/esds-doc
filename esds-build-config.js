@@ -31,13 +31,20 @@ module.exports = {
                         'node_modules/prismjs/prism.js',
                         'node_modules/prismjs/components/prism-json.min.js',
                         'node_modules/prismjs/components/prism-scss.min.js',
-                        'node_modules/prismjs/components/prism-twig.min.js'],
+                        'node_modules/prismjs/components/prism-twig.min.js',
+                        'node_modules/svg4everybody/dist/svg4everybody.min.js'],
             destination: `_site/latest/scripts/dependencies`
         },
         {
             name: 'style-dependencies',
             sources: ['node_modules/prismjs/themes/prism.css'],
             destination: `_site/latest/styles/dependencies`
+        },
+        {
+            name: 'individual-icons',
+            sources: ['icons/*'],
+            destination: `_site/latest/icons`,
+            watch: true
         }
     ],
     manageNunjucksEnv: function(env) {

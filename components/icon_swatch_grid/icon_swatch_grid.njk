@@ -1,0 +1,5 @@
+{% macro icon_swatch_grid(class=false) %}
+    <div class="esds-doc-icon-swatch-grid{{ ' ' + class if class }}">
+        {{ caller() }}
+    </div>
+{% endmacro %}

@@ -1,0 +1,50 @@
+$esds-doc-icon-swatch-background-color: $esds-doc-background-color-default !default; 
+$esds-doc-icon-swatch-icon-size: $esds-doc-icon-size-m !default;
+$esds-doc-icon-swatch-width: 100px !default;
+$esds-doc-icon-swatch-aspect-ratio: 1 !default;
+$esds-doc-icon-swatch-large-multiplier: 2;
+
+$esds-doc-icon-swatch-text-color-label: $esds-doc-text-color-default !default;
+$esds-doc-icon-swatch-text-color-link: $esds-doc-text-color-link !default;
+
+$esds-doc-icon-swatch-height: $esds-doc-icon-swatch-width * $esds-doc-icon-swatch-aspect-ratio;
+
+.esds-doc-icon-swatch {
+    @include esds-doc-box-sizing;
+    @include esds-doc-font-reset;
+    align-items: center;
+    border: $esds-doc-border-default;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: $esds-doc-icon-swatch-height;
+    padding: $esds-doc-space-inset-s;
+    position: relative;
+    text-align: center;
+    width: $esds-doc-icon-swatch-width;
+}
+
+.esds-doc-icon-swatch--large {
+    min-height: $esds-doc-icon-swatch-height * $esds-doc-icon-swatch-large-multiplier;
+    width: $esds-doc-icon-swatch-width * $esds-doc-icon-swatch-large-multiplier;
+}
+
+
+.esds-doc-icon-swatch__icon {
+    height: $esds-doc-icon-swatch-icon-size;
+    margin: $esds-doc-space-stack-s;
+    width: $esds-doc-icon-swatch-icon-size;
+}
+
+.esds-doc-icon-swatch__label {
+    box-sizing: border-box;
+    color: $esds-doc-icon-swatch-text-color-label;
+    display: block;
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+}
+
+.esds-doc-icon-swatch__download-link {
+    color: $esds-doc-icon-swatch-text-color-link;
+}
