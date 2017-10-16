@@ -1,4 +1,4 @@
-$doc-reference-table-background: $esds-doc-background-color-default;
+$doc-reference-table-background: $esds-doc-background-color-white;
 
 .uds-doc-reference-table {
     @include udt-box-sizing;
@@ -9,7 +9,7 @@ $doc-reference-table-background: $esds-doc-background-color-default;
 .uds-doc-reference-table__inner {
     background: $doc-reference-table-background;
     border-collapse: collapse;
-    color: $esds-doc-text-color-default;
+    color: $esds-doc-text-color-primary-on-white;
     font-family: $esds-doc-font-family-sans-serif;
     text-align: left;
     width: 100%;
@@ -17,5 +17,5 @@ $doc-reference-table-background: $esds-doc-background-color-default;
 
 .uds-doc-reference-table__header-cell,
 .uds-doc-reference-table__cell {
-    padding: $esds-doc-space-inset-s;
+    padding: $esds-doc-space-inset-half-x;
 }
