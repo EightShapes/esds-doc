@@ -40,14 +40,6 @@
         {% endif %}
 
         <div class="esds-doc-code-snippet__sources-wrap">
-            {# Upcoming feature - support multiple tabs with different source examples #}
-            {% if sources.length > 0 %}
-                {% for source in sources %}
-                    {{ render_code_snippet_source(source=source.source, language=source.language, filename=source.filename, code_snippet_id=code_snippet_id, preformatted=preformatted) }}
-                {% endfor %}
-            {% else %}
-                {{ render_code_snippet_source(source=source, language=language, filename=filename, code_snippet_id=code_snippet_id, preformatted=preformatted) }}
-            {% endif %}
             {% if show_copy_button %}
                 <div class="esds-doc-code-snippet__copy-code-wrap">
                     <div class="esds-doc-code-snippet__copied-notification">
@@ -59,6 +51,14 @@
                         {{ button(text=copy_button_text) }}
                     {% endif %}
                 </div>
+            {% endif %}
+            {# Upcoming feature - support multiple tabs with different source examples #}
+            {% if sources.length > 0 %}
+                {% for source in sources %}
+                    {{ render_code_snippet_source(source=source.source, language=source.language, filename=source.filename, code_snippet_id=code_snippet_id, preformatted=preformatted) }}
+                {% endfor %}
+            {% else %}
+                {{ render_code_snippet_source(source=source, language=language, filename=filename, code_snippet_id=code_snippet_id, preformatted=preformatted) }}
             {% endif %}
         </div>
     </div>

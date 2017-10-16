@@ -1,21 +1,33 @@
-$doc-reference-table-background: $esds-doc-background-color-default;
+$esds-doc-reference-table-background: $esds-doc-background-color-default !default;
+$esds-doc-reference-table-border-collapse: collapse !default;
+$esds-doc-reference-table-border: $esds-doc-border-default !default;
+$esds-doc-reference-table-font-family: $esds-doc-font-family-sans-serif !default;
+$esds-doc-reference-table-font-size: $esds-doc-font-size-s !default;
+$esds-doc-reference-table-text-align: left !default;
+$esds-doc-reference-table-text-color: $esds-doc-text-color-primary-on-white !default;
+$esds-doc-reference-table-width: 100% !default;
 
-.uds-doc-reference-table {
+$esds-doc-reference-table-cell-space-inset: $esds-doc-space-inset-half-x !default;
+
+.esds-doc-reference-table {
     @include esds-doc-box-sizing;
-    background: $doc-reference-table-background;
+    @include esds-doc-font-reset;
+    background: $esds-doc-reference-table-background;
+    font-size:  $esds-doc-reference-table-font-size;
     width: 100%;
 }
 
-.uds-doc-reference-table__inner {
-    background: $doc-reference-table-background;
-    border-collapse: collapse;
-    color: $esds-doc-text-color-default;
-    font-family: $esds-doc-font-family-sans-serif;
-    text-align: left;
-    width: 100%;
+.esds-doc-reference-table__inner {
+    background:         $esds-doc-reference-table-background;
+    border-collapse:    $esds-doc-reference-table-border-collapse;
+    color:              $esds-doc-reference-table-text-color;
+    font-family:        $esds-doc-reference-table-font-family;
+    text-align:         $esds-doc-reference-table-text-align;
+    width:              $esds-doc-reference-table-width;
 }
 
-.uds-doc-reference-table__header-cell,
-.uds-doc-reference-table__cell {
-    padding: $esds-doc-space-inset-s;
+.esds-doc-reference-table__header-cell,
+.esds-doc-reference-table__cell {
+    border: $esds-doc-reference-table-border;
+    padding: $esds-doc-reference-table-cell-space-inset;
 }
