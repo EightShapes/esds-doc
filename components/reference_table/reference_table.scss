@@ -4,10 +4,10 @@ $esds-doc-reference-table-border: $esds-doc-border-default !default;
 $esds-doc-reference-table-font-family: $esds-doc-font-family-sans-serif !default;
 $esds-doc-reference-table-font-size: $esds-doc-font-size-s !default;
 $esds-doc-reference-table-text-align: left !default;
-$esds-doc-reference-table-text-color: $esds-doc-text-color-default !default;
+$esds-doc-reference-table-text-color: $esds-doc-text-color-primary-on-white !default;
 $esds-doc-reference-table-width: 100% !default;
 
-$esds-doc-reference-table-cell-space-inset: $esds-doc-space-inset-s !default;
+$esds-doc-reference-table-cell-space-inset: $esds-doc-space-inset-half-x !default;
 
 .esds-doc-reference-table {
     @include esds-doc-box-sizing;
