@@ -3,7 +3,7 @@
                             headers,
                             column_widths,
                             automatic_code_block_columns=['class', 'applies_to']) %}
-    {% from 'components/reference_table/reference_table_defaults.njk' import default_data, default_headers %}
+    {% from './reference_table/reference_table_defaults.njk' import default_data, default_headers %}
     {% set data = data | default(default_data) %}
     {% set headers = headers | default(default_headers) %}
 
