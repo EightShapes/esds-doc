@@ -1,6 +1,7 @@
 $esds-doc-code-example-pair-space-stack: $esds-doc-space-stack-1-x !default;
 
 .esds-doc-code-example-pair {
+    @include esds-doc-font-reset;
     margin: $esds-doc-code-example-pair-space-stack;
 }
 

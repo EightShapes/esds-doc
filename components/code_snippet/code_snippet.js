@@ -55,11 +55,11 @@ Esds.CodeSnippet = function() {
     }
 
     function getCopyTriggers() {
-        return document.querySelectorAll('.esds-doc-code-snippet__copy-code-wrap');
+        return Esds.Utils.getArrayOfDomElements('.esds-doc-code-snippet__copy-code-wrap');
     }
 
     function getSnippets() {
-        return document.querySelectorAll('.esds-doc-code-snippet');
+        return Esds.Utils.getArrayOfDomElements('.esds-doc-code-snippet');
     }
 
     function handleSuccessfulCopy(e) {

@@ -1,4 +1,4 @@
-$esds-doc-code-snippet-background-color: $esds-doc-background-color-default !default; 
+$esds-doc-code-snippet-background-color: $esds-doc-background-color-white !default; 
 $esds-doc-code-snippet-border: $esds-doc-border-default !default; 
 $esds-doc-code-snippet-border-radius: $esds-doc-border-radius-default !default;
 $esds-doc-code-snippet-font-family: $esds-doc-font-family-sans-serif !default;
@@ -20,7 +20,7 @@ $esds-doc-code-snippet-source-max-height-tall: 400px !default;
 
 $esds-doc-code-snippet-copy-code-button-offset: $esds-doc-space-inset-half-x !default;
 
-$esds-doc-code-snippet-copied-tooltip-background-color: $esds-doc-background-color-default !default;
+$esds-doc-code-snippet-copied-tooltip-background-color: $esds-doc-background-color-white !default;
 $esds-doc-code-snippet-copied-tooltip-border-radius: $esds-doc-border-radius-default !default;
 $esds-doc-code-snippet-copied-tooltip-distance-from-button: 8px !default;
 $esds-doc-code-snippet-copied-tooltip-box-shadow-color: rgba(0, 0, 0, .8) !default;
@@ -35,6 +35,7 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
 
 
 .esds-doc-code-snippet {
+    @include esds-doc-font-reset;
     background:     $esds-doc-code-snippet-background-color;
     border:         $esds-doc-code-snippet-border;
     border-radius:  $esds-doc-code-snippet-border-radius;
@@ -88,7 +89,7 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
 .esds-doc-code-snippet__copied-notification {
     background: $esds-doc-code-snippet-copied-tooltip-background-color;
     border-radius: $esds-doc-code-snippet-copied-tooltip-border-radius;
-    bottom: calc(100% + $esds-doc-code-snippet-copied-tooltip-distance-from-button);
+    bottom: 95%;
     box-shadow: $esds-doc-code-snippet-copied-tooltip-shadow;
     font-family: $esds-doc-code-snippet-copied-tooltip-font-family;
     font-size: $esds-doc-code-snippet-copied-tooltip-font-size;
@@ -100,7 +101,7 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
     white-space: nowrap;
 
     &:after {
-        background: $esds-doc-background-color-default;
+        background: $esds-doc-code-snippet-copied-tooltip-background-color;
         box-shadow: 2px 2px 2px $esds-doc-code-snippet-copied-tooltip-box-shadow-color;
         content: '';
         height: 10px;
@@ -145,23 +146,23 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
 
 @keyframes fade-in-out {
     0% {
-        bottom: calc(100% + 4px);
+        bottom: 90%;
         opacity: 0;
         visibility: visible;
     }
 
     10% {
-        bottom: calc(100% + 8px);
+        bottom: 100%;
         opacity: 1;
     }
 
     90% {
-        bottom: calc(100% + 8px);
+        bottom: 100%;
         opacity: 1;
     }
 
     100% {
-        bottom: calc(100% + 4px);
+        bottom: 90%;
         opacity: 0;
     }
 }

@@ -45,7 +45,9 @@
 
     <h1 class="esds-doc-sink-page-header">Override Button Markup with custom code set globally (Alternate button markup is passed indirectly via the global variable context)</h1>
     {{ library_with_markup_overrides.code_snippet(source="<h1>Hello World</h1>") }}
+{% endblock %}
 
+{% block closing_body_assets %}
     <script>
         // Probably should have some kind of "on ready" function here
         Esds.CodeSnippet.init();

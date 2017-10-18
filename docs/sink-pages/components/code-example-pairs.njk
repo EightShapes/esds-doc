@@ -29,9 +29,11 @@
             }
         ]) 
     }}
+{% endblock body %}
 
+{% block closing_body_assets %}
     <script>
         // Probably should have some kind of "on ready" function here
         Esds.CodeSnippet.init();
     </script>
-{% endblock body %}
+{% endblock %}
