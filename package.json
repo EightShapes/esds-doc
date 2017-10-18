@@ -1,6 +1,6 @@
 {
-  "name": "@eightshapes/esds-doc",
-  "version": "0.9.0-alpha.8",
+  "name": "esds-doc",
+  "version": "0.9.0-alpha.9",
   "description": "",
   "main": "gulpfile.js",
   "directories": {
