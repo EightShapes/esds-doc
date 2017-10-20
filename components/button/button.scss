@@ -10,16 +10,17 @@ $esds-doc-button-text-transform: uppercase !default;
 $esds-doc-button-focus-ring-shadow: 0 0 0 3px lighten($esds-doc-color-blue, 20%); 
 
 .esds-doc-button {
+    @include esds-doc-font-reset(
+        $font-family: $esds-doc-button-font-family,
+        $font-size: $esds-doc-button-font-size,
+        $text-transform: $esds-doc-button-text-transform);
     background:     $esds-doc-button-background-color;
     border:         $esds-doc-button-border;
     border-radius:  $esds-doc-border-radius-default;
     color:          $esds-doc-button-text-color;
     cursor:         pointer;
-    font-family:    $esds-doc-button-font-family;
-    font-size:      $esds-doc-button-font-size;
     margin:         0;
     padding:        $esds-doc-button-space-inset;
-    text-transform: $esds-doc-button-text-transform;
 
     &:hover,
     &.esds-doc-button--hover {

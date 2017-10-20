@@ -4,6 +4,7 @@
 {# You could potentially do multiple markup overrides against the same library with multiple calls like this. Might be a good way to do markup-level theming #}
 {% set esds_doc_overrides_path = 'test/esds-doc-overrides-testing.njk' %}
 {% import 'components/esds-doc.njk' as library_with_markup_overrides with context %}
+<!doctype html>
 <html>
     <head>
         <link rel="stylesheet" href="/styles/dependencies/prism.css">

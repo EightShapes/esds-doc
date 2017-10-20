@@ -25,3 +25,15 @@ if (!Element.prototype.closest) {
         return null;
     };
 }
+
+
+Esds.Utils = function() {
+    const getArrayOfDomElements = function getArrayOfDomElements(selector, parent) {
+        parent = typeof parent === 'undefined' ? document : parent;
+        return Array.prototype.slice.call(parent.querySelectorAll(selector), 0);
+    };
+
+    return {
+        getArrayOfDomElements: getArrayOfDomElements
+    };
+}();
