@@ -10,9 +10,10 @@ $esds-doc-icon-swatch-text-color-link: $esds-doc-text-color-link-on-white !defau
 
 $esds-doc-icon-swatch-height: $esds-doc-icon-swatch-width * $esds-doc-icon-swatch-aspect-ratio !default;
 
-$esds-doc-icon-swatch-icon-size: $esds-doc-icon-size-m !default;
+$esds-doc-icon-swatch-space-inset: $esds-doc-space-inset-half-x !default;
 $esds-doc-icon-swatch-icon-space-stack: $esds-doc-space-stack-half-x !default;
 $esds-doc-icon-swatch-icon-color: $esds-doc-color-neutral-53 !default;
+$esds-doc-icon-swatch-icon-size: $esds-doc-icon-size-m;
 
 .esds-doc-icon-swatch {
     @include esds-doc-box-sizing;

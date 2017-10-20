@@ -1,0 +1,35 @@
+$esds-doc-page-navigation-max-width: 240px !default;
+$esds-doc-page-navigation-space-inset: $esds-doc-space-inset-1-x !default;
+$esds-doc-page-navigation-link-color: $esds-doc-text-color-link-on-white !default; 
+$esds-doc-page-navigation-link-color-active: $esds-doc-color-orange-light !default;
+$esds-doc-page-navigation-link-text-decoration: none !default; 
+$esds-doc-page-navigation-link-font-size: $esds-doc-font-size-m !default;
+$esds-doc-page-navigation-link-space-inset: $esds-doc-space-inset-quarter-x !default;
+
+.esds-doc-page-navigation {
+    @include esds-doc-font-reset;
+    font-size: $esds-doc-page-navigation-link-font-size;
+    max-width: $esds-doc-page-navigation-max-width;
+    width: 100%;
+}
+
+.esds-doc-page-navigation__inner {
+    list-style: none;
+    margin: 0;
+    padding: $esds-doc-page-navigation-space-inset;
+}
+
+.esds-doc-page-navigation__link {
+    color: $esds-doc-page-navigation-link-color;
+    display: block;
+    padding: $esds-doc-page-navigation-link-space-inset;
+    text-decoration: $esds-doc-page-navigation-link-text-decoration;
+}
+
+.esds-doc-page-navigation--fixed .esds-doc-page-navigation__inner {
+    position: fixed;
+}
+
+.esds-doc-page-navigation__link--active {
+    color: $esds-doc-page-navigation-link-color-active;
+}

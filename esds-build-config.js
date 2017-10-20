@@ -27,12 +27,14 @@ module.exports = {
     copyTasks: [
         {
             name: 'script-dependencies',
-            sources: ['node_modules/clipboard/dist/clipboard.min.js',
-                        'node_modules/prismjs/prism.js',
+            sources: ['node_modules/prismjs/prism.js',
                         'node_modules/prismjs/components/prism-json.min.js',
                         'node_modules/prismjs/components/prism-scss.min.js',
                         'node_modules/prismjs/components/prism-twig.min.js',
-                        'node_modules/svg4everybody/dist/svg4everybody.min.js'],
+                        'node_modules/svg4everybody/dist/svg4everybody.min.js',
+                        'node_modules/smoothscroll-polyfill/dist/smoothscroll.min.js',
+                        'node_modules/scrollmonitor/scrollMonitor.js',
+                        'node_modules/scrollmonitor/scrollMonitor.js.map'],
             destination: `_site/latest/scripts/dependencies`
         },
         {
