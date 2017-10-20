@@ -35,20 +35,18 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
 
 
 .esds-doc-code-snippet {
-    @include esds-doc-font-reset;
+    @include esds-doc-font-reset(
+        $font-family: $esds-doc-code-snippet-font-family,
+        $font-size: $esds-doc-code-snippet-font-size,
+        $font-style: $esds-doc-code-snippet-font-style,
+        $font-weight: $esds-doc-code-snippet-font-weight,
+        $line-height: $esds-doc-code-snippet-line-height
+    );
     background:     $esds-doc-code-snippet-background-color;
     border:         $esds-doc-code-snippet-border;
     border-radius:  $esds-doc-code-snippet-border-radius;
     color:          $esds-doc-code-snippet-text-color;
-    font-family:    $esds-doc-code-snippet-font-family;
-    font-size:      $esds-doc-code-snippet-font-size;
-    font-style:     $esds-doc-code-snippet-font-style;
-    font-weight:    $esds-doc-code-snippet-font-weight;
-    letter-spacing: 0;
-    line-height:    $esds-doc-code-snippet-line-height;
     margin-bottom:  $esds-doc-code-snippet-space-stack;
-    text-indent: 0;
-    text-transform: none;
 
     // Prism overrides
     .token {
