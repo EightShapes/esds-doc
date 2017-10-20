@@ -64,6 +64,12 @@ border:
   radius:
     default: 4px
 
+icon:
+  size:
+    s: 16px
+    m: 32px
+    l: 64px
+
 font:
   family:
     sans-serif: "Arial, Verdana, sans-serif"

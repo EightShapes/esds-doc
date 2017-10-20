@@ -20,7 +20,7 @@
 
         .esds-doc-sink-page-header {
             background: transparent;
-            color: {{ esds_doc_tokens['text-color'].default }};
+            color: {{ esds_doc_tokens['text-color'].primary['on-white'] }};
             font-family: {{ esds_doc_tokens.font.family['sans-serif'] | safe }};
             font-size: 20px;
             font-style: normal;
@@ -37,7 +37,7 @@
 
         .esds-doc-sink-page-copy {
             background: transparent;
-            color: {{ esds_doc_tokens['text-color'].default }};
+            color: {{ esds_doc_tokens['text-color'].primary['on-white'] }};
             font-family: {{ esds_doc_tokens.font.family['sans-serif'] | safe }};
             font-size: {{ esds_doc_tokens.font.size.m }};
             font-style: normal;

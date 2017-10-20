@@ -1,5 +1,5 @@
-$esds-doc-icon-swatch-grid-space-grid: $esds-doc-space-m !default;
-$esds-doc-icon-swatch-grid-space-inset: $esds-doc-space-inset-m !default;
+$esds-doc-icon-swatch-grid-space-grid: $esds-doc-space-generic-1-x !default;
+$esds-doc-icon-swatch-grid-space-inset: $esds-doc-space-inset-1-x !default;
 
 .esds-doc-icon-swatch-grid {
     @include esds-doc-box-sizing;
