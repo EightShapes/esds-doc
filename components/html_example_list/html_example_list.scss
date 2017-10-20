@@ -1,4 +1,4 @@
-$esds-doc-html-example-list-background: $esds-doc-background-color-default !default; 
+$esds-doc-html-example-list-background: $esds-doc-background-color-white !default; 
 $esds-doc-html-example-list-background-dark: $esds-doc-background-color-dark !default;
 $esds-doc-html-example-list-border: $esds-doc-border-default !default; 
 $esds-doc-html-example-list-border-radius: $esds-doc-border-radius-default !default; 
@@ -29,7 +29,9 @@ $esds-doc-html-example-list-label-background-on-dark: rgba($esds-doc-html-exampl
 }
 
 .esds-doc-html-example-list__item {
+    @include esds-doc-font-reset;
     border-bottom: $esds-doc-html-example-list-border;
+    letter-spacing: 0;
     padding: $esds-doc-html-example-list-space-inset;
     position: relative;
 

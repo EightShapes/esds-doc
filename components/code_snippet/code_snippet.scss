@@ -1,4 +1,4 @@
-$esds-doc-code-snippet-background-color: $esds-doc-background-color-default !default; 
+$esds-doc-code-snippet-background-color: $esds-doc-background-color-white !default; 
 $esds-doc-code-snippet-border: $esds-doc-border-default !default; 
 $esds-doc-code-snippet-border-radius: $esds-doc-border-radius-default !default;
 $esds-doc-code-snippet-font-family: $esds-doc-font-family-sans-serif !default;
@@ -20,7 +20,7 @@ $esds-doc-code-snippet-source-max-height-tall: 400px !default;
 
 $esds-doc-code-snippet-copy-code-button-offset: $esds-doc-space-inset-half-x !default;
 
-$esds-doc-code-snippet-copied-tooltip-background-color: $esds-doc-background-color-default !default;
+$esds-doc-code-snippet-copied-tooltip-background-color: $esds-doc-background-color-white !default;
 $esds-doc-code-snippet-copied-tooltip-border-radius: $esds-doc-border-radius-default !default;
 $esds-doc-code-snippet-copied-tooltip-distance-from-button: 8px !default;
 $esds-doc-code-snippet-copied-tooltip-box-shadow-color: rgba(0, 0, 0, .8) !default;
@@ -43,8 +43,11 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
     font-size:      $esds-doc-code-snippet-font-size;
     font-style:     $esds-doc-code-snippet-font-style;
     font-weight:    $esds-doc-code-snippet-font-weight;
+    letter-spacing: 0;
     line-height:    $esds-doc-code-snippet-line-height;
     margin-bottom:  $esds-doc-code-snippet-space-stack;
+    text-indent: 0;
+    text-transform: none;
 
     // Prism overrides
     .token {
@@ -100,7 +103,7 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
     white-space: nowrap;
 
     &:after {
-        background: $esds-doc-background-color-default;
+        background: $esds-doc-code-snippet-copied-tooltip-background-color;
         box-shadow: 2px 2px 2px $esds-doc-code-snippet-copied-tooltip-box-shadow-color;
         content: '';
         height: 10px;
