@@ -44,8 +44,11 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
     font-size:      $esds-doc-code-snippet-font-size;
     font-style:     $esds-doc-code-snippet-font-style;
     font-weight:    $esds-doc-code-snippet-font-weight;
+    letter-spacing: 0;
     line-height:    $esds-doc-code-snippet-line-height;
     margin-bottom:  $esds-doc-code-snippet-space-stack;
+    text-indent: 0;
+    text-transform: none;
 
     // Prism overrides
     .token {

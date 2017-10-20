@@ -7,7 +7,7 @@
     {% set data = data | default(default_data) %}
     {% set headers = headers | default(default_headers) %}
 
-    <div class="esds-doc-reference-table">
+    <div class="esds-doc-reference-table{{ ' ' + class if class }}">
         <table class="esds-doc-reference-table__inner">
             <thead class="esds-doc-referenc-table__header">
                 <tr class="esds-doc-referenc-table__header-row">

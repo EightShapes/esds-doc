@@ -250,6 +250,10 @@ Esds.PageNavigation = function() {
             const hash = window.location.hash;
             setListItemActive(hash);
             smoothScrollToSection(hash, pageNavigation);
+        } else {
+            // If no hash is set in the URL, highlight the first item in the navigation to start
+            const links = getArrayOfDomElements(listItemLinkSelector, pageNavigation);
+            setListItemActive(links[0].getAttribute('href'));
         }
     }
 

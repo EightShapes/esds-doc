@@ -35,7 +35,9 @@ $esds-doc-html-example-list-label-background-on-dark: rgba($esds-doc-html-exampl
 }
 
 .esds-doc-html-example-list__item {
+    @include esds-doc-font-reset;
     border-bottom: $esds-doc-html-example-list-border;
+    letter-spacing: 0;
     padding: $esds-doc-html-example-list-space-inset;
     position: relative;
 
