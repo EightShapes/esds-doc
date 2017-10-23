@@ -2,6 +2,14 @@
 {% block body %}
     <h1 class="esds-doc-sink-page-header">Reference Tables Sink</h1>
     <h1 class="esds-doc-sink-page-header">Default</h1>
-
+    {# The class .my-special-tint-stack-swatch-class is added to one of the rows in the default swatch example #}
+    <style>
+        .my-special-tint-stack-swatch-class {
+            border: dotted 3px hotpink;
+        }
+    </style>
     {{ library.tint_stack() }}
+
+    <h1 class="esds-doc-sink-page-header">Basic Example, Only Hex Codes Provided</h1>
+    {{ library.tint_stack(swatches=['#123456', '#789ABC', '#DEF012', '#345678', '#9ABCDE']) }}
 {% endblock body %}

@@ -138,7 +138,7 @@ module.exports = {
                         if (val <= 0.03928) {
                             lRGB[key] = val / 12.92;
                         } else {
-                            lRGB[key] = Math.pow(val + 0.055 / 1.055, 2.4);
+                            lRGB[key] = Math.pow((val + 0.055) / 1.055, 2.4);
                         }
                     }
                 }

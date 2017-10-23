@@ -7,6 +7,7 @@
 <!doctype html>
 <html>
     <head>
+        {% block head_content_prepend %}{% endblock %}
         <link rel="stylesheet" href="/styles/dependencies/prism.css">
         <link rel="stylesheet" href="/styles/esds-doc.css">
         {% block head_assets %}{% endblock %}
