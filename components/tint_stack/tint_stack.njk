@@ -1,0 +1,124 @@
+{% macro tint_stack(
+            class=false,
+            swatches=[
+                '#FFFFFF',
+                {
+                    hex: '#123456',
+                    label: 'Mystery Color'
+                },
+                {
+                    hex: '#F57026',
+                    label: 'Orange Light',
+                    accessibility_score: 'AA'
+                },
+                {
+                    hex: '#0A9DB3',
+                    label: 'Blue Light',
+                    code_snippet: '$esds-doc-color-blue-light'
+                },
+                {
+                    hex: '#262626',
+                    label: 'Background Color Dark',
+                    contrast_test_color: '#f3f1f1',
+                    code_snippet: '$esds-doc-background-color-dark',
+                    color_role: 'background'
+                },
+                {
+                    hex: '#000000',
+                    label: 'Text Color Primary, On White',
+                    contrast_test_color: '#ffffff',
+                    code_snippet: '$esds-doc-text-color-primary-on-white',
+                    color_role: 'foreground'
+                },
+                {
+                    hex: '#888888',
+                    label: 'Border Separator, On Dark',
+                    contrast_test_color: '#262626',
+                    code_snippet: '$esds-doc-border-separator-on-dark',
+                    html_example: '<span style="border-bottom: solid 1px #262626; width: 100px; display: inline-block;"></span>',
+                    show_hex: false,
+                    color_role: 'foreground'
+                },
+                {
+                    hex: '#068194',
+                    label: 'Special Class for this swatch',
+                    class: 'my-special-tint-stack-swatch-class',
+                    contrast_test_color: '#262626',
+                    code_snippet: '$esds-doc-border-separator-on-dark'
+                }
+            ]) %}
+    <div class="esds-doc-tint-stack{{ ' ' + class }}">
+        {% for swatch in swatches %}
+            {% if swatch[0] %}
+                {# Swatch values are just a string, render basic swatch #}
+                {{ tint_stack_swatch(hex=swatch) }}
+            {% else %}
+                {{ tint_stack_swatch(class=swatch.class,
+                                        hex=swatch.hex,
+                                        label=swatch.label,
+                                        accessibility_score=swatch.accessibility_score,
+                                        code_snippet=swatch.code_snippet,
+                                        contrast_test_color=swatch.contrast_test_color,
+                                        color_role=swatch.color_role,
+                                        html_example=swatch.html_example,
+                                        show_border=swatch.show_border,
+                                        show_hex=swatch.show_hex) }}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endmacro %}
+
+{% macro tint_stack_swatch(class,
+                            hex, 
+                            label, 
+                            accessibility_score, 
+                            code_snippet, 
+                            contrast_test_color, 
+                            color_role, 
+                            html_example,
+                            show_border,
+                            show_hex) %}
+    {% set show_hex = show_hex | default(true) %}
+    {% set label = label | default(hex) %}
+    {% set foreground_color = "#000000" %}
+    {% set background_color = hex %}
+    {% set color_role = color_role | default('background') %}
+    
+    {% if color_role == 'foreground' and contrast_test_color %}
+        {% set background_color = contrast_test_color %}
+        {% set foreground_color = hex %}
+    {% endif %}
+
+    {% set contrast_ratio = foreground_color | getContrastRatioForHex(background_color) %}
+
+    {% if contrast_ratio < 12 and not contrast_test_color %}
+        {% set foreground_color = "#ffffff" %}
+    {% endif %}
+
+    <div class="esds-doc-tint-stack__swatch{{ ' ' + class if class }}{{ ' esds-doc-tint-stack__swatch--with-border' if show_border }}" style="background-color: {{ background_color }};">
+        {{ contrast_ratio }}
+        <span class="esds-doc-tint-stack__label" style="color: {{ foreground_color }};">
+            {{ label }}
+        </span>
+        {% if html_example %}
+            <span class="esds-doc-tint-stack__html-example">
+                {{ html_example | safe }}
+            </span>
+        {% endif %}
+        {% if code_snippet %}
+            <span class="esds-doc-tint-stack__pill esds-doc-tint-stack__pill--code-snippet">
+                {{ code_snippet }}
+            </span>
+        {% endif %}
+        {% if show_hex %}
+            <span class="esds-doc-tint-stack__pill esds-doc-tint-stack__pill--hex">
+                {{ hex }}
+            </span>
+        {% endif %}
+        {% if accessibility_score %}
+            <span class="esds-doc-tint-stack__pill esds-doc-tint-stack__pill--accessibility-score">
+                {{ accessibility_score }}
+            </span>
+        {% endif %}
+    </div>
+{% endmacro %}
