@@ -1,76 +1,64 @@
 {% macro tint_stack(
             class=false,
-            swatches=[
-                '#656565',
-                {
-                    hex: '#123456',
-                    label: 'Mystery Color'
-                },
-                {
-                    hex: '#F57026',
-                    label: 'Orange Light',
-                    accessibility_score: 'AA',
-                    show_contrast_ratio: true
-                },
-                {
-                    hex: '#0A9DB3',
-                    label: 'Blue Light',
-                    code_snippet: '$esds-doc-color-blue-light'
-                },
-                {
-                    hex: '#262626',
-                    label: 'Background Color Dark',
-                    contrast_test_color: '#f3f1f1',
-                    code_snippet: '$esds-doc-background-color-dark',
-                    color_role: 'background'
-                },
-                {
-                    hex: '#000000',
-                    label: 'Text Color Primary, On White',
-                    contrast_test_color: '#ffffff',
-                    code_snippet: '$esds-doc-text-color-primary-on-white',
-                    color_role: 'foreground',
-                    show_border: true
-                },
-                {
-                    hex: '#888888',
-                    label: 'Border Separator, On Dark',
-                    contrast_test_color: '#262626',
-                    code_snippet: '$esds-doc-border-separator-on-dark',
-                    html_example: '<span style="border-bottom: solid 1px #888888; width: 180px; display: inline-block; vertical-align: middle;"></span>',
-                    show_hex: false,
-                    color_role: 'foreground'
-                },
-                {
-                    hex: '#068194',
-                    label: 'Special Class for this swatch',
-                    class: 'my-special-tint-stack-swatch-class',
-                    code_snippet: '$esds-doc-border-separator-on-dark'
-                },
-                {
-                    hex: '#FFFFFF',
-                    show_border: true
-                }
-            ]) %}
+            swatches=[],
+            show_documentation=false) %}
     <div class="esds-doc-tint-stack{{ ' ' + class }}">
-        {% for swatch in swatches %}
-            {% if swatch[0] %}
-                {# Swatch values are just a string, render basic swatch #}
-                {{ tint_stack_swatch(hex=swatch) }}
-            {% else %}
-                {{ tint_stack_swatch(class=swatch.class,
-                                        hex=swatch.hex,
-                                        label=swatch.label,
-                                        accessibility_score=swatch.accessibility_score,
-                                        code_snippet=swatch.code_snippet,
-                                        contrast_test_color=swatch.contrast_test_color,
-                                        color_role=swatch.color_role,
-                                        html_example=swatch.html_example,
-                                        show_border=swatch.show_border,
-                                        show_hex=swatch.show_hex,
-                                        show_contrast_ratio=swatch.show_contrast_ratio) }}
-            {% endif %}
-        {% endfor %}
+        {% if swatches.length == 0 or show_documentation %}
+            {# If no swatches are passed in or the show_documentation variable is set to true, show API documentation #}
+            <div class="esds-doc-tint-stack__empty-state-documentation">
+                {% filter markdown %}
+                    ### Tint Stack API
+                {% endfilter %}
+                {% set tint_stack_api_source %}
+                    {% raw %}
+                    {{ esds_doc.tint_stack(
+                        class='my-class',                                           // Space-separated classes passed as a string, will be added to the top-level block of the component
+                        show_documentation: true | false (default)                  // Show this API documentation
+                        swatches=[
+                            {
+                                hex: '#123456',                                     // Any hex color
+                                label: 'Name of this color',                        // Label for the color, if none provided the hex value will be used,
+                                accessibility_score: 'AAA' | undefined | false,     // Shown as a pill on the tint swatch, if not provided this will be calculated automatically, if false, no pill will be shown 
+                                code_snippet: '$name-of-color-token',               // Shown as a code block pill if provided
+                                contrast_test_color: undefined | '#123456',         // If not provided, 'hex' will be tested against both #000000 and #FFFFFF and the highest contrast ratio will be used to calculate 'accessibility_score', if provided, this will be tested against 'hex' to determine the 'accessibility_score'
+                                color_role: 'foreground' | 'background',            // determines if 'hex' is the background color of the swatch ('background') or the text color of the swatch ('foreground'). 'contrast_test_color' will be used opposite the 'color_role' setting, either as background color or text color
+                                html_example: '<span class="anything"></span>',     // renders int he swatch after the label, useful for showing html-based examples like border colors
+                                show_border: true | false (default),                // If true, the tint swatch will have a border drawn around it. Useful if the background of the swatch is the same color as the page background
+                                show_hex: true (default) | false,                   // If true, suppresses the 'hex' pill in the swatch, 'hex' pill is automatically suppressed when no 'label' is provided
+                                show_contrast_ratio: true | false (default)         // If true, renders the calculated contrast ratio inside the 'accessibility_score' pill, alongside the accessibility score
+                            }
+                        ]
+                     )}}
+
+                     {# alternatively, the tint_stack can be invoked with just an array of hex codes #}
+                     {# This syntax will cause the hex codes to be used as labels and automatically calculate the accessibility score #}
+
+                     {{ esds_doc.tint_stack(swatches=['#123456', '#7890AB', '#CDEF01']) }}
+                     
+                    {% endraw %}                   
+                {% endset %}
+                {{ code_snippet(class='esds-doc-code-snippet--no-max-height', source=tint_stack_api_source, preformatted=true, language='njk') }}
+            </div>
+        {% else %}
+            {% for swatch in swatches %}
+                {% if swatch[0] %}
+                    {# Swatch values are just a string, render basic swatch #}
+                    {{ tint_stack_swatch(hex=swatch) }}
+                {% else %}
+                    {{ tint_stack_swatch(class=swatch.class,
+                                            hex=swatch.hex,
+                                            label=swatch.label,
+                                            accessibility_score=swatch.accessibility_score,
+                                            code_snippet=swatch.code_snippet,
+                                            contrast_test_color=swatch.contrast_test_color,
+                                            color_role=swatch.color_role,
+                                            html_example=swatch.html_example,
+                                            show_border=swatch.show_border,
+                                            show_hex=swatch.show_hex,
+                                            show_contrast_ratio=swatch.show_contrast_ratio) }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
 {% endmacro %}
 
@@ -109,15 +97,17 @@
         {% set background_color = hex %}
     {% endif %}
 
-    {% set contrast_ratio = foreground_color | getContrastRatioForHex(background_color) %}
-    {% set accessibility_score = contrast_ratio %}
-    {% set accessibility_score_label = "DNP" %}
-    {% if contrast_ratio >= 7.0 %}
-        {% set accessibility_score_label = "AAA" %}
-    {% elif contrast_ratio >= 4.5 %}
-        {% set accessibility_score_label = "AA" %}
-    {% elif contrast_ratio >= 3.0 %}
-        {% set accessibility_score_label = "AA18" %}
+    {% if accessibility_score != false %}
+        {% set contrast_ratio = foreground_color | getContrastRatioForHex(background_color) %}
+        {% set accessibility_score = contrast_ratio %}
+        {% set accessibility_score_label = "DNP" %}
+        {% if contrast_ratio >= 7.0 %}
+            {% set accessibility_score_label = "AAA" %}
+        {% elif contrast_ratio >= 4.5 %}
+            {% set accessibility_score_label = "AA" %}
+        {% elif contrast_ratio >= 3.0 %}
+            {% set accessibility_score_label = "AA18" %}
+        {% endif %}
     {% endif %}
 
     <div class="esds-doc-tint-stack__swatch{{ ' ' + class if class }}{{ ' esds-doc-tint-stack__swatch--with-border' if show_border }}" style="background-color: {{ background_color }}; color: {{ foreground_color }};">
@@ -135,13 +125,15 @@
                     {{- code_snippet -}}
                 </span>
             {% endif %}
-            {% if show_hex %}
+            {% if show_hex and hex != label %}
                 <span class="esds-doc-tint-stack__pill esds-doc-tint-stack__pill--hex">
                     {{- hex -}}
                 </span>
             {% endif %}
             {% if accessibility_score %}
-                <span class="esds-doc-tint-stack__pill esds-doc-tint-stack__pill--accessibility-score">
+
+                {% set accessibility_score_class = 'esds-doc-tint-stack__pill--accessibility-score-' + accessibility_score_label | lower %}
+                <span class="esds-doc-tint-stack__pill esds-doc-tint-stack__pill--accessibility-score {{ accessibility_score_class }}">
                     {{- accessibility_score_label -}}
                     {{- ', ' + contrast_ratio if show_contrast_ratio -}}
                 </span>

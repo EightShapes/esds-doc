@@ -15,7 +15,14 @@ $esds-doc-tint-stack-pill-min-width: 4em !default;
 
 $esds-doc-tint-stack-html-example-space-inline: $esds-doc-space-generic-1-x !default;
 
-$esds-doc-tint-stack-label-max-width: none;
+$esds-doc-tint-stack-label-max-width: none !default;
+
+$esds-doc-tint-stack-aa18-pill-background-color: #CFB317 !default;
+$esds-doc-tint-stack-aa18-pill-text-color: $esds-doc-text-color-primary-on-white !default;
+
+$esds-doc-tint-stack-dnp-pill-background-color: #EE0000 !default;
+$esds-doc-tint-stack-dnp-pill-text-color: $esds-doc-text-color-primary-on-black !default;
+
 
 .esds-doc-tint-stack {
     @include esds-doc-box-sizing;
@@ -23,9 +30,15 @@ $esds-doc-tint-stack-label-max-width: none;
         $font-family: $esds-doc-tint-stack-font-family);
 }
 
+.esds-doc-tint-stack__empty-state-documentation {
+    @include esds-doc-font-reset;
+    color: $esds-doc-text-color-primary-on-white;
+}
+
 .esds-doc-tint-stack__swatch {
     align-items: center;
     display: flex;
+    flex-wrap: wrap;
     padding: $esds-doc-tint-stack-space-swatch-inset;
 }
 
@@ -44,6 +57,16 @@ $esds-doc-tint-stack-label-max-width: none;
     min-width: $esds-doc-tint-stack-pill-min-width;
     padding: $esds-doc-tint-stack-pill-space-inset;
     text-align: $esds-doc-tint-stack-pill-text-align;
+}
+
+.esds-doc-tint-stack__pill--accessibility-score-aa18 {
+    background-color: $esds-doc-tint-stack-aa18-pill-background-color;
+    color: $esds-doc-tint-stack-aa18-pill-text-color;
+}
+
+.esds-doc-tint-stack__pill--accessibility-score-dnp {
+    background-color: $esds-doc-tint-stack-dnp-pill-background-color;
+    color: $esds-doc-tint-stack-dnp-pill-text-color;
 }
 
 .esds-doc-tint-stack__swatch-metadata {
