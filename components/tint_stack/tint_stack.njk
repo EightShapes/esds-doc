@@ -16,10 +16,13 @@
                         show_documentation: true | false (default)                  // Show this API documentation
                         swatches=[
                             {
-                                hex: '#123456',                                     // Any hex color
+                                hex: '#123456' (required),                          // Any hex color
                                 label: 'Name of this color',                        // Label for the color, if none provided the hex value will be used,
+                                label_color: '#123456' | 'automatic',               // Override the text color of the label with a hex code, or, if 'automatic' is passed in, the highest contrast of #000000 or #FFFFFF against the background color will be used
                                 accessibility_score: 'AAA' | undefined | false,     // Shown as a pill on the tint swatch, if not provided this will be calculated automatically, if false, no pill will be shown 
                                 code_snippet: '$name-of-color-token',               // Shown as a code block pill if provided
+                                code_snippets: ['$name-of-color-token', 
+                                                'solid 1px #123456'],               // Array of code blocks, each shown as a pill
                                 contrast_test_color: undefined | '#123456',         // If not provided, 'hex' will be tested against both #000000 and #FFFFFF and the highest contrast ratio will be used to calculate 'accessibility_score', if provided, this will be tested against 'hex' to determine the 'accessibility_score'
                                 color_role: 'foreground' | 'background',            // determines if 'hex' is the background color of the swatch ('background') or the text color of the swatch ('foreground'). 'contrast_test_color' will be used opposite the 'color_role' setting, either as background color or text color
                                 html_example: '<span class="anything"></span>',     // renders int he swatch after the label, useful for showing html-based examples like border colors
@@ -48,8 +51,10 @@
                     {{ tint_stack_swatch(class=swatch.class,
                                             hex=swatch.hex,
                                             label=swatch.label,
+                                            label_color=swatch.label_color,
                                             accessibility_score=swatch.accessibility_score,
                                             code_snippet=swatch.code_snippet,
+                                            code_snippets=swatch.code_snippets,
                                             contrast_test_color=swatch.contrast_test_color,
                                             color_role=swatch.color_role,
                                             html_example=swatch.html_example,
@@ -65,8 +70,10 @@
 {% macro tint_stack_swatch(class,
                             hex, 
                             label, 
+                            label_color, 
                             accessibility_score, 
                             code_snippet, 
+                            code_snippets, 
                             contrast_test_color, 
                             color_role, 
                             html_example,
@@ -84,8 +91,10 @@
         {% set black_contrast = hex | getContrastRatioForHex("#000000") %}
         {% if white_contrast > black_contrast %}
             {% set contrast_test_color = "#FFFFFF" %}
+            {% set automatic_label_color = "#FFFFFF" %}
         {% else %}
             {% set contrast_test_color = "#000000" %}
+            {% set automatic_label_color = "#000000" %}
         {% endif %}
     {% endif %}
 
@@ -110,8 +119,10 @@
         {% endif %}
     {% endif %}
 
+    {% set label_color = label_color | default(foreground_color) %}
+
     <div class="esds-doc-tint-stack__swatch{{ ' ' + class if class }}{{ ' esds-doc-tint-stack__swatch--with-border' if show_border }}" style="background-color: {{ background_color }}; color: {{ foreground_color }};">
-        <span class="esds-doc-tint-stack__label">
+        <span class="esds-doc-tint-stack__label" style="color: {{ label_color }}">
             {{ label }}
         </span>
         {% if html_example %}
@@ -124,6 +135,13 @@
                 <span class="esds-doc-tint-stack__pill esds-doc-tint-stack__pill--code-snippet">
                     {{- code_snippet -}}
                 </span>
+            {% endif %}
+            {% if code_snippets %}
+                {% for snippet in code_snippets %}
+                    <span class="esds-doc-tint-stack__pill esds-doc-tint-stack__pill--code-snippet">
+                        {{- snippet -}}
+                    </span>
+                {% endfor %}
             {% endif %}
             {% if show_hex and hex != label %}
                 <span class="esds-doc-tint-stack__pill esds-doc-tint-stack__pill--hex">
