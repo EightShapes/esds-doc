@@ -111,7 +111,7 @@ Esds.PageNavigation = function() {
     }
 
     function setListItemActive(linkHref) {
-        const activeLink = document.querySelector("a[href='" + linkHref + "']"),
+        const activeLink = document.querySelector(".esds-doc-page-navigation a[href='" + linkHref + "']"),
                 pageNavigation = activeLink.closest(pageNavigationSelector),
                 highlightedLinks = getArrayOfDomElements("." + listItemLinkActiveClass, pageNavigation);
 
