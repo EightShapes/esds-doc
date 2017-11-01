@@ -1,8 +1,8 @@
 {% macro tint_stack(
-            class=false,
+            class,
             swatches=[],
             show_documentation=false) %}
-    <div class="esds-doc-tint-stack{{ ' ' + class }}">
+    <div class="esds-doc-tint-stack{{ ' ' + class if class }}">
         {% if swatches.length == 0 or show_documentation %}
             {# If no swatches are passed in or the show_documentation variable is set to true, show API documentation #}
             <div class="esds-doc-tint-stack__empty-state-documentation">
