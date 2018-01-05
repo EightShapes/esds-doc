@@ -91,10 +91,8 @@
         {% set black_contrast = hex | getContrastRatioForHex("#000000") %}
         {% if white_contrast > black_contrast %}
             {% set contrast_test_color = "#FFFFFF" %}
-            {% set automatic_label_color = "#FFFFFF" %}
         {% else %}
             {% set contrast_test_color = "#000000" %}
-            {% set automatic_label_color = "#000000" %}
         {% endif %}
     {% endif %}
 
