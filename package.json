@@ -1,6 +1,6 @@
 {
   "name": "esds-doc",
-  "version": "0.10.0-alpha.4",
+  "version": "0.10.0-alpha.5",
   "description": "",
   "main": "gulpfile.js",
   "directories": {
@@ -33,6 +33,6 @@
     "svg4everybody": "^2.1.9"
   },
   "devDependencies": {
-    "esds-build": "^0.24.0"
+    "esds-build": "^0.28.1"
   }
 }
