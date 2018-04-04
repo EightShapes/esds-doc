@@ -1,5 +1,5 @@
 {% macro table(class, headers, rows) %}
-    {% from 'components/table/table_defaults.njk' import default_rows, default_headers %}
+    {% from './table/table_defaults.njk' import default_rows, default_headers %}
     {% set rows = rows | default(default_rows) %}
     {% set headers = headers | default(default_headers) %}
     <table class="esds-doc-table{{ ' ' + class if class }}">
