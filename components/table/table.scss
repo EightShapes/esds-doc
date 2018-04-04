@@ -1,0 +1,27 @@
+$esds-doc-table-background: $esds-doc-background-color-default !default;
+$esds-doc-table-border-collapse: collapse !default;
+$esds-doc-table-border: $esds-doc-border-default !default;
+$esds-doc-table-font-family: $esds-doc-font-family-sans-serif !default;
+$esds-doc-table-font-size: $esds-doc-font-size-s !default;
+$esds-doc-table-text-align: left !default;
+$esds-doc-table-text-color: $esds-doc-text-color-primary-on-white !default;
+$esds-doc-table-width: 100% !default;
+
+$esds-doc-table-cell-space-inset: $esds-doc-space-inset-half-x !default;
+
+.esds-doc-table  {
+    @include esds-doc-box-sizing;
+    @include esds-doc-font-reset;
+    background:         $esds-doc-table-background;
+    border-collapse:    $esds-doc-table-border-collapse;
+    color:              $esds-doc-table-text-color;
+    font-family:        $esds-doc-table-font-family;
+    font-size:          $esds-doc-table-font-size;
+    text-align:         $esds-doc-table-text-align;
+    width:              $esds-doc-table-width;
+}
+
+.esds-doc-table__cell {
+    border: $esds-doc-table-border;
+    padding: $esds-doc-table-cell-space-inset;
+}
