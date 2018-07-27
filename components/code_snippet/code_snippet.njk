@@ -7,7 +7,8 @@
         filename=false,
         show_copy_button=true, 
         copy_button_text="Copy Code",
-        copy_button) %}
+        copy_button,
+        code_copied_text="Copied to clipboard") %}
 
     {% set esds_doc_overrides_path = esds_doc_overrides_path | default('./esds_doc_overrides/esds-doc-overrides-default.njk') %}
     {% from esds_doc_overrides_path import esds_doc_overrides with context %}
@@ -18,6 +19,7 @@
         3. Otherwise default to false which will trigger usage of the default ESDS Doc button
      #}
     {% set copy_button = copy_button | default(esds_doc_overrides.code_snippet.copy_button) | default(false) %}
+    {% set code_copied_text = code_copied_text | default(esds_doc_overrides.code_snippet.code_copied_text) | default(false) %}
     
 
     {% set code_snippet_id = "esds-doc-code-snippet--" + range(0, 100000) | random %}
@@ -43,7 +45,7 @@
             {% if show_copy_button %}
                 <div class="esds-doc-code-snippet__copy-code-wrap">
                     <div class="esds-doc-code-snippet__copied-notification">
-                        Copied to clipboard
+                        {{ code_copied_text }}
                     </div>
                     {% if copy_button %}
                         {{ copy_button | safe }}
