@@ -22,7 +22,8 @@ $esds-doc-code-snippet-copy-code-button-offset: $esds-doc-space-inset-half-x !de
 
 $esds-doc-code-snippet-copied-tooltip-background-color: $esds-doc-background-color-white !default;
 $esds-doc-code-snippet-copied-tooltip-border-radius: $esds-doc-border-radius-default !default;
-$esds-doc-code-snippet-copied-tooltip-distance-from-button: 8px !default;
+$esds-doc-code-snippet-copied-tooltip-distance-from-button: 100% !default;
+$esds-doc-code-snippet-copied-tooltip-distance-from-button-starting: 90% !default;
 $esds-doc-code-snippet-copied-tooltip-box-shadow-color: rgba(0, 0, 0, .8) !default;
 $esds-doc-code-snippet-copied-tooltip-font-family: $esds-doc-font-family-sans-serif !default;
 $esds-doc-code-snippet-copied-tooltip-font-size: $esds-doc-code-snippet-font-size !default;
@@ -90,7 +91,7 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
 .esds-doc-code-snippet__copied-notification {
     background: $esds-doc-code-snippet-copied-tooltip-background-color;
     border-radius: $esds-doc-code-snippet-copied-tooltip-border-radius;
-    bottom: 95%;
+    bottom: $esds-doc-code-snippet-copied-tooltip-distance-from-button-starting;
     box-shadow: $esds-doc-code-snippet-copied-tooltip-shadow;
     font-family: $esds-doc-code-snippet-copied-tooltip-font-family;
     font-size: $esds-doc-code-snippet-copied-tooltip-font-size;
@@ -147,23 +148,23 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
 
 @keyframes fade-in-out {
     0% {
-        bottom: 90%;
+        bottom: $esds-doc-code-snippet-copied-tooltip-distance-from-button-starting;
         opacity: 0;
         visibility: visible;
     }
 
     10% {
-        bottom: 100%;
+        bottom: $esds-doc-code-snippet-copied-tooltip-distance-from-button;
         opacity: 1;
     }
 
     90% {
-        bottom: 100%;
+        bottom: $esds-doc-code-snippet-copied-tooltip-distance-from-button;
         opacity: 1;
     }
 
     100% {
-        bottom: 90%;
+        bottom: $esds-doc-code-snippet-copied-tooltip-distance-from-button-starting;
         opacity: 0;
     }
 }
