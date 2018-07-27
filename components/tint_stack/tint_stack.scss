@@ -1,0 +1,82 @@
+$esds-doc-tint-stack-font-family: $esds-doc-font-family-sans-serif !default;
+$esds-doc-tint-stack-space-swatch-inset: $esds-doc-space-inset-1-x !default;
+
+$esds-doc-tint-stack-swatch-border: $esds-doc-border-separator-default !default;
+
+$esds-doc-tint-stack-pill-background-color: $esds-doc-background-color-light !default;
+$esds-doc-tint-stack-pill-border-radius: $esds-doc-border-radius-default !default;
+$esds-doc-tint-stack-pill-font-family: $esds-doc-font-family-monospace !default;
+$esds-doc-tint-stack-pill-font-size: $esds-doc-font-size-code !default;
+$esds-doc-tint-stack-pill-text-align: center !default;
+$esds-doc-tint-stack-pill-text-color: $esds-doc-text-color-primary-on-light !default;
+$esds-doc-tint-stack-pill-space-inset: $esds-doc-space-inset-quarter-x !default;
+$esds-doc-tint-stack-pill-space-between: $esds-doc-space-generic-1-x !default;
+$esds-doc-tint-stack-pill-min-width: 4em !default;
+
+$esds-doc-tint-stack-html-example-space-inline: $esds-doc-space-generic-1-x !default;
+
+$esds-doc-tint-stack-label-max-width: none !default;
+
+$esds-doc-tint-stack-aa18-pill-background-color: #CFB317 !default;
+$esds-doc-tint-stack-aa18-pill-text-color: $esds-doc-text-color-primary-on-white !default;
+
+$esds-doc-tint-stack-dnp-pill-background-color: #EE0000 !default;
+$esds-doc-tint-stack-dnp-pill-text-color: $esds-doc-text-color-primary-on-black !default;
+
+
+.esds-doc-tint-stack {
+    @include esds-doc-box-sizing;
+    @include esds-doc-font-reset(
+        $font-family: $esds-doc-tint-stack-font-family);
+}
+
+.esds-doc-tint-stack__empty-state-documentation {
+    @include esds-doc-font-reset;
+    color: $esds-doc-text-color-primary-on-white;
+}
+
+.esds-doc-tint-stack__swatch {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    padding: $esds-doc-tint-stack-space-swatch-inset;
+}
+
+.esds-doc-tint-stack__swatch--with-border {
+    border: $esds-doc-tint-stack-swatch-border;
+}
+
+.esds-doc-tint-stack__pill {
+    background: $esds-doc-tint-stack-pill-background-color;
+    border-radius: $esds-doc-tint-stack-pill-border-radius;
+    color: $esds-doc-tint-stack-pill-text-color;
+    display: inline-block;
+    font-family: $esds-doc-tint-stack-pill-font-family;
+    font-size: $esds-doc-tint-stack-pill-font-size;
+    margin: 0 0 0 $esds-doc-tint-stack-pill-space-between;
+    min-width: $esds-doc-tint-stack-pill-min-width;
+    padding: $esds-doc-tint-stack-pill-space-inset;
+    text-align: $esds-doc-tint-stack-pill-text-align;
+}
+
+.esds-doc-tint-stack__pill--accessibility-score-aa18 {
+    background-color: $esds-doc-tint-stack-aa18-pill-background-color;
+    color: $esds-doc-tint-stack-aa18-pill-text-color;
+}
+
+.esds-doc-tint-stack__pill--accessibility-score-dnp {
+    background-color: $esds-doc-tint-stack-dnp-pill-background-color;
+    color: $esds-doc-tint-stack-dnp-pill-text-color;
+}
+
+.esds-doc-tint-stack__swatch-metadata {
+    margin-left: auto;
+}
+
+.esds-doc-tint-stack__html-example {
+    margin: 0 0 0 $esds-doc-tint-stack-html-example-space-inline;
+}
+
+.esds-doc-tint-stack__label {
+    max-width: $esds-doc-tint-stack-label-max-width;
+}

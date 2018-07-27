@@ -1,0 +1,104 @@
+{% extends "templates/sink.njk" %}
+{% block body %}
+    <h1 class="esds-doc-sink-page-header">Reference Tables Sink</h1>
+    <h1 class="esds-doc-sink-page-header">Default, no arguments passed, shows API doc</h1>
+    <p class="esds-doc-sink-page-copy">If <code>esds_doc.tint_stack()</code> is invoked without any arguments, this inline documentation will be shown.</p>
+
+    {{ library.tint_stack() }}
+
+    <h1 class="esds-doc-sink-page-header">Testing Multiple Option Combinations</h1>
+    <style>
+        .my-special-tint-stack-swatch-class {
+            border: dotted 3px hotpink;
+        }
+    </style>
+
+
+    {{ library.tint_stack(swatches=[
+                '#656565',
+                {
+                    hex: '#123456',
+                    label: 'Mystery Color'
+                },
+                {
+                    hex: '#F57026',
+                    label: 'Orange Light, show contrast ratio',
+                    contrast_test_color: '#009f11',
+                    accessibility_score: 'AA',
+                    show_contrast_ratio: true
+                },
+                {
+                    hex: '#0A9DB3',
+                    label: 'Blue Light',
+                    code_snippet: '$esds-doc-color-blue-light'
+                },
+                {
+                    hex: '#262626',
+                    label: 'Background Color Dark',
+                    contrast_test_color: '#f3f1f1',
+                    code_snippet: '$esds-doc-background-color-dark',
+                    color_role: 'background'
+                },
+                {
+                    hex: '#000000',
+                    label: 'Text Color Primary, On White',
+                    contrast_test_color: '#ffffff',
+                    code_snippet: '$esds-doc-text-color-primary-on-white',
+                    color_role: 'foreground',
+                    show_border: true
+                },
+                {
+                    hex: '#888888',
+                    label: 'Border Separator, On Dark',
+                    contrast_test_color: '#262626',
+                    code_snippet: '$esds-doc-border-separator-on-dark',
+                    html_example: '<span style="border-bottom: solid 1px #888888; width: 180px; display: inline-block; vertical-align: middle;"></span>',
+                    show_hex: false,
+                    color_role: 'foreground'
+                },
+                {
+                    hex: '#888888',
+                    label: 'Border Separator, On Dark, multiple code snippets, override label color',
+                    label_color: '#FFFFFF',
+                    contrast_test_color: '#262626',
+                    code_snippets: [
+                        '$esds-doc-border-separator-on-dark',
+                        'solid 1px #888888'
+                    ],
+                    html_example: '<span style="border-bottom: solid 1px #888888; width: 180px; display: inline-block; vertical-align: middle;"></span>',
+                    show_hex: false,
+                    color_role: 'foreground',
+                    accessibility_score: false
+                },
+                {
+                    hex: '#068194',
+                    label: 'Special Class for this swatch',
+                    class: 'my-special-tint-stack-swatch-class',
+                    code_snippet: '$esds-doc-border-separator-on-dark'
+                },
+                {
+                    hex: '#FFFFFF',
+                    show_border: true
+                },
+                {
+                    hex: '#CCCCCC',
+                    contrast_test_color: '#EEEEEE',
+                    label: 'Disabled state, suppress accessibility score',
+                    accessibility_score: false
+                },
+                {
+                    hex: '#00FF90',
+                    contrast_test_color: '#FFFFFF',
+                    label: 'Failing Contrast Example'
+                }
+            ]) }}
+
+    <h1 class="esds-doc-sink-page-header">Basic Example, Only Hex Codes Provided</h1>
+    {{ library.tint_stack(swatches=['#123456', '#789ABC', '#DEF012', '#345678', '#9ABCDE']) }}
+{% endblock body %}
+{% block closing_body_assets %}
+    <script>
+        // Probably should have some kind of "on ready" function here
+        Esds.CodeSnippet.init();
+    </script>
+{% endblock %}
