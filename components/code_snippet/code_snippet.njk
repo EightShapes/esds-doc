@@ -19,7 +19,7 @@
         3. Otherwise default to false which will trigger usage of the default ESDS Doc button
      #}
     {% set copy_button = copy_button | default(esds_doc_overrides.code_snippet.copy_button) | default(false) %}
-    {% set code_copied_text = code_copied_text | default(esds_doc_overrides.code_snippet.code_copied_text) | default(false) %}
+    {% set code_copied_text = esds_doc_overrides.code_snippet.code_copied_text | default(code_copied_text) | default(false) %}
     
 
     {% set code_snippet_id = "esds-doc-code-snippet--" + range(0, 100000) | random %}
