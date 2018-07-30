@@ -83,6 +83,8 @@
     {% set show_hex = show_hex | default(true) %}
     {% set label = label | default(hex) %}
     {% set color_role = color_role | default('background') %}
+    {% set swatch_container_class = false %}
+
     
     {# If no contrast_test_color is provided, check the contrast against white and the contrast against black, #}
     {# Use whichever color has a higher contrast ratio for the accessibility_score and alternate color #}
@@ -91,10 +93,10 @@
         {% set black_contrast = hex | getContrastRatioForHex("#000000") %}
         {% if white_contrast > black_contrast %}
             {% set contrast_test_color = "#FFFFFF" %}
-            {% set automatic_label_color = "#FFFFFF" %}
+            {% set swatch_container_class = "esds-doc-tint-stack__swatch--dark" %}
+            {# The background is a dark color, any label should be default use white against it #}
         {% else %}
             {% set contrast_test_color = "#000000" %}
-            {% set automatic_label_color = "#000000" %}
         {% endif %}
     {% endif %}
 
@@ -121,7 +123,7 @@
 
     {% set label_color = label_color | default(foreground_color) %}
 
-    <div class="esds-doc-tint-stack__swatch{{ ' ' + class if class }}{{ ' esds-doc-tint-stack__swatch--with-border' if show_border }}" style="background-color: {{ background_color }}; color: {{ foreground_color }};">
+    <div class="esds-doc-tint-stack__swatch{{ ' ' + swatch_container_class if swatch_container_class }}{{ ' ' + class if class }}{{ ' esds-doc-tint-stack__swatch--with-border' if show_border }}" style="background-color: {{ background_color }}; color: {{ foreground_color }};">
         <span class="esds-doc-tint-stack__label" style="color: {{ label_color }}">
             {{ label }}
         </span>
