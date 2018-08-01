@@ -15,7 +15,7 @@
                 <tr class="esds-doc-table__row">
                     {% for cell in row %}
                         <td class="esds-doc-table__cell">
-                            {{ cell | safe | markdown(false) }}
+                            {{ cell | markdown(false) | safe }}
                         </td>
                     {% endfor %}
                 </tr>

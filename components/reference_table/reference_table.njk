@@ -50,7 +50,7 @@
                                 {% set cell_content = "`" + cell_content + "`" %}
                             {% endif %}
                             <td class="esds-doc-reference-table__cell">
-                                {{ cell_content | safe | markdown(false) }}
+                                {{ cell_content | markdown(false) | safe }}
                             </td>
                         {% endfor %}
                     </tr>
