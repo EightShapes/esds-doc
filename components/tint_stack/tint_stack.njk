@@ -93,10 +93,16 @@
         {% set black_contrast = hex | getContrastRatioForHex("#000000") %}
         {% if white_contrast > black_contrast %}
             {% set contrast_test_color = "#FFFFFF" %}
-            {% set swatch_container_class = "esds-doc-tint-stack__swatch--dark" %}
-            {# The background is a dark color, any label should be default use white against it #}
+            {% if color_role == 'background' %}
+                {# The background is a dark color, any label should by default use white against it #}
+                {% set swatch_container_class = "esds-doc-tint-stack__swatch--dark" %}
+            {% endif %}
         {% else %}
             {% set contrast_test_color = "#000000" %}
+            {% if color_role == 'foreground' %}
+                {# The test background is a dark color, any label should by default use white against it #}
+                {% set swatch_container_class = "esds-doc-tint-stack__swatch--dark" %}
+            {% endif %}
         {% endif %}
     {% endif %}
 
