@@ -38,6 +38,20 @@
     {{ library.code_snippet(class="esds-doc-code-snippet--no-max-height", 
                             source=table_example_code) }}
 
+    <h1 class="esds-doc-sink-page-header">Horizontal Content Resilience</h1>
+    {{ library.code_snippet( source="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut repellat sequi incidunt facilis, mollitia iure consequuntur at? Incidunt dignissimos voluptates laudantium nam sint necessitatibus eum nobis quos deleniti. Voluptatum suscipit, molestias! Alias velit minima ad voluptate repellendus molestias, laborum aut recusandae cupiditate blanditiis explicabo itaque nemo aspernatur illo inventore, commodi.") }}
+
+    <h1 class="esds-doc-sink-page-header">Horizontal Content as Flex Child</h1>
+    <div style="display: flex; max-width: 800px; margin: 0 auto;">
+        <div class="sidebar" style="flex: 1 0 200px;">
+            <h2 class="esds-doc-sink-page-header" style="font-size: 14px; text-transform: uppercase;">Fake Sidebar</h2>
+        </div>
+        <div class="content" style="flex: 1 1 auto; min-width: 0;">
+            <p class="esds-doc-sink-page-copy">Must use min-width: 0 on this flex child</p>
+            {{ library.code_snippet( source="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut repellat sequi incidunt facilis, mollitia iure consequuntur at? Incidunt dignissimos voluptates laudantium nam sint necessitatibus eum nobis quos deleniti. Voluptatum suscipit, molestias! Alias velit minima ad voluptate repellendus molestias, laborum aut recusandae cupiditate blanditiis explicabo itaque nemo aspernatur illo inventore, commodi.") }}
+        </div>
+    </div>
+
     <h1 class="esds-doc-sink-page-header">Override Button Markup with custom markup passed to the macro</h1>
     {{ library.code_snippet(class="esds-doc-code-snippet--no-max-height", 
                                         source="<h1>Hello World</h1>",
