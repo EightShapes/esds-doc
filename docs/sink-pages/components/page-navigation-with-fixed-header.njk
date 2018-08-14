@@ -39,6 +39,17 @@
         .esds-doc-page-navigation--fixed .esds-doc-page-navigation__inner {
             top: 100px;
         }
+
+        .special-little-unicorn a {
+            color: purple;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .special-little-unicorn.golden--unicorn a {
+            color: goldenrod;
+            font-style: italic;
+        }
     </style>
     <div style="height: 100px;">
         <div style="width: 100%; height: 100px; background-color: lightblue; position: fixed; top: 0; left: 0;">
@@ -52,7 +63,14 @@
     </div>
     
     <div class="sink-shell">
-        {{ library.page_navigation(fixed_distance_from_top="100", anchor_link_target_selector=".page-navigation--header") }}
+        {{ library.page_navigation(
+            fixed_distance_from_top="100", 
+            anchor_link_target_selector=".page-navigation--header", 
+            list_item_modifier_classes={
+                "h4.page-navigation--header": "special-little-unicorn",
+                "h5.page-navigation--header": "special-little-unicorn golden--unicorn"
+            }
+        ) }}
         <div class="testing">
             <h2 class="page-navigation--header">Include This Header</h2>
             <p>
@@ -72,6 +90,11 @@
             <h3>Neither will this one</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+
+            <h4 class="page-navigation--header">Special Little Unicorn</h4>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo odio eius aspernatur temporibus? Repellendus architecto harum, temporibus, odit quidem labore similique veniam perferendis iusto modi distinctio incidunt! Aliquid labore a doloribus minus officiis quod enim, consequatur iure maxime earum ducimus?
             </p>
 
             <h3 class="page-navigation--header">Long section</h2>
@@ -174,6 +197,11 @@
             </p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+
+            <h5 class="page-navigation--header">Rare Gold Unicorn</h4>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo odio eius aspernatur temporibus? Repellendus architecto harum, temporibus, odit quidem labore similique veniam perferendis iusto modi distinctio incidunt! Aliquid labore a doloribus minus officiis quod enim, consequatur iure maxime earum ducimus?
             </p>
         </div>
     </div>

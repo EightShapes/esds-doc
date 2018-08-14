@@ -1,12 +1,18 @@
 {% macro page_navigation(class=false, 
                         items=[], 
                         anchor_link_target_selector="h2, h3", 
+                        list_item_modifier_classes={
+                            'h2': 'esds-doc-page-navigation__item--parent',
+                            'h3': 'esds-doc-page-navigation__item--child'
+                        },
                         fixed_distance_from_top=0) %}
     <nav class="esds-doc-page-navigation{{ ' ' + class if class }}" 
         {% if items.length == 0 %}
             data-esds-doc-anchor-link-target-selector="{{ anchor_link_target_selector }}"
         {% endif %}
-        data-esds-doc-fixed-distance-from-top="{{ fixed_distance_from_top }}"
+        {% if list_item_modifier_classes %}
+            data-esds-doc-list-item-modifier-classes="{{ list_item_modifier_classes | dump }}"
+        {% endif %}
         >
         <ul class="esds-doc-page-navigation__inner">
             {% if items.length > 0 %}
