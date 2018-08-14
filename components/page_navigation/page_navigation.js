@@ -15,11 +15,22 @@ Esds.PageNavigation = function() {
             suppressScrollMonitoringClass = "esds-doc-page-navigation--no-scroll-monitor";
 
     let pageNavigationComponents,
-        listItemTemplate;
+        listItemTemplate,
+        listItemModifierClasses = false;
 
     function getArrayOfDomElements(selector, parent) {
         parent = typeof parent === 'undefined' ? document : parent;
         return Array.prototype.slice.call(parent.querySelectorAll(selector), 0);
+    }
+
+    function getListItemModifierClasses() {
+        const pageNavigation = document.querySelector(pageNavigationSelector);
+        let modifierClasses = false;
+        if (pageNavigation && pageNavigation.dataset['esds-doc-list-item-modifier-classes']) {
+            modifierClasses = JSON.parse(pageNavigation.dataset['esds-doc-list-item-modifier-classes']);
+        }
+
+        return modifierClasses;
     }
 
     function getPageNavigationComponents() {
@@ -68,6 +79,16 @@ Esds.PageNavigation = function() {
             listItemTemplate = getListItemTemplate(pageNavigation);
             anchorLinkItems.forEach(function(ali) {
                 let listItem = createListItemElement(listItemTemplate, ali);
+                if (listItemModifierClasses) {
+                    const selectors = Object.keys(listItemModifierClasses);
+                    const match = selectors.find(s => ali.matches(s));
+                    if (match) {
+                        const modifierClasses = listItemModifierClasses[match].split(' ');
+                        modifierClasses.forEach(c => {
+                            listItem.classList.add(c);
+                        });
+                    }
+                }
                 pageNavigationList.appendChild(listItem);
             });
         }
@@ -258,6 +279,7 @@ Esds.PageNavigation = function() {
     }
 
     function initializePageNavigationComponents(debug) {
+        listItemModifierClasses = getListItemModifierClasses();
         pageNavigationComponents = getPageNavigationComponents();
 
         pageNavigationComponents.forEach(function(pn){
