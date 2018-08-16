@@ -26,8 +26,8 @@ Esds.PageNavigation = function() {
     function getListItemModifierClasses() {
         const pageNavigation = document.querySelector(pageNavigationSelector);
         let modifierClasses = false;
-        if (pageNavigation && pageNavigation.dataset['esds-doc-list-item-modifier-classes']) {
-            modifierClasses = JSON.parse(pageNavigation.dataset['esds-doc-list-item-modifier-classes']);
+        if (pageNavigation && pageNavigation.dataset.esdsDocListItemModifierClasses) {
+            modifierClasses = JSON.parse(pageNavigation.dataset.esdsDocListItemModifierClasses);
         }
 
         return modifierClasses;
