@@ -81,10 +81,16 @@ Esds.PageNavigation = function() {
                 let listItem = createListItemElement(listItemTemplate, ali);
                 if (listItemModifierClasses) {
                     const selectors = Object.keys(listItemModifierClasses);
-                    const match = selectors.find(s => ali.matches(s));
+                    let match = false;
+                    for (var i = 0; i < selectors.length; i++) {
+                        const s = selectors[i];
+                        if (ali.matches(s)) {
+                            match = s;
+                        }
+                    }
                     if (match) {
                         const modifierClasses = listItemModifierClasses[match].split(' ');
-                        modifierClasses.forEach(c => {
+                        modifierClasses.forEach(function(c) {
                             listItem.classList.add(c);
                         });
                     }

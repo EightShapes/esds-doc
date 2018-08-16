@@ -205,7 +205,8 @@
             </p>
         </div>
     </div>
-
+{% endblock body %}
+{% block closing_body_assets %}
     <script>
         function ready(fn) {
           if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
@@ -219,4 +220,4 @@
             Esds.PageNavigation.init();
         });
     </script>
-{% endblock body %}
+{% endblock %}
