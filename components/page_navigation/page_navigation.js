@@ -16,7 +16,9 @@ Esds.PageNavigation = function() {
 
     let pageNavigationComponents,
         listItemTemplate,
-        listItemModifierClasses = false;
+        listItemModifierClasses = false,
+        scrollPositionWatchers = [],
+        resizeCallback;
 
     function getArrayOfDomElements(selector, parent) {
         parent = typeof parent === 'undefined' ? document : parent;
@@ -158,6 +160,19 @@ Esds.PageNavigation = function() {
         const pageAnchorLinks = pageNavigation.querySelectorAll(listItemLinkSelector),
                 topOffset = getTopOffset(pageNavigation);
 
+        for (var i = 0; i < scrollPositionWatchers.length; i++) {
+            scrollPositionWatchers[i].destroy();
+        }
+        scrollPositionWatchers = [];
+
+
+        // Delete debug markers if they exist
+        const debugMarkers = document.querySelectorAll('.esds-doc-page-navigation-debug-marker');
+        for (var i = 0; i < debugMarkers.length; i++) {
+            const marker = debugMarkers[i];
+            marker.parentNode.removeChild(marker);
+        }
+
         for (var i = 0; i < pageAnchorLinks.length; i++) {
             let anchorLink = pageAnchorLinks[i],
                 targetHref = anchorLink.getAttribute('href'),
@@ -168,6 +183,8 @@ Esds.PageNavigation = function() {
                 sectionTop = target.offsetTop - topOffset,
                 sectionBottom = nextTarget ? nextTarget.offsetTop - 1 - topOffset : document.body.offsetHeight,
                 elementWatcher = scrollMonitor.create({top: sectionTop, bottom: sectionBottom});
+
+            scrollPositionWatchers.push(elementWatcher);
 
             // When a section spans the entire viewport
             elementWatcher.stateChange(function(){
@@ -215,19 +232,22 @@ Esds.PageNavigation = function() {
         let topMarker = document.createElement('div'),
             bottomMarker = document.createElement('div');
 
+        topMarker.classList.add('esds-doc-page-navigation-debug-marker');
+        bottomMarker.classList.add('esds-doc-page-navigation-debug-marker');
+
         topMarker.style.width = "100%";
         topMarker.style.height = "1px";
         topMarker.style.backgroundColor = "red";
         topMarker.style.position = "absolute";
         topMarker.style.left = 0;
-        topMarker.style.top = topPosition;
+        topMarker.style.top = `${topPosition}px`;
 
         bottomMarker.style.width = "100%";
         bottomMarker.style.height = "1px";
         bottomMarker.style.backgroundColor = "blue";
         bottomMarker.style.position = "absolute";
         bottomMarker.style.left = 0;
-        bottomMarker.style.top = bottomPosition;
+        bottomMarker.style.top = `${bottomPosition}px`;
 
 
         document.body.appendChild(topMarker);
@@ -237,6 +257,15 @@ Esds.PageNavigation = function() {
     function initiateScrollMonitoring(pageNavigation, debug) {
         monitorPageNavigationFixedStatus(pageNavigation);
         monitorPageSectionsForActiveLinkHighlighting(pageNavigation, debug);
+        window.addEventListener('resize', function(){
+            if (resizeCallback) {
+                window.cancelAnimationFrame(resizeCallback);
+            }
+
+            resizeCallback = window.requestAnimationFrame(function() {
+                monitorPageSectionsForActiveLinkHighlighting(pageNavigation, debug);
+            });
+        });
     }
 
     function smoothScrollToSection(sectionSelector, pageNavigation) {
