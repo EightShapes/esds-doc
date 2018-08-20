@@ -240,14 +240,14 @@ Esds.PageNavigation = function() {
         topMarker.style.backgroundColor = "red";
         topMarker.style.position = "absolute";
         topMarker.style.left = 0;
-        topMarker.style.top = `${topPosition}px`;
+        topMarker.style.top = topPosition + 'px';
 
         bottomMarker.style.width = "100%";
         bottomMarker.style.height = "1px";
         bottomMarker.style.backgroundColor = "blue";
         bottomMarker.style.position = "absolute";
         bottomMarker.style.left = 0;
-        bottomMarker.style.top = `${bottomPosition}px`;
+        bottomMarker.style.top = bottomPosition + 'px';
 
 
         document.body.appendChild(topMarker);
