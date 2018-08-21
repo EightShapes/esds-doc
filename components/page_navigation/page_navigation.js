@@ -153,7 +153,7 @@ Esds.PageNavigation = function() {
 
     function getTopOffset(pageNavigation) {
         const topOffset = pageNavigation.getAttribute(fixedDistanceFromTopDataAttribute);
-        return topOffset === null ? 0 : topOffset;
+        return topOffset === null ? 0 : topOffset.replace('px', '');
     }
 
     function monitorPageSectionsForActiveLinkHighlighting(pageNavigation, debug) {
@@ -309,7 +309,9 @@ Esds.PageNavigation = function() {
         } else {
             // If no hash is set in the URL, highlight the first item in the navigation to start
             const links = getArrayOfDomElements(listItemLinkSelector, pageNavigation);
-            setListItemActive(links[0].getAttribute('href'));
+            if (links.length > 0) {
+                setListItemActive(links[0].getAttribute('href'));
+            }
         }
     }
 

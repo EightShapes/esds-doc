@@ -1,0 +1,206 @@
+{% extends "templates/sink.njk" %}
+{% block body %}
+    <style>
+        .testing * {
+            background: transparent;
+            color: {{ esds_doc_tokens['text-color'].primary['on-white'] }};
+            font-family: {{ esds_doc_tokens.font.family['sans-serif'] | safe }};
+            /*font-size: 20px;*/
+            font-style: normal;
+            font-weight: normal;
+            letter-spacing: 0;
+            line-height: 1.2;
+            text-align: left;
+            text-indent: 0;
+            /*margin: 32px 0 16px 0;*/
+            /*max-width: 768px;*/
+            padding: 0;
+            text-shadow: none;
+            text-transform: none;
+        }
+
+        .sink-shell {
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            grid-template-rows: 500px 1fr;
+        }
+
+        .esds-doc-page-navigation {
+            grid-column: 2 / span 1;
+            grid-row: 2 / span 1;
+        }
+
+        .before.testing {
+            grid-column: 1 / span 1;
+            grid-row: 1 / span 1;
+        }
+
+        .testing {
+            grid-column: 1 / span 1;
+            grid-row: 2 / span 1;
+        }
+
+        /* This will need to be set in the context that the component is used*/
+        .esds-doc-page-navigation--fixed .esds-doc-page-navigation__inner {
+            top: 0;
+        }
+
+        .esds-doc-page-navigation__item--parent {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .esds-doc-page-navigation__item--child {
+            font-style: italic;
+            font-size: 18px;
+        }
+    </style>
+    <h1 class="esds-doc-sink-page-header">Page Navigation</h1>
+    
+    <div class="sink-shell">
+        <div class="before testing">
+            <p>This section comes before the page navigation in source order and contains an anchor link that mirrors one of the anchor links in the page navigation</p>
+            <p>
+                <a href="#another-subsection-h3">Inline link to "Another Subsection h3"</a>
+            </p>
+        </div>
+        {% set page_navigation_fixed_links %}
+            <ul style="list-style:none; margin: 0; padding: 0;">
+                <li><a href="#">Static Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Another fixed link</a></li>
+            </ul>
+        {% endset %}
+        {{ library.page_navigation(top_content="<h1 style='margin: 0;'>Table of Contents</h1>", bottom_content=page_navigation_fixed_links, fixed_distance_from_top="200px") }}
+        <div class="testing">
+            <h2>Sample Header h2</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+
+            <p>
+                <a href="#another-subsection-h3">Inline link to "Another Subsection h3"</a>
+            </p>
+
+            <h2>Another Sample Header h2</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+
+            <h3>Subsection h3</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+
+            <h3>Another Subsection h3</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+
+            <h3>Long section spanning viewport</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+
+            <h2>New h2</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quibusdam iusto fugiat non necessitatibus, officiis ullam a dolore veniam excepturi. Consequuntur facilis consectetur dolores tempore repellat aperiam et adipisci accusantium!
+            </p>
+            <h2>5: Starting with a number is tricky</h2>
+        </div>
+    </div>
+
+{% endblock body %}
+{% block closing_body_assets %}
+    <script>
+        function ready(fn) {
+          if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+            fn();
+          } else {
+            document.addEventListener('DOMContentLoaded', fn);
+          }
+        }
+
+        ready(function(){
+            Esds.PageNavigation.init();
+        });
+    </script>
+{% endblock %}
