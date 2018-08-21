@@ -102,4 +102,37 @@
             {{ library.icon_swatch(class="esds-doc-icon-swatch--large", name=name, download_link_href="/icons/" + name + ".svg") }}
         {% endfor %}
     {% endcall %}
+                            
+    <h2 class="esds-doc-sink-page-header">Grid of Large Swatches, centered with flexbox</h2>
+    <style>
+        .centered-swatch-grid {
+            justify-content: center;
+        }
+    </style>
+
+    {# Ideally this array would already be built by esds-build #}
+    {% set icons = [
+                'angle-down',
+                'bars',
+                'calendar',
+                'download',
+                'envelope',
+                'file',
+                'group',
+                'info',
+                'key',
+                'list',
+                'map',
+                'play-circle',
+                'question',
+                'refresh',
+                'search',
+                'trash',
+                'unlock'
+            ]%}
+    {% call library.icon_swatch_grid(class="centered-swatch-grid", shims=7, shim_class="esds-doc-icon-swatch-grid__shim--large") %}
+        {% for name in icons %}
+            {{ library.icon_swatch(class="esds-doc-icon-swatch--large", name=name, download_link_href="/icons/" + name + ".svg") }}
+        {% endfor %}
+    {% endcall %}
 {% endblock body %}

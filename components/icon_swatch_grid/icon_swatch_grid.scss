@@ -9,6 +9,7 @@ $esds-doc-icon-swatch-grid-space-inset: $esds-doc-space-inset-1-x !default;
     margin-left: -$esds-doc-icon-swatch-grid-space-grid;
     padding: $esds-doc-icon-swatch-grid-space-inset;
 
+    .esds-doc-icon-swatch-grid__shim,
     .esds-doc-icon-swatch {
         margin: 0 0 $esds-doc-icon-swatch-grid-space-grid $esds-doc-icon-swatch-grid-space-grid;
     }

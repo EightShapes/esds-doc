@@ -55,3 +55,13 @@ $esds-doc-icon-swatch-icon-size: $esds-doc-icon-size-m;
 .esds-doc-icon-swatch__download-link {
     color: $esds-doc-icon-swatch-text-color-link;
 }
+
+.esds-doc-icon-swatch-grid__shim {
+    height: 0;
+    width: $esds-doc-icon-swatch-width;
+}
+
+.esds-doc-icon-swatch-grid__shim--large {
+    height: 0;
+    width: $esds-doc-icon-swatch-width * $esds-doc-icon-swatch-large-multiplier;
+}

@@ -1,5 +1,11 @@
-{% macro icon_swatch_grid(class=false) %}
-    <div class="esds-doc-icon-swatch-grid{{ ' ' + class if class }}">
-        {{ caller() }}
-    </div>
+{% macro icon_swatch_grid(class=false, shims=0, shim_class=false) %}
+  <div class="esds-doc-icon-swatch-grid{{ ' ' + class if class }}">
+    {{ caller() }}
+    {% if shims > 0 %}
+      <!-- These empty divs are added so the last row of the grid can be left aligned using flexbox -->
+    {% endif %}
+    {% for i in range(0, shims) %}
+      <div class="esds-doc-icon-swatch-grid__shim{{ ' ' + shim_class if shim_class }}"></div>
+    {% endfor %}
+  </div>
 {% endmacro %}
