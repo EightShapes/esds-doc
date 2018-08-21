@@ -5,7 +5,7 @@ var Esds = Esds || {};
 
 Esds.PageNavigation = function() {
     const pageNavigationSelector = ".esds-doc-page-navigation",
-            pageNavigationListSelector = ".esds-doc-page-navigation__inner",
+            pageNavigationListSelector = ".esds-doc-page-navigation__list",
             listItemTemplateSelector = ".esds-doc-page-navigation__item--template",
             listItemLinkSelector = ".esds-doc-page-navigation__link",
             listItemLinkActiveClass = "esds-doc-page-navigation__link--active",

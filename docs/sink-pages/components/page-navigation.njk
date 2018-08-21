@@ -51,7 +51,14 @@
                 <a href="#another-subsection-h3">Inline link to "Another Subsection h3"</a>
             </p>
         </div>
-        {{ library.page_navigation() }}
+        {% set page_navigation_fixed_links %}
+            <ul style="list-style:none; margin: 0; padding: 0;">
+                <li><a href="#">Static Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Another fixed link</a></li>
+            </ul>
+        {% endset %}
+        {{ library.page_navigation(top_content="<h1 style='margin: 0;'>Table of Contents</h1>", bottom_content=page_navigation_fixed_links) }}
         <div class="testing">
             <h2>Sample Header h2</h2>
             <p>
