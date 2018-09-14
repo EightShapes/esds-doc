@@ -131,29 +131,29 @@
 
     <div class="esds-doc-tint-stack__swatch{{ ' ' + swatch_container_class if swatch_container_class }}{{ ' ' + class if class }}{{ ' esds-doc-tint-stack__swatch--with-border' if show_border }}" style="background-color: {{ background_color }}; color: {{ foreground_color }};">
         <span class="esds-doc-tint-stack__label" style="color: {{ label_color }}">
-            {{ label }}
+            {{ label | safe }}
         </span>
         {% if html_example %}
             <span class="esds-doc-tint-stack__html-example">
                 {{ html_example | safe }}
             </span>
         {% endif %}
-        <span class="esds-doc-tint-stack__swatch-metadata">
+    <span class="esds-doc-tint-stack__swatch-metadata" style="color: {{ label_color }}">
             {% if code_snippet %}
                 <span class="esds-doc-tint-stack__pill esds-doc-tint-stack__pill--code-snippet">
-                    {{- code_snippet -}}
+                    {{- code_snippet | safe -}}
                 </span>
             {% endif %}
             {% if code_snippets %}
                 {% for snippet in code_snippets %}
                     <span class="esds-doc-tint-stack__pill esds-doc-tint-stack__pill--code-snippet">
-                        {{- snippet -}}
+                        {{- snippet | safe -}}
                     </span>
                 {% endfor %}
             {% endif %}
             {% if show_hex and hex != label %}
                 <span class="esds-doc-tint-stack__pill esds-doc-tint-stack__pill--hex">
-                    {{- hex -}}
+                    {{- hex | safe -}}
                 </span>
             {% endif %}
             {% if accessibility_score %}
