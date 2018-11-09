@@ -4,6 +4,7 @@
         label,
         download_link_text="Download",
         download_link_href=false,
+        sprite_path="/icons/esds-doc.svg",
         icon_markup) %}
     
     {% set esds_doc_overrides_path = esds_doc_overrides_path | default('./esds_doc_overrides/esds-doc-overrides-default.njk') %}
@@ -21,7 +22,7 @@
         {% if icon_markup %}
             {{ icon_markup | safe }}
         {% else %}
-            {{ icon(name=name, class="esds-doc-icon-swatch__icon") }}
+            {{ icon(name=name, class="esds-doc-icon-swatch__icon", sprite_path=sprite_path) }}
         {% endif %}
         <span class="esds-doc-icon-swatch__label">
             {{ label }}

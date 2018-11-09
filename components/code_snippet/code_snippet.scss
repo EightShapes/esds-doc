@@ -11,6 +11,7 @@ $esds-doc-code-snippet-space-stack: $esds-doc-space-stack-1-x !default;
 $esds-doc-code-snippet-text-color: $esds-doc-text-color-primary-on-white !default;
 
 $esds-doc-code-snippet-source-background-color: $esds-doc-color-neutral-95 !default;
+$esds-doc-code-snippet-source-font-family: $esds-doc-font-family-monospace !default;
 $esds-doc-code-snippet-source-tag-color: $esds-doc-color-blue-light !default;
 $esds-doc-code-snippet-source-selector-color: $esds-doc-color-blue !default;
 $esds-doc-code-snippet-source-attribute-value-color: $esds-doc-color-orange !default;
@@ -134,6 +135,10 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
 
     .esds-doc-code-snippet--no-max-height & {
         max-height: none; 
+    }
+
+    code {
+        font-family: $esds-doc-code-snippet-source-font-family;
     }
 }
 
