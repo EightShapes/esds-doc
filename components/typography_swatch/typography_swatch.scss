@@ -1,0 +1,134 @@
+$esds-doc-typography-swatch-border: $esds-doc-border-default !default;
+$esds-doc-typography-swatch-border-radius: $esds-doc-border-radius-default !default;
+
+$esds-doc-typography-swatch-text-color: $esds-doc-text-color-primary-on-light !default;
+$esds-doc-typography-swatch-font-family: $esds-doc-font-family-sans-serif !default;
+
+$esds-doc-typography-swatch-space-stack: $esds-doc-space-stack-2-x !default;
+$esds-doc-typography-swatch-space-inset: $esds-doc-space-inset-2-x !default;
+
+$esds-doc-typgraphy-swatch-margin-highlight-color: #F3CDA4 !default;
+$esds-doc-typgraphy-swatch-margin-highlight-color-bottom: $esds-doc-typgraphy-swatch-margin-highlight-color !default;
+$esds-doc-typgraphy-swatch-margin-highlight-color-top: $esds-doc-typgraphy-swatch-margin-highlight-color !default;
+
+$esds-doc-typgraphy-swatch-metadata-background-color: $esds-doc-color-neutral-95 !default;
+$esds-doc-typgraphy-swatch-metadata-text-color: $esds-doc-typography-swatch-text-color !default;
+$esds-doc-typgraphy-swatch-metadata-space-inset: $esds-doc-space-inset-2-x !default;
+
+$esds-doc-typgraphy-swatch-title-background: $esds-doc-color-white !default;
+$esds-doc-typgraphy-swatch-title-border-radius: $esds-doc-border-radius-default !default;
+$esds-doc-typgraphy-swatch-title-font-family: $esds-doc-typography-swatch-font-family !default;
+$esds-doc-typgraphy-swatch-title-font-size: $esds-doc-font-size-s !default;
+$esds-doc-typgraphy-swatch-title-font-weight: $esds-doc-font-weight-normal !default;
+$esds-doc-typgraphy-swatch-title-space-inset: $esds-doc-space-inset-half-x !default;
+
+$esds-doc-typgraphy-swatch-code-sample-font-family: $esds-doc-font-family-monospace !default;
+$esds-doc-typgraphy-swatch-code-sample-font-size: $esds-doc-font-size-s !default;
+$esds-doc-typgraphy-swatch-code-sample-line-height: $esds-doc-font-line-height-normal !default;
+
+$esds-doc-typgraphy-swatch-design-specs-line-height: $esds-doc-font-line-height-normal !default;
+$esds-doc-typgraphy-swatch-design-specs-font-family: $esds-doc-typography-swatch-font-family !default;
+$esds-doc-typgraphy-swatch-design-specs-width: 200px !default;
+
+.esds-doc-typography-swatch {
+    @include esds-doc-box-sizing;
+    @include esds-doc-font-reset(
+        $font-family: $esds-doc-typography-swatch-font-family);
+
+    border: $esds-doc-typography-swatch-border;
+    border-radius: $esds-doc-typography-swatch-border-radius;
+    color: $esds-doc-typography-swatch-text-color;
+    margin: $esds-doc-typography-swatch-space-stack;
+    overflow: hidden;
+}
+
+.esds-doc-typography-swatch__sample-text {
+    align-items: flex-start;
+    display: flex;
+    padding: $esds-doc-typography-swatch-space-inset;
+    position: relative;
+    word-break: break-word;
+
+    .esds-doc-typography-swatch--space-highlighted & {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+}
+
+.esds-doc-typography-swatch__highlight-space {
+    display: block;
+    position: absolute;
+    width: 100%;
+}
+
+.esds-doc-typography-swatch__highlight-space--top {
+    background: $esds-doc-typgraphy-swatch-margin-highlight-color-top;
+    left: 0;
+    top: 0;
+}
+
+.esds-doc-typography-swatch__highlight-space--bottom {
+    background: $esds-doc-typgraphy-swatch-margin-highlight-color-bottom;
+    bottom: 0;
+    left: 0;
+}
+
+.esds-doc-typography-swatch__sample-text-primary {
+    .esds-doc-typography-swatch--space-highlighted & {
+        display: block;
+    }
+}
+
+.esds-doc-typography-swatch__sample-text-secondary {
+    display: block;
+    margin-left: auto;
+}
+
+.esds-doc-typography-swatch__metadata {
+    align-items: flex-start;
+    background: $esds-doc-typgraphy-swatch-metadata-background-color;
+    color: $esds-doc-typgraphy-swatch-metadata-text-color;
+    display: flex;
+    justify-content: space-between;
+    padding: $esds-doc-typgraphy-swatch-metadata-space-inset;
+}
+
+.esds-doc-typography-swatch__title-wrap {
+    flex: 1 1 33%;
+
+    .esds-doc-typography-swatch--no-design-specs & {
+        flex: 0 1 auto;
+    }
+}
+
+.esds-doc-typography-swatch__title {
+    background: $esds-doc-typgraphy-swatch-title-background;
+    border-radius: $esds-doc-typgraphy-swatch-title-border-radius;
+    font-family: $esds-doc-typgraphy-swatch-title-font-family;
+    font-size: $esds-doc-typgraphy-swatch-title-font-size;
+    font-weight: $esds-doc-typgraphy-swatch-title-font-weight;
+    padding: $esds-doc-typgraphy-swatch-title-space-inset;
+}
+
+
+.esds-doc-typography-swatch__code-sample {
+    background: none;
+    flex: 1 1 33%;
+    font-family: $esds-doc-typgraphy-swatch-code-sample-font-family;
+    font-size: $esds-doc-typgraphy-swatch-code-sample-font-size;
+    line-height: $esds-doc-typgraphy-swatch-code-sample-line-height;
+    padding: 0;
+    text-align: center;
+}
+
+.esds-doc-typography-swatch__design-specs-wrap {
+    display: flex;
+    flex: 1 1 33%;
+    justify-content: flex-end;
+    line-height: $esds-doc-typgraphy-swatch-design-specs-line-height;
+}
+
+.esds-doc-typography-swatch__design-specs {
+    font-family: $esds-doc-typgraphy-swatch-design-specs-font-family;
+    width: $esds-doc-typgraphy-swatch-design-specs-width;
+}

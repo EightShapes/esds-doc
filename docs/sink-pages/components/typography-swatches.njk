@@ -1,0 +1,46 @@
+{% extends "templates/sink.njk" %}
+{% block body %}
+    {% filter markdown %}
+      <h1 class="esds-doc-sink-page-header">Typography Swatches Sink</h1>
+    {% endfilter %} 
+    
+    <h2 class="esds-doc-sink-page-header">No Arguments</h2>
+    {{ library.typography_swatch() }}
+
+    <h2 class="esds-doc-sink-page-header">Alphabet Sample Text</h2>
+    {{ library.typography_swatch(alphabet_sample_text=true) }}
+    
+    <h2 class="esds-doc-sink-page-header">Custom Styles & Specs</h2>
+    {% set design_specs = '
+      font-size: 52px;<br/>
+      color: purple;<br/>
+      line-height: 56px;<br/>
+      font-family: serif;<br/>
+    ' %}
+
+    {% set sample_styles = design_specs | replace('<br/>', '') %}
+    {{ library.typography_swatch(
+        sample_text_styles=sample_styles, 
+        design_specs=design_specs) }}
+    
+    <h2 class="esds-doc-sink-page-header">Secondary Sample Text</h2>
+    {{ library.typography_swatch(
+        sample_text="This is sample_text",
+        secondary_sample_text="This is secondary_sample_text") }}
+    
+    <h2 class="esds-doc-sink-page-header">Secondary Sample Text Alphabet Example</h2>
+    {{ library.typography_swatch(
+        alphabet_sample_text=true,
+        sample_text_styles="font-family:serif; font-size: 52px;font-weight: bold;",
+        secondary_sample_text="Aa",
+        secondary_sample_text_styles="font-size:100px;",
+        title="Bold Font Weight",
+        code_sample="$esds-doc-font-weight-bold") }}
+    
+    <h2 class="esds-doc-sink-page-header">Highlighted Margins</h2>
+    {{ library.typography_swatch(
+        highlighted_top_margin='16px',
+        highlighted_bottom_margin='32px') }}
+    
+
+{% endblock body %}
