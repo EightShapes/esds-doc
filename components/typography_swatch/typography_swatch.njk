@@ -1,0 +1,99 @@
+{% macro typography_swatch(
+    alphabet_sample_text=false,
+    sample_text="A quick brown fox<br/>is faster than a slow one",
+    sample_text_styles=false,
+    secondary_sample_text=false,
+    secondary_sample_text_styles=false,
+    sample_text_class="",
+    title="Heading 1",
+    code_sample=".esds-h1<br/>@include esds-h1;",
+    design_specs="font-size: 42px;<br/>font-weight: bold;<br/>line-height: 58px;",
+    highlighted_top_margin=false,
+    highlighted_bottom_margin=false
+  ) %}
+  {% if sample_text_styles == false and sample_text_class == "" %}
+    {% set sample_text_class = "esds-h1" %}
+  {% endif %}
+
+  {% if sample_text_styles %}
+    {% set random_number = range(0, 100000) | random %}
+    {% set random_class = 'esds-doc-typography-swatch--' + random_number %}
+    {% set sample_text_class = sample_text_class + ' ' + random_class %}
+    <style>
+      .{{ random_class }} {
+        {{ sample_text_styles }}
+      }
+    </style>
+  {% endif %}
+
+  {% if secondary_sample_text_styles %}
+    {% set random_number = range(0, 100000) | random %}
+    {% set secondary_random_class = 'esds-doc-typography-swatch--' + random_number %}
+    {% set secondary_sample_text_class = secondary_random_class %}
+    <style>
+      .{{ secondary_random_class }} {
+        {{ secondary_sample_text_styles }}
+      }
+    </style>
+  {% endif %}
+
+  {% if alphabet_sample_text %}
+    {% set sample_text = typography_swatch_alphabet() %}
+  {% endif %}
+
+  {% set modifier_class = "" %}
+  {% if design_specs == false %}
+    {% set modifier_class = modifier_class + " esds-doc-typography-swatch--no-design-specs" %}
+  {% endif %}
+
+  {% if highlighted_top_margin or highlighted_bottom_margin %}
+    {% set modifier_class = modifier_class + " esds-doc-typography-swatch--space-highlighted" %}
+    {% set inline_sample_text_styles = "style='" %}
+    {% if highlighted_top_margin %}
+      {% set inline_sample_text_styles = inline_sample_text_styles + 'margin-top: ' + highlighted_top_margin + '; ' %}
+    {% endif %}
+    {% if highlighted_bottom_margin %}
+      {% set inline_sample_text_styles = inline_sample_text_styles + 'margin-bottom: ' + highlighted_bottom_margin + '; ' %}
+    {% endif %}
+    {% set inline_sample_text_styles = inline_sample_text_styles + "'" %}
+  {% endif %}
+
+  <div class="esds-doc-typography-swatch{{ ' ' + modifier_class if modifier_class }}">
+    <div class="esds-doc-typography-swatch__sample-text{{ ' ' + sample_text_class if sample_text_class }}">
+        <span class="esds-doc-typography-swatch__sample-text-primary{{ ' ' + sample_text_class if sample_text_class }}" {{ inline_sample_text_styles | safe if inline_sample_text_styles }}>
+          {% if highlighted_top_margin %}
+            <span style="height: {{ highlighted_top_margin }}" class="esds-doc-typography-swatch__highlight-space esds-doc-typography-swatch__highlight-space--top"></span>
+          {% endif %}
+          {{ sample_text | safe }}
+          {% if highlighted_bottom_margin %}
+            <span style="height: {{ highlighted_bottom_margin }}" class="esds-doc-typography-swatch__highlight-space esds-doc-typography-swatch__highlight-space--bottom"></span>
+          {% endif %}
+        </span>
+        {% if secondary_sample_text %}
+          <span class="esds-doc-typography-swatch__sample-text-secondary{{ ' ' + secondary_sample_text_class if secondary_sample_text_class }}">
+            {{ secondary_sample_text | safe }}
+          </span>
+        {% endif %}
+    </div>
+    <div class="esds-doc-typography-swatch__metadata">
+      <span class="esds-doc-typography-swatch__title-wrap">
+        <span class="esds-doc-typography-swatch__title">
+          {{ title }}
+        </span></span>
+      <span class="esds-doc-typography-swatch__code-sample">{{ code_sample | safe }}</span>
+      {% if design_specs %}
+        <span class="esds-doc-typography-swatch__design-specs-wrap">
+          <span class="esds-doc-typography-swatch__design-specs">
+            {{ design_specs | safe }}
+          </span>
+        </span>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro typography_swatch_alphabet() %}
+  ABCDEFGHIJKLMNOPQRSTUVWXYZ<br/>
+  abcdefghijklmnopqrstuvwxyz<br/>
+  1234567890
+{% endmacro %}
