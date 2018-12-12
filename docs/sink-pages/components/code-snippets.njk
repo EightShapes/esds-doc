@@ -12,6 +12,14 @@
     <h1 class="esds-doc-sink-page-header">Basic code snippet</h1>
     {{ library.code_snippet(source="<h1>Hello World</h1>") }}
 
+    <h1 class="esds-doc-sink-page-header">Code Snippet with Inline Element</h1>
+    {{ library.code_snippet(source='
+    <div class="this-is-my-image-wrap">
+        <div class="nested-another-level">
+            <img src="/some/path/to/file.png"/>
+        </div>
+    </div>') }}
+
     <h1 class="esds-doc-sink-page-header">Complex source</h1>
     {{ library.code_snippet(source=table_example_code) }}
 
