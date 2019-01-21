@@ -157,7 +157,7 @@ Esds.PageNavigation = function() {
     }
 
     function monitorPageSectionsForActiveLinkHighlighting(pageNavigation, debug) {
-        const pageAnchorLinks = pageNavigation.querySelectorAll(listItemLinkSelector),
+        const pageAnchorLinks = Array.from(pageNavigation.querySelectorAll(listItemLinkSelector)).filter(l => l.href.includes('#')),
                 topOffset = getTopOffset(pageNavigation);
 
         for (var i = 0; i < scrollPositionWatchers.length; i++) {
