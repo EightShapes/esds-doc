@@ -21,7 +21,7 @@
     {% set sample_text_class = sample_text_class + ' ' + random_class %}
     <style>
       .{{ random_class }} {
-        {{ sample_text_styles }}
+        {{ sample_text_styles | safe }}
       }
     </style>
   {% endif %}
@@ -32,7 +32,7 @@
     {% set secondary_sample_text_class = secondary_random_class %}
     <style>
       .{{ secondary_random_class }} {
-        {{ secondary_sample_text_styles }}
+        {{ secondary_sample_text_styles | safe }}
       }
     </style>
   {% endif %}
