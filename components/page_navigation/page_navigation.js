@@ -290,13 +290,15 @@ Esds.PageNavigation = function() {
 
         links.forEach(function(l){
             l.addEventListener('click', function(e){
-                e.preventDefault();
+                if (this.hash) {
+                    e.preventDefault();
 
-                const href = this.hash;
+                    const href = this.hash;
 
-                setListItemActive(href);
-                history.pushState(null, null, href);
-                smoothScrollToSection(href, pn);
+                    setListItemActive(href);
+                    history.pushState(null, null, href);
+                    smoothScrollToSection(href, pn);
+                }
             });
         });
     }
