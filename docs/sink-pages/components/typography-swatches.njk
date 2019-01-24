@@ -42,5 +42,9 @@
         highlighted_top_margin='16px',
         highlighted_bottom_margin='32px') }}
     
+    <h2 class="esds-doc-sink-page-header">No Code Sample</h2>
+    {% set design_specs = 'font-family: "Some Font", "Some Other Font", "Some Longer Font To Make It Wrap", papyrus, comic-sans, sans-serif' %}
+    {{ library.typography_swatch(code_sample=false, design_specs=design_specs) }}
+    
 
 {% endblock body %}

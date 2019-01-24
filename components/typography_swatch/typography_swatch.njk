@@ -80,7 +80,9 @@
         <span class="esds-doc-typography-swatch__title">
           {{ title }}
         </span></span>
-      <span class="esds-doc-typography-swatch__code-sample">{{ code_sample | safe }}</span>
+      {% if code_sample %}
+        <span class="esds-doc-typography-swatch__code-sample">{{ code_sample | safe }}</span>
+      {% endif %}
       {% if design_specs %}
         <span class="esds-doc-typography-swatch__design-specs-wrap">
           <span class="esds-doc-typography-swatch__design-specs">
