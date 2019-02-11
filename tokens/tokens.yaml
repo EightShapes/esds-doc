@@ -42,6 +42,9 @@ background-color:
   brand : *color-orange
 
 border:
+  color:
+    default: *color-neutral-53
+    on-white: *color-neutral-53
   default: "solid 1px !{*color-neutral-53}"
   separator:
     default: "solid 1px !{*color-neutral-53}"

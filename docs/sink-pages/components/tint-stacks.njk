@@ -105,6 +105,10 @@
 
     <h2 class="esds-doc-sink-page-header">Background Colors</h2>
     {{ library.tint_stack(token_node="esds_doc_tokens.background-color", token_code_prefix="$esds-doc-") }}
+    {{ library.tint_stack(token_node="esds_doc_tokens.text-color", token_code_prefix="$esds-doc-", token_color_role='foreground') }}
+
+    <h2 class="esds-doc-sink-page-header">Border Colors</h2>
+    {{ library.tint_stack(token_node="esds_doc_tokens.border.color", token_code_prefix="$esds-doc-", token_color_role='border') }}
 {% endblock body %}
 {% block closing_body_assets %}
     <script>
