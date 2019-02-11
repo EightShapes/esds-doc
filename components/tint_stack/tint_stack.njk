@@ -27,7 +27,7 @@
                                 code_snippets: ['$name-of-color-token',
                                                 'solid 1px #123456'],               // Array of code blocks, each shown as a pill
                                 contrast_test_color: undefined | '#123456',         // If not provided, 'hex' will be tested against both #000000 and #FFFFFF and the highest contrast ratio will be used to calculate 'accessibility_score', if provided, this will be tested against 'hex' to determine the 'accessibility_score'
-                                color_role: 'foreground' | 'background',            // determines if 'hex' is the background color of the swatch ('background') or the text color of the swatch ('foreground'). 'contrast_test_color' will be used opposite the 'color_role' setting, either as background color or text color
+                                color_role: 'foreground' | 'background' | 'border',            // determines if 'hex' is the background color of the swatch ('background') or the text color of the swatch ('foreground'). 'contrast_test_color' will be used opposite the 'color_role' setting, either as background color or text color. If 'border' is provided a 1px html example border is rendered inline.
                                 html_example: '<span class="anything"></span>',     // renders int he swatch after the label, useful for showing html-based examples like border colors
                                 show_border: true | false (default),                // If true, the tint swatch will have a border drawn around it. Useful if the background of the swatch is the same color as the page background
                                 show_hex: true (default) | false,                   // If true, suppresses the 'hex' pill in the swatch, 'hex' pill is automatically suppressed when no 'label' is provided
@@ -87,6 +87,7 @@
   {% for key, value in parent_node %}
     {% if value | isstring %}
       {% set label = (label_prefix + '-' + key) | replace('-', ' ') | title %}
+
       {{ tint_stack_swatch(
           hex=value,
           label=label,
@@ -94,9 +95,9 @@
           color_role=token_color_role
         ) }}
     {% else %}
-      {% set label_prefix = label_prefix + '-' + key %}
-      {% set code_prefix = code_prefix + '-' + key %}
-      {{ recursive_token_tint_stacks(value, label_prefix, code_prefix, token_color_role) }}
+      {% set recursive_label_prefix = label_prefix + '-' + key %}
+      {% set recursive_code_prefix = code_prefix + '-' + key %}
+      {{ recursive_token_tint_stacks(value, recursive_label_prefix, recursive_code_prefix, token_color_role) }}
     {% endif %}
   {% endfor %}
 {% endmacro %}
@@ -114,6 +115,15 @@
                             show_border,
                             show_hex,
                             show_contrast_ratio) %}
+    {% if color_role == 'border' %}
+      {% set color_role = 'foreground' %}
+      {% if html_example == undefined %}
+        {% set html_example = '<span style="border-bottom: solid 1px ' + hex + '; width: 180px; display: inline-block; vertical-align: middle;"></span>' %}
+      {% endif %}
+      {% if accessibility_score == undefined %}
+        {% set accessibility_score = false %}
+      {% endif %}
+    {% endif %}
     {% set show_hex = show_hex | default(true) %}
     {% set label = label | default(hex) %}
     {% set color_role = color_role | default('background') %}
