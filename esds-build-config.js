@@ -67,6 +67,18 @@ module.exports = {
             return stripIndent(string);
         });
 
+        env.addFilter('getcontext', function(){
+          return this.ctx;
+        });
+
+        env.addFilter('split', function (str, seperator) {
+            return str.split(seperator);
+        });
+
+        env.addFilter('isstring', function (obj) {
+            return typeof obj === 'string';
+        });
+
         env.addFilter('getContrastRatioForHex', function(foregroundColor, backgroundColor) {
             // MIT Licensed function courtesty of Lea Verou
             // https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
