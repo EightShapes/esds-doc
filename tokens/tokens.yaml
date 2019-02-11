@@ -14,19 +14,19 @@ color:
 
 text-color:
   brand : *color-black
-  primary : 
+  primary :
     on-white : *color-black
     on-light : *color-black
     on-brand : *color-white
     on-dark : *color-white
     on-black : *color-neutral-95
-  secondary : 
+  secondary :
     on-white : *color-neutral-30
     on-light : *color-neutral-30
     on-brand : *color-neutral-95
     on-dark : *color-neutral-95
     on-black : *color-neutral-95
-  link : 
+  link :
     on-white : &text-color-link-on-white *color-blue
     on-light : &text-color-link-on-light *color-blue
     on-brand : &text-color-link-on-brand *color-white
@@ -39,7 +39,7 @@ background-color:
   light : *color-neutral-95
   dark: *color-neutral-15
   black : *color-black
-  brand : *color-black
+  brand : *color-orange
 
 border:
   default: "solid 1px !{*color-neutral-53}"

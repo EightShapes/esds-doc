@@ -95,6 +95,16 @@
 
     <h1 class="esds-doc-sink-page-header">Basic Example, Only Hex Codes Provided</h1>
     {{ library.tint_stack(swatches=['#123456', '#789ABC', '#DEF012', '#345678', '#9ABCDE']) }}
+
+    <h1 class="esds-doc-sink-page-header">Token Aware Variant</h1>
+    <h2 class="esds-doc-sink-page-header">Palette</h2>
+    {{ library.tint_stack(token_node="esds_doc_tokens.color", token_code_prefix="$esds-doc-") }}
+
+    <h2 class="esds-doc-sink-page-header">Text Colors</h2>
+    {{ library.tint_stack(token_node="esds_doc_tokens.text-color", token_code_prefix="$esds-doc-", token_color_role='foreground') }}
+
+    <h2 class="esds-doc-sink-page-header">Background Colors</h2>
+    {{ library.tint_stack(token_node="esds_doc_tokens.background-color", token_code_prefix="$esds-doc-") }}
 {% endblock body %}
 {% block closing_body_assets %}
     <script>
