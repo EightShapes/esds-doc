@@ -27,7 +27,7 @@ $esds-doc-html-example-list-label-background-on-dark: rgba($esds-doc-html-exampl
     background-color: $esds-doc-html-example-list-background;
     border: $esds-doc-html-example-list-border;
     border-radius: $esds-doc-html-example-list-border-radius;
-    margin-bottom:  $esds-doc-html-example-list-space-stack;
+    margin:  $esds-doc-html-example-list-space-stack;
 
     &.esds-doc-container--dark {
         background: $esds-doc-container-background-dark; // TODO needs to be in a mixin
