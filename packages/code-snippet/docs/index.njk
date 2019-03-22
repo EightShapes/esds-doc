@@ -1,0 +1,33 @@
+{% extends 'templates/base.njk' %}
+{% set title = "ESDS Code Snippet Test Pages" %}
+
+{% block body %}
+  <h1>ESDS Code Snippet Test Pages</h1>
+  <esds-code-snippet></esds-code-snippet>
+  <esds-code-snippet source="<p>A different example here</p>"></esds-code-snippet>
+  <esds-code-snippet>
+    <h1>This is a slotted test</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, atque!</p>
+    <p>It's indented and needs fixed.</p>
+    <div>
+      <h2>Will this nest?</h2>
+    </div>
+  </esds-code-snippet>
+
+  <esds-code-snippet language="css">
+    .this-is-a-css-selector {
+      color: red;
+      background: hotpink;
+    }
+  </esds-code-snippet>
+
+  <esds-code-snippet language="javascript">
+    <script type="module">
+      import EsdsButton from './scripts/esds-button.js';
+
+      const myButton = new EsdsButton();
+      myButton.variant = 'secondary';
+      document.body.appendChild(myButton);
+    </script>
+  </esds-code-snippet>
+{% endblock %}

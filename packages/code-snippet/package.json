@@ -1,0 +1,26 @@
+{
+  "name": "esds-code-snippet",
+  "version": "0.1.0",
+  "description": "",
+  "main": "code_snippet.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepack": "npm install && gulp build:all"
+  },
+  "author": "Kevin Powell <kevinmpowell@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "esds-build": "github:eightshapes/esds-build#feature/web-components-upgrade",
+    "rollup": "^1.7.0",
+    "rollup-plugin-commonjs": "^9.2.1",
+    "rollup-plugin-node-resolve": "^4.0.1"
+  },
+  "dependencies": {
+    "esds-base-wc": "^0.2.1",
+    "esds-icon": "^0.3.0",
+    "esds-icons": "^0.3.0",
+    "esds-visual-style": "^0.2.1",
+    "js-beautify": "^1.9.0",
+    "prismjs": "^1.15.0"
+  }
+}
