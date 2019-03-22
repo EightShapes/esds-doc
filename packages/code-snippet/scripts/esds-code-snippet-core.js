@@ -31,7 +31,8 @@ class EsdsCodeSnippet extends EsdsBaseWc {
   }
 
   renderCopyButton() {
-    let copyButton = html`<esds-button text="${this.copyButtonText}" size="small" variant="secondary"></esds-button>`;
+    // Not sure why I had to use unsafeHTML here and not the html`` template literal. Without it the ${this.copyButtonText} slot content is getting lost somewhere
+    let copyButton = unsafeHTML(`<esds-button size="small" variant="secondary">${this.copyButtonText}</esds-button>`);
     if (this.slots['copy-button']) {
       copyButton = this.slots['copy-button'];
     }
