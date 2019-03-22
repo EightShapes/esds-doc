@@ -83,7 +83,7 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
 
   .esds-code-snippet__copy-code-wrap {
     padding: $esds-doc-code-snippet-copy-code-button-offset;
-    // position: absolute;
+    position: relative;
     right: 0;
     top: 0;
     z-index: 10;
@@ -116,9 +116,10 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
       width: 10px;
     }
 
-    .esds-code-snippet--show-copied-notification & {
-      animation: esds-code-snippet-fade-in-out-v1 3s;
-    }
+  }
+
+  &.esds-code-snippet--show-copied-notification .esds-code-snippet__copied-notification {
+    animation: esds-code-snippet-fade-in-out-v1 3s;
   }
 
   .esds-code-snippet__pre[class*='language-'] {

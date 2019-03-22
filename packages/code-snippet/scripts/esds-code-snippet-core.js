@@ -21,6 +21,9 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     this.stylesheet = 'esds-code-snippet.css';
     this.defaultSource = '<h1>Hello World</h1>';
 
+    // State
+    this.codeCopied = false;
+
     // Default prop values
     this.codeCopiedText = 'Copied to clipboard';
     this.copyButtonText = 'Copy Code';
@@ -28,6 +31,12 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     this.source = this.defaultSource;
     this.language = 'markup';
     this.preformatted = false;
+  }
+
+  copyCodeToClipboard() {
+    console.log("COPY IT!");
+    this.codeCopied = true;
+    this.requestUpdate();
   }
 
   renderCopyButton() {
@@ -43,7 +52,9 @@ class EsdsCodeSnippet extends EsdsBaseWc {
             <div class="esds-code-snippet__copied-notification">
                 ${this.codeCopiedText}
             </div>
-            ${copyButton}
+            <div @click=${this.copyCodeToClipboard} class="esds-code-snippet__copy-button-wrap">
+              ${copyButton}
+            </div>
         </div>
       `;
     } else {
@@ -53,6 +64,10 @@ class EsdsCodeSnippet extends EsdsBaseWc {
 
   render(){
     let blockLevelClass = this.defaultClass;
+
+    if (this.codeCopied) {
+      blockLevelClass += ` ${this.baseModifierClass}show-copied-notification`;
+    }
 
     let source = this.source;
     if (source === this.defaultSource && this.slots.default) {
