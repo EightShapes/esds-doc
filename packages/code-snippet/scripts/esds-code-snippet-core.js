@@ -88,6 +88,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
   }
 
   render(){
+    console.log(this.slots.default);
     let blockLevelClass = this.defaultClass;
 
     if (this.codeCopied) {
@@ -98,6 +99,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     if (source === this.defaultSource && this.slots.default) {
      // rudamentary formatting
      source = this.slots.default.map((n) => {
+       n = n.cloneNode(); // Needed to prevent web component snippets from rendering on subsequent updates
       if (n.outerHTML) {
         return n.outerHTML;
       } else {
