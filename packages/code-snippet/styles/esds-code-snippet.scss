@@ -83,7 +83,7 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
 
   .esds-code-snippet__copy-code-wrap {
     padding: $esds-doc-code-snippet-copy-code-button-offset;
-    position: absolute;
+    // position: absolute;
     right: 0;
     top: 0;
     z-index: 10;
