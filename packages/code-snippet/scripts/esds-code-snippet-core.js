@@ -33,10 +33,35 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     this.preformatted = false;
   }
 
-  copyCodeToClipboard() {
-    console.log("COPY IT!");
+  showCopiedMessage() {
     this.codeCopied = true;
     this.requestUpdate();
+  }
+
+  copyCodeToClipboard() {
+    const source = this.querySelector('.esds-code-snippet__pre code');
+    const textarea = document.createElement('textarea');
+    textarea.style.height = '0';
+    textarea.style.width = '0';
+    textarea.style.position = 'absolute';
+    textarea.style.left = '-99999px';
+    this.appendChild(textarea);
+
+    textarea.textContent = source.textContent;
+    textarea.select();
+
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        this.showCopiedMessage();
+      } else {
+        // triggerCopyErrorEvent();
+      }
+    } catch (err) {
+        // triggerCopyNotSupportedEvent(snippet);
+    }
+
+    this.removeChild(textarea);
   }
 
   renderCopyButton() {
