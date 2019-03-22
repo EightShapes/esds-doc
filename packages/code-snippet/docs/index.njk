@@ -3,6 +3,14 @@
 
 {% block body %}
   <h1>ESDS Code Snippet Test Pages</h1>
+  <esds-icon>
+  </esds-icon>
+
+  <esds-code-snippet>
+    <esds-icon slot="copy-icon"></esds-icon>
+    <esds-icon></esds-icon>
+  </esds-code-snippet>
+
   <esds-code-snippet></esds-code-snippet>
   <esds-code-snippet source="<p>A different example here</p>"></esds-code-snippet>
   <esds-code-snippet>
@@ -22,12 +30,11 @@
   </esds-code-snippet>
 
   <esds-code-snippet language="javascript">
-    <script type="module">
-      import EsdsButton from './scripts/esds-button.js';
+    import EsdsButton from './scripts/esds-button.js';
+    import EsdsIcon from './scripts/esds-icon.js';
 
-      const myButton = new EsdsButton();
-      myButton.variant = 'secondary';
-      document.body.appendChild(myButton);
-    </script>
+    const myButton = new EsdsButton();
+    myButton.variant = 'secondary';
+    document.body.appendChild(myButton);
   </esds-code-snippet>
 {% endblock %}

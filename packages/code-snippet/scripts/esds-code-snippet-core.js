@@ -46,11 +46,23 @@ class EsdsCodeSnippet extends EsdsBaseWc {
      language = 'markup';
    }
 
-   const highlightedCode = Prism.highlight(source, Prism.languages[language], language);
+   let formatter = htmlBeautify;
+   switch(language) {
+      case 'css':
+        formatter = cssBeautify;
+        break;
+      case 'javascript':
+        formatter = jsBeautify;
+        break;
+   }
+
+   const formattedCode = formatter(source);
+   const highlightedCode = Prism.highlight(formattedCode, Prism.languages[language], language);
 
     return html`
       ${this.getStylesheet()}
       <div class="${blockLevelClass}">
+        ${this.slots['copy-icon']}
         <pre class="esds-code-snippet__pre"><code>${unsafeHTML(highlightedCode)}</code></pre>
       </div>
     `;
