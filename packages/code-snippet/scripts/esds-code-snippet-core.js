@@ -1,6 +1,7 @@
 import { EsdsBaseWc, html, unsafeHTML } from './esds-base-wc.js';
 import { Prism, htmlBeautify, jsBeautify, cssBeautify } from './compiled-dependency-bundle-es6.js';
 import EsdsButton from './esds-button.js';
+import EsdsTabs, { EsdsTabPanel } from './esds-tabs.js';
 
 class EsdsCodeSnippet extends EsdsBaseWc {
   static get properties() {
@@ -8,9 +9,11 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       codeCopiedText: {type: String, attribute: 'code-copied-text'},
       copyable: {type: Boolean},
       copyButtonText: {type: String, attribute: 'copy-button-text'},
+      filename: {type: String},
       language: {type: String},
       preformatted: {type: Boolean},
-      source: {type: String}
+      source: {type: String},
+      sources: {type: Array}
     }
   }
 
@@ -87,37 +90,23 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     }
   }
 
-  render(){
-    console.log(this.slots.default);
-    let blockLevelClass = this.defaultClass;
-
-    if (this.codeCopied) {
-      blockLevelClass += ` ${this.baseModifierClass}show-copied-notification`;
-    }
-
-    let source = this.source;
-    if (source === this.defaultSource && this.slots.default) {
-     // rudamentary formatting
-     source = this.slots.default.map((n) => {
-       n = n.cloneNode(); // Needed to prevent web component snippets from rendering on subsequent updates
+  parseSlottedSource(slottedSource) {
+    // rudamentary formatting
+    return slottedSource.map((n) => {
+      n = n.cloneNode(true); // Needed to prevent web component snippets from rendering on subsequent updates
       if (n.outerHTML) {
         return n.outerHTML;
       } else {
-        console.log(n.textContent);
         let output = '';
         if (n.textContent.trim().length > 0) {
           output = n.textContent;
         }
         return output;
-      }
-    }).join('\n');
-    }
+       }
+     }).join('\n');
+  }
 
-    let language = this.language;
-    if (language === 'html') {
-     language = 'markup';
-    }
-
+  beautifySource(source, language) {
     let formatter = htmlBeautify;
     switch(language) {
       case 'css':
@@ -128,22 +117,87 @@ class EsdsCodeSnippet extends EsdsBaseWc {
         break;
     }
 
-    const formattedCode = this.preformatted ? source : formatter(source);
-    const highlightedCode = Prism.highlight(formattedCode, Prism.languages[language], language);
+    return this.preformatted ? source : formatter(source);
+  }
 
-    let filename = '';
-    if (this.filename) {
-      filename = html`<span class="esds-code-snippet__filename">${this.filename}</span>`;
+  highlightSource(source, language) {
+    console.log(source, language);
+    return Prism.highlight(source, Prism.languages[language], language)
+  }
+
+  formatSource(source, language) {
+    const beautifiedSource = this.beautifySource(source, language);
+    return this.highlightSource(beautifiedSource, language);
+  }
+
+  renderCodeSnippet(source, language, filename) {
+    source = this.formatSource(source, language);
+
+    return html`
+      <div class="esds-code-snippet__source">
+        ${this.renderFilename(filename)}
+        <pre class="esds-code-snippet__pre"><code>${unsafeHTML(source)}</code></pre>
+      </div>`;
+  }
+
+  renderFilename(filename) {
+    if (filename) {
+      return html`<span class="esds-code-snippet__filename">${this.filename}</span>`
+    } else {
+      return '';
     }
+  }
+
+  render(){
+    let blockLevelClass = this.defaultClass;
+    if (this.codeCopied) {
+      blockLevelClass += ` ${this.baseModifierClass}show-copied-notification`;
+    }
+
+    let codeSnippets;
+    if (this.sources) {
+      // let codeSnippetTabs = [];
+      // this.sources.forEach((sourceData) => {
+      //   console.log(sourceData);
+      //   const renderedSnippet = this.renderCodeSnippet(sourceData.source, sourceData.language, sourceData.filename);
+      //   console.log(renderedSnippet);
+      //   codeSnippetTabs.push(html`
+      //     <esds-tab-panel label="HTML">
+      //       ${renderedSnippet}
+      //     </esds-tab-panel>
+      //   `);
+      // });
+      // console.log(codeSnippetTabs);
+      // codeSnippets = html`
+      //   <esds-tabs>
+      //     ${codeSnippetTabs.join('')}
+      //   </esds-tabs>
+      // `;
+      codeSnippets = html`
+        <esds-tabs>
+          <esds-tab-panel label="HTML">
+           ${this.renderCodeSnippet("<h1>Hello World</h1>", "markup")}
+          </esds-tab-panel>
+        </esds-tabs>
+      `;
+
+      console.log(codeSnippets);
+    } else {
+      // Just a single snippet to render, no tabs
+      const language = this.language === 'html' ? 'markup' : this.language;
+      let source = this.source;
+      if (source === this.defaultSource && this.slots.default) {
+        source = this.parseSlottedSource(this.slots.default);
+      }
+      codeSnippets = this.renderCodeSnippet(source, language, this.filename);
+    }
+
 
     return html`
       ${this.getStylesheet()}
       <div class="${blockLevelClass}">
         ${this.renderCopyButton()}
-        <div class="esds-code-snippet__source">
-          ${filename}
-          <pre class="esds-code-snippet__pre"><code>${unsafeHTML(highlightedCode)}</code></pre>
-        </div>
+        ${codeSnippets}
       </div>
     `;
   }

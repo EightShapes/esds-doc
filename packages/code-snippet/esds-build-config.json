@@ -22,6 +22,18 @@
       "watch": true
     },
     {
+      "name": "ESDS Tabs",
+      "sources": ["./node_modules/esds-tabs/dist/esds-tabs*.js"],
+      "destination": "_site/latest/scripts",
+      "watch": true
+    },
+    {
+      "name": "ESDS Tabs Styles",
+      "sources": ["./node_modules/esds-tabs/dist/esds-tabs*.css"],
+      "destination": "_site/latest/styles",
+      "watch": true
+    },
+    {
       "name": "component-scripts",
       "sources": ["./scripts/**/*"],
       "destination": "_site/latest/scripts",

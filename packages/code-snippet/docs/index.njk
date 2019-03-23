@@ -4,12 +4,11 @@
 {% block body %}
   <h1>ESDS Code Snippet Test Pages</h1>
   <esds-code-snippet>
-    {# <button slot="copy-button">Just a simple button</button> #}
     <esds-icon></esds-icon>
   </esds-code-snippet>
 
-  {# <esds-code-snippet></esds-code-snippet>
-  <esds-code-snippet source="<p>A different example here</p>"></esds-code-snippet>
+  <esds-code-snippet sources='[{"source": "<h1>Hello World</h1>", "language": "html"}]'></esds-code-snippet>
+  <esds-code-snippet filename="my-cool-file.html" source="<p>A different example here</p>"></esds-code-snippet>
   <esds-code-snippet>
     <h1>This is a slotted test</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, atque!</p>
@@ -33,5 +32,5 @@
     const myButton = new EsdsButton();
     myButton.variant = 'secondary';
     document.body.appendChild(myButton);
-  </esds-code-snippet> #}
+  </esds-code-snippet>
 {% endblock %}
