@@ -7,7 +7,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
   static get properties() {
     return {
       codeCopiedText: {type: String, attribute: 'code-copied-text'},
-      copyable: {type: Boolean},
+      copyable: {type: String},
       copyButtonText: {type: String, attribute: 'copy-button-text'},
       filename: {type: String},
       language: {type: String},
@@ -18,7 +18,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
   }
 
   constructor() {
-    super();
+    super("CODE SNIPPET");
     this.defaultClass = 'esds-code-snippet-v1';
     this.baseModifierClass = 'esds-code-snippet--';
     this.stylesheet = 'esds-code-snippet.css';
@@ -74,7 +74,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       copyButton = this.slots['copy-button'];
     }
 
-    if (this.copyable) {
+    if (this.copyable === 'true') {
       return html`
         <div class="esds-code-snippet__copy-code-wrap">
             <div class="esds-code-snippet__copied-notification">
@@ -121,7 +121,9 @@ class EsdsCodeSnippet extends EsdsBaseWc {
   }
 
   highlightSource(source, language) {
-    console.log(source, language);
+    if (language.toLowerCase() === 'html' || language.toLowerCase() === 'wc') {
+      language = 'markup';
+    }
     return Prism.highlight(source, Prism.languages[language], language)
   }
 
@@ -133,11 +135,12 @@ class EsdsCodeSnippet extends EsdsBaseWc {
   renderCodeSnippet(source, language, filename) {
     source = this.formatSource(source, language);
 
-    return html`
-      <div class="esds-code-snippet__source">
-        ${this.renderFilename(filename)}
-        <pre class="esds-code-snippet__pre"><code>${unsafeHTML(source)}</code></pre>
-      </div>`;
+    // return html`
+    //   <div class="esds-code-snippet__source">
+    //     ${this.renderFilename(filename)}
+    //     <pre class="esds-code-snippet__pre"><code>${unsafeHTML(source)}</code></pre>
+    //   </div>`;
+    return html`<h1>Something</h1>`;
   }
 
   renderFilename(filename) {
@@ -154,34 +157,20 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       blockLevelClass += ` ${this.baseModifierClass}show-copied-notification`;
     }
 
-    let codeSnippets;
-    if (this.sources) {
-      // let codeSnippetTabs = [];
-      // this.sources.forEach((sourceData) => {
-      //   console.log(sourceData);
-      //   const renderedSnippet = this.renderCodeSnippet(sourceData.source, sourceData.language, sourceData.filename);
-      //   console.log(renderedSnippet);
-      //   codeSnippetTabs.push(html`
-      //     <esds-tab-panel label="HTML">
-      //       ${renderedSnippet}
-      //     </esds-tab-panel>
-      //   `);
-      // });
-      // console.log(codeSnippetTabs);
-      // codeSnippets = html`
-      //   <esds-tabs>
-      //     ${codeSnippetTabs.join('')}
-      //   </esds-tabs>
-      // `;
-      codeSnippets = html`
-        <esds-tabs>
-          <esds-tab-panel label="HTML">
-           ${this.renderCodeSnippet("<h1>Hello World</h1>", "markup")}
-          </esds-tab-panel>
-        </esds-tabs>
-      `;
+    let output;
 
-      console.log(codeSnippets);
+    if (this.sources) {
+      let codeSnippets = [];
+
+      this.sources.forEach((s) => {
+        codeSnippets.push(html`
+          <esds-tab-panel label="${s.language}" panel-id="${s.language}">
+            <h1>Testing</h1>
+          </esds-tab-panel>
+        `);
+      });
+
+      output = html`<esds-tabs>${this.sources.map((s) => html`<esds-tab-panel label="${s.language}"><h2>Foo</h2></esds-tab-panel>`)}</esds-tabs>`;
     } else {
       // Just a single snippet to render, no tabs
       const language = this.language === 'html' ? 'markup' : this.language;
@@ -189,15 +178,16 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       if (source === this.defaultSource && this.slots.default) {
         source = this.parseSlottedSource(this.slots.default);
       }
-      codeSnippets = this.renderCodeSnippet(source, language, this.filename);
+      output = this.renderCodeSnippet(source, language, this.filename);
     }
 
+    console.log(output);
 
     return html`
       ${this.getStylesheet()}
       <div class="${blockLevelClass}">
         ${this.renderCopyButton()}
-        ${codeSnippets}
+        ${output}
       </div>
     `;
   }

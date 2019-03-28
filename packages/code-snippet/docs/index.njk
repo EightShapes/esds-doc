@@ -3,12 +3,100 @@
 
 {% block body %}
   <h1>ESDS Code Snippet Test Pages</h1>
-  <esds-code-snippet>
+  {# <esds-code-snippet>
     <esds-icon></esds-icon>
-  </esds-code-snippet>
+  </esds-code-snippet> #}
 
-  <esds-code-snippet sources='[{"source": "<h1>Hello World</h1>", "language": "html"}]'></esds-code-snippet>
-  <esds-code-snippet filename="my-cool-file.html" source="<p>A different example here</p>"></esds-code-snippet>
+  <div class="output">
+
+  </div>
+
+  <script type="module">
+    import { html, render, LitElement, EsdsBaseWc } from './scripts/esds-base-wc.js';
+
+    const outputTarget = document.querySelector('.output');
+    const sources = [
+      {"source": "<h1>Hello World</h1>", "language": "html"},
+      {"source": "<esds-heading>Hello World</esds-heading>", "language": "WC"}
+    ];
+    let output = [];
+
+    const renderAWrapperThing = (language) => {
+      return html`
+        <div class="Nested"><h3>Nested ${language}</h3></div>`;
+    }
+
+    // sources.forEach((s) => {
+    //   output.push(html`<esds-tab-panel label="${s.language}">${renderAWrapperThing(s.language)}</esds-tab-panel>`);
+    // });
+
+    output = html`<esds-tabs>${sources.map(s => html`<esds-tab-panel label="${s.language}">${renderAWrapperThing(s.language)}</esds-tab-panel>`)}</esds-tabs>`;
+
+    render(output, outputTarget);
+
+    class FuzzyBear extends EsdsBaseWc {
+      constructor() {
+        super("FUZZY BEAR");
+        this.defaultClass = 'esds-code-snippet-v1';
+        this.baseModifierClass = 'esds-code-snippet--';
+        this.stylesheet = 'esds-code-snippet.css';
+        this.defaultSource = '<h1>Hello World</h1>';
+
+        // State
+        this.codeCopied = false;
+
+        // Default prop values
+        this.codeCopiedText = 'Copied to clipboard';
+        this.copyButtonText = 'Copy Code';
+        this.copyable = true;
+        this.source = this.defaultSource;
+        this.language = 'markup';
+        this.preformatted = false;
+      }
+
+      render() {
+        let blockLevelClass = this.defaultClass;
+
+        const sources = [
+          {"source": "<h1>Hello World</h1>", "language": "html"},
+          {"source": "<esds-heading>Hello World</esds-heading>", "language": "WC"}
+        ];
+        // let output = [];
+
+        const renderAWrapperThing = (language) => {
+          return html`
+            <div class="Nested"><h3>Nested ${language}</h3></div>`;
+        }
+
+        // sources.forEach((s) => {
+        //   output.push(html`<esds-tab-panel label="${s.language}">${renderAWrapperThing(s.language)}</esds-tab-panel>`);
+        // });
+
+        let output = html`<esds-tabs>${sources.map(s => html`<esds-tab-panel label="${s.language}">${renderAWrapperThing(s.language)}</esds-tab-panel>`)}</esds-tabs>`;
+
+        return html`
+          ${this.getStylesheet()}
+          <div class="${blockLevelClass}">
+            ${output}
+          </div>
+        `;
+
+      }
+    }
+
+    customElements.define('fuzzy-bear', FuzzyBear);
+  </script>
+
+  <fuzzy-bear></fuzzy-bear>
+
+
+
+  {# <esds-code-snippet copyable='false' sources='[
+    {"source": "<h1>Hello World</h1>", "language": "html"},
+    {"source": "<h1>Something Else</h1>", "language": "html"},
+    {"source": "<esds-heading>Hello World</esds-heading>", "language": "WC"}
+  ]'></esds-code-snippet> #}
+  {# <esds-code-snippet filename="my-cool-file.html" source="<p>A different example here</p>"></esds-code-snippet>
   <esds-code-snippet>
     <h1>This is a slotted test</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, atque!</p>
@@ -32,5 +120,5 @@
     const myButton = new EsdsButton();
     myButton.variant = 'secondary';
     document.body.appendChild(myButton);
-  </esds-code-snippet>
+  </esds-code-snippet> #}
 {% endblock %}
