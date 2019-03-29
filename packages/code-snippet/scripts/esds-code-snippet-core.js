@@ -18,7 +18,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
   }
 
   constructor() {
-    super("CODE SNIPPET");
+    super();
     this.defaultClass = 'esds-code-snippet-v1';
     this.baseModifierClass = 'esds-code-snippet--';
     this.stylesheet = 'esds-code-snippet.css';
@@ -30,7 +30,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     // Default prop values
     this.codeCopiedText = 'Copied to clipboard';
     this.copyButtonText = 'Copy Code';
-    this.copyable = true;
+    this.copyable = 'true';
     this.source = this.defaultSource;
     this.language = 'markup';
     this.preformatted = false;
@@ -132,26 +132,26 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     return this.highlightSource(beautifiedSource, language);
   }
 
+
   renderCodeSnippet(source, language, filename) {
     source = this.formatSource(source, language);
 
-    // return html`
-    //   <div class="esds-code-snippet__source">
-    //     ${this.renderFilename(filename)}
-    //     <pre class="esds-code-snippet__pre"><code>${unsafeHTML(source)}</code></pre>
-    //   </div>`;
-    return html`<h1>Something</h1>`;
+    return `
+      <div class="esds-code-snippet__source">
+        ${this.renderFilename(filename)}
+        <pre class="esds-code-snippet__pre"><code>${source}</code></pre>
+      </div>`;
   }
 
   renderFilename(filename) {
     if (filename) {
-      return html`<span class="esds-code-snippet__filename">${this.filename}</span>`
+      return `<span class="esds-code-snippet__filename">${this.filename}</span>`
     } else {
       return '';
     }
   }
 
-  render(){
+  render() {
     let blockLevelClass = this.defaultClass;
     if (this.codeCopied) {
       blockLevelClass += ` ${this.baseModifierClass}show-copied-notification`;
@@ -163,14 +163,15 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       let codeSnippets = [];
 
       this.sources.forEach((s) => {
-        codeSnippets.push(html`
-          <esds-tab-panel label="${s.language}" panel-id="${s.language}">
-            <h1>Testing</h1>
+        codeSnippets.push(`
+          <esds-tab-panel label="${s.language}">
+            ${this.renderCodeSnippet(s.source, s.language, s.filename)}
           </esds-tab-panel>
         `);
       });
 
-      output = html`<esds-tabs>${this.sources.map((s) => html`<esds-tab-panel label="${s.language}"><h2>Foo</h2></esds-tab-panel>`)}</esds-tabs>`;
+      console.log(codeSnippets);
+      output = `<esds-tabs>${codeSnippets}</esds-tabs>`;
     } else {
       // Just a single snippet to render, no tabs
       const language = this.language === 'html' ? 'markup' : this.language;
@@ -181,13 +182,11 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       output = this.renderCodeSnippet(source, language, this.filename);
     }
 
-    console.log(output);
-
     return html`
       ${this.getStylesheet()}
       <div class="${blockLevelClass}">
         ${this.renderCopyButton()}
-        ${output}
+        ${unsafeHTML(output)}
       </div>
     `;
   }
