@@ -49,7 +49,7 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
   border:         $esds-doc-code-snippet-border;
   border-radius:  $esds-doc-code-snippet-border-radius;
   color:          $esds-doc-code-snippet-text-color;
-  margin-bottom:  $esds-doc-code-snippet-space-stack;
+  margin:  $esds-doc-code-snippet-space-stack;
 
   // Prism overrides
   .token {

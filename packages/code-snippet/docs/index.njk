@@ -249,7 +249,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     {"source": "<h1>Something Else</h1>", "language": "html"},
     {"source": "<esds-heading>Hello World</esds-heading>", "language": "WC"}
   ]'></esds-code-snippet>
-  {# <esds-code-snippet filename="my-cool-file.html" source="<p>A different example here</p>"></esds-code-snippet>
+  <esds-code-snippet filename="my-cool-file.html" source="<p>A different example here</p>"></esds-code-snippet>
   <esds-code-snippet>
     <h1>This is a slotted test</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, atque!</p>
@@ -273,5 +273,10 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     const myButton = new EsdsButton();
     myButton.variant = 'secondary';
     document.body.appendChild(myButton);
-  </esds-code-snippet> #}
+  </esds-code-snippet>
+
+  <esds-code-snippet>
+    <h1>This has a custom "copy code" button passed via a named slot</h1>
+    <button slot="copy-button" style="cursor: pointer; background: red; color: white; text-transform: uppercase; border: solid 2px lime;">Put code on clipboard</button>
+  </esds-code-snippet>
 {% endblock %}
