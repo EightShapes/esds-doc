@@ -4,7 +4,7 @@
 {% block body %}
   <h1>ESDS Code Snippet Test Pages</h1>
 
-  <esds-code-snippet>
+  {# <esds-code-snippet>
     <h1>Basic Code Snippet</h1>
   </esds-code-snippet>
 
@@ -178,9 +178,13 @@
   <esds-code-snippet sources='[
   {"source": "<esds-heading>Hello World</esds-heading>", "language": "WC"},
     {"source": "<h1>Hello World</h1>", "language": "HTML"}
-  ]'></esds-code-snippet>
+  ]'></esds-code-snippet> #}
 
-  <esds-code-snippet filename="my-cool-file.html" source="<p>A different example here</p>"></esds-code-snippet>
+  <esds-code-snippet source="
+    <esds-button>Show the WC First, then the compiled HTML</esds-button>
+  " language="wc-html"></esds-code-snippet>
+
+  {# <esds-code-snippet filename="my-cool-file.html" source="<p>A different example here</p>"></esds-code-snippet>
 
   <esds-code-snippet language="javascript">
     // Javascript highlighting example
@@ -190,6 +194,6 @@
     const myButton = new EsdsButton();
     myButton.variant = 'secondary';
     document.body.appendChild(myButton);
-  </esds-code-snippet>
+  </esds-code-snippet> #}
 
 {% endblock %}

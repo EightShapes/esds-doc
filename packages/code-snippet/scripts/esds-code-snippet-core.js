@@ -152,7 +152,37 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     }
   }
 
+  async renderCompiledHTMLSource(wcSource) {
+    const compiledHTMLWrapper = document.createElement('div');
+    compiledHTMLWrapper.innerHTML = wcSource;
+    console.log(wcSource);
+    document.body.appendChild(compiledHTMLWrapper);
+    const component = Array.from(compiledHTMLWrapper.childNodes).find(n => n.nodeType === Node.ELEMENT_NODE);
+    console.log(component);
+    await component.updateComplete;
+
+    this.sources = [
+      {
+        language: 'WC',
+        source: this.source
+      },
+      {
+        language: 'HTML',
+        source: component.innerHTML
+      }
+    ];
+
+    console.log(this.sources);
+  }
+
+  firstUpdated() {
+    if (this.language === 'wc-html') {
+      this.renderCompiledHTMLSource(this.source);
+    }
+  }
+
   render() {
+    console.log("RENDER CALLED");
     let blockLevelClass = this.defaultClass;
     if (this.codeCopied) {
       blockLevelClass += ` ${this.baseModifierClass}show-copied-notification`;
@@ -162,12 +192,23 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       blockLevelClass += ` ${this.baseModifierClass}max-height-${this.maxHeight}`;
     }
 
+    let sources = this.sources;
+
+    if (this.language === 'wc-html' && !this.sources) {
+      sources = [
+        {
+          language: 'WC',
+          source: this.source
+        }
+      ];
+    }
+
     let output;
 
-    if (this.sources) {
+    if (sources) {
       let codeSnippets = [];
 
-      this.sources.forEach((s) => {
+      sources.forEach((s) => {
         codeSnippets.push(`
           <esds-tab-panel label="${s.language}">
             ${this.renderCodeSnippet(s.source, s.language, s.filename)}
