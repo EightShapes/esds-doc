@@ -11,6 +11,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       copyButtonText: {type: String, attribute: 'copy-button-text'},
       filename: {type: String},
       language: {type: String},
+      maxHeight: {type: String, attribute: 'max-height'},
       preformatted: {type: Boolean},
       source: {type: String},
       sources: {type: Array}
@@ -155,6 +156,10 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     let blockLevelClass = this.defaultClass;
     if (this.codeCopied) {
       blockLevelClass += ` ${this.baseModifierClass}show-copied-notification`;
+    }
+
+    if (this.maxHeight) {
+      blockLevelClass += ` ${this.baseModifierClass}max-height-${this.maxHeight}`;
     }
 
     let output;

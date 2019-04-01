@@ -50,6 +50,7 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
   border-radius:  $esds-doc-code-snippet-border-radius;
   color:          $esds-doc-code-snippet-text-color;
   margin:  $esds-doc-code-snippet-space-stack;
+  position: relative;
 
   // Prism overrides
   .token {
@@ -83,7 +84,7 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
 
   .esds-code-snippet__copy-code-wrap {
     padding: $esds-doc-code-snippet-copy-code-button-offset;
-    position: relative;
+    position: absolute;
     right: 0;
     top: 0;
     z-index: 10;
@@ -122,7 +123,7 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
     animation: esds-code-snippet-fade-in-out-v1 3s;
   }
 
-  .esds-code-snippet__pre[class*='language-'] {
+  .esds-code-snippet__pre {
     background-color: transparent;
     border-radius: $esds-doc-code-snippet-border-radius;
     margin: 0;
@@ -130,17 +131,17 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
     overflow: auto;
     padding: $esds-doc-code-snippet-space-inset;
 
-    .esds-code-snippet--tall & {
-      max-height: $esds-doc-code-snippet-source-max-height-tall;
-    }
-
-    .esds-code-snippet--no-max-height & {
-      max-height: none;
-    }
-
     code {
       font-family: $esds-doc-code-snippet-source-font-family;
     }
+  }
+
+  &.esds-code-snippet--max-height-tall .esds-code-snippet__pre {
+    max-height: $esds-doc-code-snippet-source-max-height-tall;
+  }
+
+  &.esds-code-snippet--max-height-none .esds-code-snippet__pre {
+    max-height: none;
   }
 
   .esds-code-snippet__filename {
