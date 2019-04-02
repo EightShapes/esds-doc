@@ -180,9 +180,23 @@
     {"source": "<h1>Hello World</h1>", "language": "HTML"}
   ]'></esds-code-snippet> #}
 
-  <esds-code-snippet source="
+  {# <esds-code-snippet source="
     <esds-button href='http://eightshapes.com'>Show the WC First, then the compiled HTML</esds-button>
-  " language="wc-html"></esds-code-snippet>
+  " language="wc-html"></esds-code-snippet> #}
+
+  <esds-code-snippet language="wc-html">
+    <esds-button>This is only a test</esds-button>
+    <esds-button>This is only a test</esds-button>
+  </esds-code-snippet>
+
+  <esds-code-snippet language="wc-html">
+    <esds-button>Something Crazy</esds-button>
+    <esds-tabs>
+      <esds-tab-panel label="Foo">
+        <h1>Hello World</h1>
+      </esds-tab-panel>
+    </esds-tabs>
+  </esds-code-snippet>
 
   {# <esds-code-snippet filename="my-cool-file.html" source="<p>A different example here</p>"></esds-code-snippet>
 

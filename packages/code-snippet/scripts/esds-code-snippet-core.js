@@ -35,6 +35,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     this.source = this.defaultSource;
     this.language = 'markup';
     this.preformatted = false;
+    this.slotContent = this.innerHTML.trim().length > 0 ? this.innerHTML.trim() : undefined;
   }
 
   showCopiedMessage() {
@@ -70,7 +71,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
 
   renderCopyButton() {
     // Not sure why I had to use unsafeHTML here and not the html`` template literal. Without it the ${this.copyButtonText} slot content is getting lost somewhere
-    let copyButton = unsafeHTML(`<esds-button size="small" variant="flat">${this.copyButtonText}</esds-button>`);
+    let copyButton = html`<esds-button size="small" variant="flat">${this.copyButtonText}</esds-button>`;
 
     if (this.copyable === 'true') {
       return html`
@@ -159,20 +160,21 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     // Given a string of HTML rendered from lit element, strip out the lit element bits and pieces
     const tmpWrapper = document.createElement('div');
     tmpWrapper.innerHTML = source.replace(/<\!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
-    const hostElement = Array.from(tmpWrapper.childNodes).find(n => n.nodeType === Node.ELEMENT_NODE); // Get the hostElement which will contain the compiled/slotified component
     const linkTags = tmpWrapper.querySelectorAll('link');
     linkTags.forEach(l => l.parentNode.removeChild(l));
 
-    return hostElement.innerHTML;
+    const hostElements = Array.from(tmpWrapper.childNodes).filter(n => n.nodeType === Node.ELEMENT_NODE); // Get the hostElement which will contain the compiled/slotified component
+    const output = hostElements.reduce((string, he) => string.innerHTML + he.innerHTML);
+    return output;
   }
 
   async renderCompiledHTMLSource(wcSource) {
     const compiledHTMLWrapper = document.createElement('div');
+    compiledHTMLWrapper.style = 'display: none;';
     compiledHTMLWrapper.innerHTML = wcSource;
     document.body.appendChild(compiledHTMLWrapper);
-    const component = Array.from(compiledHTMLWrapper.childNodes).find(n => n.nodeType === Node.ELEMENT_NODE);
-
-    await component.updateComplete;
+    const components = Array.from(compiledHTMLWrapper.childNodes).filter(n => n.nodeType === Node.ELEMENT_NODE);
+    const allComponenentsFinished = await Promise.all(components.map(async c => await c.updateComplete));
 
     this.sources = [
       {
@@ -185,7 +187,8 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       }
     ];
 
-    console.log(this.sources);
+    // Remove the tmpWrapper
+    compiledHTMLWrapper.parentNode.removeChild(compiledHTMLWrapper);
   }
 
   firstUpdated() {
@@ -207,7 +210,10 @@ class EsdsCodeSnippet extends EsdsBaseWc {
 
     let sources = this.sources;
 
+    // Check for wc-html language trigger
     if (this.language === 'wc-html' && !this.sources) {
+      this.source = this.slotContent ? this.slotContent : this.source;
+
       sources = [
         {
           language: 'WC',
@@ -229,7 +235,6 @@ class EsdsCodeSnippet extends EsdsBaseWc {
         `);
       });
 
-      console.log(codeSnippets);
       output = `<esds-tabs>${codeSnippets}</esds-tabs>`;
     } else {
       // Just a single snippet to render, no tabs
