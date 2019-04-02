@@ -71,9 +71,6 @@ class EsdsCodeSnippet extends EsdsBaseWc {
   renderCopyButton() {
     // Not sure why I had to use unsafeHTML here and not the html`` template literal. Without it the ${this.copyButtonText} slot content is getting lost somewhere
     let copyButton = unsafeHTML(`<esds-button size="small" variant="flat">${this.copyButtonText}</esds-button>`);
-    if (this.slots['copy-button']) {
-      copyButton = this.slots['copy-button'];
-    }
 
     if (this.copyable === 'true') {
       return html`
@@ -82,7 +79,9 @@ class EsdsCodeSnippet extends EsdsBaseWc {
                 ${this.codeCopiedText}
             </div>
             <div @click=${this.copyCodeToClipboard} class="esds-code-snippet__copy-button-wrap">
-              ${copyButton}
+              <slot name="copy-button">
+                ${copyButton}
+              </slot>
             </div>
         </div>
       `;
@@ -152,13 +151,24 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     }
   }
 
+  cleanLitElementRenderingArtifacts(source) {
+    // Given a string of HTML rendered from lit element, strip out the lit element bits and pieces
+    const tmpWrapper = document.createElement('div');
+    tmpWrapper.innerHTML = source.replace(/<\!---->/g, ''); // Strip lit-html comment placeholders
+    const hostElement = Array.from(tmpWrapper.childNodes).find(n => n.nodeType === Node.ELEMENT_NODE); // Get the hostElement which will contain the compiled/slotified component
+    const linkTags = tmpWrapper.querySelectorAll('link');
+    console.log(hostElement);
+    linkTags.forEach(l => l.parentNode.removeChild(l));
+
+    return hostElement.innerHTML;
+  }
+
   async renderCompiledHTMLSource(wcSource) {
     const compiledHTMLWrapper = document.createElement('div');
     compiledHTMLWrapper.innerHTML = wcSource;
-    console.log(wcSource);
     document.body.appendChild(compiledHTMLWrapper);
     const component = Array.from(compiledHTMLWrapper.childNodes).find(n => n.nodeType === Node.ELEMENT_NODE);
-    console.log(component);
+
     await component.updateComplete;
 
     this.sources = [
@@ -168,7 +178,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       },
       {
         language: 'HTML',
-        source: component.innerHTML
+        source: this.cleanLitElementRenderingArtifacts(compiledHTMLWrapper.innerHTML) // TODO: In the future may need a react/angular/vue cleaner too
       }
     ];
 

@@ -16,11 +16,11 @@
     "rollup-plugin-node-resolve": "^4.0.1"
   },
   "dependencies": {
-    "esds-base-wc": "^0.2.1",
-    "esds-button": "^0.3.0",
-    "esds-icon": "^0.3.0",
+    "esds-base-wc": "^0.3.0",
+    "esds-button": "^0.4.0",
+    "esds-icon": "^0.4.0",
     "esds-icons": "^0.3.0",
-    "esds-tabs": "^0.2.1",
+    "esds-tabs": "^0.3.0",
     "esds-visual-style": "^0.2.1",
     "js-beautify": "^1.9.0",
     "prismjs": "^1.15.0"
