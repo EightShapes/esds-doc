@@ -108,16 +108,20 @@ class EsdsCodeSnippet extends EsdsBaseWc {
 
   beautifySource(source, language) {
     let formatter = htmlBeautify;
+    let options = {}; // htmlbeautifier options go here, probably should be configurable
+
     switch(language) {
       case 'css':
         formatter = cssBeautify;
+        options = {};
         break;
       case 'javascript':
         formatter = jsBeautify;
+        options = {};
         break;
     }
 
-    return this.preformatted ? source : formatter(source);
+    return this.preformatted ? source : formatter(source, options);
   }
 
   highlightSource(source, language) {
@@ -154,10 +158,9 @@ class EsdsCodeSnippet extends EsdsBaseWc {
   cleanLitElementRenderingArtifacts(source) {
     // Given a string of HTML rendered from lit element, strip out the lit element bits and pieces
     const tmpWrapper = document.createElement('div');
-    tmpWrapper.innerHTML = source.replace(/<\!---->/g, ''); // Strip lit-html comment placeholders
+    tmpWrapper.innerHTML = source.replace(/<\!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
     const hostElement = Array.from(tmpWrapper.childNodes).find(n => n.nodeType === Node.ELEMENT_NODE); // Get the hostElement which will contain the compiled/slotified component
     const linkTags = tmpWrapper.querySelectorAll('link');
-    console.log(hostElement);
     linkTags.forEach(l => l.parentNode.removeChild(l));
 
     return hostElement.innerHTML;
