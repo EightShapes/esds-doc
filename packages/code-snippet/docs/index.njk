@@ -4,7 +4,7 @@
 {% block body %}
   <h1>ESDS Code Snippet Test Pages</h1>
 
-  {# <esds-code-snippet>
+  <esds-code-snippet>
     <h1>Basic Code Snippet</h1>
   </esds-code-snippet>
 
@@ -71,6 +71,10 @@
   </esds-code-snippet>
 
   <esds-code-snippet source='<esds-button>Web Component Source can be shown too</esds-button>'></esds-code-snippet>
+
+  <esds-code-snippet>
+    <esds-button>Web Component Source can be passed via the default slot</esds-button>
+  </esds-code-snippet>
 
   <esds-code-snippet copyable='false'>
     <h1>Hide the "Copy" Button</h1>
@@ -178,11 +182,11 @@
   <esds-code-snippet sources='[
   {"source": "<esds-heading>Hello World</esds-heading>", "language": "WC"},
     {"source": "<h1>Hello World</h1>", "language": "HTML"}
-  ]'></esds-code-snippet> #}
+  ]'></esds-code-snippet>
 
-  {# <esds-code-snippet source="
+  <esds-code-snippet source="
     <esds-button href='http://eightshapes.com'>Show the WC First, then the compiled HTML</esds-button>
-  " language="wc-html"></esds-code-snippet> #}
+  " language="wc-html"></esds-code-snippet>
 
   <esds-code-snippet language="wc-html">
     <esds-button>This is only a test</esds-button>
@@ -198,7 +202,7 @@
     </esds-tabs>
   </esds-code-snippet>
 
-  {# <esds-code-snippet filename="my-cool-file.html" source="<p>A different example here</p>"></esds-code-snippet>
+  <esds-code-snippet filename="my-cool-file.html" source="<p>A different example here</p>"></esds-code-snippet>
 
   <esds-code-snippet language="javascript">
     // Javascript highlighting example
@@ -208,6 +212,6 @@
     const myButton = new EsdsButton();
     myButton.variant = 'secondary';
     document.body.appendChild(myButton);
-  </esds-code-snippet> #}
+  </esds-code-snippet>
 
 {% endblock %}

@@ -164,8 +164,16 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     linkTags.forEach(l => l.parentNode.removeChild(l));
 
     const hostElements = Array.from(tmpWrapper.childNodes).filter(n => n.nodeType === Node.ELEMENT_NODE); // Get the hostElement which will contain the compiled/slotified component
-    const output = hostElements.reduce((string, he) => string.innerHTML + he.innerHTML);
-    return output;
+
+    let cleanedHTML;
+    if (hostElements.length > 1) {
+      cleanedHTML = hostElements.reduce((string, he) => {
+        return string.innerHTML + he.innerHTML;
+      });
+    } else {
+      cleanedHTML = hostElements[0].innerHTML;
+    }
+    return cleanedHTML;
   }
 
   async renderCompiledHTMLSource(wcSource) {
@@ -198,7 +206,6 @@ class EsdsCodeSnippet extends EsdsBaseWc {
   }
 
   render() {
-    console.log("RENDER CALLED");
     let blockLevelClass = this.defaultClass;
     if (this.codeCopied) {
       blockLevelClass += ` ${this.baseModifierClass}show-copied-notification`;
@@ -240,8 +247,8 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       // Just a single snippet to render, no tabs
       const language = this.language === 'html' ? 'markup' : this.language;
       let source = this.source;
-      if (source === this.defaultSource && this.slots.default) {
-        source = this.parseSlottedSource(this.slots.default);
+      if (source === this.defaultSource && this.slotContent) {
+        source = this.slotContent;
       }
       output = this.renderCodeSnippet(source, language, this.filename);
     }
