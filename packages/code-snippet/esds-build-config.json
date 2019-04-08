@@ -6,7 +6,7 @@
     {
       "name": "ESDS Base Component",
       "sources": ["./node_modules/esds-base-wc/dist/esds-base-wc.*",
-                  "./node_modules/esds-base-wc/dist/shadydom.min.*"],
+                  "./node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"],
       "destination": "_site/latest/scripts",
       "watch": true
     },

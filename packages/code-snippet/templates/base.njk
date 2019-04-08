@@ -14,9 +14,10 @@
         <script>
           window.ShadyDOM = { force: true };
         </script>
-        <script src="/scripts/shadydom.min.js"></script>
-        <script type="module" src="/scripts/esds-code-snippet.js"></script>
-        <script type="module" src="/scripts/esds-icon.js"></script>
+        <script src="/scripts/webcomponents-bundle.js"></script>
+        {# <script src="/scripts/custom-elements.min.js"></script> #}
+        <script type="module" src="/scripts/compiled-esds-code-snippet.js"></script>
+        <script nomodule src="/scripts/compiled-ie-esds-code-snippet.js"></script>
         {% block closing_body_assets %}{% endblock closing_body_assets %}
     </body>
 </html>

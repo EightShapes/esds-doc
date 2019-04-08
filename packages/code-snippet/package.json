@@ -10,12 +10,19 @@
   "author": "Kevin Powell <kevinmpowell@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@webcomponents/custom-elements": "^1.2.2",
     "esds-build": "github:eightshapes/esds-build#feature/web-components-upgrade",
     "rollup": "^1.7.0",
+    "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.2.1",
     "rollup-plugin-node-resolve": "^4.0.1"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.3",
+    "@webcomponents/webcomponentsjs": "^2.2.7",
     "esds-base-wc": "^0.3.0",
     "esds-button": "^0.4.0",
     "esds-icon": "^0.4.0",

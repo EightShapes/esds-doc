@@ -1,7 +1,7 @@
-import { EsdsBaseWc, html, unsafeHTML } from './esds-base-wc.js';
-import { Prism, htmlBeautify, jsBeautify, cssBeautify } from './compiled-dependency-bundle-es6.js';
-import EsdsButton from './esds-button.js';
-import EsdsTabs, { EsdsTabPanel } from './esds-tabs.js';
+import { EsdsBaseWc, html, unsafeHTML } from '../node_modules/esds-base-wc/dist/esds-base-wc.js';
+import { Prism, htmlBeautify, jsBeautify, cssBeautify } from './dependency-bundle-es6.js';
+import EsdsButton from '../node_modules/esds-button/dist/esds-button.js';
+import EsdsTabs, { EsdsTabPanel } from '../node_modules/esds-tabs/dist/esds-tabs.js';
 
 class EsdsCodeSnippet extends EsdsBaseWc {
   static get properties() {
