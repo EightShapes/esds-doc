@@ -33,6 +33,6 @@
     "svg4everybody": "^2.1.9"
   },
   "devDependencies": {
-    "esds-build": "^0.39.1"
+    "esds-build": "^0.48.1"
   }
 }
