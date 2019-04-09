@@ -1,7 +1,22 @@
-import { EsdsBaseWc, html, unsafeHTML } from '../node_modules/esds-base-wc/dist/esds-base-wc.js';
+import { EsdsBaseWc, html, unsafeHTML } from 'esds-base-wc/dist/esds-base-wc.js';
 import { Prism, htmlBeautify, jsBeautify, cssBeautify } from './dependency-bundle-es6.js';
-import EsdsButton from '../node_modules/esds-button/dist/esds-button.js';
-import EsdsTabs, { EsdsTabPanel } from '../node_modules/esds-tabs/dist/esds-tabs.js';
+import EsdsButton from 'esds-button';
+import EsdsTabs, { EsdsTabPanel } from 'esds-tabs';
+
+let tagName = 'esds-button';
+if (!customElements.get(tagName)) {
+  customElements.define(tagName, EsdsButton);
+}
+
+tagName = 'esds-tabs';
+if (!customElements.get(tagName)) {
+  customElements.define(tagName, EsdsTabs);
+}
+
+tagName = 'esds-tab-panel';
+if (!customElements.get(tagName)) {
+  customElements.define(tagName, EsdsTabPanel);
+}
 
 class EsdsCodeSnippet extends EsdsBaseWc {
   static get properties() {
@@ -164,6 +179,8 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     linkTags.forEach(l => l.parentNode.removeChild(l));
 
     const hostElements = Array.from(tmpWrapper.childNodes).filter(n => n.nodeType === Node.ELEMENT_NODE); // Get the hostElement which will contain the compiled/slotified component
+    const scopedStyleElements = tmpWrapper.querySelectorAll('.style-scope');
+    scopedStyleElements.forEach(e => e.classList.remove('style-scope'));
 
     let cleanedHTML;
     if (hostElements.length > 1) {
@@ -254,7 +271,6 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     }
 
     return html`
-      ${this.getStylesheet()}
       <div class="${blockLevelClass}">
         ${this.renderCopyButton()}
         ${unsafeHTML(output)}

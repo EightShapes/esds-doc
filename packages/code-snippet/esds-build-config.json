@@ -4,52 +4,44 @@
   "copyScripts": true,
   "copyTasks": [
     {
-      "name": "ESDS Base Component",
-      "sources": ["./node_modules/esds-base-wc/dist/esds-base-wc.*",
-                  "./node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"],
-      "destination": "_site/latest/scripts",
-      "watch": true
+      "name": "WebComponents Polyfills To Dist",
+      "sources": ["./node_modules/esds-base-wc/dist/webcomponents-bundle.*"],
+      "destination": "./dist"
     },
     {
-      "name": "ESDS Button",
-      "sources": ["./node_modules/esds-button/dist/esds-button*.js"],
-      "destination": "_site/latest/scripts",
-      "watch": true
+      "name": "WebComponents Polyfills To webroot",
+      "sources": ["./node_modules/esds-base-wc/dist/webcomponents-bundle.*"],
+      "destination": "./_site/latest/scripts"
     },
     {
-      "name": "ESDS Button Styles",
-      "sources": ["./node_modules/esds-button/dist/esds-button*.css"],
-      "destination": "_site/latest/styles",
-      "watch": true
+      "name": "Babel Polyfills To Dist",
+      "sources": ["./node_modules/esds-base-wc/dist/legacy/babel-polyfills.js"],
+      "destination": "./dist/legacy",
+      "rename": "babel-polyfills.js"
     },
     {
-      "name": "ESDS Tabs",
-      "sources": ["./node_modules/esds-tabs/dist/esds-tabs*.js"],
-      "destination": "_site/latest/scripts",
-      "watch": true
+      "name": "Babel Polyfills To webroot",
+      "sources": ["./node_modules/esds-base-wc/dist/legacy/babel-polyfills.js"],
+      "destination": "./_site/latest/scripts/legacy",
+      "rename": "babel-polyfills.js"
     },
     {
-      "name": "ESDS Tabs Styles",
-      "sources": ["./node_modules/esds-tabs/dist/esds-tabs*.css"],
-      "destination": "_site/latest/styles",
-      "watch": true
+      "name": "SystemJS To dist",
+      "sources": ["./node_modules/esds-base-wc/dist/legacy/system-loader.js"],
+      "destination": "./dist/legacy",
+      "rename": "system-loader.js"
     },
     {
-      "name": "component-scripts",
-      "sources": ["./scripts/**/*"],
-      "destination": "_site/latest/scripts",
-      "watch": true
+      "name": "SystemJS To webroot",
+      "sources": ["./node_modules/esds-base-wc/dist/legacy/system-loader.js"],
+      "destination": "./_site/latest/scripts/legacy",
+      "rename": "system-loader.js"
     },
     {
-      "name": "esds icon",
-      "sources": ["./node_modules/esds-icon/scripts/**/*"],
-      "destination": "_site/latest/scripts",
-      "watch": true
-    },
-    {
-      "name": "esds icon styles",
-      "sources": ["./node_modules/esds-icon/dist/esds-icon.css"],
-      "destination": "_site/latest/styles",
+      "name": "ESM Source",
+      "sources": ["./scripts/esds-code-snippet-core.js"],
+      "destination": "./dist",
+      "rename": "esds-code-snippet-esm.js",
       "watch": true
     },
     {
@@ -57,6 +49,13 @@
       "sources": ["./node_modules/esds-icons/dist/esds-icons.svg"],
       "destination": "_site/latest/icons",
       "watch": true
+    },
+    {
+      "name": "Dependency Styles",
+      "sources": ["./node_modules/esds-button/dist/esds-button.css", "./node_modules/esds-tabs/dist/esds-tabs.css"],
+      "destination": "_site/latest/styles",
+      "watch": true
     }
-  ]
+  ],
+  "additionalWatchTasks": ["watch:scripts:rollup"]
 }

@@ -1,217 +1,230 @@
-{% extends 'templates/base.njk' %}
-{% set title = "ESDS Code Snippet Test Pages" %}
+<html>
+  <head>
 
-{% block body %}
-  <h1>ESDS Code Snippet Test Pages</h1>
+  </head>
+  <body>
+    <h1>ESDS Code Snippet Test Pages</h1>
 
-  <esds-code-snippet>
-    <h1>Basic Code Snippet</h1>
-  </esds-code-snippet>
+    <esds-code-snippet>
+      <h1>Basic Code Snippet</h1>
+    </esds-code-snippet>
 
-  <esds-code-snippet>
-    <div class="this-is-my-image-wrap">
-        <div class="nested-another-level">
-            <img src="/some/path/to/file.png"/>
-        </div>
-    </div>
-  </esds-code-snippet>
+    <esds-code-snippet>
+      <div class="this-is-my-image-wrap">
+          <div class="nested-another-level">
+              <img src="/some/path/to/file.png"/>
+          </div>
+      </div>
+    </esds-code-snippet>
 
-  <esds-code-snippet>
-    <table>
-      <thead>
-          <tr>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-      </tbody>
-    </table>
-  </esds-code-snippet>
+    <esds-code-snippet>
+      <table>
+        <thead>
+            <tr>
+                <th>Header</th>
+                <th>Header</th>
+                <th>Header</th>
+                <th>Header</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+        </tbody>
+      </table>
+    </esds-code-snippet>
 
-  <esds-code-snippet language="css" filename="myfile.css">
-    .css-test-with-filename {
-      background: hotpink;
-      color: red;
-      font-family: sans-serif;
-      font-weight: bold;
-    }
-  </esds-code-snippet>
+    <esds-code-snippet language="css" filename="myfile.css">
+      .css-test-with-filename {
+        background: hotpink;
+        color: red;
+        font-family: sans-serif;
+        font-weight: bold;
+      }
+    </esds-code-snippet>
 
-  <esds-code-snippet source='<esds-button>Web Component Source can be shown too</esds-button>'></esds-code-snippet>
+    <esds-code-snippet source='<esds-button>Web Component Source can be shown too</esds-button>'></esds-code-snippet>
 
-  <esds-code-snippet>
-    <esds-button>Web Component Source can be passed via the default slot</esds-button>
-  </esds-code-snippet>
+    <esds-code-snippet>
+      <esds-button>Web Component Source can be passed via the default slot</esds-button>
+    </esds-code-snippet>
 
-  <esds-code-snippet copyable='false'>
-    <h1>Hide the "Copy" Button</h1>
-  </esds-code-snippet>
+    <esds-code-snippet copyable='false'>
+      <h1>Hide the "Copy" Button</h1>
+    </esds-code-snippet>
 
-  <esds-code-snippet max-height="tall">
-    <table>
-      <thead>
-          <tr>
-              <th>Tall Max Height</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-      </tbody>
-    </table>
-  </esds-code-snippet>
+    <esds-code-snippet max-height="tall">
+      <table>
+        <thead>
+            <tr>
+                <th>Tall Max Height</th>
+                <th>Header</th>
+                <th>Header</th>
+                <th>Header</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+        </tbody>
+      </table>
+    </esds-code-snippet>
 
-  <esds-code-snippet max-height="none">
-    <table>
-      <thead>
-          <tr>
-              <th>No Max Height</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-          <tr>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-              <td>Cell Content</td>
-          </tr>
-      </tbody>
-    </table>
-  </esds-code-snippet>
+    <esds-code-snippet max-height="none">
+      <table>
+        <thead>
+            <tr>
+                <th>No Max Height</th>
+                <th>Header</th>
+                <th>Header</th>
+                <th>Header</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+            <tr>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+                <td>Cell Content</td>
+            </tr>
+        </tbody>
+      </table>
+    </esds-code-snippet>
 
-  <esds-code-snippet>
-    <h1>Content resiliance, running this content into the copy button intentionally to show what happens, this is longer text to show horizontal scrolling</h1>
-  </esds-code-snippet>
+    <esds-code-snippet>
+      <h1>Content resiliance, running this content into the copy button intentionally to show what happens, this is longer text to show horizontal scrolling</h1>
+    </esds-code-snippet>
 
-  <esds-code-snippet>
-    <h1>This has a custom "copy code" button passed via a named slot</h1>
-    <button slot="copy-button" style="cursor: pointer; background: red; color: white; text-transform: uppercase; border: solid 2px lime;">Put code on clipboard</button>
-  </esds-code-snippet>
+    <esds-code-snippet>
+      <h1>This has a custom "copy code" button passed via a named slot</h1>
+      <button slot="copy-button" style="cursor: pointer; background: red; color: white; text-transform: uppercase; border: solid 2px lime;">Put code on clipboard</button>
+    </esds-code-snippet>
 
-  <esds-code-snippet sources='[
-  {"source": "<esds-heading>Hello World</esds-heading>", "language": "WC"},
-    {"source": "<h1>Hello World</h1>", "language": "HTML"}
-  ]'></esds-code-snippet>
+    <esds-code-snippet sources='[
+    {"source": "<esds-heading>Hello World</esds-heading>", "language": "WC"},
+      {"source": "<h1>Hello World</h1>", "language": "HTML"}
+    ]'></esds-code-snippet>
 
-  <esds-code-snippet source="
-    <esds-button href='http://eightshapes.com'>Show the WC First, then the compiled HTML</esds-button>
-  " language="wc-html"></esds-code-snippet>
+    <esds-code-snippet source="
+      <esds-button href='http://eightshapes.com'>Show the WC First, then the compiled HTML</esds-button>
+    " language="wc-html"></esds-code-snippet>
 
-  <esds-code-snippet language="wc-html">
-    <esds-button>This is only a test</esds-button>
-    <esds-button>This is only a test</esds-button>
-  </esds-code-snippet>
+    <esds-code-snippet language="wc-html">
+      <esds-button>This is only a test</esds-button>
+      <esds-button>This is only a test</esds-button>
+    </esds-code-snippet>
 
-  <esds-code-snippet language="wc-html">
-    <esds-button>Something Crazy</esds-button>
-    <esds-tabs>
-      <esds-tab-panel label="Foo">
-        <h1>Hello World</h1>
-      </esds-tab-panel>
-    </esds-tabs>
-  </esds-code-snippet>
+    <esds-code-snippet language="wc-html">
+      <esds-button>Something Crazy</esds-button>
+      <esds-tabs>
+        <esds-tab-panel label="Foo">
+          <h1>Hello World</h1>
+        </esds-tab-panel>
+      </esds-tabs>
+    </esds-code-snippet>
 
-  <esds-code-snippet filename="my-cool-file.html" source="<p>A different example here</p>"></esds-code-snippet>
+    <esds-code-snippet filename="my-cool-file.html" source="<p>A different example here</p>"></esds-code-snippet>
 
-  <esds-code-snippet language="javascript">
-    // Javascript highlighting example
-    import EsdsButton from './scripts/esds-button.js';
-    import EsdsIcon from './scripts/esds-icon.js';
+    <esds-code-snippet language="javascript">
+      // Javascript highlighting example
+      import EsdsButton from './scripts/esds-button.js';
+      import EsdsIcon from './scripts/esds-icon.js';
 
-    const myButton = new EsdsButton();
-    myButton.variant = 'secondary';
-    document.body.appendChild(myButton);
-  </esds-code-snippet>
+      const myButton = new EsdsButton();
+      myButton.variant = 'secondary';
+      document.body.appendChild(myButton);
+    </esds-code-snippet>
 
-{% endblock %}
+    <script>
+    window.ShadyDOM = { force: true };
+    </script>
+    <script nomodule src="/scripts/legacy/babel-polyfills.js"></script> <!-- IE 11 -->
+    <script src="/scripts/webcomponents-bundle.js"></script>
+    <script src="/scripts/legacy/system-loader.js"></script> <!-- IE 11 -->
+    <script type="module" src="/scripts/esds-code-snippet.js"></script>
+     <!-- IE 11 -->
+    <script nomodule="">
+      System.import('./scripts/legacy/esds-code-snippet.js');
+    </script>
+  </body>
+</html>
