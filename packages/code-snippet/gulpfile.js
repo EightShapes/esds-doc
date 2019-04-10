@@ -9,7 +9,6 @@ const minifyHTML = require('rollup-plugin-minify-html-literals').default;
 const prefix = '[owc-building-rollup]';
 
 const production = true;
-const legacy = true;
 
 const rollupIeConfig = {
   input: './scripts/esds-code-snippet.js',
@@ -17,9 +16,8 @@ const rollupIeConfig = {
   output: {
     // output into given folder or default /dist. Output legacy into a /legacy subfolder
     dir: `./dist/legacy`,
-    format: legacy ? 'system' : 'esm',
-    sourcemap: true,
-    dynamicImportFunction: !legacy && 'importModule',
+    format: 'system',
+    sourcemap: true
   },
   plugins: [
     // minify html and css template literals if in production
@@ -47,16 +45,7 @@ const rollupIeConfig = {
         [
           '@babel/env',
           {
-            targets: legacy
-              ? ['ie 11']
-              : [
-                  'last 2 Chrome major versions',
-                  'last 2 ChromeAndroid major versions',
-                  'last 2 Edge major versions',
-                  'last 2 Firefox major versions',
-                  'last 2 Safari major versions',
-                  'last 2 iOS major versions',
-                ],
+            targets: ['ie 11'],
             useBuiltIns: false,
           },
         ],
