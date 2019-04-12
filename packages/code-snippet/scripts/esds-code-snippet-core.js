@@ -28,6 +28,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       language: {type: String},
       maxHeight: {type: String, attribute: 'max-height'},
       preformatted: {type: Boolean},
+      toolbarLinks: {type: Array, attribute: 'toolbar-links'}, // TODO: Something with this prop to test it
       source: {type: String},
       sources: {type: Array}
     }
@@ -229,6 +230,21 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     }
   }
 
+  renderToolbar() {
+    const toolbarActions = [];
+    let output = '';
+
+    if (this.copyable) {
+      toolbarActions.push(this.renderCopyButton());
+    }
+
+    if (toolbarActions.length > 0) {
+      output = html`<div class="esds-code-snippet__toolbar">${toolbarActions}</div>`;
+    }
+
+    return output;
+  }
+
   render() {
     let blockLevelClass = this.defaultClass;
     if (this.codeCopied) {
@@ -266,7 +282,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
         `);
       });
 
-      output = `<esds-tabs>${codeSnippets}</esds-tabs>`;
+      output = `<esds-tabs tabs-class="esds-code-snippet__tabs" variant="alt">${codeSnippets}</esds-tabs>`;
     } else {
       // Just a single snippet to render, no tabs
       const language = this.language === 'html' ? 'markup' : this.language;
@@ -279,7 +295,7 @@ class EsdsCodeSnippet extends EsdsBaseWc {
 
     return html`
       <div class="${blockLevelClass}">
-        ${this.renderCopyButton()}
+        ${this.renderToolbar()}
         ${unsafeHTML(output)}
       </div>
     `;

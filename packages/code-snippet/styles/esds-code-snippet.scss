@@ -1,6 +1,6 @@
 @import '../node_modules/esds-visual-style/styles/esds-visual-style';
 
-$esds-doc-code-snippet-background-color: $esds-background-color-white !default;
+$esds-doc-code-snippet-background-color: $esds-color-neutral-95 !default;
 $esds-doc-code-snippet-border: $esds-border-default !default;
 $esds-doc-code-snippet-border-radius: $esds-border-radius-default !default;
 $esds-doc-code-snippet-font-family: $esds-font-family-sans-serif !default;
@@ -12,7 +12,7 @@ $esds-doc-code-snippet-space-inset: $esds-space-inset-1-x !default;
 $esds-doc-code-snippet-space-stack: $esds-space-stack-1-x !default;
 $esds-doc-code-snippet-text-color: $esds-text-color-primary-on-white !default;
 
-$esds-doc-code-snippet-source-background-color: $esds-color-neutral-95 !default;
+$esds-doc-code-snippet-source-background-color: transparent !default;
 $esds-doc-code-snippet-source-font-family: 'Courier New', monospace !default;
 $esds-doc-code-snippet-source-tag-color: $esds-color-teal-48 !default;
 $esds-doc-code-snippet-source-selector-color: $esds-color-teal-37 !default;
@@ -50,6 +50,7 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
   border-radius:  $esds-doc-code-snippet-border-radius;
   color:          $esds-doc-code-snippet-text-color;
   margin:  $esds-doc-code-snippet-space-stack;
+  overflow: hidden;
   position: relative;
 
   // Prism overrides
@@ -79,14 +80,20 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
 
   .esds-code-snippet__source {
     background-color:   $esds-doc-code-snippet-source-background-color;
-    border-radius:      $esds-doc-code-snippet-border-radius;
+  }
+
+  .esds-code-snippet__toolbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: $esds-space-inset-half-x;
+  }
+
+  .esds-code-snippet__toolbar + .esds-code-snippet__source .esds-code-snippet__pre {
+    padding-top: 0;
   }
 
   .esds-code-snippet__copy-code-wrap {
-    padding: $esds-doc-code-snippet-copy-code-button-offset;
-    position: absolute;
-    right: 0;
-    top: 0;
+    position: relative;
     z-index: 10;
   }
 
@@ -125,7 +132,6 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
 
   .esds-code-snippet__pre {
     background-color: transparent;
-    border-radius: $esds-doc-code-snippet-border-radius;
     margin: 0;
     max-height: $esds-doc-code-snippet-source-max-height-default;
     overflow: auto;
@@ -151,7 +157,11 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
     padding: $esds-doc-code-snippet-filename-offset;
     padding-bottom: 0;
   }
-}
+
+  .esds-code-snippet__tabs .esds-tabs__labels {
+    padding: 0 $esds-space-inset-1-x;
+  }
+} // End of .esds-code-snippet-v1
 
 @keyframes esds-code-snippet-fade-in-out-v1 {
   0% {
