@@ -59,13 +59,15 @@ class EsdsCodeSnippet extends EsdsBaseWc {
   }
 
   copyCodeToClipboard() {
-    const source = this.querySelector('.esds-code-snippet__pre code');
+    // If tabs exist we need to find the <code> block in the shadowRoot of "this" which is the code snippet -> esds-tabs -> esds-tab-panel[active], otherwise just check the current shadowRoot for the <code> block
+    const source = this.shadowRoot.querySelector('esds-tabs').shadowRoot.querySelector('esds-tab-panel[active]').querySelector('.esds-code-snippet__pre code') || this.shadowRoot.querySelector('.esds-code-snippet__pre code');
+    console.log(source);
     const textarea = document.createElement('textarea');
     textarea.style.height = '0';
     textarea.style.width = '0';
     textarea.style.position = 'absolute';
     textarea.style.left = '-99999px';
-    this.appendChild(textarea);
+    document.body.appendChild(textarea);
 
     textarea.textContent = source.textContent;
     textarea.select();
@@ -75,13 +77,15 @@ class EsdsCodeSnippet extends EsdsBaseWc {
       if (successful) {
         this.showCopiedMessage();
       } else {
+        console.log("COULDNT COPY");
         // triggerCopyErrorEvent();
       }
     } catch (err) {
+      console.log("COPY NOT SUPPORTED");
         // triggerCopyNotSupportedEvent(snippet);
     }
 
-    this.removeChild(textarea);
+    document.body.removeChild(textarea);
   }
 
   renderCopyButton() {
