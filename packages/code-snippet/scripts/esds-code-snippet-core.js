@@ -65,7 +65,6 @@ class EsdsCodeSnippet extends EsdsBaseWc {
     if (hasTabs) {
       source = this.shadowRoot.querySelector('esds-tabs').shadowRoot.querySelector('esds-tab-panel[active]').querySelector('.esds-code-snippet__pre code');
     }
-    console.log(source);
     const textarea = document.createElement('textarea');
     textarea.style.height = '0';
     textarea.style.width = '0';
