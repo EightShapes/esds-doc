@@ -60,7 +60,11 @@ class EsdsCodeSnippet extends EsdsBaseWc {
 
   copyCodeToClipboard() {
     // If tabs exist we need to find the <code> block in the shadowRoot of "this" which is the code snippet -> esds-tabs -> esds-tab-panel[active], otherwise just check the current shadowRoot for the <code> block
-    const source = this.shadowRoot.querySelector('esds-tabs').shadowRoot.querySelector('esds-tab-panel[active]').querySelector('.esds-code-snippet__pre code') || this.shadowRoot.querySelector('.esds-code-snippet__pre code');
+    const hasTabs = this.shadowRoot.querySelector('esds-tabs');
+    let source = this.shadowRoot.querySelector('.esds-code-snippet__pre code');
+    if (hasTabs) {
+      source = this.shadowRoot.querySelector('esds-tabs').shadowRoot.querySelector('esds-tab-panel[active]').querySelector('.esds-code-snippet__pre code');
+    }
     console.log(source);
     const textarea = document.createElement('textarea');
     textarea.style.height = '0';
