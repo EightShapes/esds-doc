@@ -78,7 +78,10 @@ $esds-doc-code-snippet-line-highlight-color: linear-gradient(to right, rgba($esd
         background: $esds-doc-code-snippet-line-highlight-color;
         left: 0;
         line-height: inherit;
-        margin-top: 1em; // Same as .prism’s padding-top
+        margin: $esds-doc-code-snippet-space-inset; // Same as .prism’s padding-top
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
         padding: inherit 0;
         pointer-events: none;
         position: absolute;
