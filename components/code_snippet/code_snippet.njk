@@ -1,18 +1,19 @@
 {% macro code_snippet(
-        source='Set source= to view source here', 
+        source='Set source= to view source here',
         sources=[],
-        language='markup', 
-        class=false, 
+        language='markup',
+        class=false,
         preformatted=false,
         filename=false,
-        show_copy_button=true, 
+        show_copy_button=true,
         copy_button_text="Copy Code",
         copy_button,
-        code_copied_text="Copied to clipboard") %}
+        code_copied_text="Copied to clipboard",
+        highlight_lines=false) %}
 
     {% set esds_doc_overrides_path = esds_doc_overrides_path | default('./esds_doc_overrides/esds-doc-overrides-default.njk') %}
     {% from esds_doc_overrides_path import esds_doc_overrides with context %}
-    
+
     {# Set markup for the copy button in this order:
         1. If a copy_button argument was passed into the macro, use that
         2. Otherwise if a copy_button argument is set on the esds_doc_overrides object, use that
@@ -20,7 +21,7 @@
      #}
     {% set copy_button = copy_button | default(esds_doc_overrides.code_snippet.copy_button) | default(false) %}
     {% set code_copied_text = esds_doc_overrides.code_snippet.code_copied_text | default(code_copied_text) | default(false) %}
-    
+
 
     {% set code_snippet_id = "esds-doc-code-snippet--" + range(0, 100000) | random %}
     {% if language == 'njk' %}
@@ -57,21 +58,21 @@
             {# Upcoming feature - support multiple tabs with different source examples #}
             {% if sources.length > 0 %}
                 {% for source in sources %}
-                    {{ render_code_snippet_source(source=source.source, language=source.language, filename=source.filename, code_snippet_id=code_snippet_id, preformatted=preformatted) }}
+                    {{ render_code_snippet_source(source=source.source, language=source.language, filename=source.filename, code_snippet_id=code_snippet_id, preformatted=preformatted, highlight_lines=highlight_lines) }}
                 {% endfor %}
             {% else %}
-                {{ render_code_snippet_source(source=source, language=language, filename=filename, code_snippet_id=code_snippet_id, preformatted=preformatted) }}
+                {{ render_code_snippet_source(source=source, language=language, filename=filename, code_snippet_id=code_snippet_id, preformatted=preformatted, highlight_lines=highlight_lines) }}
             {% endif %}
         </div>
     </div>
 {% endmacro %}
 
-{% macro render_code_snippet_source(source, language='markup', filename, code_snippet_id, preformatted) %}
+{% macro render_code_snippet_source(source, language='markup', filename, code_snippet_id, preformatted, highlight_lines) %}
     <div class="esds-doc-code-snippet__source" id="{{ code_snippet_id }}--{{ language }}">
         {% if filename %}
             <span class="esds-doc-code-snippet__filename">{{ filename }}</span>
         {% endif %}
-        <pre class="esds-doc-code-snippet__pre"><code class="language-{{ language }}">
+        <pre class="esds-doc-code-snippet__pre" {% if highlight_lines %}data-line="{{ highlight_lines }}"{% endif %}><code class="language-{{ language }}">
             {%- if preformatted -%}
                 {{- source | stripindent | trim -}}
             {%- elseif language == 'js' -%}
