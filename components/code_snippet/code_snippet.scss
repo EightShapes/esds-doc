@@ -143,6 +143,7 @@ $esds-doc-code-snippet-line-highlight-color: linear-gradient(to right, rgba($esd
     max-height: $esds-doc-code-snippet-source-max-height-default;
     overflow: auto;
     padding: $esds-doc-code-snippet-space-inset;
+    position: relative;
 
     .esds-doc-code-snippet--tall & {
         max-height: $esds-doc-code-snippet-source-max-height-tall;
