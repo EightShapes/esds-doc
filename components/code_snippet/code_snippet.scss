@@ -1,5 +1,5 @@
-$esds-doc-code-snippet-background-color: $esds-doc-background-color-white !default; 
-$esds-doc-code-snippet-border: $esds-doc-border-default !default; 
+$esds-doc-code-snippet-background-color: $esds-doc-background-color-white !default;
+$esds-doc-code-snippet-border: $esds-doc-border-default !default;
 $esds-doc-code-snippet-border-radius: $esds-doc-border-radius-default !default;
 $esds-doc-code-snippet-font-family: $esds-doc-font-family-sans-serif !default;
 $esds-doc-code-snippet-font-size: $esds-doc-font-size-m !default;
@@ -35,6 +35,9 @@ $esds-doc-code-snippet-filename-font-family: $esds-doc-font-family-sans-serif !d
 $esds-doc-code-snippet-filename-font-size: $esds-doc-code-snippet-font-size !default;
 $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
 
+$esds-doc-code-snippet-line-highlight-color: linear-gradient(to right, rgba($esds-doc-color-blue, .1) 70%, rgba($esds-doc-color-blue, 0)) !default; // sass-lint:disable-line no-color-literals
+
+
 
 .esds-doc-code-snippet {
     @include esds-doc-font-reset(
@@ -69,6 +72,18 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
         .punctuation {
             color: $esds-doc-code-snippet-source-punctuation-color;
         }
+    }
+
+    .line-highlight {
+        background: $esds-doc-code-snippet-line-highlight-color;
+        left: 0;
+        line-height: inherit;
+        margin-top: 1em; // Same as .prism’s padding-top
+        padding: inherit 0;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        white-space: pre;
     }
 }
 
@@ -130,11 +145,11 @@ $esds-doc-code-snippet-filename-offset: $esds-doc-space-inset-half-x !default;
     padding: $esds-doc-code-snippet-space-inset;
 
     .esds-doc-code-snippet--tall & {
-        max-height: $esds-doc-code-snippet-source-max-height-tall; 
+        max-height: $esds-doc-code-snippet-source-max-height-tall;
     }
 
     .esds-doc-code-snippet--no-max-height & {
-        max-height: none; 
+        max-height: none;
     }
 
     code {

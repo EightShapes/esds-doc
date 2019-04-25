@@ -24,26 +24,26 @@
     {{ library.code_snippet(source=table_example_code) }}
 
     <h1 class="esds-doc-sink-page-header">Include filename, use css highlighting</h1>
-    {{ library.code_snippet(filename="myfile.css", 
-                            language="css", 
+    {{ library.code_snippet(filename="myfile.css",
+                            language="css",
                             source="body { background: hotpink; color: red; font-family: sans-serif; font-weight: bold; }") }}
 
     <h1 class="esds-doc-sink-page-header">Pass nunjucks macro as source</h1>
     {{ library.code_snippet(source=library.button(text="Call To Action!")) }}
 
     <h1 class="esds-doc-sink-page-header">Hide copy button</h1>
-    {{ library.code_snippet(show_copy_button=false, 
+    {{ library.code_snippet(show_copy_button=false,
                             source="<h1>Hello World</h1>") }}
 
     <h1 class="esds-doc-sink-page-header">Default Max Height</h1>
     {{ library.code_snippet(source=table_example_code) }}
 
     <h1 class="esds-doc-sink-page-header">Tall Max Height</h1>
-    {{ library.code_snippet(class="esds-doc-code-snippet--tall", 
+    {{ library.code_snippet(class="esds-doc-code-snippet--tall",
                             source=table_example_code) }}
 
     <h1 class="esds-doc-sink-page-header">No Max Height</h1>
-    {{ library.code_snippet(class="esds-doc-code-snippet--no-max-height", 
+    {{ library.code_snippet(class="esds-doc-code-snippet--no-max-height",
                             source=table_example_code) }}
 
     <h1 class="esds-doc-sink-page-header">Horizontal Content Resilience</h1>
@@ -61,12 +61,34 @@
     </div>
 
     <h1 class="esds-doc-sink-page-header">Override Button Markup with custom markup passed to the macro</h1>
-    {{ library.code_snippet(class="esds-doc-code-snippet--no-max-height", 
+    {{ library.code_snippet(class="esds-doc-code-snippet--no-max-height",
                                         source="<h1>Hello World</h1>",
                                         copy_button="<button>Custom Button Passed To Macro</button>") }}
 
     <h1 class="esds-doc-sink-page-header">Override Button Markup with custom code set globally (Alternate button markup is passed indirectly via the global variable context)</h1>
     {{ library_with_markup_overrides.code_snippet(source="<h1>Hello World</h1>") }}
+
+    {% set multiline_example %}
+        <html>
+            <head>
+                <title>Multi-line example</title>
+            </head>
+            <body>
+                <h1>This is the line that should be highlighted</h1>
+            </body>
+        </html>
+    {% endset %}
+
+    <h1 class="esds-doc-sink-page-header">Highlight a single line</h1>
+    {{ library.code_snippet(class="esds-doc-code-snippet--no-max-height", source=multiline_example, highlight_lines="8") }}
+
+    <h1 class="esds-doc-sink-page-header">Highlight multiple lines</h1>
+    {{ library.code_snippet(class="esds-doc-code-snippet--no-max-height", source=multiline_example, highlight_lines="7-9") }}
+
+    <h1 class="esds-doc-sink-page-header">Highlight disparate groups of lines</h1>
+    {{ library.code_snippet(class="esds-doc-code-snippet--no-max-height", source=multiline_example, highlight_lines="3-5, 8") }}
+
+
 {% endblock %}
 
 {% block closing_body_assets %}
