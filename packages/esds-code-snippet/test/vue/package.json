@@ -1,0 +1,16 @@
+{
+  "name": "vue-test-app",
+  "version": "",
+  "private": true,
+  "description": "A simple Vue Harness for testing vanilla Web Components",
+  "main": "index.html",
+  "scripts": {
+    "start": "browser-sync start --watch --config browser-sync-config.js"
+  },
+  "author": "Kevin Powell <kevinmpowell@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "browser-sync": "^2.26.7"
+  }
+}
