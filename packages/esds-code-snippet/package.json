@@ -1,0 +1,42 @@
+{
+  "name": "@eightshapes/esds-code-snippet",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/esds-code-snippet.js",
+  "scripts": {
+    "start": "npm run watch-build | browser-sync start --watch --config browser-sync-config.js --ignore 'src/**/*'",
+    "build": "npm run build-ie && npm run build-esm && npm run build-styles",
+    "build-ie": "rollup -c rollup.config.ie.js",
+    "build-esm": "rollup -c rollup.config.js",
+    "build-styles": "sass src:dist",
+    "watch-build": "npm run watch-build-ie | npm run watch-build-esm | npm run watch-build-styles",
+    "watch-build-ie": "rollup --watch -c rollup.config.ie.js",
+    "watch-build-esm": "rollup --watch -c rollup.config.js",
+    "watch-build-styles": "sass src:dist --watch"
+  },
+  "author": "Kevin Powell <kevinmpowell@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "browser-sync": "^2.26.7",
+    "esds-visual-style": "^0.5.0",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-sort-class-members": "^1.5.0",
+    "lit-element": "^2.2.1",
+    "prettier": "^1.18.2",
+    "regenerator-runtime": "^0.13.3",
+    "rollup": "^1.18.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "sass": "^1.22.9"
+  },
+  "dependencies": {
+    "js-beautify": "^1.10.2",
+    "prismjs": "^1.17.1"
+  }
+}
