@@ -10145,6 +10145,11 @@ function (_LitElement) {
   }
 
   _createClass(EsdsCodeSnippet, [{
+    key: "createRenderRoot",
+    value: function createRenderRoot() {
+      return this;
+    }
+  }, {
     key: "firstUpdated",
     value: function firstUpdated() {
       if (this.language === 'wc-html') {
@@ -10205,12 +10210,11 @@ function (_LitElement) {
   }, {
     key: "copyCodeToClipboard",
     value: function copyCodeToClipboard() {
-      // If tabs exist we need to find the <code> block in the shadowRoot of "this" which is the code snippet -> esds-tabs -> esds-tab-panel[active], otherwise just check the current shadowRoot for the <code> block
-      var hasTabs = this.shadowRoot.querySelector('esds-tabs');
-      var source = this.shadowRoot.querySelector('.esds-code-snippet__pre code');
+      var hasTabs = this.querySelector('esds-tabs');
+      var source = this.querySelector('.esds-code-snippet__pre code');
 
       if (hasTabs) {
-        source = this.shadowRoot.querySelector('esds-tabs').shadowRoot.querySelector('esds-tab-panel[active]').querySelector('.esds-code-snippet__pre code');
+        source = this.querySelector('esds-tabs').querySelector('esds-tab-panel[active]').querySelector('.esds-code-snippet__pre code');
       }
 
       var textarea = document.createElement('textarea');

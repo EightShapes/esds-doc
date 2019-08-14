@@ -44,6 +44,10 @@ export class EsdsCodeSnippet extends LitElement {
       this.innerHTML.trim().length > 0 ? this.innerHTML.trim() : undefined;
   }
 
+  createRenderRoot() {
+    return this;
+  }
+
   firstUpdated() {
     if (this.language === 'wc-html') {
       this.renderCompiledHTMLSource(this.source);
@@ -95,13 +99,11 @@ export class EsdsCodeSnippet extends LitElement {
   }
 
   copyCodeToClipboard() {
-    // If tabs exist we need to find the <code> block in the shadowRoot of "this" which is the code snippet -> esds-tabs -> esds-tab-panel[active], otherwise just check the current shadowRoot for the <code> block
-    const hasTabs = this.shadowRoot.querySelector('esds-tabs');
-    let source = this.shadowRoot.querySelector('.esds-code-snippet__pre code');
+    const hasTabs = this.querySelector('esds-tabs');
+    let source = this.querySelector('.esds-code-snippet__pre code');
     if (hasTabs) {
-      source = this.shadowRoot
-        .querySelector('esds-tabs')
-        .shadowRoot.querySelector('esds-tab-panel[active]')
+      source = this.querySelector('esds-tabs')
+        .querySelector('esds-tab-panel[active]')
         .querySelector('.esds-code-snippet__pre code');
     }
     const textarea = document.createElement('textarea');
