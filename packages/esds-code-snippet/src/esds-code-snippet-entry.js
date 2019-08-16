@@ -1,8 +1,5 @@
 import { EsdsCodeSnippet } from './esds-code-snippet.js';
 
-if (
-  window !== undefined &&
-  window.customElements.get('esds-code-snippet') === undefined
-) {
+if (window.customElements.get('esds-code-snippet') === undefined) {
   window.customElements.define('esds-code-snippet', EsdsCodeSnippet);
 }
