@@ -1,1 +1,7 @@
 node_modules
+.eslintrc.js
+.prettierrc.js
+.sass-lint.yml
+browser-sync-config.js
+rollup.config.ie.js
+rollup.config.js
