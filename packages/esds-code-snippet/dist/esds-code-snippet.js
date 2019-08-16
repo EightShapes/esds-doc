@@ -6530,6 +6530,7 @@ class TemplateInstance {
  * subject to an additional IP rights grant found at
  * http://polymer.github.io/PATENTS.txt
  */
+const commentMarker = ` ${marker} `;
 /**
  * The return type of `html`, which holds a Template and the values from
  * interpolated expressions.
@@ -6583,7 +6584,7 @@ class TemplateResult {
                 // attribute values like <div foo="<!--${'bar'}">. Cases like
                 // <!-- foo=${'bar'}--> are handled correctly in the attribute branch
                 // below.
-                html += s + (isCommentBinding ? marker : nodeMarker);
+                html += s + (isCommentBinding ? commentMarker : nodeMarker);
             }
             else {
                 // For attributes we use just a marker sentinel, and also append a
@@ -7202,7 +7203,7 @@ const render = (result, container, options) => {
 // IMPORTANT: do not change the property name or the assignment expression.
 // This line will be used in regexes to search for lit-html usage.
 // TODO(justinfagnani): inject version number at build time
-(window['litHtmlVersions'] || (window['litHtmlVersions'] = [])).push('1.1.1');
+(window['litHtmlVersions'] || (window['litHtmlVersions'] = [])).push('1.1.2');
 /**
  * Interprets a template literal as an HTML template that can efficiently
  * render to and update a container.
@@ -8504,6 +8505,7 @@ class EsdsCodeSnippet extends LitElement {
 
   constructor() {
     super();
+    console.log('SANITY');
     this.defaultClass = 'esds-code-snippet-v1';
     this.baseModifierClass = 'esds-code-snippet--';
     this.stylesheet = 'esds-code-snippet.css';

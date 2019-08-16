@@ -40,8 +40,20 @@ export class EsdsCodeSnippet extends LitElement {
     this.source = this.defaultSource;
     this.language = 'markup';
     this.preformatted = false;
+    this.iihtml = this.iihtml || this.innerHTML;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    // Stash the initial innerHTML in the actual DOM element in case the constructor gets called multiple times (like when running the Nuxt framework)
+    if (!this.getAttribute('data-initial-inner-html')) {
+      this.setAttribute('data-initial-inner-html', this.innerHTML);
+    }
+
     this.slotContent =
-      this.innerHTML.trim().length > 0 ? this.innerHTML.trim() : undefined;
+      this.initialInnerHtml.trim().length > 0
+        ? this.initialInnerHtml.trim()
+        : undefined;
   }
 
   createRenderRoot() {
@@ -52,6 +64,10 @@ export class EsdsCodeSnippet extends LitElement {
     if (this.language === 'wc-html') {
       this.renderCompiledHTMLSource(this.source);
     }
+  }
+
+  get initialInnerHtml() {
+    return this.getAttribute('data-initial-inner-html');
   }
 
   beautifySource(source, language) {
@@ -96,6 +112,12 @@ export class EsdsCodeSnippet extends LitElement {
       cleanedHTML = hostElements[0].innerHTML;
     }
     return cleanedHTML;
+  }
+
+  cleanVueRenderingArtifacts(source) {
+    // Given a string of HTML rendered from vue, strip out the vue bits and pieces
+    console.log(source);
+    return source.replace(/data-v-.[A-Za-z0-9]*=.*?"[^"]*"/gm, ''); // Strip Vue data attributes;
   }
 
   copyCodeToClipboard() {
@@ -168,7 +190,10 @@ export class EsdsCodeSnippet extends LitElement {
   }
 
   renderCodeSnippet(source, language, filename) {
-    source = this.formatSource(source, language);
+    source = this.formatSource(
+      this.cleanVueRenderingArtifacts(source),
+      language,
+    );
 
     return `
       <div class="esds-code-snippet__source">
@@ -194,9 +219,9 @@ export class EsdsCodeSnippet extends LitElement {
       },
       {
         language: 'HTML',
-        source: this.cleanLitElementRenderingArtifacts(
-          compiledHTMLWrapper.innerHTML,
-        ), // TODO: In the future may need a react/angular/vue cleaner too
+        source: this.cleanVueRenderingArtifacts(
+          this.cleanLitElementRenderingArtifacts(compiledHTMLWrapper.innerHTML),
+        ), // TODO: In the future may need a react/angular cleaner too
       },
     ];
 

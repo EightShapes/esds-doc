@@ -7553,6 +7553,7 @@ function () {
   return TemplateInstance;
 }();
 
+var commentMarker = " ".concat(marker, " ");
 /**
  * The return type of `html`, which holds a Template and the values from
  * interpolated expressions.
@@ -7616,7 +7617,7 @@ function () {
           // attribute values like <div foo="<!--${'bar'}">. Cases like
           // <!-- foo=${'bar'}--> are handled correctly in the attribute branch
           // below.
-          html += s + (isCommentBinding ? marker : nodeMarker);
+          html += s + (isCommentBinding ? commentMarker : nodeMarker);
         } else {
           // For attributes we use just a marker sentinel, and also append a
           // $lit$ suffix to the name to opt-out of attribute-specific parsing
@@ -8435,7 +8436,7 @@ var render = function render(result, container, options) {
 // This line will be used in regexes to search for lit-html usage.
 // TODO(justinfagnani): inject version number at build time
 
-(window['litHtmlVersions'] || (window['litHtmlVersions'] = [])).push('1.1.1');
+(window['litHtmlVersions'] || (window['litHtmlVersions'] = [])).push('1.1.2');
 /**
  * Interprets a template literal as an HTML template that can efficiently
  * render to and update a container.
@@ -10127,6 +10128,7 @@ function (_LitElement) {
     _classCallCheck(this, EsdsCodeSnippet);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EsdsCodeSnippet).call(this));
+    console.log('SANITY');
     _this.defaultClass = 'esds-code-snippet-v1';
     _this.baseModifierClass = 'esds-code-snippet--';
     _this.stylesheet = 'esds-code-snippet.css';
