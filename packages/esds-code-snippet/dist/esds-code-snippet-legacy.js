@@ -10128,7 +10128,6 @@ function (_LitElement) {
     _classCallCheck(this, EsdsCodeSnippet);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EsdsCodeSnippet).call(this));
-    console.log('SANITY');
     _this.defaultClass = 'esds-code-snippet-v1';
     _this.baseModifierClass = 'esds-code-snippet--';
     _this.stylesheet = 'esds-code-snippet.css';
@@ -10142,11 +10141,23 @@ function (_LitElement) {
     _this.source = _this.defaultSource;
     _this.language = 'markup';
     _this.preformatted = false;
-    _this.slotContent = _this.innerHTML.trim().length > 0 ? _this.innerHTML.trim() : undefined;
+    _this.iihtml = _this.iihtml || _this.innerHTML;
     return _this;
   }
 
   _createClass(EsdsCodeSnippet, [{
+    key: "connectedCallback",
+    value: function connectedCallback() {
+      _get(_getPrototypeOf(EsdsCodeSnippet.prototype), "connectedCallback", this).call(this); // Stash the initial innerHTML in the actual DOM element in case the constructor gets called multiple times (like when running the Nuxt framework)
+
+
+      if (!this.getAttribute('data-initial-inner-html')) {
+        this.setAttribute('data-initial-inner-html', this.innerHTML);
+      }
+
+      this.slotContent = this.initialInnerHtml.trim().length > 0 ? this.initialInnerHtml.trim() : undefined;
+    }
+  }, {
     key: "createRenderRoot",
     value: function createRenderRoot() {
       return this;
@@ -10208,6 +10219,13 @@ function (_LitElement) {
       }
 
       return cleanedHTML;
+    }
+  }, {
+    key: "cleanVueRenderingArtifacts",
+    value: function cleanVueRenderingArtifacts(source) {
+      // Given a string of HTML rendered from vue, strip out the vue bits and pieces
+      console.log(source);
+      return source.replace(/data-v-.[A-Za-z0-9]*=.*?"[^"]*"/gm, ''); // Strip Vue data attributes;
     }
   }, {
     key: "copyCodeToClipboard",
@@ -10286,7 +10304,7 @@ function (_LitElement) {
   }, {
     key: "renderCodeSnippet",
     value: function renderCodeSnippet(source, language, filename) {
-      source = this.formatSource(source, language);
+      source = this.formatSource(this.cleanVueRenderingArtifacts(source), language);
       return "\n      <div class=\"esds-code-snippet__source\">\n        ".concat(this.renderFilename(filename), "\n        <pre class=\"esds-code-snippet__pre\"><code>").concat(source, "</code></pre>\n      </div>");
     }
   }, {
@@ -10343,7 +10361,7 @@ function (_LitElement) {
                   source: this.source
                 }, {
                   language: 'HTML',
-                  source: this.cleanLitElementRenderingArtifacts(compiledHTMLWrapper.innerHTML) // TODO: In the future may need a react/angular/vue cleaner too
+                  source: this.cleanVueRenderingArtifacts(this.cleanLitElementRenderingArtifacts(compiledHTMLWrapper.innerHTML)) // TODO: In the future may need a react/angular cleaner too
 
                 }]; // Remove the tmpWrapper
 
@@ -10446,6 +10464,11 @@ function (_LitElement) {
       }
 
       return html$2(_templateObject4(), blockLevelClass, this.renderToolbar(), unsafeHTML(output));
+    }
+  }, {
+    key: "initialInnerHtml",
+    get: function get() {
+      return this.getAttribute('data-initial-inner-html');
     }
   }]);
 
