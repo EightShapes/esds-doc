@@ -6979,6 +6979,30 @@ var js = javascript;
 var css$1 = css;
 var html$1 = style_html$1;
 
+var minIndent = function minIndent(str) {
+  var match = str.match(/^[ \t]*(?=\S)/gm);
+
+  if (!match) {
+    return 0;
+  } // TODO: Use spread operator when targeting Node.js 6
+
+
+  return Math.min.apply(Math, match.map(function (x) {
+    return x.length;
+  }));
+};
+
+var stripIndent = function stripIndent(string) {
+  var indent = minIndent(string);
+
+  if (indent === 0) {
+    return string;
+  }
+
+  var regex = new RegExp("^[ \\t]{".concat(indent, "}"), 'gm');
+  return string.replace(regex, '');
+};
+
 /**
  * @license
  * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
@@ -10035,8 +10059,18 @@ var unsafeHTML = directive(function (value) {
   };
 });
 
-function _templateObject4() {
+function _templateObject5() {
   var data = _taggedTemplateLiteral(["\n      <div class=\"", "\">\n        ", " ", "\n      </div>\n    "]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n        <div class=\"esds-code-snippet__toolbar\">", "</div>\n      "]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -10046,7 +10080,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n        <div class=\"esds-code-snippet__toolbar\">", "</div>\n      "]);
+  var data = _taggedTemplateLiteral(["\n      ", "\n    "]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -10130,7 +10164,6 @@ function (_LitElement) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EsdsCodeSnippet).call(this));
     _this.defaultClass = 'esds-code-snippet-v1';
     _this.baseModifierClass = 'esds-code-snippet--';
-    _this.stylesheet = 'esds-code-snippet.css';
     _this.defaultSource = '<h1>Hello World</h1>'; // State
 
     _this.codeCopied = false; // Default prop values
@@ -10141,20 +10174,15 @@ function (_LitElement) {
     _this.source = _this.defaultSource;
     _this.language = 'markup';
     _this.preformatted = false;
-    _this.iihtml = _this.iihtml || _this.innerHTML;
     return _this;
   }
 
   _createClass(EsdsCodeSnippet, [{
     key: "connectedCallback",
     value: function connectedCallback() {
-      _get(_getPrototypeOf(EsdsCodeSnippet.prototype), "connectedCallback", this).call(this); // Stash the initial innerHTML in the actual DOM element in case the constructor gets called multiple times (like when running the Nuxt framework)
+      _get(_getPrototypeOf(EsdsCodeSnippet.prototype), "connectedCallback", this).call(this);
 
-
-      if (!this.getAttribute('data-initial-inner-html')) {
-        this.setAttribute('data-initial-inner-html', this.innerHTML);
-      }
-
+      this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
       this.slotContent = this.initialInnerHtml.trim().length > 0 ? this.initialInnerHtml.trim() : undefined;
     }
   }, {
@@ -10164,10 +10192,9 @@ function (_LitElement) {
     }
   }, {
     key: "firstUpdated",
-    value: function firstUpdated() {
-      if (this.language === 'wc-html') {
-        this.renderCompiledHTMLSource(this.source);
-      }
+    value: function firstUpdated() {// if (this.language === 'wc-html') {
+      //   this.renderCompiledHTMLSource(this.source);
+      // }
     }
   }, {
     key: "beautifySource",
@@ -10193,38 +10220,39 @@ function (_LitElement) {
     key: "cleanLitElementRenderingArtifacts",
     value: function cleanLitElementRenderingArtifacts(source) {
       // Given a string of HTML rendered from lit element, strip out the lit element bits and pieces
-      var tmpWrapper = document.createElement('div');
-      tmpWrapper.innerHTML = source.replace(/<!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
-
-      var linkTags = tmpWrapper.querySelectorAll('link');
-      linkTags.forEach(function (l) {
-        return l.parentNode.removeChild(l);
-      });
-      var hostElements = Array.from(tmpWrapper.childNodes).filter(function (n) {
-        return n.nodeType === Node.ELEMENT_NODE;
-      }); // Get the hostElement which will contain the compiled/slotified component
-
-      var scopedStyleElements = tmpWrapper.querySelectorAll('.style-scope');
-      scopedStyleElements.forEach(function (e) {
-        return e.classList.remove('style-scope');
-      });
-      var cleanedHTML;
-
-      if (hostElements.length > 1) {
-        cleanedHTML = hostElements.reduce(function (string, he) {
-          return string.innerHTML + he.innerHTML;
-        });
-      } else {
-        cleanedHTML = hostElements[0].innerHTML;
-      }
-
-      return cleanedHTML;
+      // const tmpWrapper = document.createElement('div');
+      // tmpWrapper.innerHTML = source
+      //   .replace(/<!---->/g, '')
+      //   .replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
+      // const linkTags = tmpWrapper.querySelectorAll('link');
+      // linkTags.forEach(l => l.parentNode.removeChild(l));
+      //
+      // const hostElements = Array.from(tmpWrapper.childNodes).filter(
+      //   n => n.nodeType === Node.ELEMENT_NODE,
+      // ); // Get the hostElement which will contain the compiled/slotified component
+      // const scopedStyleElements = tmpWrapper.querySelectorAll('.style-scope');
+      // scopedStyleElements.forEach(e => e.classList.remove('style-scope'));
+      //
+      // let cleanedHTML;
+      // if (hostElements.length > 1) {
+      //   cleanedHTML = hostElements.reduce((string, he) => {
+      //     return string.innerHTML + he.innerHTML;
+      //   });
+      // } else {
+      //   cleanedHTML = hostElements[0].innerHTML;
+      // }
+      // return cleanedHTML;
+      return source.replace(/<!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
+    }
+  }, {
+    key: "cleanShadyDomRenderingArtifacts",
+    value: function cleanShadyDomRenderingArtifacts(source) {
+      return source.replace(/style-scope /gm, '');
     }
   }, {
     key: "cleanVueRenderingArtifacts",
     value: function cleanVueRenderingArtifacts(source) {
       // Given a string of HTML rendered from vue, strip out the vue bits and pieces
-      console.log(source);
       return source.replace(/data-v-.[A-Za-z0-9]*=.*?"[^"]*"/gm, ''); // Strip Vue data attributes;
     }
   }, {
@@ -10274,27 +10302,24 @@ function (_LitElement) {
       }
 
       return prism.highlight(source, prism.languages[language], language);
-    }
-  }, {
-    key: "parseSlottedSource",
-    value: function parseSlottedSource(slottedSource) {
-      // rudamentary formatting
-      return slottedSource.map(function (n) {
-        n = n.cloneNode(true); // Needed to prevent web component snippets from rendering on subsequent updates
+    } // parseSlottedSource(slottedSource) {
+    //   // rudamentary formatting
+    //   return slottedSource
+    //     .map(n => {
+    //       n = n.cloneNode(true); // Needed to prevent web component snippets from rendering on subsequent updates
+    //       if (n.outerHTML) {
+    //         return n.outerHTML;
+    //       } else {
+    //         let output = '';
+    //         if (n.textContent.trim().length > 0) {
+    //           output = n.textContent;
+    //         }
+    //         return output;
+    //       }
+    //     })
+    //     .join('\n');
+    // }
 
-        if (n.outerHTML) {
-          return n.outerHTML;
-        } else {
-          var output = '';
-
-          if (n.textContent.trim().length > 0) {
-            output = n.textContent;
-          }
-
-          return output;
-        }
-      }).join('\n');
-    }
   }, {
     key: "showCopiedMessage",
     value: function showCopiedMessage() {
@@ -10304,83 +10329,35 @@ function (_LitElement) {
   }, {
     key: "renderCodeSnippet",
     value: function renderCodeSnippet(source, language, filename) {
-      source = this.formatSource(this.cleanVueRenderingArtifacts(source), language);
+      source = this.formatSource(stripIndent(this.cleanShadyDomRenderingArtifacts(this.cleanLitElementRenderingArtifacts(this.cleanVueRenderingArtifacts(source)))), language);
       return "\n      <div class=\"esds-code-snippet__source\">\n        ".concat(this.renderFilename(filename), "\n        <pre class=\"esds-code-snippet__pre\"><code>").concat(source, "</code></pre>\n      </div>");
-    }
-  }, {
-    key: "renderCompiledHTMLSource",
-    value: function () {
-      var _renderCompiledHTMLSource = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(wcSource) {
-        var compiledHTMLWrapper, components;
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                compiledHTMLWrapper = document.createElement('div');
-                compiledHTMLWrapper.style = 'display: none;';
-                compiledHTMLWrapper.innerHTML = wcSource;
-                document.body.appendChild(compiledHTMLWrapper);
-                components = Array.from(compiledHTMLWrapper.childNodes).filter(function (n) {
-                  return n.nodeType === Node.ELEMENT_NODE;
-                });
-                _context2.next = 7;
-                return Promise.all(components.map(
-                /*#__PURE__*/
-                function () {
-                  var _ref = _asyncToGenerator(
-                  /*#__PURE__*/
-                  regeneratorRuntime.mark(function _callee(c) {
-                    return regeneratorRuntime.wrap(function _callee$(_context) {
-                      while (1) {
-                        switch (_context.prev = _context.next) {
-                          case 0:
-                            _context.next = 2;
-                            return c.updateComplete;
+    } // async renderCompiledHTMLSource(wcSource) {
+    //   const compiledHTMLWrapper = document.createElement('div');
+    //   compiledHTMLWrapper.style = 'display: none;';
+    //   compiledHTMLWrapper.innerHTML = wcSource;
+    //   document.body.appendChild(compiledHTMLWrapper);
+    //   const components = Array.from(compiledHTMLWrapper.childNodes).filter(
+    //     n => n.nodeType === Node.ELEMENT_NODE,
+    //   );
+    //   await Promise.all(components.map(async c => await c.updateComplete));
+    //
+    //   this.sources = [
+    //     {
+    //       language: 'WC',
+    //       source: this.source,
+    //     },
+    //     {
+    //       language: 'HTML',
+    //       source: this.cleanVueRenderingArtifacts(
+    //         this.cleanLitElementRenderingArtifacts(compiledHTMLWrapper.innerHTML),
+    //       ), // TODO: In the future may need a react/angular cleaner too
+    //     },
+    //   ];
+    //
+    //   // Remove the tmpWrapper
+    //   compiledHTMLWrapper.parentNode.removeChild(compiledHTMLWrapper);
+    // }
 
-                          case 2:
-                            return _context.abrupt("return", _context.sent);
-
-                          case 3:
-                          case "end":
-                            return _context.stop();
-                        }
-                      }
-                    }, _callee);
-                  }));
-
-                  return function (_x2) {
-                    return _ref.apply(this, arguments);
-                  };
-                }()));
-
-              case 7:
-                this.sources = [{
-                  language: 'WC',
-                  source: this.source
-                }, {
-                  language: 'HTML',
-                  source: this.cleanVueRenderingArtifacts(this.cleanLitElementRenderingArtifacts(compiledHTMLWrapper.innerHTML)) // TODO: In the future may need a react/angular cleaner too
-
-                }]; // Remove the tmpWrapper
-
-                compiledHTMLWrapper.parentNode.removeChild(compiledHTMLWrapper);
-
-              case 9:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      function renderCompiledHTMLSource(_x) {
-        return _renderCompiledHTMLSource.apply(this, arguments);
-      }
-
-      return renderCompiledHTMLSource;
-    }()
   }, {
     key: "renderCopyButton",
     value: function renderCopyButton() {
@@ -10403,17 +10380,29 @@ function (_LitElement) {
       }
     }
   }, {
+    key: "renderTabs",
+    value: function renderTabs() {
+      return html$2(_templateObject3(), unsafeHTML(this.sources.map(function (s) {
+        var label = Object.keys(s)[0];
+        return "<a href=\"#\">".concat(label, "</a>");
+      })));
+    }
+  }, {
     key: "renderToolbar",
     value: function renderToolbar() {
       var toolbarActions = [];
       var output = '';
+
+      if (this.sources) {
+        toolbarActions.push(this.renderTabs());
+      }
 
       if (this.copyable) {
         toolbarActions.push(this.renderCopyButton());
       }
 
       if (toolbarActions.length > 0) {
-        output = html$2(_templateObject3(), toolbarActions);
+        output = html$2(_templateObject4(), toolbarActions);
       }
 
       return output;
@@ -10421,8 +10410,6 @@ function (_LitElement) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var blockLevelClass = this.defaultClass;
 
       if (this.codeCopied) {
@@ -10431,44 +10418,56 @@ function (_LitElement) {
 
       if (this.maxHeight) {
         blockLevelClass += " ".concat(this.baseModifierClass, "max-height-").concat(this.maxHeight);
+      } // let sources = this.sources;
+      //
+      // // Check for wc-html language trigger
+      // if (this.language === 'wc-html' && !this.sources) {
+      //   this.source = this.slotContent ? this.slotContent : this.source;
+      //
+      //   sources = [
+      //     {
+      //       language: 'WC',
+      //       source: this.source,
+      //     },
+      //   ];
+      // }
+      //
+
+
+      var output; //
+      // if (sources) {
+      //   let codeSnippets = [];
+      //
+      //   sources.forEach(s => {
+      //     codeSnippets.push(`
+      //       <esds-tab-panel label="${s.language}">
+      //         ${this.renderCodeSnippet(s.source, s.language, s.filename)}
+      //       </esds-tab-panel>
+      //     `);
+      //   });
+      //
+      //   output = `<esds-tabs tabs-class="esds-code-snippet__tabs" variant="alt">${codeSnippets}</esds-tabs>`;
+      // } else {
+      // Just a single snippet to render, no tabs
+
+      var language = this.language === 'html' ? 'markup' : this.language;
+      var source = this.source;
+
+      if (source === this.defaultSource && this.slotContent) {
+        source = this.slotContent;
       }
 
-      var sources = this.sources; // Check for wc-html language trigger
+      output = this.renderCodeSnippet(source, language, this.filename); // }
 
-      if (this.language === 'wc-html' && !this.sources) {
-        this.source = this.slotContent ? this.slotContent : this.source;
-        sources = [{
-          language: 'WC',
-          source: this.source
-        }];
-      }
-
-      var output;
-
-      if (sources) {
-        var codeSnippets = [];
-        sources.forEach(function (s) {
-          codeSnippets.push("\n          <esds-tab-panel label=\"".concat(s.language, "\">\n            ").concat(_this2.renderCodeSnippet(s.source, s.language, s.filename), "\n          </esds-tab-panel>\n        "));
-        });
-        output = "<esds-tabs tabs-class=\"esds-code-snippet__tabs\" variant=\"alt\">".concat(codeSnippets, "</esds-tabs>");
-      } else {
-        // Just a single snippet to render, no tabs
-        var language = this.language === 'html' ? 'markup' : this.language;
-        var source = this.source;
-
-        if (source === this.defaultSource && this.slotContent) {
-          source = this.slotContent;
-        }
-
-        output = this.renderCodeSnippet(source, language, this.filename);
-      }
-
-      return html$2(_templateObject4(), blockLevelClass, this.renderToolbar(), unsafeHTML(output));
+      return html$2(_templateObject5(), blockLevelClass, this.renderToolbar(), unsafeHTML(output));
     }
   }, {
     key: "initialInnerHtml",
     get: function get() {
       return this.getAttribute('data-initial-inner-html');
+    },
+    set: function set(value) {
+      this.setAttribute('data-initial-inner-html', value);
     }
   }]);
 

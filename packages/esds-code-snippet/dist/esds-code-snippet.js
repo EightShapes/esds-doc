@@ -6050,6 +6050,29 @@ var js = javascript;
 var css$1 = css;
 var html$1 = style_html$1;
 
+var minIndent = str => {
+	const match = str.match(/^[ \t]*(?=\S)/gm);
+
+	if (!match) {
+		return 0;
+	}
+
+	// TODO: Use spread operator when targeting Node.js 6
+	return Math.min.apply(Math, match.map(x => x.length));
+};
+
+var stripIndent = string => {
+	const indent = minIndent(string);
+
+	if (indent === 0) {
+		return string;
+	}
+
+	const regex = new RegExp(`^[ \\t]{${indent}}`, 'gm');
+
+	return string.replace(regex, '');
+};
+
 /**
  * @license
  * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
@@ -6112,6 +6135,7 @@ const directive = (f) => ((...args) => {
 const isDirective = (o) => {
     return typeof o === 'function' && directives$1.has(o);
 };
+//# sourceMappingURL=directive.js.map
 
 /**
  * @license
@@ -6143,6 +6167,7 @@ const removeNodes = (container, start, end = null) => {
         start = n;
     }
 };
+//# sourceMappingURL=dom.js.map
 
 /**
  * @license
@@ -6166,6 +6191,7 @@ const noChange = {};
  * A sentinel value that signals a NodePart to fully clear its content.
  */
 const nothing = {};
+//# sourceMappingURL=part.js.map
 
 /**
  * @license
@@ -6379,6 +6405,7 @@ const createMarker = () => document.createComment('');
  *    * (') then any non-(')
  */
 const lastAttributeNameRegex = /([ \x09\x0a\x0c\x0d])([^\0-\x1F\x7F-\x9F "'>=/]+)([ \x09\x0a\x0c\x0d]*=[ \x09\x0a\x0c\x0d]*(?:[^ \x09\x0a\x0c\x0d"'`<>=]*|"[^"]*|'[^']*))$/;
+//# sourceMappingURL=template.js.map
 
 /**
  * @license
@@ -6511,6 +6538,7 @@ class TemplateInstance {
         return fragment;
     }
 }
+//# sourceMappingURL=template-instance.js.map
 
 /**
  * @license
@@ -6599,6 +6627,7 @@ class TemplateResult {
         return template;
     }
 }
+//# sourceMappingURL=template-result.js.map
 
 /**
  * @license
@@ -7038,6 +7067,7 @@ const getOptions = (o) => o &&
     (eventOptionsSupported ?
         { capture: o.capture, passive: o.passive, once: o.once } :
         o.capture);
+//# sourceMappingURL=parts.js.map
 
 /**
  * @license
@@ -7089,6 +7119,7 @@ class DefaultTemplateProcessor {
     }
 }
 const defaultTemplateProcessor = new DefaultTemplateProcessor();
+//# sourceMappingURL=default-template-processor.js.map
 
 /**
  * @license
@@ -7136,6 +7167,7 @@ function templateFactory(result) {
     return template;
 }
 const templateCaches = new Map();
+//# sourceMappingURL=template-factory.js.map
 
 /**
  * @license
@@ -7176,6 +7208,7 @@ const render = (result, container, options) => {
     part.setValue(result);
     part.commit();
 };
+//# sourceMappingURL=render.js.map
 
 /**
  * @license
@@ -7199,6 +7232,7 @@ const render = (result, container, options) => {
  * render to and update a container.
  */
 const html$2 = (strings, ...values) => new TemplateResult(strings, values, 'html', defaultTemplateProcessor);
+//# sourceMappingURL=lit-html.js.map
 
 /**
  * @license
@@ -7323,6 +7357,7 @@ function insertNodeIntoTemplate(template, node, refNode = null) {
         }
     }
 }
+//# sourceMappingURL=modify-template.js.map
 
 /**
  * @license
@@ -7592,6 +7627,7 @@ const render$1 = (result, container, options) => {
         window.ShadyCSS.styleElement(container.host);
     }
 };
+//# sourceMappingURL=shady-render.js.map
 
 /**
  * @license
@@ -8217,6 +8253,7 @@ _a = finalized;
  * Marks class as having finished creating properties.
  */
 UpdatingElement[_a] = true;
+//# sourceMappingURL=updating-element.js.map
 
 /**
 @license
@@ -8230,6 +8267,7 @@ found at http://polymer.github.io/PATENTS.txt
 */
 const supportsAdoptingStyleSheets = ('adoptedStyleSheets' in Document.prototype) &&
     ('replace' in CSSStyleSheet.prototype);
+//# sourceMappingURL=css-tag.js.map
 
 /**
  * @license
@@ -8427,6 +8465,7 @@ LitElement['finalized'] = true;
  * @nocollapse
  */
 LitElement.render = render$1;
+//# sourceMappingURL=lit-element.js.map
 
 /**
  * @license
@@ -8469,6 +8508,7 @@ const unsafeHTML = directive((value) => (part) => {
     part.setValue(fragment);
     previousValues.set(part, { value, fragment });
 });
+//# sourceMappingURL=unsafe-html.js.map
 
 class EsdsCodeSnippet extends LitElement {
   static get properties() {
@@ -8490,7 +8530,6 @@ class EsdsCodeSnippet extends LitElement {
     super();
     this.defaultClass = 'esds-code-snippet-v1';
     this.baseModifierClass = 'esds-code-snippet--';
-    this.stylesheet = 'esds-code-snippet.css';
     this.defaultSource = '<h1>Hello World</h1>';
 
     // State
@@ -8503,15 +8542,11 @@ class EsdsCodeSnippet extends LitElement {
     this.source = this.defaultSource;
     this.language = 'markup';
     this.preformatted = false;
-    this.iihtml = this.iihtml || this.innerHTML;
   }
 
   connectedCallback() {
     super.connectedCallback();
-    // Stash the initial innerHTML in the actual DOM element in case the constructor gets called multiple times (like when running the Nuxt framework)
-    if (!this.getAttribute('data-initial-inner-html')) {
-      this.setAttribute('data-initial-inner-html', this.innerHTML);
-    }
+    this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
 
     this.slotContent =
       this.initialInnerHtml.trim().length > 0
@@ -8524,13 +8559,17 @@ class EsdsCodeSnippet extends LitElement {
   }
 
   firstUpdated() {
-    if (this.language === 'wc-html') {
-      this.renderCompiledHTMLSource(this.source);
-    }
+    // if (this.language === 'wc-html') {
+    //   this.renderCompiledHTMLSource(this.source);
+    // }
   }
 
   get initialInnerHtml() {
     return this.getAttribute('data-initial-inner-html');
+  }
+
+  set initialInnerHtml(value) {
+    this.setAttribute('data-initial-inner-html', value);
   }
 
   beautifySource(source, language) {
@@ -8553,33 +8592,37 @@ class EsdsCodeSnippet extends LitElement {
 
   cleanLitElementRenderingArtifacts(source) {
     // Given a string of HTML rendered from lit element, strip out the lit element bits and pieces
-    const tmpWrapper = document.createElement('div');
-    tmpWrapper.innerHTML = source
-      .replace(/<!---->/g, '')
-      .replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
-    const linkTags = tmpWrapper.querySelectorAll('link');
-    linkTags.forEach(l => l.parentNode.removeChild(l));
+    // const tmpWrapper = document.createElement('div');
+    // tmpWrapper.innerHTML = source
+    //   .replace(/<!---->/g, '')
+    //   .replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
+    // const linkTags = tmpWrapper.querySelectorAll('link');
+    // linkTags.forEach(l => l.parentNode.removeChild(l));
+    //
+    // const hostElements = Array.from(tmpWrapper.childNodes).filter(
+    //   n => n.nodeType === Node.ELEMENT_NODE,
+    // ); // Get the hostElement which will contain the compiled/slotified component
+    // const scopedStyleElements = tmpWrapper.querySelectorAll('.style-scope');
+    // scopedStyleElements.forEach(e => e.classList.remove('style-scope'));
+    //
+    // let cleanedHTML;
+    // if (hostElements.length > 1) {
+    //   cleanedHTML = hostElements.reduce((string, he) => {
+    //     return string.innerHTML + he.innerHTML;
+    //   });
+    // } else {
+    //   cleanedHTML = hostElements[0].innerHTML;
+    // }
+    // return cleanedHTML;
+    return source.replace(/<!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
+  }
 
-    const hostElements = Array.from(tmpWrapper.childNodes).filter(
-      n => n.nodeType === Node.ELEMENT_NODE,
-    ); // Get the hostElement which will contain the compiled/slotified component
-    const scopedStyleElements = tmpWrapper.querySelectorAll('.style-scope');
-    scopedStyleElements.forEach(e => e.classList.remove('style-scope'));
-
-    let cleanedHTML;
-    if (hostElements.length > 1) {
-      cleanedHTML = hostElements.reduce((string, he) => {
-        return string.innerHTML + he.innerHTML;
-      });
-    } else {
-      cleanedHTML = hostElements[0].innerHTML;
-    }
-    return cleanedHTML;
+  cleanShadyDomRenderingArtifacts(source) {
+    return source.replace(/style-scope /gm, '');
   }
 
   cleanVueRenderingArtifacts(source) {
     // Given a string of HTML rendered from vue, strip out the vue bits and pieces
-    console.log(source);
     return source.replace(/data-v-.[A-Za-z0-9]*=.*?"[^"]*"/gm, ''); // Strip Vue data attributes;
   }
 
@@ -8629,23 +8672,23 @@ class EsdsCodeSnippet extends LitElement {
     return prism.highlight(source, prism.languages[language], language);
   }
 
-  parseSlottedSource(slottedSource) {
-    // rudamentary formatting
-    return slottedSource
-      .map(n => {
-        n = n.cloneNode(true); // Needed to prevent web component snippets from rendering on subsequent updates
-        if (n.outerHTML) {
-          return n.outerHTML;
-        } else {
-          let output = '';
-          if (n.textContent.trim().length > 0) {
-            output = n.textContent;
-          }
-          return output;
-        }
-      })
-      .join('\n');
-  }
+  // parseSlottedSource(slottedSource) {
+  //   // rudamentary formatting
+  //   return slottedSource
+  //     .map(n => {
+  //       n = n.cloneNode(true); // Needed to prevent web component snippets from rendering on subsequent updates
+  //       if (n.outerHTML) {
+  //         return n.outerHTML;
+  //       } else {
+  //         let output = '';
+  //         if (n.textContent.trim().length > 0) {
+  //           output = n.textContent;
+  //         }
+  //         return output;
+  //       }
+  //     })
+  //     .join('\n');
+  // }
 
   showCopiedMessage() {
     this.codeCopied = true;
@@ -8654,7 +8697,13 @@ class EsdsCodeSnippet extends LitElement {
 
   renderCodeSnippet(source, language, filename) {
     source = this.formatSource(
-      this.cleanVueRenderingArtifacts(source),
+      stripIndent(
+        this.cleanShadyDomRenderingArtifacts(
+          this.cleanLitElementRenderingArtifacts(
+            this.cleanVueRenderingArtifacts(source),
+          ),
+        ),
+      ),
       language,
     );
 
@@ -8665,32 +8714,32 @@ class EsdsCodeSnippet extends LitElement {
       </div>`;
   }
 
-  async renderCompiledHTMLSource(wcSource) {
-    const compiledHTMLWrapper = document.createElement('div');
-    compiledHTMLWrapper.style = 'display: none;';
-    compiledHTMLWrapper.innerHTML = wcSource;
-    document.body.appendChild(compiledHTMLWrapper);
-    const components = Array.from(compiledHTMLWrapper.childNodes).filter(
-      n => n.nodeType === Node.ELEMENT_NODE,
-    );
-    await Promise.all(components.map(async c => await c.updateComplete));
-
-    this.sources = [
-      {
-        language: 'WC',
-        source: this.source,
-      },
-      {
-        language: 'HTML',
-        source: this.cleanVueRenderingArtifacts(
-          this.cleanLitElementRenderingArtifacts(compiledHTMLWrapper.innerHTML),
-        ), // TODO: In the future may need a react/angular cleaner too
-      },
-    ];
-
-    // Remove the tmpWrapper
-    compiledHTMLWrapper.parentNode.removeChild(compiledHTMLWrapper);
-  }
+  // async renderCompiledHTMLSource(wcSource) {
+  //   const compiledHTMLWrapper = document.createElement('div');
+  //   compiledHTMLWrapper.style = 'display: none;';
+  //   compiledHTMLWrapper.innerHTML = wcSource;
+  //   document.body.appendChild(compiledHTMLWrapper);
+  //   const components = Array.from(compiledHTMLWrapper.childNodes).filter(
+  //     n => n.nodeType === Node.ELEMENT_NODE,
+  //   );
+  //   await Promise.all(components.map(async c => await c.updateComplete));
+  //
+  //   this.sources = [
+  //     {
+  //       language: 'WC',
+  //       source: this.source,
+  //     },
+  //     {
+  //       language: 'HTML',
+  //       source: this.cleanVueRenderingArtifacts(
+  //         this.cleanLitElementRenderingArtifacts(compiledHTMLWrapper.innerHTML),
+  //       ), // TODO: In the future may need a react/angular cleaner too
+  //     },
+  //   ];
+  //
+  //   // Remove the tmpWrapper
+  //   compiledHTMLWrapper.parentNode.removeChild(compiledHTMLWrapper);
+  // }
 
   renderCopyButton() {
     // Not sure why I had to use unsafeHTML here and not the html`` template literal. Without it the ${this.copyButtonText} slot content is getting lost somewhere
@@ -8729,9 +8778,24 @@ class EsdsCodeSnippet extends LitElement {
     }
   }
 
+  renderTabs() {
+    return html$2`
+      ${unsafeHTML(
+        this.sources.map(s => {
+          const label = Object.keys(s)[0];
+          return `<a href="#">${label}</a>`;
+        }),
+      )}
+    `;
+  }
+
   renderToolbar() {
     const toolbarActions = [];
     let output = '';
+
+    if (this.sources) {
+      toolbarActions.push(this.renderTabs());
+    }
 
     if (this.copyable) {
       toolbarActions.push(this.renderCopyButton());
@@ -8756,43 +8820,43 @@ class EsdsCodeSnippet extends LitElement {
       blockLevelClass += ` ${this.baseModifierClass}max-height-${this.maxHeight}`;
     }
 
-    let sources = this.sources;
-
-    // Check for wc-html language trigger
-    if (this.language === 'wc-html' && !this.sources) {
-      this.source = this.slotContent ? this.slotContent : this.source;
-
-      sources = [
-        {
-          language: 'WC',
-          source: this.source,
-        },
-      ];
-    }
-
+    // let sources = this.sources;
+    //
+    // // Check for wc-html language trigger
+    // if (this.language === 'wc-html' && !this.sources) {
+    //   this.source = this.slotContent ? this.slotContent : this.source;
+    //
+    //   sources = [
+    //     {
+    //       language: 'WC',
+    //       source: this.source,
+    //     },
+    //   ];
+    // }
+    //
     let output;
-
-    if (sources) {
-      let codeSnippets = [];
-
-      sources.forEach(s => {
-        codeSnippets.push(`
-          <esds-tab-panel label="${s.language}">
-            ${this.renderCodeSnippet(s.source, s.language, s.filename)}
-          </esds-tab-panel>
-        `);
-      });
-
-      output = `<esds-tabs tabs-class="esds-code-snippet__tabs" variant="alt">${codeSnippets}</esds-tabs>`;
-    } else {
-      // Just a single snippet to render, no tabs
-      const language = this.language === 'html' ? 'markup' : this.language;
-      let source = this.source;
-      if (source === this.defaultSource && this.slotContent) {
-        source = this.slotContent;
-      }
-      output = this.renderCodeSnippet(source, language, this.filename);
+    //
+    // if (sources) {
+    //   let codeSnippets = [];
+    //
+    //   sources.forEach(s => {
+    //     codeSnippets.push(`
+    //       <esds-tab-panel label="${s.language}">
+    //         ${this.renderCodeSnippet(s.source, s.language, s.filename)}
+    //       </esds-tab-panel>
+    //     `);
+    //   });
+    //
+    //   output = `<esds-tabs tabs-class="esds-code-snippet__tabs" variant="alt">${codeSnippets}</esds-tabs>`;
+    // } else {
+    // Just a single snippet to render, no tabs
+    const language = this.language === 'html' ? 'markup' : this.language;
+    let source = this.source;
+    if (source === this.defaultSource && this.slotContent) {
+      source = this.slotContent;
     }
+    output = this.renderCodeSnippet(source, language, this.filename);
+    // }
 
     return html$2`
       <div class="${blockLevelClass}">

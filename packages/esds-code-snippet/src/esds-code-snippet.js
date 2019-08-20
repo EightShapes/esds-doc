@@ -28,7 +28,6 @@ export class EsdsCodeSnippet extends LitElement {
     super();
     this.defaultClass = 'esds-code-snippet-v1';
     this.baseModifierClass = 'esds-code-snippet--';
-    this.stylesheet = 'esds-code-snippet.css';
     this.defaultSource = '<h1>Hello World</h1>';
 
     // State
@@ -41,15 +40,11 @@ export class EsdsCodeSnippet extends LitElement {
     this.source = this.defaultSource;
     this.language = 'markup';
     this.preformatted = false;
-    this.iihtml = this.iihtml || this.innerHTML;
   }
 
   connectedCallback() {
     super.connectedCallback();
-    // Stash the initial innerHTML in the actual DOM element in case the constructor gets called multiple times (like when running the Nuxt framework)
-    if (!this.getAttribute('data-initial-inner-html')) {
-      this.setAttribute('data-initial-inner-html', this.innerHTML);
-    }
+    this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
 
     this.slotContent =
       this.initialInnerHtml.trim().length > 0
@@ -62,13 +57,17 @@ export class EsdsCodeSnippet extends LitElement {
   }
 
   firstUpdated() {
-    if (this.language === 'wc-html') {
-      this.renderCompiledHTMLSource(this.source);
-    }
+    // if (this.language === 'wc-html') {
+    //   this.renderCompiledHTMLSource(this.source);
+    // }
   }
 
   get initialInnerHtml() {
     return this.getAttribute('data-initial-inner-html');
+  }
+
+  set initialInnerHtml(value) {
+    this.setAttribute('data-initial-inner-html', value);
   }
 
   beautifySource(source, language) {
@@ -171,23 +170,23 @@ export class EsdsCodeSnippet extends LitElement {
     return Prism.highlight(source, Prism.languages[language], language);
   }
 
-  parseSlottedSource(slottedSource) {
-    // rudamentary formatting
-    return slottedSource
-      .map(n => {
-        n = n.cloneNode(true); // Needed to prevent web component snippets from rendering on subsequent updates
-        if (n.outerHTML) {
-          return n.outerHTML;
-        } else {
-          let output = '';
-          if (n.textContent.trim().length > 0) {
-            output = n.textContent;
-          }
-          return output;
-        }
-      })
-      .join('\n');
-  }
+  // parseSlottedSource(slottedSource) {
+  //   // rudamentary formatting
+  //   return slottedSource
+  //     .map(n => {
+  //       n = n.cloneNode(true); // Needed to prevent web component snippets from rendering on subsequent updates
+  //       if (n.outerHTML) {
+  //         return n.outerHTML;
+  //       } else {
+  //         let output = '';
+  //         if (n.textContent.trim().length > 0) {
+  //           output = n.textContent;
+  //         }
+  //         return output;
+  //       }
+  //     })
+  //     .join('\n');
+  // }
 
   showCopiedMessage() {
     this.codeCopied = true;
@@ -213,32 +212,32 @@ export class EsdsCodeSnippet extends LitElement {
       </div>`;
   }
 
-  async renderCompiledHTMLSource(wcSource) {
-    const compiledHTMLWrapper = document.createElement('div');
-    compiledHTMLWrapper.style = 'display: none;';
-    compiledHTMLWrapper.innerHTML = wcSource;
-    document.body.appendChild(compiledHTMLWrapper);
-    const components = Array.from(compiledHTMLWrapper.childNodes).filter(
-      n => n.nodeType === Node.ELEMENT_NODE,
-    );
-    await Promise.all(components.map(async c => await c.updateComplete));
-
-    this.sources = [
-      {
-        language: 'WC',
-        source: this.source,
-      },
-      {
-        language: 'HTML',
-        source: this.cleanVueRenderingArtifacts(
-          this.cleanLitElementRenderingArtifacts(compiledHTMLWrapper.innerHTML),
-        ), // TODO: In the future may need a react/angular cleaner too
-      },
-    ];
-
-    // Remove the tmpWrapper
-    compiledHTMLWrapper.parentNode.removeChild(compiledHTMLWrapper);
-  }
+  // async renderCompiledHTMLSource(wcSource) {
+  //   const compiledHTMLWrapper = document.createElement('div');
+  //   compiledHTMLWrapper.style = 'display: none;';
+  //   compiledHTMLWrapper.innerHTML = wcSource;
+  //   document.body.appendChild(compiledHTMLWrapper);
+  //   const components = Array.from(compiledHTMLWrapper.childNodes).filter(
+  //     n => n.nodeType === Node.ELEMENT_NODE,
+  //   );
+  //   await Promise.all(components.map(async c => await c.updateComplete));
+  //
+  //   this.sources = [
+  //     {
+  //       language: 'WC',
+  //       source: this.source,
+  //     },
+  //     {
+  //       language: 'HTML',
+  //       source: this.cleanVueRenderingArtifacts(
+  //         this.cleanLitElementRenderingArtifacts(compiledHTMLWrapper.innerHTML),
+  //       ), // TODO: In the future may need a react/angular cleaner too
+  //     },
+  //   ];
+  //
+  //   // Remove the tmpWrapper
+  //   compiledHTMLWrapper.parentNode.removeChild(compiledHTMLWrapper);
+  // }
 
   renderCopyButton() {
     // Not sure why I had to use unsafeHTML here and not the html`` template literal. Without it the ${this.copyButtonText} slot content is getting lost somewhere
@@ -277,9 +276,24 @@ export class EsdsCodeSnippet extends LitElement {
     }
   }
 
+  renderTabs() {
+    return html`
+      ${unsafeHTML(
+        this.sources.map(s => {
+          const label = Object.keys(s)[0];
+          return `<a href="#">${label}</a>`;
+        }),
+      )}
+    `;
+  }
+
   renderToolbar() {
     const toolbarActions = [];
     let output = '';
+
+    if (this.sources) {
+      toolbarActions.push(this.renderTabs());
+    }
 
     if (this.copyable) {
       toolbarActions.push(this.renderCopyButton());
@@ -304,43 +318,43 @@ export class EsdsCodeSnippet extends LitElement {
       blockLevelClass += ` ${this.baseModifierClass}max-height-${this.maxHeight}`;
     }
 
-    let sources = this.sources;
-
-    // Check for wc-html language trigger
-    if (this.language === 'wc-html' && !this.sources) {
-      this.source = this.slotContent ? this.slotContent : this.source;
-
-      sources = [
-        {
-          language: 'WC',
-          source: this.source,
-        },
-      ];
-    }
-
+    // let sources = this.sources;
+    //
+    // // Check for wc-html language trigger
+    // if (this.language === 'wc-html' && !this.sources) {
+    //   this.source = this.slotContent ? this.slotContent : this.source;
+    //
+    //   sources = [
+    //     {
+    //       language: 'WC',
+    //       source: this.source,
+    //     },
+    //   ];
+    // }
+    //
     let output;
-
-    if (sources) {
-      let codeSnippets = [];
-
-      sources.forEach(s => {
-        codeSnippets.push(`
-          <esds-tab-panel label="${s.language}">
-            ${this.renderCodeSnippet(s.source, s.language, s.filename)}
-          </esds-tab-panel>
-        `);
-      });
-
-      output = `<esds-tabs tabs-class="esds-code-snippet__tabs" variant="alt">${codeSnippets}</esds-tabs>`;
-    } else {
-      // Just a single snippet to render, no tabs
-      const language = this.language === 'html' ? 'markup' : this.language;
-      let source = this.source;
-      if (source === this.defaultSource && this.slotContent) {
-        source = this.slotContent;
-      }
-      output = this.renderCodeSnippet(source, language, this.filename);
+    //
+    // if (sources) {
+    //   let codeSnippets = [];
+    //
+    //   sources.forEach(s => {
+    //     codeSnippets.push(`
+    //       <esds-tab-panel label="${s.language}">
+    //         ${this.renderCodeSnippet(s.source, s.language, s.filename)}
+    //       </esds-tab-panel>
+    //     `);
+    //   });
+    //
+    //   output = `<esds-tabs tabs-class="esds-code-snippet__tabs" variant="alt">${codeSnippets}</esds-tabs>`;
+    // } else {
+    // Just a single snippet to render, no tabs
+    const language = this.language === 'html' ? 'markup' : this.language;
+    let source = this.source;
+    if (source === this.defaultSource && this.slotContent) {
+      source = this.slotContent;
     }
+    output = this.renderCodeSnippet(source, language, this.filename);
+    // }
 
     return html`
       <div class="${blockLevelClass}">

@@ -28,11 +28,14 @@ export class EsdsExampleCodePair extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
+
+    // Move the initialInnerHtml into a new renderedExample component
     this.renderedExample = new EsdsRenderedExample();
     this.renderedExample.exampleSource = this.initialInnerHtml;
 
     this.codeSnippet = new EsdsCodeSnippet();
 
+    // After the rendered example has rendered
     this.renderedExample.updateComplete.then(() => {
       this.codeSnippet.source = this.renderedExample.renderedHtml;
     });
