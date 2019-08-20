@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- No Shadow DOM, so link directly to styles -->
+    <link rel="stylesheet" href="../../dist/esds-rendered-example.css"/>
+
+    <!-- Separate webcomponents polyfill bundle for Edge, IE11, etc. -->
+    <script type="text/javascript" src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+
+    <!-- The ESM "vanilla" version of the component for FF, Safari, Chrome and Edge -->
+    <script type="module" src="../../dist/esds-rendered-example.js"></script>
+
+    <!-- A babel-compiled version of the component for IE11 -->
+    <script nomodule type="text/javascript" src="../../dist/esds-rendered-example-legacy.js"></script>
+  </head>
+  <body>
+    <h1 class="esds-doc-sink-page-header">Basic Example</h1>
+    <esds-rendered-example>
+      <h1 style='font-size: 40px; font-style: normal; font-weight: bold; color: black; background: transparent; margin: 0;'>Hello World!</h1>
+    </esds-rendered-example>
+
+    <h1 class="esds-doc-sink-page-header">With a label</h1>
+    <esds-rendered-example label="A Basic Button">
+      <button>Super Basic</button>
+    </esds-rendered-example>
+    <!-- {{ library.html_example_list(example=library.button(text="Button Text"), label="A Basic Button") }} -->
+
+<!--
+    {{ library.html_example_list(example="<h1 style='font-size: 40px; font-style: normal; font-weight: bold; color: black; background: transparent; margin: 0;'>Hello World!</h1>") }}
+
+    <h1 class="esds-doc-sink-page-header">Passing a nunjucks macro call</h1>
+    {{ library.html_example_list(example=library.button(text="Button Text")) }}
+
+    <h1 class="esds-doc-sink-page-header">With a label</h1>
+    {{ library.html_example_list(example=library.button(text="Button Text"), label="A Basic Button") }}
+
+    <h1 class="esds-doc-sink-page-header">Multiple Examples with labels</h1>
+    {{ library.html_example_list(examples=[
+        {
+            example: library.button(text="Button Text"),
+            label: "A Basic Button"
+        },
+        {
+            example: library.button(text="Call To Action"),
+            label: "Another Button Example"
+        },
+        {
+            example: library.code_snippet(source="<h1>Hello World</h1>"),
+            label: "Code Snippet"
+        }
+    ]) }}
+
+    <h1 class="esds-doc-sink-page-header">Dark Background Modifier Class</h1>
+    {{ library.html_example_list(class="esds-doc-container--dark", example=library.button(text="Button Text")) }}
+
+   -->
+  </body>
+</html>
