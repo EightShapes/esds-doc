@@ -2,7 +2,9 @@
   "name": "@eightshapes/esds-rendered-example",
   "version": "0.1.0",
   "description": "",
-  "main": "src/esds-rendered-example.js",
+  "esnext": "src/esds-rendered-example.js",
+  "main": "dist/esds-rendered-example.js",
+  "module": "dist/esds-rendered-example-legacy.js",
   "scripts": {
     "start": "npm run watch-build | browser-sync start --watch --config browser-sync-config.js --ignore 'src/**/*'",
     "build": "npm run build-ie && npm run build-esm && npm run build-styles",

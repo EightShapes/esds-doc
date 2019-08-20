@@ -4,6 +4,10 @@
     <!-- No Shadow DOM, so link directly to styles -->
     <link rel="stylesheet" href="../../dist/esds-example-code-pair.css"/>
 
+    <!-- Enable <slot> functionality of lit-element without using ShadowDOM -->
+    <script>
+      window.ShadyDOM = { force: true };
+    </script>
     <!-- Separate webcomponents polyfill bundle for Edge, IE11, etc. -->
     <script type="text/javascript" src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 
@@ -14,8 +18,19 @@
     <script nomodule type="text/javascript" src="../../dist/esds-example-code-pair-legacy.js"></script>
   </head>
   <body>
+    <h1>Welcome to your new web component.</h1>
+    There are only three requirements to make a lit-element web component work all the way down to IE11:
+    <ol>
+      <li><code>@webcomponents/webcomponentsjs</code> is needed to enable custom elements in IE11 and Edge 18 and lower</li>
+      <li>
+        Rollup is needed because <code>esds-example-code-pair-entry.js</code> uses an import statement to pull in the EsdsExampleCodePair class from a separate file.<br/>
+        IE11 doesn't support JS imports so this rollup is needed to bundle those two files into one.<br/>
+        Rollup is also used to create a bundle for modern browsers that includes LitElement and all its dependencies.
+      </li>
+      <li>Babel is needed to compile the ES6 code down to ES5 code so IE11 will work</li>
+    </ol>
     <esds-example-code-pair>
-      <h1>Testing the coupling of these two components</h1>
+      <h1>Just Testing This</h1>
     </esds-example-code-pair>
   </body>
 </html>

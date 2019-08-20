@@ -3,15 +3,11 @@
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 
-
 export default {
   input: 'src/esds-code-snippet-entry.js',
   output: {
     file: 'dist/esds-code-snippet.js',
-    format: 'esm'
+    format: 'esm',
   },
-  plugins: [
-    resolve(),
-    commonjs(),
-  ]
+  plugins: [resolve(), commonjs()],
 };

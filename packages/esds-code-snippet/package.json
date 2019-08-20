@@ -1,8 +1,10 @@
 {
   "name": "@eightshapes/esds-code-snippet",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "",
+  "esnext": "src/esds-code-snippet.js",
   "main": "dist/esds-code-snippet.js",
+  "module": "dist/esds-code-snippet-legacy.js",
   "scripts": {
     "start": "npm run watch-build | browser-sync start --watch --config browser-sync-config.js --ignore 'src/**/*'",
     "build": "npm run build-ie && npm run build-esm && npm run build-styles",

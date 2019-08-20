@@ -1,19 +1,21 @@
 // This rollup config is used to bundle and compile a version of the component for IE11
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
+import commonjs from 'rollup-plugin-commonjs';
 
 export default {
   input: 'src/esds-example-code-pair-entry-legacy.js',
   output: {
     file: 'dist/esds-example-code-pair-legacy.js',
-    format: 'cjs'
+    format: 'cjs',
   },
   plugins: [
     resolve(),
+    commonjs(),
     babel({
       presets: [
-        ["@babel/env", {"modules": false}] // Putting this in a separate .babelrc file doesn't seem to work
+        ['@babel/env', { modules: false }], // Putting this in a separate .babelrc file doesn't seem to work
       ],
-    })
-  ]
+    }),
+  ],
 };
