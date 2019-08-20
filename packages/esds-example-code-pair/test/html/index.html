@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- No Shadow DOM, so link directly to styles -->
+    <link rel="stylesheet" href="../../dist/esds-example-code-pair.css"/>
+
+    <!-- Separate webcomponents polyfill bundle for Edge, IE11, etc. -->
+    <script type="text/javascript" src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+
+    <!-- The ESM "vanilla" version of the component for FF, Safari, Chrome and Edge -->
+    <script type="module" src="../../dist/esds-example-code-pair.js"></script>
+
+    <!-- A babel-compiled version of the component for IE11 -->
+    <script nomodule type="text/javascript" src="../../dist/esds-example-code-pair-legacy.js"></script>
+  </head>
+  <body>
+    <esds-example-code-pair>
+      <h1>Testing the coupling of these two components</h1>
+    </esds-example-code-pair>
+  </body>
+</html>
