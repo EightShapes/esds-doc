@@ -2361,6 +2361,51 @@ LitElement.render = render$1;
  * http://polymer.github.io/PATENTS.txt
  */
 const directives$1 = new WeakMap();
+/**
+ * Brands a function as a directive factory function so that lit-html will call
+ * the function during template rendering, rather than passing as a value.
+ *
+ * A _directive_ is a function that takes a Part as an argument. It has the
+ * signature: `(part: Part) => void`.
+ *
+ * A directive _factory_ is a function that takes arguments for data and
+ * configuration and returns a directive. Users of directive usually refer to
+ * the directive factory as the directive. For example, "The repeat directive".
+ *
+ * Usually a template author will invoke a directive factory in their template
+ * with relevant arguments, which will then return a directive function.
+ *
+ * Here's an example of using the `repeat()` directive factory that takes an
+ * array and a function to render an item:
+ *
+ * ```js
+ * html`<ul><${repeat(items, (item) => html`<li>${item}</li>`)}</ul>`
+ * ```
+ *
+ * When `repeat` is invoked, it returns a directive function that closes over
+ * `items` and the template function. When the outer template is rendered, the
+ * return directive function is called with the Part for the expression.
+ * `repeat` then performs it's custom logic to render multiple items.
+ *
+ * @param f The directive factory function. Must be a function that returns a
+ * function of the signature `(part: Part) => void`. The returned function will
+ * be called with the part object.
+ *
+ * @example
+ *
+ * import {directive, html} from 'lit-html';
+ *
+ * const immutable = directive((v) => (part) => {
+ *   if (part.value !== v) {
+ *     part.setValue(v)
+ *   }
+ * });
+ */
+const directive = (f) => ((...args) => {
+    const d = f(...args);
+    directives$1.set(d, true);
+    return d;
+});
 const isDirective$1 = (o) => {
     return typeof o === 'function' && directives$1.has(o);
 };
@@ -4696,6 +4741,49 @@ LitElement$1['finalized'] = true;
 LitElement$1.render = render$3;
 //# sourceMappingURL=lit-element.js.map
 
+/**
+ * @license
+ * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
+ * This code may only be used under the BSD style license found at
+ * http://polymer.github.io/LICENSE.txt
+ * The complete set of authors may be found at
+ * http://polymer.github.io/AUTHORS.txt
+ * The complete set of contributors may be found at
+ * http://polymer.github.io/CONTRIBUTORS.txt
+ * Code distributed by Google as part of the polymer project is also
+ * subject to an additional IP rights grant found at
+ * http://polymer.github.io/PATENTS.txt
+ */
+// For each part, remember the value that was last rendered to the part by the
+// unsafeHTML directive, and the DocumentFragment that was last set as a value.
+// The DocumentFragment is used as a unique key to check if the last value
+// rendered to the part was with unsafeHTML. If not, we'll always re-render the
+// value passed to unsafeHTML.
+const previousValues = new WeakMap();
+/**
+ * Renders the result as HTML, rather than text.
+ *
+ * Note, this is unsafe to use with any user-provided input that hasn't been
+ * sanitized or escaped, as it may lead to cross-site-scripting
+ * vulnerabilities.
+ */
+const unsafeHTML = directive((value) => (part) => {
+    if (!(part instanceof NodePart$1)) {
+        throw new Error('unsafeHTML can only be used in text bindings');
+    }
+    const previousValue = previousValues.get(part);
+    if (previousValue !== undefined && isPrimitive$1(value) &&
+        value === previousValue.value && part.value === previousValue.fragment) {
+        return;
+    }
+    const template = document.createElement('template');
+    template.innerHTML = value; // innerHTML casts to string internally
+    const fragment = document.importNode(template.content, true);
+    part.setValue(fragment);
+    previousValues.set(part, { value, fragment });
+});
+//# sourceMappingURL=unsafe-html.js.map
+
 const Slotify = superclass =>
   class extends superclass {
     constructor() {
@@ -4873,13 +4961,28 @@ class EsdsRenderedExample extends Slotify(LitElement$1) {
   static get properties() {
     return {
       label: { type: String },
+      exampleSource: { type: String, attribute: 'example-source' },
     };
+  }
+
+  get renderedHtml() {
+    const assignedSlotContent = this.querySelector(
+      's-assigned-wrapper',
+    ).innerHTML.trim();
+    const fallbackSlotContent = this.querySelector(
+      's-fallback-wrapper',
+    ).innerHTML.trim();
+    if (assignedSlotContent.length > 0) {
+      return assignedSlotContent;
+    } else {
+      return fallbackSlotContent;
+    }
   }
 
   render() {
     return html$1`
       <div class="esds-rendered-example">
-        <s-slot></s-slot>
+        <s-slot>${unsafeHTML(this.exampleSource)}</s-slot>
         ${this.label
           ? html$1`
               <span class="esds-rendered-example__label">${this.label}</span>
@@ -10942,6 +11045,29 @@ var js = javascript;
 var css$1 = css;
 var html$3 = style_html$1;
 
+var minIndent = str => {
+	const match = str.match(/^[ \t]*(?=\S)/gm);
+
+	if (!match) {
+		return 0;
+	}
+
+	// TODO: Use spread operator when targeting Node.js 6
+	return Math.min.apply(Math, match.map(x => x.length));
+};
+
+var stripIndent = string => {
+	const indent = minIndent(string);
+
+	if (indent === 0) {
+		return string;
+	}
+
+	const regex = new RegExp(`^[ \\t]{${indent}}`, 'gm');
+
+	return string.replace(regex, '');
+};
+
 /**
  * @license
  * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
@@ -10996,7 +11122,7 @@ const directives$3 = new WeakMap();
  *   }
  * });
  */
-const directive = (f) => ((...args) => {
+const directive$1 = (f) => ((...args) => {
     const d = f(...args);
     directives$3.set(d, true);
     return d;
@@ -13354,7 +13480,7 @@ LitElement$2.render = render$5;
 // The DocumentFragment is used as a unique key to check if the last value
 // rendered to the part was with unsafeHTML. If not, we'll always re-render the
 // value passed to unsafeHTML.
-const previousValues = new WeakMap();
+const previousValues$1 = new WeakMap();
 /**
  * Renders the result as HTML, rather than text.
  *
@@ -13362,11 +13488,11 @@ const previousValues = new WeakMap();
  * sanitized or escaped, as it may lead to cross-site-scripting
  * vulnerabilities.
  */
-const unsafeHTML = directive((value) => (part) => {
+const unsafeHTML$1 = directive$1((value) => (part) => {
     if (!(part instanceof NodePart$2)) {
         throw new Error('unsafeHTML can only be used in text bindings');
     }
-    const previousValue = previousValues.get(part);
+    const previousValue = previousValues$1.get(part);
     if (previousValue !== undefined && isPrimitive$2(value) &&
         value === previousValue.value && part.value === previousValue.fragment) {
         return;
@@ -13375,7 +13501,7 @@ const unsafeHTML = directive((value) => (part) => {
     template.innerHTML = value; // innerHTML casts to string internally
     const fragment = document.importNode(template.content, true);
     part.setValue(fragment);
-    previousValues.set(part, { value, fragment });
+    previousValues$1.set(part, { value, fragment });
 });
 //# sourceMappingURL=unsafe-html.js.map
 
@@ -13462,33 +13588,33 @@ class EsdsCodeSnippet extends LitElement$2 {
 
   cleanLitElementRenderingArtifacts(source) {
     // Given a string of HTML rendered from lit element, strip out the lit element bits and pieces
-    const tmpWrapper = document.createElement('div');
-    tmpWrapper.innerHTML = source
-      .replace(/<!---->/g, '')
-      .replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
-    const linkTags = tmpWrapper.querySelectorAll('link');
-    linkTags.forEach(l => l.parentNode.removeChild(l));
-
-    const hostElements = Array.from(tmpWrapper.childNodes).filter(
-      n => n.nodeType === Node.ELEMENT_NODE,
-    ); // Get the hostElement which will contain the compiled/slotified component
-    const scopedStyleElements = tmpWrapper.querySelectorAll('.style-scope');
-    scopedStyleElements.forEach(e => e.classList.remove('style-scope'));
-
-    let cleanedHTML;
-    if (hostElements.length > 1) {
-      cleanedHTML = hostElements.reduce((string, he) => {
-        return string.innerHTML + he.innerHTML;
-      });
-    } else {
-      cleanedHTML = hostElements[0].innerHTML;
-    }
-    return cleanedHTML;
+    // const tmpWrapper = document.createElement('div');
+    // tmpWrapper.innerHTML = source
+    //   .replace(/<!---->/g, '')
+    //   .replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
+    // const linkTags = tmpWrapper.querySelectorAll('link');
+    // linkTags.forEach(l => l.parentNode.removeChild(l));
+    //
+    // const hostElements = Array.from(tmpWrapper.childNodes).filter(
+    //   n => n.nodeType === Node.ELEMENT_NODE,
+    // ); // Get the hostElement which will contain the compiled/slotified component
+    // const scopedStyleElements = tmpWrapper.querySelectorAll('.style-scope');
+    // scopedStyleElements.forEach(e => e.classList.remove('style-scope'));
+    //
+    // let cleanedHTML;
+    // if (hostElements.length > 1) {
+    //   cleanedHTML = hostElements.reduce((string, he) => {
+    //     return string.innerHTML + he.innerHTML;
+    //   });
+    // } else {
+    //   cleanedHTML = hostElements[0].innerHTML;
+    // }
+    // return cleanedHTML;
+    return source.replace(/<!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
   }
 
   cleanVueRenderingArtifacts(source) {
     // Given a string of HTML rendered from vue, strip out the vue bits and pieces
-    console.log(source);
     return source.replace(/data-v-.[A-Za-z0-9]*=.*?"[^"]*"/gm, ''); // Strip Vue data attributes;
   }
 
@@ -13563,7 +13689,11 @@ class EsdsCodeSnippet extends LitElement$2 {
 
   renderCodeSnippet(source, language, filename) {
     source = this.formatSource(
-      this.cleanVueRenderingArtifacts(source),
+      stripIndent(
+        this.cleanLitElementRenderingArtifacts(
+          this.cleanVueRenderingArtifacts(source),
+        ),
+      ),
       language,
     );
 
@@ -13705,7 +13835,7 @@ class EsdsCodeSnippet extends LitElement$2 {
 
     return html$4`
       <div class="${blockLevelClass}">
-        ${this.renderToolbar()} ${unsafeHTML(output)}
+        ${this.renderToolbar()} ${unsafeHTML$1(output)}
       </div>
     `;
   }
@@ -13726,7 +13856,25 @@ class EsdsExampleCodePair extends LitElement {
       window.customElements.define('esds-ecpair-code-snippet', EsdsCodeSnippet);
     }
 
+    this.codeSnippetSrc = '';
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
     this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
+    this.renderedExample = new EsdsRenderedExample();
+    this.renderedExample.exampleSource = this.initialInnerHtml;
+    console.log(this.initialInnerHtml);
+
+    this.codeSnippet = new EsdsCodeSnippet();
+
+    this.renderedExample.updateComplete.then(() => {
+      this.codeSnippet.source = this.renderedExample.renderedHtml;
+    });
+  }
+
+  createRenderRoot() {
+    return this;
   }
 
   get initialInnerHtml() {
@@ -13734,19 +13882,13 @@ class EsdsExampleCodePair extends LitElement {
   }
 
   set initialInnerHtml(value) {
-    this.updateComplete.then(() => {
-      this.setAttribute('data-initial-inner-html', value);
-      this.requestUpdate();
-    });
+    this.setAttribute('data-initial-inner-html', value);
   }
 
   render() {
     return html`
       <div class="esds-example-code-pair">
-        <esds-ecpair-rendered-example label="namespace fo sho">
-          ${this.initialInnerHtml}
-        </esds-ecpair-rendered-example>
-        <esds-ecpair-code-snippet source=${this.initialInnerHtml}></esds-ecpair-code-snippet>
+        ${this.renderedExample} ${this.codeSnippet}
       </div>
     `;
   }

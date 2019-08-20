@@ -4,6 +4,7 @@ import {
   css as cssBeautify,
   html as htmlBeautify,
 } from 'js-beautify/js/src/index.js';
+import stripIndent from 'strip-indent';
 import { LitElement, html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
@@ -90,33 +91,33 @@ export class EsdsCodeSnippet extends LitElement {
 
   cleanLitElementRenderingArtifacts(source) {
     // Given a string of HTML rendered from lit element, strip out the lit element bits and pieces
-    const tmpWrapper = document.createElement('div');
-    tmpWrapper.innerHTML = source
-      .replace(/<!---->/g, '')
-      .replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
-    const linkTags = tmpWrapper.querySelectorAll('link');
-    linkTags.forEach(l => l.parentNode.removeChild(l));
-
-    const hostElements = Array.from(tmpWrapper.childNodes).filter(
-      n => n.nodeType === Node.ELEMENT_NODE,
-    ); // Get the hostElement which will contain the compiled/slotified component
-    const scopedStyleElements = tmpWrapper.querySelectorAll('.style-scope');
-    scopedStyleElements.forEach(e => e.classList.remove('style-scope'));
-
-    let cleanedHTML;
-    if (hostElements.length > 1) {
-      cleanedHTML = hostElements.reduce((string, he) => {
-        return string.innerHTML + he.innerHTML;
-      });
-    } else {
-      cleanedHTML = hostElements[0].innerHTML;
-    }
-    return cleanedHTML;
+    // const tmpWrapper = document.createElement('div');
+    // tmpWrapper.innerHTML = source
+    //   .replace(/<!---->/g, '')
+    //   .replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
+    // const linkTags = tmpWrapper.querySelectorAll('link');
+    // linkTags.forEach(l => l.parentNode.removeChild(l));
+    //
+    // const hostElements = Array.from(tmpWrapper.childNodes).filter(
+    //   n => n.nodeType === Node.ELEMENT_NODE,
+    // ); // Get the hostElement which will contain the compiled/slotified component
+    // const scopedStyleElements = tmpWrapper.querySelectorAll('.style-scope');
+    // scopedStyleElements.forEach(e => e.classList.remove('style-scope'));
+    //
+    // let cleanedHTML;
+    // if (hostElements.length > 1) {
+    //   cleanedHTML = hostElements.reduce((string, he) => {
+    //     return string.innerHTML + he.innerHTML;
+    //   });
+    // } else {
+    //   cleanedHTML = hostElements[0].innerHTML;
+    // }
+    // return cleanedHTML;
+    return source.replace(/<!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
   }
 
   cleanVueRenderingArtifacts(source) {
     // Given a string of HTML rendered from vue, strip out the vue bits and pieces
-    console.log(source);
     return source.replace(/data-v-.[A-Za-z0-9]*=.*?"[^"]*"/gm, ''); // Strip Vue data attributes;
   }
 
@@ -191,7 +192,11 @@ export class EsdsCodeSnippet extends LitElement {
 
   renderCodeSnippet(source, language, filename) {
     source = this.formatSource(
-      this.cleanVueRenderingArtifacts(source),
+      stripIndent(
+        this.cleanLitElementRenderingArtifacts(
+          this.cleanVueRenderingArtifacts(source),
+        ),
+      ),
       language,
     );
 

@@ -17,7 +17,25 @@ export class EsdsExampleCodePair extends LitElement {
       window.customElements.define('esds-ecpair-code-snippet', EsdsCodeSnippet);
     }
 
+    this.codeSnippetSrc = '';
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
     this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
+    this.renderedExample = new EsdsRenderedExample();
+    this.renderedExample.exampleSource = this.initialInnerHtml;
+    console.log(this.initialInnerHtml);
+
+    this.codeSnippet = new EsdsCodeSnippet();
+
+    this.renderedExample.updateComplete.then(() => {
+      this.codeSnippet.source = this.renderedExample.renderedHtml;
+    });
+  }
+
+  createRenderRoot() {
+    return this;
   }
 
   get initialInnerHtml() {
@@ -25,19 +43,13 @@ export class EsdsExampleCodePair extends LitElement {
   }
 
   set initialInnerHtml(value) {
-    this.updateComplete.then(() => {
-      this.setAttribute('data-initial-inner-html', value);
-      this.requestUpdate();
-    });
+    this.setAttribute('data-initial-inner-html', value);
   }
 
   render() {
     return html`
       <div class="esds-example-code-pair">
-        <esds-ecpair-rendered-example label="namespace fo sho">
-          ${this.initialInnerHtml}
-        </esds-ecpair-rendered-example>
-        <esds-ecpair-code-snippet source=${this.initialInnerHtml}></esds-ecpair-code-snippet>
+        ${this.renderedExample} ${this.codeSnippet}
       </div>
     `;
   }

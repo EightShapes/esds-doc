@@ -3933,6 +3933,54 @@ LitElement.render = render$1;
  * http://polymer.github.io/PATENTS.txt
  */
 var directives$1 = new WeakMap();
+/**
+ * Brands a function as a directive factory function so that lit-html will call
+ * the function during template rendering, rather than passing as a value.
+ *
+ * A _directive_ is a function that takes a Part as an argument. It has the
+ * signature: `(part: Part) => void`.
+ *
+ * A directive _factory_ is a function that takes arguments for data and
+ * configuration and returns a directive. Users of directive usually refer to
+ * the directive factory as the directive. For example, "The repeat directive".
+ *
+ * Usually a template author will invoke a directive factory in their template
+ * with relevant arguments, which will then return a directive function.
+ *
+ * Here's an example of using the `repeat()` directive factory that takes an
+ * array and a function to render an item:
+ *
+ * ```js
+ * html`<ul><${repeat(items, (item) => html`<li>${item}</li>`)}</ul>`
+ * ```
+ *
+ * When `repeat` is invoked, it returns a directive function that closes over
+ * `items` and the template function. When the outer template is rendered, the
+ * return directive function is called with the Part for the expression.
+ * `repeat` then performs it's custom logic to render multiple items.
+ *
+ * @param f The directive factory function. Must be a function that returns a
+ * function of the signature `(part: Part) => void`. The returned function will
+ * be called with the part object.
+ *
+ * @example
+ *
+ * import {directive, html} from 'lit-html';
+ *
+ * const immutable = directive((v) => (part) => {
+ *   if (part.value !== v) {
+ *     part.setValue(v)
+ *   }
+ * });
+ */
+
+var directive = function directive(f) {
+  return function () {
+    var d = f.apply(void 0, arguments);
+    directives$1.set(d, true);
+    return d;
+  };
+};
 var isDirective$1 = function isDirective(o) {
   return typeof o === 'function' && directives$1.has(o);
 };
@@ -6876,6 +6924,57 @@ LitElement$1['finalized'] = true;
 
 LitElement$1.render = render$3;
 
+/**
+ * @license
+ * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
+ * This code may only be used under the BSD style license found at
+ * http://polymer.github.io/LICENSE.txt
+ * The complete set of authors may be found at
+ * http://polymer.github.io/AUTHORS.txt
+ * The complete set of contributors may be found at
+ * http://polymer.github.io/CONTRIBUTORS.txt
+ * Code distributed by Google as part of the polymer project is also
+ * subject to an additional IP rights grant found at
+ * http://polymer.github.io/PATENTS.txt
+ */
+// unsafeHTML directive, and the DocumentFragment that was last set as a value.
+// The DocumentFragment is used as a unique key to check if the last value
+// rendered to the part was with unsafeHTML. If not, we'll always re-render the
+// value passed to unsafeHTML.
+
+var previousValues = new WeakMap();
+/**
+ * Renders the result as HTML, rather than text.
+ *
+ * Note, this is unsafe to use with any user-provided input that hasn't been
+ * sanitized or escaped, as it may lead to cross-site-scripting
+ * vulnerabilities.
+ */
+
+var unsafeHTML = directive(function (value) {
+  return function (part) {
+    if (!(part instanceof NodePart$1)) {
+      throw new Error('unsafeHTML can only be used in text bindings');
+    }
+
+    var previousValue = previousValues.get(part);
+
+    if (previousValue !== undefined && isPrimitive$1(value) && value === previousValue.value && part.value === previousValue.fragment) {
+      return;
+    }
+
+    var template = document.createElement('template');
+    template.innerHTML = value; // innerHTML casts to string internally
+
+    var fragment = document.importNode(template.content, true);
+    part.setValue(fragment);
+    previousValues.set(part, {
+      value: value,
+      fragment: fragment
+    });
+  };
+});
+
 var Slotify = function Slotify(superclass) {
   return (
     /*#__PURE__*/
@@ -7127,7 +7226,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n      <div class=\"esds-rendered-example\">\n        <s-slot></s-slot>\n        ", "\n      </div>\n    "]);
+  var data = _taggedTemplateLiteral(["\n      <div class=\"esds-rendered-example\">\n        <s-slot>", "</s-slot>\n        ", "\n      </div>\n    "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -7149,7 +7248,19 @@ function (_Slotify) {
   _createClass(EsdsRenderedExample, [{
     key: "render",
     value: function render() {
-      return html$1(_templateObject(), this.label ? html$1(_templateObject2(), this.label) : '');
+      return html$1(_templateObject(), unsafeHTML(this.exampleSource), this.label ? html$1(_templateObject2(), this.label) : '');
+    }
+  }, {
+    key: "renderedHtml",
+    get: function get() {
+      var assignedSlotContent = this.querySelector('s-assigned-wrapper').innerHTML.trim();
+      var fallbackSlotContent = this.querySelector('s-fallback-wrapper').innerHTML.trim();
+
+      if (assignedSlotContent.length > 0) {
+        return assignedSlotContent;
+      } else {
+        return fallbackSlotContent;
+      }
     }
   }], [{
     key: "properties",
@@ -7157,6 +7268,10 @@ function (_Slotify) {
       return {
         label: {
           type: String
+        },
+        exampleSource: {
+          type: String,
+          attribute: 'example-source'
         }
       };
     }
@@ -13182,6 +13297,30 @@ var js = javascript;
 var css$1 = css;
 var html$3 = style_html$1;
 
+var minIndent = function minIndent(str) {
+  var match = str.match(/^[ \t]*(?=\S)/gm);
+
+  if (!match) {
+    return 0;
+  } // TODO: Use spread operator when targeting Node.js 6
+
+
+  return Math.min.apply(Math, match.map(function (x) {
+    return x.length;
+  }));
+};
+
+var stripIndent = function stripIndent(string) {
+  var indent = minIndent(string);
+
+  if (indent === 0) {
+    return string;
+  }
+
+  var regex = new RegExp("^[ \\t]{".concat(indent, "}"), 'gm');
+  return string.replace(regex, '');
+};
+
 /**
  * @license
  * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
@@ -13237,7 +13376,7 @@ var directives$3 = new WeakMap();
  * });
  */
 
-var directive = function directive(f) {
+var directive$1 = function directive(f) {
   return function () {
     var d = f.apply(void 0, arguments);
     directives$3.set(d, true);
@@ -16205,7 +16344,7 @@ LitElement$2.render = render$5;
 // rendered to the part was with unsafeHTML. If not, we'll always re-render the
 // value passed to unsafeHTML.
 
-var previousValues = new WeakMap();
+var previousValues$1 = new WeakMap();
 /**
  * Renders the result as HTML, rather than text.
  *
@@ -16214,13 +16353,13 @@ var previousValues = new WeakMap();
  * vulnerabilities.
  */
 
-var unsafeHTML = directive(function (value) {
+var unsafeHTML$1 = directive$1(function (value) {
   return function (part) {
     if (!(part instanceof NodePart$2)) {
       throw new Error('unsafeHTML can only be used in text bindings');
     }
 
-    var previousValue = previousValues.get(part);
+    var previousValue = previousValues$1.get(part);
 
     if (previousValue !== undefined && isPrimitive$2(value) && value === previousValue.value && part.value === previousValue.fragment) {
       return;
@@ -16231,7 +16370,7 @@ var unsafeHTML = directive(function (value) {
 
     var fragment = document.importNode(template.content, true);
     part.setValue(fragment);
-    previousValues.set(part, {
+    previousValues$1.set(part, {
       value: value,
       fragment: fragment
     });
@@ -16396,38 +16535,34 @@ function (_LitElement) {
     key: "cleanLitElementRenderingArtifacts",
     value: function cleanLitElementRenderingArtifacts(source) {
       // Given a string of HTML rendered from lit element, strip out the lit element bits and pieces
-      var tmpWrapper = document.createElement('div');
-      tmpWrapper.innerHTML = source.replace(/<!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
-
-      var linkTags = tmpWrapper.querySelectorAll('link');
-      linkTags.forEach(function (l) {
-        return l.parentNode.removeChild(l);
-      });
-      var hostElements = Array.from(tmpWrapper.childNodes).filter(function (n) {
-        return n.nodeType === Node.ELEMENT_NODE;
-      }); // Get the hostElement which will contain the compiled/slotified component
-
-      var scopedStyleElements = tmpWrapper.querySelectorAll('.style-scope');
-      scopedStyleElements.forEach(function (e) {
-        return e.classList.remove('style-scope');
-      });
-      var cleanedHTML;
-
-      if (hostElements.length > 1) {
-        cleanedHTML = hostElements.reduce(function (string, he) {
-          return string.innerHTML + he.innerHTML;
-        });
-      } else {
-        cleanedHTML = hostElements[0].innerHTML;
-      }
-
-      return cleanedHTML;
+      // const tmpWrapper = document.createElement('div');
+      // tmpWrapper.innerHTML = source
+      //   .replace(/<!---->/g, '')
+      //   .replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
+      // const linkTags = tmpWrapper.querySelectorAll('link');
+      // linkTags.forEach(l => l.parentNode.removeChild(l));
+      //
+      // const hostElements = Array.from(tmpWrapper.childNodes).filter(
+      //   n => n.nodeType === Node.ELEMENT_NODE,
+      // ); // Get the hostElement which will contain the compiled/slotified component
+      // const scopedStyleElements = tmpWrapper.querySelectorAll('.style-scope');
+      // scopedStyleElements.forEach(e => e.classList.remove('style-scope'));
+      //
+      // let cleanedHTML;
+      // if (hostElements.length > 1) {
+      //   cleanedHTML = hostElements.reduce((string, he) => {
+      //     return string.innerHTML + he.innerHTML;
+      //   });
+      // } else {
+      //   cleanedHTML = hostElements[0].innerHTML;
+      // }
+      // return cleanedHTML;
+      return source.replace(/<!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
     }
   }, {
     key: "cleanVueRenderingArtifacts",
     value: function cleanVueRenderingArtifacts(source) {
       // Given a string of HTML rendered from vue, strip out the vue bits and pieces
-      console.log(source);
       return source.replace(/data-v-.[A-Za-z0-9]*=.*?"[^"]*"/gm, ''); // Strip Vue data attributes;
     }
   }, {
@@ -16507,7 +16642,7 @@ function (_LitElement) {
   }, {
     key: "renderCodeSnippet",
     value: function renderCodeSnippet(source, language, filename) {
-      source = this.formatSource(this.cleanVueRenderingArtifacts(source), language);
+      source = this.formatSource(stripIndent(this.cleanLitElementRenderingArtifacts(this.cleanVueRenderingArtifacts(source))), language);
       return "\n      <div class=\"esds-code-snippet__source\">\n        ".concat(this.renderFilename(filename), "\n        <pre class=\"esds-code-snippet__pre\"><code>").concat(source, "</code></pre>\n      </div>");
     }
   }, {
@@ -16666,7 +16801,7 @@ function (_LitElement) {
         output = this.renderCodeSnippet(source, language, this.filename);
       }
 
-      return html$4(_templateObject4(), blockLevelClass, this.renderToolbar(), unsafeHTML(output));
+      return html$4(_templateObject4(), blockLevelClass, this.renderToolbar(), unsafeHTML$1(output));
     }
   }, {
     key: "initialInnerHtml",
@@ -16679,7 +16814,7 @@ function (_LitElement) {
 }(LitElement$2);
 
 function _templateObject$2() {
-  var data = _taggedTemplateLiteral(["\n      <div class=\"esds-example-code-pair\">\n        <esds-ecpair-rendered-example label=\"namespace fo sho\">\n          ", "\n        </esds-ecpair-rendered-example>\n        <esds-ecpair-code-snippet source=", "></esds-ecpair-code-snippet>\n      </div>\n    "]);
+  var data = _taggedTemplateLiteral(["\n      <div class=\"esds-example-code-pair\">\n        ", " ", "\n      </div>\n    "]);
 
   _templateObject$2 = function _templateObject() {
     return data;
@@ -16708,14 +16843,35 @@ function (_LitElement) {
       window.customElements.define('esds-ecpair-code-snippet', EsdsCodeSnippet);
     }
 
-    _this.initialInnerHtml = _this.initialInnerHtml || _this.innerHTML;
+    _this.codeSnippetSrc = '';
     return _this;
   }
 
   _createClass(EsdsExampleCodePair, [{
+    key: "connectedCallback",
+    value: function connectedCallback() {
+      var _this2 = this;
+
+      _get(_getPrototypeOf(EsdsExampleCodePair.prototype), "connectedCallback", this).call(this);
+
+      this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
+      this.renderedExample = new EsdsRenderedExample();
+      this.renderedExample.exampleSource = this.initialInnerHtml;
+      console.log(this.initialInnerHtml);
+      this.codeSnippet = new EsdsCodeSnippet();
+      this.renderedExample.updateComplete.then(function () {
+        _this2.codeSnippet.source = _this2.renderedExample.renderedHtml;
+      });
+    }
+  }, {
+    key: "createRenderRoot",
+    value: function createRenderRoot() {
+      return this;
+    }
+  }, {
     key: "render",
     value: function render() {
-      return html(_templateObject$2(), this.initialInnerHtml, this.initialInnerHtml);
+      return html(_templateObject$2(), this.renderedExample, this.codeSnippet);
     }
   }, {
     key: "initialInnerHtml",
@@ -16723,13 +16879,7 @@ function (_LitElement) {
       return this.getAttribute('data-initial-inner-html');
     },
     set: function set(value) {
-      var _this2 = this;
-
-      this.updateComplete.then(function () {
-        _this2.setAttribute('data-initial-inner-html', value);
-
-        _this2.requestUpdate();
-      });
+      this.setAttribute('data-initial-inner-html', value);
     }
   }]);
 
