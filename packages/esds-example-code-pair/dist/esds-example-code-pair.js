@@ -13613,6 +13613,10 @@ class EsdsCodeSnippet extends LitElement$2 {
     return source.replace(/<!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
   }
 
+  cleanShadyDomRenderingArtifacts(source) {
+    return source.replace(/style-scope /gm, '');
+  }
+
   cleanVueRenderingArtifacts(source) {
     // Given a string of HTML rendered from vue, strip out the vue bits and pieces
     return source.replace(/data-v-.[A-Za-z0-9]*=.*?"[^"]*"/gm, ''); // Strip Vue data attributes;
@@ -13690,8 +13694,10 @@ class EsdsCodeSnippet extends LitElement$2 {
   renderCodeSnippet(source, language, filename) {
     source = this.formatSource(
       stripIndent(
-        this.cleanLitElementRenderingArtifacts(
-          this.cleanVueRenderingArtifacts(source),
+        this.cleanShadyDomRenderingArtifacts(
+          this.cleanLitElementRenderingArtifacts(
+            this.cleanVueRenderingArtifacts(source),
+          ),
         ),
       ),
       language,
@@ -13842,6 +13848,11 @@ class EsdsCodeSnippet extends LitElement$2 {
 }
 
 class EsdsExampleCodePair extends LitElement {
+  static get properties() {
+    return {
+      // vueAppName: { type: String, attribute: 'vue-app-name' },
+    };
+  }
   constructor() {
     super();
     // Alias EsdsRenderedExample for usage within this component
@@ -13864,7 +13875,6 @@ class EsdsExampleCodePair extends LitElement {
     this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
     this.renderedExample = new EsdsRenderedExample();
     this.renderedExample.exampleSource = this.initialInnerHtml;
-    console.log(this.initialInnerHtml);
 
     this.codeSnippet = new EsdsCodeSnippet();
 

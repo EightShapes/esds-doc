@@ -16560,6 +16560,11 @@ function (_LitElement) {
       return source.replace(/<!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
     }
   }, {
+    key: "cleanShadyDomRenderingArtifacts",
+    value: function cleanShadyDomRenderingArtifacts(source) {
+      return source.replace(/style-scope /gm, '');
+    }
+  }, {
     key: "cleanVueRenderingArtifacts",
     value: function cleanVueRenderingArtifacts(source) {
       // Given a string of HTML rendered from vue, strip out the vue bits and pieces
@@ -16642,7 +16647,7 @@ function (_LitElement) {
   }, {
     key: "renderCodeSnippet",
     value: function renderCodeSnippet(source, language, filename) {
-      source = this.formatSource(stripIndent(this.cleanLitElementRenderingArtifacts(this.cleanVueRenderingArtifacts(source))), language);
+      source = this.formatSource(stripIndent(this.cleanShadyDomRenderingArtifacts(this.cleanLitElementRenderingArtifacts(this.cleanVueRenderingArtifacts(source)))), language);
       return "\n      <div class=\"esds-code-snippet__source\">\n        ".concat(this.renderFilename(filename), "\n        <pre class=\"esds-code-snippet__pre\"><code>").concat(source, "</code></pre>\n      </div>");
     }
   }, {
@@ -16827,6 +16832,14 @@ var EsdsExampleCodePair =
 function (_LitElement) {
   _inherits(EsdsExampleCodePair, _LitElement);
 
+  _createClass(EsdsExampleCodePair, null, [{
+    key: "properties",
+    get: function get() {
+      return {// vueAppName: { type: String, attribute: 'vue-app-name' },
+      };
+    }
+  }]);
+
   function EsdsExampleCodePair() {
     var _this;
 
@@ -16857,7 +16870,6 @@ function (_LitElement) {
       this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
       this.renderedExample = new EsdsRenderedExample();
       this.renderedExample.exampleSource = this.initialInnerHtml;
-      console.log(this.initialInnerHtml);
       this.codeSnippet = new EsdsCodeSnippet();
       this.renderedExample.updateComplete.then(function () {
         _this2.codeSnippet.source = _this2.renderedExample.renderedHtml;

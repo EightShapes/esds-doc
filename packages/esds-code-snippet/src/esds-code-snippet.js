@@ -116,6 +116,10 @@ export class EsdsCodeSnippet extends LitElement {
     return source.replace(/<!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
   }
 
+  cleanShadyDomRenderingArtifacts(source) {
+    return source.replace(/style-scope /gm, '');
+  }
+
   cleanVueRenderingArtifacts(source) {
     // Given a string of HTML rendered from vue, strip out the vue bits and pieces
     return source.replace(/data-v-.[A-Za-z0-9]*=.*?"[^"]*"/gm, ''); // Strip Vue data attributes;
@@ -193,8 +197,10 @@ export class EsdsCodeSnippet extends LitElement {
   renderCodeSnippet(source, language, filename) {
     source = this.formatSource(
       stripIndent(
-        this.cleanLitElementRenderingArtifacts(
-          this.cleanVueRenderingArtifacts(source),
+        this.cleanShadyDomRenderingArtifacts(
+          this.cleanLitElementRenderingArtifacts(
+            this.cleanVueRenderingArtifacts(source),
+          ),
         ),
       ),
       language,

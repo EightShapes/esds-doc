@@ -3,6 +3,11 @@ import { EsdsRenderedExample } from '@eightshapes/esds-rendered-example/src/esds
 import { EsdsCodeSnippet } from '@eightshapes/esds-code-snippet/src/esds-code-snippet.js';
 
 export class EsdsExampleCodePair extends LitElement {
+  static get properties() {
+    return {
+      // vueAppName: { type: String, attribute: 'vue-app-name' },
+    };
+  }
   constructor() {
     super();
     // Alias EsdsRenderedExample for usage within this component
@@ -25,7 +30,6 @@ export class EsdsExampleCodePair extends LitElement {
     this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
     this.renderedExample = new EsdsRenderedExample();
     this.renderedExample.exampleSource = this.initialInnerHtml;
-    console.log(this.initialInnerHtml);
 
     this.codeSnippet = new EsdsCodeSnippet();
 
