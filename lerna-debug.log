@@ -1,0 +1,6 @@
+55 warn complete Waiting for 2 child processes to exit. CTRL-C to exit immediately.
+56 error Error: Command failed: git tag @eightshapes/esds-example-code-pair@0.1.1 -m @eightshapes/esds-example-code-pair@0.1.1
+56 error fatal: tag '@eightshapes/esds-example-code-pair@0.1.1' already exists
+56 error
+56 error     at makeError (/usr/local/lib/node_modules/lerna/node_modules/execa/index.js:174:9)
+56 error     at Promise.all.then.arr (/usr/local/lib/node_modules/lerna/node_modules/execa/index.js:278:16)
