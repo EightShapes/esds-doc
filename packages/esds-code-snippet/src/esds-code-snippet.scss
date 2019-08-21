@@ -178,6 +178,16 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
   .esds-code-snippet__tabset {
     margin-right: auto;
   }
+
+  .esds-code-snippet__tab {
+    border-bottom: solid 4px transparent;
+    cursor: pointer;
+    padding: $esds-space-inset-squish-1-x;
+
+    &.esds-code-snippet__tab--selected {
+      border-bottom-color: $esds-text-color-link-on-white;
+    }
+  }
 } // End of .esds-code-snippet-v1
 
 @keyframes esds-code-snippet-fade-in-out-v1 {

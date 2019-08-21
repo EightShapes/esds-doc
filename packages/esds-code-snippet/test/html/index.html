@@ -16,12 +16,12 @@
   <body>
     <h1>ESDS Code Snippet Test Pages</h1>
 
-    <!-- <esds-code-snippet>
+    <esds-code-snippet>
       <h1>Basic Code Snippet</h1>
-    </esds-code-snippet> -->
+    </esds-code-snippet>
 
     <esds-code-snippet sources='[{"tabLabel": "Vue", "source": "<app-header>Hello World</app-header>"},{"tabLabel": "HTML", "source": "<h1>Hello World</h1>"}]'></esds-code-snippet>
-<!--
+
     <esds-code-snippet>
       <div class="this-is-my-image-wrap">
           <div class="nested-another-level">
@@ -194,20 +194,20 @@
     </esds-code-snippet>
 
     <esds-code-snippet sources='[
-    {"source": "<esds-heading>Hello World</esds-heading>", "language": "WC"},
-      {"source": "<h1>Hello World</h1>", "language": "HTML"}
+    {"source": "<esds-heading>Hello World</esds-heading>", "tabLabel": "WC"},
+      {"source": "<h1>Hello World</h1>", "tabLabel": "HTML"}
     ]'></esds-code-snippet>
 
     <esds-code-snippet source="
       <esds-button href='http://eightshapes.com'>Show the WC First, then the compiled HTML</esds-button>
-    " language="wc-html"></esds-code-snippet>
+    " language="wc"></esds-code-snippet>
 
-    <esds-code-snippet language="wc-html">
+    <esds-code-snippet language="wc">
       <esds-button>This is only a test</esds-button>
       <esds-button>This is only a test</esds-button>
     </esds-code-snippet>
 
-    <esds-code-snippet language="wc-html">
+    <esds-code-snippet language="wc">
       <esds-button>Something Crazy</esds-button>
       <esds-tabs>
         <esds-tab-panel label="Foo">
@@ -226,6 +226,6 @@
       const myButton = new EsdsButton();
       myButton.variant = 'secondary';
       document.body.appendChild(myButton);
-    </esds-code-snippet> -->
+    </esds-code-snippet>
   </body>
 </html>

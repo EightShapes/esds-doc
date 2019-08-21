@@ -719,6 +719,14 @@
 .esds-code-snippet-v1 .esds-code-snippet__tabset {
   margin-right: auto;
 }
+.esds-code-snippet-v1 .esds-code-snippet__tab {
+  border-bottom: solid 4px transparent;
+  cursor: pointer;
+  padding: 8px 16px;
+}
+.esds-code-snippet-v1 .esds-code-snippet__tab.esds-code-snippet__tab--selected {
+  border-bottom-color: #068194;
+}
 
 @keyframes esds-code-snippet-fade-in-out-v1 {
   0% {

@@ -11,6 +11,23 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 let EsdsCodeSnippetTabCounter = 0;
 
 export class EsdsCodeSnippet extends LitElement {
+  static get SUPPORTED_LANGUAGES() {
+    return {
+      ALL: [
+        'html',
+        'vue',
+        'react',
+        'angular',
+        'wc',
+        'css',
+        'js',
+        'javascript',
+        'markup',
+      ],
+      MARKUP: ['html', 'vue', 'react', 'angular', 'wc'],
+      JAVASCRIPT: ['js'],
+    };
+  }
   static get properties() {
     return {
       codeCopiedText: { type: String, attribute: 'code-copied-text' },
@@ -48,22 +65,20 @@ export class EsdsCodeSnippet extends LitElement {
     // For a single source, build out a source object and add it to the sources prop by default
     this.language = 'markup';
     this.preformatted = false;
-    const defaultSourceObject = {
-      source: this.source,
-      language: this.language,
-      preformatted: this.preformatted,
-    };
-    this.sources = [defaultSourceObject];
   }
 
   connectedCallback() {
     super.connectedCallback();
     this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
 
-    this.slotContent =
-      this.initialInnerHtml.trim().length > 0
-        ? this.initialInnerHtml.trim()
-        : undefined;
+    if (!this.sources) {
+      const defaultSourceObject = {
+        source: this.source,
+        language: this.language,
+        preformatted: this.preformatted,
+      };
+      this.sources = [defaultSourceObject];
+    }
   }
 
   createRenderRoot() {
@@ -142,7 +157,7 @@ export class EsdsCodeSnippet extends LitElement {
 
   copyCodeToClipboard() {
     const codeSource =
-      this.sources.length > 0
+      this.sources.length > 1
         ? this.querySelector('.esds-code-snippet__tab-panel--selected code') // multi-tab component
         : this.querySelector('.esds-code-snippet__pre code'); // single source component
     const textarea = document.createElement('textarea');
@@ -172,6 +187,23 @@ export class EsdsCodeSnippet extends LitElement {
   }
 
   formatSource(source, language) {
+    if (!this.constructor.SUPPORTED_LANGUAGES.ALL.includes(language)) {
+      throw new Error(
+        `${language} is not a supported language for esds code snippet. Please use one of: '${this.constructor.SUPPORTED_LANGUAGES.ALL.join(
+          ', ',
+        )}'`,
+      );
+    }
+
+    if (this.constructor.SUPPORTED_LANGUAGES.MARKUP.includes(language)) {
+      language = 'markup';
+    }
+
+    if (this.constructor.SUPPORTED_LANGUAGES.JAVASCRIPT.includes(language)) {
+      language = 'javascript';
+    }
+
+    console.log('FORMAT', language, source);
     const beautifiedSource = this.beautifySource(source, language);
     return this.highlightSource(beautifiedSource, language);
   }
@@ -251,7 +283,7 @@ export class EsdsCodeSnippet extends LitElement {
     const tabPanel = this.querySelector(
       `#${tab.getAttribute('aria-controls')}`,
     );
-    tab.classList.add('esds-code-snippet__tab-panel--selected');
+    tab.classList.add('esds-code-snippet__tab--selected');
     tabPanel.classList.add('esds-code-snippet__tab-panel--selected');
     tabPanel.hidden = false;
   }
@@ -274,11 +306,9 @@ export class EsdsCodeSnippet extends LitElement {
   }
 
   renderCodeSnippet(sourceObject) {
-    const markupLanguages = ['html', 'vue', 'react', 'angular'];
     let language = sourceObject.language
       ? sourceObject.language
       : sourceObject.tabLabel.toLowerCase();
-    language = markupLanguages.includes(language) ? 'markup' : language;
 
     const source = this.formatSource(
       stripIndent(
@@ -291,39 +321,14 @@ export class EsdsCodeSnippet extends LitElement {
       language,
     );
 
-    return unsafeHTML(`
-      <div class="esds-code-snippet__source>
-        <pre class="esds-code-snippet__pre"><code>${source}</code></pre>
+    return html`
+      <div class="esds-code-snippet__source">
+        <pre class="esds-code-snippet__pre"><code>${unsafeHTML(
+          source,
+        )}</code></pre>
       </div>
-    `);
+    `;
   }
-
-  // async renderCompiledHTMLSource(wcSource) {
-  //   const compiledHTMLWrapper = document.createElement('div');
-  //   compiledHTMLWrapper.style = 'display: none;';
-  //   compiledHTMLWrapper.innerHTML = wcSource;
-  //   document.body.appendChild(compiledHTMLWrapper);
-  //   const components = Array.from(compiledHTMLWrapper.childNodes).filter(
-  //     n => n.nodeType === Node.ELEMENT_NODE,
-  //   );
-  //   await Promise.all(components.map(async c => await c.updateComplete));
-  //
-  //   this.sources = [
-  //     {
-  //       language: 'WC',
-  //       source: this.source,
-  //     },
-  //     {
-  //       language: 'HTML',
-  //       source: this.cleanVueRenderingArtifacts(
-  //         this.cleanLitElementRenderingArtifacts(compiledHTMLWrapper.innerHTML),
-  //       ), // TODO: In the future may need a react/angular cleaner too
-  //     },
-  //   ];
-  //
-  //   // Remove the tmpWrapper
-  //   compiledHTMLWrapper.parentNode.removeChild(compiledHTMLWrapper);
-  // }
 
   renderCopyButton() {
     // Not sure why I had to use unsafeHTML here and not the html`` template literal. Without it the ${this.copyButtonText} slot content is getting lost somewhere
@@ -366,7 +371,7 @@ export class EsdsCodeSnippet extends LitElement {
     const toolbarActions = [];
     let output = '';
     let tabset =
-      this.tabs.length > 0
+      this.tabs.length > 1
         ? html`
             <div class="esds-code-snippet__tabset" role="tabset">
               ${this.tabs}
@@ -401,7 +406,7 @@ export class EsdsCodeSnippet extends LitElement {
     }
 
     let sourceOutput;
-    if (this.sources.length > 0) {
+    if (this.sources.length > 1) {
       this.linkPanels();
       sourceOutput = html`
         <div class="esds-code-snippet__tab-panels">${this.tabPanels}</div>
