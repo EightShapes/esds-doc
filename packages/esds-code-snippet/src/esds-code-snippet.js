@@ -7,10 +7,11 @@ import {
 import stripIndent from 'strip-indent';
 import { LitElement, html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { Slotify } from '@eightshapes/slotify';
 
 let EsdsCodeSnippetTabCounter = 0;
 
-export class EsdsCodeSnippet extends LitElement {
+export class EsdsCodeSnippet extends Slotify(LitElement) {
   static get SUPPORTED_LANGUAGES() {
     return {
       ALL: [
@@ -79,10 +80,6 @@ export class EsdsCodeSnippet extends LitElement {
       };
       this.sources = [defaultSourceObject];
     }
-  }
-
-  createRenderRoot() {
-    return this;
   }
 
   get allTabPanels() {
@@ -331,7 +328,6 @@ export class EsdsCodeSnippet extends LitElement {
   }
 
   renderCopyButton() {
-    // Not sure why I had to use unsafeHTML here and not the html`` template literal. Without it the ${this.copyButtonText} slot content is getting lost somewhere
     let copyButton = html`
       <button class="esds-code-snippet__copy-button">
         ${this.copyButtonText}
@@ -348,9 +344,9 @@ export class EsdsCodeSnippet extends LitElement {
             @click=${this.copyCodeToClipboard}
             class="esds-code-snippet__copy-button-wrap"
           >
-            <slot name="copy-button">
+            <s-slot name="copy-button">
               ${copyButton}
-            </slot>
+            </s-slot>
           </div>
         </div>
       `;

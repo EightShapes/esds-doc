@@ -10059,6 +10059,246 @@ var unsafeHTML = directive(function (value) {
   };
 });
 
+var Slotify = function Slotify(superclass) {
+  return (
+    /*#__PURE__*/
+    function (_superclass) {
+      _inherits(_class, _superclass);
+
+      function _class() {
+        var _this;
+
+        _classCallCheck(this, _class);
+
+        _this = _possibleConstructorReturn(this, _getPrototypeOf(_class).call(this));
+
+        if (!customElements.get('s-root')) {
+          var SRoot =
+          /*#__PURE__*/
+          function (_HTMLElement) {
+            _inherits(SRoot, _HTMLElement);
+
+            function SRoot() {
+              _classCallCheck(this, SRoot);
+
+              return _possibleConstructorReturn(this, _getPrototypeOf(SRoot).apply(this, arguments));
+            }
+
+            return SRoot;
+          }(_wrapNativeSuper(HTMLElement));
+
+          customElements.define('s-root', SRoot);
+        }
+
+        if (!customElements.get('s-slot')) {
+          var SSlot =
+          /*#__PURE__*/
+          function (_HTMLElement2) {
+            _inherits(SSlot, _HTMLElement2);
+
+            function SSlot() {
+              var _this2;
+
+              _classCallCheck(this, SSlot);
+
+              _this2 = _possibleConstructorReturn(this, _getPrototypeOf(SSlot).call(this));
+              _this2.name = _this2.getAttribute('name');
+              return _this2;
+            }
+
+            _createClass(SSlot, [{
+              key: "connectedCallback",
+              value: function connectedCallback() {
+                var _this3 = this;
+
+                // closest() polyfill for IE11
+                if (!Element.prototype.matches) {
+                  Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+                }
+
+                if (!Element.prototype.closest) {
+                  Element.prototype.closest = function (s) {
+                    var el = this;
+
+                    do {
+                      if (el.matches(s)) return el;
+                      el = el.parentElement || el.parentNode;
+                    } while (el !== null && el.nodeType === 1);
+
+                    return null;
+                  };
+                }
+
+                this.sRoot = this.closest('s-root'); // Observe the "Light DOM" of the component, to detect when new nodes are added and assign them to the <s-slot> if necessary
+
+                this.lightDomObserver = new MutationObserver(function () {
+                  return _this3.updateAssignedContent();
+                });
+                this.lightDomObserver.observe(this.sRoot.parentElement, {
+                  childList: true
+                }); // Create assigned content and fallback content wrappers
+
+                this.fallbackWrapper = this.fallbackWrapper || this.createFallbackWrapper();
+                this.assignedWrapper = this.assignedWrapper || this.createAssignedWrapper(); // Observe the assignedContentWrapper (so default content can be shown if all slotables are deleted)
+
+                var assignedContentObserver = new MutationObserver(function () {
+                  _this3.updateEmptySlot(); // This is an observer on the actual <s-slot>
+
+                });
+                assignedContentObserver.observe(this.assignedWrapper, {
+                  childList: true
+                });
+                this.updateAssignedContent();
+              }
+            }, {
+              key: "disconnectedCallback",
+              value: function disconnectedCallback() {
+                this.lightDomObserver.disconnect(); // don't let observers pile up
+              }
+            }, {
+              key: "createFallbackWrapper",
+              value: function createFallbackWrapper() {
+                if (!customElements.get('s-fallback-wrapper')) {
+                  var SFallbackWrapper =
+                  /*#__PURE__*/
+                  function (_HTMLElement3) {
+                    _inherits(SFallbackWrapper, _HTMLElement3);
+
+                    function SFallbackWrapper() {
+                      _classCallCheck(this, SFallbackWrapper);
+
+                      return _possibleConstructorReturn(this, _getPrototypeOf(SFallbackWrapper).apply(this, arguments));
+                    }
+
+                    return SFallbackWrapper;
+                  }(_wrapNativeSuper(HTMLElement));
+
+                  customElements.define('s-fallback-wrapper', SFallbackWrapper);
+                } // This is only called once, get the contents of this <s-slot> and wrap them in a span
+
+
+                if (this.childNodes.length === 0) {
+                  // there's no default content, don't create the wrapper
+                  return false;
+                } else {
+                  var fallbackWrapper = document.createElement('s-fallback-wrapper');
+                  Array.from(this.childNodes).forEach(function (node) {
+                    fallbackWrapper.appendChild(node);
+                  });
+                  this.appendChild(fallbackWrapper); // Add the fallback span to the component;
+
+                  return fallbackWrapper;
+                }
+              }
+            }, {
+              key: "createAssignedWrapper",
+              value: function createAssignedWrapper() {
+                if (!customElements.get('s-assigned-wrapper')) {
+                  var SAssignedWrapper =
+                  /*#__PURE__*/
+                  function (_HTMLElement4) {
+                    _inherits(SAssignedWrapper, _HTMLElement4);
+
+                    function SAssignedWrapper() {
+                      _classCallCheck(this, SAssignedWrapper);
+
+                      return _possibleConstructorReturn(this, _getPrototypeOf(SAssignedWrapper).apply(this, arguments));
+                    }
+
+                    return SAssignedWrapper;
+                  }(_wrapNativeSuper(HTMLElement));
+
+                  customElements.define('s-assigned-wrapper', SAssignedWrapper);
+                }
+
+                var assignedWrapper = document.createElement('s-assigned-wrapper');
+                this.appendChild(assignedWrapper); // Add the assigned span to the component;
+
+                return assignedWrapper;
+              }
+            }, {
+              key: "updateAssignedContent",
+              value: function updateAssignedContent() {
+                var _this4 = this;
+
+                var lightDOM = this.sRoot.parentElement;
+                var unplacedNodes = Array.from(lightDOM.childNodes).filter(function (node) {
+                  return node.parentNode === _this4.sRoot.parentElement && node !== _this4.sRoot; // return all nodes outside the <s-root>, they haven't been moved yet
+                });
+                var content = [];
+
+                if (this.name) {
+                  // Handle named slots
+                  content = unplacedNodes.filter(function (node) {
+                    return node.nodeType !== Node.TEXT_NODE && node.getAttribute('slot') === _this4.name;
+                  });
+                } else {
+                  // Handle default slot content
+                  content = unplacedNodes.filter(function (n) {
+                    if (n.nodeType === Node.TEXT_NODE) {
+                      return n;
+                    } else if (!n.getAttribute('slot')) {
+                      return n;
+                    }
+                  });
+                }
+
+                if (content.length > 0) {
+                  // Some slotable content was found, remove default content
+                  var fragment = document.createDocumentFragment();
+                  content.forEach(function (node) {
+                    fragment.appendChild(node);
+                  });
+                  this.assignedWrapper.appendChild(fragment);
+
+                  if (this.fallbackWrapper) {
+                    this.fallbackWrapper.setAttribute('hidden', true);
+                    this.assignedWrapper.removeAttribute('hidden'); // Do a visibility toggle so the mutationObserver will not be triggered and create a loop
+                  }
+                }
+              }
+            }, {
+              key: "updateEmptySlot",
+              value: function updateEmptySlot() {
+                if (this.fallbackWrapper && this.assignedWrapper.childNodes.length === 0) {
+                  this.fallbackWrapper.removeAttribute('hidden');
+                  this.assignedWrapper.setAttribute('hidden', true); // Do a visibility toggle so the mutationObserver will not be triggered and create a loop
+                }
+              }
+            }]);
+
+            return SSlot;
+          }(_wrapNativeSuper(HTMLElement));
+
+          customElements.define('s-slot', SSlot);
+        }
+
+        return _this;
+      }
+
+      _createClass(_class, [{
+        key: "createRenderRoot",
+        value: function createRenderRoot() {
+          // Wrap the entire rendered output in an <s-root> element
+          return document.createElement('s-root');
+        }
+      }, {
+        key: "connectedCallback",
+        value: function connectedCallback() {
+          // Ensure the contents are wrapped in the <s-root> element
+          if (!this.renderRoot.parentElement) {
+            this.appendChild(this.renderRoot);
+          }
+
+          _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+        }
+      }]);
+
+      return _class;
+    }(superclass)
+  );
+};
+
 function _templateObject9() {
   var data = _taggedTemplateLiteral(["\n      <div class=\"", "\">\n        ", " ", "\n      </div>\n    "]);
 
@@ -10100,7 +10340,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n        <div class=\"esds-code-snippet__copy-code-wrap\">\n          <div class=\"esds-code-snippet__copied-notification\">\n            ", "\n          </div>\n          <div\n            @click=", "\n            class=\"esds-code-snippet__copy-button-wrap\"\n          >\n            <slot name=\"copy-button\">\n              ", "\n            </slot>\n          </div>\n        </div>\n      "]);
+  var data = _taggedTemplateLiteral(["\n        <div class=\"esds-code-snippet__copy-code-wrap\">\n          <div class=\"esds-code-snippet__copied-notification\">\n            ", "\n          </div>\n          <div\n            @click=", "\n            class=\"esds-code-snippet__copy-button-wrap\"\n          >\n            <s-slot name=\"copy-button\">\n              ", "\n            </s-slot>\n          </div>\n        </div>\n      "]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -10151,8 +10391,8 @@ function _templateObject() {
 var EsdsCodeSnippetTabCounter = 0;
 var EsdsCodeSnippet =
 /*#__PURE__*/
-function (_LitElement) {
-  _inherits(EsdsCodeSnippet, _LitElement);
+function (_Slotify) {
+  _inherits(EsdsCodeSnippet, _Slotify);
 
   _createClass(EsdsCodeSnippet, null, [{
     key: "SUPPORTED_LANGUAGES",
@@ -10246,11 +10486,6 @@ function (_LitElement) {
         };
         this.sources = [defaultSourceObject];
       }
-    }
-  }, {
-    key: "createRenderRoot",
-    value: function createRenderRoot() {
-      return this;
     }
   }, {
     key: "beautifySource",
@@ -10449,7 +10684,6 @@ function (_LitElement) {
   }, {
     key: "renderCopyButton",
     value: function renderCopyButton() {
-      // Not sure why I had to use unsafeHTML here and not the html`` template literal. Without it the ${this.copyButtonText} slot content is getting lost somewhere
       var copyButton = html$2(_templateObject4(), this.copyButtonText);
 
       if (this.copyable === 'true') {
@@ -10529,7 +10763,7 @@ function (_LitElement) {
   }]);
 
   return EsdsCodeSnippet;
-}(LitElement);
+}(Slotify(LitElement));
 
 if (window.customElements.get('esds-code-snippet') === undefined) {
   window.customElements.define('esds-code-snippet', EsdsCodeSnippet);

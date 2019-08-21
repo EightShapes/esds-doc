@@ -16,11 +16,20 @@
   <body>
     <h1>ESDS Code Snippet Test Pages</h1>
 
+    <h2>Simple Example</h2>
     <esds-code-snippet>
       <h1>Basic Code Snippet</h1>
     </esds-code-snippet>
 
+    <h2>Tabbed Example</h2>
     <esds-code-snippet sources='[{"tabLabel": "Vue", "source": "<app-header>Hello World</app-header>"},{"tabLabel": "HTML", "source": "<h1>Hello World</h1>"}]'></esds-code-snippet>
+
+    <h2>Slotted Button Example</h2>
+    <esds-code-snippet>
+      <h1>Hello World</h1>
+      <p>Gonna have to separate out the slotted stuff...ugh.</p>
+      <button style="background: red; color: green;" slot="copy-button">Copy This Now!</button>
+    </esds-code-snippet>
 
     <esds-code-snippet>
       <div class="this-is-my-image-wrap">
