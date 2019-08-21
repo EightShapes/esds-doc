@@ -8643,13 +8643,10 @@ class EsdsCodeSnippet extends LitElement {
   }
 
   copyCodeToClipboard() {
-    const hasTabs = this.querySelector('esds-tabs');
-    let source = this.querySelector('.esds-code-snippet__pre code');
-    if (hasTabs) {
-      source = this.querySelector('esds-tabs')
-        .querySelector('esds-tab-panel[active]')
-        .querySelector('.esds-code-snippet__pre code');
-    }
+    const codeSource =
+      this.sources.length > 0
+        ? this.querySelector('.esds-code-snippet__tab-panel--selected code') // multi-tab component
+        : this.querySelector('.esds-code-snippet__pre code'); // single source component
     const textarea = document.createElement('textarea');
     textarea.style.height = '0';
     textarea.style.width = '0';
@@ -8657,7 +8654,7 @@ class EsdsCodeSnippet extends LitElement {
     textarea.style.left = '-99999px';
     document.body.appendChild(textarea);
 
-    textarea.textContent = source.textContent;
+    textarea.textContent = codeSource.textContent;
     textarea.select();
 
     try {
@@ -8669,7 +8666,7 @@ class EsdsCodeSnippet extends LitElement {
         // triggerCopyErrorEvent();
       }
     } catch (err) {
-      console.log('COPY NOT SUPPORTED');
+      console.log('COPY NOT SUPPORTED', err);
       // triggerCopyNotSupportedEvent(snippet);
     }
 
@@ -8682,7 +8679,6 @@ class EsdsCodeSnippet extends LitElement {
   }
 
   handleTabClick(e) {
-    console.log(e.target);
     const tabId = e.target.id;
     this.selectTab(tabId);
   }
@@ -8763,12 +8759,23 @@ class EsdsCodeSnippet extends LitElement {
   }
 
   showCopiedMessage() {
+    const copiedNotification = this.querySelector(
+      '.esds-code-snippet__copied-notification',
+    );
+    copiedNotification.addEventListener(
+      'animationend',
+      () => {
+        this.codeCopied = false;
+        this.requestUpdate(); // After the CSS animation ends, reset the copied status so the notification can be shown again on subsequent clicks
+      },
+      { once: true },
+    );
+
     this.codeCopied = true;
-    this.requestUpdate();
+    this.requestUpdate(); // This will trigger a CSS animation to display the copiedNotification
   }
 
   renderCodeSnippet(sourceObject) {
-    console.log(sourceObject);
     const markupLanguages = ['html', 'vue', 'react', 'angular'];
     let language = sourceObject.language
       ? sourceObject.language

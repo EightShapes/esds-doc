@@ -10293,12 +10293,8 @@ function (_LitElement) {
   }, {
     key: "copyCodeToClipboard",
     value: function copyCodeToClipboard() {
-      var hasTabs = this.querySelector('esds-tabs');
-      var source = this.querySelector('.esds-code-snippet__pre code');
-
-      if (hasTabs) {
-        source = this.querySelector('esds-tabs').querySelector('esds-tab-panel[active]').querySelector('.esds-code-snippet__pre code');
-      }
+      var codeSource = this.sources.length > 0 ? this.querySelector('.esds-code-snippet__tab-panel--selected code') // multi-tab component
+      : this.querySelector('.esds-code-snippet__pre code'); // single source component
 
       var textarea = document.createElement('textarea');
       textarea.style.height = '0';
@@ -10306,7 +10302,7 @@ function (_LitElement) {
       textarea.style.position = 'absolute';
       textarea.style.left = '-99999px';
       document.body.appendChild(textarea);
-      textarea.textContent = source.textContent;
+      textarea.textContent = codeSource.textContent;
       textarea.select();
 
       try {
@@ -10318,7 +10314,7 @@ function (_LitElement) {
           console.log('COULDNT COPY'); // triggerCopyErrorEvent();
         }
       } catch (err) {
-        console.log('COPY NOT SUPPORTED'); // triggerCopyNotSupportedEvent(snippet);
+        console.log('COPY NOT SUPPORTED', err); // triggerCopyNotSupportedEvent(snippet);
       }
 
       document.body.removeChild(textarea);
@@ -10332,7 +10328,6 @@ function (_LitElement) {
   }, {
     key: "handleTabClick",
     value: function handleTabClick(e) {
-      console.log(e.target);
       var tabId = e.target.id;
       this.selectTab(tabId);
     }
@@ -10396,13 +10391,23 @@ function (_LitElement) {
   }, {
     key: "showCopiedMessage",
     value: function showCopiedMessage() {
+      var _this3 = this;
+
+      var copiedNotification = this.querySelector('.esds-code-snippet__copied-notification');
+      copiedNotification.addEventListener('animationend', function () {
+        _this3.codeCopied = false;
+
+        _this3.requestUpdate(); // After the CSS animation ends, reset the copied status so the notification can be shown again on subsequent clicks
+
+      }, {
+        once: true
+      });
       this.codeCopied = true;
-      this.requestUpdate();
+      this.requestUpdate(); // This will trigger a CSS animation to display the copiedNotification
     }
   }, {
     key: "renderCodeSnippet",
     value: function renderCodeSnippet(sourceObject) {
-      console.log(sourceObject);
       var markupLanguages = ['html', 'vue', 'react', 'angular'];
       var language = sourceObject.language ? sourceObject.language : sourceObject.tabLabel.toLowerCase();
       language = markupLanguages.includes(language) ? 'markup' : language;
