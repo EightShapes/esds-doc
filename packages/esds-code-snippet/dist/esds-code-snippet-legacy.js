@@ -10059,8 +10059,18 @@ var unsafeHTML = directive(function (value) {
   };
 });
 
-function _templateObject5() {
+function _templateObject6() {
   var data = _taggedTemplateLiteral(["\n      <div class=\"", "\">\n        ", " ", "\n      </div>\n    "]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n        <div class=\"esds-code-snippet__toolbar\">", "</div>\n      "]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -10070,7 +10080,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n        <div class=\"esds-code-snippet__toolbar\">", "</div>\n      "]);
+  var data = _taggedTemplateLiteral(["\n              <span class=\"esds-code-snippet__tab\" href=\"#\">", "</span>\n            "]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -10171,9 +10181,16 @@ function (_LitElement) {
     _this.codeCopiedText = 'Copied to clipboard';
     _this.copyButtonText = 'Copy Code';
     _this.copyable = 'true';
-    _this.source = _this.defaultSource;
+    _this.source = _this.initialInnerHtml; // For a single source, build out a source object and add it to the sources prop by default
+
     _this.language = 'markup';
     _this.preformatted = false;
+    var defaultSourceObject = {
+      source: _this.source,
+      language: _this.language,
+      preformatted: _this.preformatted
+    };
+    _this.sources = [defaultSourceObject];
     return _this;
   }
 
@@ -10189,12 +10206,6 @@ function (_LitElement) {
     key: "createRenderRoot",
     value: function createRenderRoot() {
       return this;
-    }
-  }, {
-    key: "firstUpdated",
-    value: function firstUpdated() {// if (this.language === 'wc-html') {
-      //   this.renderCompiledHTMLSource(this.source);
-      // }
     }
   }, {
     key: "beautifySource",
@@ -10328,9 +10339,13 @@ function (_LitElement) {
     }
   }, {
     key: "renderCodeSnippet",
-    value: function renderCodeSnippet(source, language, filename) {
-      source = this.formatSource(stripIndent(this.cleanShadyDomRenderingArtifacts(this.cleanLitElementRenderingArtifacts(this.cleanVueRenderingArtifacts(source)))), language);
-      return "\n      <div class=\"esds-code-snippet__source\">\n        ".concat(this.renderFilename(filename), "\n        <pre class=\"esds-code-snippet__pre\"><code>").concat(source, "</code></pre>\n      </div>");
+    value: function renderCodeSnippet(sourceObject) {
+      console.log(sourceObject);
+      var markupLanguages = ['html', 'vue', 'react', 'angular'];
+      var language = sourceObject.language ? sourceObject.language : sourceObject.tabLabel.toLowerCase();
+      language = markupLanguages.includes(language) ? 'markup' : language;
+      var source = this.formatSource(stripIndent(this.cleanShadyDomRenderingArtifacts(this.cleanLitElementRenderingArtifacts(this.cleanVueRenderingArtifacts(sourceObject.source)))), language);
+      return unsafeHTML("\n      <div class=\"esds-code-snippet__source\">\n        <pre class=\"esds-code-snippet__pre\"><code>".concat(source, "</code></pre>\n      </div>\n    "));
     } // async renderCompiledHTMLSource(wcSource) {
     //   const compiledHTMLWrapper = document.createElement('div');
     //   compiledHTMLWrapper.style = 'display: none;';
@@ -10382,10 +10397,9 @@ function (_LitElement) {
   }, {
     key: "renderTabs",
     value: function renderTabs() {
-      return html$2(_templateObject3(), unsafeHTML(this.sources.map(function (s) {
-        var label = Object.keys(s)[0];
-        return "<a href=\"#\">".concat(label, "</a>");
-      })));
+      return html$2(_templateObject3(), this.sources.map(function (s) {
+        return s.tabLabel ? html$2(_templateObject4(), s.tabLabel) : '';
+      }));
     }
   }, {
     key: "renderToolbar",
@@ -10402,7 +10416,7 @@ function (_LitElement) {
       }
 
       if (toolbarActions.length > 0) {
-        output = html$2(_templateObject4(), toolbarActions);
+        output = html$2(_templateObject5(), toolbarActions);
       }
 
       return output;
@@ -10410,6 +10424,8 @@ function (_LitElement) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var blockLevelClass = this.defaultClass;
 
       if (this.codeCopied) {
@@ -10432,9 +10448,7 @@ function (_LitElement) {
       //   ];
       // }
       //
-
-
-      var output; //
+      //
       // if (sources) {
       //   let codeSnippets = [];
       //
@@ -10450,6 +10464,7 @@ function (_LitElement) {
       // } else {
       // Just a single snippet to render, no tabs
 
+
       var language = this.language === 'html' ? 'markup' : this.language;
       var source = this.source;
 
@@ -10457,14 +10472,16 @@ function (_LitElement) {
         source = this.slotContent;
       }
 
-      output = this.renderCodeSnippet(source, language, this.filename); // }
+      var codePanels = this.sources.map(function (s) {
+        return _this2.renderCodeSnippet(s);
+      }); // }
 
-      return html$2(_templateObject5(), blockLevelClass, this.renderToolbar(), unsafeHTML(output));
+      return html$2(_templateObject6(), blockLevelClass, this.renderToolbar(), codePanels);
     }
   }, {
     key: "initialInnerHtml",
     get: function get() {
-      return this.getAttribute('data-initial-inner-html');
+      return this.getAttribute('data-initial-inner-html') || this.innerHTML;
     },
     set: function set(value) {
       this.setAttribute('data-initial-inner-html', value);

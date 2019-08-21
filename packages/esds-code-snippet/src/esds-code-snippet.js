@@ -37,9 +37,17 @@ export class EsdsCodeSnippet extends LitElement {
     this.codeCopiedText = 'Copied to clipboard';
     this.copyButtonText = 'Copy Code';
     this.copyable = 'true';
-    this.source = this.defaultSource;
+    this.source = this.initialInnerHtml;
+
+    // For a single source, build out a source object and add it to the sources prop by default
     this.language = 'markup';
     this.preformatted = false;
+    const defaultSourceObject = {
+      source: this.source,
+      language: this.language,
+      preformatted: this.preformatted,
+    };
+    this.sources = [defaultSourceObject];
   }
 
   connectedCallback() {
@@ -56,14 +64,8 @@ export class EsdsCodeSnippet extends LitElement {
     return this;
   }
 
-  firstUpdated() {
-    // if (this.language === 'wc-html') {
-    //   this.renderCompiledHTMLSource(this.source);
-    // }
-  }
-
   get initialInnerHtml() {
-    return this.getAttribute('data-initial-inner-html');
+    return this.getAttribute('data-initial-inner-html') || this.innerHTML;
   }
 
   set initialInnerHtml(value) {
@@ -193,23 +195,30 @@ export class EsdsCodeSnippet extends LitElement {
     this.requestUpdate();
   }
 
-  renderCodeSnippet(source, language, filename) {
-    source = this.formatSource(
+  renderCodeSnippet(sourceObject) {
+    console.log(sourceObject);
+    const markupLanguages = ['html', 'vue', 'react', 'angular'];
+    let language = sourceObject.language
+      ? sourceObject.language
+      : sourceObject.tabLabel.toLowerCase();
+    language = markupLanguages.includes(language) ? 'markup' : language;
+
+    const source = this.formatSource(
       stripIndent(
         this.cleanShadyDomRenderingArtifacts(
           this.cleanLitElementRenderingArtifacts(
-            this.cleanVueRenderingArtifacts(source),
+            this.cleanVueRenderingArtifacts(sourceObject.source),
           ),
         ),
       ),
       language,
     );
 
-    return `
+    return unsafeHTML(`
       <div class="esds-code-snippet__source">
-        ${this.renderFilename(filename)}
         <pre class="esds-code-snippet__pre"><code>${source}</code></pre>
-      </div>`;
+      </div>
+    `);
   }
 
   // async renderCompiledHTMLSource(wcSource) {
@@ -278,12 +287,13 @@ export class EsdsCodeSnippet extends LitElement {
 
   renderTabs() {
     return html`
-      ${unsafeHTML(
-        this.sources.map(s => {
-          const label = Object.keys(s)[0];
-          return `<a href="#">${label}</a>`;
-        }),
-      )}
+      ${this.sources.map(s => {
+        return s.tabLabel
+          ? html`
+              <span class="esds-code-snippet__tab" href="#">${s.tabLabel}</span>
+            `
+          : '';
+      })}
     `;
   }
 
@@ -332,7 +342,6 @@ export class EsdsCodeSnippet extends LitElement {
     //   ];
     // }
     //
-    let output;
     //
     // if (sources) {
     //   let codeSnippets = [];
@@ -353,12 +362,12 @@ export class EsdsCodeSnippet extends LitElement {
     if (source === this.defaultSource && this.slotContent) {
       source = this.slotContent;
     }
-    output = this.renderCodeSnippet(source, language, this.filename);
+    const codePanels = this.sources.map(s => this.renderCodeSnippet(s));
     // }
 
     return html`
       <div class="${blockLevelClass}">
-        ${this.renderToolbar()} ${unsafeHTML(output)}
+        ${this.renderToolbar()} ${codePanels}
       </div>
     `;
   }
