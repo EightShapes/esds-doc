@@ -1,5 +1,5 @@
 {
-  "name": "esds-example-code-pair",
+  "name": "@eightshapes/esds-example-code-pair",
   "version": "0.1.0",
   "description": "",
   "main": "src/esds-example-code-pair.js",
