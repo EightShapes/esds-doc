@@ -14,10 +14,11 @@ $esds-doc-code-snippet-text-color: $esds-text-color-primary-on-white !default;
 
 $esds-doc-code-snippet-source-background-color: transparent !default;
 $esds-doc-code-snippet-source-font-family: 'Courier New', monospace !default;
-$esds-doc-code-snippet-source-tag-color: $esds-color-teal-48 !default;
-$esds-doc-code-snippet-source-selector-color: $esds-color-teal-37 !default;
+$esds-doc-code-snippet-source-tag-color: $esds-color-teal-37 !default;
+$esds-doc-code-snippet-source-selector-color: $esds-color-teal-27 !default;
 $esds-doc-code-snippet-source-attribute-value-color: $esds-color-orange-82 !default;
 $esds-doc-code-snippet-source-punctuation-color: $esds-color-neutral-25 !default;
+$esds-doc-code-snippet-source-comment-color: $esds-color-neutral-53 !default;
 $esds-doc-code-snippet-source-max-height-default: 200px !default;
 $esds-doc-code-snippet-source-max-height-tall: 400px !default;
 
@@ -54,9 +55,14 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
 
   // Prism overrides
   .token {
+    &.keyword,
     &.property,
     .tag {
       color: $esds-doc-code-snippet-source-tag-color;
+    }
+
+    &.comment {
+      color: $esds-doc-code-snippet-source-comment-color;
     }
 
     &.selector,
@@ -68,6 +74,7 @@ $esds-doc-code-snippet-filename-offset: $esds-space-inset-half-x !default;
       color: $esds-doc-code-snippet-source-attribute-value-color;
     }
 
+    &.punctuation,
     .punctuation {
       color: $esds-doc-code-snippet-source-punctuation-color;
     }

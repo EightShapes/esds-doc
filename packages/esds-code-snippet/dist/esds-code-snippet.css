@@ -617,17 +617,21 @@
   margin: 0 0 16px;
   position: relative;
 }
-.esds-code-snippet-v1 .token.property,
+.esds-code-snippet-v1 .token.keyword, .esds-code-snippet-v1 .token.property,
 .esds-code-snippet-v1 .token .tag {
-  color: #20BDD5;
+  color: #0A9DB3;
+}
+.esds-code-snippet-v1 .token.comment {
+  color: #888888;
 }
 .esds-code-snippet-v1 .token.selector,
 .esds-code-snippet-v1 .token .attr-name {
-  color: #0A9DB3;
+  color: #00798C;
 }
 .esds-code-snippet-v1 .token .attr-value {
   color: #D24B00;
 }
+.esds-code-snippet-v1 .token.punctuation,
 .esds-code-snippet-v1 .token .punctuation {
   color: #404040;
 }
