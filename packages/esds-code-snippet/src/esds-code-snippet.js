@@ -73,7 +73,7 @@ export class EsdsCodeSnippet extends LitElement {
 
     if (!this.sources) {
       const defaultSourceObject = {
-        source: this.source,
+        source: this.source || this.initialInnerHtml,
         language: this.language,
         preformatted: this.preformatted,
       };
@@ -203,7 +203,6 @@ export class EsdsCodeSnippet extends LitElement {
       language = 'javascript';
     }
 
-    console.log('FORMAT', language, source);
     const beautifiedSource = this.beautifySource(source, language);
     return this.highlightSource(beautifiedSource, language);
   }
