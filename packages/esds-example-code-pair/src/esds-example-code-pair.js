@@ -34,11 +34,7 @@ export class EsdsExampleCodePair extends LitElement {
     this.renderedExample.exampleSource = this.initialInnerHtml;
 
     this.codeSnippet = new EsdsCodeSnippet();
-
-    // After the rendered example has rendered
-    this.renderedExample.updateComplete.then(() => {
-      this.codeSnippet.source = this.renderedExample.renderedHtml;
-    });
+    this.codeSnippet.source = this.initialInnerHtml;
   }
 
   createRenderRoot() {
