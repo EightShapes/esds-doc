@@ -10059,8 +10059,28 @@ var unsafeHTML = directive(function (value) {
   };
 });
 
-function _templateObject6() {
+function _templateObject8() {
   var data = _taggedTemplateLiteral(["\n      <div class=\"", "\">\n        ", " ", "\n      </div>\n    "]);
+
+  _templateObject8 = function _templateObject8() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject7() {
+  var data = _taggedTemplateLiteral(["\n        <div class=\"esds-code-snippet__tab-panels\">", "</div>\n      "]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["\n        <div class=\"esds-code-snippet__toolbar\">\n          ", "", "\n        </div>\n      "]);
 
   _templateObject6 = function _templateObject6() {
     return data;
@@ -10070,7 +10090,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n        <div class=\"esds-code-snippet__toolbar\">", "</div>\n      "]);
+  var data = _taggedTemplateLiteral(["\n            <div class=\"esds-code-snippet__tabset\" role=\"tabset\">\n              ", "\n            </div>\n          "]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -10080,7 +10100,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n              <span class=\"esds-code-snippet__tab\" href=\"#\">", "</span>\n            "]);
+  var data = _taggedTemplateLiteral(["\n        <div class=\"esds-code-snippet__copy-code-wrap\">\n          <div class=\"esds-code-snippet__copied-notification\">\n            ", "\n          </div>\n          <div\n            @click=", "\n            class=\"esds-code-snippet__copy-button-wrap\"\n          >\n            <slot name=\"copy-button\">\n              ", "\n            </slot>\n          </div>\n        </div>\n      "]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -10090,7 +10110,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n      ", "\n    "]);
+  var data = _taggedTemplateLiteral(["\n      <button class=\"esds-code-snippet__copy-button\">\n        ", "\n      </button>\n    "]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -10100,7 +10120,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n        <div class=\"esds-code-snippet__copy-code-wrap\">\n          <div class=\"esds-code-snippet__copied-notification\">\n            ", "\n          </div>\n          <div\n            @click=", "\n            class=\"esds-code-snippet__copy-button-wrap\"\n          >\n            <slot name=\"copy-button\">\n              ", "\n            </slot>\n          </div>\n        </div>\n      "]);
+  var data = _taggedTemplateLiteral(["\n          <div\n            class=\"esds-code-snippet__tab-panel", "\"\n            id=", "\n            aria-controlledby=", "\n            ?hidden=", "\n          >\n            ", "\n          </div>\n        "]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -10110,7 +10130,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n      <button class=\"esds-code-snippet__copy-button\">\n        ", "\n      </button>\n    "]);
+  var data = _taggedTemplateLiteral(["\n          <span\n            @click=", "\n            class=\"esds-code-snippet__tab", "\"\n            role=\"tab\"\n            id=\"", "\"\n            aria-controls=\"", "\"\n            >", "</span\n          >\n        "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -10118,6 +10138,7 @@ function _templateObject() {
 
   return data;
 }
+var EsdsCodeSnippetTabCounter = 0;
 var EsdsCodeSnippet =
 /*#__PURE__*/
 function (_LitElement) {
@@ -10181,7 +10202,10 @@ function (_LitElement) {
     _this.codeCopiedText = 'Copied to clipboard';
     _this.copyButtonText = 'Copy Code';
     _this.copyable = 'true';
-    _this.source = _this.initialInnerHtml; // For a single source, build out a source object and add it to the sources prop by default
+    _this.source = _this.initialInnerHtml; // Set up tabbed interface
+
+    _this.tabs = [];
+    _this.tabPanels = []; // For a single source, build out a source object and add it to the sources prop by default
 
     _this.language = 'markup';
     _this.preformatted = false;
@@ -10306,6 +10330,13 @@ function (_LitElement) {
       return this.highlightSource(beautifiedSource, language);
     }
   }, {
+    key: "handleTabClick",
+    value: function handleTabClick(e) {
+      console.log(e.target);
+      var tabId = e.target.id;
+      this.selectTab(tabId);
+    }
+  }, {
     key: "highlightSource",
     value: function highlightSource(source, language) {
       if (language.toLowerCase() === 'html' || language.toLowerCase() === 'wc') {
@@ -10313,24 +10344,55 @@ function (_LitElement) {
       }
 
       return prism.highlight(source, prism.languages[language], language);
-    } // parseSlottedSource(slottedSource) {
-    //   // rudamentary formatting
-    //   return slottedSource
-    //     .map(n => {
-    //       n = n.cloneNode(true); // Needed to prevent web component snippets from rendering on subsequent updates
-    //       if (n.outerHTML) {
-    //         return n.outerHTML;
-    //       } else {
-    //         let output = '';
-    //         if (n.textContent.trim().length > 0) {
-    //           output = n.textContent;
-    //         }
-    //         return output;
-    //       }
-    //     })
-    //     .join('\n');
-    // }
+    }
+  }, {
+    key: "linkPanels",
+    value: function linkPanels() {
+      var _this2 = this;
 
+      // If this is a multi-source code snippet, build out the tabs and tab panels
+      this.tabs = [];
+      this.tabPanels = [];
+      var defaultTab = this.sources.find(function (s) {
+        return s.selectedTab;
+      });
+
+      if (!defaultTab) {
+        // If no default tab has been specified, default to the first tab
+        this.sources[0].selectedTab = true;
+      }
+
+      this.sources.forEach(function (sourceObject) {
+        var linkId = EsdsCodeSnippetTabCounter++;
+        var tabId = "esds-code-snippet__tab--".concat(linkId);
+        var tabPanelId = "esds-code-snippet__tab-panel--".concat(linkId);
+
+        _this2.tabs.push(html$2(_templateObject(), _this2.handleTabClick, sourceObject.selectedTab ? ' esds-code-snippet__tab--selected' : '', tabId, tabPanelId, sourceObject.tabLabel));
+
+        _this2.tabPanels.push(html$2(_templateObject2(), sourceObject.selectedTab ? ' esds-code-snippet__tab-panel--selected' : '', tabPanelId, tabId, !sourceObject.selectedTab, _this2.renderCodeSnippet(sourceObject)));
+      });
+    }
+  }, {
+    key: "resetTabs",
+    value: function resetTabs() {
+      this.allTabs.forEach(function (t) {
+        return t.classList.remove('esds-code-snippet__tab--selected');
+      });
+      this.allTabPanels.forEach(function (p) {
+        p.classList.remove('esds-code-snippet__tab-panel--selected');
+        p.hidden = true;
+      });
+    }
+  }, {
+    key: "selectTab",
+    value: function selectTab(tabId) {
+      this.resetTabs();
+      var tab = this.querySelector("#".concat(tabId));
+      var tabPanel = this.querySelector("#".concat(tab.getAttribute('aria-controls')));
+      tab.classList.add('esds-code-snippet__tab-panel--selected');
+      tabPanel.classList.add('esds-code-snippet__tab-panel--selected');
+      tabPanel.hidden = false;
+    }
   }, {
     key: "showCopiedMessage",
     value: function showCopiedMessage() {
@@ -10345,7 +10407,7 @@ function (_LitElement) {
       var language = sourceObject.language ? sourceObject.language : sourceObject.tabLabel.toLowerCase();
       language = markupLanguages.includes(language) ? 'markup' : language;
       var source = this.formatSource(stripIndent(this.cleanShadyDomRenderingArtifacts(this.cleanLitElementRenderingArtifacts(this.cleanVueRenderingArtifacts(sourceObject.source)))), language);
-      return unsafeHTML("\n      <div class=\"esds-code-snippet__source\">\n        <pre class=\"esds-code-snippet__pre\"><code>".concat(source, "</code></pre>\n      </div>\n    "));
+      return unsafeHTML("\n      <div class=\"esds-code-snippet__source>\n        <pre class=\"esds-code-snippet__pre\"><code>".concat(source, "</code></pre>\n      </div>\n    "));
     } // async renderCompiledHTMLSource(wcSource) {
     //   const compiledHTMLWrapper = document.createElement('div');
     //   compiledHTMLWrapper.style = 'display: none;';
@@ -10377,10 +10439,10 @@ function (_LitElement) {
     key: "renderCopyButton",
     value: function renderCopyButton() {
       // Not sure why I had to use unsafeHTML here and not the html`` template literal. Without it the ${this.copyButtonText} slot content is getting lost somewhere
-      var copyButton = html$2(_templateObject(), this.copyButtonText);
+      var copyButton = html$2(_templateObject3(), this.copyButtonText);
 
       if (this.copyable === 'true') {
-        return html$2(_templateObject2(), this.codeCopiedText, this.copyCodeToClipboard, copyButton);
+        return html$2(_templateObject4(), this.codeCopiedText, this.copyCodeToClipboard, copyButton);
       } else {
         return '';
       }
@@ -10395,28 +10457,18 @@ function (_LitElement) {
       }
     }
   }, {
-    key: "renderTabs",
-    value: function renderTabs() {
-      return html$2(_templateObject3(), this.sources.map(function (s) {
-        return s.tabLabel ? html$2(_templateObject4(), s.tabLabel) : '';
-      }));
-    }
-  }, {
     key: "renderToolbar",
     value: function renderToolbar() {
       var toolbarActions = [];
       var output = '';
-
-      if (this.sources) {
-        toolbarActions.push(this.renderTabs());
-      }
+      var tabset = this.tabs.length > 0 ? html$2(_templateObject5(), this.tabs) : '';
 
       if (this.copyable) {
         toolbarActions.push(this.renderCopyButton());
       }
 
       if (toolbarActions.length > 0) {
-        output = html$2(_templateObject5(), toolbarActions);
+        output = html$2(_templateObject6(), tabset, toolbarActions);
       }
 
       return output;
@@ -10424,8 +10476,6 @@ function (_LitElement) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var blockLevelClass = this.defaultClass;
 
       if (this.codeCopied) {
@@ -10434,49 +10484,28 @@ function (_LitElement) {
 
       if (this.maxHeight) {
         blockLevelClass += " ".concat(this.baseModifierClass, "max-height-").concat(this.maxHeight);
-      } // let sources = this.sources;
-      //
-      // // Check for wc-html language trigger
-      // if (this.language === 'wc-html' && !this.sources) {
-      //   this.source = this.slotContent ? this.slotContent : this.source;
-      //
-      //   sources = [
-      //     {
-      //       language: 'WC',
-      //       source: this.source,
-      //     },
-      //   ];
-      // }
-      //
-      //
-      // if (sources) {
-      //   let codeSnippets = [];
-      //
-      //   sources.forEach(s => {
-      //     codeSnippets.push(`
-      //       <esds-tab-panel label="${s.language}">
-      //         ${this.renderCodeSnippet(s.source, s.language, s.filename)}
-      //       </esds-tab-panel>
-      //     `);
-      //   });
-      //
-      //   output = `<esds-tabs tabs-class="esds-code-snippet__tabs" variant="alt">${codeSnippets}</esds-tabs>`;
-      // } else {
-      // Just a single snippet to render, no tabs
-
-
-      var language = this.language === 'html' ? 'markup' : this.language;
-      var source = this.source;
-
-      if (source === this.defaultSource && this.slotContent) {
-        source = this.slotContent;
       }
 
-      var codePanels = this.sources.map(function (s) {
-        return _this2.renderCodeSnippet(s);
-      }); // }
+      var sourceOutput;
 
-      return html$2(_templateObject6(), blockLevelClass, this.renderToolbar(), codePanels);
+      if (this.sources.length > 0) {
+        this.linkPanels();
+        sourceOutput = html$2(_templateObject7(), this.tabPanels);
+      } else {
+        sourceOutput = this.renderCodeSnippet(this.sources[0]); // Render a single snippet
+      }
+
+      return html$2(_templateObject8(), blockLevelClass, this.renderToolbar(), sourceOutput);
+    }
+  }, {
+    key: "allTabPanels",
+    get: function get() {
+      return this.querySelectorAll('.esds-code-snippet__tab-panel');
+    }
+  }, {
+    key: "allTabs",
+    get: function get() {
+      return this.querySelectorAll('.esds-code-snippet__tab');
     }
   }, {
     key: "initialInnerHtml",

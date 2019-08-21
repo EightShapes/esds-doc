@@ -716,6 +716,9 @@
 .esds-code-snippet-v1 .esds-code-snippet__copy-button:hover {
   background-color: #004E5A;
 }
+.esds-code-snippet-v1 .esds-code-snippet__tabset {
+  margin-right: auto;
+}
 
 @keyframes esds-code-snippet-fade-in-out-v1 {
   0% {

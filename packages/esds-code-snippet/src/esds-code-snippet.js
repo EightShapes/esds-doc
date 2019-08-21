@@ -8,6 +8,8 @@ import stripIndent from 'strip-indent';
 import { LitElement, html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
+let EsdsCodeSnippetTabCounter = 0;
+
 export class EsdsCodeSnippet extends LitElement {
   static get properties() {
     return {
@@ -39,6 +41,10 @@ export class EsdsCodeSnippet extends LitElement {
     this.copyable = 'true';
     this.source = this.initialInnerHtml;
 
+    // Set up tabbed interface
+    this.tabs = [];
+    this.tabPanels = [];
+
     // For a single source, build out a source object and add it to the sources prop by default
     this.language = 'markup';
     this.preformatted = false;
@@ -62,6 +68,14 @@ export class EsdsCodeSnippet extends LitElement {
 
   createRenderRoot() {
     return this;
+  }
+
+  get allTabPanels() {
+    return this.querySelectorAll('.esds-code-snippet__tab-panel');
+  }
+
+  get allTabs() {
+    return this.querySelectorAll('.esds-code-snippet__tab');
   }
 
   get initialInnerHtml() {
@@ -165,6 +179,12 @@ export class EsdsCodeSnippet extends LitElement {
     return this.highlightSource(beautifiedSource, language);
   }
 
+  handleTabClick(e) {
+    console.log(e.target);
+    const tabId = e.target.id;
+    this.selectTab(tabId);
+  }
+
   highlightSource(source, language) {
     if (language.toLowerCase() === 'html' || language.toLowerCase() === 'wc') {
       language = 'markup';
@@ -172,23 +192,73 @@ export class EsdsCodeSnippet extends LitElement {
     return Prism.highlight(source, Prism.languages[language], language);
   }
 
-  // parseSlottedSource(slottedSource) {
-  //   // rudamentary formatting
-  //   return slottedSource
-  //     .map(n => {
-  //       n = n.cloneNode(true); // Needed to prevent web component snippets from rendering on subsequent updates
-  //       if (n.outerHTML) {
-  //         return n.outerHTML;
-  //       } else {
-  //         let output = '';
-  //         if (n.textContent.trim().length > 0) {
-  //           output = n.textContent;
-  //         }
-  //         return output;
-  //       }
-  //     })
-  //     .join('\n');
-  // }
+  linkPanels() {
+    // If this is a multi-source code snippet, build out the tabs and tab panels
+    this.tabs = [];
+    this.tabPanels = [];
+
+    const defaultTab = this.sources.find(s => s.selectedTab);
+    if (!defaultTab) {
+      // If no default tab has been specified, default to the first tab
+      this.sources[0].selectedTab = true;
+    }
+
+    this.sources.forEach(sourceObject => {
+      const linkId = EsdsCodeSnippetTabCounter++;
+      const tabId = `esds-code-snippet__tab--${linkId}`;
+      const tabPanelId = `esds-code-snippet__tab-panel--${linkId}`;
+      this.tabs.push(
+        html`
+          <span
+            @click=${this.handleTabClick}
+            class="esds-code-snippet__tab${sourceObject.selectedTab
+              ? ' esds-code-snippet__tab--selected'
+              : ''}"
+            role="tab"
+            id="${tabId}"
+            aria-controls="${tabPanelId}"
+            >${sourceObject.tabLabel}</span
+          >
+        `,
+      );
+
+      this.tabPanels.push(
+        html`
+          <div
+            class="esds-code-snippet__tab-panel${sourceObject.selectedTab
+              ? ' esds-code-snippet__tab-panel--selected'
+              : ''}"
+            id=${tabPanelId}
+            aria-controlledby=${tabId}
+            ?hidden=${!sourceObject.selectedTab}
+          >
+            ${this.renderCodeSnippet(sourceObject)}
+          </div>
+        `,
+      );
+    });
+  }
+
+  resetTabs() {
+    this.allTabs.forEach(t =>
+      t.classList.remove('esds-code-snippet__tab--selected'),
+    );
+    this.allTabPanels.forEach(p => {
+      p.classList.remove('esds-code-snippet__tab-panel--selected');
+      p.hidden = true;
+    });
+  }
+
+  selectTab(tabId) {
+    this.resetTabs();
+    const tab = this.querySelector(`#${tabId}`);
+    const tabPanel = this.querySelector(
+      `#${tab.getAttribute('aria-controls')}`,
+    );
+    tab.classList.add('esds-code-snippet__tab-panel--selected');
+    tabPanel.classList.add('esds-code-snippet__tab-panel--selected');
+    tabPanel.hidden = false;
+  }
 
   showCopiedMessage() {
     this.codeCopied = true;
@@ -215,7 +285,7 @@ export class EsdsCodeSnippet extends LitElement {
     );
 
     return unsafeHTML(`
-      <div class="esds-code-snippet__source">
+      <div class="esds-code-snippet__source>
         <pre class="esds-code-snippet__pre"><code>${source}</code></pre>
       </div>
     `);
@@ -285,25 +355,17 @@ export class EsdsCodeSnippet extends LitElement {
     }
   }
 
-  renderTabs() {
-    return html`
-      ${this.sources.map(s => {
-        return s.tabLabel
-          ? html`
-              <span class="esds-code-snippet__tab" href="#">${s.tabLabel}</span>
-            `
-          : '';
-      })}
-    `;
-  }
-
   renderToolbar() {
     const toolbarActions = [];
     let output = '';
-
-    if (this.sources) {
-      toolbarActions.push(this.renderTabs());
-    }
+    let tabset =
+      this.tabs.length > 0
+        ? html`
+            <div class="esds-code-snippet__tabset" role="tabset">
+              ${this.tabs}
+            </div>
+          `
+        : '';
 
     if (this.copyable) {
       toolbarActions.push(this.renderCopyButton());
@@ -311,7 +373,9 @@ export class EsdsCodeSnippet extends LitElement {
 
     if (toolbarActions.length > 0) {
       output = html`
-        <div class="esds-code-snippet__toolbar">${toolbarActions}</div>
+        <div class="esds-code-snippet__toolbar">
+          ${tabset}${toolbarActions}
+        </div>
       `;
     }
 
@@ -320,6 +384,7 @@ export class EsdsCodeSnippet extends LitElement {
 
   render() {
     let blockLevelClass = this.defaultClass;
+
     if (this.codeCopied) {
       blockLevelClass += ` ${this.baseModifierClass}show-copied-notification`;
     }
@@ -328,46 +393,18 @@ export class EsdsCodeSnippet extends LitElement {
       blockLevelClass += ` ${this.baseModifierClass}max-height-${this.maxHeight}`;
     }
 
-    // let sources = this.sources;
-    //
-    // // Check for wc-html language trigger
-    // if (this.language === 'wc-html' && !this.sources) {
-    //   this.source = this.slotContent ? this.slotContent : this.source;
-    //
-    //   sources = [
-    //     {
-    //       language: 'WC',
-    //       source: this.source,
-    //     },
-    //   ];
-    // }
-    //
-    //
-    // if (sources) {
-    //   let codeSnippets = [];
-    //
-    //   sources.forEach(s => {
-    //     codeSnippets.push(`
-    //       <esds-tab-panel label="${s.language}">
-    //         ${this.renderCodeSnippet(s.source, s.language, s.filename)}
-    //       </esds-tab-panel>
-    //     `);
-    //   });
-    //
-    //   output = `<esds-tabs tabs-class="esds-code-snippet__tabs" variant="alt">${codeSnippets}</esds-tabs>`;
-    // } else {
-    // Just a single snippet to render, no tabs
-    const language = this.language === 'html' ? 'markup' : this.language;
-    let source = this.source;
-    if (source === this.defaultSource && this.slotContent) {
-      source = this.slotContent;
+    let sourceOutput;
+    if (this.sources.length > 0) {
+      this.linkPanels();
+      sourceOutput = html`
+        <div class="esds-code-snippet__tab-panels">${this.tabPanels}</div>
+      `;
+    } else {
+      sourceOutput = this.renderCodeSnippet(this.sources[0]); // Render a single snippet
     }
-    const codePanels = this.sources.map(s => this.renderCodeSnippet(s));
-    // }
-
     return html`
       <div class="${blockLevelClass}">
-        ${this.renderToolbar()} ${codePanels}
+        ${this.renderToolbar()} ${sourceOutput}
       </div>
     `;
   }
