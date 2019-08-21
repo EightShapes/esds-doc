@@ -1,7 +1,16 @@
-@import '../node_modules/@eightshapes/esds-code-snippet/src/esds-code-snippet';
-@import '../node_modules/@eightshapes/esds-rendered-example/src/esds-rendered-example';
+@import '../node_modules/@eightshapes/esds-code-snippet/src/esds-code-snippet.scss';
+@import '../node_modules/@eightshapes/esds-rendered-example/src/esds-rendered-example.scss';
 
 .esds-example-code-pair {
-  // background: darkorange;
-  // color: white;
+  .esds-code-snippet-v1 {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: 0;
+  }
+
+  .esds-rendered-example {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: 0;
+  }
 }
