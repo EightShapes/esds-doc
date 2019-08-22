@@ -24,7 +24,21 @@
      -->
     <div id="app">
       <p>{{ message }}</p>
-      <esds-code-snippet :source="message">
+      <esds-code-snippet>
+        <h1>Testing</h1>
+      </esds-code-snippet>
+
+      <esds-code-snippet :source="htmlSnippet">
+      </esds-code-snippet>
+
+      <h4>Vue component called within snippet and showing rendered HTML</h4>
+      <esds-code-snippet>
+        <my-vue-cmp/>
+      </esds-code-snippet>
+
+      <h4>Add the <code>v-pre</code> attribute in source to prevent Vue from rendering the component and allow the ESDS Code Snippet to display the view source code.</h4>
+      <esds-code-snippet>
+        <my-vue-cmp v-pre/>
       </esds-code-snippet>
     </div>
     <script>
@@ -32,9 +46,14 @@
         'esds-code-snippet'
       ];
 
+      Vue.component('my-vue-cmp', {
+        template: '<h3>This is a Vue Component</h3>'
+      });
+
       const vueApp = new Vue({
         el: '#app',
         data: {
+          htmlSnippet: '<h2>This is coming from the vueApp object</h2>',
           message: 'Hello Vue.js!'
         }
       });
