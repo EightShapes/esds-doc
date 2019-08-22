@@ -1,6 +1,6 @@
 {
-  "name": "esds-example-code-pair",
-  "version": "0.1.0",
+  "name": "@eightshapes/esds-example-code-pair",
+  "version": "0.2.1",
   "description": "",
   "main": "src/esds-example-code-pair.js",
   "scripts": {
@@ -12,7 +12,8 @@
     "watch-build": "npm run watch-build-ie | npm run watch-build-esm | npm run watch-build-styles",
     "watch-build-ie": "rollup --watch -c rollup.config.ie.js",
     "watch-build-esm": "rollup --watch -c rollup.config.js",
-    "watch-build-styles": "sass src:dist --watch"
+    "watch-build-styles": "sass src:dist --watch",
+    "prepack": "npm run build"
   },
   "license": "MIT",
   "devDependencies": {
@@ -26,8 +27,8 @@
     "sass": "^1.22.9"
   },
   "dependencies": {
-    "@eightshapes/esds-code-snippet": "0.3.2",
-    "@eightshapes/esds-rendered-example": "0.1.0",
+    "@eightshapes/esds-code-snippet": "^0.6.0",
+    "@eightshapes/esds-rendered-example": "^0.2.0",
     "@webcomponents/custom-elements": "^1.2.4",
     "lit-element": "^2.2.1",
     "regenerator-runtime": "^0.13.3"

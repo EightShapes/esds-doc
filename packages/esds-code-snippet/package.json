@@ -1,6 +1,6 @@
 {
   "name": "@eightshapes/esds-code-snippet",
-  "version": "0.3.2",
+  "version": "0.6.0",
   "description": "",
   "esnext": "src/esds-code-snippet.js",
   "main": "dist/esds-code-snippet.js",
@@ -14,7 +14,8 @@
     "watch-build": "npm run watch-build-ie | npm run watch-build-esm | npm run watch-build-styles",
     "watch-build-ie": "rollup --watch -c rollup.config.ie.js",
     "watch-build-esm": "rollup --watch -c rollup.config.js",
-    "watch-build-styles": "sass src:dist --watch"
+    "watch-build-styles": "sass src:dist --watch",
+    "prepack": "npm run build"
   },
   "author": "Kevin Powell <kevinmpowell@gmail.com>",
   "license": "MIT",
@@ -42,5 +43,6 @@
     "lit-element": "^2.2.1",
     "prismjs": "^1.17.1",
     "strip-indent": "^3.0.0"
-  }
+  },
+  "gitHead": "8367b35d3b153bd8bf26417da4701bfde815bd42"
 }
