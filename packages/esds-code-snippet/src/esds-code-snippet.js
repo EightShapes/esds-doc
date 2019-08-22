@@ -70,6 +70,7 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
 
   connectedCallback() {
     super.connectedCallback();
+    console.log('CODE SNIPPET', this.source);
 
     this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
   }
@@ -393,7 +394,6 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
   }
 
   render() {
-    console.log('render');
     let blockLevelClass = this.defaultClass;
 
     if (this.codeCopied) {
