@@ -431,8 +431,6 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
         <s-slot @slotchange=${this.handleSlotSourceChange}
           >${sourceOutput}</s-slot
         >
-        <s-slot name="tabs"></s-slot>
-        <s-slot name="tabPanels"></s-slot>
       </div>
     `;
   }
