@@ -107,6 +107,10 @@ $esds-code-snippet-toolbar-background: transparent !default;
     z-index: 10;
   }
 
+  .esds-code-snippet__copy-button-wrap {
+    cursor: pointer;
+  }
+
   .esds-code-snippet__copied-notification {
     background: $esds-code-snippet-copied-tooltip-background-color;
     border-radius: $esds-code-snippet-copied-tooltip-border-radius;

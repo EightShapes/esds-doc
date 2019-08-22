@@ -70,16 +70,8 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
 
   connectedCallback() {
     super.connectedCallback();
-    this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
 
-    if (!this.sources) {
-      const defaultSourceObject = {
-        source: this.source || this.initialInnerHtml,
-        language: this.language,
-        preformatted: this.preformatted,
-      };
-      this.sources = [defaultSourceObject];
-    }
+    this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
   }
 
   get allTabPanels() {
@@ -202,6 +194,17 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
 
     const beautifiedSource = this.beautifySource(source, language);
     return this.highlightSource(beautifiedSource, language);
+  }
+
+  handleSlotSourceChange(e) {
+    // See if the default slot contains anything
+    const assignedContent = e.target.querySelector('s-assigned-wrapper');
+    if (assignedContent && assignedContent.innerHTML) {
+      // If so, copy the contents to the source object
+      this.source = assignedContent.innerHTML;
+      this.requestUpdate();
+      assignedContent.innerHTML = ''; // Clear out the assigned content so the fallback content can be shown
+    }
   }
 
   handleTabClick(e) {
@@ -390,6 +393,7 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
   }
 
   render() {
+    console.log('render');
     let blockLevelClass = this.defaultClass;
 
     if (this.codeCopied) {
@@ -401,17 +405,34 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
     }
 
     let sourceOutput;
-    if (this.sources.length > 1) {
+    if (this.sources && this.sources.length > 1) {
       this.linkPanels();
       sourceOutput = html`
         <div class="esds-code-snippet__tab-panels">${this.tabPanels}</div>
       `;
     } else {
+      const defaultSourceObject = {
+        source: this.source,
+        language: this.language,
+        preformatted: this.preformatted,
+      };
+      this.sources = [defaultSourceObject];
+
       sourceOutput = this.renderCodeSnippet(this.sources[0]); // Render a single snippet
     }
+    // return html`
+    //   <div class="${blockLevelClass}">
+    //     ${this.renderToolbar()} ${sourceOutput}
+    //   </div>
+    // `;
     return html`
       <div class="${blockLevelClass}">
-        ${this.renderToolbar()} ${sourceOutput}
+        ${this.renderToolbar()}
+        <s-slot @slotchange=${this.handleSlotSourceChange}
+          >${sourceOutput}</s-slot
+        >
+        <s-slot name="tabs"></s-slot>
+        <s-slot name="tabPanels"></s-slot>
       </div>
     `;
   }
