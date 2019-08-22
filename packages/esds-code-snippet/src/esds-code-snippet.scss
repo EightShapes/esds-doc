@@ -38,6 +38,8 @@ $esds-code-snippet-filename-font-family: $esds-font-family-sans-serif !default;
 $esds-code-snippet-filename-font-size: $esds-code-snippet-font-size !default;
 $esds-code-snippet-filename-offset: $esds-space-inset-half-x !default;
 
+$esds-code-snippet-toolbar-inset-space: $esds-space-inset-half-x !default;
+$esds-code-snippet-toolbar-background: transparent !default;
 
 .esds-code-snippet-v1 {
   @include esds-font-reset(
@@ -50,7 +52,8 @@ $esds-code-snippet-filename-offset: $esds-space-inset-half-x !default;
   border:         $esds-code-snippet-border;
   border-radius:  $esds-code-snippet-border-radius;
   color:          $esds-code-snippet-text-color;
-  margin:  $esds-code-snippet-space-stack;
+  line-height:    $esds-code-snippet-line-height;
+  margin:         $esds-code-snippet-space-stack;
   position: relative;
 
   // Prism overrides
@@ -89,9 +92,10 @@ $esds-code-snippet-filename-offset: $esds-space-inset-half-x !default;
   }
 
   .esds-code-snippet__toolbar {
+    background: $esds-code-snippet-toolbar-background;
     display: flex;
     justify-content: flex-end;
-    padding: $esds-space-inset-half-x;
+    padding: $esds-code-snippet-toolbar-inset-space;
   }
 
   .esds-code-snippet__toolbar + .esds-code-snippet__source .esds-code-snippet__pre {
