@@ -1,6 +1,6 @@
 {
   "name": "@eightshapes/esds-example-code-pair",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "main": "src/esds-example-code-pair.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "sass": "^1.22.9"
   },
   "dependencies": {
-    "@eightshapes/esds-code-snippet": "^0.5.0",
+    "@eightshapes/esds-code-snippet": "^0.6.0",
     "@eightshapes/esds-rendered-example": "^0.2.0",
     "@webcomponents/custom-elements": "^1.2.4",
     "lit-element": "^2.2.1",
