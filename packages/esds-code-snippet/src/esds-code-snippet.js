@@ -424,11 +424,7 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
 
       sourceOutput = this.renderCodeSnippet(this.sources[0]); // Render a single snippet
     }
-    // return html`
-    //   <div class="${blockLevelClass}">
-    //     ${this.renderToolbar()} ${sourceOutput}
-    //   </div>
-    // `;
+
     return html`
       <div class="${blockLevelClass}">
         ${this.renderToolbar()}

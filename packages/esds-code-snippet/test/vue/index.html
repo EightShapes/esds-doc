@@ -1,7 +1,7 @@
 <html>
   <head>
     <script src="https://unpkg.com/vue"></script>
-    <script type="module" src="../../dist/esds-code-snippet.js"></script>
+    <script type="module" src="../../dist/esds-code-snippet-web-component.js"></script>
     <!-- No Shadow DOM, so link directly to styles -->
     <link rel="stylesheet" href="../../dist/esds-code-snippet.css"/>
     <!-- Enable <slot> functionality of lit-element without using ShadowDOM -->
@@ -11,6 +11,11 @@
     <!-- Separate webcomponents polyfill bundle for Edge, IE11, etc. -->
     <script type="text/javascript" src="../../node_modules/@webcomponents/custom-elements/custom-elements.min.js"></script>
 
+    <script type="module">
+      import { EsdsCodeSnippet } from '../../dist/esds-code-snippet.js';
+      EsdsCodeSnippet.copyButton = () => '<button class="my-ds-button my-ds-button--primary" type=button> Button Text </button>';
+      customElements.define('vue-code-snippet', EsdsCodeSnippet);
+    </script>
   </head>
   <body>
     <!--
@@ -40,14 +45,30 @@
       <esds-code-snippet>
         <my-vue-cmp v-pre/>
       </esds-code-snippet>
+
+
+      <vue-code-snippet>
+        <h5>This should have the Vue button</h5>
+        <custom-button v-pre></custom-button>
+      </vue-code-snippet>
     </div>
     <script>
       Vue.config.ignoredElements = [
-        'esds-code-snippet'
+        'esds-code-snippet',
+        'vue-code-snippet'
       ];
 
       Vue.component('my-vue-cmp', {
         template: '<h3>This is a Vue Component</h3>'
+      });
+
+      Vue.component('custom-button', {
+        template: '<button>This is my custom {{ text }}</button>',
+        data: function() {
+          return {
+            text: 'Vue Button'
+          }
+        }
       });
 
       const vueApp = new Vue({
