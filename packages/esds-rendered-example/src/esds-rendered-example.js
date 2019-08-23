@@ -10,23 +10,9 @@ export class EsdsRenderedExample extends Slotify(LitElement) {
     };
   }
 
-  get renderedHtml() {
-    const assignedSlotContent = this.querySelector(
-      's-assigned-wrapper',
-    ).innerHTML.trim();
-    const fallbackSlotContent = this.querySelector(
-      's-fallback-wrapper',
-    ).innerHTML.trim();
-    if (assignedSlotContent.length > 0) {
-      return assignedSlotContent;
-    } else {
-      return fallbackSlotContent;
-    }
-  }
-
   render() {
     return html`
-      <div class="esds-rendered-example">
+      <div class="esds-rendered-example-v1">
         <s-slot>${unsafeHTML(this.exampleSource)}</s-slot>
         ${this.label
           ? html`

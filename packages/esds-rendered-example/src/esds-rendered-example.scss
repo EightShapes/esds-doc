@@ -1,4 +1,8 @@
-@import '../node_modules/esds-visual-style/styles/esds-visual-style';
+@import '../node_modules/esds-visual-style/tokens/tokens';
+@import '../node_modules/esds-visual-style/styles/shared/color';
+@import '../node_modules/esds-visual-style/styles/shared/space';
+@import '../node_modules/esds-visual-style/styles/shared/typography';
+@import '../node_modules/esds-visual-style/styles/shared/util';
 
 $esds-rendered-example-background: $esds-background-color-white !default;
 $esds-rendered-example-background-dark: $esds-background-color-dark !default;
@@ -24,7 +28,7 @@ $esds-rendered-example-label-background-opacity: .8 !default;
 $esds-rendered-example-label-background: rgba($esds-rendered-example-background, $esds-rendered-example-label-background-opacity) !default;
 $esds-rendered-example-label-background-on-dark: rgba($esds-rendered-example-background-dark, $esds-rendered-example-label-background-opacity) !default;
 
-.esds-rendered-example {
+.esds-rendered-example-v1 {
   @include esds-font-reset;
   align-items: center;
   background-color: $esds-rendered-example-background;
@@ -39,42 +43,42 @@ $esds-rendered-example-label-background-on-dark: rgba($esds-rendered-example-bac
   &.esds-doc-container--dark {
     background: $esds-background-color-dark; // TODO needs to be in a mixin
   }
-}
 
-.esds-rendered-example__item {
-  @include esds-font-reset;
-  border-bottom: $esds-rendered-example-border;
-  letter-spacing: 0;
-  padding: $esds-rendered-example-space-inset;
-  position: relative;
+  .esds-rendered-example__item {
+    @include esds-font-reset;
+    border-bottom: $esds-rendered-example-border;
+    letter-spacing: 0;
+    padding: $esds-rendered-example-space-inset;
+    position: relative;
 
-  &:last-child {
-    border: 0;
+    &:last-child {
+      border: 0;
+    }
+
+    &.esds-rendered-example__item--no-inset,
+    .esds-rendered-example--no-inset & {
+      padding: 0;
+    }
   }
 
-  &.esds-rendered-example__item--no-inset,
-  .esds-rendered-example--no-inset & {
-    padding: 0;
-  }
-}
+  .esds-rendered-example__label {
+    background: $esds-rendered-example-label-background;
+    border-radius: $esds-border-radius-default;
+    color: $esds-rendered-example-text-color;
+    font-family: $esds-rendered-example-font-family;
+    font-size: $esds-rendered-example-font-size;
+    font-style: $esds-rendered-example-font-style;
+    font-weight: $esds-rendered-example-font-weight;
+    line-height: $esds-rendered-example-label-line-height;
+    padding: $esds-rendered-example-label-offset;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
 
-.esds-rendered-example__label {
-  background: $esds-rendered-example-label-background;
-  border-radius: $esds-border-radius-default;
-  color: $esds-rendered-example-text-color;
-  font-family: $esds-rendered-example-font-family;
-  font-size: $esds-rendered-example-font-size;
-  font-style: $esds-rendered-example-font-style;
-  font-weight: $esds-rendered-example-font-weight;
-  line-height: $esds-rendered-example-label-line-height;
-  padding: $esds-rendered-example-label-offset;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 1;
-
-  .esds-doc-container--dark & {
-    background: $esds-rendered-example-label-background-on-dark;
-    color: $esds-rendered-example-text-color-on-dark;
+    .esds-doc-container--dark & {
+      background: $esds-rendered-example-label-background-on-dark;
+      color: $esds-rendered-example-text-color-on-dark;
+    }
   }
 }

@@ -54,15 +54,6 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
 
   connectedCallback() {
     super.connectedCallback();
-    this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
-  }
-
-  get initialInnerHtml() {
-    return this.getAttribute('data-initial-inner-html');
-  }
-
-  set initialInnerHtml(value) {
-    this.setAttribute('data-initial-inner-html', value);
   }
 
   handleSlotSourceChange(e) {
@@ -81,7 +72,7 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
 
   render() {
     return html`
-      <div class="esds-example-code-pair">
+      <div class="esds-example-code-pair-v1">
         <s-slot @slotchange=${this.handleSlotSourceChange}>
           ${this.renderedExample}
           ${this.codeSnippet}

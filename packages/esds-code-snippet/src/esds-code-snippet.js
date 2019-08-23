@@ -65,7 +65,6 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
     this.codeCopiedText = 'Copied to clipboard';
     this.copyButtonText = 'Copy Code';
     this.copyable = 'true';
-    this.source = this.initialInnerHtml;
 
     // Set up tabbed interface
     this.tabs = [];
@@ -78,7 +77,6 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
 
   connectedCallback() {
     super.connectedCallback();
-    this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
   }
 
   get allTabPanels() {
@@ -87,14 +85,6 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
 
   get allTabs() {
     return this.querySelectorAll('.esds-code-snippet__tab');
-  }
-
-  get initialInnerHtml() {
-    return this.getAttribute('data-initial-inner-html') || this.innerHTML;
-  }
-
-  set initialInnerHtml(value) {
-    this.setAttribute('data-initial-inner-html', value);
   }
 
   beautifySource(source, language) {

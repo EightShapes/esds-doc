@@ -1,4 +1,8 @@
-@import '../node_modules/esds-visual-style/styles/esds-visual-style';
+@import '../node_modules/esds-visual-style/tokens/tokens';
+@import '../node_modules/esds-visual-style/styles/shared/color';
+@import '../node_modules/esds-visual-style/styles/shared/space';
+@import '../node_modules/esds-visual-style/styles/shared/typography';
+@import '../node_modules/esds-visual-style/styles/shared/util';
 
 $esds-code-snippet-background-color: $esds-color-neutral-95 !default;
 $esds-code-snippet-border: $esds-border-default !default;

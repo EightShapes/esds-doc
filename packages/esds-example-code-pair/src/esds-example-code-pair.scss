@@ -1,14 +1,17 @@
 @import '../node_modules/@eightshapes/esds-code-snippet/src/esds-code-snippet.scss';
 @import '../node_modules/@eightshapes/esds-rendered-example/src/esds-rendered-example.scss';
+$esds-example-code-pair-space-stack: $esds-space-stack-1-x !default;
 
-.esds-example-code-pair {
+.esds-example-code-pair-v1 {
+  margin: $esds-example-code-pair-space-stack;
+
   .esds-code-snippet-v1 {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-top: 0;
   }
 
-  .esds-rendered-example {
+  .esds-rendered-example-v1 {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     margin-bottom: 0;
