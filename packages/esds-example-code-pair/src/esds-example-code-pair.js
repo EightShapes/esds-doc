@@ -12,12 +12,20 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
     this._codeSnippetCopyButton = value;
   }
 
-  static get dependencyAliases() {
-    return this._dependencyAliases;
+  static get codeSnippetTagName() {
+    return this._codeSnippetTagName;
   }
 
-  static set dependencyAliases(value) {
-    this._dependencyAliases = value;
+  static set codeSnippetTagName(value) {
+    this._codeSnippetTagName = value;
+  }
+
+  static get renderedExampleTagName() {
+    return this._renderedExampleTagName;
+  }
+
+  static set renderedExampleTagName(value) {
+    this._renderedExampleTagName = value;
   }
 
   constructor() {
@@ -26,15 +34,22 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
       EsdsCodeSnippet.copyButton = this.constructor.codeSnippetCopyButton;
     }
 
-    let codeSnippetTagName = 'ecpair-code-snippet';
-    let renderedExampleTagName = 'ecpair-rednered-example';
-    if (this.constructor.dependencyAliases) {
-      codeSnippetTagName = this.constructor.dependencyAliases.codeSnippet;
-      renderedExampleTagName = this.constructor.dependencyAliases.renderedExample;
+    let codeSnippetTagName = 'esds-example-code-pair-code-snippet';
+    let renderedExampleTagName = 'esds-example-code-pair-rendered-example';
+    if (this.constructor.codeSnippetTagName) {
+      codeSnippetTagName = this.constructor.codeSnippetTagName;
+    }
+    if (this.constructor.renderedExampleTagName) {
+      renderedExampleTagName = this.constructor.renderedExampleTagName;
     }
 
-    customElements.define(codeSnippetTagName, EsdsCodeSnippet);
-    customElements.define(renderedExampleTagName, EsdsRenderedExample);
+    if (!customElements.get(codeSnippetTagName)){
+      customElements.define(codeSnippetTagName, EsdsCodeSnippet);
+    }
+
+    if (!customElements.get(renderedExampleTagName)){
+      customElements.define(renderedExampleTagName, EsdsRenderedExample);
+    }
   }
 
   connectedCallback() {
@@ -54,8 +69,8 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
     // See if the default slot contains anything
     const assignedContent = e.target.querySelector('s-assigned-wrapper');
     if (assignedContent && assignedContent.innerHTML) {
-      this.renderedExample = new EsdsRenderedExample();
-      this.codeSnippet = new EsdsCodeSnippet();
+      this.renderedExample = this.renderedExample || new EsdsRenderedExample();
+      this.codeSnippet = this.codeSnippet || new EsdsCodeSnippet();
 
       this.codeSnippet.source = assignedContent.innerHTML;
       this.renderedExample.exampleSource = assignedContent.innerHTML;

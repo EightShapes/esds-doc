@@ -15,10 +15,11 @@
 
     <script type="module">
       import { EsdsExampleCodePair } from '../../dist/esds-example-code-pair.js';
-      EsdsExampleCodePair.dependencyAliases = {
-        renderedExample: 'monkey-gong',
-        codeSnippet: 'jedi-hat'
-      }
+      // This config is required to deconflict the internal EsdsCodeSnippet and EsdsRenderedExample components used with EsdsExampleCodePair. Without doing this, the already loaded EsdsExamplePair will reserve the global namespace for those two dependencies
+      EsdsExampleCodePair.codeSnippetTagName = 'custom-code-snippet';
+      EsdsExampleCodePair.renderedExampleTagName = 'custom-rendered-example';
+
+      // This config is how to override the button markup for the code snippet for all instances of the 'ecpair-with-custom-button' component
       EsdsExampleCodePair.codeSnippetCopyButton = '<button style="background: red; padding: 5px; text-transform: uppercase;">Copy This Code</button>';
       customElements.define('ecpair-with-custom-button', EsdsExampleCodePair);
     </script>
@@ -32,5 +33,13 @@
     <ecpair-with-custom-button>
       <h2>This should use the globally configured copy button</h2>
     </ecpair-with-custom-button>
+
+    <ecpair-with-custom-button>
+      <h4>This should also use the custom button</h4>
+    </ecpair-with-custom-button>
+
+    <esds-example-code-pair>
+      <p>Default button style</p>
+    </esds-example-code-pair>
   </body>
 </html>
