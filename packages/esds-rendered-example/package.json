@@ -1,6 +1,6 @@
 {
   "name": "@eightshapes/esds-rendered-example",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "",
   "esnext": "src/esds-rendered-example.js",
   "main": "dist/esds-rendered-example.js",
