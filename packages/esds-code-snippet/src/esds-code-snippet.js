@@ -70,8 +70,6 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
 
   connectedCallback() {
     super.connectedCallback();
-    console.log('CODE SNIPPET', this.source);
-
     this.initialInnerHtml = this.initialInnerHtml || this.innerHTML;
   }
 
@@ -336,6 +334,12 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
         ${this.copyButtonText}
       </button>
     `;
+
+    if (this.constructor.copyButton) {
+      copyButton = html`
+        ${unsafeHTML(this.constructor.copyButton())}
+      `;
+    }
 
     if (this.copyable === 'true') {
       return html`

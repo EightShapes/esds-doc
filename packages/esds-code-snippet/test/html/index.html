@@ -8,10 +8,16 @@
     <script type="text/javascript" src="../../node_modules/@webcomponents/custom-elements/custom-elements.min.js"></script>
 
     <!-- The ESM "vanilla" version of the component for FF, Safari, Chrome and Edge -->
-    <script type="module" src="../../dist/esds-code-snippet.js"></script>
+    <script type="module" src="../../dist/esds-code-snippet-web-component.js"></script>
 
     <!-- A babel-compiled version of the component for IE11 -->
     <script nomodule type="text/javascript" src="../../dist/esds-code-snippet-legacy.js"></script>
+
+    <script type="module">
+      import { EsdsCodeSnippet } from '../../dist/esds-code-snippet.js';
+      EsdsCodeSnippet.copyButton = () => '<button>Please Copy This Code!</button>';
+      customElements.define('esds-code-snippet-alt', EsdsCodeSnippet);
+    </script>
   </head>
   <body>
     <h1>ESDS Code Snippet Test Pages</h1>
@@ -20,6 +26,11 @@
     <esds-code-snippet>
       <h1>Basic Code Snippet</h1>
     </esds-code-snippet>
+
+    <h2>Alt Configuration</h2>
+    <esds-code-snippet-alt>
+      <h1>Basic Code Snippet</h1>
+    </esds-code-snippet-alt>
 
     <h2>Tabbed Example</h2>
     <esds-code-snippet sources='[{"tabLabel": "Vue", "source": "<app-header>Hello World</app-header>"},{"tabLabel": "HTML", "source": "<h1>Hello World</h1>"}]'></esds-code-snippet>
