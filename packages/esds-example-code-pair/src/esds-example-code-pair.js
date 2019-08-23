@@ -1,28 +1,40 @@
 import { LitElement, html } from 'lit-element';
-import { EsdsRenderedExample } from '@eightshapes/esds-rendered-example/src/esds-rendered-example.js';
-import { EsdsCodeSnippet } from '@eightshapes/esds-code-snippet/src/esds-code-snippet.js';
+import { EsdsRenderedExample } from '@eightshapes/esds-rendered-example/dist/esds-rendered-example.js';
+import { EsdsCodeSnippet } from '@eightshapes/esds-code-snippet/dist/esds-code-snippet.js';
 import { Slotify } from '@eightshapes/slotify';
 
 export class EsdsExampleCodePair extends Slotify(LitElement) {
-  static get properties() {
-    return {
-      // vueAppName: { type: String, attribute: 'vue-app-name' },
-    };
+  static get codeSnippetCopyButton() {
+    return this._codeSnippetCopyButton;
   }
+
+  static set codeSnippetCopyButton(value) {
+    this._codeSnippetCopyButton = value;
+  }
+
+  static get dependencyAliases() {
+    return this._dependencyAliases;
+  }
+
+  static set dependencyAliases(value) {
+    this._dependencyAliases = value;
+  }
+
   constructor() {
     super();
-    // Alias EsdsRenderedExample for usage within this component
-    if (!window.customElements.get('esds-ecpair-rendered-example')) {
-      window.customElements.define(
-        'esds-ecpair-rendered-example',
-        EsdsRenderedExample,
-      );
-    }
-    // Alias EsdsCodeSnippet for usage within this component
-    if (!window.customElements.get('esds-ecpair-code-snippet')) {
-      window.customElements.define('esds-ecpair-code-snippet', EsdsCodeSnippet);
+    if (this.constructor.codeSnippetCopyButton) {
+      EsdsCodeSnippet.copyButton = this.constructor.codeSnippetCopyButton;
     }
 
+    let codeSnippetTagName = 'ecpair-code-snippet';
+    let renderedExampleTagName = 'ecpair-rednered-example';
+    if (this.constructor.dependencyAliases) {
+      codeSnippetTagName = this.constructor.dependencyAliases.codeSnippet;
+      renderedExampleTagName = this.constructor.dependencyAliases.renderedExample;
+    }
+
+    customElements.define(codeSnippetTagName, EsdsCodeSnippet);
+    customElements.define(renderedExampleTagName, EsdsRenderedExample);
   }
 
   connectedCallback() {
@@ -42,14 +54,11 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
     // See if the default slot contains anything
     const assignedContent = e.target.querySelector('s-assigned-wrapper');
     if (assignedContent && assignedContent.innerHTML) {
-      console.log(assignedContent.innerHTML);
-      // If so, copy the contents to the internal RenderedExample and CodeSnippet components
       this.renderedExample = new EsdsRenderedExample();
-      this.renderedExample.exampleSource = assignedContent.innerHTML;
-
       this.codeSnippet = new EsdsCodeSnippet();
-      this.codeSnippet.source = assignedContent.innerHTML;
 
+      this.codeSnippet.source = assignedContent.innerHTML;
+      this.renderedExample.exampleSource = assignedContent.innerHTML;
       this.requestUpdate();
       assignedContent.innerHTML = ''; // Clear out the assigned content so the fallback content can be shown
     }
@@ -58,7 +67,10 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
   render() {
     return html`
       <div class="esds-example-code-pair">
-        <s-slot @slotchange=${this.handleSlotSourceChange}>${this.renderedExample} ${this.codeSnippet}</s-slot>
+        <s-slot @slotchange=${this.handleSlotSourceChange}>
+          ${this.renderedExample}
+          ${this.codeSnippet}
+        </s-slot>
       </div>
     `;
   }

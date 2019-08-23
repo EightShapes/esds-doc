@@ -4,14 +4,16 @@
   "description": "",
   "main": "src/esds-example-code-pair.js",
   "scripts": {
-    "start": "npm run watch-build | browser-sync start --watch --config browser-sync-config.js --ignore 'src/**/*'",
-    "build": "npm run build-ie && npm run build-esm && npm run build-styles",
+    "start": "npm run build && npm run watch-build | browser-sync start --watch --config browser-sync-config.js --ignore 'src/**/*'",
+    "build": "npm run build-esm && npm run build-ie && npm run build-web-component && npm run build-styles",
     "build-ie": "rollup -c rollup.config.ie.js",
-    "build-esm": "rollup -c rollup.config.js",
+    "build-web-component": "rollup -c rollup.config.js -i src/esds-example-code-pair.js -o dist/esds-example-code-pair-web-component.js -f esm",
+    "build-esm": "rollup -c rollup.config.js -i src/esds-example-code-pair.js -o dist/esds-example-code-pair.js -f esm",
     "build-styles": "sass src:dist",
-    "watch-build": "npm run watch-build-ie | npm run watch-build-esm | npm run watch-build-styles",
+    "watch-build": "npm run watch-build-esm | npm run watch-build-ie | npm run watch-build-web-component | npm run watch-build-styles",
     "watch-build-ie": "rollup --watch -c rollup.config.ie.js",
-    "watch-build-esm": "rollup --watch -c rollup.config.js",
+    "watch-build-web-component": "rollup --watch -c rollup.config.js -o dist/esds-example-code-pair-web-component.js -f esm",
+    "watch-build-esm": "rollup --watch -c rollup.config.js -i src/esds-example-code-pair.js -o dist/esds-example-code-pair.js -f esm",
     "watch-build-styles": "sass src:dist --watch",
     "prepack": "npm run build"
   },
@@ -27,7 +29,7 @@
     "sass": "^1.22.9"
   },
   "dependencies": {
-    "@eightshapes/esds-code-snippet": "^0.7.0",
+    "@eightshapes/esds-example-code-pair": "^0.7.0",
     "@eightshapes/esds-rendered-example": "^0.3.0",
     "@eightshapes/slotify": "0.2.0",
     "@webcomponents/custom-elements": "^1.2.4",

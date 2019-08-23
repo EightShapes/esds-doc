@@ -44,6 +44,14 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
     };
   }
 
+  static get copyButton() {
+    return this._copyButton;
+  }
+
+  static set copyButton(value) {
+    this._copyButton = value;
+  }
+
   constructor() {
     super();
     this.defaultClass = 'esds-code-snippet-v1';
@@ -336,8 +344,9 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
     `;
 
     if (this.constructor.copyButton) {
+      // If something has set the static setter for copy button, use that copy button
       copyButton = html`
-        ${unsafeHTML(this.constructor.copyButton())}
+        ${unsafeHTML(this.constructor.copyButton)}
       `;
     }
 

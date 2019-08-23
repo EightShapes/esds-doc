@@ -8,15 +8,29 @@
     <script type="text/javascript" src="../../node_modules/@webcomponents/custom-elements/custom-elements.min.js"></script>
 
     <!-- The ESM "vanilla" version of the component for FF, Safari, Chrome and Edge -->
-    <script type="module" src="../../dist/esds-example-code-pair.js"></script>
+    <script type="module" src="../../dist/esds-example-code-pair-web-component.js"></script>
 
     <!-- A babel-compiled version of the component for IE11 -->
     <script nomodule type="text/javascript" src="../../dist/esds-example-code-pair-legacy.js"></script>
+
+    <script type="module">
+      import { EsdsExampleCodePair } from '../../dist/esds-example-code-pair.js';
+      EsdsExampleCodePair.dependencyAliases = {
+        renderedExample: 'monkey-gong',
+        codeSnippet: 'jedi-hat'
+      }
+      EsdsExampleCodePair.codeSnippetCopyButton = '<button style="background: red; padding: 5px; text-transform: uppercase;">Copy This Code</button>';
+      customElements.define('ecpair-with-custom-button', EsdsExampleCodePair);
+    </script>
   </head>
   <body>
     <h1>ESDS Example Code Pair</h1>
     <esds-example-code-pair>
       <h1>Just Testing This</h1>
     </esds-example-code-pair>
+
+    <ecpair-with-custom-button>
+      <h2>This should use the globally configured copy button</h2>
+    </ecpair-with-custom-button>
   </body>
 </html>
