@@ -29,7 +29,7 @@
     "sass": "^1.22.9"
   },
   "dependencies": {
-    "@eightshapes/esds-example-code-pair": "^0.7.0",
+    "@eightshapes/esds-example-code-pair": "^0.8.0",
     "@eightshapes/esds-rendered-example": "^0.4.0",
     "@eightshapes/slotify": "0.2.0",
     "@webcomponents/custom-elements": "^1.2.4",
