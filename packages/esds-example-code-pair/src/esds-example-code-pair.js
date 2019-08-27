@@ -70,12 +70,42 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
     }
   }
 
+  handleExampleSlotSourceChange(e) {
+    const slottedExamples = Array.from(this.querySelectorAll('div[slot="example"]'));
+    if (slottedExamples.length > 0) {
+      const sources = slottedExamples.map(node => {
+        return {
+          source: node.getAttribute('data-source') || node.innerHTML,
+          language: node.getAttribute('data-language') || 'html',
+          preformatted: node.getAttribute('data-preformatted') || false
+        }
+      });
+
+      this.codeSnippet = this.codeSnippet || new EsdsCodeSnippet();
+      this.codeSnippet.sources = sources;
+
+      const renderedMarkupExample = this.querySelector('div[slot="example"][data-rendered]');
+      let renderedMarkup = sources[0].source;
+      if (renderedMarkupExample) {
+        renderedMarkup = renderedMarkupExample.innerHTML;
+      }
+      this.renderedExample = this.renderedExample || new EsdsRenderedExample();
+      this.renderedExample.exampleSource = renderedMarkup;
+      this.requestUpdate();
+
+      const assignedExampleSlotContent = this.querySelector('s-slot[name="example"] s-assigned-wrapper');
+      assignedExampleSlotContent.innerHTML = ''; // Clear out the assigned content so the fallback content can be shown
+    }
+  }
+
   render() {
     return html`
       <div class="esds-example-code-pair-v1">
         <s-slot @slotchange=${this.handleSlotSourceChange}>
           ${this.renderedExample}
           ${this.codeSnippet}
+        </s-slot>
+        <s-slot name="example" @slotchange=${this.handleExampleSlotSourceChange}>
         </s-slot>
       </div>
     `;

@@ -29,6 +29,19 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
       JAVASCRIPT: ['js'],
     };
   }
+
+  static get DEFAULT_LANGUAGE_TAB_LABELS() {
+    return {
+      html: 'HTML',
+      vue: 'Vue',
+      react: 'React',
+      angular: 'Angular',
+      wc: 'WC',
+      css: 'CSS',
+      js: 'JS',
+      javascript: 'Javascript',
+    };
+  }
   static get properties() {
     return {
       codeCopiedText: { type: String, attribute: 'code-copied-text' },
@@ -65,6 +78,7 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
     this.codeCopiedText = 'Copied to clipboard';
     this.copyButtonText = 'Copy Code';
     this.copyable = 'true';
+    this.source = '';
 
     // Set up tabbed interface
     this.tabs = [];
@@ -102,7 +116,7 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
         break;
     }
 
-    return this.preformatted ? source : formatter(source, options);
+    return formatter(source, options);
   }
 
   cleanLitElementRenderingArtifacts(source) {
@@ -172,7 +186,7 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
     document.body.removeChild(textarea);
   }
 
-  formatSource(source, language) {
+  formatSource(source, language, preformatted) {
     if (!this.constructor.SUPPORTED_LANGUAGES.ALL.includes(language)) {
       throw new Error(
         `${language} is not a supported language for esds code snippet. Please use one of: '${this.constructor.SUPPORTED_LANGUAGES.ALL.join(
@@ -189,7 +203,9 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
       language = 'javascript';
     }
 
-    const beautifiedSource = this.beautifySource(source, language);
+    const beautifiedSource = preformatted
+      ? source
+      : this.beautifySource(source, language);
     return this.highlightSource(beautifiedSource, language);
   }
 
@@ -231,6 +247,11 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
       const linkId = EsdsCodeSnippetTabCounter++;
       const tabId = `esds-code-snippet__tab--${linkId}`;
       const tabPanelId = `esds-code-snippet__tab-panel--${linkId}`;
+      const tabLabel = sourceObject.tabLabel
+        ? sourceObject.tabLabel
+        : this.constructor.DEFAULT_LANGUAGE_TAB_LABELS[
+            sourceObject.language.toLowerCase()
+          ];
       this.tabs.push(
         html`
           <span
@@ -241,7 +262,7 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
             role="tab"
             id="${tabId}"
             aria-controls="${tabPanelId}"
-            >${sourceObject.tabLabel}</span
+            >${tabLabel}</span
           >
         `,
       );
@@ -305,6 +326,7 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
     let language = sourceObject.language
       ? sourceObject.language
       : sourceObject.tabLabel.toLowerCase();
+    const preformatted = sourceObject.preformatted;
 
     const source = this.formatSource(
       stripIndent(
@@ -315,6 +337,7 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
         ),
       ),
       language,
+      preformatted,
     );
 
     return html`
@@ -415,7 +438,7 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
       `;
     } else {
       const defaultSourceObject = {
-        source: this.source,
+        source: this.source || '',
         language: this.language,
         preformatted: this.preformatted,
       };

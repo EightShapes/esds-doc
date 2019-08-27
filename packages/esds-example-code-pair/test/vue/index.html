@@ -2,7 +2,7 @@
   <head>
     <script src="https://unpkg.com/vue"></script>
     <link rel="stylesheet" href="../../dist/esds-example-code-pair.css"/>
-    <script type="module" src="../../dist/esds-example-code-pair.js"></script>
+    <script type="module" src="../../dist/esds-example-code-pair-web-component.js"></script>
   </head>
   <body>
     <!--
@@ -16,13 +16,18 @@
      -->
     <div id="app">
       <esds-example-code-pair>
-        <master-jedi v-pre>{{ jediName }}</master-jedi>
+        <div slot="example" data-language="vue">
+          <master-jedi v-pre>{{ jediName }}</master-jedi>
+        </div>
+        <div slot="example" data-language="html" data-rendered>
+          <master-jedi>{{ jediName }}</master-jedi>
+        </div>
       </esds-example-code-pair>
     </div>
 
     <script>
     Vue.component('master-jedi', {
-      template: '<h1><slot></slot></h1>'
+      template: '<h1 class="ds-master-jedi ds-master-jedi--primary"><slot></slot></h1>'
     });
 
     Vue.config.ignoredElements = [
