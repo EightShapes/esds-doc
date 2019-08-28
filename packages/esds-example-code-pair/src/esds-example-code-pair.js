@@ -20,6 +20,30 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
     this._codeSnippetTagName = value;
   }
 
+  static get defaultDerivedHtmlTab() {
+    return this._defaultDerivedHtmlTab;
+  }
+
+  static set defaultDerivedHtmlTab(value) {
+    this._defaultDerivedHtmlTab = value;
+  }
+
+  static get defaultLanguage() {
+    return this._defaultLanguage;
+  }
+
+  static set defaultLanguage(value) {
+    this._defaultLanguage = value;
+  }
+
+  static get properties() {
+    return {
+      derivedHtmlTab: { type: Boolean, attribute: 'derived-html-tab' },
+      language: { type: String },
+      source: { type: String },
+    };
+  }
+
   static get renderedExampleTagName() {
     return this._renderedExampleTagName;
   }
@@ -43,13 +67,15 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
       renderedExampleTagName = this.constructor.renderedExampleTagName;
     }
 
-    if (!customElements.get(codeSnippetTagName)){
+    if (!customElements.get(codeSnippetTagName)) {
       customElements.define(codeSnippetTagName, EsdsCodeSnippet);
     }
 
-    if (!customElements.get(renderedExampleTagName)){
+    if (!customElements.get(renderedExampleTagName)) {
       customElements.define(renderedExampleTagName, EsdsRenderedExample);
     }
+
+    this.derivedHtmlTab = false;
   }
 
   connectedCallback() {
@@ -59,53 +85,49 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
   handleSlotSourceChange(e) {
     // See if the default slot contains anything
     const assignedContent = e.target.querySelector('s-assigned-wrapper');
-    if (assignedContent && assignedContent.innerHTML) {
-      this.renderedExample = this.renderedExample || new EsdsRenderedExample(); // These instances will be aliased via the configuration in the constructor() - Rollup will ensure that the classes import'ed will be unique
-      this.codeSnippet = this.codeSnippet || new EsdsCodeSnippet(); // These instances will be aliased via the configuration in the constructor() - Rollup will ensure that the classes import'ed will be unique
+    const language = this.language || this.constructor.defaultLanguage;
+    this.codeSnippet = this.codeSnippet || new EsdsCodeSnippet(); // These instances will be aliased via the configuration in the constructor() - Rollup will ensure that the classes import'ed will be unique
+    this.renderedExample = this.renderedExample || new EsdsRenderedExample(); // These instances will be aliased via the configuration in the constructor() - Rollup will ensure that the classes import'ed will be unique
 
+    if (assignedContent && assignedContent.innerHTML) {
       this.codeSnippet.source = assignedContent.innerHTML;
       this.renderedExample.exampleSource = assignedContent.innerHTML;
-      this.requestUpdate();
-      assignedContent.innerHTML = ''; // Clear out the assigned content so the fallback content can be shown
     }
-  }
 
-  handleExampleSlotSourceChange(e) {
-    const slottedExamples = Array.from(this.querySelectorAll('div[slot="example"]'));
-    if (slottedExamples.length > 0) {
-      const sources = slottedExamples.map(node => {
-        return {
-          source: node.getAttribute('data-source') || node.innerHTML,
-          language: node.getAttribute('data-language') || 'html',
-          preformatted: node.getAttribute('data-preformatted') || false
-        }
-      });
+    if (this.source) {
+      this.codeSnippet.source = this.source;
+      this.codeSnippet.language = language;
+    }
 
-      this.codeSnippet = this.codeSnippet || new EsdsCodeSnippet();
+    if (
+      (this.constructor.defaultDerivedHtmlTab || this.derivedHtmlTab) &&
+      assignedContent &&
+      assignedContent.innerHTML
+    ) {
+      this.codeSnippet.source = undefined;
+      const sources = [
+        {
+          source: this.source,
+          language: language,
+        },
+        {
+          source: assignedContent.innerHTML,
+          language: 'html',
+        },
+      ];
+
       this.codeSnippet.sources = sources;
-
-      const renderedMarkupExample = this.querySelector('div[slot="example"][data-rendered]');
-      let renderedMarkup = sources[0].source;
-      if (renderedMarkupExample) {
-        renderedMarkup = renderedMarkupExample.innerHTML;
-      }
-      this.renderedExample = this.renderedExample || new EsdsRenderedExample();
-      this.renderedExample.exampleSource = renderedMarkup;
-      this.requestUpdate();
-
-      const assignedExampleSlotContent = this.querySelector('s-slot[name="example"] s-assigned-wrapper');
-      assignedExampleSlotContent.innerHTML = ''; // Clear out the assigned content so the fallback content can be shown
     }
+
+    this.requestUpdate();
+    assignedContent.innerHTML = ''; // Clear out the assigned content so the fallback content can be shown
   }
 
   render() {
     return html`
       <div class="esds-example-code-pair-v1">
         <s-slot @slotchange=${this.handleSlotSourceChange}>
-          ${this.renderedExample}
-          ${this.codeSnippet}
-        </s-slot>
-        <s-slot name="example" @slotchange=${this.handleExampleSlotSourceChange}>
+          ${this.renderedExample} ${this.codeSnippet}
         </s-slot>
       </div>
     `;
