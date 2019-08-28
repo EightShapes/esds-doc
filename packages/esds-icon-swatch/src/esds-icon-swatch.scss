@@ -1,0 +1,74 @@
+@import '../node_modules/esds-visual-style/tokens/tokens';
+@import '../node_modules/esds-visual-style/styles/shared/color';
+@import '../node_modules/esds-visual-style/styles/shared/space';
+@import '../node_modules/esds-visual-style/styles/shared/typography';
+@import '../node_modules/esds-visual-style/styles/shared/util';
+
+
+$esds-icon-swatch-background-color: $esds-background-color-white !default;
+$esds-icon-swatch-border: $esds-border-default !default;
+$esds-icon-swatch-width: 100px !default;
+$esds-icon-swatch-aspect-ratio: 1 !default;
+$esds-icon-swatch-large-multiplier: 2 !default;
+$esds-icon-swatch-space-inset: $esds-space-inset-half-x !default;
+
+$esds-icon-swatch-text-color-label: $esds-text-color-primary-on-white !default;
+$esds-icon-swatch-text-color-link: $esds-text-color-link-on-white !default;
+
+$esds-icon-swatch-height: $esds-icon-swatch-width * $esds-icon-swatch-aspect-ratio !default;
+
+$esds-icon-swatch-space-inset: $esds-space-inset-half-x !default;
+$esds-icon-swatch-icon-space-stack: $esds-space-stack-half-x !default;
+$esds-icon-swatch-icon-color: $esds-color-neutral-53 !default;
+$esds-icon-swatch-icon-size: 16px;
+
+.esds-icon-swatch {
+  @include esds-box-sizing;
+  @include esds-font-reset;
+  align-items: center;
+  border: $esds-icon-swatch-border;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: $esds-icon-swatch-height;
+  padding: $esds-icon-swatch-space-inset;
+  position: relative;
+  text-align: center;
+  width: $esds-icon-swatch-width;
+}
+
+.esds-icon-swatch--large {
+  min-height: $esds-icon-swatch-height * $esds-icon-swatch-large-multiplier;
+  width: $esds-icon-swatch-width * $esds-icon-swatch-large-multiplier;
+}
+
+
+.esds-icon-swatch__icon svg {
+  fill: $esds-icon-swatch-icon-color;
+  height: $esds-icon-swatch-icon-size;
+  margin: $esds-icon-swatch-icon-space-stack;
+  width: $esds-icon-swatch-icon-size;
+}
+
+.esds-icon-swatch__label {
+  box-sizing: border-box;
+  color: $esds-icon-swatch-text-color-label;
+  display: block;
+  margin: 0;
+  max-width: 100%;
+  padding: 0;
+}
+
+.esds-icon-swatch__download-link {
+  color: $esds-icon-swatch-text-color-link;
+}
+
+.esds-icon-swatch-grid__shim {
+  height: 0;
+  width: $esds-icon-swatch-width;
+}
+
+.esds-icon-swatch-grid__shim--large {
+  height: 0;
+  width: $esds-icon-swatch-width * $esds-icon-swatch-large-multiplier;
+}

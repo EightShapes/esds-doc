@@ -35,7 +35,7 @@
     "sass": "^1.22.9"
   },
   "dependencies": {
-    "@eightshapes/slotify": "0.2.0",
+    "@eightshapes/slotify": "^0.2.1",
     "@webcomponents/custom-elements": "^1.2.4",
     "esds-visual-style": "^0.5.0",
     "lit-element": "^2.2.1",

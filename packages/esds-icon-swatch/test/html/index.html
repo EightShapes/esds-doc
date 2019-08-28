@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- No Shadow DOM, so link directly to styles -->
+    <link rel="stylesheet" href="../../dist/esds-icon-swatch.css"/>
+
+    <!-- Separate custom elements polyfill for Edge, IE11, etc. -->
+    <script type="text/javascript" src="../../node_modules/@webcomponents/custom-elements/custom-elements.min.js"></script>
+
+    <!-- The ESM "vanilla" version of the component for FF, Safari, Chrome and Edge -->
+    <script type="module" src="../../dist/esds-icon-swatch-web-component.js"></script>
+
+    <!-- A babel-compiled version of the component for IE11 -->
+    <script nomodule type="text/javascript" src="../../dist/esds-icon-swatch-legacy.js"></script>
+  </head>
+  <body>
+    <h1>Welcome to your new web component.</h1>
+    There are only three requirements to make a lit-element web component work all the way down to IE11:
+    <ol>
+      <li><code>@webcomponents/webcomponentsjs</code> is needed to enable custom elements in IE11 and Edge 18 and lower</li>
+      <li>
+        Rollup is needed because <code>esds-icon-swatch-entry.js</code> uses an import statement to pull in the EsdsIconSwatch class from a separate file.<br/>
+        IE11 doesn't support JS imports so this rollup is needed to bundle those two files into one.<br/>
+        Rollup is also used to create a bundle for modern browsers that includes LitElement and all its dependencies.
+      </li>
+      <li>Babel is needed to compile the ES6 code down to ES5 code so IE11 will work</li>
+    </ol>
+    <esds-icon-swatch label="My Icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M528 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 400H48V80h480v352zM208 256c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm-89.6 128h179.2c12.4 0 22.4-8.6 22.4-19.2v-19.2c0-31.8-30.1-57.6-67.2-57.6-10.8 0-18.7 8-44.8 8-26.9 0-33.4-8-44.8-8-37.1 0-67.2 25.8-67.2 57.6v19.2c0 10.6 10 19.2 22.4 19.2zM360 320h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm0-64h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm0-64h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8z"/></svg>
+    </esds-icon-swatch>
+  </body>
+</html>
