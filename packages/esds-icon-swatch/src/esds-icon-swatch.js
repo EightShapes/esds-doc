@@ -7,6 +7,22 @@ export class EsdsIconSwatch extends Slotify(LitElement) {
       label: { type: String },
     };
   }
+
+  constructor() {
+    super();
+    console.log('Icon constructor');
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    console.log('Icon connected');
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    console.log('Icon Swatch Disconnected');
+  }
+
   render() {
     return html`
       <div class="esds-icon-swatch">
