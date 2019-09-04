@@ -41,6 +41,7 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
       derivedHtmlTab: { type: Boolean, attribute: 'derived-html-tab' },
       language: { type: String },
       source: { type: String },
+      sources: { type: Array }
     };
   }
 
@@ -124,8 +125,17 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
   }
 
   render() {
+    if (this.sources) {
+      this.codeSnippet = this.codeSnippet || new EsdsCodeSnippet();
+      this.codeSnippet.sources = this.sources;
+
+      this.renderedExample = this.renderedExample || new EsdsRenderedExample();
+      const exampleData = this.sources.find(s => s.renderedExample) || this.sources[0];
+      this.renderedExample.exampleSource = exampleData.source;
+    }
+
     return html`
-      <div class="esds-example-code-pair-v1">
+      <div class="esds-example-code-pair">
         <s-slot @slotchange=${this.handleSlotSourceChange}>
           ${this.renderedExample} ${this.codeSnippet}
         </s-slot>

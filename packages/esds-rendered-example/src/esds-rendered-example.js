@@ -12,7 +12,7 @@ export class EsdsRenderedExample extends Slotify(LitElement) {
 
   render() {
     return html`
-      <div class="esds-rendered-example-v1">
+      <div class="esds-rendered-example">
         <s-slot>${unsafeHTML(this.exampleSource)}</s-slot>
         ${this.label
           ? html`

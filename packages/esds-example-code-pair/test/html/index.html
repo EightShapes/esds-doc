@@ -30,6 +30,32 @@
       <h1>Just Testing This</h1>
     </esds-example-code-pair>
 
+    <h2>Multiple Sources</h2>
+    <esds-example-code-pair sources='[
+      {
+        "source": "<Header>This is the React Version</Header>",
+        "language": "react"
+
+      },
+      {
+        "source": "<h1>This is the HTML representation</h1>",
+        "language": "html",
+        "renderedExample": true
+      }
+    ]'></esds-example-code-pair>
+
+    <esds-example-code-pair sources='[
+      {
+        "source": "<h2>This example should be shown by default</h2>",
+        "language": "html"
+
+      },
+      {
+        "source": "<h1>This is the HTML representation</h1>",
+        "language": "html"
+      }
+    ]'></esds-example-code-pair>
+
     <ecpair-with-custom-button>
       <h2>This should use the globally configured copy button</h2>
     </ecpair-with-custom-button>

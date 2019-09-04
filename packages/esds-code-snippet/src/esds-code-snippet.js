@@ -67,7 +67,7 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
 
   constructor() {
     super();
-    this.defaultClass = 'esds-code-snippet-v1';
+    this.defaultClass = 'esds-code-snippet';
     this.baseModifierClass = 'esds-code-snippet--';
     this.defaultSource = '<h1>Hello World</h1>';
 

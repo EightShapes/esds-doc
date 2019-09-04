@@ -28,7 +28,7 @@ $esds-rendered-example-label-background-opacity: .8 !default;
 $esds-rendered-example-label-background: rgba($esds-rendered-example-background, $esds-rendered-example-label-background-opacity) !default;
 $esds-rendered-example-label-background-on-dark: rgba($esds-rendered-example-background-dark, $esds-rendered-example-label-background-opacity) !default;
 
-.esds-rendered-example-v1 {
+.esds-rendered-example {
   @include esds-font-reset;
   align-items: center;
   background-color: $esds-rendered-example-background;

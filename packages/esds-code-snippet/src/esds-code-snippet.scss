@@ -45,7 +45,7 @@ $esds-code-snippet-filename-offset: $esds-space-inset-half-x !default;
 $esds-code-snippet-toolbar-inset-space: $esds-space-inset-half-x !default;
 $esds-code-snippet-toolbar-background: transparent !default;
 
-.esds-code-snippet-v1 {
+.esds-code-snippet {
   @include esds-font-reset(
     $font-family: $esds-code-snippet-font-family,
     $font-size: $esds-code-snippet-font-size,
