@@ -85,7 +85,7 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
 
   handleSlotSourceChange(e) {
     // See if the default slot contains anything
-    const assignedContent = e.target.querySelector('s-assigned-wrapper');
+    const assignedContent = Array.from(e.target.childNodes).find(n => n.tagName.toLowerCase() === 's-assigned-wrapper');
     const language = this.language || this.constructor.defaultLanguage;
     this.codeSnippet = this.codeSnippet || new EsdsCodeSnippet(); // These instances will be aliased via the configuration in the constructor() - Rollup will ensure that the classes import'ed will be unique
     this.renderedExample = this.renderedExample || new EsdsRenderedExample(); // These instances will be aliased via the configuration in the constructor() - Rollup will ensure that the classes import'ed will be unique
