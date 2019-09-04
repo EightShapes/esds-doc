@@ -1,6 +1,6 @@
 {
   "name": "@eightshapes/esds-icon-swatch",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "",
   "esnext": "src/esds-icon-swatch.js",
   "main": "dist/esds-icon-swatch.js",
