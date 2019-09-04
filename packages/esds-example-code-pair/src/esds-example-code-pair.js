@@ -93,6 +93,7 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
     if (assignedContent && assignedContent.innerHTML) {
       this.codeSnippet.source = assignedContent.innerHTML;
       this.renderedExample.exampleSource = assignedContent.innerHTML;
+      this.exampleSource = assignedContent.innerHTML; // Set the exampleSource property to the default slot contents so it can be retrieved in the render method
     }
 
     if (this.source) {
@@ -131,7 +132,7 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
 
       this.renderedExample = this.renderedExample || new EsdsRenderedExample();
       const exampleData = this.sources.find(s => s.renderedExample) || this.sources[0];
-      this.renderedExample.exampleSource = exampleData.source;
+      this.renderedExample.exampleSource = this.exampleSource || exampleData.source; // If there's default slot content passed in, render that instead of any examples passed in via props
     }
 
     return html`

@@ -56,6 +56,22 @@
       }
     ]'></esds-example-code-pair>
 
+    <h2>Multiple Sources Plus Slotted Example</h2>
+    <esds-example-code-pair sources='[
+      {
+        "source": "<h2>This example should be shown by default</h2>",
+        "language": "html"
+
+      },
+      {
+        "source": "<h1>This is the HTML representation</h1>",
+        "language": "html"
+      }
+    ]'>
+      <h4 style="color: red;">I'm completely unrelated to the source being shown in either tab. Useful for frameworks like Vue where you need to "render" something here</h4>
+    </esds-example-code-pair>
+
+
     <ecpair-with-custom-button>
       <h2>This should use the globally configured copy button</h2>
     </ecpair-with-custom-button>
