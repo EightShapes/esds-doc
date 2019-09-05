@@ -12,60 +12,78 @@ export class EsdsPageNavigation extends LitElement {
       },
       items: { type: Array },
       topContent: { type: String, attribute: 'top-content' },
-      // {% macro page_navigation(class=false,
-      //                   anchor_link_target_selector="h2, h3",
-      //                   list_item_modifier_classes={
-      //                       'h2': 'esds-doc-page-navigation__item--parent',
-      //                       'h3': 'esds-doc-page-navigation__item--child'
-      //                   },
     };
   }
 
   constructor() {
     super();
-    this.contentSelectors = ['h2', 'h3'];
+    this.contentSelectors = ['h2'];
+    if (!this.items) {
+      this.updateNavItems();
+    }
   }
 
   createRenderRoot() {
     return this;
   }
 
-  get navItems() {
-    if (this.items) {
-      return this.items;
-    } else {
-      let items = [];
-      const pageTargets = document.querySelectorAll(
-        this.contentSelectors.join(', '),
-      );
+  handleNavigationClick(e) {
+    // e.preventDefault();
+    this.selectNavItem(e.target.getAttribute('href'));
+  }
 
-      if (pageTargets.length > 0) {
-        items = Array.from(pageTargets).map(pt => {
-          return {
-            href: pt.id,
-            text: pt.textContent,
-          };
-        });
-      }
-      return items;
+  selectNavItem(href) {
+    console.log('UPDATING');
+    this.items.forEach(i =>
+      i.href === href.replace('#', '') ? (i.active = true) : (i.active = false),
+    );
+
+    console.log(this.items);
+
+    this.requestUpdate();
+  }
+
+  updateNavItems() {
+    this.items = [];
+    const pageTargets = document.querySelectorAll(
+      this.contentSelectors.join(', '),
+    );
+
+    if (pageTargets.length > 0) {
+      this.items = Array.from(pageTargets).map(pt => {
+        return {
+          href: pt.id,
+          text: pt.textContent,
+        };
+      });
     }
   }
 
   render() {
     return html`
       <nav class="esds-page-navigation"
-        <div class="esds-doc-page-navigation__inner">
+        <div class="esds-page-navigation__inner">
           ${this.topContent ? unsafeHTML(this.topContent) : ''}
-            <ul class="esds-doc-page-navigation__list">
-              ${this.navItems.map(
-                i => html`
-                  <li class="esds-doc-page-navigation__item">
-                    <a href="${i.href}" class="esds-doc-page-navigation__link">
+            <ul class="esds-page-navigation__list">
+              ${this.items.map(i => {
+                console.log(i);
+                let itemClass = 'esds-page-navigation__item';
+                if (i.active) {
+                  itemClass += ' esds-page-navigation__item--active';
+                }
+                console.log(itemClass);
+                return html`
+                  <li class="${itemClass}">
+                    <a
+                      @click=${this.handleNavigationClick}
+                      href="#${i.href}"
+                      class="esds-page-navigation__link"
+                    >
                       ${unsafeHTML(i.text)}
                     </a>
                   </li>
-                `,
-              )}
+                `;
+              })}
             </ul>
             ${this.bottomContent ? unsafeHTML(this.bottomContent) : ''}
         </div>
