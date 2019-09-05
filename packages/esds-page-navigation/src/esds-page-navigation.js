@@ -12,6 +12,7 @@ export class EsdsPageNavigation extends LitElement {
       },
       items: { type: Array },
       topContent: { type: String, attribute: 'top-content' },
+      updateNavEvent: { type: String, attribute: 'update-nav-event' },
     };
   }
 
@@ -27,18 +28,27 @@ export class EsdsPageNavigation extends LitElement {
     return this;
   }
 
+  firstUpdated() {
+    if (this.updateNavEvent) {
+      document.addEventListener(
+        this.updateNavEvent,
+        () => {
+          this.updateNavItems();
+        },
+        { once: true },
+      );
+    }
+  }
+
   handleNavigationClick(e) {
     // e.preventDefault();
     this.selectNavItem(e.target.getAttribute('href'));
   }
 
   selectNavItem(href) {
-    console.log('UPDATING');
     this.items.forEach(i =>
       i.href === href.replace('#', '') ? (i.active = true) : (i.active = false),
     );
-
-    console.log(this.items);
 
     this.requestUpdate();
   }
@@ -56,6 +66,8 @@ export class EsdsPageNavigation extends LitElement {
           text: pt.textContent,
         };
       });
+
+      this.requestUpdate();
     }
   }
 
@@ -66,12 +78,10 @@ export class EsdsPageNavigation extends LitElement {
           ${this.topContent ? unsafeHTML(this.topContent) : ''}
             <ul class="esds-page-navigation__list">
               ${this.items.map(i => {
-                console.log(i);
                 let itemClass = 'esds-page-navigation__item';
                 if (i.active) {
                   itemClass += ' esds-page-navigation__item--active';
                 }
-                console.log(itemClass);
                 return html`
                   <li class="${itemClass}">
                     <a
