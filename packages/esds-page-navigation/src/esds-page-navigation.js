@@ -57,6 +57,18 @@ export class EsdsPageNavigation extends LitElement {
     return this.querySelector('.esds-page-navigation');
   }
 
+  generateIdForPageTarget(pt) {
+    const initialId = pt.textContent
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+    const listItemId = !isNaN(parseInt(initialId.charAt(0), 10))
+      ? 'page-section-' + initialId
+      : initialId; // If the header starts with a number, prefix it a string
+
+    return listItemId;
+  }
+
   handleNavigationClick(e) {
     // e.preventDefault();
     this.selectNavItem(e.target.getAttribute('href'));
@@ -83,13 +95,6 @@ export class EsdsPageNavigation extends LitElement {
     this.requestUpdate();
   }
 
-  //   setNavWidth() {
-  //     const navWidth = this.offsetWidth,
-  //         fixedPositionList = pageNavigation.querySelector(pageNavigationListSelector);
-  // pageNavigation.style.width = navWidth;
-  // fixedPositionList.style.width = navWidth;
-  //   }
-
   updateFixedState(elementWatcher) {
     if (elementWatcher.isAboveViewport && !this.fixed) {
       this.fixedWidth = this.navWrapper.offsetWidth;
@@ -109,6 +114,10 @@ export class EsdsPageNavigation extends LitElement {
 
     if (pageTargets.length > 0) {
       this.items = Array.from(pageTargets).map(pt => {
+        if (!pt.id) {
+          pt.id = this.generateIdForPageTarget(pt);
+        }
+
         return {
           href: pt.id,
           text: pt.textContent,
