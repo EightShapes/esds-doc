@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { ifDefined } from 'lit-html/directives/if-defined.js';
 import scrollMonitor from 'scrollmonitor';
 
 export class EsdsPageNavigation extends LitElement {
@@ -41,6 +42,7 @@ export class EsdsPageNavigation extends LitElement {
 
   firstUpdated() {
     if (this.updateNavEvent) {
+      // If there's a global event that should be listened to to rebuild nav items, listen for it here. Useful for SPAs that don't truly reload the page
       document.addEventListener(
         this.updateNavEvent,
         () => {
@@ -49,6 +51,10 @@ export class EsdsPageNavigation extends LitElement {
         { once: true },
       );
     }
+  }
+
+  get navWrapper() {
+    return this.querySelector('.esds-page-navigation');
   }
 
   handleNavigationClick(e) {
@@ -77,9 +83,16 @@ export class EsdsPageNavigation extends LitElement {
     this.requestUpdate();
   }
 
+  //   setNavWidth() {
+  //     const navWidth = this.offsetWidth,
+  //         fixedPositionList = pageNavigation.querySelector(pageNavigationListSelector);
+  // pageNavigation.style.width = navWidth;
+  // fixedPositionList.style.width = navWidth;
+  //   }
+
   updateFixedState(elementWatcher) {
-    console.log('UFS');
     if (elementWatcher.isAboveViewport && !this.fixed) {
+      this.fixedWidth = this.navWrapper.offsetWidth;
       this.fixed = true;
       this.requestUpdate();
     } else if (!elementWatcher.isAboveViewport && this.fixed) {
@@ -113,7 +126,10 @@ export class EsdsPageNavigation extends LitElement {
           ? ' esds-page-navigation--fixed'
           : ''}"
       >
-        <div class="esds-page-navigation__inner">
+        <div
+          class="esds-page-navigation__inner"
+          style="width: ${ifDefined(this.fixedWidth)}px;"
+        >
           ${this.topContent ? unsafeHTML(this.topContent) : ''}
           <ul class="esds-page-navigation__list">
             ${this.items.map(i => {
