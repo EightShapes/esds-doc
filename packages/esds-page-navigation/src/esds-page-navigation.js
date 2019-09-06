@@ -57,6 +57,25 @@ export class EsdsPageNavigation extends LitElement {
     return this.querySelector('.esds-page-navigation');
   }
 
+  dedupeNavIds() {
+    const ids = [];
+    this.items.forEach(pt => {
+      console.log(pt);
+      const pageTarget = pt.target;
+      let checkId = pt.href;
+      let incrementer = 0;
+      while (ids.includes(checkId)) {
+        checkId = `${pt.id}-${incrementer}`;
+        incrementer++;
+      }
+      ids.push(checkId);
+      pt.href = checkId;
+      pageTarget.id = checkId;
+    });
+
+    console.log(this.items);
+  }
+
   generateIdForPageTarget(pt) {
     const initialId = pt.textContent
       .toLowerCase()
@@ -121,8 +140,11 @@ export class EsdsPageNavigation extends LitElement {
         return {
           href: pt.id,
           text: pt.textContent,
+          target: pt,
         };
       });
+
+      this.dedupeNavIds();
 
       this.requestUpdate();
     }
