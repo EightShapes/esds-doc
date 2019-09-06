@@ -23,6 +23,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@eightshapes/esds-markdown": "0.1.0",
     "@webcomponents/custom-elements": "^1.2.4",
     "browser-sync": "^2.26.7",
     "eslint": "^6.3.0",
@@ -32,8 +33,10 @@
     "prettier": "^1.18.2",
     "rollup": "^1.18.0",
     "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "sass": "^1.22.9"
+    "sass": "^1.22.9",
+    "scrollmonitor": "^1.2.4"
   },
   "dependencies": {
     "esds-visual-style": "^0.5.0",
