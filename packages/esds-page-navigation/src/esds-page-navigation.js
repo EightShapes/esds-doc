@@ -60,7 +60,6 @@ export class EsdsPageNavigation extends LitElement {
   dedupeNavIds() {
     const ids = [];
     this.items.forEach(pt => {
-      console.log(pt);
       const pageTarget = pt.target;
       let checkId = pt.href;
       let incrementer = 0;
@@ -72,8 +71,6 @@ export class EsdsPageNavigation extends LitElement {
       pt.href = checkId;
       pageTarget.id = checkId;
     });
-
-    console.log(this.items);
   }
 
   generateIdForPageTarget(pt) {
@@ -89,7 +86,7 @@ export class EsdsPageNavigation extends LitElement {
   }
 
   handleNavigationClick(e) {
-    // e.preventDefault();
+    e.preventDefault();
     this.selectNavItem(e.target.getAttribute('href'));
   }
 
@@ -97,8 +94,6 @@ export class EsdsPageNavigation extends LitElement {
     const fixedScrollMonitor = scrollMonitor.create(this, {
       top: this.fixedDistanceFromTop,
     });
-
-    console.log(fixedScrollMonitor);
 
     this.updateFixedState(fixedScrollMonitor);
     fixedScrollMonitor.stateChange(() => {
@@ -112,6 +107,25 @@ export class EsdsPageNavigation extends LitElement {
     );
 
     this.requestUpdate();
+
+    const target = this.items.find(i => i.href === href.replace('#', ''))
+      .target;
+    this.smoothScrollToTarget(target);
+  }
+
+  smoothScrollToTarget(target) {
+    const scrollPosition = target.offsetTop;
+
+    // disableScrollMonitoring(pageNavigation);
+    window.scroll({
+      top: scrollPosition,
+      left: 0,
+      behavior: 'smooth',
+    });
+    // Brittle, but browser-native .scrollIntoView doesn't provide any callback mechanism
+    // setTimeout(function(){
+    //     enableScrollMonitoring(pageNavigation);
+    // }, 500);
   }
 
   updateFixedState(elementWatcher) {
