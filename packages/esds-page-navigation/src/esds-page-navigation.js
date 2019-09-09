@@ -27,10 +27,9 @@ export class EsdsPageNavigation extends LitElement {
 
   constructor() {
     super();
-    console.log('CALL THE CONSTRUCTOR');
     // Prop default values
     this.contentSelectors = ['h2'];
-    this.debugMarkers = true; // TODO: Change to false
+    this.debugMarkers = false; // TODO: Change to false
     this.fixed = false;
 
     // Initial state
@@ -48,7 +47,6 @@ export class EsdsPageNavigation extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     this.resetSectionScrollMonitors();
-    console.log('PAGE NAV DISCONNECTED');
   }
 
   createRenderRoot() {
@@ -261,18 +259,22 @@ export class EsdsPageNavigation extends LitElement {
   }
 
   smoothScrollToTarget(target) {
-    const scrollPosition = target.offsetTop;
+    if (this.scrollMonitoringTimeout) {
+      clearTimeout(this.scrollMonitoringTimeout);
+    }
+    this.sectionScrollMonitoring = false;
 
-    // disableScrollMonitoring(pageNavigation);
+    const scrollPosition = target.offsetTop;
     window.scroll({
       top: scrollPosition,
       left: 0,
       behavior: 'smooth',
     });
-    // Brittle, but browser-native .scrollIntoView doesn't provide any callback mechanism
-    // setTimeout(function(){
-    //     enableScrollMonitoring(pageNavigation);
-    // }, 500);
+
+    // Brittle, but browser-native window.scroll doesn't provide any callback mechanism
+    this.scrollMonitoringTimeout = setTimeout(() => {
+      this.sectionScrollMonitoring = true;
+    }, 1000);
   }
 
   updateFixedState(elementWatcher) {
