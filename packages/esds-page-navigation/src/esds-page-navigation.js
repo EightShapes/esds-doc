@@ -2,12 +2,18 @@ import { LitElement, html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
 import scrollMonitor from 'scrollmonitor';
+import smoothscroll from 'smoothscroll-polyfill';
+smoothscroll.polyfill(); // Including polyfill intentionally since browser-support for smooth scrolling is still questionable: https://caniuse.com/#feat=mdn-api_scrolltooptions_behavior
 
 export class EsdsPageNavigation extends LitElement {
   static get properties() {
     return {
       bottomContent: { type: String, attribute: 'bottom-content' },
       contentSelectors: { type: Array, attribute: 'content-selectors' },
+      debugMarkers: {
+        type: Boolean,
+        attribute: 'debug-markers',
+      },
       fixed: { type: Boolean },
       fixedDistanceFromTop: {
         type: Number,
@@ -21,8 +27,14 @@ export class EsdsPageNavigation extends LitElement {
 
   constructor() {
     super();
+    console.log('CALL THE CONSTRUCTOR');
+    // Prop default values
     this.contentSelectors = ['h2'];
+    this.debugMarkers = true; // TODO: Change to false
     this.fixed = false;
+
+    // Initial state
+    this.sectionScrollMonitoring = true;
 
     if (!this.items) {
       this.updateNavItems();
@@ -31,9 +43,12 @@ export class EsdsPageNavigation extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    if (this.fixedDistanceFromTop !== undefined) {
-      this.monitorFixedState(); // TODO: Unbind this in disconnectedCallback
-    }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.resetSectionScrollMonitors();
+    console.log('PAGE NAV DISCONNECTED');
   }
 
   createRenderRoot() {
@@ -47,14 +62,66 @@ export class EsdsPageNavigation extends LitElement {
         this.updateNavEvent,
         () => {
           this.updateNavItems();
+          if (this.fixedDistanceFromTop !== undefined) {
+            this.monitorFixedState(); // TODO: Unbind this in disconnectedCallback
+          }
         },
         { once: true },
       );
+    } else if (this.fixedDistanceFromTop !== undefined) {
+      this.monitorFixedState(); // TODO: Unbind this in disconnectedCallback
     }
   }
 
   get navWrapper() {
     return this.querySelector('.esds-page-navigation');
+  }
+
+  createDebugMarker(verticalPosition, color, position, label) {
+    const marker = document.createElement('div');
+    const styles = {
+      backgroundColor: color,
+      height: '1px',
+      left: 0,
+      position: 'absolute',
+      top: `${verticalPosition}px`,
+      width: '100%',
+      zIndex: 900,
+    };
+
+    for (const styleName in styles) {
+      marker.style[styleName] = styles[styleName];
+    }
+
+    marker.classList.add('esds-page-navigation__debug-marker');
+
+    const markerLabel = document.createElement('div');
+    markerLabel.textContent = label;
+    const labelStyles = {
+      backgroundColor: color,
+      bottom: position === 'top' ? 'auto' : '100%',
+      color: 'black',
+      fontSize: '10px',
+      position: 'absolute',
+      top: position === 'top' ? '100%' : 'auto',
+      left: 0,
+    };
+
+    for (const styleName in labelStyles) {
+      markerLabel.style[styleName] = labelStyles[styleName];
+    }
+    marker.appendChild(markerLabel);
+    document.body.appendChild(marker);
+  }
+
+  createDebugMarkers(topPosition, bottomPosition, href) {
+    this.createDebugMarker(topPosition, 'lightblue', 'top', `Top: ${href}`);
+    this.createDebugMarker(
+      bottomPosition - 1,
+      'hotpink',
+      'bottom',
+      `Bottom: ${href}`,
+    );
   }
 
   dedupeNavIds() {
@@ -64,7 +131,7 @@ export class EsdsPageNavigation extends LitElement {
       let checkId = pt.href;
       let incrementer = 0;
       while (ids.includes(checkId)) {
-        checkId = `${pt.id}-${incrementer}`;
+        checkId = `${checkId}-${incrementer}`;
         incrementer++;
       }
       ids.push(checkId);
@@ -87,7 +154,10 @@ export class EsdsPageNavigation extends LitElement {
 
   handleNavigationClick(e) {
     e.preventDefault();
-    this.selectNavItem(e.target.getAttribute('href'));
+    const href = e.target.getAttribute('href').replace('#', '');
+    this.selectNavItem(href);
+    const target = document.getElementById(href);
+    this.smoothScrollToTarget(target);
   }
 
   monitorFixedState() {
@@ -101,16 +171,93 @@ export class EsdsPageNavigation extends LitElement {
     });
   }
 
+  monitorSectionScrollPosition() {
+    this.items.forEach((i, idx) => {
+      const nextItem = this.items[idx + 1];
+      const sectionTop =
+        i.target.getBoundingClientRect().top + window.pageYOffset;
+      const sectionBottom = nextItem
+        ? nextItem.target.getBoundingClientRect().top + window.pageYOffset
+        : document.body.offsetHeight;
+      const sectionWatcher = scrollMonitor.create({
+        top: sectionTop,
+        bottom: sectionBottom,
+      });
+
+      this.sectionScrollWatchers = this.sectionScrollWatchers || [];
+      this.sectionScrollWatchers.push(sectionWatcher);
+
+      if (this.debugMarkers) {
+        this.createDebugMarkers(sectionTop, sectionBottom, i.href);
+      }
+
+      // When a section spans the entire viewport
+      sectionWatcher.stateChange(() => {
+        if (
+          this.sectionScrollMonitoring &&
+          sectionWatcher.isAboveViewport &&
+          sectionWatcher.isBelowViewport
+        ) {
+          this.selectNavItem(i.href);
+        }
+      });
+
+      // Scroll Down Behavior
+      sectionWatcher.partiallyExitViewport(() => {
+        if (
+          this.sectionScrollMonitoring &&
+          sectionWatcher.isAboveViewport &&
+          nextItem
+        ) {
+          // When one section exits the viewport at the top, set the next section's header to be active
+          this.selectNavItem(i.href);
+        }
+      });
+
+      // Scroll Up Behavior
+      sectionWatcher.enterViewport(() => {
+        if (this.sectionScrollMonitoring && !sectionWatcher.isBelowViewport) {
+          this.selectNavItem(i.href);
+        }
+      });
+
+      // Highlight the last item in the nav when the last section is fully scrolled into view
+      if (!nextItem) {
+        sectionWatcher.fullyEnterViewport(() => {
+          if (this.sectionScrollMonitoring) {
+            this.selectNavItem(i.href);
+          }
+        });
+      }
+    });
+  }
+
+  resetDebugMarkers() {
+    const debugMarkerElements = Array.from(
+      document.querySelectorAll('.esds-page-navigation__debug-marker'),
+    );
+    debugMarkerElements.forEach(d => {
+      console.log('Removing', d, d.parentNode);
+      d.parentNode.removeChild(d);
+    });
+  }
+
+  resetSectionScrollMonitors() {
+    if (this.sectionScrollWatchers) {
+      this.sectionScrollWatchers.forEach(sw => sw.destroy());
+      this.sectionScrollWatchers = [];
+      if (this.debugMarkers) {
+        this.resetDebugMarkers();
+      }
+    }
+  }
+
   selectNavItem(href) {
     this.items.forEach(i =>
       i.href === href.replace('#', '') ? (i.active = true) : (i.active = false),
     );
 
     this.requestUpdate();
-
-    const target = this.items.find(i => i.href === href.replace('#', ''))
-      .target;
-    this.smoothScrollToTarget(target);
   }
 
   smoothScrollToTarget(target) {
@@ -159,6 +306,7 @@ export class EsdsPageNavigation extends LitElement {
       });
 
       this.dedupeNavIds();
+      this.monitorSectionScrollPosition();
 
       this.requestUpdate();
     }
