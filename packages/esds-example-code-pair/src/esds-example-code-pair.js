@@ -76,20 +76,28 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
       customElements.define(renderedExampleTagName, EsdsRenderedExample);
     }
 
+    // Initial Prop Values
     this.derivedHtmlTab = false;
+
+    // Initial State Variables
+    this.primaryCodeSource = false;
   }
 
   connectedCallback() {
     super.connectedCallback();
+
+    // Set up child components here after component is connected
+    this.codeSnippet = new EsdsCodeSnippet();
+    this.defaultExampleCodePair = new EsdsExampleCodePair();
   }
 
-  handleSlotSourceChange(e) {
+  handleExampleSlotChange(e) {
     // See if the default slot contains anything
     const assignedContent = Array.from(e.target.childNodes).find(
       n => n.tagName.toLowerCase() === 's-assigned-wrapper',
     );
+    console.log(assignedContent.innerHTML);
     const language = this.language || this.constructor.defaultLanguage;
-    this.codeSnippet = this.codeSnippet || new EsdsCodeSnippet(); // These instances will be aliased via the configuration in the constructor() - Rollup will ensure that the classes import'ed will be unique
     this.renderedExample = this.renderedExample || new EsdsRenderedExample(); // These instances will be aliased via the configuration in the constructor() - Rollup will ensure that the classes import'ed will be unique
 
     if (assignedContent && assignedContent.innerHTML) {
@@ -123,28 +131,71 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
       this.codeSnippet.sources = sources;
     }
 
-    this.requestUpdate();
     assignedContent.innerHTML = ''; // Clear out the assigned content so the fallback content can be shown
+    this.requestUpdate();
   }
+
+  handlePrimaryExampleSlotChange() {}
 
   render() {
     if (this.sources) {
-      this.codeSnippet = this.codeSnippet || new EsdsCodeSnippet();
       this.codeSnippet.sources = this.sources;
 
-      this.renderedExample = this.renderedExample || new EsdsRenderedExample();
-      const exampleData =
-        this.sources.find(s => s.renderedExample) || this.sources[0];
-      this.renderedExample.exampleSource =
-        this.exampleSource || exampleData.source; // If there's default slot content passed in, render that instead of any examples passed in via props
+      // this.renderedExample = this.renderedExample || new EsdsRenderedExample();
+      // const exampleData =
+      //   this.sources.find(s => s.renderedExample) || this.sources[0];
+      // this.renderedExample.exampleSource =
+      //   this.exampleSource || exampleData.source; // If there's default slot content passed in, render that instead of any examples passed in via props
     }
 
     return html`
       <div class="esds-example-code-pair">
-        <s-slot @slotchange=${this.handleSlotSourceChange}>
-          ${this.renderedExample} ${this.codeSnippet}
+        <s-slot name="primary-example"></s-slot>
+        <s-slot>
+          ${this.renderedExample}
         </s-slot>
+        ${this.codeSnippet}
       </div>
     `;
   }
 }
+
+// API Examples
+/*
+  default slot, no rendered-example wrapper
+  - extract contents and place inside rendered-example wrapper, set source for code snippet
+ <esds-example-code-pair>
+  // Bare code example passed here
+ </esds-example-code-pair>
+
+ named primary slot, in rendered-example wrappers
+ - just render examples, extract source from primary
+ <esds-example-code-pair>
+   <esds-rendered-example slot="primary-example">
+      // Rendered example here and extract primary source from within child component
+   </esds-rendered-example>
+ </esds-example-code-pair>
+
+ named primary slot, additional default slot rendered-example wrappers
+ - just render the examples, extract source from primary
+ <esds-example-code-pair>
+   <esds-rendered-example slot="primary-example">
+      // Rendered example here and extract primary source from within child component
+   </esds-rendered-example>
+   <esds-rendered-example>
+      // Just render the examples, do nothing to extract code snippet source
+   </esds-rendered-example>
+ </esds-example-code-pair>
+
+Code snippet source priority:
+1. sources prop
+2. source prop
+3. primary-example slot esds-rendered-example content
+4. default slot, first esds-rendered-example content
+5. default slot, all content if no esds-rendered-example exists
+
+DerivedHTML code snippet source priority:
+1. primary-example slot esds-rendered-example content
+2. default slot, first esds-rendered-example content
+3. default slot, all content if no esds-rendered-example exists
+*/
