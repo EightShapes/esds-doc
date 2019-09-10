@@ -30,7 +30,7 @@ export class EsdsPageNavigation extends LitElement {
     super();
     // Prop default values
     this.contentSelectors = ['h2'];
-    this.debugMarkers = true; // TODO: Change to false
+    this.debugMarkers = false;
     this.fixed = false;
     this.sectionScrollOffset = 0;
 
@@ -73,6 +73,10 @@ export class EsdsPageNavigation extends LitElement {
       );
     }
     this.monitorFixedState();
+  }
+
+  get fixedTopPosition() {
+    return this.fixedTriggerOffset || 0;
   }
 
   get navWrapper() {
@@ -163,7 +167,6 @@ export class EsdsPageNavigation extends LitElement {
   }
 
   monitorFixedState() {
-    console.log('MFS');
     const fixedScrollMonitor = scrollMonitor.create(this, {
       top: this.fixedTriggerOffset,
     });
@@ -240,7 +243,6 @@ export class EsdsPageNavigation extends LitElement {
       document.querySelectorAll('.esds-page-navigation__debug-marker'),
     );
     debugMarkerElements.forEach(d => {
-      console.log('Removing', d, d.parentNode);
       d.parentNode.removeChild(d);
     });
   }
@@ -287,10 +289,11 @@ export class EsdsPageNavigation extends LitElement {
 
   updateFixedState(elementWatcher) {
     if (elementWatcher.isAboveViewport && !this.fixed) {
-      this.fixedWidth = this.navWrapper.offsetWidth;
+      this.fixedStyles = `top: ${this.fixedTopPosition}px; width: ${this.navWrapper.offsetWidth}px;`;
       this.fixed = true;
       this.requestUpdate();
     } else if (!elementWatcher.isAboveViewport && this.fixed) {
+      this.fixedStyles = false;
       this.fixed = false;
       this.requestUpdate();
     }
@@ -301,8 +304,6 @@ export class EsdsPageNavigation extends LitElement {
     const pageTargets = document.querySelectorAll(
       this.contentSelectors.join(', '),
     );
-
-    console.log('PAGE TARGETS', pageTargets);
 
     if (pageTargets.length > 0) {
       this.items = Array.from(pageTargets).map(pt => {
@@ -333,7 +334,7 @@ export class EsdsPageNavigation extends LitElement {
       >
         <div
           class="esds-page-navigation__inner"
-          style="width: ${ifDefined(this.fixedWidth)}px;"
+          style="${ifDefined(this.fixedStyles)}"
         >
           ${this.topContent ? unsafeHTML(this.topContent) : ''}
           <ul class="esds-page-navigation__list">
