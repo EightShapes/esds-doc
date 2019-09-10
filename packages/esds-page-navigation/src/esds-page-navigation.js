@@ -33,13 +33,10 @@ export class EsdsPageNavigation extends LitElement {
     this.debugMarkers = false;
     this.fixed = false;
     this.sectionScrollOffset = 0;
+    this.items = [];
 
     // Initial state
     this.sectionScrollMonitoring = true;
-
-    if (!this.items) {
-      this.updateNavItems();
-    }
   }
 
   connectedCallback() {
@@ -57,8 +54,10 @@ export class EsdsPageNavigation extends LitElement {
 
   firstUpdated() {
     if (!this.items || this.items.length === 0) {
+      console.log('UPDATE NAV ITEMS');
       this.updateNavItems();
     }
+
     if (this.updateNavEvent) {
       // If there's a global event that should be listened to to rebuild nav items, listen for it here. Useful for SPAs that don't truly reload the page
       document.addEventListener(
@@ -305,23 +304,38 @@ export class EsdsPageNavigation extends LitElement {
       this.contentSelectors.join(', '),
     );
 
-    if (pageTargets.length > 0) {
-      this.items = Array.from(pageTargets).map(pt => {
-        if (!pt.id) {
-          pt.id = this.generateIdForPageTarget(pt);
+    if (pageTargets.length === 0) {
+      // set a timeout and try again. This persistent attempt to scrape the page for content is necessary in some frameworks (Vue, Nuxt, Angular, etc.)
+      this.navItemUpdateTimeout = setTimeout(() => {
+        if (!this.navItemUpdateAttempts || this.navItemUpdateAttempts < 5) {
+          this.updateNavItems();
+          this.navItemUpdateAttempts = this.navItemUpdateAttempts
+            ? this.navItemUpdateAttempts + 1
+            : 0;
         }
+      }, 50);
+    } else {
+      if (this.navItemUpdateTimeout) {
+        clearTimeout(this.navItemUpdateTimeout);
+      }
+      if (pageTargets.length > 0) {
+        this.items = Array.from(pageTargets).map(pt => {
+          if (!pt.id) {
+            pt.id = this.generateIdForPageTarget(pt);
+          }
 
-        return {
-          href: pt.id,
-          text: pt.textContent,
-          target: pt,
-        };
-      });
+          return {
+            href: pt.id,
+            text: pt.textContent,
+            target: pt,
+          };
+        });
 
-      this.dedupeNavIds();
-      this.monitorSectionScrollPosition();
+        this.dedupeNavIds();
+        this.monitorSectionScrollPosition();
 
-      this.requestUpdate();
+        this.requestUpdate();
+      }
     }
   }
 
