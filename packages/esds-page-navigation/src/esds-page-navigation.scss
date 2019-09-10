@@ -1,0 +1,54 @@
+@import '../node_modules/esds-visual-style/tokens/tokens';
+@import '../node_modules/esds-visual-style/styles/shared/color';
+@import '../node_modules/esds-visual-style/styles/shared/space';
+@import '../node_modules/esds-visual-style/styles/shared/typography';
+@import '../node_modules/esds-visual-style/styles/shared/util';
+
+$esds-page-navigation-border: 0 !default;
+$esds-page-navigation-font-family: $esds-font-family-sans-serif !default;
+$esds-page-navigation-max-width: 240px !default;
+$esds-page-navigation-space-inset: $esds-space-inset-1-x !default;
+$esds-page-navigation-item-space-inset: $esds-space-inset-half-x !default;
+$esds-page-navigation-link-color: $esds-text-color-link-on-white !default;
+$esds-page-navigation-link-color-hover: $esds-text-color-link-on-white !default;
+$esds-page-navigation-link-color-active: $esds-color-orange-93 !default;
+$esds-page-navigation-link-text-decoration: none !default;
+$esds-page-navigation-link-font-size: $esds-font-size-body-m-default !default;
+$esds-page-navigation-link-space-inset: $esds-space-inset-quarter-x !default;
+
+.esds-page-navigation {
+  @include esds-font-reset($font-family: $esds-page-navigation-font-family);
+  font-size: $esds-page-navigation-link-font-size;
+  max-width: $esds-page-navigation-max-width;
+  width: 100%;
+}
+
+.esds-page-navigation__list {
+  border: $esds-page-navigation-border;
+  list-style: none;
+  margin: 0;
+  padding: $esds-page-navigation-space-inset;
+}
+
+.esds-page-navigation__item {
+  padding: $esds-page-navigation-item-space-inset;
+}
+
+.esds-page-navigation__link {
+  color: $esds-page-navigation-link-color;
+  display: block;
+  padding: $esds-page-navigation-link-space-inset;
+  text-decoration: $esds-page-navigation-link-text-decoration;
+
+  &:hover {
+    color: $esds-page-navigation-link-color-hover;
+  }
+
+  .esds-page-navigation__item--active & {
+    color: $esds-page-navigation-link-color-active;
+  }
+}
+
+.esds-page-navigation--fixed .esds-page-navigation__inner {
+  position: fixed;
+}

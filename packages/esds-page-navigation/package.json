@@ -1,0 +1,47 @@
+{
+  "name": "@eightshapes/esds-page-navigation",
+  "version": "0.1.0",
+  "description": "",
+  "esnext": "src/esds-page-navigation.js",
+  "main": "dist/esds-page-navigation.js",
+  "module": "dist/esds-page-navigation-legacy.js",
+  "scripts": {
+    "start": "npm run build && npm run watch-build | browser-sync start --watch --config browser-sync-config.js --ignore 'src/**/*'",
+    "build": "npm run build-esm && npm run build-ie && npm run build-web-component && npm run build-styles",
+    "build-ie": "rollup -c rollup.config.ie.js",
+    "build-web-component": "rollup -c rollup.config.js -i src/esds-page-navigation-entry.js -o dist/esds-page-navigation-web-component.js -f esm",
+    "build-esm": "rollup -c rollup.config.js -i src/esds-page-navigation.js -o dist/esds-page-navigation.js -f esm",
+    "build-styles": "sass src:dist",
+    "watch-build": "npm run watch-build-esm | npm run watch-build-ie | npm run watch-build-web-component | npm run watch-build-styles",
+    "watch-build-ie": "rollup --watch -c rollup.config.ie.js",
+    "watch-build-web-component": "rollup --watch -c rollup.config.js -i src/esds-page-navigation-entry.js -o dist/esds-page-navigation-web-component.js -f esm",
+    "watch-build-esm": "rollup --watch -c rollup.config.js -i src/esds-page-navigation.js -o dist/esds-page-navigation.js -f esm",
+    "watch-build-styles": "sass src:dist --watch",
+    "prepack": "npm run build"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@eightshapes/esds-markdown": "0.1.0",
+    "@webcomponents/custom-elements": "^1.2.4",
+    "browser-sync": "^2.26.7",
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.2.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-sort-class-members": "^1.6.0",
+    "prettier": "^1.18.2",
+    "rollup": "^1.18.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "sass": "^1.22.9",
+    "scrollmonitor": "^1.2.4",
+    "smoothscroll-polyfill": "^0.4.4"
+  },
+  "dependencies": {
+    "esds-visual-style": "^0.5.0",
+    "lit-element": "^2.2.1",
+    "regenerator-runtime": "^0.13.3"
+  }
+}
