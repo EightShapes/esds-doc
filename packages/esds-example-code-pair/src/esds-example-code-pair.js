@@ -41,7 +41,7 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
       derivedHtmlTab: { type: Boolean, attribute: 'derived-html-tab' },
       language: { type: String },
       source: { type: String },
-      sources: { type: Array }
+      sources: { type: Array },
     };
   }
 
@@ -85,7 +85,9 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
 
   handleSlotSourceChange(e) {
     // See if the default slot contains anything
-    const assignedContent = Array.from(e.target.childNodes).find(n => n.tagName.toLowerCase() === 's-assigned-wrapper');
+    const assignedContent = Array.from(e.target.childNodes).find(
+      n => n.tagName.toLowerCase() === 's-assigned-wrapper',
+    );
     const language = this.language || this.constructor.defaultLanguage;
     this.codeSnippet = this.codeSnippet || new EsdsCodeSnippet(); // These instances will be aliased via the configuration in the constructor() - Rollup will ensure that the classes import'ed will be unique
     this.renderedExample = this.renderedExample || new EsdsRenderedExample(); // These instances will be aliased via the configuration in the constructor() - Rollup will ensure that the classes import'ed will be unique
@@ -131,8 +133,10 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
       this.codeSnippet.sources = this.sources;
 
       this.renderedExample = this.renderedExample || new EsdsRenderedExample();
-      const exampleData = this.sources.find(s => s.renderedExample) || this.sources[0];
-      this.renderedExample.exampleSource = this.exampleSource || exampleData.source; // If there's default slot content passed in, render that instead of any examples passed in via props
+      const exampleData =
+        this.sources.find(s => s.renderedExample) || this.sources[0];
+      this.renderedExample.exampleSource =
+        this.exampleSource || exampleData.source; // If there's default slot content passed in, render that instead of any examples passed in via props
     }
 
     return html`

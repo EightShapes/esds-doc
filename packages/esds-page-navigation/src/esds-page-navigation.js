@@ -15,11 +15,12 @@ export class EsdsPageNavigation extends LitElement {
         attribute: 'debug-markers',
       },
       fixed: { type: Boolean },
-      fixedDistanceFromTop: {
+      fixedTriggerOffset: {
         type: Number,
-        attribute: 'fixed-distance-from-top',
+        attribute: 'fixed-trigger-offset',
       },
       items: { type: Array },
+      sectionScrollOffset: { type: Number, attribute: 'section-scroll-offset' },
       topContent: { type: String, attribute: 'top-content' },
       updateNavEvent: { type: String, attribute: 'update-nav-event' },
     };
@@ -29,8 +30,9 @@ export class EsdsPageNavigation extends LitElement {
     super();
     // Prop default values
     this.contentSelectors = ['h2'];
-    this.debugMarkers = false; // TODO: Change to false
+    this.debugMarkers = true; // TODO: Change to false
     this.fixed = false;
+    this.sectionScrollOffset = 0;
 
     // Initial state
     this.sectionScrollMonitoring = true;
@@ -54,21 +56,23 @@ export class EsdsPageNavigation extends LitElement {
   }
 
   firstUpdated() {
+    if (!this.items || this.items.length === 0) {
+      this.updateNavItems();
+    }
     if (this.updateNavEvent) {
       // If there's a global event that should be listened to to rebuild nav items, listen for it here. Useful for SPAs that don't truly reload the page
       document.addEventListener(
         this.updateNavEvent,
         () => {
           this.updateNavItems();
-          if (this.fixedDistanceFromTop !== undefined) {
-            this.monitorFixedState(); // TODO: Unbind this in disconnectedCallback
+          if (this.fixedTriggerOffset !== undefined) {
+            this.monitorFixedState();
           }
         },
         { once: true },
       );
-    } else if (this.fixedDistanceFromTop !== undefined) {
-      this.monitorFixedState(); // TODO: Unbind this in disconnectedCallback
     }
+    this.monitorFixedState();
   }
 
   get navWrapper() {
@@ -159,8 +163,9 @@ export class EsdsPageNavigation extends LitElement {
   }
 
   monitorFixedState() {
+    console.log('MFS');
     const fixedScrollMonitor = scrollMonitor.create(this, {
-      top: this.fixedDistanceFromTop,
+      top: this.fixedTriggerOffset,
     });
 
     this.updateFixedState(fixedScrollMonitor);
@@ -264,7 +269,10 @@ export class EsdsPageNavigation extends LitElement {
     }
     this.sectionScrollMonitoring = false;
 
-    const scrollPosition = target.offsetTop;
+    const scrollPosition =
+      target.getBoundingClientRect().top +
+      window.pageYOffset -
+      this.sectionScrollOffset;
     window.scroll({
       top: scrollPosition,
       left: 0,
@@ -293,6 +301,8 @@ export class EsdsPageNavigation extends LitElement {
     const pageTargets = document.querySelectorAll(
       this.contentSelectors.join(', '),
     );
+
+    console.log('PAGE TARGETS', pageTargets);
 
     if (pageTargets.length > 0) {
       this.items = Array.from(pageTargets).map(pt => {
