@@ -32,11 +32,14 @@ export class EsdsPageNavigation extends LitElement {
     this.contentSelectors = ['h2'];
     this.debugMarkers = false;
     this.fixed = false;
+    this.fixedTriggerOffset = 0;
     this.sectionScrollOffset = 0;
     this.items = [];
 
     // Initial state
     this.sectionScrollMonitoring = true;
+    this.onLoadHash = window.location.hash;
+    this.pushSelectedToHash = this.onLoadHash !== undefined ? false : true; // If there's already a hash on the url when the page loads, don't push any new hashes until the one in the URL has been selected
   }
 
   connectedCallback() {
@@ -53,25 +56,17 @@ export class EsdsPageNavigation extends LitElement {
   }
 
   firstUpdated() {
-    if (!this.items || this.items.length === 0) {
-      console.log('UPDATE NAV ITEMS');
-      this.updateNavItems();
-    }
-
+    this.initializeNav();
     if (this.updateNavEvent) {
       // If there's a global event that should be listened to to rebuild nav items, listen for it here. Useful for SPAs that don't truly reload the page
       document.addEventListener(
         this.updateNavEvent,
         () => {
-          this.updateNavItems();
-          if (this.fixedTriggerOffset !== undefined) {
-            this.monitorFixedState();
-          }
+          this.initializeNav();
         },
         { once: true },
       );
     }
-    this.monitorFixedState();
   }
 
   get fixedTopPosition() {
@@ -165,6 +160,14 @@ export class EsdsPageNavigation extends LitElement {
     this.smoothScrollToTarget(target);
   }
 
+  initializeNav() {
+    if (this.items.length === 0) {
+      this.updateNavItems();
+    }
+    this.monitorFixedState();
+    this.scrollToUrlHash();
+  }
+
   monitorFixedState() {
     const fixedScrollMonitor = scrollMonitor.create(this, {
       top: this.fixedTriggerOffset,
@@ -256,11 +259,30 @@ export class EsdsPageNavigation extends LitElement {
     }
   }
 
+  scrollToUrlHash() {
+    setTimeout(() => {
+      if (this.onLoadHash) {
+        const selectedSection = this.items.find(
+          i => i.href === this.onLoadHash.replace('#', ''),
+        );
+        if (selectedSection) {
+          this.selectNavItem(selectedSection.href);
+          this.smoothScrollToTarget(selectedSection.target);
+        }
+      }
+      this.pushSelectedToHash = true;
+    }, 50); // Add a little pause so page positions can be calculated correctly before scrolling to initial section
+  }
+
   selectNavItem(href) {
+    const cleanedHref = href.replace('#', '');
     this.items.forEach(i =>
-      i.href === href.replace('#', '') ? (i.active = true) : (i.active = false),
+      i.href === cleanedHref ? (i.active = true) : (i.active = false),
     );
 
+    if (this.pushSelectedToHash) {
+      history.pushState(null, null, `#${cleanedHref}`);
+    }
     this.requestUpdate();
   }
 
@@ -283,7 +305,7 @@ export class EsdsPageNavigation extends LitElement {
     // Brittle, but browser-native window.scroll doesn't provide any callback mechanism
     this.scrollMonitoringTimeout = setTimeout(() => {
       this.sectionScrollMonitoring = true;
-    }, 1000);
+    }, 1500);
   }
 
   updateFixedState(elementWatcher) {
@@ -340,39 +362,41 @@ export class EsdsPageNavigation extends LitElement {
   }
 
   render() {
-    return html`
-      <nav
-        class="esds-page-navigation${this.fixed
-          ? ' esds-page-navigation--fixed'
-          : ''}"
-      >
-        <div
-          class="esds-page-navigation__inner"
-          style="${ifDefined(this.fixedStyles)}"
+    if (this.items.length > 0) {
+      return html`
+        <nav
+          class="esds-page-navigation${this.fixed
+            ? ' esds-page-navigation--fixed'
+            : ''}"
         >
-          ${this.topContent ? unsafeHTML(this.topContent) : ''}
-          <ul class="esds-page-navigation__list">
-            ${this.items.map(i => {
-              let itemClass = 'esds-page-navigation__item';
-              if (i.active) {
-                itemClass += ' esds-page-navigation__item--active';
-              }
-              return html`
-                <li class="${itemClass}">
-                  <a
-                    @click=${this.handleNavigationClick}
-                    href="#${i.href}"
-                    class="esds-page-navigation__link"
-                  >
-                    ${unsafeHTML(i.text)}
-                  </a>
-                </li>
-              `;
-            })}
-          </ul>
-          ${this.bottomContent ? unsafeHTML(this.bottomContent) : ''}
-        </div>
-      </nav>
-    `;
+          <div
+            class="esds-page-navigation__inner"
+            style="${ifDefined(this.fixedStyles)}"
+          >
+            ${this.topContent ? unsafeHTML(this.topContent) : ''}
+            <ul class="esds-page-navigation__list">
+              ${this.items.map(i => {
+                let itemClass = 'esds-page-navigation__item';
+                if (i.active) {
+                  itemClass += ' esds-page-navigation__item--active';
+                }
+                return html`
+                  <li class="${itemClass}">
+                    <a
+                      @click=${this.handleNavigationClick}
+                      href="#${i.href}"
+                      class="esds-page-navigation__link"
+                    >
+                      ${unsafeHTML(i.text)}
+                    </a>
+                  </li>
+                `;
+              })}
+            </ul>
+            ${this.bottomContent ? unsafeHTML(this.bottomContent) : ''}
+          </div>
+        </nav>
+      `;
+    }
   }
 }
