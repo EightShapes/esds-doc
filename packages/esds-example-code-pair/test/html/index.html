@@ -13,6 +13,8 @@
     <!-- A babel-compiled version of the component for IE11 -->
     <script nomodule type="text/javascript" src="../../dist/esds-example-code-pair-legacy.js"></script>
 
+    <script src="../../node_modules/@eightshapes/esds-rendered-example/dist/esds-rendered-example-web-component.js"></script>
+
     <script type="module">
       import { EsdsExampleCodePair } from '../../dist/esds-example-code-pair.js';
       // This config is required to deconflict the internal EsdsCodeSnippet and EsdsRenderedExample components used with EsdsExampleCodePair. Without doing this, the already loaded EsdsExamplePair will reserve the global namespace for those two dependencies
@@ -30,12 +32,32 @@
       <h1>Just Testing This</h1>
     </esds-example-code-pair>
 
+    <esds-example-code-pair>
+      <esds-rendered-example label="kick">
+        <h1>Magic with a </h1>
+      </esds-rendered-example>
+    </esds-example-code-pair>
+
+    <esds-example-code-pair>
+      <esds-rendered-example label="Magic" slot="primary-example">
+        <h1>Spiderpunch</h1>
+      </esds-rendered-example>
+      <esds-rendered-example label="kick">
+        <h1>Magic with a </h1>
+      </esds-rendered-example>
+    </esds-example-code-pair>
+
+    <esds-example-code-pair language="react" derived-html-tab>
+      <ReactComponentThing>
+        <h2>Just an H2 on the Inside</h2>
+      </ReactComponentThing>
+    </esds-example-code-pair>
+
     <h2>Multiple Sources</h2>
     <esds-example-code-pair sources='[
       {
         "source": "<Header>This is the React Version</Header>",
         "language": "react"
-
       },
       {
         "source": "<h1>This is the HTML representation</h1>",

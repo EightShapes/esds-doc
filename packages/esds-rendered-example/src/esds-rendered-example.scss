@@ -40,8 +40,8 @@ $esds-rendered-example-label-background-on-dark: rgba($esds-rendered-example-bac
   padding: $esds-rendered-example-space-inset;
   position: relative;
 
-  &.esds-doc-container--dark {
-    background: $esds-background-color-dark; // TODO needs to be in a mixin
+  &.esds-rendered-example--dark {
+    background: $esds-rendered-example-background-dark; // TODO needs to be in a mixin
   }
 
   .esds-rendered-example__item {
@@ -75,10 +75,10 @@ $esds-rendered-example-label-background-on-dark: rgba($esds-rendered-example-bac
     right: 0;
     top: 0;
     z-index: 1;
+  }
 
-    .esds-doc-container--dark & {
-      background: $esds-rendered-example-label-background-on-dark;
-      color: $esds-rendered-example-text-color-on-dark;
-    }
+  &.esds-rendered-example--dark .esds-rendered-example__label {
+    background: $esds-rendered-example-label-background-on-dark;
+    color: $esds-rendered-example-text-color-on-dark;
   }
 }

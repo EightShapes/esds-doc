@@ -3,17 +3,22 @@
 $esds-example-code-pair-space-stack: $esds-space-stack-1-x !default;
 
 .esds-example-code-pair {
+  border: $esds-rendered-example-border;
+  border-radius: $esds-rendered-example-border-radius;
   margin: $esds-example-code-pair-space-stack;
 
   .esds-code-snippet {
-    border-top: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border: 0;
+    border-radius: 0 0 $esds-rendered-example-border-radius $esds-rendered-example-border-radius;
+    margin: 0;
   }
 
   .esds-rendered-example {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
     margin-bottom: 0;
   }
 }
