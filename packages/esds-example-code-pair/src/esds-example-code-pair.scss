@@ -7,6 +7,21 @@ $esds-example-code-pair-space-stack: $esds-space-stack-1-x !default;
   border-radius: $esds-rendered-example-border-radius;
   margin: $esds-example-code-pair-space-stack;
 
+  > s-slot, {
+    display: block;
+    display: contents; // sass-lint:disable-line no-duplicate-properties
+
+    > s-assigned-wrapper,
+    > s-fallback-wrapper {
+      display: block;
+      display: contents; // sass-lint:disable-line no-duplicate-properties
+
+      &[hidden] {
+        display: none;
+      }
+    }
+  }
+
   .esds-code-snippet {
     border: 0;
     border-radius: 0 0 $esds-rendered-example-border-radius $esds-rendered-example-border-radius;

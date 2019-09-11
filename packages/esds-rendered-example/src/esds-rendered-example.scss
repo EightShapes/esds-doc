@@ -40,6 +40,21 @@ $esds-rendered-example-label-background-on-dark: rgba($esds-rendered-example-bac
   padding: $esds-rendered-example-space-inset;
   position: relative;
 
+  > s-slot, {
+    display: block;
+    display: contents; // sass-lint:disable-line no-duplicate-properties
+
+    > s-assigned-wrapper,
+    > s-fallback-wrapper {
+      display: block;
+      display: contents; // sass-lint:disable-line no-duplicate-properties
+
+      &[hidden] {
+        display: none;
+      }
+    }
+  }
+
   &.esds-rendered-example--dark {
     background: $esds-rendered-example-background-dark; // TODO needs to be in a mixin
   }
