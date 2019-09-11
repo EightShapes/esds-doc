@@ -10,6 +10,20 @@ export class EsdsRenderedExample extends Slotify(LitElement) {
     };
   }
 
+  get slottedContent() {
+    let slottedContent = false;
+    const slot = this.querySelector('s-slot');
+    const assignedWrapper = slot.querySelector('s-assigned-wrapper');
+    if (assignedWrapper && assignedWrapper.innerHTML.trim().length > 0) {
+      slottedContent = assignedWrapper.innerHTML;
+    }
+    return slottedContent;
+  }
+
+  get source() {
+    return this.exampleSource || this.slottedContent;
+  }
+
   render() {
     return html`
       <div class="esds-rendered-example">
