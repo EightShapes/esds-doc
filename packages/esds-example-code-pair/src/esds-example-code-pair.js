@@ -93,122 +93,76 @@ export class EsdsExampleCodePair extends Slotify(LitElement) {
   }
 
   handleExampleSlotChange(e) {
-    console.log('hesc');
     // Does the slot contain an esds-rendered-example component?
     const defaultSlot = e.target;
     const renderedExampleSlottedComponent = defaultSlot.querySelector(
       'esds-rendered-example',
     );
 
-    // If not, wrap it in an <esds-rendered-example> component
-    if (!renderedExampleSlottedComponent) {
-      // No child <esds-rendered-example> has been used. Grab all the contents and append them to the defaultExampleCodePair
-      const assignedContent = Array.from(e.target.childNodes).find(
-        n => n.tagName.toLowerCase() === 's-assigned-wrapper',
-      );
-      if (assignedContent && assignedContent.innerHTML.trim().length > 0) {
-        this.exampleSource = assignedContent.innerHTML; // Store for retrieval by code snippet & defaultExampleCodePair
-        // Clear the assignedContent so the fallback content (the defaultRenderedExample) will be displayed
-        assignedContent.innerHTML = '';
-        this.requestUpdate();
-      }
-    } else {
-      // If so, extract the source from it to be referenced by code snippet
-      const renderedExampleSlottedContent =
-        renderedExampleSlottedComponent.source;
-      if (renderedExampleSlottedContent) {
-        this.exampleSource = renderedExampleSlottedContent;
+    if (!this.exampleSource) {
+      // Don't run again if exampleSource has already been set
+      if (!renderedExampleSlottedComponent) {
+        // If not, wrap it in an <esds-rendered-example> component
+        // No child <esds-rendered-example> has been used. Grab all the contents and append them to the defaultExampleCodePair
+        const assignedContent = Array.from(e.target.childNodes).find(
+          n => n.tagName.toLowerCase() === 's-assigned-wrapper',
+        );
+        if (assignedContent && assignedContent.innerHTML.trim().length > 0) {
+          this.exampleSource = assignedContent.innerHTML; // Store for retrieval by code snippet & defaultExampleCodePair
+          // Clear the assignedContent so the fallback content (the defaultRenderedExample) will be displayed
+          assignedContent.innerHTML = '';
+          this.requestUpdate();
+        }
+      } else if (renderedExampleSlottedComponent) {
+        // If so, extract the source from it to be referenced by code snippet
+        this.exampleSource = renderedExampleSlottedComponent.source;
         this.requestUpdate();
       }
     }
-    //
-    // if (!this.source && !this.sources) {
-    //   // If source hasn't been set explicitly
-    //   // Extract the rendered content from the child <esds-rendered-example> and set that to this.codeSnippet.source;
-    // }
-
-    // See if the default slot contains anything
-    // const assignedContent = Array.from(e.target.childNodes).find(
-    //   n => n.tagName.toLowerCase() === 's-assigned-wrapper',
-    // );
-    // console.log(assignedContent.innerHTML);
-    // const language = this.language || this.constructor.defaultLanguage;
-    // this.renderedExample = this.renderedExample || new EsdsRenderedExample(); // These instances will be aliased via the configuration in the constructor() - Rollup will ensure that the classes import'ed will be unique
-    //
-    // if (assignedContent && assignedContent.innerHTML) {
-    //   this.codeSnippet.source = assignedContent.innerHTML;
-    //   this.renderedExample.exampleSource = assignedContent.innerHTML;
-    //   this.exampleSource = assignedContent.innerHTML; // Set the exampleSource property to the default slot contents so it can be retrieved in the render method
-    // }
-    //
-    // if (this.source) {
-    //   this.codeSnippet.source = this.source;
-    //   this.codeSnippet.language = language;
-    // }
-    //
-    // if (
-    //   (this.constructor.defaultDerivedHtmlTab || this.derivedHtmlTab) &&
-    //   assignedContent &&
-    //   assignedContent.innerHTML
-    // ) {
-    //   this.codeSnippet.source = undefined;
-    //   const sources = [
-    //     {
-    //       source: this.source,
-    //       language: language,
-    //     },
-    //     {
-    //       source: assignedContent.innerHTML,
-    //       language: 'html',
-    //     },
-    //   ];
-    //
-    //   this.codeSnippet.sources = sources;
-    // }
-    //
-    // assignedContent.innerHTML = ''; // Clear out the assigned content so the fallback content can be shown
-    // this.requestUpdate();
   }
 
   handlePrimaryExampleSlotChange(e) {
     const renderedExampleSlottedComponent = e.target.querySelector(
       'esds-rendered-example',
     );
-    const exampleContent = renderedExampleSlottedComponent.source;
-    console.log(exampleContent);
-    if (exampleContent) {
-      this.primaryExampleSource = exampleContent;
+    if (renderedExampleSlottedComponent && !this.primaryExampleSource) {
+      this.primaryExampleSource = renderedExampleSlottedComponent.source;
       this.requestUpdate();
     }
   }
 
   renderCodeSnippet() {
+    const derivedSource = this.primaryExampleSource || this.exampleSource; // Pull source code from the <slot>'s
+    const source = this.source || derivedSource;
+
     if (this.sources) {
       this.codeSnippet.sources = this.sources;
     } else {
-      const source =
-        this.source || this.primaryExampleSource || this.exampleSource;
       this.codeSnippet.source = source;
     }
 
+    // If an 'HTML' code tab should automatically be created, determine where that code should come from
     if (this.constructor.defaultDerivedHtmlTab || this.derivedHtmlTab) {
-      if (this.sources) {
+      if (this.sources && derivedSource) {
         this.sources.push({
-          source: this.primaryExampleSource || this.exampleSource,
+          source: derivedSource,
           language: 'html',
         });
-      } else {
+      } else if (source && derivedSource) {
         this.sources = [
           {
-            source: this.source,
-            language: this.language,
+            source: source,
+            language: this.constructor.defaultLanguage || this.language,
           },
           {
-            source: this.primaryExampleSource || this.exampleSource,
+            source: derivedSource,
             language: 'html',
           },
         ];
+        this.codeSnippet.source = false;
       }
+
+      this.codeSnippet.sources = this.sources;
     }
 
     return this.codeSnippet;
