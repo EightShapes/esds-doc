@@ -1,6 +1,6 @@
 {
   "name": "@eightshapes/esds-tint-stack",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "esnext": "src/esds-tint-stack.js",
   "main": "dist/esds-tint-stack.js",
@@ -23,8 +23,8 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@eightshapes/esds-tint-swatch": "^0.1.1",
     "@eightshapes/slotify": "^0.4.0",
-    "@eightshapes/esds-tint-swatch": "^0.1.0",
     "@webcomponents/custom-elements": "^1.2.4",
     "browser-sync": "^2.26.7",
     "eslint": "^6.5.1",

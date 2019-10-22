@@ -1,6 +1,6 @@
 {
   "name": "@eightshapes/esds-tint-swatch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "esnext": "src/esds-tint-swatch.js",
   "main": "dist/esds-tint-swatch.js",
@@ -36,9 +36,9 @@
     "sass": "^1.22.9"
   },
   "dependencies": {
-    "lit-element": "^2.2.1",
-    "@eightshapes/esds-color-utils": "^0.1.0",
+    "@eightshapes/esds-color-utils": "^0.1.1",
     "esds-visual-style": "^0.5.0",
+    "lit-element": "^2.2.1",
     "regenerator-runtime": "^0.13.3"
   }
 }
