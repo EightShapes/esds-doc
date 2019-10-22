@@ -1,0 +1,89 @@
+@import '../node_modules/esds-visual-style/tokens/tokens';
+
+$esds-tint-stack-font-family: $esds-font-family-sans-serif !default;
+$esds-tint-stack-space-swatch-inset: $esds-space-inset-1-x !default;
+
+$esds-tint-stack-swatch-border: $esds-border-default !default;
+
+$esds-tint-stack-pill-background-color: $esds-background-color-light !default;
+$esds-tint-stack-pill-border-radius: $esds-border-radius-default !default;
+$esds-tint-stack-font-family-monospace: 'Courier New', monospace !default;
+$esds-tint-stack-pill-font-size: $esds-font-size-body-m-default !default;
+$esds-tint-stack-pill-text-align: center !default;
+$esds-tint-stack-pill-text-color: $esds-text-color-primary-on-light !default;
+$esds-tint-stack-pill-space-inset: $esds-space-inset-quarter-x !default;
+$esds-tint-stack-pill-space-between: $esds-space-generic-1-x !default;
+$esds-tint-stack-pill-min-width: 4em !default;
+
+$esds-tint-stack-html-example-space-inline: $esds-space-generic-1-x !default;
+
+$esds-tint-stack-label-max-width: none !default;
+
+$esds-tint-stack-aa18-pill-background-color: #CFB317 !default;
+$esds-tint-stack-aa18-pill-text-color: $esds-text-color-primary-on-white !default;
+
+$esds-tint-stack-dnp-pill-background-color: #EE0000 !default;
+$esds-tint-stack-dnp-pill-text-color: $esds-text-color-primary-on-black !default;
+
+
+// .esds-tint-stack {
+//     @include esds-doc-box-sizing;
+//     @include esds-doc-font-reset(
+//         $font-family: $esds-tint-stack-font-family);
+// }
+//
+// .esds-tint-stack__empty-state-documentation {
+//     @include esds-doc-font-reset;
+//     color: $esds-text-color-primary-on-white;
+// }
+
+.esds-tint-swatch {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: $esds-tint-stack-space-swatch-inset;
+}
+
+.esds-tint-swatch--bordered {
+  border: $esds-tint-stack-swatch-border;
+}
+
+.esds-tint-stack__pill {
+  background: $esds-tint-stack-pill-background-color;
+  border-radius: $esds-tint-stack-pill-border-radius;
+  color: $esds-tint-stack-pill-text-color;
+  display: inline-block;
+  font-family: $esds-tint-stack-font-family-monospace;
+  font-size: $esds-tint-stack-pill-font-size;
+  margin: 0 0 0 $esds-tint-stack-pill-space-between;
+  min-width: $esds-tint-stack-pill-min-width;
+  padding: $esds-tint-stack-pill-space-inset;
+  text-align: $esds-tint-stack-pill-text-align;
+}
+
+.esds-tint-stack__pill--accessibility-score-aa18 {
+  background-color: $esds-tint-stack-aa18-pill-background-color;
+  color: $esds-tint-stack-aa18-pill-text-color;
+}
+
+.esds-tint-stack__pill--accessibility-score-dnp {
+  background-color: $esds-tint-stack-dnp-pill-background-color;
+  color: $esds-tint-stack-dnp-pill-text-color;
+}
+
+.esds-tint-swatch__metadata {
+  margin-left: auto;
+}
+
+.esds-tint-stack__html-example {
+  margin: 0 0 0 $esds-tint-stack-html-example-space-inline;
+}
+
+.esds-tint-stack__label {
+  max-width: $esds-tint-stack-label-max-width;
+}
+
+.esds-tint-swatch__code-snippet {
+  font-family: $esds-tint-stack-font-family-monospace;
+}

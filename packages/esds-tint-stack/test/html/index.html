@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- No Shadow DOM, so link directly to styles -->
+    <link rel="stylesheet" href="../../dist/esds-tint-stack.css"/>
+    <link rel="stylesheet" href="../../node_modules/@eightshapes/esds-tint-swatch/dist/esds-tint-swatch.css"/>
+
+    <!-- Separate custom elements polyfill for Edge, IE11, etc. -->
+    <script>
+      window.ShadyCSS = { disableRuntime: true }; // Turn off ShadyCSS
+    </script>
+    <script type="text/javascript" src="../../node_modules/@webcomponents/custom-elements/custom-elements.min.js"></script>
+
+    <!-- The ESM "vanilla" version of the component for FF, Safari, Chrome and Edge -->
+    <script type="module" src="../../dist/esds-tint-stack-web-component.js"></script>
+    <script type="module" src="../../node_modules/@eightshapes/esds-tint-swatch/dist/esds-tint-swatch-web-component.js"></script>
+
+    <!-- A babel-compiled version of the component for IE11 -->
+    <script nomodule type="text/javascript" src="../../dist/esds-tint-stack-legacy.js"></script>
+  </head>
+  <body>
+    <h1>Welcome to your new web component.</h1>
+    There are only three requirements to make a lit-element web component work all the way down to IE11:
+    <ol>
+      <li><code>@webcomponents/webcomponentsjs</code> is needed to enable custom elements in IE11 and Edge 18 and lower</li>
+      <li>
+        Rollup is needed because <code>esds-tint-stack-entry.js</code> uses an import statement to pull in the EsdsTintStack class from a separate file.<br/>
+        IE11 doesn't support JS imports so this rollup is needed to bundle those two files into one.<br/>
+        Rollup is also used to create a bundle for modern browsers that includes LitElement and all its dependencies.
+      </li>
+      <li>Babel is needed to compile the ES6 code down to ES5 code so IE11 will work</li>
+    </ol>
+    <esds-tint-stack label-color="#FFFFFF">
+      <esds-tint-swatch hex="#FF03928"></esds-tint-swatch>
+    </esds-tint-stack>
+
+    <esds-tint-stack label-color="#404040">
+      <esds-tint-swatch hex="#BDBDBD" label="Neutral 74" code-snippet="1ds-color-neutral-74"></esds-tint-swatch>
+      <esds-tint-swatch hex="#E0E0E0" label="Neutral 88" code-snippet="1ds-color-neutral-88"></esds-tint-swatch>
+      <esds-tint-swatch hex="#EEEEEE" label="Neutral 93" code-snippet="1ds-color-neutral-93"></esds-tint-swatch>
+      <esds-tint-swatch hex="#F7F7F7" label="Neutral 97" code-snippet="1ds-color-neutral-97"></esds-tint-swatch>
+      <esds-tint-swatch hex="#FFFFFF" bordered label="Neutral 100" code-snippet="1ds-color-neutral-100"></esds-tint-swatch>
+    </esds-tint-stack>
+  </body>
+</html>

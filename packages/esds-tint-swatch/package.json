@@ -1,0 +1,44 @@
+{
+  "name": "@eightshapes/esds-tint-swatch",
+  "version": "0.1.0",
+  "description": "",
+  "esnext": "src/esds-tint-swatch.js",
+  "main": "dist/esds-tint-swatch.js",
+  "module": "dist/esds-tint-swatch-legacy.js",
+  "scripts": {
+    "start": "npm run build && npm run watch-build | browser-sync start --watch --config browser-sync-config.js --ignore 'src/**/*'",
+    "build": "npm run build-esm && npm run build-ie && npm run build-web-component && npm run build-styles",
+    "build-ie": "rollup -c rollup.config.ie.js",
+    "build-web-component": "rollup -c rollup.config.js -i src/esds-tint-swatch-entry.js -o dist/esds-tint-swatch-web-component.js -f esm",
+    "build-esm": "rollup -c rollup.config.js -i src/esds-tint-swatch.js -o dist/esds-tint-swatch.js -f esm",
+    "build-styles": "sass src:dist",
+    "watch-build": "npm run watch-build-esm | npm run watch-build-ie | npm run watch-build-web-component | npm run watch-build-styles",
+    "watch-build-ie": "rollup --watch -c rollup.config.ie.js",
+    "watch-build-web-component": "rollup --watch -c rollup.config.js -i src/esds-tint-swatch-entry.js -o dist/esds-tint-swatch-web-component.js -f esm",
+    "watch-build-esm": "rollup --watch -c rollup.config.js -i src/esds-tint-swatch.js -o dist/esds-tint-swatch.js -f esm",
+    "watch-build-styles": "sass src:dist --watch",
+    "prepack": "npm run build"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@webcomponents/custom-elements": "^1.2.4",
+    "browser-sync": "^2.26.7",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-sort-class-members": "^1.6.0",
+    "prettier": "^1.18.2",
+    "rollup": "^1.18.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "sass": "^1.22.9"
+  },
+  "dependencies": {
+    "lit-element": "^2.2.1",
+    "@eightshapes/esds-color-utils": "^0.1.0",
+    "esds-visual-style": "^0.5.0",
+    "regenerator-runtime": "^0.13.3"
+  }
+}

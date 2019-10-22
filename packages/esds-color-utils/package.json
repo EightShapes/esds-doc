@@ -1,0 +1,11 @@
+{
+  "name": "@eightshapes/esds-color-utils",
+  "version": "0.1.0",
+  "description": "",
+  "license": "MIT",
+  "main": "src/esds-color-utils.js",
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- No Shadow DOM, so link directly to styles -->
+    <link rel="stylesheet" href="../../dist/esds-tint-swatch.css"/>
+
+    <!-- Separate custom elements polyfill for Edge, IE11, etc. -->
+    <script>
+      window.ShadyCSS = { disableRuntime: true }; // Turn off ShadyCSS
+    </script>
+    <script type="text/javascript" src="../../node_modules/@webcomponents/custom-elements/custom-elements.min.js"></script>
+
+    <!-- The ESM "vanilla" version of the component for FF, Safari, Chrome and Edge -->
+    <script type="module" src="../../dist/esds-tint-swatch-web-component.js"></script>
+
+    <!-- A babel-compiled version of the component for IE11 -->
+    <script nomodule type="text/javascript" src="../../dist/esds-tint-swatch-legacy.js"></script>
+  </head>
+  <body>
+    <h1>Welcome to your new web component.</h1>
+    There are only three requirements to make a lit-element web component work all the way down to IE11:
+    <ol>
+      <li><code>@webcomponents/webcomponentsjs</code> is needed to enable custom elements in IE11 and Edge 18 and lower</li>
+      <li>
+        Rollup is needed because <code>esds-tint-swatch-entry.js</code> uses an import statement to pull in the EsdsTintSwatch class from a separate file.<br/>
+        IE11 doesn't support JS imports so this rollup is needed to bundle those two files into one.<br/>
+        Rollup is also used to create a bundle for modern browsers that includes LitElement and all its dependencies.
+      </li>
+      <li>Babel is needed to compile the ES6 code down to ES5 code so IE11 will work</li>
+    </ol>
+    <esds-tint-swatch hex="#FF9372"></esds-tint-swatch>
+    <esds-tint-swatch hex="#004AD4" label="Blue 42" code-snippet="$ds-color-blue-42" contrast-ratio></esds-tint-swatch>
+    <esds-tint-swatch hex="#006FF4" label="Blue 48" code-snippet="$ds-color-blue-48" accessibility-rating contrast-ratio></esds-tint-swatch>
+    <esds-tint-swatch hex="#4292F4" label="Blue 61" code-snippet="$ds-color-blue-61" label-color="#FFFFFF" accessibility-rating></esds-tint-swatch>
+    <esds-tint-swatch hex="#89BAF4" label="Blue 75" code-snippet="$ds-color-blue-75" label-color="#FFFFFF" accessibility-rating contrast-ratio></esds-tint-swatch>
+    <esds-tint-swatch hex="#D9EBFF" label="Blue 93" code-snippet="$ds-color-blue-93" label-color="#004AD4" accessibility-rating contrast-ratio></esds-tint-swatch>
+  </body>
+</html>
