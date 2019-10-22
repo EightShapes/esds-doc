@@ -10,29 +10,6 @@
   border: solid 2px #6B6B6B;
 }
 
-.esds-tint-stack__pill {
-  background: #F3F1F1;
-  border-radius: 8px;
-  color: #0D0D0D;
-  display: inline-block;
-  font-family: "Courier New", monospace;
-  font-size: 16px;
-  margin: 0 0 0 16px;
-  min-width: 4em;
-  padding: 4px;
-  text-align: center;
-}
-
-.esds-tint-stack__pill--accessibility-score-aa18 {
-  background-color: #CFB317;
-  color: #0D0D0D;
-}
-
-.esds-tint-stack__pill--accessibility-score-dnp {
-  background-color: #EE0000;
-  color: #F3F1F1;
-}
-
 .esds-tint-swatch__metadata {
   margin-left: auto;
 }
