@@ -1,6 +1,6 @@
 {
   "name": "@eightshapes/esds-tint-swatch",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "esnext": "src/esds-tint-swatch.js",
   "main": "dist/esds-tint-swatch.js",
