@@ -1,4 +1,7 @@
 @import '../node_modules/esds-visual-style/tokens/tokens';
+@import '../node_modules/esds-visual-style/styles/shared/color';
+@import '../node_modules/esds-visual-style/styles/shared/typography';
+@import '../node_modules/esds-visual-style/styles/shared/util';
 
 $esds-tint-swatch-font-family: $esds-font-family-sans-serif !default;
 $esds-tint-swatch-space-swatch-inset: $esds-space-inset-1-x !default;
@@ -38,6 +41,8 @@ $esds-tint-swatch-dnp-pill-text-color: $esds-text-color-primary-on-black !defaul
 // }
 
 .esds-tint-swatch {
+  @include esds-box-sizing;
+  @include esds-font-reset($font-family: $esds-tint-swatch-font-family);
   align-items: center;
   display: flex;
   flex-wrap: wrap;
