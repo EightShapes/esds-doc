@@ -3967,10 +3967,51 @@ function () {
   }
 
   _createClass(EsdsColorUtils, null, [{
+    key: "accessibilityRating",
+    value: function accessibilityRating(ratio) {
+      var rating = 'DNP';
+
+      if (ratio >= 7.0) {
+        rating = 'AAA';
+      } else if (ratio >= 4.5) {
+        rating = 'AA';
+      } else if (ratio >= 3.0) {
+        rating = 'AA18';
+      }
+
+      return rating;
+    }
+  }, {
+    key: "accessibleLabelColor",
+    value: function accessibleLabelColor(hex) {
+      var whiteContrast = this.contrastRatioForHex(hex, '#FFFFFF');
+      var blackContrast = this.contrastRatioForHex(hex, '#000000');
+
+      if (whiteContrast > blackContrast) {
+        return '#FFFFFF';
+      } else {
+        return '#000000';
+      }
+    }
+  }, {
+    key: "convertHexToLonghand",
+    value: function convertHexToLonghand(hex) {
+      var convertedHex = hex;
+
+      if (hex.length === 4 || hex.length === 3) {
+        convertedHex = hex.replace('#', '');
+        convertedHex = "#".concat(convertedHex).concat(convertedHex);
+      }
+
+      return convertedHex;
+    }
+  }, {
     key: "contrastRatioForHex",
     value: function contrastRatioForHex(foregroundColor, backgroundColor) {
-      // MIT Licensed function courtesty of Lea Verou
+      foregroundColor = this.convertHexToLonghand(foregroundColor);
+      backgroundColor = this.convertHexToLonghand(backgroundColor); // MIT Licensed function courtesty of Lea Verou
       // https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
+
       Math.round = function () {
         var round = Math.round;
         return function (number, decimals) {
@@ -4273,18 +4314,7 @@ function (_LitElement) {
   }, {
     key: "calculateAccessibilityRating",
     value: function calculateAccessibilityRating() {
-      var ratio = this.calculatedContrastRatio;
-      var rating = 'DNP';
-
-      if (ratio >= 7.0) {
-        rating = 'AAA';
-      } else if (ratio >= 4.5) {
-        rating = 'AA';
-      } else if (ratio >= 3.0) {
-        rating = 'AA18';
-      }
-
-      return rating;
+      return EsdsColorUtils.accessibilityRating(this.calculatedContrastRatio);
     }
   }, {
     key: "calculateContrastRatio",
@@ -4401,14 +4431,7 @@ function (_LitElement) {
   }, {
     key: "mostAccessibleTestColor",
     get: function get() {
-      var whiteContrast = EsdsColorUtils.contrastRatioForHex(this.hex, '#FFFFFF');
-      var blackContrast = EsdsColorUtils.contrastRatioForHex(this.hex, '#000000');
-
-      if (whiteContrast > blackContrast) {
-        return '#FFFFFF';
-      } else {
-        return '#000000';
-      }
+      return EsdsColorUtils.accessibleLabelColor(this.hex);
     }
   }]);
 
