@@ -4,6 +4,7 @@ import { EsdsColorUtils } from '@eightshapes/esds-color-utils';
 export class EsdsContrastGrid extends LitElement {
   static get properties() {
     return {
+      backgroundColors: { type: Array, attribute: 'background-colors' },
       backgroundLabel: { type: String, attribute: 'background-label' },
       colors: { type: Array },
       foregroundLabel: { type: String, attribute: 'foreground-label' },
@@ -67,6 +68,26 @@ export class EsdsContrastGrid extends LitElement {
     return className;
   }
 
+  get normalizedBackgroundColors() {
+    const backgroundColors = this.backgroundColors || this.colors;
+    return this.normalizeColors(backgroundColors);
+  }
+
+  get normalizedColors() {
+    return this.normalizeColors(this.colors);
+  }
+
+  normalizeColors(colorArray) {
+    // Allow an array of strings OR an array of objects
+    return colorArray.map(c => {
+      if (typeof c === 'string') {
+        return { hex: c };
+      } else {
+        return c;
+      }
+    });
+  }
+
   renderAxisLabel() {
     if (this.hiddenAxisLabel) {
       return;
@@ -88,7 +109,7 @@ export class EsdsContrastGrid extends LitElement {
   renderHeaderCells() {
     const output = [];
 
-    this.colors.forEach(c => {
+    this.normalizedColors.forEach(c => {
       const labelColor = EsdsColorUtils.accessibleLabelColor(c.hex);
       output.push(html`
         <th class="esds-contrast-grid__foreground-key-cell">
@@ -125,7 +146,7 @@ export class EsdsContrastGrid extends LitElement {
         <tr class="esds-contrast-grid__key-row">
           <td
             class="esds-contrast-grid__key-cell"
-            colspan="${this.colors.length + 1}"
+            colspan="${this.normalizedColors.length + 1}"
           >
             <div class="esds-contrast-grid-key">
               <div class="esds-contrast-grid-key__column">
@@ -174,7 +195,7 @@ export class EsdsContrastGrid extends LitElement {
 
   renderRowCells(hex) {
     const cells = [];
-    this.colors.forEach(c => {
+    this.normalizedColors.forEach(c => {
       if (hex === c.hex) {
         cells.push(
           html`
@@ -249,9 +270,8 @@ export class EsdsContrastGrid extends LitElement {
   }
 
   renderRows() {
-    const backgroundColors = this.backgroundColors || this.colors;
     const rows = [];
-    backgroundColors.forEach(c => {
+    this.normalizedBackgroundColors.forEach(c => {
       rows.push(html`
         <tr
           id="esds-contrast-grid__content-row-template"

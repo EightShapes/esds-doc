@@ -4174,6 +4174,10 @@ function (_LitElement) {
     key: "properties",
     get: function get() {
       return {
+        backgroundColors: {
+          type: Array,
+          attribute: 'background-colors'
+        },
         backgroundLabel: {
           type: String,
           attribute: 'background-label'
@@ -4249,6 +4253,20 @@ function (_LitElement) {
       return this;
     }
   }, {
+    key: "normalizeColors",
+    value: function normalizeColors(colorArray) {
+      // Allow an array of strings OR an array of objects
+      return colorArray.map(function (c) {
+        if (typeof c === 'string') {
+          return {
+            hex: c
+          };
+        } else {
+          return c;
+        }
+      });
+    }
+  }, {
     key: "renderAxisLabel",
     value: function renderAxisLabel() {
       if (this.hiddenAxisLabel) {
@@ -4263,7 +4281,7 @@ function (_LitElement) {
       var _this2 = this;
 
       var output = [];
-      this.colors.forEach(function (c) {
+      this.normalizedColors.forEach(function (c) {
         var labelColor = EsdsColorUtils.accessibleLabelColor(c.hex);
         output.push(html(_templateObject2(), c.hex, labelColor, c.label, _this2.hiddenHexLabels ? '' : html(_templateObject3(), c.hex)));
       });
@@ -4276,13 +4294,13 @@ function (_LitElement) {
         return;
       }
 
-      return html(_templateObject4(), this.colors.length + 1);
+      return html(_templateObject4(), this.normalizedColors.length + 1);
     }
   }, {
     key: "renderRowCells",
     value: function renderRowCells(hex) {
       var cells = [];
-      this.colors.forEach(function (c) {
+      this.normalizedColors.forEach(function (c) {
         if (hex === c.hex) {
           cells.push(html(_templateObject5()));
         } else {
@@ -4305,9 +4323,8 @@ function (_LitElement) {
     value: function renderRows() {
       var _this3 = this;
 
-      var backgroundColors = this.backgroundColors || this.colors;
       var rows = [];
-      backgroundColors.forEach(function (c) {
+      this.normalizedBackgroundColors.forEach(function (c) {
         rows.push(html(_templateObject9(), _this3.renderRowHeader(c.hex, c.label), _this3.renderRowCells(c.hex)));
       });
       return rows;
@@ -4331,6 +4348,17 @@ function (_LitElement) {
       }
 
       return className;
+    }
+  }, {
+    key: "normalizedBackgroundColors",
+    get: function get() {
+      var backgroundColors = this.backgroundColors || this.colors;
+      return this.normalizeColors(backgroundColors);
+    }
+  }, {
+    key: "normalizedColors",
+    get: function get() {
+      return this.normalizeColors(this.colors);
     }
   }]);
 
