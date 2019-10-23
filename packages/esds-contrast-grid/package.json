@@ -1,6 +1,6 @@
 {
   "name": "@eightshapes/esds-contrast-grid",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "esnext": "src/esds-contrast-grid.js",
   "main": "dist/esds-contrast-grid.js",
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "@eightshapes/esds-color-utils": "^0.1.1",
+    "@eightshapes/esds-color-utils": "^0.2.0",
     "@webcomponents/custom-elements": "^1.2.4",
     "browser-sync": "^2.26.7",
     "rollup": "^1.18.0",
