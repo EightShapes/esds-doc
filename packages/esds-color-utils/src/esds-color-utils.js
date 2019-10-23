@@ -1,5 +1,45 @@
 export class EsdsColorUtils {
+  static accessibilityRating(ratio) {
+    let rating = 'DNP';
+    if (ratio >= 7.0) {
+      rating = 'AAA';
+    } else if (ratio >= 4.5) {
+      rating = 'AA';
+    } else if (ratio >= 3.0) {
+      rating = 'AA18';
+    }
+    return rating;
+  }
+
+  static accessibleLabelColor(hex) {
+    const whiteContrast = this.contrastRatioForHex(
+      hex,
+      '#FFFFFF',
+    );
+    const blackContrast = this.contrastRatioForHex(
+      hex,
+      '#000000',
+    );
+
+    if (whiteContrast > blackContrast) {
+      return '#FFFFFF';
+    } else {
+      return '#000000';
+    }
+  }
+
+  static convertHexToLonghand(hex) {
+    let convertedHex = hex;
+    if (hex.length === 4 || hex.length === 3) {
+      convertedHex = hex.replace('#', '');
+      convertedHex = `#${convertedHex}${convertedHex}`;
+    }
+    return convertedHex;
+  }
+
   static contrastRatioForHex(foregroundColor, backgroundColor) {
+    foregroundColor = this.convertHexToLonghand(foregroundColor);
+    backgroundColor = this.convertHexToLonghand(backgroundColor);
       // MIT Licensed function courtesty of Lea Verou
       // https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
       Math.round = (function(){

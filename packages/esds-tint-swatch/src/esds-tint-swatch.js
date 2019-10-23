@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit-element';
-import { EsdsColorUtils } from 'esds-color-utils';
+import { EsdsColorUtils } from '@eightshapes/esds-color-utils';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 export class EsdsTintSwatch extends LitElement {
@@ -90,33 +90,11 @@ export class EsdsTintSwatch extends LitElement {
   }
 
   get mostAccessibleTestColor() {
-    const whiteContrast = EsdsColorUtils.contrastRatioForHex(
-      this.hex,
-      '#FFFFFF',
-    );
-    const blackContrast = EsdsColorUtils.contrastRatioForHex(
-      this.hex,
-      '#000000',
-    );
-
-    if (whiteContrast > blackContrast) {
-      return '#FFFFFF';
-    } else {
-      return '#000000';
-    }
+    return EsdsColorUtils.accessibleLabelColor(this.hex);
   }
 
   calculateAccessibilityRating() {
-    const ratio = this.calculatedContrastRatio;
-    let rating = 'DNP';
-    if (ratio >= 7.0) {
-      rating = 'AAA';
-    } else if (ratio >= 4.5) {
-      rating = 'AA';
-    } else if (ratio >= 3.0) {
-      rating = 'AA18';
-    }
-    return rating;
+    return EsdsColorUtils.accessibilityRating(this.calculatedContrastRatio);
   }
 
   calculateContrastRatio() {
