@@ -5,6 +5,9 @@ export class EsdsContrastGrid extends LitElement {
   static get properties() {
     return {
       colors: { type: Array },
+      hiddenHexLabels: { type: Boolean, attribute: 'hidden-hex-labels' },
+      hiddenKey: { type: Boolean, attribute: 'hidden-key' },
+      keyPosition: { type: String, attribute: 'key-position' },
     };
   }
 
@@ -36,6 +39,9 @@ export class EsdsContrastGrid extends LitElement {
         label: 'Link Color',
       },
     ];
+    this.hiddenHexLabels = false;
+    this.hiddenKey = false;
+    this.keyPosition = 'bottom';
   }
 
   createRenderRoot() {
@@ -54,9 +60,16 @@ export class EsdsContrastGrid extends LitElement {
             style="background-color: ${c.hex}; color: ${labelColor}"
           >
             <div class="esds-contrast-grid__key-swatch-label">
-              <div class="esds-contrast-grid__key-swatch-label-hex">
-                ${c.hex}
+              <div class="esds-contrast-grid__key-swatch-label-text">
+                ${c.label}
               </div>
+              ${this.hiddenHexLabels
+                ? ''
+                : html`
+                    <div class="esds-contrast-grid__key-swatch-label-hex">
+                      ${c.hex}
+                    </div>
+                  `}
             </div>
           </div>
         </th>
@@ -64,6 +77,61 @@ export class EsdsContrastGrid extends LitElement {
     });
 
     return output;
+  }
+  renderKey() {
+    if (this.hiddenKey) {
+      return;
+    }
+    return html`
+      <thead class="esds-contrast-grid__key">
+        <tr class="esds-contrast-grid__key-row">
+          <td
+            class="esds-contrast-grid__key-cell"
+            colspan="${this.colors.length + 1}"
+          >
+            <div class="esds-contrast-grid-key">
+              <div class="esds-contrast-grid-key__column">
+                <div class="esds-contrast-grid-key__label">
+                  <span
+                    class="esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--aaa"
+                    >AAA</span
+                  >
+                  Pass, AAA (7+)
+                </div>
+                <div class="esds-contrast-grid-key__label">
+                  <span
+                    class="esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--aa"
+                    >AA</span
+                  >
+                  Pass, AA (4.5+)
+                </div>
+              </div>
+              <div class="esds-contrast-grid-key__column">
+                <div class="esds-contrast-grid-key__label">
+                  <span
+                    class="esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--aa18"
+                    >AA18</span
+                  >
+                  Pass, Large Text Only (3+)
+                </div>
+                <div class="esds-contrast-grid-key__label">
+                  <span
+                    class="esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--dnp"
+                    >DNP</span
+                  >
+                  Does Not Pass
+                </div>
+              </div>
+              <a
+                class="esds-contrast-grid-key__link"
+                href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html"
+                >About WCAG 2.0 contrast</a
+              >
+            </div>
+          </td>
+        </tr>
+      </thead>
+    `;
   }
 
   renderRowCells(hex) {
@@ -129,9 +197,13 @@ export class EsdsContrastGrid extends LitElement {
             <div class="esds-contrast-grid__key-swatch-label-text">
               ${label}
             </div>
-            <div class="esds-contrast-grid__key-swatch-label-hex">
-              ${hex}
-            </div>
+            ${this.hiddenHexLabels
+              ? ''
+              : html`
+                  <div class="esds-contrast-grid__key-swatch-label-hex">
+                    ${hex}
+                  </div>
+                `}
           </div>
         </div>
       </th>
@@ -160,6 +232,7 @@ export class EsdsContrastGrid extends LitElement {
       <div class="esds-contrast-grid">
         <div class="esds-contrast-grid__inner">
           <table class="esds-contrast-grid__table">
+            ${this.keyPosition === 'top' ? this.renderKey() : ''}
             <thead>
               <tr class="esds-contrast-grid__foreground-key">
                 <th>
@@ -180,51 +253,7 @@ export class EsdsContrastGrid extends LitElement {
             <tbody class="esds-contrast-grid__content">
               ${this.renderRows()}
             </tbody>
-            <tbody class="esds-contrast-grid__key">
-              <tr class="esds-contrast-grid__key-row">
-                <td class="esds-contrast-grid__key-cell">
-                  <div class="esds-contrast-grid-key">
-                    <div class="esds-contrast-grid-key__column">
-                      <div class="esds-contrast-grid-key__label">
-                        <span
-                          class="esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--aaa"
-                          >AAA</span
-                        >
-                        Pass, AAA (7+)
-                      </div>
-                      <div class="esds-contrast-grid-key__label">
-                        <span
-                          class="esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--aa"
-                          >AA</span
-                        >
-                        Pass, AA (4.5+)
-                      </div>
-                    </div>
-                    <div class="esds-contrast-grid-key__column">
-                      <div class="esds-contrast-grid-key__label">
-                        <span
-                          class="esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--aa18"
-                          >AA18</span
-                        >
-                        Pass, Large Text Only (3+)
-                      </div>
-                      <div class="esds-contrast-grid-key__label">
-                        <span
-                          class="esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--dnp"
-                          >DNP</span
-                        >
-                        Does Not Pass
-                      </div>
-                    </div>
-                    <a
-                      class="esds-contrast-grid-key__link"
-                      href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html"
-                      >About WCAG 2.0 contrast</a
-                    >
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+            ${this.keyPosition === 'bottom' ? this.renderKey() : ''}
           </table>
         </div>
       </div>

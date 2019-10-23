@@ -4066,8 +4066,38 @@ function () {
   return EsdsColorUtils;
 }();
 
+function _templateObject9() {
+  var data = _taggedTemplateLiteral(["\n      <div class=\"esds-contrast-grid\">\n        <div class=\"esds-contrast-grid__inner\">\n          <table class=\"esds-contrast-grid__table\">\n            ", "\n            <thead>\n              <tr class=\"esds-contrast-grid__foreground-key\">\n                <th>\n                  <div class=\"esds-contrast-grid__key-swatch-spacer\">\n                    <span\n                      class=\"esds-contrast-grid__key-swatch-label esds-contrast-grid__key-swatch-label--background\"\n                      >Background</span\n                    >\n                    <span\n                      class=\"esds-contrast-grid__key-swatch-label esds-contrast-grid__key-swatch-label--text\"\n                      >Text</span\n                    >\n                  </div>\n                </th>\n                ", "\n              </tr>\n            </thead>\n            <tbody class=\"esds-contrast-grid__content\">\n              ", "\n            </tbody>\n            ", "\n          </table>\n        </div>\n      </div>\n    "]);
+
+  _templateObject9 = function _templateObject9() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject8() {
+  var data = _taggedTemplateLiteral(["\n        <tr\n          id=\"esds-contrast-grid__content-row-template\"\n          class=\"esds-contrast-grid__content-row\"\n        >\n          ", " ", "\n        </tr>\n      "]);
+
+  _templateObject8 = function _templateObject8() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject7() {
+  var data = _taggedTemplateLiteral(["\n                  <div class=\"esds-contrast-grid__key-swatch-label-hex\">\n                    ", "\n                  </div>\n                "]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n      <div class=\"esds-contrast-grid\">\n        <div class=\"esds-contrast-grid__inner\">\n          <table class=\"esds-contrast-grid__table\">\n            <thead>\n              <tr class=\"esds-contrast-grid__foreground-key\">\n                <th>\n                  <div class=\"esds-contrast-grid__key-swatch-spacer\">\n                    <span\n                      class=\"esds-contrast-grid__key-swatch-label esds-contrast-grid__key-swatch-label--background\"\n                      >Background</span\n                    >\n                    <span\n                      class=\"esds-contrast-grid__key-swatch-label esds-contrast-grid__key-swatch-label--text\"\n                      >Text</span\n                    >\n                  </div>\n                </th>\n                ", "\n              </tr>\n            </thead>\n            <tbody class=\"esds-contrast-grid__content\">\n              ", "\n            </tbody>\n            <tbody class=\"esds-contrast-grid__key\">\n              <tr class=\"esds-contrast-grid__key-row\">\n                <td class=\"esds-contrast-grid__key-cell\">\n                  <div class=\"esds-contrast-grid-key\">\n                    <div class=\"esds-contrast-grid-key__column\">\n                      <div class=\"esds-contrast-grid-key__label\">\n                        <span\n                          class=\"esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--aaa\"\n                          >AAA</span\n                        >\n                        Pass, AAA (7+)\n                      </div>\n                      <div class=\"esds-contrast-grid-key__label\">\n                        <span\n                          class=\"esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--aa\"\n                          >AA</span\n                        >\n                        Pass, AA (4.5+)\n                      </div>\n                    </div>\n                    <div class=\"esds-contrast-grid-key__column\">\n                      <div class=\"esds-contrast-grid-key__label\">\n                        <span\n                          class=\"esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--aa18\"\n                          >AA18</span\n                        >\n                        Pass, Large Text Only (3+)\n                      </div>\n                      <div class=\"esds-contrast-grid-key__label\">\n                        <span\n                          class=\"esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--dnp\"\n                          >DNP</span\n                        >\n                        Does Not Pass\n                      </div>\n                    </div>\n                    <a\n                      class=\"esds-contrast-grid-key__link\"\n                      href=\"https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html\"\n                      >About WCAG 2.0 contrast</a\n                    >\n                  </div>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n    "]);
+  var data = _taggedTemplateLiteral(["\n      <th class=\"esds-contrast-grid__background-key-cell\">\n        <div\n          class=\"esds-contrast-grid__key-swatch esds-contrast-grid__key-swatch--background\"\n          style=\"background-color: ", "; color: ", "\"\n        >\n          <div class=\"esds-contrast-grid__key-swatch-label\">\n            <div class=\"esds-contrast-grid__key-swatch-label-text\">\n              ", "\n            </div>\n            ", "\n          </div>\n        </div>\n      </th>\n    "]);
 
   _templateObject6 = function _templateObject6() {
     return data;
@@ -4077,7 +4107,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n        <tr\n          id=\"esds-contrast-grid__content-row-template\"\n          class=\"esds-contrast-grid__content-row\"\n        >\n          ", " ", "\n        </tr>\n      "]);
+  var data = _taggedTemplateLiteral(["\n          <td class=\"esds-contrast-grid__content-cell\">\n            <div\n              class=\"esds-contrast-grid__swatch\"\n              style=\"background-color: ", "; color: ", "\"\n            >\n              <span\n                class=\"esds-contrast-grid__swatch-demo-text\"\n                style=\"color: ", "\"\n                >Text</span\n              >\n              <div class=\"esds-contrast-grid__swatch-stats\">\n                <span\n                  class=\"esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--", "\"\n                >\n                  ", "</span\n                >\n                <span\n                  class=\"esds-contrast-grid__contrast-ratio\"\n                  style=\"color: ", "\"\n                  >", "</span\n                >\n              </div>\n            </div>\n          </td>\n        "]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -4087,7 +4117,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n      <th class=\"esds-contrast-grid__background-key-cell\">\n        <div\n          class=\"esds-contrast-grid__key-swatch esds-contrast-grid__key-swatch--background\"\n          style=\"background-color: ", "; color: ", "\"\n        >\n          <div class=\"esds-contrast-grid__key-swatch-label\">\n            <div class=\"esds-contrast-grid__key-swatch-label-text\">\n              ", "\n            </div>\n            <div class=\"esds-contrast-grid__key-swatch-label-hex\">\n              ", "\n            </div>\n          </div>\n        </div>\n      </th>\n    "]);
+  var data = _taggedTemplateLiteral(["\n            <td class=\"esds-contrast-grid__content-cell\">\n              <div class=\"es-contrast-grid__swatch-spacer\"></div>\n            </td>\n          "]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -4097,7 +4127,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n          <td class=\"esds-contrast-grid__content-cell\">\n            <div\n              class=\"esds-contrast-grid__swatch\"\n              style=\"background-color: ", "; color: ", "\"\n            >\n              <span\n                class=\"esds-contrast-grid__swatch-demo-text\"\n                style=\"color: ", "\"\n                >Text</span\n              >\n              <div class=\"esds-contrast-grid__swatch-stats\">\n                <span\n                  class=\"esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--", "\"\n                >\n                  ", "</span\n                >\n                <span\n                  class=\"esds-contrast-grid__contrast-ratio\"\n                  style=\"color: ", "\"\n                  >", "</span\n                >\n              </div>\n            </div>\n          </td>\n        "]);
+  var data = _taggedTemplateLiteral(["\n      <thead class=\"esds-contrast-grid__key\">\n        <tr class=\"esds-contrast-grid__key-row\">\n          <td\n            class=\"esds-contrast-grid__key-cell\"\n            colspan=\"", "\"\n          >\n            <div class=\"esds-contrast-grid-key\">\n              <div class=\"esds-contrast-grid-key__column\">\n                <div class=\"esds-contrast-grid-key__label\">\n                  <span\n                    class=\"esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--aaa\"\n                    >AAA</span\n                  >\n                  Pass, AAA (7+)\n                </div>\n                <div class=\"esds-contrast-grid-key__label\">\n                  <span\n                    class=\"esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--aa\"\n                    >AA</span\n                  >\n                  Pass, AA (4.5+)\n                </div>\n              </div>\n              <div class=\"esds-contrast-grid-key__column\">\n                <div class=\"esds-contrast-grid-key__label\">\n                  <span\n                    class=\"esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--aa18\"\n                    >AA18</span\n                  >\n                  Pass, Large Text Only (3+)\n                </div>\n                <div class=\"esds-contrast-grid-key__label\">\n                  <span\n                    class=\"esds-contrast-grid__accessibility-label esds-contrast-grid__accessibility-label--dnp\"\n                    >DNP</span\n                  >\n                  Does Not Pass\n                </div>\n              </div>\n              <a\n                class=\"esds-contrast-grid-key__link\"\n                href=\"https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html\"\n                >About WCAG 2.0 contrast</a\n              >\n            </div>\n          </td>\n        </tr>\n      </thead>\n    "]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -4107,7 +4137,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n            <td class=\"esds-contrast-grid__content-cell\">\n              <div class=\"es-contrast-grid__swatch-spacer\"></div>\n            </td>\n          "]);
+  var data = _taggedTemplateLiteral(["\n                    <div class=\"esds-contrast-grid__key-swatch-label-hex\">\n                      ", "\n                    </div>\n                  "]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -4117,7 +4147,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n        <th class=\"esds-contrast-grid__foreground-key-cell\">\n          <div\n            class=\"esds-contrast-grid__key-swatch esds-contrast-grid__key-swatch--foreground\"\n            style=\"background-color: ", "; color: ", "\"\n          >\n            <div class=\"esds-contrast-grid__key-swatch-label\">\n              <div class=\"esds-contrast-grid__key-swatch-label-hex\">\n                ", "\n              </div>\n            </div>\n          </div>\n        </th>\n      "]);
+  var data = _taggedTemplateLiteral(["\n        <th class=\"esds-contrast-grid__foreground-key-cell\">\n          <div\n            class=\"esds-contrast-grid__key-swatch esds-contrast-grid__key-swatch--foreground\"\n            style=\"background-color: ", "; color: ", "\"\n          >\n            <div class=\"esds-contrast-grid__key-swatch-label\">\n              <div class=\"esds-contrast-grid__key-swatch-label-text\">\n                ", "\n              </div>\n              ", "\n            </div>\n          </div>\n        </th>\n      "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -4136,6 +4166,18 @@ function (_LitElement) {
       return {
         colors: {
           type: Array
+        },
+        hiddenHexLabels: {
+          type: Boolean,
+          attribute: 'hidden-hex-labels'
+        },
+        hiddenKey: {
+          type: Boolean,
+          attribute: 'hidden-key'
+        },
+        keyPosition: {
+          type: String,
+          attribute: 'key-position'
         }
       };
     }
@@ -4165,6 +4207,9 @@ function (_LitElement) {
       hex: '#3995A9',
       label: 'Link Color'
     }];
+    _this.hiddenHexLabels = false;
+    _this.hiddenKey = false;
+    _this.keyPosition = 'bottom';
     return _this;
   }
 
@@ -4176,12 +4221,23 @@ function (_LitElement) {
   }, {
     key: "renderHeaderCells",
     value: function renderHeaderCells() {
+      var _this2 = this;
+
       var output = [];
       this.colors.forEach(function (c) {
         var labelColor = EsdsColorUtils.accessibleLabelColor(c.hex);
-        output.push(html(_templateObject(), c.hex, labelColor, c.hex));
+        output.push(html(_templateObject(), c.hex, labelColor, c.label, _this2.hiddenHexLabels ? '' : html(_templateObject2(), c.hex)));
       });
       return output;
+    }
+  }, {
+    key: "renderKey",
+    value: function renderKey() {
+      if (this.hiddenKey) {
+        return;
+      }
+
+      return html(_templateObject3(), this.colors.length + 1);
     }
   }, {
     key: "renderRowCells",
@@ -4189,12 +4245,12 @@ function (_LitElement) {
       var cells = [];
       this.colors.forEach(function (c) {
         if (hex === c.hex) {
-          cells.push(html(_templateObject2()));
+          cells.push(html(_templateObject4()));
         } else {
           var contrastRatio = Math.floor(EsdsColorUtils.contrastRatioForHex(hex, c.hex) * 10) / 10;
           var accessibilityRating = EsdsColorUtils.accessibilityRating(contrastRatio);
           var labelColor = EsdsColorUtils.accessibleLabelColor(hex);
-          cells.push(html(_templateObject3(), hex, labelColor, c.hex, accessibilityRating.toLowerCase(), accessibilityRating, labelColor, contrastRatio));
+          cells.push(html(_templateObject5(), hex, labelColor, c.hex, accessibilityRating.toLowerCase(), accessibilityRating, labelColor, contrastRatio));
         }
       });
       return cells;
@@ -4203,24 +4259,24 @@ function (_LitElement) {
     key: "renderRowHeader",
     value: function renderRowHeader(hex, label) {
       var labelColor = EsdsColorUtils.accessibleLabelColor(hex);
-      return html(_templateObject4(), hex, labelColor, label, hex);
+      return html(_templateObject6(), hex, labelColor, label, this.hiddenHexLabels ? '' : html(_templateObject7(), hex));
     }
   }, {
     key: "renderRows",
     value: function renderRows() {
-      var _this2 = this;
+      var _this3 = this;
 
       var backgroundColors = this.backgroundColors || this.colors;
       var rows = [];
       backgroundColors.forEach(function (c) {
-        rows.push(html(_templateObject5(), _this2.renderRowHeader(c.hex, c.label), _this2.renderRowCells(c.hex)));
+        rows.push(html(_templateObject8(), _this3.renderRowHeader(c.hex, c.label), _this3.renderRowCells(c.hex)));
       });
       return rows;
     }
   }, {
     key: "render",
     value: function render() {
-      return html(_templateObject6(), this.renderHeaderCells(), this.renderRows());
+      return html(_templateObject9(), this.keyPosition === 'top' ? this.renderKey() : '', this.renderHeaderCells(), this.renderRows(), this.keyPosition === 'bottom' ? this.renderKey() : '');
     }
   }]);
 
