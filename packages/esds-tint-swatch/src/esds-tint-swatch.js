@@ -36,8 +36,18 @@ export class EsdsTintSwatch extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+
+    // Allow a parent <esds-tint-stack>'s attributes to override all <esds-tint-swatches> within
     const closestTintStack = this.closest('esds-tint-stack');
+    this.accessibilityRating =
+      this.accessibilityRating || closestTintStack.accessibilityRating;
+    this.bordered = this.bordered || closestTintStack.bordered;
+    this.colorRole = this.colorRole || closestTintStack.colorRole;
+    this.contrastRatio = this.contrastRatio || closestTintStack.contrastRatio;
+    this.hiddenHexLabel =
+      this.hiddenHexLabel || closestTintStack.hiddenHexLabel;
     this.labelColor = this.labelColor || closestTintStack.labelColor;
+    this.testHexColor = this.testHexColor || closestTintStack.testHexColor;
   }
 
   createRenderRoot() {

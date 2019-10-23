@@ -4301,10 +4301,17 @@ function (_LitElement) {
   _createClass(EsdsTintSwatch, [{
     key: "connectedCallback",
     value: function connectedCallback() {
-      _get(_getPrototypeOf(EsdsTintSwatch.prototype), "connectedCallback", this).call(this);
+      _get(_getPrototypeOf(EsdsTintSwatch.prototype), "connectedCallback", this).call(this); // Allow a parent <esds-tint-stack>'s attributes to override all <esds-tint-swatches> within
+
 
       var closestTintStack = this.closest('esds-tint-stack');
+      this.accessibilityRating = this.accessibilityRating || closestTintStack.accessibilityRating;
+      this.bordered = this.bordered || closestTintStack.bordered;
+      this.colorRole = this.colorRole || closestTintStack.colorRole;
+      this.contrastRatio = this.contrastRatio || closestTintStack.contrastRatio;
+      this.hiddenHexLabel = this.hiddenHexLabel || closestTintStack.hiddenHexLabel;
       this.labelColor = this.labelColor || closestTintStack.labelColor;
+      this.testHexColor = this.testHexColor || closestTintStack.testHexColor;
     }
   }, {
     key: "createRenderRoot",
