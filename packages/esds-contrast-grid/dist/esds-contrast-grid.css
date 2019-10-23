@@ -14,6 +14,10 @@
   box-sizing: inherit;
 }
 
+.esds-contrast-grid--responsive {
+  overflow: visible;
+}
+
 .esds-contrast-grid__table-wrap {
   width: auto;
 }
@@ -27,6 +31,9 @@
   font-size: 16px;
   padding: 0;
   margin: 0;
+}
+.esds-contrast-grid--responsive .esds-contrast-grid__table {
+  width: 100%;
 }
 
 .esds-contrast-grid--dark-label {
@@ -61,7 +68,7 @@
   padding: 8px;
   min-width: 100px;
 }
-.esds-contrast-grid--compact .esds-contrast-grid__swatch {
+.esds-contrast-grid--small .esds-contrast-grid__swatch {
   height: 80px;
   min-width: 80px;
 }
@@ -101,8 +108,12 @@
   padding: 8px;
   min-width: 200px;
 }
-.esds-contrast-grid--compact .esds-contrast-grid__key-swatch-spacer {
+.esds-contrast-grid--responsive .esds-contrast-grid__key-swatch-spacer {
+  min-width: 0;
+}
+.esds-contrast-grid--small .esds-contrast-grid__key-swatch-spacer {
   height: 80px;
+  min-width: 0;
 }
 .esds-contrast-grid--large .esds-contrast-grid__key-swatch-spacer {
   height: 150px;
@@ -118,7 +129,7 @@
   height: 100px;
   width: 100%;
 }
-.esds-contrast-grid--compact .esds-contrast-grid__swatch-spacer {
+.esds-contrast-grid--small .esds-contrast-grid__swatch-spacer {
   height: 80px;
   width: 100%;
 }
@@ -137,7 +148,7 @@
   padding: 8px;
   text-align: left;
 }
-.esds-contrast-grid--compact .esds-contrast-grid__key-swatch--foreground {
+.esds-contrast-grid--small .esds-contrast-grid__key-swatch--foreground {
   height: 80px;
 }
 .esds-contrast-grid--large .esds-contrast-grid__key-swatch--foreground {
@@ -149,6 +160,9 @@
   text-overflow: ellipsis;
   max-width: 220px;
   white-space: nowrap;
+}
+.esds-contrast-grid--responsive .esds-contrast-grid__key-swatch--foreground .esds-contrast-grid__key-swatch-label-text {
+  white-space: normal;
 }
 
 .esds-contrast-grid--bordered-swatch {
@@ -163,8 +177,12 @@
   text-align: left;
   min-width: 200px;
 }
-.esds-contrast-grid--compact .esds-contrast-grid__key-swatch--background {
+.esds-contrast-grid--responsive .esds-contrast-grid__key-swatch--background {
+  min-width: 0;
+}
+.esds-contrast-grid--small .esds-contrast-grid__key-swatch--background {
   height: 80px;
+  min-width: 80px;
 }
 .esds-contrast-grid--large .esds-contrast-grid__key-swatch--background {
   height: 150px;

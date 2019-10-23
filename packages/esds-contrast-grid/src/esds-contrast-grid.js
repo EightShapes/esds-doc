@@ -4,10 +4,15 @@ import { EsdsColorUtils } from '@eightshapes/esds-color-utils';
 export class EsdsContrastGrid extends LitElement {
   static get properties() {
     return {
+      backgroundLabel: { type: String, attribute: 'background-label' },
       colors: { type: Array },
+      foregroundLabel: { type: String, attribute: 'foreground-label' },
+      hiddenAxisLabel: { type: Boolean, attribute: 'hidden-axis-label' },
       hiddenHexLabels: { type: Boolean, attribute: 'hidden-hex-labels' },
       hiddenKey: { type: Boolean, attribute: 'hidden-key' },
       keyPosition: { type: String, attribute: 'key-position' },
+      responsive: { type: Boolean },
+      size: { type: String },
     };
   }
 
@@ -42,10 +47,42 @@ export class EsdsContrastGrid extends LitElement {
     this.hiddenHexLabels = false;
     this.hiddenKey = false;
     this.keyPosition = 'bottom';
+    this.backgroundLabel = 'Background';
+    this.foregroundLabel = 'Text';
   }
 
   createRenderRoot() {
     return this;
+  }
+
+  get className() {
+    let className = 'esds-contrast-grid';
+    if (this.responsive) {
+      className += ' esds-contrast-grid--responsive';
+    }
+    if (this.size) {
+      className += ` esds-contrast-grid--${this.size}`;
+    }
+
+    return className;
+  }
+
+  renderAxisLabel() {
+    if (this.hiddenAxisLabel) {
+      return;
+    }
+    return html`
+      <div class="esds-contrast-grid__key-swatch-spacer">
+        <span
+          class="esds-contrast-grid__key-swatch-label esds-contrast-grid__key-swatch-label--background"
+          >${this.backgroundLabel}</span
+        >
+        <span
+          class="esds-contrast-grid__key-swatch-label esds-contrast-grid__key-swatch-label--text"
+          >${this.foregroundLabel}</span
+        >
+      </div>
+    `;
   }
 
   renderHeaderCells() {
@@ -78,6 +115,7 @@ export class EsdsContrastGrid extends LitElement {
 
     return output;
   }
+
   renderKey() {
     if (this.hiddenKey) {
       return;
@@ -229,23 +267,14 @@ export class EsdsContrastGrid extends LitElement {
 
   render() {
     return html`
-      <div class="esds-contrast-grid">
+      <div class="${this.className}">
         <div class="esds-contrast-grid__inner">
           <table class="esds-contrast-grid__table">
             ${this.keyPosition === 'top' ? this.renderKey() : ''}
             <thead>
               <tr class="esds-contrast-grid__foreground-key">
                 <th>
-                  <div class="esds-contrast-grid__key-swatch-spacer">
-                    <span
-                      class="esds-contrast-grid__key-swatch-label esds-contrast-grid__key-swatch-label--background"
-                      >Background</span
-                    >
-                    <span
-                      class="esds-contrast-grid__key-swatch-label esds-contrast-grid__key-swatch-label--text"
-                      >Text</span
-                    >
-                  </div>
+                  ${this.renderAxisLabel()}
                 </th>
                 ${this.renderHeaderCells()}
               </tr>

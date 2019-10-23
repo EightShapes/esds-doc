@@ -15,6 +15,7 @@ const directives = new WeakMap();
 const isDirective = (o) => {
     return typeof o === 'function' && directives.has(o);
 };
+//# sourceMappingURL=directive.js.map
 
 /**
  * @license
@@ -46,6 +47,7 @@ const removeNodes = (container, start, end = null) => {
         start = n;
     }
 };
+//# sourceMappingURL=dom.js.map
 
 /**
  * @license
@@ -69,6 +71,7 @@ const noChange = {};
  * A sentinel value that signals a NodePart to fully clear its content.
  */
 const nothing = {};
+//# sourceMappingURL=part.js.map
 
 /**
  * @license
@@ -282,6 +285,7 @@ const createMarker = () => document.createComment('');
  *    * (') then any non-(')
  */
 const lastAttributeNameRegex = /([ \x09\x0a\x0c\x0d])([^\0-\x1F\x7F-\x9F "'>=/]+)([ \x09\x0a\x0c\x0d]*=[ \x09\x0a\x0c\x0d]*(?:[^ \x09\x0a\x0c\x0d"'`<>=]*|"[^"]*|'[^']*))$/;
+//# sourceMappingURL=template.js.map
 
 /**
  * @license
@@ -414,6 +418,7 @@ class TemplateInstance {
         return fragment;
     }
 }
+//# sourceMappingURL=template-instance.js.map
 
 /**
  * @license
@@ -502,6 +507,7 @@ class TemplateResult {
         return template;
     }
 }
+//# sourceMappingURL=template-result.js.map
 
 /**
  * @license
@@ -941,6 +947,7 @@ const getOptions = (o) => o &&
     (eventOptionsSupported ?
         { capture: o.capture, passive: o.passive, once: o.once } :
         o.capture);
+//# sourceMappingURL=parts.js.map
 
 /**
  * @license
@@ -992,6 +999,7 @@ class DefaultTemplateProcessor {
     }
 }
 const defaultTemplateProcessor = new DefaultTemplateProcessor();
+//# sourceMappingURL=default-template-processor.js.map
 
 /**
  * @license
@@ -1039,6 +1047,7 @@ function templateFactory(result) {
     return template;
 }
 const templateCaches = new Map();
+//# sourceMappingURL=template-factory.js.map
 
 /**
  * @license
@@ -1079,6 +1088,7 @@ const render = (result, container, options) => {
     part.setValue(result);
     part.commit();
 };
+//# sourceMappingURL=render.js.map
 
 /**
  * @license
@@ -1102,6 +1112,7 @@ const render = (result, container, options) => {
  * render to and update a container.
  */
 const html = (strings, ...values) => new TemplateResult(strings, values, 'html', defaultTemplateProcessor);
+//# sourceMappingURL=lit-html.js.map
 
 /**
  * @license
@@ -1226,6 +1237,7 @@ function insertNodeIntoTemplate(template, node, refNode = null) {
         }
     }
 }
+//# sourceMappingURL=modify-template.js.map
 
 /**
  * @license
@@ -1495,6 +1507,7 @@ const render$1 = (result, container, options) => {
         window.ShadyCSS.styleElement(container.host);
     }
 };
+//# sourceMappingURL=shady-render.js.map
 
 /**
  * @license
@@ -2120,6 +2133,7 @@ _a = finalized;
  * Marks class as having finished creating properties.
  */
 UpdatingElement[_a] = true;
+//# sourceMappingURL=updating-element.js.map
 
 /**
 @license
@@ -2133,6 +2147,7 @@ found at http://polymer.github.io/PATENTS.txt
 */
 const supportsAdoptingStyleSheets = ('adoptedStyleSheets' in Document.prototype) &&
     ('replace' in CSSStyleSheet.prototype);
+//# sourceMappingURL=css-tag.js.map
 
 /**
  * @license
@@ -2330,6 +2345,7 @@ LitElement['finalized'] = true;
  * @nocollapse
  */
 LitElement.render = render$1;
+//# sourceMappingURL=lit-element.js.map
 
 class EsdsColorUtils {
   static accessibilityRating(ratio) {
@@ -2488,10 +2504,15 @@ class EsdsColorUtils {
 class EsdsContrastGrid extends LitElement {
   static get properties() {
     return {
+      backgroundLabel: { type: String, attribute: 'background-label' },
       colors: { type: Array },
+      foregroundLabel: { type: String, attribute: 'foreground-label' },
+      hiddenAxisLabel: { type: Boolean, attribute: 'hidden-axis-label' },
       hiddenHexLabels: { type: Boolean, attribute: 'hidden-hex-labels' },
       hiddenKey: { type: Boolean, attribute: 'hidden-key' },
       keyPosition: { type: String, attribute: 'key-position' },
+      responsive: { type: Boolean },
+      size: { type: String },
     };
   }
 
@@ -2526,10 +2547,42 @@ class EsdsContrastGrid extends LitElement {
     this.hiddenHexLabels = false;
     this.hiddenKey = false;
     this.keyPosition = 'bottom';
+    this.backgroundLabel = 'Background';
+    this.foregroundLabel = 'Text';
   }
 
   createRenderRoot() {
     return this;
+  }
+
+  get className() {
+    let className = 'esds-contrast-grid';
+    if (this.responsive) {
+      className += ' esds-contrast-grid--responsive';
+    }
+    if (this.size) {
+      className += ` esds-contrast-grid--${this.size}`;
+    }
+
+    return className;
+  }
+
+  renderAxisLabel() {
+    if (this.hiddenAxisLabel) {
+      return;
+    }
+    return html`
+      <div class="esds-contrast-grid__key-swatch-spacer">
+        <span
+          class="esds-contrast-grid__key-swatch-label esds-contrast-grid__key-swatch-label--background"
+          >${this.backgroundLabel}</span
+        >
+        <span
+          class="esds-contrast-grid__key-swatch-label esds-contrast-grid__key-swatch-label--text"
+          >${this.foregroundLabel}</span
+        >
+      </div>
+    `;
   }
 
   renderHeaderCells() {
@@ -2562,6 +2615,7 @@ class EsdsContrastGrid extends LitElement {
 
     return output;
   }
+
   renderKey() {
     if (this.hiddenKey) {
       return;
@@ -2713,23 +2767,14 @@ class EsdsContrastGrid extends LitElement {
 
   render() {
     return html`
-      <div class="esds-contrast-grid">
+      <div class="${this.className}">
         <div class="esds-contrast-grid__inner">
           <table class="esds-contrast-grid__table">
             ${this.keyPosition === 'top' ? this.renderKey() : ''}
             <thead>
               <tr class="esds-contrast-grid__foreground-key">
                 <th>
-                  <div class="esds-contrast-grid__key-swatch-spacer">
-                    <span
-                      class="esds-contrast-grid__key-swatch-label esds-contrast-grid__key-swatch-label--background"
-                      >Background</span
-                    >
-                    <span
-                      class="esds-contrast-grid__key-swatch-label esds-contrast-grid__key-swatch-label--text"
-                      >Text</span
-                    >
-                  </div>
+                  ${this.renderAxisLabel()}
                 </th>
                 ${this.renderHeaderCells()}
               </tr>

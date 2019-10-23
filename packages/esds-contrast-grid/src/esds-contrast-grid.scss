@@ -17,6 +17,10 @@
     }
 }
 
+.esds-contrast-grid--responsive {
+  overflow: visible;
+}
+
 .esds-contrast-grid__table-wrap {
     width: auto;
 }
@@ -30,6 +34,10 @@
         font-size: 16px;
         padding: 0;
         margin: 0;
+    }
+
+    .esds-contrast-grid--responsive & {
+      width: 100%;
     }
 }
 
@@ -65,7 +73,7 @@
     padding: $spacing-xs;
     min-width: $default-swatch-size;
 
-    .esds-contrast-grid--compact & {
+    .esds-contrast-grid--small & {
         height: $compact-swatch-size;
         min-width: $compact-swatch-size;
     }
@@ -114,8 +122,13 @@
     padding: $spacing-xs;
     min-width: 200px;
 
-    .esds-contrast-grid--compact & {
+    .esds-contrast-grid--responsive & {
+      min-width: 0;
+    }
+
+    .esds-contrast-grid--small & {
         height: $compact-swatch-size;
+        min-width: 0;
     }
 
     .esds-contrast-grid--large & {
@@ -133,7 +146,7 @@
     height: $default-swatch-size;
     width: 100%;
 
-    .esds-contrast-grid--compact & {
+    .esds-contrast-grid--small & {
         height: $compact-swatch-size;
         width: 100%;
     }
@@ -155,7 +168,7 @@
     text-align: left;
     // width: $default-swatch-size;
 
-    .esds-contrast-grid--compact & {
+    .esds-contrast-grid--small & {
         height: $compact-swatch-size;
         // width: $compact-swatch-size;
     }
@@ -171,8 +184,13 @@
         text-overflow: ellipsis;
         max-width: 220px;
         white-space: nowrap;
+
+        .esds-contrast-grid--responsive & {
+          white-space: normal;
+        }
     }
 }
+
 
 .esds-contrast-grid--bordered-swatch {
     border: solid 1px $color-gray-95;
@@ -186,8 +204,13 @@
     text-align: left;
     min-width: 200px;
 
-    .esds-contrast-grid--compact & {
+    .esds-contrast-grid--responsive & {
+      min-width: 0;
+    }
+
+    .esds-contrast-grid--small & {
         height: $compact-swatch-size;
+        min-width: $compact-swatch-size;
     }
 
     .esds-contrast-grid--large & {
