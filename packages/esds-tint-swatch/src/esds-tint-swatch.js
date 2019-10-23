@@ -29,7 +29,6 @@ export class EsdsTintSwatch extends LitElement {
 
   constructor() {
     super();
-    this.colorRole = 'background';
     this.accessibilityRating = false;
     this.contrastRatio = false;
   }
@@ -42,7 +41,8 @@ export class EsdsTintSwatch extends LitElement {
     this.accessibilityRating =
       this.accessibilityRating || closestTintStack.accessibilityRating;
     this.bordered = this.bordered || closestTintStack.bordered;
-    this.colorRole = this.colorRole || closestTintStack.colorRole;
+    this.colorRole =
+      this.colorRole || closestTintStack.colorRole || 'background';
     this.contrastRatio = this.contrastRatio || closestTintStack.contrastRatio;
     this.hiddenHexLabel =
       this.hiddenHexLabel || closestTintStack.hiddenHexLabel;

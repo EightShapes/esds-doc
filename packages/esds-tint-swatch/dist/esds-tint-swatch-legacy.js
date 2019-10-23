@@ -4292,7 +4292,6 @@ function (_LitElement) {
     _classCallCheck(this, EsdsTintSwatch);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EsdsTintSwatch).call(this));
-    _this.colorRole = 'background';
     _this.accessibilityRating = false;
     _this.contrastRatio = false;
     return _this;
@@ -4307,7 +4306,7 @@ function (_LitElement) {
       var closestTintStack = this.closest('esds-tint-stack');
       this.accessibilityRating = this.accessibilityRating || closestTintStack.accessibilityRating;
       this.bordered = this.bordered || closestTintStack.bordered;
-      this.colorRole = this.colorRole || closestTintStack.colorRole;
+      this.colorRole = this.colorRole || closestTintStack.colorRole || 'background';
       this.contrastRatio = this.contrastRatio || closestTintStack.contrastRatio;
       this.hiddenHexLabel = this.hiddenHexLabel || closestTintStack.hiddenHexLabel;
       this.labelColor = this.labelColor || closestTintStack.labelColor;
