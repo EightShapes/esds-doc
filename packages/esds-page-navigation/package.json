@@ -1,6 +1,6 @@
 {
   "name": "@eightshapes/esds-page-navigation",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "",
   "esnext": "src/esds-page-navigation.js",
   "main": "dist/esds-page-navigation.js",
