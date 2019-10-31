@@ -10,6 +10,7 @@ export class EsdsPageNavigation extends LitElement {
     return {
       bottomContent: { type: String, attribute: 'bottom-content' },
       contentSelectors: { type: Array, attribute: 'content-selectors' },
+      exclusionSelectors: { type: Array, attribute: 'exclusion-selectors' },
       debugMarkers: {
         type: Boolean,
         attribute: 'debug-markers',
@@ -161,9 +162,7 @@ export class EsdsPageNavigation extends LitElement {
   }
 
   initializeNav() {
-    if (this.items.length === 0) {
-      this.updateNavItems();
-    }
+    this.updateNavItems();
     this.monitorFixedState();
     this.scrollToUrlHash();
   }
@@ -322,9 +321,21 @@ export class EsdsPageNavigation extends LitElement {
 
   updateNavItems() {
     this.items = [];
-    const pageTargets = document.querySelectorAll(
-      this.contentSelectors.join(', '),
+    let pageTargets = Array.from(
+      document.querySelectorAll(this.contentSelectors.join(', ')),
     );
+
+    if (this.exclusionSelectors) {
+      pageTargets = pageTargets.filter(t => {
+        let include = true;
+        this.exclusionSelectors.forEach(s => {
+          if (t.matches(s)) {
+            include = false;
+          }
+        });
+        return include;
+      });
+    }
 
     if (pageTargets.length === 0) {
       // set a timeout and try again. This persistent attempt to scrape the page for content is necessary in some frameworks (Vue, Nuxt, Angular, etc.)
