@@ -30,13 +30,10 @@ export class EsdsMarkdown extends Slotify(LitElement) {
 
   reparseSlottedContent() {
     const assignedContent = this.querySelector('s-assigned-wrapper');
-    console.log(assignedContent, 'SANITY');
     if (assignedContent && assignedContent.innerHTML.trim().length > 0) {
-      console.log('PARSE MD');
       this.parsedMarkdown = this.constructor.parseMarkdown(
         assignedContent.innerHTML,
       );
-      console.log(this.parsedMarkdown);
       this.requestUpdate();
       assignedContent.innerHTML = '';
     }
