@@ -24,12 +24,19 @@ export class EsdsMarkdown extends Slotify(LitElement) {
     return parsedMarkdown;
   }
 
-  handleSlotChange(e) {
-    const assignedContent = e.target.querySelector('s-assigned-wrapper');
+  handleSlotChange() {
+    this.reparseSlottedContent();
+  }
+
+  reparseSlottedContent() {
+    const assignedContent = this.querySelector('s-assigned-wrapper');
+    console.log(assignedContent, 'SANITY');
     if (assignedContent && assignedContent.innerHTML.trim().length > 0) {
+      console.log('PARSE MD');
       this.parsedMarkdown = this.constructor.parseMarkdown(
         assignedContent.innerHTML,
       );
+      console.log(this.parsedMarkdown);
       this.requestUpdate();
       assignedContent.innerHTML = '';
     }
