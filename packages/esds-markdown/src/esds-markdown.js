@@ -7,6 +7,7 @@ import stripIndent from 'strip-indent';
 export class EsdsMarkdown extends Slotify(LitElement) {
   static get properties() {
     return {
+      parsedMarkdown: { type: String, attribute: 'parsed-markdown' },
       wrapperClass: { type: String, attribute: 'wrapper-class' },
     };
   }
@@ -22,6 +23,23 @@ export class EsdsMarkdown extends Slotify(LitElement) {
   static parseMarkdown(input) {
     const parsedMarkdown = marked(stripIndent(input));
     return parsedMarkdown;
+  }
+
+  updated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+      if (propName === 'parsedMarkdown') {
+        this.emitParsedMarkdownChangedEvent();
+      }
+    });
+  }
+  emitParsedMarkdownChangedEvent() {
+    // Trigger a custom event after markdown is parsed
+    let event = new CustomEvent('esds-markdown-slotted-content-parsed', {
+      detail: {
+        result: this.parsedMarkdown,
+      },
+    });
+    this.dispatchEvent(event);
   }
 
   handleSlotChange() {
