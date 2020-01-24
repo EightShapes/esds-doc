@@ -404,7 +404,7 @@ export class EsdsCodeSnippet extends Slotify(LitElement) {
           `
         : '';
 
-    if (this.copyable) {
+    if (this.copyable !== 'false') {
       toolbarActions.push(this.renderCopyButton());
     }
 
