@@ -23,7 +23,6 @@ export class EsdsPageNavigation extends LitElement {
       items: { type: Array },
       sectionScrollOffset: { type: Number, attribute: 'section-scroll-offset' },
       topContent: { type: String, attribute: 'top-content' },
-      updateNavEvent: { type: String, attribute: 'update-nav-event' },
     };
   }
 
@@ -38,7 +37,7 @@ export class EsdsPageNavigation extends LitElement {
     this.items = [];
 
     // Initial state
-    this.sectionScrollMonitoring = true;
+    this.sectionScrollMonitoring = false;
     this.onLoadHash = window.location.hash;
     this.pushSelectedToHash = this.onLoadHash !== undefined ? false : true; // If there's already a hash on the url when the page loads, don't push any new hashes until the one in the URL has been selected
   }
@@ -58,16 +57,6 @@ export class EsdsPageNavigation extends LitElement {
 
   firstUpdated() {
     this.initializeNav();
-    if (this.updateNavEvent) {
-      // If there's a global event that should be listened to to rebuild nav items, listen for it here. Useful for SPAs that don't truly reload the page
-      document.addEventListener(
-        this.updateNavEvent,
-        () => {
-          this.initializeNav();
-        },
-        { once: true },
-      );
-    }
   }
 
   get fixedTopPosition() {
@@ -162,9 +151,11 @@ export class EsdsPageNavigation extends LitElement {
   }
 
   initializeNav() {
+    this.sectionScrollMonitoring = false;
     this.updateNavItems();
     this.monitorFixedState();
     this.scrollToUrlHash();
+    this.sectionScrollMonitoring = true;
   }
 
   monitorFixedState() {
@@ -180,12 +171,17 @@ export class EsdsPageNavigation extends LitElement {
 
   monitorSectionScrollPosition() {
     this.items.forEach((i, idx) => {
+      const sectionOffset = this.sectionScrollOffset
+        ? this.sectionScrollOffset
+        : 0;
       const nextItem = this.items[idx + 1];
-      const sectionTop =
+      let sectionTop =
         i.target.getBoundingClientRect().top + window.pageYOffset;
-      const sectionBottom = nextItem
+      let sectionBottom = nextItem
         ? nextItem.target.getBoundingClientRect().top + window.pageYOffset
-        : document.body.offsetHeight;
+        : false;
+      sectionTop -= sectionOffset;
+      sectionBottom -= sectionOffset;
       const sectionWatcher = scrollMonitor.create({
         top: sectionTop,
         bottom: sectionBottom,
@@ -211,11 +207,7 @@ export class EsdsPageNavigation extends LitElement {
 
       // Scroll Down Behavior
       sectionWatcher.partiallyExitViewport(() => {
-        if (
-          this.sectionScrollMonitoring &&
-          sectionWatcher.isAboveViewport &&
-          nextItem
-        ) {
+        if (this.sectionScrollMonitoring && sectionWatcher.isAboveViewport) {
           // When one section exits the viewport at the top, set the next section's header to be active
           this.selectNavItem(i.href);
         }
@@ -308,8 +300,8 @@ export class EsdsPageNavigation extends LitElement {
   }
 
   updateFixedState(elementWatcher) {
-    if (elementWatcher.isAboveViewport && !this.fixed) {
-      this.fixedStyles = `top: ${this.fixedTopPosition}px; width: ${this.navWrapper.offsetWidth}px;`;
+    if (elementWatcher.isAboveViewport && !this.fixed && this.navWrapper) {
+      this.fixedStyles = `top: ${this.fixedTopPosition}px; width: ${this.navWrapper.offsetWidth}px; max-height: calc(100vh - ${this.fixedTopPosition}px); overflow: auto;`;
       this.fixed = true;
       this.requestUpdate();
     } else if (!elementWatcher.isAboveViewport && this.fixed) {
@@ -320,6 +312,7 @@ export class EsdsPageNavigation extends LitElement {
   }
 
   updateNavItems() {
+    this.resetSectionScrollMonitors();
     this.items = [];
     let pageTargets = Array.from(
       document.querySelectorAll(this.contentSelectors.join(', ')),
@@ -337,38 +330,23 @@ export class EsdsPageNavigation extends LitElement {
       });
     }
 
-    if (pageTargets.length === 0) {
-      // set a timeout and try again. This persistent attempt to scrape the page for content is necessary in some frameworks (Vue, Nuxt, Angular, etc.)
-      this.navItemUpdateTimeout = setTimeout(() => {
-        if (!this.navItemUpdateAttempts || this.navItemUpdateAttempts < 5) {
-          this.updateNavItems();
-          this.navItemUpdateAttempts = this.navItemUpdateAttempts
-            ? this.navItemUpdateAttempts + 1
-            : 0;
+    if (pageTargets.length > 0) {
+      this.items = Array.from(pageTargets).map(pt => {
+        if (!pt.id) {
+          pt.id = this.generateIdForPageTarget(pt);
         }
-      }, 50);
-    } else {
-      if (this.navItemUpdateTimeout) {
-        clearTimeout(this.navItemUpdateTimeout);
-      }
-      if (pageTargets.length > 0) {
-        this.items = Array.from(pageTargets).map(pt => {
-          if (!pt.id) {
-            pt.id = this.generateIdForPageTarget(pt);
-          }
 
-          return {
-            href: pt.id,
-            text: pt.textContent,
-            target: pt,
-          };
-        });
+        return {
+          href: pt.id,
+          text: pt.textContent,
+          target: pt,
+        };
+      });
 
-        this.dedupeNavIds();
-        this.monitorSectionScrollPosition();
+      this.dedupeNavIds();
+      this.monitorSectionScrollPosition();
 
-        this.requestUpdate();
-      }
+      this.requestUpdate();
     }
   }
 
