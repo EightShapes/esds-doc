@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "tags": [
+    {
+      "name": "esds-icon",
+      "properties": [
+        {
+          "name": "header",
+          "type": "String",
+          "attribute": "header",
+          "description": "Shown at the top of the card",
+          "default": "Your Message"
+        }
+      ],
+      "events": [],
+      "slots": [],
+      "cssProperties": []
+    }
+  ]
+}
