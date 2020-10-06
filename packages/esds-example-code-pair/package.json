@@ -36,7 +36,7 @@
   "dependencies": {
     "@eightshapes/esds-code-snippet": "^0.10.3",
     "@eightshapes/esds-rendered-example": "^0.7.0",
-    "@eightshapes/slotify": "^0.2.1",
+    "@eightshapes/slotify": "^0.6.1",
     "@webcomponents/custom-elements": "^1.2.4",
     "lit-element": "^2.2.1",
     "regenerator-runtime": "^0.13.3"
