@@ -1,0 +1,66 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "esds-rendered-example",
+      "path": "./../src/EsdsRenderedExample.js",
+      "attributes": [
+        {
+          "name": "background",
+          "type": "string"
+        },
+        {
+          "name": "example-source",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "rendered-example-class",
+          "type": "string"
+        }
+      ],
+      "properties": [
+        {
+          "name": "background",
+          "attribute": "background",
+          "type": "string"
+        },
+        {
+          "name": "exampleSource",
+          "attribute": "example-source",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string"
+        },
+        {
+          "name": "renderedExampleClass",
+          "attribute": "rendered-example-class",
+          "type": "string"
+        },
+        {
+          "name": "classNames",
+          "type": "string"
+        },
+        {
+          "name": "slottedContent",
+          "type": "boolean"
+        },
+        {
+          "name": "source"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Default slot, put whatever you want in here."
+        }
+      ]
+    }
+  ]
+}

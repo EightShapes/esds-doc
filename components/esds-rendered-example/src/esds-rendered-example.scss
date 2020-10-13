@@ -1,0 +1,129 @@
+@use '@eightshapes/esds-visual-style/src/esds-visual-style' as *;
+$esds-custom-element-namespace: 'CUSTOM-ELEMENT-NAMESPACE' !default;
+
+$esds-rendered-example-background: $esds-color-background-light-primary !default;
+$esds-rendered-example-background-check-size: 10px !default;
+$esds-rendered-example-background-check-color: $esds-color-background-light-secondary !default;
+
+$esds-rendered-example-background-image: linear-gradient(
+    45deg,
+    $esds-rendered-example-background-check-color 25%,
+    transparent 25%,
+    transparent 75%,
+    $esds-rendered-example-background-check-color 75%,
+    $esds-rendered-example-background-check-color
+  ),
+  linear-gradient(
+    45deg,
+    $esds-rendered-example-background-check-color 25%,
+    transparent 25%,
+    transparent 75%,
+    $esds-rendered-example-background-check-color 75%,
+    $esds-rendered-example-background-check-color
+  );
+$esds-rendered-example-background-size: $esds-rendered-example-background-check-size * 2
+  $esds-rendered-example-background-check-size * 2 !default;
+$esds-rendered-example-background-position: 0 0,
+  $esds-rendered-example-background-check-size $esds-rendered-example-background-check-size !default;
+$esds-rendered-example-background-dark: $esds-color-background-dark-primary !default;
+
+$esds-rendered-example-border: solid 1px $esds-color-neutral-90 !default;
+$esds-rendered-example-border-radius: 0 !default;
+
+$esds-rendered-example-space-inset: $esds-space-inset-half-x !default;
+$esds-rendered-example-space-inset-large: 100px !default;
+$esds-rendered-example-space-stack: $esds-space-stack-1-x !default;
+
+$esds-rendered-example-font-family: $esds-font-family-sans-serif !default;
+$esds-rendered-example-font-size: $esds-font-size-body-m-default !default;
+$esds-rendered-example-font-style: normal !default;
+$esds-rendered-example-font-weight: normal !default;
+
+$esds-rendered-example-text-color: $esds-color-text-primary-on-light !default;
+$esds-rendered-example-text-color-on-dark: $esds-color-text-primary-on-dark !default;
+
+$esds-rendered-example-label-offset: $esds-space-inset-half-x !default;
+$esds-rendered-example-label-line-height: 1 !default;
+$esds-rendered-example-label-background-opacity: 0.8 !default;
+$esds-rendered-example-label-background: rgba(
+  $esds-rendered-example-background,
+  $esds-rendered-example-label-background-opacity
+) !default;
+$esds-rendered-example-label-background-on-dark: rgba(
+  $esds-rendered-example-background-dark,
+  $esds-rendered-example-label-background-opacity
+) !default;
+$esds-rendered-example-label-border-radius: 0 !default;
+
+.#{$esds-custom-element-namespace}-rendered-example {
+  @include esds-typography-reset;
+  background-color: $esds-rendered-example-background;
+  background-image: $esds-rendered-example-background-image;
+  background-position: $esds-rendered-example-background-position;
+  background-size: $esds-rendered-example-background-size;
+  border: $esds-rendered-example-border;
+  border-radius: $esds-rendered-example-border-radius;
+  margin: $esds-rendered-example-space-stack;
+  min-height: 40px;
+  padding: $esds-rendered-example-space-inset;
+  position: relative;
+
+  > s-slot {
+    display: block;
+    display: contents; // sass-lint:disable-line no-duplicate-properties
+
+    > s-assigned-wrapper,
+    > s-fallback-wrapper {
+      display: block;
+      display: contents; // sass-lint:disable-line no-duplicate-properties
+
+      &[hidden] {
+        display: none;
+      }
+    }
+  }
+
+  &.esds-rendered-example--dark {
+    background: $esds-rendered-example-background-dark; // TODO needs to be in a mixin
+  }
+
+  .esds-rendered-example__item {
+    @include esds-typography-reset;
+    border-bottom: $esds-rendered-example-border;
+    letter-spacing: 0;
+    padding: $esds-rendered-example-space-inset;
+    position: relative;
+
+    &:last-child {
+      border: 0;
+    }
+
+    &.esds-rendered-example__item--no-inset,
+    .esds-rendered-example--no-inset & {
+      padding: 0;
+    }
+  }
+
+  .esds-rendered-example__label {
+    @include esds-typography-reset(
+      $font-family: $esds-rendered-example-font-family,
+      $font-size: $esds-rendered-example-font-size,
+      $font-style: $esds-rendered-example-font-style,
+      $font-weight: $esds-rendered-example-font-weight,
+      $line-height: $esds-rendered-example-label-line-height
+    );
+    background: $esds-rendered-example-label-background;
+    border-radius: $esds-rendered-example-label-border-radius;
+    color: $esds-rendered-example-text-color;
+    padding: $esds-rendered-example-label-offset;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+  &.esds-rendered-example--dark .esds-rendered-example__label {
+    background: $esds-rendered-example-label-background-on-dark;
+    color: $esds-rendered-example-text-color-on-dark;
+  }
+}

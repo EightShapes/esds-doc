@@ -1,0 +1,1 @@
+describe('esds-rendered-example', () => {});
