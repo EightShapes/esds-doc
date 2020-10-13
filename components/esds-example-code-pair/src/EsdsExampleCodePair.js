@@ -4,7 +4,10 @@ import { Scopify } from '@eightshapes/scopify';
 import { Slotify } from '@eightshapes/slotify';
 import { EsdsCodeSnippet } from '@eightshapes/esds-code-snippet/dist/EsdsCodeSnippet.js';
 import { EsdsRenderedExample } from '@eightshapes/esds-rendered-example/dist/EsdsRenderedExample.js';
+import { EsdsIconCaretDown, EsdsIconCaretUp } from '@eightshapes/esds-icons';
 import { namespacedStyles } from './esds-example-code-pair-styles.js';
+import '@eightshapes/esds-button/dist/esds-button-web-component.js';
+import '@eightshapes/esds-icon/dist/esds-icon-web-component.js';
 
 /**
  * @element esds-example-code-pair
@@ -54,7 +57,9 @@ export class EsdsExampleCodePair extends Slotify(Scopify(CSSClassify(LitElement)
   static get properties() {
     return {
       derivedHtmlTab: { type: Boolean, attribute: 'derived-html-tab' },
+      hiddenCode: { type: Boolean, attribute: 'hidden-code' },
       language: { type: String },
+      noCodeToggle: { type: Boolean, attribute: 'no-code-toggle' },
       source: { type: String },
       sources: { type: Array },
     };
@@ -97,6 +102,10 @@ export class EsdsExampleCodePair extends Slotify(Scopify(CSSClassify(LitElement)
     // Initial State Variables
     this.primaryExampleSource = false;
     this.exampleSource = false;
+    this.hiddenCode = false;
+    this.noCodeToggle = false;
+    this.codeVisibleToggleIcon = EsdsIconCaretUp;
+    this.codeHiddenToggleIcon = EsdsIconCaretDown;
   }
 
   connectedCallback() {
@@ -105,6 +114,17 @@ export class EsdsExampleCodePair extends Slotify(Scopify(CSSClassify(LitElement)
     // Set up child components here after component is connected
     this.codeSnippet = new EsdsCodeSnippet();
     this.defaultRenderedExample = new EsdsRenderedExample();
+  }
+
+  get cssClassObject() {
+    return {
+      default: `${this.constructor.customElementNamespace}-example-code-pair`,
+      prefix: `${this.constructor.customElementNamespace}-example-code-pair`, // will cause `active` to become `my-card--active`
+      hiddenCode: {
+        class: 'hidden-code',
+        conditional: this.hiddenCode,
+      },
+    };
   }
 
   handleExampleSlotChange(e) {
@@ -140,6 +160,10 @@ export class EsdsExampleCodePair extends Slotify(Scopify(CSSClassify(LitElement)
       this.primaryExampleSource = renderedExampleSlottedComponent.source;
       this.requestUpdate();
     }
+  }
+
+  handleCodeToggleClick() {
+    this.hiddenCode = !this.hiddenCode;
   }
 
   renderCodeSnippet() {
@@ -187,12 +211,48 @@ export class EsdsExampleCodePair extends Slotify(Scopify(CSSClassify(LitElement)
     return this.defaultRenderedExample;
   }
 
+  renderFooter() {
+    const toggleIcon = this.hiddenCode ? this.codeHiddenToggleIcon : this.codeVisibleToggleIcon;
+    const toggleText = this.hiddenCode ? 'Show Code' : 'Hide Code';
+    if (!this.noCodeToggle || this.hasSlotableContent('footer-links')) {
+      return html`
+        <div class="esds-example-code-pair__footer">
+          ${!this.noCodeToggle
+            ? html`
+                <span
+                  class="esds-example-code-pair__code-toggle"
+                  @click="${this.handleCodeToggleClick}"
+                >
+                  <esds-button
+                    icon="${toggleIcon}"
+                    variant="flat"
+                    size="small"
+                    text="${toggleText}"
+                  ></esds-button>
+                </span>
+              `
+            : ''}
+          ${this.hasSlotableContent('footer-links')
+            ? html`
+                <div class="esds-example-code-pair__footer-links">
+                  <s-slot name="footer-links"></s-slot>
+                </div>
+              `
+            : ''}
+        </div>
+      `;
+    }
+    return html`
+      <s-slot name="footer-links"></s-slot>
+    `;
+  }
+
   render() {
     return html`
       <style>
         ${namespacedStyles(this.constructor.customElementNamespace)}
       </style>
-      <div class="esds-example-code-pair">
+      <div class="${this.getClassName()}">
         <s-slot
           @slotchange="${this.handlePrimaryExampleSlotChange}"
           name="primary-example"
@@ -200,7 +260,7 @@ export class EsdsExampleCodePair extends Slotify(Scopify(CSSClassify(LitElement)
         <s-slot @slotchange="${this.handleExampleSlotChange}">
           ${this.renderExample()}
         </s-slot>
-        ${this.renderCodeSnippet()}
+        ${this.renderCodeSnippet()} ${this.renderFooter()}
       </div>
     `;
   }

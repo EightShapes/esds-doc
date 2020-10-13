@@ -26,6 +26,38 @@ export const SlottedExample = () => {
   `;
 };
 
+export const FooterLinks = () => {
+  return html`
+    <esds-example-code-pair>
+      <esds-rendered-example label="kick">
+        <h1>Magic with a</h1>
+      </esds-rendered-example>
+      <a slot="footer-links" href="#">View on Github</a>
+      <a slot="footer-links" href="#">View on Codepen</a>
+    </esds-example-code-pair>
+  `;
+};
+
+export const HiddenCode = () => {
+  return html`
+    <esds-example-code-pair hidden-code>
+      <esds-rendered-example label="kick">
+        <h1>Magic with a</h1>
+      </esds-rendered-example>
+    </esds-example-code-pair>
+  `;
+};
+
+export const NoCodeToggle = () => {
+  return html`
+    <esds-example-code-pair no-code-toggle>
+      <esds-rendered-example label="kick">
+        <h1>Magic with a</h1>
+      </esds-rendered-example>
+    </esds-example-code-pair>
+  `;
+};
+
 export const MultipleSlottedExamples = () => html`
   <esds-example-code-pair>
     <esds-rendered-example label="Magic" slot="primary-example">

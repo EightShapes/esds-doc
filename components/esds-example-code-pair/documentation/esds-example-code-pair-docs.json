@@ -21,6 +21,16 @@
           "name": "derived-html-tab",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "hidden-code",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "no-code-toggle",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "properties": [
@@ -40,6 +50,10 @@
           "type": "array"
         },
         {
+          "name": "cssClassObject",
+          "type": "{ default: string; prefix: string; hiddenCode: { class: string; conditional: boolean; }; }"
+        },
+        {
           "name": "derivedHtmlTab",
           "attribute": "derived-html-tab",
           "type": "boolean",
@@ -54,6 +68,26 @@
           "name": "exampleSource",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "hiddenCode",
+          "attribute": "hidden-code",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noCodeToggle",
+          "attribute": "no-code-toggle",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "codeVisibleToggleIcon",
+          "default": "\"EsdsIconCaretUp\""
+        },
+        {
+          "name": "codeHiddenToggleIcon",
+          "default": "\"EsdsIconCaretDown\""
         }
       ],
       "slots": [

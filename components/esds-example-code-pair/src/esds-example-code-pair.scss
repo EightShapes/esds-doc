@@ -5,7 +5,6 @@ $esds-custom-element-namespace: 'CUSTOM-ELEMENT-NAMESPACE' !default;
 $esds-example-code-pair-space-stack: $esds-space-stack-1-x !default;
 
 .#{$esds-custom-element-namespace}-example-code-pair {
-  border: $esds-rendered-example-border;
   border-radius: $esds-rendered-example-border-radius;
   margin: $esds-example-code-pair-space-stack;
 
@@ -31,11 +30,34 @@ $esds-example-code-pair-space-stack: $esds-space-stack-1-x !default;
   }
 
   .esds-rendered-example {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
+    border-bottom: 0;
     margin-bottom: 0;
+  }
+
+  &.esds-example-code-pair--hidden-code {
+    .esds-rendered-example {
+      border-bottom: $esds-rendered-example-border;
+    }
+
+    .esds-code-snippet {
+      display: none;
+    }
+  }
+
+  .esds-example-code-pair__footer {
+    @include esds-typography-reset;
+    display: flex;
+  }
+
+  .esds-example-code-pair__code-toggle {
+    @include esds-typography-reset;
+    .esds-button {
+      color: $esds-color-text-primary-on-light;
+    }
+  }
+
+  .esds-example-code-pair__footer-links {
+    @include esds-typography-reset;
+    margin-left: auto;
   }
 }

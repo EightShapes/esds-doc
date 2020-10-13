@@ -4,23 +4,30 @@
 
 ## Properties
 
-| Property               | Attribute          | Type      | Default |
-|------------------------|--------------------|-----------|---------|
-| `derivedHtmlTab`       | `derived-html-tab` | `boolean` | false   |
-| `exampleSource`        |                    | `boolean` | false   |
-| `language`             | `language`         | `string`  |         |
-| `primaryExampleSource` |                    | `boolean` | false   |
-| `source`               | `source`           | `string`  |         |
-| `sources`              | `sources`          | `array`   |         |
+| Property                | Attribute          | Modifiers | Type                                             | Default             |
+|-------------------------|--------------------|-----------|--------------------------------------------------|---------------------|
+| `codeHiddenToggleIcon`  |                    |           |                                                  | "EsdsIconCaretDown" |
+| `codeVisibleToggleIcon` |                    |           |                                                  | "EsdsIconCaretUp"   |
+| `cssClassObject`        |                    | readonly  | `{ default: string; prefix: string; hiddenCode: { class: string; conditional: boolean; }; }` |                     |
+| `derivedHtmlTab`        | `derived-html-tab` |           | `boolean`                                        | false               |
+| `exampleSource`         |                    |           | `boolean`                                        | false               |
+| `hiddenCode`            | `hidden-code`      |           | `boolean`                                        | false               |
+| `language`              | `language`         |           | `string`                                         |                     |
+| `noCodeToggle`          | `no-code-toggle`   |           | `boolean`                                        | false               |
+| `primaryExampleSource`  |                    |           | `boolean`                                        | false               |
+| `source`                | `source`           |           | `string`                                         |                     |
+| `sources`               | `sources`          |           | `array`                                          |                     |
 
 ## Methods
 
-| Method                           | Type             |
-|----------------------------------|------------------|
-| `handleExampleSlotChange`        | `(e: any): void` |
-| `handlePrimaryExampleSlotChange` | `(e: any): void` |
-| `renderCodeSnippet`              | `(): any`        |
-| `renderExample`                  | `(): any`        |
+| Method                           | Type                 |
+|----------------------------------|----------------------|
+| `handleCodeToggleClick`          | `(e: any): void`     |
+| `handleExampleSlotChange`        | `(e: any): void`     |
+| `handlePrimaryExampleSlotChange` | `(e: any): void`     |
+| `renderCodeSnippet`              | `(): any`            |
+| `renderExample`                  | `(): any`            |
+| `renderFooter`                   | `(): TemplateResult` |
 
 ## Slots
 
