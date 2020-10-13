@@ -15,7 +15,7 @@ import { namespacedStyles } from './esds-code-snippet-styles.js';
 import '@eightshapes/esds-button/dist/esds-button-web-component.js';
 import '@eightshapes/esds-tabs/dist/esds-tabs-web-component.js';
 
-let EsdsCodeSnippetTabCounter = 0;
+const EsdsCodeSnippetTabCounter = 0;
 
 /**
  * @element esds-code-snippet
@@ -28,6 +28,49 @@ let EsdsCodeSnippetTabCounter = 0;
 export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'esds')) {
   static get customElementName() {
     return 'code-snippet';
+  }
+
+  static beautifySource(source, language) {
+    let formatter = htmlBeautify;
+    let options = {}; // htmlbeautifier options go here, probably should be configurable
+
+    switch (language) {
+      case 'css':
+        formatter = cssBeautify;
+        options = {};
+        break;
+      case 'javascript':
+        formatter = jsBeautify;
+        options = {};
+        break;
+      default:
+        formatter = htmlBeautify;
+        options = {};
+    }
+
+    return formatter(source, options);
+  }
+
+  static cleanLitElementRenderingArtifacts(source) {
+    // Given a string of HTML rendered from lit element, strip out the lit element bits and pieces
+    return source.replace(/<!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
+  }
+
+  static cleanShadyDomRenderingArtifacts(source) {
+    return source.replace(/style-scope /gm, '');
+  }
+
+  static cleanVueRenderingArtifacts(source) {
+    // Given a string of HTML rendered from vue, strip out the vue bits and pieces
+    return source.replace(/data-v-.[A-Za-z0-9]*=.*?"[^"]*"/gm, ''); // Strip Vue data attributes;
+  }
+
+  static highlightSource(source, language) {
+    let sourceLanguage = language;
+    if (language.toLowerCase() === 'html' || language.toLowerCase() === 'wc') {
+      sourceLanguage = 'markup';
+    }
+    return Prism.highlight(source, Prism.languages[sourceLanguage], sourceLanguage);
   }
 
   static get SUPPORTED_LANGUAGES() {
@@ -110,60 +153,6 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
     return this.querySelectorAll('.esds-code-snippet__tab');
   }
 
-  beautifySource(source, language) {
-    let formatter = htmlBeautify;
-    let options = {}; // htmlbeautifier options go here, probably should be configurable
-
-    switch (language) {
-      case 'css':
-        formatter = cssBeautify;
-        options = {};
-        break;
-      case 'javascript':
-        formatter = jsBeautify;
-        options = {};
-        break;
-    }
-
-    return formatter(source, options);
-  }
-
-  cleanLitElementRenderingArtifacts(source) {
-    // Given a string of HTML rendered from lit element, strip out the lit element bits and pieces
-    // const tmpWrapper = document.createElement('div');
-    // tmpWrapper.innerHTML = source
-    //   .replace(/<!---->/g, '')
-    //   .replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
-    // const linkTags = tmpWrapper.querySelectorAll('link');
-    // linkTags.forEach(l => l.parentNode.removeChild(l));
-    //
-    // const hostElements = Array.from(tmpWrapper.childNodes).filter(
-    //   n => n.nodeType === Node.ELEMENT_NODE,
-    // ); // Get the hostElement which will contain the compiled/slotified component
-    // const scopedStyleElements = tmpWrapper.querySelectorAll('.style-scope');
-    // scopedStyleElements.forEach(e => e.classList.remove('style-scope'));
-    //
-    // let cleanedHTML;
-    // if (hostElements.length > 1) {
-    //   cleanedHTML = hostElements.reduce((string, he) => {
-    //     return string.innerHTML + he.innerHTML;
-    //   });
-    // } else {
-    //   cleanedHTML = hostElements[0].innerHTML;
-    // }
-    // return cleanedHTML;
-    return source.replace(/<!---->/g, '').replace(/^\s*[\r\n]/gm, ''); // Strip lit-html comment placeholders & empty lines
-  }
-
-  cleanShadyDomRenderingArtifacts(source) {
-    return source.replace(/style-scope /gm, '');
-  }
-
-  cleanVueRenderingArtifacts(source) {
-    // Given a string of HTML rendered from vue, strip out the vue bits and pieces
-    return source.replace(/data-v-.[A-Za-z0-9]*=.*?"[^"]*"/gm, ''); // Strip Vue data attributes;
-  }
-
   copyCodeToClipboard() {
     const codeSource =
       this.sources.length > 1
@@ -196,6 +185,7 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
   }
 
   formatSource(source, language, preformatted) {
+    let sourceLanguage = language;
     if (!this.constructor.SUPPORTED_LANGUAGES.ALL.includes(language)) {
       throw new Error(
         `${language} is not a supported language for esds code snippet. Please use one of: '${this.constructor.SUPPORTED_LANGUAGES.ALL.join(
@@ -205,15 +195,17 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
     }
 
     if (this.constructor.SUPPORTED_LANGUAGES.MARKUP.includes(language)) {
-      language = 'markup';
+      sourceLanguage = 'markup';
     }
 
     if (this.constructor.SUPPORTED_LANGUAGES.JAVASCRIPT.includes(language)) {
-      language = 'javascript';
+      sourceLanguage = 'javascript';
     }
 
-    const beautifiedSource = preformatted ? source : this.beautifySource(source, language);
-    return this.highlightSource(beautifiedSource, language);
+    const beautifiedSource = preformatted
+      ? source
+      : this.constructor.beautifySource(source, sourceLanguage);
+    return this.constructor.highlightSource(beautifiedSource, sourceLanguage);
   }
 
   handleSlotSourceChange(e) {
@@ -232,13 +224,6 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
     this.selectTab(tabId);
   }
 
-  highlightSource(source, language) {
-    if (language.toLowerCase() === 'html' || language.toLowerCase() === 'wc') {
-      language = 'markup';
-    }
-    return Prism.highlight(source, Prism.languages[language], language);
-  }
-
   linkPanels() {
     // If this is a multi-source code snippet, build out the tabs and tab panels
     this.tabs = [];
@@ -251,7 +236,7 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
     }
 
     this.sources.forEach(sourceObject => {
-      const linkId = EsdsCodeSnippetTabCounter++;
+      const linkId = EsdsCodeSnippetTabCounter + 1;
       const tabId = `esds-code-snippet__tab--${linkId}`;
       const tabPanelId = `esds-code-snippet__tab-panel--${linkId}`;
       const tabLabel = sourceObject.tabLabel
@@ -293,7 +278,7 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
     this.allTabs.forEach(t => t.classList.remove('esds-code-snippet__tab--selected'));
     this.allTabPanels.forEach(p => {
       p.classList.remove('esds-code-snippet__tab-panel--selected');
-      p.hidden = true;
+      p.hidden = true; // eslint-disable-line no-param-reassign
     });
   }
 
@@ -329,9 +314,9 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
 
     const source = this.formatSource(
       stripIndent(
-        this.cleanShadyDomRenderingArtifacts(
-          this.cleanLitElementRenderingArtifacts(
-            this.cleanVueRenderingArtifacts(sourceObject.source),
+        this.constructor.cleanShadyDomRenderingArtifacts(
+          this.constructor.cleanLitElementRenderingArtifacts(
+            this.constructor.cleanVueRenderingArtifacts(sourceObject.source),
           ),
         ),
       ),
