@@ -1,0 +1,231 @@
+@use '@eightshapes/esds-visual-style/src/esds-visual-style' as *;
+$esds-custom-element-namespace: 'CUSTOM-ELEMENT-NAMESPACE' !default;
+
+$esds-code-snippet-background-color: $esds-color-background-light-secondary !default;
+$esds-code-snippet-border: solid 1px $esds-color-neutral-70 !default;
+$esds-code-snippet-border-radius: 0 !default;
+$esds-code-snippet-font-family: $esds-font-family-sans-serif !default;
+$esds-code-snippet-font-size: $esds-font-size-body-m-default !default;
+$esds-code-snippet-font-style: normal !default;
+$esds-code-snippet-font-weight: normal !default;
+$esds-code-snippet-line-height: $esds-font-line-height-normal !default;
+$esds-code-snippet-space-inset: $esds-space-inset-1-x !default;
+$esds-code-snippet-space-stack: $esds-space-stack-1-x !default;
+$esds-code-snippet-text-color: $esds-color-text-primary-on-light !default;
+
+$esds-code-snippet-source-background-color: transparent !default;
+$esds-code-snippet-source-font-family: 'Courier New', monospace !default;
+$esds-code-snippet-source-tag-color: $esds-color-teal-45 !default;
+$esds-code-snippet-source-selector-color: $esds-color-teal-28 !default;
+$esds-code-snippet-source-attribute-value-color: $esds-color-orange-74 !default;
+$esds-code-snippet-source-punctuation-color: $esds-color-neutral-25 !default;
+$esds-code-snippet-source-comment-color: $esds-color-neutral-55 !default;
+$esds-code-snippet-source-max-height-default: 200px !default;
+$esds-code-snippet-source-max-height-tall: 400px !default;
+
+$esds-code-snippet-copy-code-button-offset: $esds-space-inset-half-x !default;
+
+$esds-code-snippet-copied-tooltip-background-color: $esds-color-background-light-primary !default;
+$esds-code-snippet-copied-tooltip-border-radius: $esds-border-radius-default !default;
+$esds-code-snippet-copied-tooltip-distance-from-button: 100% !default;
+$esds-code-snippet-copied-tooltip-distance-from-button-starting: 90% !default;
+$esds-code-snippet-copied-tooltip-box-shadow-color: rgba(0, 0, 0, 0.8) !default;
+$esds-code-snippet-copied-tooltip-font-family: $esds-font-family-sans-serif !default;
+$esds-code-snippet-copied-tooltip-font-size: $esds-font-size-body-s-default !default;
+$esds-code-snippet-copied-tooltip-shadow: 0 2px 3px
+  $esds-code-snippet-copied-tooltip-box-shadow-color !default;
+$esds-code-snippet-copied-tooltip-inset-space: $esds-space-inset-half-x !default;
+
+$esds-code-snippet-filename-font-family: $esds-font-family-sans-serif !default;
+$esds-code-snippet-filename-font-size: $esds-code-snippet-font-size !default;
+$esds-code-snippet-filename-offset: $esds-space-inset-half-x !default;
+
+$esds-code-snippet-toolbar-inset-space: $esds-space-inset-half-x !default;
+$esds-code-snippet-toolbar-background: transparent !default;
+
+.#{$esds-custom-element-namespace}-code-snippet {
+  @include esds-typography-reset(
+    $font-family: $esds-code-snippet-font-family,
+    $font-size: $esds-code-snippet-font-size,
+    $font-style: $esds-code-snippet-font-style,
+    $font-weight: $esds-code-snippet-font-weight
+  );
+  background: $esds-code-snippet-background-color;
+  border: $esds-code-snippet-border;
+  border-radius: $esds-code-snippet-border-radius;
+  color: $esds-code-snippet-text-color;
+  line-height: $esds-code-snippet-line-height;
+  margin: $esds-code-snippet-space-stack;
+  position: relative;
+
+  // Prism overrides
+  .token {
+    &.keyword,
+    &.property,
+    .tag {
+      color: $esds-code-snippet-source-tag-color;
+    }
+
+    &.comment {
+      color: $esds-code-snippet-source-comment-color;
+    }
+
+    &.selector,
+    .attr-name {
+      color: $esds-code-snippet-source-selector-color;
+    }
+
+    .attr-value {
+      color: $esds-code-snippet-source-attribute-value-color;
+    }
+
+    &.punctuation,
+    .punctuation {
+      color: $esds-code-snippet-source-punctuation-color;
+    }
+  }
+
+  .esds-code-snippet__sources-wrap {
+    position: relative;
+  }
+
+  .esds-code-snippet__source {
+    background-color: $esds-code-snippet-source-background-color;
+  }
+
+  .esds-code-snippet__toolbar {
+    background: $esds-code-snippet-toolbar-background;
+    display: flex;
+    justify-content: flex-end;
+    padding: $esds-code-snippet-toolbar-inset-space;
+  }
+
+  .esds-code-snippet__toolbar + .esds-code-snippet__source .esds-code-snippet__pre {
+    padding-top: 0;
+  }
+
+  .esds-code-snippet__copy-code-wrap {
+    position: relative;
+    z-index: 10;
+  }
+
+  .esds-code-snippet__copy-button-wrap {
+    cursor: pointer;
+  }
+
+  .esds-code-snippet__copied-notification {
+    background: $esds-code-snippet-copied-tooltip-background-color;
+    border-radius: $esds-code-snippet-copied-tooltip-border-radius;
+    bottom: $esds-code-snippet-copied-tooltip-distance-from-button-starting;
+    box-shadow: $esds-code-snippet-copied-tooltip-shadow;
+    font-family: $esds-code-snippet-copied-tooltip-font-family;
+    font-size: $esds-code-snippet-copied-tooltip-font-size;
+    opacity: 0;
+    padding: $esds-code-snippet-copied-tooltip-inset-space;
+    position: absolute;
+    right: 0;
+    visibility: hidden;
+    white-space: nowrap;
+
+    &::after {
+      background: $esds-code-snippet-copied-tooltip-background-color;
+      box-shadow: 2px 2px 2px $esds-code-snippet-copied-tooltip-box-shadow-color;
+      content: '';
+      height: 10px;
+      left: 50%;
+      margin-left: -5px;
+      position: absolute;
+      top: calc(100% - 6px);
+      transform: rotate(45deg);
+      width: 10px;
+    }
+  }
+
+  &.esds-code-snippet--show-copied-notification .esds-code-snippet__copied-notification {
+    animation: esds-code-snippet-fade-in-out-v1 3s;
+  }
+
+  .esds-code-snippet__pre {
+    background-color: transparent;
+    margin: 0;
+    max-height: $esds-code-snippet-source-max-height-default;
+    overflow: auto;
+    padding: $esds-code-snippet-space-inset;
+
+    code,
+    code > span {
+      font-family: $esds-code-snippet-source-font-family;
+    }
+  }
+
+  &.esds-code-snippet--max-height-tall .esds-code-snippet__pre {
+    max-height: $esds-code-snippet-source-max-height-tall;
+  }
+
+  &.esds-code-snippet--max-height-none .esds-code-snippet__pre {
+    max-height: none;
+  }
+
+  .esds-code-snippet__filename {
+    display: block;
+    font-family: $esds-code-snippet-filename-font-family;
+    font-size: $esds-code-snippet-filename-font-size;
+    padding: $esds-code-snippet-filename-offset;
+    padding-bottom: 0;
+  }
+
+  .esds-code-snippet__tabs .esds-tabs__labels {
+    padding: 0 $esds-space-inset-1-x;
+  }
+
+  .esds-code-snippet__copy-button {
+    background-color: $esds-color-action-default-on-light;
+    border: 0;
+    color: $esds-color-text-primary-on-light;
+    cursor: pointer;
+    font-family: $esds-font-family-sans-serif;
+    font-size: $esds-font-size-body-s-default;
+    padding: $esds-space-inset-squish-1-x;
+
+    &:hover {
+      background-color: $esds-color-action-hover-on-dark;
+    }
+  }
+
+  .esds-code-snippet__tabset {
+    margin-right: auto;
+  }
+
+  .esds-code-snippet__tab {
+    border-bottom: solid 4px transparent;
+    cursor: pointer;
+    padding: $esds-space-inset-squish-1-x;
+
+    &.esds-code-snippet__tab--selected {
+      border-bottom-color: $esds-color-action-default-on-light;
+    }
+  }
+} // End of .esds-code-snippet-v1
+
+@keyframes esds-code-snippet-fade-in-out-v1 {
+  0% {
+    bottom: $esds-code-snippet-copied-tooltip-distance-from-button-starting;
+    opacity: 0;
+    visibility: visible;
+  }
+
+  10% {
+    bottom: $esds-code-snippet-copied-tooltip-distance-from-button;
+    opacity: 1;
+  }
+
+  90% {
+    bottom: $esds-code-snippet-copied-tooltip-distance-from-button;
+    opacity: 1;
+  }
+
+  100% {
+    bottom: $esds-code-snippet-copied-tooltip-distance-from-button-starting;
+    opacity: 0;
+  }
+}

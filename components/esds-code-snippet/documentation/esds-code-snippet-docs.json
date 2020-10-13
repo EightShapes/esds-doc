@@ -1,0 +1,161 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "esds-code-snippet",
+      "path": "./../src/EsdsCodeSnippet.js",
+      "attributes": [
+        {
+          "name": "filename",
+          "type": "string"
+        },
+        {
+          "name": "max-height",
+          "type": "string"
+        },
+        {
+          "name": "toolbar-links",
+          "type": "array"
+        },
+        {
+          "name": "sources",
+          "type": "array"
+        },
+        {
+          "name": "code-copied-text",
+          "type": "string",
+          "default": "\"Copied to clipboard\""
+        },
+        {
+          "name": "copy-button-text",
+          "type": "string",
+          "default": "\"Copy Code\""
+        },
+        {
+          "name": "copyable",
+          "type": "string",
+          "default": "\"true\""
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "language",
+          "type": "string",
+          "default": "\"markup\""
+        },
+        {
+          "name": "preformatted",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "filename",
+          "attribute": "filename",
+          "type": "string"
+        },
+        {
+          "name": "maxHeight",
+          "attribute": "max-height",
+          "type": "string"
+        },
+        {
+          "name": "toolbarLinks",
+          "attribute": "toolbar-links",
+          "type": "array"
+        },
+        {
+          "name": "sources",
+          "attribute": "sources",
+          "type": "array"
+        },
+        {
+          "name": "allTabPanels"
+        },
+        {
+          "name": "allTabs"
+        },
+        {
+          "name": "defaultClass",
+          "type": "string",
+          "default": "\"esds-code-snippet\""
+        },
+        {
+          "name": "baseModifierClass",
+          "type": "string",
+          "default": "\"esds-code-snippet--\""
+        },
+        {
+          "name": "defaultSource",
+          "type": "string",
+          "default": "\"<h1>Hello World</h1>\""
+        },
+        {
+          "name": "codeCopied",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "codeCopiedText",
+          "attribute": "code-copied-text",
+          "type": "string",
+          "default": "\"Copied to clipboard\""
+        },
+        {
+          "name": "copyButtonText",
+          "attribute": "copy-button-text",
+          "type": "string",
+          "default": "\"Copy Code\""
+        },
+        {
+          "name": "copyable",
+          "attribute": "copyable",
+          "type": "string",
+          "default": "\"true\""
+        },
+        {
+          "name": "source",
+          "attribute": "source",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "tabs",
+          "type": "never[]",
+          "default": "[]"
+        },
+        {
+          "name": "tabPanels",
+          "type": "never[]",
+          "default": "[]"
+        },
+        {
+          "name": "language",
+          "attribute": "language",
+          "type": "string",
+          "default": "\"markup\""
+        },
+        {
+          "name": "preformatted",
+          "attribute": "preformatted",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Default slot, put whatever you want in here."
+        },
+        {
+          "name": "content",
+          "description": "Insert content in the named \"content\" slot."
+        }
+      ]
+    }
+  ]
+}

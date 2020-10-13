@@ -1,7 +1,0 @@
-{% macro card_grid(class=false) %}
-  <div class="esds-card-grid{{ ' ' + class if class }}">
-    {{ caller() }}
-    <div class="esds-card-grid__placeholder"></div>
-    <div class="esds-card-grid__placeholder"></div>
-  </div>
-{% endmacro %}
