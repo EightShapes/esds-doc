@@ -424,8 +424,11 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
       sourceOutput = html`
         <esds-tabs>
           ${this.sources.map(s => {
+            const tabLabel = s.tabLabel
+              ? s.tabLabel
+              : this.constructor.DEFAULT_LANGUAGE_TAB_LABELS[s.language.toLowerCase()];
             return html`
-              <esds-tab label="${s.tabLabel}">${this.renderCodeSnippet(s)}</esds-tab>
+              <esds-tab label="${tabLabel}">${this.renderCodeSnippet(s)}</esds-tab>
             `;
           })}
         </esds-tabs>

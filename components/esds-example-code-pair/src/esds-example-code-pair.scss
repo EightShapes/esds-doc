@@ -1,0 +1,41 @@
+@use '@eightshapes/esds-visual-style/src/esds-visual-style' as *;
+@use '@eightshapes/esds-rendered-example/src/esds-rendered-example' as *;
+$esds-custom-element-namespace: 'CUSTOM-ELEMENT-NAMESPACE' !default;
+
+$esds-example-code-pair-space-stack: $esds-space-stack-1-x !default;
+
+.#{$esds-custom-element-namespace}-example-code-pair {
+  border: $esds-rendered-example-border;
+  border-radius: $esds-rendered-example-border-radius;
+  margin: $esds-example-code-pair-space-stack;
+
+  > s-slot {
+    display: block;
+    display: contents; // sass-lint:disable-line no-duplicate-properties
+
+    > s-assigned-wrapper,
+    > s-fallback-wrapper {
+      display: block;
+      display: contents; // sass-lint:disable-line no-duplicate-properties
+
+      &[hidden] {
+        display: none;
+      }
+    }
+  }
+
+  .esds-code-snippet {
+    border: 0;
+    border-radius: 0 0 $esds-rendered-example-border-radius $esds-rendered-example-border-radius;
+    margin: 0;
+  }
+
+  .esds-rendered-example {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    margin-bottom: 0;
+  }
+}

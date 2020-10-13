@@ -1,0 +1,71 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "esds-example-code-pair",
+      "path": "./../src/EsdsExampleCodePair.js",
+      "attributes": [
+        {
+          "name": "language",
+          "type": "string"
+        },
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "sources",
+          "type": "array"
+        },
+        {
+          "name": "derived-html-tab",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "language",
+          "attribute": "language",
+          "type": "string"
+        },
+        {
+          "name": "source",
+          "attribute": "source",
+          "type": "string"
+        },
+        {
+          "name": "sources",
+          "attribute": "sources",
+          "type": "array"
+        },
+        {
+          "name": "derivedHtmlTab",
+          "attribute": "derived-html-tab",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "primaryExampleSource",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "exampleSource",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Default slot, put whatever you want in here."
+        },
+        {
+          "name": "content",
+          "description": "Insert content in the named \"content\" slot."
+        }
+      ]
+    }
+  ]
+}
