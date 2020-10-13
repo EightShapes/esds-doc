@@ -15,8 +15,6 @@ import { namespacedStyles } from './esds-code-snippet-styles.js';
 import '@eightshapes/esds-button/dist/esds-button-web-component.js';
 import '@eightshapes/esds-tabs/dist/esds-tabs-web-component.js';
 
-const EsdsCodeSnippetTabCounter = 0;
-
 /**
  * @element esds-code-snippet
  *
@@ -209,87 +207,90 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
   }
 
   handleSlotSourceChange(e) {
-    // See if the default slot contains anything
-    const assignedContent = e.target.querySelector('s-assigned-wrapper');
-    if (assignedContent && assignedContent.innerHTML) {
-      // If so, copy the contents to the source object
-      this.source = assignedContent.innerHTML;
-      this.requestUpdate();
-      assignedContent.innerHTML = ''; // Clear out the assigned content so the fallback content can be shown
+    // Don't update anything if there are multiple sources
+    if (this.sources.length <= 1) {
+      // See if the default slot contains anything
+      const assignedContent = e.target.querySelector('s-assigned-wrapper');
+      if (assignedContent && assignedContent.innerHTML) {
+        // If so, copy the contents to the source object
+        this.source = assignedContent.innerHTML;
+        this.requestUpdate();
+        assignedContent.innerHTML = ''; // Clear out the assigned content so the fallback content can be shown
+      }
     }
   }
 
-  handleTabClick(e) {
-    const tabId = e.target.id;
-    this.selectTab(tabId);
-  }
+  // handleTabClick(e) {
+  //   const tabId = e.target.id;
+  //   this.selectTab(tabId);
+  // }
 
-  linkPanels() {
-    // If this is a multi-source code snippet, build out the tabs and tab panels
-    this.tabs = [];
-    this.tabPanels = [];
+  // linkPanels() {
+  //   // If this is a multi-source code snippet, build out the tabs and tab panels
+  //   this.tabs = [];
+  //   this.tabPanels = [];
 
-    const defaultTab = this.sources.find(s => s.selectedTab);
-    if (!defaultTab) {
-      // If no default tab has been specified, default to the first tab
-      this.sources[0].selectedTab = true;
-    }
+  //   const defaultTab = this.sources.find(s => s.selectedTab);
+  //   if (!defaultTab) {
+  //     // If no default tab has been specified, default to the first tab
+  //     this.sources[0].selectedTab = true;
+  //   }
 
-    this.sources.forEach(sourceObject => {
-      const linkId = EsdsCodeSnippetTabCounter + 1;
-      const tabId = `esds-code-snippet__tab--${linkId}`;
-      const tabPanelId = `esds-code-snippet__tab-panel--${linkId}`;
-      const tabLabel = sourceObject.tabLabel
-        ? sourceObject.tabLabel
-        : this.constructor.DEFAULT_LANGUAGE_TAB_LABELS[sourceObject.language.toLowerCase()];
-      this.tabs.push(
-        html`
-          <span
-            @click=${this.handleTabClick}
-            class="esds-code-snippet__tab${sourceObject.selectedTab
-              ? ' esds-code-snippet__tab--selected'
-              : ''}"
-            role="tab"
-            id="${tabId}"
-            aria-controls="${tabPanelId}"
-            >${tabLabel}</span
-          >
-        `,
-      );
+  //   this.sources.forEach(sourceObject => {
+  //     const linkId = EsdsCodeSnippetTabCounter + 1;
+  //     const tabId = `esds-code-snippet__tab--${linkId}`;
+  //     const tabPanelId = `esds-code-snippet__tab-panel--${linkId}`;
+  //     const tabLabel = sourceObject.tabLabel
+  //       ? sourceObject.tabLabel
+  //       : this.constructor.DEFAULT_LANGUAGE_TAB_LABELS[sourceObject.language.toLowerCase()];
+  //     this.tabs.push(
+  //       html`
+  //         <span
+  //           @click=${this.handleTabClick}
+  //           class="esds-code-snippet__tab${sourceObject.selectedTab
+  //             ? ' esds-code-snippet__tab--selected'
+  //             : ''}"
+  //           role="tab"
+  //           id="${tabId}"
+  //           aria-controls="${tabPanelId}"
+  //           >${tabLabel}</span
+  //         >
+  //       `,
+  //     );
 
-      this.tabPanels.push(
-        html`
-          <div
-            class="esds-code-snippet__tab-panel${sourceObject.selectedTab
-              ? ' esds-code-snippet__tab-panel--selected'
-              : ''}"
-            id=${tabPanelId}
-            aria-controlledby=${tabId}
-            ?hidden=${!sourceObject.selectedTab}
-          >
-            ${this.renderCodeSnippet(sourceObject)}
-          </div>
-        `,
-      );
-    });
-  }
+  //     this.tabPanels.push(
+  //       html`
+  //         <div
+  //           class="esds-code-snippet__tab-panel${sourceObject.selectedTab
+  //             ? ' esds-code-snippet__tab-panel--selected'
+  //             : ''}"
+  //           id=${tabPanelId}
+  //           aria-controlledby=${tabId}
+  //           ?hidden=${!sourceObject.selectedTab}
+  //         >
+  //           ${this.renderCodeSnippet(sourceObject)}
+  //         </div>
+  //       `,
+  //     );
+  //   });
+  // }
 
-  resetTabs() {
-    this.allTabs.forEach(t => t.classList.remove('esds-code-snippet__tab--selected'));
-    this.allTabPanels.forEach(p => {
-      p.classList.remove('esds-code-snippet__tab-panel--selected');
-      p.hidden = true; // eslint-disable-line no-param-reassign
-    });
-  }
+  // resetTabs() {
+  //   this.allTabs.forEach(t => t.classList.remove('esds-code-snippet__tab--selected'));
+  //   this.allTabPanels.forEach(p => {
+  //     p.classList.remove('esds-code-snippet__tab-panel--selected');
+  //     p.hidden = true; // eslint-disable-line no-param-reassign
+  //   });
+  // }
 
-  selectTab(tabId) {
-    this.resetTabs();
-    const tab = this.querySelector(`#${tabId}`);
-    const tabPanel = this.querySelector(`#${tab.getAttribute('aria-controls')}`);
-    tab.classList.add('esds-code-snippet__tab--selected');
-    tabPanel.classList.add('esds-code-snippet__tab-panel--selected');
-    tabPanel.hidden = false;
-  }
+  // selectTab(tabId) {
+  //   this.resetTabs();
+  //   const tab = this.querySelector(`#${tabId}`);
+  //   const tabPanel = this.querySelector(`#${tab.getAttribute('aria-controls')}`);
+  //   tab.classList.add('esds-code-snippet__tab--selected');
+  //   tabPanel.classList.add('esds-code-snippet__tab-panel--selected');
+  //   tabPanel.hidden = false;
+  // }
 
   showCopiedMessage() {
     const copiedNotification = this.querySelector('.esds-code-snippet__copied-notification');
@@ -333,7 +334,7 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
 
   renderCopyButton() {
     let copyButton = html`
-      <esds-button class="esds-code-snippet__copy-button">
+      <esds-button class="esds-code-snippet__copy-button" size="small" variant="secondary">
         ${this.copyButtonText}
       </esds-button>
     `;
@@ -396,6 +397,17 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
     return output;
   }
 
+  renderFooterLinks() {
+    if (this.hasSlotableContent('footer-links')) {
+      return html`
+        <div class="esds-code-snippet__footer-links"><s-slot name="footer-links"></s-slot></div>
+      `;
+    }
+    return html`
+      <s-slot name="footer-links"></s-slot>
+    `;
+  }
+
   render() {
     let blockLevelClass = this.defaultClass;
 
@@ -409,9 +421,14 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
 
     let sourceOutput;
     if (this.sources && this.sources.length > 1) {
-      this.linkPanels();
       sourceOutput = html`
-        <div class="esds-code-snippet__tab-panels">${this.tabPanels}</div>
+        <esds-tabs>
+          ${this.sources.map(s => {
+            return html`
+              <esds-tab label="${s.tabLabel}">${this.renderCodeSnippet(s)}</esds-tab>
+            `;
+          })}
+        </esds-tabs>
       `;
     } else {
       const defaultSourceObject = {
@@ -430,7 +447,10 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
       </style>
       <div class="${blockLevelClass}">
         ${this.renderToolbar()}
-        <s-slot @slotchange=${this.handleSlotSourceChange}>${sourceOutput}</s-slot>
+        <div class="esds-code-snippet__source-wrap">
+          <s-slot @slotchange=${this.handleSlotSourceChange}>${sourceOutput}</s-slot>
+        </div>
+        ${this.renderFooterLinks()}
       </div>
     `;
   }

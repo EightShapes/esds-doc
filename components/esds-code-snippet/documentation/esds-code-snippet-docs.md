@@ -27,25 +27,17 @@
 
 ## Methods
 
-| Method                              | Type                                             |
-|-------------------------------------|--------------------------------------------------|
-| `beautifySource`                    | `(source: any, language: any): any`              |
-| `cleanLitElementRenderingArtifacts` | `(source: any): any`                             |
-| `cleanShadyDomRenderingArtifacts`   | `(source: any): any`                             |
-| `cleanVueRenderingArtifacts`        | `(source: any): any`                             |
-| `copyCodeToClipboard`               | `(): void`                                       |
-| `formatSource`                      | `(source: any, language: any, preformatted: any): any` |
-| `handleSlotSourceChange`            | `(e: any): void`                                 |
-| `handleTabClick`                    | `(e: any): void`                                 |
-| `highlightSource`                   | `(source: any, language: any): any`              |
-| `linkPanels`                        | `(): void`                                       |
-| `renderCodeSnippet`                 | `(sourceObject: any): TemplateResult`            |
-| `renderCopyButton`                  | `(): "" \| TemplateResult`                       |
-| `renderFilename`                    | `(filename: any): string`                        |
-| `renderToolbar`                     | `(): string`                                     |
-| `resetTabs`                         | `(): void`                                       |
-| `selectTab`                         | `(tabId: any): void`                             |
-| `showCopiedMessage`                 | `(): void`                                       |
+| Method                   | Type                                             |
+|--------------------------|--------------------------------------------------|
+| `copyCodeToClipboard`    | `(): void`                                       |
+| `formatSource`           | `(source: any, language: any, preformatted: any): any` |
+| `handleSlotSourceChange` | `(e: any): void`                                 |
+| `renderCodeSnippet`      | `(sourceObject: any): TemplateResult`            |
+| `renderCopyButton`       | `(): TemplateResult \| ""`                       |
+| `renderFilename`         | `(filename: any): string`                        |
+| `renderFooterLinks`      | `(): TemplateResult`                             |
+| `renderToolbar`          | `(): string`                                     |
+| `showCopiedMessage`      | `(): void`                                       |
 
 ## Slots
 

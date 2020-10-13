@@ -41,7 +41,7 @@ $esds-code-snippet-filename-font-size: $esds-code-snippet-font-size !default;
 $esds-code-snippet-filename-offset: $esds-space-inset-half-x !default;
 
 $esds-code-snippet-toolbar-inset-space: $esds-space-inset-half-x !default;
-$esds-code-snippet-toolbar-background: transparent !default;
+$esds-code-snippet-toolbar-background: $esds-color-background-light-secondary !default;
 
 .#{$esds-custom-element-namespace}-code-snippet {
   @include esds-typography-reset(
@@ -50,13 +50,16 @@ $esds-code-snippet-toolbar-background: transparent !default;
     $font-style: $esds-code-snippet-font-style,
     $font-weight: $esds-code-snippet-font-weight
   );
-  background: $esds-code-snippet-background-color;
-  border: $esds-code-snippet-border;
-  border-radius: $esds-code-snippet-border-radius;
-  color: $esds-code-snippet-text-color;
-  line-height: $esds-code-snippet-line-height;
   margin: $esds-code-snippet-space-stack;
   position: relative;
+
+  .esds-code-snippet__source-wrap {
+    background: $esds-code-snippet-background-color;
+    border: $esds-code-snippet-border;
+    border-radius: $esds-code-snippet-border-radius;
+    color: $esds-code-snippet-text-color;
+    line-height: $esds-code-snippet-line-height;
+  }
 
   // Prism overrides
   .token {
@@ -94,14 +97,21 @@ $esds-code-snippet-toolbar-background: transparent !default;
   }
 
   .esds-code-snippet__toolbar {
+    @include esds-typography-reset;
     background: $esds-code-snippet-toolbar-background;
+    border: $esds-code-snippet-border;
+    border-bottom: 0;
     display: flex;
     justify-content: flex-end;
     padding: $esds-code-snippet-toolbar-inset-space;
   }
 
-  .esds-code-snippet__toolbar + .esds-code-snippet__source .esds-code-snippet__pre {
-    padding-top: 0;
+  .esds-code-snippet__toolbar + .esds-code-snippet__source-wrap {
+    border-top: 0;
+
+    .esds-code-snippet__pre {
+      padding-top: 0;
+    }
   }
 
   .esds-code-snippet__copy-code-wrap {
@@ -111,6 +121,7 @@ $esds-code-snippet-toolbar-background: transparent !default;
 
   .esds-code-snippet__copy-button-wrap {
     cursor: pointer;
+    line-height: 0;
   }
 
   .esds-code-snippet__copied-notification {
@@ -146,6 +157,11 @@ $esds-code-snippet-toolbar-background: transparent !default;
   }
 
   .esds-code-snippet__pre {
+    @include esds-typography-reset(
+      $font-family: $esds-code-snippet-source-font-family,
+      $font-size: $esds-code-snippet-font-size
+    );
+
     background-color: transparent;
     margin: 0;
     max-height: $esds-code-snippet-source-max-height-default;
@@ -174,10 +190,6 @@ $esds-code-snippet-toolbar-background: transparent !default;
     padding-bottom: 0;
   }
 
-  .esds-code-snippet__tabs .esds-tabs__labels {
-    padding: 0 $esds-space-inset-1-x;
-  }
-
   .esds-code-snippet__copy-button {
     background-color: $esds-color-action-default-on-light;
     border: 0;
@@ -191,19 +203,13 @@ $esds-code-snippet-toolbar-background: transparent !default;
       background-color: $esds-color-action-hover-on-dark;
     }
   }
-
-  .esds-code-snippet__tabset {
-    margin-right: auto;
+  // TABS
+  .esds-tabs .esds-tabs__tablist {
+    margin-top: -44px; // Pull tabs up into code snippet toolbar
   }
 
-  .esds-code-snippet__tab {
-    border-bottom: solid 4px transparent;
-    cursor: pointer;
-    padding: $esds-space-inset-squish-1-x;
-
-    &.esds-code-snippet__tab--selected {
-      border-bottom-color: $esds-color-action-default-on-light;
-    }
+  .esds-code-snippet__footer-links {
+    @include esds-typography-reset;
   }
 } // End of .esds-code-snippet-v1
 
