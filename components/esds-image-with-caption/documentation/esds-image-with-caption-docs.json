@@ -1,0 +1,39 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "esds-image-with-caption",
+      "path": "./../src/EsdsImageWithCaption.js",
+      "attributes": [
+        {
+          "name": "caption",
+          "description": "Caption for the image",
+          "type": "string"
+        },
+        {
+          "name": "src",
+          "description": "Src of the image",
+          "type": "string"
+        }
+      ],
+      "properties": [
+        {
+          "name": "caption",
+          "attribute": "caption",
+          "description": "Caption for the image",
+          "type": "string"
+        },
+        {
+          "name": "src",
+          "attribute": "src",
+          "description": "Src of the image",
+          "type": "string"
+        },
+        {
+          "name": "cssClassObject",
+          "type": "{ default: string; prefix: string; }"
+        }
+      ]
+    }
+  ]
+}

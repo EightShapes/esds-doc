@@ -28,7 +28,8 @@
     "@eightshapes/esds-code-snippet": "^0.12.0",
     "@eightshapes/esds-rendered-example": "^0.9.0",
     "@eightshapes/esds-example-code-pair": "^0.13.0",
-    "@eightshapes/esds-do-dont": "^0.1.0"
+    "@eightshapes/esds-do-dont": "^0.1.0",
+    "@eightshapes/esds-image-with-caption": "^0.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
