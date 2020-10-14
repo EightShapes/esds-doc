@@ -1,0 +1,206 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "esds-do-dont-item",
+      "path": "./../src/EsdsDoDontItem.js",
+      "attributes": [
+        {
+          "name": "caption",
+          "description": "The caption displayed with the visual",
+          "type": "string"
+        },
+        {
+          "name": "src",
+          "description": "If provided, uses esds-thumbnail to render an image",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "description": "Visual style of the do don't item.",
+          "type": "'do'|'dont'"
+        }
+      ],
+      "properties": [
+        {
+          "name": "caption",
+          "attribute": "caption",
+          "description": "The caption displayed with the visual",
+          "type": "string"
+        },
+        {
+          "name": "src",
+          "attribute": "src",
+          "description": "If provided, uses esds-thumbnail to render an image",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "description": "Visual style of the do don't item.",
+          "type": "'do'|'dont'"
+        },
+        {
+          "name": "cssClassObject",
+          "type": "{ default: string; prefix: string; variant: { class: any; }; src: any; }"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Default slot, put whatever you want in here."
+        }
+      ]
+    },
+    {
+      "name": "esds-do",
+      "path": "./../src/EsdsDo.js",
+      "attributes": [
+        {
+          "name": "caption",
+          "description": "The caption displayed with the visual",
+          "type": "string"
+        },
+        {
+          "name": "src",
+          "description": "If provided, uses esds-thumbnail to render an image",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "description": "Visual style of the do don't item.",
+          "type": "'do'|'dont'",
+          "default": "\"do\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "captionEyebrow",
+          "type": "string",
+          "default": "\"Do\""
+        },
+        {
+          "name": "caption",
+          "attribute": "caption",
+          "description": "The caption displayed with the visual",
+          "type": "string"
+        },
+        {
+          "name": "src",
+          "attribute": "src",
+          "description": "If provided, uses esds-thumbnail to render an image",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "description": "Visual style of the do don't item.",
+          "type": "'do'|'dont'",
+          "default": "\"do\""
+        },
+        {
+          "name": "cssClassObject",
+          "type": "{ default: string; prefix: string; variant: { class: any; }; src: any; }"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Default slot, put whatever you want in here."
+        },
+        {
+          "name": "content",
+          "description": "Insert content in the named \"content\" slot."
+        }
+      ]
+    },
+    {
+      "name": "esds-do-dont",
+      "path": "./../src/EsdsDoDont.js",
+      "properties": [
+        {
+          "name": "cssClassObject",
+          "type": "{ default: string; prefix: string; }"
+        },
+        {
+          "name": "example",
+          "type": "string",
+          "default": "\"medium\""
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "default": "\"Hello World\""
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Default slot, put whatever you want in here."
+        }
+      ]
+    },
+    {
+      "name": "esds-dont",
+      "path": "./../src/EsdsDont.js",
+      "attributes": [
+        {
+          "name": "caption",
+          "description": "The caption displayed with the visual",
+          "type": "string"
+        },
+        {
+          "name": "src",
+          "description": "If provided, uses esds-thumbnail to render an image",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "description": "Visual style of the do don't item.",
+          "type": "'do'|'dont'",
+          "default": "\"dont\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "captionEyebrow",
+          "type": "string",
+          "default": "\"Don't\""
+        },
+        {
+          "name": "caption",
+          "attribute": "caption",
+          "description": "The caption displayed with the visual",
+          "type": "string"
+        },
+        {
+          "name": "src",
+          "attribute": "src",
+          "description": "If provided, uses esds-thumbnail to render an image",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "description": "Visual style of the do don't item.",
+          "type": "'do'|'dont'",
+          "default": "\"dont\""
+        },
+        {
+          "name": "cssClassObject",
+          "type": "{ default: string; prefix: string; variant: { class: any; }; src: any; }"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Default slot, put whatever you want in here."
+        },
+        {
+          "name": "content",
+          "description": "Insert content in the named \"content\" slot."
+        }
+      ]
+    }
+  ]
+}

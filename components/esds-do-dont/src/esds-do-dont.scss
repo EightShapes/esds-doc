@@ -1,0 +1,130 @@
+@use '@eightshapes/esds-visual-style/src/esds-visual-style' as *;
+$esds-custom-element-namespace: 'CUSTOM-ELEMENT-NAMESPACE' !default;
+
+$esds-do-dont-item-background: $esds-color-background-light-primary !default;
+$esds-do-dont-item-background-check-size: 10px !default;
+$esds-do-dont-item-background-check-color: $esds-color-background-light-secondary !default;
+
+$esds-do-dont-item-background-image: linear-gradient(
+    45deg,
+    $esds-do-dont-item-background-check-color 25%,
+    transparent 25%,
+    transparent 75%,
+    $esds-do-dont-item-background-check-color 75%,
+    $esds-do-dont-item-background-check-color
+  ),
+  linear-gradient(
+    45deg,
+    $esds-do-dont-item-background-check-color 25%,
+    transparent 25%,
+    transparent 75%,
+    $esds-do-dont-item-background-check-color 75%,
+    $esds-do-dont-item-background-check-color
+  );
+$esds-do-dont-item-background-size: $esds-do-dont-item-background-check-size * 2
+  $esds-do-dont-item-background-check-size * 2 !default;
+$esds-do-dont-item-background-position: 0 0,
+  $esds-do-dont-item-background-check-size $esds-do-dont-item-background-check-size !default;
+
+.#{$esds-custom-element-namespace}-do-dont {
+  @include esds-box-sizing;
+  @include esds-typography-reset;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  s-slot,
+  s-root,
+  s-assigned-wrapper,
+  esds-do,
+  esds-dont {
+    display: contents;
+  }
+}
+
+#{$esds-custom-element-namespace}-do,
+#{$esds-custom-element-namespace}-dont {
+  &:nth-child(even) {
+    .#{$esds-custom-element-namespace}-do-dont-item {
+      margin-right: 0;
+    }
+  }
+
+  &:nth-child(odd) {
+    .#{$esds-custom-element-namespace}-do-dont-item {
+      margin-left: 0;
+    }
+  }
+}
+
+.#{$esds-custom-element-namespace}-do-dont-item {
+  @include esds-box-sizing;
+  @include esds-typography-reset;
+  width: 100%;
+
+  s-slot,
+  s-root,
+  s-assigned-wrapper,
+  s-fallback-wrapper {
+    display: contents;
+  }
+
+  @media screen and (min-width: $esds-breakpoints-width-1000) {
+    flex: 1 1 40%;
+    margin: 0 $esds-space-1-x;
+  }
+
+  .esds-do-dont-item__example {
+    @include esds-typography-reset;
+    align-items: center;
+    background-color: $esds-do-dont-item-background;
+    background-image: $esds-do-dont-item-background-image;
+    background-position: $esds-do-dont-item-background-position;
+    background-size: $esds-do-dont-item-background-size;
+    border: $esds-border-control-default-on-light;
+    border-top-width: 8px;
+    display: flex;
+    justify-content: center;
+    margin: $esds-space-stack-half-x;
+    min-height: 100px;
+  }
+
+  // If a thumbnail is being displayed, set the example to display block
+  &.esds-do-dont-item--src .esds-do-dont-item__example {
+    display: block;
+  }
+
+  &.esds-do-dont-item--do {
+    .esds-do-dont-item__example {
+      border-top-color: $esds-color-alert-success-on-light;
+    }
+  }
+
+  &.esds-do-dont-item--dont {
+    .esds-do-dont-item__example {
+      border-top-color: $esds-color-alert-error-on-light;
+    }
+  }
+
+  .esds-do-dont-item__caption {
+    @include esds-typography-reset($font-size-token: 'body-m');
+    color: $esds-color-text-primary-on-light;
+  }
+
+  .esds-do-dont-item__caption-eyebrow {
+    @include esds-heading-eyebrow-small;
+    display: block;
+  }
+
+  &.esds-do-dont-item--do {
+    .esds-do-dont-item__caption-eyebrow {
+      color: $esds-color-alert-success-on-light;
+    }
+  }
+
+  &.esds-do-dont-item--dont {
+    .esds-do-dont-item__caption-eyebrow {
+      color: $esds-color-alert-error-on-light;
+    }
+  }
+}
