@@ -37,6 +37,7 @@ export class EsdsDoDont extends Slotify(Scopify(CSSClassify(LitElement), 'esds')
       </style>
       <div class="${this.getClassName()}">
         <s-slot></s-slot>
+        <div class="esds-do-dont__spacer"></div>
       </div>
     `;
   }

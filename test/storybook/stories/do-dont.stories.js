@@ -50,5 +50,74 @@ export const WithWebComponents = () => {
   `;
 };
 
+export const Stacked = () => {
+  return html`
+    <esds-do-dont>
+      <esds-do caption="Use a single primary button as a call to action.">
+        <esds-button>Subscribe</esds-button>
+        <esds-button variant="secondary">Cancel</esds-button>
+      </esds-do>
+      <esds-dont caption="Don't use more than one primary button for a single action.">
+        <esds-button>Subscribe</esds-button>
+        <esds-button>Cancel</esds-button>
+      </esds-dont>
+    </esds-do-dont>
+    <esds-do-dont>
+      <esds-do caption="Use a single primary button as a call to action.">
+        <esds-button>Subscribe</esds-button>
+        <esds-button variant="secondary">Cancel</esds-button>
+      </esds-do>
+      <esds-dont caption="Don't use more than one primary button for a single action.">
+        <esds-button>Subscribe</esds-button>
+        <esds-button>Cancel</esds-button>
+      </esds-dont>
+    </esds-do-dont>
+  `;
+};
+
+export const MultipleDoDonts = () => {
+  return html`
+    <esds-do-dont>
+      <esds-do caption="Use a single primary button as a call to action.">
+        <esds-button>Subscribe</esds-button>
+        <esds-button variant="secondary">Cancel</esds-button>
+      </esds-do>
+      <esds-do
+        caption="Use capitalization for languages that allow capitalization."
+        src="/images/dodont/landscape.png"
+      ></esds-do>
+      <esds-dont caption="Don't use more than one primary button for a single action.">
+        <esds-button>Subscribe</esds-button>
+        <esds-button>Cancel</esds-button>
+      </esds-dont>
+      <esds-dont caption="Don't use more than one primary button for a single action.">
+        <esds-button>Subscribe</esds-button>
+        <esds-button>Cancel</esds-button>
+      </esds-dont>
+      <esds-dont caption="Don't use more than one primary button for a single action.">
+        <esds-button>Subscribe</esds-button>
+        <esds-button>Cancel</esds-button>
+      </esds-dont>
+    </esds-do-dont>
+  `;
+};
+
+export const ContentResilience = () => {
+  return html`
+    <esds-do-dont>
+      <esds-do
+        caption="Use a single primary button as a call to action. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus, quia exercitationem. Molestiae odit iste aliquid, aperiam illum asperiores accusamus debitis? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus, quia exercitationem. Molestiae odit iste aliquid, aperiam illum asperiores accusamus debitis?"
+      >
+        <esds-button>Subscribe</esds-button>
+        <esds-button variant="secondary">Cancel</esds-button>
+      </esds-do>
+      <esds-dont caption="Don't use more than one primary button for a single action.">
+        <esds-button>Subscribe</esds-button>
+        <esds-button>Cancel</esds-button>
+      </esds-dont>
+    </esds-do-dont>
+  `;
+};
+
 export const Sink = sinkFor(Default);
 Sink.story = { parameters: { chromatic: { disable: false } } };

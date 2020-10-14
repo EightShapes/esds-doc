@@ -29,9 +29,11 @@ $esds-do-dont-item-background-position: 0 0,
 .#{$esds-custom-element-namespace}-do-dont {
   @include esds-box-sizing;
   @include esds-typography-reset;
+  align-items: stretch;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: $esds-space-stack-2-x;
 
   s-slot,
   s-root,
@@ -39,6 +41,13 @@ $esds-do-dont-item-background-position: 0 0,
   esds-do,
   esds-dont {
     display: contents;
+  }
+
+  .esds-do-dont__spacer {
+    @media screen and (min-width: $esds-breakpoints-width-1000) {
+      flex: 1 1 40%;
+      margin: 0 $esds-space-1-x;
+    }
   }
 }
 
@@ -60,6 +69,9 @@ $esds-do-dont-item-background-position: 0 0,
 .#{$esds-custom-element-namespace}-do-dont-item {
   @include esds-box-sizing;
   @include esds-typography-reset;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $esds-space-2-x;
   width: 100%;
 
   s-slot,
@@ -71,7 +83,8 @@ $esds-do-dont-item-background-position: 0 0,
 
   @media screen and (min-width: $esds-breakpoints-width-1000) {
     flex: 1 1 40%;
-    margin: 0 $esds-space-1-x;
+    margin-left: $esds-space-1-x;
+    margin-right: $esds-space-1-x;
   }
 
   .esds-do-dont-item__example {
@@ -84,6 +97,7 @@ $esds-do-dont-item-background-position: 0 0,
     border: $esds-border-control-default-on-light;
     border-top-width: 8px;
     display: flex;
+    flex: 1 1 auto;
     justify-content: center;
     margin: $esds-space-stack-half-x;
     min-height: 100px;
@@ -109,11 +123,13 @@ $esds-do-dont-item-background-position: 0 0,
   .esds-do-dont-item__caption {
     @include esds-typography-reset($font-size-token: 'body-m');
     color: $esds-color-text-primary-on-light;
+    flex: 0 0 auto;
   }
 
   .esds-do-dont-item__caption-eyebrow {
     @include esds-heading-eyebrow-small;
     display: block;
+    flex: 0 0 auto;
   }
 
   &.esds-do-dont-item--do {
