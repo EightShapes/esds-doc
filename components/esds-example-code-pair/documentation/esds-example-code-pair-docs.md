@@ -22,7 +22,7 @@
 
 | Method                           | Type                 |
 |----------------------------------|----------------------|
-| `handleCodeToggleClick`          | `(e: any): void`     |
+| `handleCodeToggleClick`          | `(): void`           |
 | `handleExampleSlotChange`        | `(e: any): void`     |
 | `handlePrimaryExampleSlotChange` | `(e: any): void`     |
 | `renderCodeSnippet`              | `(): any`            |
