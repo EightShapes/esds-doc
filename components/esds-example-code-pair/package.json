@@ -1,6 +1,6 @@
 {
   "name": "@eightshapes/esds-example-code-pair",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "",
   "esnext": "dist/EsdsExampleCodePair.js",
   "main": "dist/esds-example-code-pair-web-component.js",
