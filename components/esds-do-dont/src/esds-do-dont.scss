@@ -97,7 +97,7 @@ $esds-do-dont-item-background-position: 0 0,
     border: $esds-border-control-default-on-light;
     border-top-width: 8px;
     display: flex;
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     justify-content: center;
     margin: $esds-space-stack-half-x;
     min-height: 100px;
@@ -123,7 +123,7 @@ $esds-do-dont-item-background-position: 0 0,
   .esds-do-dont-item__caption {
     @include esds-typography-reset($font-size-token: 'body-m');
     color: $esds-color-text-primary-on-light;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
   }
 
   .esds-do-dont-item__caption-eyebrow {
