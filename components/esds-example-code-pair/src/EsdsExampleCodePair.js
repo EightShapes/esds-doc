@@ -128,28 +128,30 @@ export class EsdsExampleCodePair extends Slotify(Scopify(CSSClassify(LitElement)
   }
 
   handleExampleSlotChange(e) {
-    // Does the slot contain an esds-rendered-example component?
-    const defaultSlot = e.target;
-    const renderedExampleSlottedComponent = defaultSlot.querySelector('esds-rendered-example');
+    // Is there anything in the slot to deal with?
+    if (this.hasAssignedSlotContent()) {
+      const defaultSlot = e.target;
+      const renderedExampleSlottedComponent = defaultSlot.querySelector('esds-rendered-example');
 
-    if (!this.exampleSource) {
-      // Don't run again if exampleSource has already been set
-      if (!renderedExampleSlottedComponent) {
-        // If not, wrap it in an <esds-rendered-example> component
-        // No child <esds-rendered-example> has been used. Grab all the contents and append them to the defaultExampleCodePair
-        const assignedContent = Array.from(e.target.childNodes).find(
-          n => n.tagName.toLowerCase() === 's-assigned-wrapper',
-        );
-        if (assignedContent && assignedContent.innerHTML.trim().length > 0) {
-          this.exampleSource = assignedContent.innerHTML; // Store for retrieval by code snippet & defaultExampleCodePair
-          // Clear the assignedContent so the fallback content (the defaultRenderedExample) will be displayed
-          assignedContent.innerHTML = '';
+      if (!this.exampleSource) {
+        // Don't run again if exampleSource has already been set
+        if (!renderedExampleSlottedComponent) {
+          // If not, wrap it in an <esds-rendered-example> component
+          // No child <esds-rendered-example> has been used. Grab all the contents and append them to the defaultExampleCodePair
+          const assignedContent = Array.from(e.target.childNodes).find(
+            n => n.tagName.toLowerCase() === 's-assigned-wrapper',
+          );
+          if (assignedContent && assignedContent.innerHTML.trim().length > 0) {
+            this.exampleSource = assignedContent.innerHTML; // Store for retrieval by code snippet & defaultExampleCodePair
+            // Clear the assignedContent so the fallback content (the defaultRenderedExample) will be displayed
+            assignedContent.innerHTML = '';
+            this.requestUpdate();
+          }
+        } else if (renderedExampleSlottedComponent) {
+          // If so, extract the source from it to be referenced by code snippet
+          this.exampleSource = renderedExampleSlottedComponent.source;
           this.requestUpdate();
         }
-      } else if (renderedExampleSlottedComponent) {
-        // If so, extract the source from it to be referenced by code snippet
-        this.exampleSource = renderedExampleSlottedComponent.source;
-        this.requestUpdate();
       }
     }
   }

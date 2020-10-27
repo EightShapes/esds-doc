@@ -1,6 +1,7 @@
 import { html } from 'lit-html';
 // The Web Component Import
 import '@eightshapes/esds-example-code-pair/dist/esds-example-code-pair-web-component.js';
+import '@eightshapes/esds-button/dist/esds-button-web-component.js';
 // The Custom Element Class
 import { sinkFor } from './scripts/utilities.js';
 
@@ -15,6 +16,14 @@ export const Default = () => {
     </esds-example-code-pair>
   `;
 };
+
+/* eslint-disable */
+export const WebComponent = () => {
+  return html`
+    <esds-example-code-pair source="<esds-button>Testing</esds-button>"></esds-example-code-pair>
+  `;
+};
+/* eslint-enable */
 
 export const SlottedExample = () => {
   return html`
@@ -131,5 +140,5 @@ export const MultipleSourcesWithSlottedExample = () => html`
 `;
 /* eslint-enable */
 
-export const Sink = sinkFor(Default);
+export const Sink = sinkFor(Default, WebComponent);
 Sink.story = { parameters: { chromatic: { disable: false } } };
