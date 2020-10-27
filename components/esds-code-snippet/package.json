@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "@eightshapes/esds-button": "^0.3.3",
-    "@eightshapes/esds-tabs": "^0.4.0",
+    "@eightshapes/esds-tabs": "^0.5.0",
     "js-beautify": "^1.10.2",
     "lit-element": "^2.2.1",
     "lit-html": "^1.1.2",

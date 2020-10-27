@@ -41,8 +41,8 @@ export const SlottedButtonExample = () => {
       <p>Gonna have to separate out the slotted stuff...ugh.</p>
       <button style="background: red; color: green;" slot="copy-button">
         Copy This Now!
-      </button> </esds-code-snippet
-    >;
+      </button>
+    </esds-code-snippet>
   `;
 };
 

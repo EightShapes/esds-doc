@@ -11,9 +11,10 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 import { CSSClassify } from '@eightshapes/css-classify';
 import { Scopify } from '@eightshapes/scopify';
 import { Slotify } from '@eightshapes/slotify';
-import { namespacedStyles } from './esds-code-snippet-styles.js';
 import '@eightshapes/esds-button/dist/esds-button-web-component.js';
-import '@eightshapes/esds-tabs/dist/esds-tabs-web-component.js';
+import { EsdsTabs } from '@eightshapes/esds-tabs/dist/EsdsTabs.js';
+import { EsdsTab } from '@eightshapes/esds-tabs/dist/EsdsTab.js';
+import { namespacedStyles } from './esds-code-snippet-styles.js';
 
 /**
  * @element esds-code-snippet
@@ -117,6 +118,8 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
 
   constructor() {
     super();
+    EsdsTabs.define('esds-code-snippet');
+    EsdsTab.define('esds-code-snippet');
     this.defaultClass = 'esds-code-snippet';
     this.baseModifierClass = 'esds-code-snippet--';
     this.defaultSource = '<h1>Hello World</h1>';
@@ -422,16 +425,18 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
     let sourceOutput;
     if (this.sources && this.sources.length > 1) {
       sourceOutput = html`
-        <esds-tabs>
+        <esds-code-snippet-tabs>
           ${this.sources.map(s => {
             const tabLabel = s.tabLabel
               ? s.tabLabel
               : this.constructor.DEFAULT_LANGUAGE_TAB_LABELS[s.language.toLowerCase()];
             return html`
-              <esds-tab label="${tabLabel}">${this.renderCodeSnippet(s)}</esds-tab>
+              <esds-code-snippet-tab label="${tabLabel}"
+                >${this.renderCodeSnippet(s)}</esds-code-snippet-tab
+              >
             `;
           })}
-        </esds-tabs>
+        </esds-code-snippet-tabs>
       `;
     } else {
       const defaultSourceObject = {
