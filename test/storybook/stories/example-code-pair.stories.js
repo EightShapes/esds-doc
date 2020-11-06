@@ -140,5 +140,14 @@ export const MultipleSourcesWithSlottedExample = () => html`
 `;
 /* eslint-enable */
 
+/* eslint-disable */
+export const HorizontalScrolling = () => html`
+  <h2>Multiple Sources Plus Slotted Example</h2>
+  <esds-example-code-pair
+    source="<h1>Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. </h1>"
+  ></esds-example-code-pair>
+`;
+/* eslint-enable */
+
 export const Sink = sinkFor(Default, WebComponent);
 Sink.story = { parameters: { chromatic: { disable: false } } };

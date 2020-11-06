@@ -276,5 +276,13 @@ export const FooterLinks = () => {
   `;
 };
 
+export const HorizontalScrolling = () => {
+  return html`
+    <esds-code-snippet
+      source="<h1>Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. Lorem ipsum dolor sanctum. </h1> "
+    ></esds-code-snippet>
+  `;
+};
+
 export const Sink = sinkFor(Default);
 Sink.story = { parameters: { chromatic: { disable: false } } };

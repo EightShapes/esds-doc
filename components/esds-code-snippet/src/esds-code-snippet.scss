@@ -14,7 +14,7 @@ $esds-code-snippet-space-stack: $esds-space-stack-1-x !default;
 $esds-code-snippet-text-color: $esds-color-text-primary-on-light !default;
 
 $esds-code-snippet-source-background-color: transparent !default;
-$esds-code-snippet-source-font-family: 'Courier New', monospace !default;
+$esds-code-snippet-source-font-family: $esds-font-family-monospace !default;
 $esds-code-snippet-source-tag-color: $esds-color-teal-45 !default;
 $esds-code-snippet-source-selector-color: $esds-color-teal-28 !default;
 $esds-code-snippet-source-attribute-value-color: $esds-color-orange-74 !default;
