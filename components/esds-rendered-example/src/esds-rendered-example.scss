@@ -3,7 +3,7 @@ $esds-custom-element-namespace: 'CUSTOM-ELEMENT-NAMESPACE' !default;
 
 $esds-rendered-example-background: $esds-color-background-light-primary !default;
 $esds-rendered-example-background-check-size: 10px !default;
-$esds-rendered-example-background-check-color: $esds-color-background-light-secondary !default;
+$esds-rendered-example-background-check-color: #F9F8F8 !default;
 
 $esds-rendered-example-background-image: linear-gradient(
     45deg,
@@ -27,7 +27,7 @@ $esds-rendered-example-background-position: 0 0,
   $esds-rendered-example-background-check-size $esds-rendered-example-background-check-size !default;
 $esds-rendered-example-background-dark: $esds-color-background-dark-primary !default;
 
-$esds-rendered-example-border: solid 1px $esds-color-neutral-90 !default;
+$esds-rendered-example-border: solid 1px #E3E2E2 !default;
 $esds-rendered-example-border-radius: 0 !default;
 
 $esds-rendered-example-space-inset: $esds-space-inset-half-x !default;
