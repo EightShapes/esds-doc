@@ -59,6 +59,7 @@ export class EsdsExampleCodePair extends Slotify(Scopify(CSSClassify(LitElement)
       derivedHtmlTab: { type: Boolean, attribute: 'derived-html-tab' },
       hiddenCode: { type: Boolean, attribute: 'hidden-code' },
       language: { type: String },
+      preformatted: { type: Boolean },
       noCodeToggle: { type: Boolean, attribute: 'no-code-toggle' },
       source: { type: String },
       sources: { type: Array },
@@ -104,13 +105,17 @@ export class EsdsExampleCodePair extends Slotify(Scopify(CSSClassify(LitElement)
     this.exampleSource = false;
     this.hiddenCode = false;
     this.noCodeToggle = false;
+    this.preformatted = false;
     this.codeVisibleToggleIcon = EsdsIconCaretUp;
     this.codeHiddenToggleIcon = EsdsIconCaretDown;
   }
 
   connectedCallback() {
     super.connectedCallback();
-
+    if (!this.capturedSlottedContent) {
+      // only do this once
+      this.capturedSlottedContent = this.innerHTML.replace(/<s-root><\/s-root>/g, '').trim();
+    }
     // Set up child components here after component is connected
     this.codeSnippet = new EsdsCodeSnippet();
     this.defaultRenderedExample = new EsdsRenderedExample();
@@ -142,7 +147,7 @@ export class EsdsExampleCodePair extends Slotify(Scopify(CSSClassify(LitElement)
             n => n.tagName.toLowerCase() === 's-assigned-wrapper',
           );
           if (assignedContent && assignedContent.innerHTML.trim().length > 0) {
-            this.exampleSource = assignedContent.innerHTML; // Store for retrieval by code snippet & defaultExampleCodePair
+            this.exampleSource = this.capturedSlottedContent; // Use the captured slotted content from connectedCallback cause it will have the web component source BEFORE the browser has rendered the child component
             // Clear the assignedContent so the fallback content (the defaultRenderedExample) will be displayed
             assignedContent.innerHTML = '';
             this.requestUpdate();

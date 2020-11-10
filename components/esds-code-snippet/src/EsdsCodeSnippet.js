@@ -16,6 +16,8 @@ import { EsdsTabs } from '@eightshapes/esds-tabs/dist/EsdsTabs.js';
 import { EsdsTab } from '@eightshapes/esds-tabs/dist/EsdsTab.js';
 import { namespacedStyles } from './esds-code-snippet-styles.js';
 
+const copyIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M433.941 65.941l-51.882-51.882A48 48 0 0 0 348.118 0H176c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48v-48h80c26.51 0 48-21.49 48-48V99.882a48 48 0 0 0-14.059-33.941zM266 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h74v224c0 26.51 21.49 48 48 48h96v42a6 6 0 0 1-6 6zm128-96H182a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h106v88c0 13.255 10.745 24 24 24h88v202a6 6 0 0 1-6 6zm6-256h-64V48h9.632c1.591 0 3.117.632 4.243 1.757l48.368 48.368a6 6 0 0 1 1.757 4.243V112z"/></svg>`;
+
 /**
  * @element esds-code-snippet
  *
@@ -337,7 +339,8 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
 
   renderCopyButton() {
     let copyButton = html`
-      <esds-button class="esds-code-snippet__copy-button" size="small" variant="secondary">
+      <esds-button class="esds-code-snippet__copy-button" size="small" variant="flat">
+        <esds-icon slot="icon" use=${copyIcon}></esds-icon>
         ${this.copyButtonText}
       </esds-button>
     `;
@@ -385,10 +388,6 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
           `
         : '';
 
-    if (this.copyable !== 'false') {
-      toolbarActions.push(this.renderCopyButton());
-    }
-
     if (toolbarActions.length > 0) {
       output = html`
         <div class="esds-code-snippet__toolbar">
@@ -401,13 +400,11 @@ export class EsdsCodeSnippet extends Slotify(Scopify(CSSClassify(LitElement), 'e
   }
 
   renderFooterLinks() {
-    if (this.hasSlotableContent('footer-links')) {
-      return html`
-        <div class="esds-code-snippet__footer-links"><s-slot name="footer-links"></s-slot></div>
-      `;
-    }
     return html`
-      <s-slot name="footer-links"></s-slot>
+      <div class="esds-code-snippet__footer-links">
+        ${this.copyable !== 'false' ? this.renderCopyButton() : ''}
+        <s-slot name="footer-links"></s-slot>
+      </div>
     `;
   }
 

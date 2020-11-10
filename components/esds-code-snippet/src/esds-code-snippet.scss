@@ -27,6 +27,7 @@ $esds-code-snippet-copy-code-button-offset: $esds-space-inset-half-x !default;
 
 $esds-code-snippet-copied-tooltip-background-color: $esds-color-background-light-primary !default;
 $esds-code-snippet-copied-tooltip-border-radius: $esds-border-radius-default !default;
+$esds-code-snippet-copied-tooltip-color: $esds-color-text-primary-on-light;
 $esds-code-snippet-copied-tooltip-distance-from-button: 100% !default;
 $esds-code-snippet-copied-tooltip-distance-from-button-starting: 90% !default;
 $esds-code-snippet-copied-tooltip-box-shadow-color: rgba(0, 0, 0, 0.8) !default;
@@ -115,6 +116,7 @@ $esds-code-snippet-toolbar-background: $esds-color-background-light-secondary !d
   }
 
   .esds-code-snippet__copy-code-wrap {
+    line-height: 0;
     position: relative;
     z-index: 10;
   }
@@ -125,10 +127,12 @@ $esds-code-snippet-toolbar-background: $esds-color-background-light-secondary !d
   }
 
   .esds-code-snippet__copied-notification {
+    @include esds-typography-reset;
     background: $esds-code-snippet-copied-tooltip-background-color;
     border-radius: $esds-code-snippet-copied-tooltip-border-radius;
     bottom: $esds-code-snippet-copied-tooltip-distance-from-button-starting;
     box-shadow: $esds-code-snippet-copied-tooltip-shadow;
+    color: $esds-code-snippet-copied-tooltip-color;
     font-family: $esds-code-snippet-copied-tooltip-font-family;
     font-size: $esds-code-snippet-copied-tooltip-font-size;
     opacity: 0;
@@ -202,6 +206,14 @@ $esds-code-snippet-toolbar-background: $esds-color-background-light-secondary !d
     &:hover {
       background-color: $esds-color-action-hover-on-dark;
     }
+
+    .esds-button__text {
+      color: $esds-color-text-primary-on-light;
+    }
+
+    .esds-icon {
+      fill: $esds-color-text-primary-on-light;
+    }
   }
   // TABS
   .esds-tabs .esds-tabs__tablist {
@@ -210,6 +222,9 @@ $esds-code-snippet-toolbar-background: $esds-color-background-light-secondary !d
 
   .esds-code-snippet__footer-links {
     @include esds-typography-reset;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
   }
 } // End of .esds-code-snippet-v1
 

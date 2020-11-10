@@ -47,6 +47,11 @@ $esds-example-code-pair-space-stack: $esds-space-stack-1-x !default;
   .esds-example-code-pair__footer {
     @include esds-typography-reset;
     display: flex;
+    transform: translateY(calc(-100% - 8px));
+  }
+
+  &.esds-example-code-pair--hidden-code .esds-example-code-pair__footer {
+    transform: translateY(0);
   }
 
   .esds-example-code-pair__code-toggle {
@@ -59,5 +64,6 @@ $esds-example-code-pair-space-stack: $esds-space-stack-1-x !default;
   .esds-example-code-pair__footer-links {
     @include esds-typography-reset;
     margin-left: auto;
+    padding-right: 115px; // HACKY - Remove later
   }
 }

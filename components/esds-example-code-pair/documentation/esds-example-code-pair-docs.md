@@ -14,6 +14,7 @@
 | `hiddenCode`            | `hidden-code`      |           | `boolean`                                        | false               |
 | `language`              | `language`         |           | `string`                                         |                     |
 | `noCodeToggle`          | `no-code-toggle`   |           | `boolean`                                        | false               |
+| `preformatted`          | `preformatted`     |           | `boolean`                                        | false               |
 | `primaryExampleSource`  |                    |           | `boolean`                                        | false               |
 | `source`                | `source`           |           | `string`                                         |                     |
 | `sources`               | `sources`          |           | `array`                                          |                     |
