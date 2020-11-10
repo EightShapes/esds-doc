@@ -96,16 +96,11 @@ $esds-do-dont-item-background-position: 0 0,
     background-size: $esds-do-dont-item-background-size;
     border: $esds-border-control-default-on-light;
     border-top-width: 8px;
-    display: flex;
+    display: inline-flex;
     flex: 0 0 auto;
     justify-content: center;
     margin: $esds-space-stack-half-x;
     min-height: 100px;
-  }
-
-  // If a thumbnail is being displayed, set the example to display block
-  &.esds-do-dont-item--src .esds-do-dont-item__example {
-    display: block;
   }
 
   &.esds-do-dont-item--do {
@@ -142,5 +137,9 @@ $esds-do-dont-item-background-position: 0 0,
     .esds-do-dont-item__caption-eyebrow {
       color: $esds-color-alert-error-on-light;
     }
+  }
+
+  .esds-do-dont-item__image {
+    max-width: 100%;
   }
 }

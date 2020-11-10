@@ -119,5 +119,28 @@ export const ContentResilience = () => {
   `;
 };
 
-export const Sink = sinkFor(Default);
+export const AspectRatioTest = () => {
+  return html`
+    <esds-do-dont>
+      <esds-do
+        caption="Maintain consistent height and width of all cards when arranged in a non-masonry grid."
+        src="/images/dodont/layout-do-1.png"
+      ></esds-do>
+      <esds-do
+        caption="Layout cards in masonry arrangements, maintaining consistent vertical and horizontal gutters. (Not yet supported via code)"
+        src="/images/dodont/layout-do-2.png"
+      ></esds-do>
+    </esds-do-dont>
+  `;
+};
+
+export const Sink = sinkFor(
+  Default,
+  WithImages,
+  WithWebComponents,
+  Stacked,
+  MultipleDoDonts,
+  ContentResilience,
+  AspectRatioTest,
+);
 Sink.story = { parameters: { chromatic: { disable: false } } };

@@ -2,7 +2,6 @@ import { html, LitElement } from 'lit-element';
 import { CSSClassify } from '@eightshapes/css-classify';
 import { Scopify } from '@eightshapes/scopify';
 import { Slotify } from '@eightshapes/slotify';
-import '@eightshapes/esds-thumbnail/dist/esds-thumbnail-web-component.js';
 
 /**
  * @element esds-do-dont-item
@@ -52,7 +51,7 @@ export class EsdsDoDontItem extends Slotify(Scopify(CSSClassify(LitElement), 'es
   renderImageFromSource() {
     if (this.src) {
       return html`
-        <esds-thumbnail src="${this.src}"></esds-thumbnail>
+        <img class="esds-do-dont-item__image" src="${this.src}" role="presentation" />
       `;
     }
     return '';
