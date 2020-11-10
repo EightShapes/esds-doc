@@ -1,6 +1,6 @@
 {
   "name": "@eightshapes/esds-code-snippet",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "",
   "esnext": "dist/EsdsCodeSnippet.js",
   "main": "dist/esds-code-snippet-web-component.js",
